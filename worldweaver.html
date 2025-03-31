@@ -131,9 +131,14 @@
         const adminInputContainer = document.getElementById("admin-input-container");
         const treeview = document.getElementById("treeview");
         const details = document.getElementById("details");
+        const elementTypes = [
+            "action", "attack", "attribute", "custom", "dev_note", "enter_message", "game", "global", "injection",
+            "input", "link", "logic", "message", "move", "navigation", "nothing", "npc", "object",
+            "player", "room", "set", "travel"
+        ];
 
 
-        function createElement(elementKey, name, doLogging)
+        function createElement(elementKey, elementType, name, doLogging)
         {
             if (elementKey == "")
             {
@@ -141,7 +146,7 @@
             }
 
             let entry = {
-                ElementType: "",
+                ElementType: elementType,
                 ElementKey: elementKey,
                 Name: name,
                 ParentKey: currentParent,
@@ -163,6 +168,11 @@
             {
                 logAdminMessage("Added: " + entry.Name);
             }
+        }
+
+        function updateElementType(item, newType) {
+            item.ElementType = newType;
+            showDetails(item);
         }
 
 
@@ -192,7 +202,7 @@
             }
 
             if (command.startsWith("add ")) {
-                createElement("", command.substring(4), true);
+                createElement("", "", command.substring(4), true);
             } else if (command === "save") {
                 saveFile();
             } else {
@@ -266,8 +276,13 @@
 
         function showDetails(item) {
             currentParent = item.ElementKey;
+            
+            let dropdown = `<select id='elementTypeSelect'>`;
+            dropdown += elementTypes.map(type => `<option value='${type}' ${item.ElementType === type ? "selected" : ""}>${type}</option>`).join('');
+            dropdown += `</select>`;
+
             details.innerHTML = `
-                <p><strong>Element Type:</strong> ${item.ElementType}</p>
+                <p><strong>Element Type:</strong> ${dropdown}</p>
                 <p><strong>Element Key:</strong> ${item.ElementKey}</p>
                 <p><strong>Name:</strong> ${item.Name}</p>
                 <p><strong>Parent Key:</strong> ${item.ParentKey}</p>
@@ -281,6 +296,13 @@
                 <p><strong>Active:</strong> ${item.Active}</p>
                 <p><strong>Sort:</strong> ${item.Sort}</p>
             `;
+
+            document.getElementById("elementTypeSelect").addEventListener("change", function() {
+                if (item.ElementType != "game" && item.ElementType != "player") {
+                    updateElementType(item, this.value);
+                }
+            });
+
             adminInput.focus();  // Focus the admin input field
         }
 
@@ -306,10 +328,20 @@
 
         // Ensure admin interface is hidden on load
         window.onload = function() {
+            gameInterface.style.display = "flex";
+            output.innerHTML = "Game Output Will Be Here";
             adminInterface.style.display = "none";
             adminInputContainer.style.display = "none";
-            createElement("game", "Game", false);
-            createElement("player", "Player", false);
+
+            // Ensure the database is not overwritten if it was injected from a saved file
+            if (!Array.isArray(database) || database.length === 0) {
+                database = [];
+                createElement("game", "game", "Game", false);
+                createElement("player", "player", "Player", false);
+            }
+
+            buildTreeView();
+            input.focus();  // Focus the admin input field
         };
     </script>
 </body>
