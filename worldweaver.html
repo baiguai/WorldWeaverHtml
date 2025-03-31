@@ -274,6 +274,11 @@
             return li;
         }
 
+        function escapeSpecialChars(str) {
+            // Escape special characters in regex to avoid issues
+            return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+        }
+
         function showDetails(item) {
             currentParent = item.ElementKey;
             
@@ -281,12 +286,21 @@
             dropdown += elementTypes.map(type => `<option value='${type}' ${item.ElementType === type ? "selected" : ""}>${type}</option>`).join('');
             dropdown += `</select>`;
 
+            let parentDropdown = `<select id="parentSelect">`;
+            parentDropdown += `<option value="null" ${item.ParentKey === null ? "selected" : ""}>No Parent</option>`;
+            database.forEach(otherItem => {
+                if (otherItem.ElementKey !== item.ElementKey) {
+                    parentDropdown += `<option value="${otherItem.ElementKey}" ${item.ParentKey === otherItem.ElementKey ? "selected" : ""}>${otherItem.Name}</option>`;
+                }
+            });
+            parentDropdown += `</select>`;
+
             details.innerHTML = `
                 <p><strong>Element Type:</strong> ${dropdown}</p>
                 <p><strong>Element Key:</strong> ${item.ElementKey}</p>
                 <p><strong>Name:</strong> ${item.Name}</p>
-                <p><strong>Parent Key:</strong> ${item.ParentKey}</p>
-                <p><strong>Syntax:</strong> ${item.Syntax}</p>
+                <p><strong>Parent Key:</strong> ${parentDropdown}</p>
+                <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
                 <p><strong>Logic:</strong> ${item.Logic}</p>
                 <p><strong>Output:</strong> ${item.Output}</p>
                 <p><strong>Tags:</strong> ${item.Tags}</p>
@@ -297,9 +311,58 @@
                 <p><strong>Sort:</strong> ${item.Sort}</p>
             `;
 
+            // Add event listener for syntax caption click
+    document.getElementById("syntax-caption").addEventListener("click", function() {
+        let inputField = document.createElement("input");
+        inputField.type = "text";
+        inputField.value = item.Syntax || "";
+        inputField.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                let inputText = inputField.value.trim();
+                if (inputText) {
+                    try {
+                        // Split by pipe, trim each part, and escape special characters
+                        let escapedInput = inputText
+                            .split("|")           // Split on the pipe symbol
+                            .map(part => part.trim())  // Trim any leading/trailing whitespace
+                            .map(part => escapeSpecialChars(part))  // Escape any regex special characters
+                            .join(".*?");         // Join them with `.*?` for regex pattern matching
+
+                        // Log the escaped regex input to see how it’s being formed
+                        console.log("Escaped Regex Input:", escapedInput);
+
+                        // Construct the regex string with case-insensitivity
+                        let regexString = `^${escapedInput}$`; // Match from start to end
+                        
+                        // Log the final regex string for debugging
+                        console.log("Regex String:", regexString);
+
+                        item.Syntax = regexString;
+                        showDetails(item); // Update the details view with the new syntax
+                    } catch (error) {
+                        alert("Error generating regex: " + error.message);
+                    }
+                }
+            }
+        });
+
+        // Replace the caption with the input field
+        this.replaceWith(inputField);
+        inputField.focus();  // Focus on the input field
+    });
+
             document.getElementById("elementTypeSelect").addEventListener("change", function() {
                 if (item.ElementType != "game" && item.ElementType != "player") {
                     updateElementType(item, this.value);
+                }
+            });
+
+            // Update parent key when selection changes
+            document.getElementById("parentSelect").addEventListener("change", function() {
+                let newParentKey = this.value === "null" ? null : this.value;
+                if (item.ParentKey !== newParentKey) {
+                    item.ParentKey = newParentKey;
+                    buildTreeView(); // Rebuild the tree view after the parent key change
                 }
             });
 
