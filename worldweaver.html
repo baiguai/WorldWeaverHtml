@@ -128,6 +128,11 @@
             padding: 5px;
             color: red;
         }
+
+        .link {
+            cursor: pointer;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -142,7 +147,6 @@
         <div id="treeview"></div>
         <div id="details">Select an item to see details.</div>
         <div id="editor-container">
-            <div id="editor-close">X</div>
             <textarea id="editor"></textarea>
         </div>
     </div>
@@ -166,9 +170,9 @@
         const editorText = document.getElementById("editor");
         const editorClose = document.getElementById("editor-close");
         const elementTypes = [
-            "action", "attack", "attribute", "custom", "dev_note", "enter_message", "game", "global", "injection",
+            "action", "attack", "attribute", "custom", "dev_note", "enter_message", "global", "injection",
             "input", "link", "logic", "message", "move", "navigation", "nothing", "npc", "object",
-            "player", "room", "set", "travel"
+            "room", "set", "travel"
         ];
 
 
@@ -323,6 +327,8 @@
 
             let children = database.filter(child => child.ParentKey === item.ElementKey);
             if (children.length > 0) {
+                children.sort((a, b) => parseInt(a.Sort) - parseInt(b.Sort));
+
                 let ul = document.createElement("ul");
                 ul.style.display = expandedNodes.has(item.ElementKey) ? "block" : "none";
                 children.forEach(child => ul.appendChild(createTreeNode(child)));
@@ -377,21 +383,24 @@
                         break;
                 }
             });
+
+            editorText.addEventListener("keydown", function(event) {
+                if (event.key === "Escape") {
+                    closeEditor(item);
+                }
+            });
         }
 
-        function closeEditor() {
+        function closeEditor(item) {
             document.getElementById("details").style.display = "block";
             document.getElementById("editor-container").style.display = "none";
+            showDetails(item);
             adminInput.focus();  // Focus the admin input field
         }
 
         function showDetails(item) {
             currentParent = item.ElementKey;
             
-            let dropdown = `<select id='elementTypeSelect'>`;
-            dropdown += elementTypes.map(type => `<option value='${type}' ${item.ElementType === type ? "selected" : ""}>${type}</option>`).join('');
-            dropdown += `</select>`;
-
             let parentDropdown = `<select id="parentSelect">`;
             parentDropdown += `<option value="null" ${item.ParentKey === null ? "selected" : ""}>No Parent</option>`;
             database.forEach(otherItem => {
@@ -402,19 +411,18 @@
             parentDropdown += `</select>`;
 
             details.innerHTML = `
-                <p><strong>Element Type:</strong> ${dropdown}</p>
-                <p><strong>Element Key:</strong> <span id="element-key" style="cursor:pointer; text-decoration:underline;">${item.ElementKey}</span></p>
-                <p><strong>Name:</strong> <span id="element-name" style="cursor:pointer; text-decoration:underline;">${item.Name}</span></p>
+                <p><strong>Element Type:</strong><span id="element-type-parent"><span id="element-type" class="link">${item.ElementType || "Click to Edit"}</span></span></p>
+                <p><strong>Element Key:</strong> <span id="element-key" class="link">${item.ElementKey}</span></p>
+                <p><strong>Name:</strong> <span id="element-name" class="link">${item.Name}</span></p>
                 <p><strong>Parent Key:</strong> ${parentDropdown}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
-                <p><strong>Logic:</strong> <span id="logic-field" style="cursor:pointer; text-decoration:underline;">${item.Logic || "Click to View/Edit"}</span></p>
-                <p><strong>Output:</strong> <span id="output-field" style="cursor:pointer; text-decoration:underline;">${item.Output || "Click to View/Edit"}</span></p>
-                <p><strong>Tags:</strong> ${item.Tags}</p>
-                <p><strong>Repeat:</strong> ${item.Repeat}</p>
-                <p><strong>Repeat Index:</strong> ${item.RepeatIndex}</p>
+                <p><strong>Logic:</strong> <span id="logic-field" class="link">${item.Logic || "Click to View/Edit"}</span></p>
+                <p><strong>Output:</strong> <span id="output-field" class="link">${(item.Output.length > 100) ? item.Output.substring(0, 100)+"..." : item.Output || "Click to View/Edit"}</span></p>
+                <p><strong>Tags:</strong> <span id="tags-field" class="link">${item.Tags || "Click to Edit"}</span></p>
+                <p><strong>Repeat:</strong> <span id="repeat-field-parent"><span id="repeat-field" class="link">${item.Repeat || "Click to Edit"}</span><span></p>
                 <p><strong>Template:</strong> ${item.Template}</p>
                 <p><strong>Active:</strong> ${item.Active}</p>
-                <p><strong>Sort:</strong> ${item.Sort}</p>
+                <p><strong>Sort:</strong> <span id="sort-field" style="cursor:pointer; text-decoration:underline;">${item.Sort || "Click to Edit"}</span></p>
             `;
 
             // Handle inline editing for ElementKey
@@ -457,6 +465,8 @@
 
             function showEditField(currItem, fieldName)
             {
+                let parent = null;
+                let textField = null;
                 let inputField = document.createElement("input");
                 inputField.type = "text";
 
@@ -464,11 +474,106 @@
                 {
                     case "name":
                         inputField.value = item.Name;
+                        inputField.style = "width: 200px";
+                        break;
+                    case "sort":
+                        inputField.type = "number";
+                        inputField.value = item.Sort;
+                        inputField.style = "width: 50px";
+                        break;
+                    case "tags":
+                        inputField.value = item.Tags;
+                        inputField.style = "width: 500px";
+                        break;
+                    case "repeat":
+                        inputField = document.createElement("select");
+                        const options = ["none", "random", "repeat", "other"];
+                        options.forEach(option => {
+                            let opt = document.createElement("option");
+                            opt.value = option;
+                            opt.textContent = option;
+                            inputField.appendChild(opt);
+                        });
+                        inputField.value = item.Repeat;
+                        parent = document.getElementById("repeat-field-parent");
+                        
+                        textField = document.createElement("input");
+                        textField.type = "text";
+                        textField.style.width = "100px";
+                        
+                        inputField.addEventListener("change", function() {
+                            if (inputField.value === "other") {
+                                if (parent) {
+                                    parent.replaceChild(textField, inputField); // Replace dropdown with textbox
+                                }
+                                textField.value = item.Repeat;
+                                textField.focus();
+                                textField.select();
+
+                                textField.addEventListener("keydown", function(event) {
+                                    if (event.key === "Enter") {
+                                        item.Repeat = textField.value.trim();
+                                        buildTreeView();
+                                        showDetails(item);
+                                        return;
+                                    }
+                                    if (event.key === "Escape") {
+                                        showDetails(item);
+                                    }
+                                });
+                            }
+                        });
+                        break;
+                    case "type":
+                        if (item.ElementType === "game" || item.ElementType === "player") {
+                            showDetails(item);
+                        }
+                        inputField = document.createElement("select");
+                        inputField.style.width = "200px";
+                        elementTypes.forEach(option => {
+                            let opt = document.createElement("option");
+                            opt.value = option;
+                            opt.textContent = option;
+                            inputField.appendChild(opt);
+                        });
+                        inputField.value = item.ElementType;
+                        parent = document.getElementById("element-type-parent");
+                        
+                        textField = document.createElement("input");
+                        textField.type = "text";
+                        textField.style.width = "200px";
+                        
+                        inputField.addEventListener("change", function() {
+                            if (inputField.value === "custom") {
+                                if (parent) {
+                                    parent.replaceChild(textField, inputField); // Replace dropdown with textbox
+                                }
+                                textField.value = item.ElementType;
+                                textField.focus();
+                                textField.select();
+
+                                textField.addEventListener("keydown", function(event) {
+                                    if (event.key === "Enter") {
+                                        item.ElementType = textField.value.trim();
+                                        buildTreeView();
+                                        showDetails(item);
+                                        return;
+                                    }
+                                    if (event.key === "Escape") {
+                                        showDetails(item);
+                                    }
+                                });
+                            }
+                        });
                         break;
                 }
 
-                inputField.style = "width: 200px";
-                inputField.select();
+                try {
+                    inputField.select();
+                }
+                catch(err) {
+                    // select not possible - likely due to it being a drop down
+                }
 
                 inputField.addEventListener("keypress", function(event) {
                     if (event.key === "Enter") {
@@ -478,10 +583,21 @@
                             case "name":
                                 item.Name = inputField.value.trim();
                                 break;
+                            case "sort":
+                                item.Sort = inputField.value.trim();
+                                break;
+                            case "tags":
+                                item.Tags = inputField.value.trim();
+                                break;
+                            case "repeat":
+                                item.Repeat = inputField.value === "other" ? textField.value.trim() : inputField.value;
+                                break;
+                            case "type":
+                                item.ElementType = inputField.value === "custom" ? textField.value.trim() : inputField.value;
+                                break;
                         }
 
-                        buildTreeView(); // Rebuild tree view
-                        // Restore original ElementKey if not unique
+                        buildTreeView();
                         showDetails(item);
                     }
                 });
@@ -496,9 +612,29 @@
                 inputField.focus();
             }
 
+            // Handle inline editing for ElementType
+            document.getElementById("element-type").addEventListener("click", function() {
+                showEditField(this, "type");
+            });
+
             // Handle inline editing for ElementName
             document.getElementById("element-name").addEventListener("click", function() {
                 showEditField(this, "name");
+            });
+
+            // Handle inline editing for Tags
+            document.getElementById("tags-field").addEventListener("click", function() {
+                showEditField(this, "tags");
+            });
+
+            // Handle inline editing for Sort
+            document.getElementById("sort-field").addEventListener("click", function() {
+                showEditField(this, "sort");
+            });
+
+            // Handle inline editing for Repeat
+            document.getElementById("repeat-field").addEventListener("click", function() {
+                showEditField(this, "repeat");
             });
 
             // Add event listener for syntax caption click
@@ -548,13 +684,6 @@
                 inputField.focus();  // Focus on the input field
             });
 
-            // Add event listener for element type drop down
-            document.getElementById("elementTypeSelect").addEventListener("change", function() {
-                if (item.ElementType != "game" && item.ElementType != "player") {
-                    updateElementType(item, this.value);
-                }
-            });
-
             // Update parent key when selection changes
             document.getElementById("parentSelect").addEventListener("change", function() {
                 let newParentKey = this.value === "null" ? null : this.value;
@@ -579,13 +708,6 @@
 
 
         // Events
-        editorClose.addEventListener("click", closeEditor);
-        editorText.addEventListener("keydown", function(event) {
-            if (event.key === "Escape") {
-                closeEditor();
-            }
-        });
-
         input.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
                 let command = input.value.trim();
