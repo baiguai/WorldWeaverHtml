@@ -154,6 +154,7 @@
         let database = [];
         let currentParent = null;
         let currentField = "";
+        let expandedNodes = new Set();
         const output = document.getElementById("output");
         const input = document.getElementById("input");
         const adminInput = document.getElementById("admin-input");
@@ -171,7 +172,7 @@
         ];
 
 
-        function createElement(elementKey, elementType, name, doLogging)
+        function createNewElement(elementKey, elementType, name, doLogging, doShowDetails)
         {
             if (elementKey == "")
             {
@@ -195,7 +196,11 @@
             };
 
             database.push(entry);
-            buildTreeView();
+            if (doShowDetails)
+            {
+                showDetails(entry);
+                buildTreeView();
+            }
 
             if (doLogging == true)
             {
@@ -235,7 +240,7 @@
             }
 
             if (command.startsWith("add ")) {
-                createElement("", "", command.substring(4), true);
+                createNewElement("", "", command.substring(4), true, true);
             } else if (command === "save") {
                 saveFile();
             } else {
@@ -273,6 +278,17 @@
         }
 
         function buildTreeView() {
+            // Save the currently expanded nodes
+            expandedNodes.clear();
+            document.querySelectorAll("#treeview ul").forEach(ul => {
+                if (ul.style.display === "block") {
+                    let parentLi = ul.closest("li");
+                    if (parentLi && parentLi.dataset.key) {
+                        expandedNodes.add(parentLi.dataset.key);
+                    }
+                }
+            });
+
             treeview.innerHTML = "";
             let rootItems = database.filter(item => item.ParentKey === null);
             let ul = document.createElement("ul");
@@ -282,15 +298,24 @@
 
         function createTreeNode(item) {
             let li = document.createElement("li");
+            li.dataset.key = item.ElementKey; // Store the ElementKey as a dataset
+
             let span = document.createElement("span");
             span.textContent = item.Name;
             span.style.cursor = "pointer";
             span.addEventListener("click", (event) => {
-                event.stopPropagation(); // Prevent event bubbling
+                event.stopPropagation();
                 showDetails(item);
                 let childUl = li.querySelector("ul");
                 if (childUl) {
-                    childUl.style.display = childUl.style.display === "none" ? "block" : "none";
+                    let isExpanded = childUl.style.display === "block";
+                    childUl.style.display = isExpanded ? "none" : "block";
+
+                    if (isExpanded) {
+                        expandedNodes.delete(item.ElementKey);
+                    } else {
+                        expandedNodes.add(item.ElementKey);
+                    }
                 }
             });
 
@@ -299,7 +324,7 @@
             let children = database.filter(child => child.ParentKey === item.ElementKey);
             if (children.length > 0) {
                 let ul = document.createElement("ul");
-                ul.style.display = "none"; // Initially collapse children
+                ul.style.display = expandedNodes.has(item.ElementKey) ? "block" : "none";
                 children.forEach(child => ul.appendChild(createTreeNode(child)));
                 li.appendChild(ul);
             }
@@ -316,11 +341,37 @@
             document.getElementById("details").style.display = "none";
             document.getElementById("editor-container").style.display = "flex";
             const editor = document.getElementById("editor");
-            editor.value = item.Output;
+
+            switch (currentField)
+            {
+                case "logic":
+                    if (item.Logic == null)
+                    {
+                        editor.value = "";
+                    }
+                    else
+                    {
+                        editor.value = item.Logic;
+                    }
+                    break;
+                case "output":
+                    if (item.Output == null)
+                    {
+                        editor.value = "";
+                    }
+                    else
+                    {
+                        editor.value = item.Output;
+                    }
+                    break;
+            }
             editor.focus();
             editor.addEventListener("input", function() {
                 switch (currentField)
                 {
+                    case "logic":
+                        item.Logic = editor.value;
+                        break;
                     case "output":
                         item.Output = editor.value;
                         break;
@@ -353,10 +404,10 @@
             details.innerHTML = `
                 <p><strong>Element Type:</strong> ${dropdown}</p>
                 <p><strong>Element Key:</strong> <span id="element-key" style="cursor:pointer; text-decoration:underline;">${item.ElementKey}</span></p>
-                <p><strong>Name:</strong> ${item.Name}</p>
+                <p><strong>Name:</strong> <span id="element-name" style="cursor:pointer; text-decoration:underline;">${item.Name}</span></p>
                 <p><strong>Parent Key:</strong> ${parentDropdown}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
-                <p><strong>Logic:</strong> ${item.Logic}</p>
+                <p><strong>Logic:</strong> <span id="logic-field" style="cursor:pointer; text-decoration:underline;">${item.Logic || "Click to View/Edit"}</span></p>
                 <p><strong>Output:</strong> <span id="output-field" style="cursor:pointer; text-decoration:underline;">${item.Output || "Click to View/Edit"}</span></p>
                 <p><strong>Tags:</strong> ${item.Tags}</p>
                 <p><strong>Repeat:</strong> ${item.Repeat}</p>
@@ -372,10 +423,16 @@
                 inputField.type = "text";
                 inputField.value = item.ElementKey;
                 inputField.style = "width: 200px";
+                inputField.select();
 
                 inputField.addEventListener("keypress", function(event) {
                     if (event.key === "Enter") {
                         let newKey = inputField.value.trim();
+
+                        if (newKey == "")
+                        {
+                            newKey = getGuid();
+                        }
                         
                         if (newKey && !database.some(entry => entry.ElementKey === newKey)) {
                             // Update ElementKey in the database
@@ -388,8 +445,60 @@
                     }
                 });
 
+                inputField.addEventListener("keydown", function(event) {
+                    if (event.key === "Escape") {
+                        showDetails(item);
+                    }
+                });
+
                 this.replaceWith(inputField);
                 inputField.focus();
+            });
+
+            function showEditField(currItem, fieldName)
+            {
+                let inputField = document.createElement("input");
+                inputField.type = "text";
+
+                switch(fieldName)
+                {
+                    case "name":
+                        inputField.value = item.Name;
+                        break;
+                }
+
+                inputField.style = "width: 200px";
+                inputField.select();
+
+                inputField.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+
+                        switch(fieldName)
+                        {
+                            case "name":
+                                item.Name = inputField.value.trim();
+                                break;
+                        }
+
+                        buildTreeView(); // Rebuild tree view
+                        // Restore original ElementKey if not unique
+                        showDetails(item);
+                    }
+                });
+
+                inputField.addEventListener("keydown", function(event) {
+                    if (event.key === "Escape") {
+                        showDetails(item);
+                    }
+                });
+
+                currItem.replaceWith(inputField);
+                inputField.focus();
+            }
+
+            // Handle inline editing for ElementName
+            document.getElementById("element-name").addEventListener("click", function() {
+                showEditField(this, "name");
             });
 
             // Add event listener for syntax caption click
@@ -398,6 +507,7 @@
                 inputField.type = "text";
                 inputField.value = item.Syntax || "";
                 inputField.style = "width: 400px";
+                inputField.select();
                 inputField.addEventListener("keypress", function(event) {
                     if (event.key === "Enter") {
                         let inputText = inputField.value.trim();
@@ -427,6 +537,11 @@
                         }
                     }
                 });
+                inputField.addEventListener("keydown", function(event) {
+                    if (event.key === "Escape") {
+                        showDetails(item);
+                    }
+                });
 
                 // Replace the caption with the input field
                 this.replaceWith(inputField);
@@ -447,6 +562,11 @@
                     item.ParentKey = newParentKey;
                     buildTreeView(); // Rebuild the tree view after the parent key change
                 }
+            });
+
+            document.getElementById("logic-field").addEventListener("click", function() {
+                currentField = "logic";
+                showEditor(item);
             });
 
             document.getElementById("output-field").addEventListener("click", function() {
@@ -497,8 +617,8 @@
             // Ensure the database is not overwritten if it was injected from a saved file
             if (!Array.isArray(database) || database.length === 0) {
                 database = [];
-                createElement("game", "game", "Game", false);
-                createElement("player", "player", "Player", false);
+                createNewElement("game", "game", "Game", false, false);
+                createNewElement("player", "player", "Player", false, false);
             }
 
             buildTreeView();
