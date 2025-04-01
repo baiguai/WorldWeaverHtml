@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standalone Console</title>
     <style>
-        body {
+        body 
             background-color: black;
             color: white;
             font-family: monospace;
@@ -102,6 +102,32 @@
         #admin-input:focus {
             outline: none;
         }
+
+        #editor-container {
+            display: none;
+            flex: 1;
+            padding: 10px;
+            flex-direction: column;
+        }
+
+        #editor {
+            flex: 1;
+            background: black;
+            color: white;
+            border: 1px solid white;
+            padding: 10px;
+            font-size: 1rem;
+            font-family: monospace;
+            white-space: pre;
+            overflow-y: auto;
+        }
+
+        #editor-close {
+            align-self: flex-end;
+            cursor: pointer;
+            padding: 5px;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +141,10 @@
     <div id="admin-interface">
         <div id="treeview"></div>
         <div id="details">Select an item to see details.</div>
+        <div id="editor-container">
+            <div id="editor-close">X</div>
+            <textarea id="editor"></textarea>
+        </div>
     </div>
     <div id="admin-input-container">
         <input type="text" id="admin-input">
@@ -131,6 +161,8 @@
         const adminInputContainer = document.getElementById("admin-input-container");
         const treeview = document.getElementById("treeview");
         const details = document.getElementById("details");
+        const editorText = document.getElementById("editor");
+        const editorClose = document.getElementById("editor-close");
         const elementTypes = [
             "action", "attack", "attribute", "custom", "dev_note", "enter_message", "game", "global", "injection",
             "input", "link", "logic", "message", "move", "navigation", "nothing", "npc", "object",
@@ -279,6 +311,23 @@
             return str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
         }
 
+        function showEditor(item) {
+            document.getElementById("details").style.display = "none";
+            document.getElementById("editor-container").style.display = "flex";
+            const editor = document.getElementById("editor");
+            editor.value = item.Output;
+            editor.focus();
+            editor.addEventListener("input", function() {
+                item.Output = editor.value;
+            });
+        }
+
+        function closeEditor() {
+            document.getElementById("details").style.display = "block";
+            document.getElementById("editor-container").style.display = "none";
+            adminInput.focus();  // Focus the admin input field
+        }
+
         function showDetails(item) {
             currentParent = item.ElementKey;
             
@@ -302,7 +351,7 @@
                 <p><strong>Parent Key:</strong> ${parentDropdown}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
                 <p><strong>Logic:</strong> ${item.Logic}</p>
-                <p><strong>Output:</strong> ${item.Output}</p>
+                <p><strong>Output:</strong> <span id="output-field" style="cursor:pointer; text-decoration:underline;">${item.Output || "Click to View/Edit"}</span></p>
                 <p><strong>Tags:</strong> ${item.Tags}</p>
                 <p><strong>Repeat:</strong> ${item.Repeat}</p>
                 <p><strong>Repeat Index:</strong> ${item.RepeatIndex}</p>
@@ -312,45 +361,45 @@
             `;
 
             // Add event listener for syntax caption click
-    document.getElementById("syntax-caption").addEventListener("click", function() {
-        let inputField = document.createElement("input");
-        inputField.type = "text";
-        inputField.value = item.Syntax || "";
-        inputField.style = "width: 400px";
-        inputField.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                let inputText = inputField.value.trim();
-if (inputText) {
-    try {
-        // Split input by pipe, trim, and escape special characters
-        let escapedInput = inputText
-            .split("|")           // Split on the pipe symbol
-            .map(part => part.trim())  // Trim any leading/trailing whitespace
-            .map(part => escapeSpecialChars(part))  // Escape regex special characters
-            .join("|");           // Join with | to match any of the terms
+            document.getElementById("syntax-caption").addEventListener("click", function() {
+                let inputField = document.createElement("input");
+                inputField.type = "text";
+                inputField.value = item.Syntax || "";
+                inputField.style = "width: 400px";
+                inputField.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        let inputText = inputField.value.trim();
+                        if (inputText) {
+                            try {
+                                // Split input by pipe, trim, and escape special characters
+                                let escapedInput = inputText
+                                    .split("|")           // Split on the pipe symbol
+                                    .map(part => part.trim())  // Trim any leading/trailing whitespace
+                                    .map(part => escapeSpecialChars(part))  // Escape regex special characters
+                                    .join("|");           // Join with | to match any of the terms
 
-        // Construct the regex string
-        let regexString = `\\b(${escapedInput})\\b`; // Match whole words
+                                // Construct the regex string
+                                let regexString = `\\b(${escapedInput})\\b`; // Match whole words
 
-        // Store the regex string with case-insensitive flag
-        item.Syntax = `/(?i)${regexString}/`;
+                                // Store the regex string with case-insensitive flag
+                                item.Syntax = `/(?i)${regexString}/`;
 
-        // Log for debugging
-        console.log("Escaped Regex Input:", escapedInput);
-        console.log("Regex String:", item.Syntax);
+                                // Log for debugging
+                                console.log("Escaped Regex Input:", escapedInput);
+                                console.log("Regex String:", item.Syntax);
 
-        showDetails(item); // Update details view
-    } catch (error) {
-        alert("Error generating regex: " + error.message);
-    }
-}
-            }
-        });
+                                showDetails(item); // Update details view
+                            } catch (error) {
+                                alert("Error generating regex: " + error.message);
+                            }
+                        }
+                    }
+                });
 
-        // Replace the caption with the input field
-        this.replaceWith(inputField);
-        inputField.focus();  // Focus on the input field
-    });
+                // Replace the caption with the input field
+                this.replaceWith(inputField);
+                inputField.focus();  // Focus on the input field
+            });
 
             document.getElementById("elementTypeSelect").addEventListener("change", function() {
                 if (item.ElementType != "game" && item.ElementType != "player") {
@@ -367,8 +416,21 @@ if (inputText) {
                 }
             });
 
+            document.getElementById("output-field").addEventListener("click", function() {
+                showEditor(item);
+            });
+
             adminInput.focus();  // Focus the admin input field
         }
+
+
+        // Events
+        editorClose.addEventListener("click", closeEditor);
+        editorText.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                closeEditor();
+            }
+        });
 
         input.addEventListener("keypress", function(event) {
             if (event.key === "Enter") {
@@ -389,6 +451,7 @@ if (inputText) {
                 adminInput.value = "";
             }
         });
+
 
         // Ensure admin interface is hidden on load
         window.onload = function() {
