@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standalone Console</title>
     <style>
-        body 
+        body {
             background-color: black;
             color: white;
             font-family: monospace;
@@ -153,6 +153,7 @@
     <script>
         let database = [];
         let currentParent = null;
+        let currentField = "";
         const output = document.getElementById("output");
         const input = document.getElementById("input");
         const adminInput = document.getElementById("admin-input");
@@ -318,7 +319,12 @@
             editor.value = item.Output;
             editor.focus();
             editor.addEventListener("input", function() {
-                item.Output = editor.value;
+                switch (currentField)
+                {
+                    case "output":
+                        item.Output = editor.value;
+                        break;
+                }
             });
         }
 
@@ -346,7 +352,7 @@
 
             details.innerHTML = `
                 <p><strong>Element Type:</strong> ${dropdown}</p>
-                <p><strong>Element Key:</strong> ${item.ElementKey}</p>
+                <p><strong>Element Key:</strong> <span id="element-key" style="cursor:pointer; text-decoration:underline;">${item.ElementKey}</span></p>
                 <p><strong>Name:</strong> ${item.Name}</p>
                 <p><strong>Parent Key:</strong> ${parentDropdown}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
@@ -359,6 +365,32 @@
                 <p><strong>Active:</strong> ${item.Active}</p>
                 <p><strong>Sort:</strong> ${item.Sort}</p>
             `;
+
+            // Handle inline editing for ElementKey
+            document.getElementById("element-key").addEventListener("click", function() {
+                let inputField = document.createElement("input");
+                inputField.type = "text";
+                inputField.value = item.ElementKey;
+                inputField.style = "width: 200px";
+
+                inputField.addEventListener("keypress", function(event) {
+                    if (event.key === "Enter") {
+                        let newKey = inputField.value.trim();
+                        
+                        if (newKey && !database.some(entry => entry.ElementKey === newKey)) {
+                            // Update ElementKey in the database
+                            item.ElementKey = newKey;
+                            buildTreeView(); // Rebuild tree view
+                        }
+                        
+                        // Restore original ElementKey if not unique
+                        showDetails(item);
+                    }
+                });
+
+                this.replaceWith(inputField);
+                inputField.focus();
+            });
 
             // Add event listener for syntax caption click
             document.getElementById("syntax-caption").addEventListener("click", function() {
@@ -401,6 +433,7 @@
                 inputField.focus();  // Focus on the input field
             });
 
+            // Add event listener for element type drop down
             document.getElementById("elementTypeSelect").addEventListener("change", function() {
                 if (item.ElementType != "game" && item.ElementType != "player") {
                     updateElementType(item, this.value);
@@ -417,6 +450,7 @@
             });
 
             document.getElementById("output-field").addEventListener("click", function() {
+                currentField = "output";
                 showEditor(item);
             });
 
