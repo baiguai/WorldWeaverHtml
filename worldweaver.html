@@ -147,6 +147,7 @@
         <div id="treeview"></div>
         <div id="details">Select an item to see details.</div>
         <div id="editor-container">
+            <div id="editor-close">X</div>
             <textarea id="editor"></textarea>
         </div>
     </div>
@@ -347,6 +348,7 @@
             document.getElementById("details").style.display = "none";
             document.getElementById("editor-container").style.display = "flex";
             const editor = document.getElementById("editor");
+            const btn = document.getElementById("editor-close");
 
             switch (currentField)
             {
@@ -388,6 +390,9 @@
                 if (event.key === "Escape") {
                     closeEditor(item);
                 }
+            });
+            btn.addEventListener("click", function(event) {
+                closeEditor(item);
             });
         }
 
@@ -521,6 +526,11 @@
                                         showDetails(item);
                                     }
                                 });
+                            } else {
+                                item.Repeat = inputField.value;
+                                buildTreeView();
+                                showDetails(item);
+                                return;
                             }
                         });
                         break;
@@ -563,6 +573,11 @@
                                         showDetails(item);
                                     }
                                 });
+                            } else {
+                                item.ElementType = inputField.value;
+                                buildTreeView();
+                                showDetails(item);
+                                return;
                             }
                         });
                         break;
