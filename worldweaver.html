@@ -196,7 +196,7 @@
                 Repeat: "",
                 RepeatIndex: "",
                 Template: "",
-                Active: "",
+                Active: "true",
                 Sort: ""
             };
 
@@ -419,16 +419,24 @@
                 <p><strong>Element Type:</strong><span id="element-type-parent"><span id="element-type" class="link">${item.ElementType || "Click to Edit"}</span></span></p>
                 <p><strong>Element Key:</strong> <span id="element-key" class="link">${item.ElementKey}</span></p>
                 <p><strong>Name:</strong> <span id="element-name" class="link">${item.Name}</span></p>
-                <p><strong>Parent Key:</strong> ${parentDropdown}</p>
-                <p><strong>Syntax:</strong> <span id="syntax-caption">${item.Syntax || "Click to Edit"}</span></p>
+                <p><strong>Parent Key:</strong> ${(item.ElementType != "game") ? parentDropdown : ""}</p>
+                <p><strong>Syntax:</strong> <span id="syntax-caption" class="link">${item.Syntax || "Click to Edit"}</span></p>
                 <p><strong>Logic:</strong> <span id="logic-field" class="link">${item.Logic || "Click to View/Edit"}</span></p>
                 <p><strong>Output:</strong> <span id="output-field" class="link">${(item.Output.length > 100) ? item.Output.substring(0, 100)+"..." : item.Output || "Click to View/Edit"}</span></p>
                 <p><strong>Tags:</strong> <span id="tags-field" class="link">${item.Tags || "Click to Edit"}</span></p>
                 <p><strong>Repeat:</strong> <span id="repeat-field-parent"><span id="repeat-field" class="link">${item.Repeat || "Click to Edit"}</span><span></p>
-                <p><strong>Template:</strong> ${item.Template}</p>
-                <p><strong>Active:</strong> ${item.Active}</p>
+                <p><strong>Active:</strong> <span><input id="element-active" type="checkbox" ${(item.Active === "true") ? "checked" : ""} /></span></p>
                 <p><strong>Sort:</strong> <span id="sort-field" style="cursor:pointer; text-decoration:underline;">${item.Sort || "Click to Edit"}</span></p>
             `;
+
+            document.getElementById("element-active").addEventListener("change", function() {
+                alert(document.getElementById("element-active").checked);
+                if (document.getElementById("element-active").checked) {
+                    item.Active = "true";
+                } else {
+                    item.Active = "false";
+                }
+            });
 
             // Handle inline editing for ElementKey
             document.getElementById("element-key").addEventListener("click", function() {
@@ -700,13 +708,15 @@
             });
 
             // Update parent key when selection changes
-            document.getElementById("parentSelect").addEventListener("change", function() {
-                let newParentKey = this.value === "null" ? null : this.value;
-                if (item.ParentKey !== newParentKey) {
-                    item.ParentKey = newParentKey;
-                    buildTreeView(); // Rebuild the tree view after the parent key change
-                }
-            });
+            if (document.getElementById("parentSelect")) {
+                document.getElementById("parentSelect").addEventListener("change", function() {
+                    let newParentKey = this.value === "null" ? null : this.value;
+                    if (item.ParentKey !== newParentKey) {
+                        item.ParentKey = newParentKey;
+                        buildTreeView(); // Rebuild the tree view after the parent key change
+                    }
+                });
+            }
 
             document.getElementById("logic-field").addEventListener("click", function() {
                 currentField = "logic";
