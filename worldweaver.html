@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standalone Console</title>
@@ -148,29 +146,42 @@
     <!-- End Styles -->
 </head>
 <body>
-    <div id="game-interface">
-        <div id="output">Game Output Will Be Here</div>
+    <div id="game-interface" style="display: none;">
+        <div id="output"></div>
         <div id="input-container">
-            <input type="text" id="input" autofocus>
+            <input type="text" id="input" autofocus="">
         </div>
     </div>
     
-    <div id="admin-interface">
-        <div id="treeview"></div>
-        <div id="details">Select an item to see details.</div>
-        <div id="editor-container">
+    <div id="admin-interface" style="display: flex;">
+        <div id="treeview"><ul><li data-key="game"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g aria-label="G" id="text8654" style="font-weight:bold;font-size:3.8988px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus Bold';fill:none;stroke:#8e8e8e;stroke-width:0.0142143;stroke-linejoin:bevel;paint-order:stroke fill markers"> <path d="m 2.2882142,3.5085379 c 0.4054751,0 0.7563671,-0.1208628 1.0448783,-0.3586896 V 1.9490179 H 2.1790478 v 0.428868 h 0.6666947 v 0.5770224 c -0.136458,0.070178 -0.3041063,0.1130652 -0.4912487,0.1130652 -0.565326,0 -0.9279144,-0.3781836 -0.9279144,-0.9824976 0,-0.58482 0.3391956,-0.9162179 0.9396108,-0.9162179 0.2378268,0 0.5146415,0.050684 0.7251767,0.1247616 L 3.2317237,0.90024076 C 2.9977957,0.78717557 2.7014869,0.72479477 2.3973806,0.72479477 c -0.9084204,0 -1.4971392,0.56922483 -1.4971392,1.41916313 0,0.818748 0.5536296,1.36458 1.3879728,1.36458 z" style="font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;stroke:none" id="path9293"></path> </g> </svg> Sample Game</span><ul style="display: block;"><li data-key="wj6twhnjsy8m913m34g"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> admin pass</span></li><li data-key="4ijqt5uojvhm913n248"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> game started</span></li><li data-key="die_message"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> die msg</span></li></ul></li><li data-key="player"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1" style="fill:#ffffff;fill-opacity:1;stroke:none" transform="matrix(0.74013018,0,0,0.74013018,0.55005776,0.55005778)"> <g aria-label="G" id="text147" style="font-weight:bold;font-size:5.4836px;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans Bold';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.931837;stroke-linecap:round;stroke-linejoin:round"> <path id="path1202" style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.245993;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="M 2.1154655,0.29958256 A 0.95769183,0.95769183 0 0 0 1.157917,1.2576116 0.95769183,0.95769183 0 0 0 1.5470861,2.0268214 C 1.0473631,2.1507604 0.63085688,2.4696209 0.63085688,3.1299481 V 3.9337508 H 3.6024763 V 3.1299481 c 0,-0.6590471 -0.4175177,-0.9788423 -0.9176706,-1.1031267 A 0.95769183,0.95769183 0 0 0 3.0734944,1.2576116 0.95769183,0.95769183 0 0 0 2.1154655,0.29958256 Z"></path> </g> </g> </svg> player</span><ul style="display: block;"><li data-key="ayqqaay4zmdm9143u3b"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> stats dice</span></li><li data-key="i4nouxuljhm91451p3"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> money dice</span></li><li data-key="sul6ikoi66m9146he5"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> life roll</span></li><li data-key="jovjjxtokr9m914bgg1"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> armor roll</span></li><li data-key="hjmswbobc19m914cdko"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> strength roll</span></li><li data-key="1fczu23k3cbm914dswe"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> intelligence roll</span></li><li data-key="fq32x27hg4sm914ek65"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> cunning roll</span></li><li data-key="qa78uu7zk7m914frsk"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> gold roll</span></li><li data-key="k3rd5lhuqemm914grvf"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> life</span></li><li data-key="zmdwl033hpmm914hoqa"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> max life</span></li><li data-key="did9rck82rm914iskh"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> armor rating</span></li><li data-key="7uxaw5bk8agm914k9vk"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> strength</span></li><li data-key="t899jq5zdfom914lkaf"><span style="cursor: pointer;"><svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" xmlns="http://www.w3.org/2000/svg"><path style="fill:none;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;" d="M 0.69371456,2.1166666 H 3.5396187"></path></svg> intelligence</span></li></ul></li><li data-key="bdu5ey7m1k5m913pjkt"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <circle style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers" id="path17273" cx="2.1166666" cy="2.1166666" r="1.3248924"></circle> <path style="fill:none;fill-opacity:1;stroke:#8e8e8e;stroke-width:0.19686;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers" d="M 1.1448412,2.1166666 H 3.0884921" id="path17275"></path> </svg> global 01</span><ul style="display: none;"><li data-key="i51aqmgrcdqm913tba1"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers" id="path19523" d="m 1.275162,2.0133541 -0.7057629,0.4074724 -0.70576287,0.4074724 3e-8,-0.8149449 -3e-8,-0.8149447 0.70576291,0.4074724 z" transform="translate(0.61360234,0.10331256)"></path> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers;stroke-opacity:1" d="M 1.952999,2.9316113 H 3.5563688" id="path19525"></path> </svg> stats input</span><ul style="display: none;"><li data-key="3ivbu6m1jxem913ttsh"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g aria-label="!" id="text18965" style="font-weight:bold;font-size:4.37606px;font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;stroke-width:0.0159544;stroke-linejoin:bevel;paint-order:stroke fill markers"> <path d="m 1.9000508,2.5849076 h 0.437606 L 2.3989217,0.57629608 H 1.838786 Z m 0.214427,1.0721347 c 0.223179,0 0.3763411,-0.1619142 0.3763411,-0.3719651 0,-0.223179 -0.1531621,-0.3850933 -0.3763411,-0.3850933 -0.2231791,0 -0.3719651,0.1619143 -0.3719651,0.3850933 0,0.2100509 0.148786,0.3719651 0.3719651,0.3719651 z" id="path19468"></path> </g> </svg> stats action</span></li></ul></li><li data-key="pntabkpr54nm913v74v"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers" id="path19523" d="m 1.275162,2.0133541 -0.7057629,0.4074724 -0.70576287,0.4074724 3e-8,-0.8149449 -3e-8,-0.8149447 0.70576291,0.4074724 z" transform="translate(0.61360234,0.10331256)"></path> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers;stroke-opacity:1" d="M 1.952999,2.9316113 H 3.5563688" id="path19525"></path> </svg> inv input</span><ul style="display: none;"><li data-key="k73lo7us3xom913w48e"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g aria-label="!" id="text18965" style="font-weight:bold;font-size:4.37606px;font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;stroke-width:0.0159544;stroke-linejoin:bevel;paint-order:stroke fill markers"> <path d="m 1.9000508,2.5849076 h 0.437606 L 2.3989217,0.57629608 H 1.838786 Z m 0.214427,1.0721347 c 0.223179,0 0.3763411,-0.1619142 0.3763411,-0.3719651 0,-0.223179 -0.1531621,-0.3850933 -0.3763411,-0.3850933 -0.2231791,0 -0.3719651,0.1619143 -0.3719651,0.3850933 0,0.2100509 0.148786,0.3719651 0.3719651,0.3719651 z" id="path19468"></path> </g> </svg> inv action</span></li></ul></li><li data-key="724mwcb6d5xm913xmrx"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers" id="path19523" d="m 1.275162,2.0133541 -0.7057629,0.4074724 -0.70576287,0.4074724 3e-8,-0.8149449 -3e-8,-0.8149447 0.70576291,0.4074724 z" transform="translate(0.61360234,0.10331256)"></path> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers;stroke-opacity:1" d="M 1.952999,2.9316113 H 3.5563688" id="path19525"></path> </svg> arm input</span><ul style="display: block;"><li data-key="w593t2zjgym913zu96"><span style="cursor: pointer;"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers" id="path19523" d="m 1.275162,2.0133541 -0.7057629,0.4074724 -0.70576287,0.4074724 3e-8,-0.8149449 -3e-8,-0.8149447 0.70576291,0.4074724 z" transform="translate(0.61360234,0.10331256)"></path> <rect style="fill:#ffffff;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers" id="rect20904" width="1.4300268" height="1.9852276" x="2.4454238" y="1.1240529"></rect> </svg> arm set</span></li></ul></li></ul></li></ul></div>
+        <div id="details" style="display: block;">
+                <p><strong>Element Type:</strong><span id="element-type-parent"><span id="element-type" class="link">attribute</span></span></p>
+                <p><strong>Element Key:</strong> <span id="element-key" class="link">t899jq5zdfom914lkaf</span></p>
+                <p><strong>Name:</strong> <span id="element-name" class="link">intelligence</span></p>
+                <p><strong>Parent Key:</strong> <select id="parentSelect"><option value="null">No Parent</option><option value="game">Sample Game</option><option value="player" selected="">player</option><option value="wj6twhnjsy8m913m34g">admin pass</option><option value="4ijqt5uojvhm913n248">game started</option><option value="die_message">die msg</option><option value="bdu5ey7m1k5m913pjkt">global 01</option><option value="i51aqmgrcdqm913tba1">stats input</option><option value="3ivbu6m1jxem913ttsh">stats action</option><option value="pntabkpr54nm913v74v">inv input</option><option value="k73lo7us3xom913w48e">inv action</option><option value="724mwcb6d5xm913xmrx">arm input</option><option value="w593t2zjgym913zu96">arm set</option><option value="ayqqaay4zmdm9143u3b">stats dice</option><option value="i4nouxuljhm91451p3">money dice</option><option value="sul6ikoi66m9146he5">life roll</option><option value="jovjjxtokr9m914bgg1">armor roll</option><option value="hjmswbobc19m914cdko">strength roll</option><option value="1fczu23k3cbm914dswe">intelligence roll</option><option value="fq32x27hg4sm914ek65">cunning roll</option><option value="qa78uu7zk7m914frsk">gold roll</option><option value="k3rd5lhuqemm914grvf">life</option><option value="zmdwl033hpmm914hoqa">max life</option><option value="did9rck82rm914iskh">armor rating</option><option value="7uxaw5bk8agm914k9vk">strength</option></select></p>
+                <p><strong>Syntax:</strong> <span id="syntax-caption" class="link">Click to Edit</span></p>
+                <p><strong>Logic:</strong> <span id="logic-field" class="link">Click to View/Edit</span></p>
+                <p><strong>Output:</strong> <span id="output-field" class="link">[roll:(6)&lt;&lt;[self]((stats_dice))&gt;&gt;d6]</span></p>
+                <p><strong>Tags:</strong> <span id="tags-field" class="link">Click to Edit</span></p>
+                <p><strong>Repeat:</strong> <span id="repeat-field-parent"><span id="repeat-field" class="link">Click to Edit</span><span></span></span></p>
+                <p><strong>Active:</strong> <span><input id="element-active" type="checkbox" checked=""></span></p>
+                <p><strong>Sort:</strong> <span id="sort-field" class="link">Click to Edit</span></p>
+                <br>
+                <p><span id="delete-element" class="link">Delete</span></p>
+            </div>
+        <div id="editor-container" style="display: none;">
             <div id="editor-close">X</div>
             <textarea id="editor"></textarea>
         </div>
     </div>
-    <div id="admin-input-container">
+    <div id="admin-input-container" style="display: flex;">
         <input type="text" id="admin-input">
     </div>
     
     <script>
         let database = [];
         let currentParent = null;
-        let currentField = "";
         let newElementParentKey = "";
         let expandedNodes = new Set();
 
@@ -199,7 +210,7 @@
             const adminInputContainer = document.getElementById("admin-input-container");
             const treeview = document.getElementById("treeview");
             const details = document.getElementById("details");
-            const editorText = document.getElementById("editor");
+            const editor = document.getElementById("editor");
             const editorClose = document.getElementById("editor-close");
             const elementTypes = [
                 "action", "attack", "attribute", "custom", "dev_note", "enter_message", "global", "injection",
@@ -465,10 +476,9 @@
                 .replace(/\*/g, ".*"); // Convert * to .*
         }
 
-        function showEditor(item) {
+        function showEditor(item, currentField) {
             document.getElementById("details").style.display = "none";
             document.getElementById("editor-container").style.display = "flex";
-            const editor = document.getElementById("editor");
             const btn = document.getElementById("editor-close");
 
             switch (currentField)
@@ -495,7 +505,24 @@
                     break;
             }
             editor.focus();
-            editor.addEventListener("input", function() {
+
+            editor.addEventListener("keydown", function(event) {
+                if (event.key === "Escape") {
+                    switch (currentField)
+                    {
+                        case "logic":
+                            alert("Setting logic to: " + editor.value);
+                            item.Logic = editor.value;
+                            break;
+                        case "output":
+                            alert("Setting output to: " + editor.value);
+                            item.Output = editor.value;
+                            break;
+                    }
+                    closeEditor(item);
+                }
+            });
+            btn.addEventListener("click", function(event) {
                 switch (currentField)
                 {
                     case "logic":
@@ -505,14 +532,6 @@
                         item.Output = editor.value;
                         break;
                 }
-            });
-
-            editorText.addEventListener("keydown", function(event) {
-                if (event.key === "Escape") {
-                    closeEditor(item);
-                }
-            });
-            btn.addEventListener("click", function(event) {
                 closeEditor(item);
             });
         }
@@ -522,6 +541,9 @@
             document.getElementById("editor-container").style.display = "none";
             showDetails(item);
             adminInput.focus();  // Focus the admin input field
+
+            editor.replaceWith(editor.cloneNode(true));
+            btn.replaceWith(btn.cloneNode(true));
         }
 
         // !@! details
@@ -540,7 +562,7 @@
             details.innerHTML = `
                 <p><strong>Element Type:</strong><span id="element-type-parent"><span id="element-type" class="link">${item.ElementType || "Click to Edit"}</span></span></p>
                 <p><strong>Element Key:</strong> <span id="element-key" class="link">${item.ElementKey}</span></p>
-                <p><strong>Name:</strong> <span id="element-name" class="link">${item.Name}</span></p>
+                <p><strong>Name:</strong> <span id="element-name" class="link">${item.Name || "Click to Edit"}</span></p>
                 <p><strong>Parent Key:</strong> ${(item.ElementType != "game") ? parentDropdown : ""}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption" class="link">${item.Syntax || "Click to Edit"}</span></p>
                 <p><strong>Logic:</strong> <span id="logic-field" class="link">${item.Logic || "Click to View/Edit"}</span></p>
@@ -874,13 +896,11 @@
             }
 
             document.getElementById("logic-field").addEventListener("click", function() {
-                currentField = "logic";
-                showEditor(item);
+                showEditor(item, "logic");
             });
 
             document.getElementById("output-field").addEventListener("click", function() {
-                currentField = "output";
-                showEditor(item);
+                showEditor(item, "output");
             });
 
             // Handle delete
@@ -934,5 +954,7 @@
             input.focus();  // Focus the admin input field
         };
     </script>
-</body>
-</html>
+
+
+
+</body></html>
