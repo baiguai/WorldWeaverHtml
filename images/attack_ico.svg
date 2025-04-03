@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 4.2333332 4.2333333"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     id="g17152"
+     transform="rotate(45,2.1018541,2.1105311)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.198799;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect17051"
+       width="0.73135507"
+       height="2.6537266"
+       x="1.7509891"
+       y="0.90471673" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
+       id="path17125"
+       d="m 2.1166666,0.3620086 0.1814879,0.31434643 0.181488,0.31434643 -0.3629759,-1e-8 -0.362976,-10e-9 0.181488,-0.31434641 z"
+       transform="translate(7.521059e-8,-0.07733837)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
+       id="rect17127"
+       width="2.029305"
+       height="0.49957958"
+       x="1.1020142"
+       y="2.3346605" />
+  </g>
+</svg>

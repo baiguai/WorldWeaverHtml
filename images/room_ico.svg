@@ -13,7 +13,20 @@
      id="defs2" />
   <path
      id="path3110"
-     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-     d="M 0.63530466 -1.9194109 L -0.40491836 -0.11784825 L -1.4451414 1.6837144 L -0.80154573 1.6837144 L -0.80154573 6.398948 L 2.072155 6.398948 L 2.072155 1.6837144 L 2.7157507 1.6837144 L 1.6755277 -0.11784825 L 0.63530466 -1.9194109 z "
-     transform="matrix(0.83906519,0,0,0.39125285,1.5836046,1.1793726)" />
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.128568;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+     d="M 2.1166666,0.6755942 1.3764382,1.2733867 0.63620985,1.8711792 H 1.094196 V 3.4357827 H 3.1391372 V 1.8711792 H 3.5971234 L 2.856895,1.2733867 Z" />
+  <rect
+     style="fill:#9c9c9c;fill-opacity:1;stroke:none;stroke-width:0.150738;stroke-linejoin:bevel;paint-order:stroke fill markers"
+     id="rect12310"
+     width="0.49860835"
+     height="0.72685415"
+     x="2.2512157"
+     y="2.7089283" />
+  <rect
+     style="fill:#9c9c9c;fill-opacity:1;stroke:none;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers"
+     id="rect13248"
+     width="0.47124618"
+     height="0.46280029"
+     x="1.540359"
+     y="1.9300244" />
 </svg>
