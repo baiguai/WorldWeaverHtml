@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standalone Console</title>
+    <title>WorldWeaver</title>
 
     <!--
         Formatting notes:
@@ -302,10 +302,25 @@
         }
 
         function saveFile() {
+            let elemLimit = 5; // Number of elements per line
             let htmlDoc = document.documentElement.cloneNode(true);
             htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
+
+            // Make sure the latest database is stored
+            let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+
+            // Build compact JSON with newlines every elemLimit items
+            let lines = [];
+            for (let i = 0; i < latestDatabase.length; i += elemLimit) {
+                let chunk = latestDatabase.slice(i, i + elemLimit);
+                lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
+            }
+            let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
+
+            // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
-            htmlContent = htmlContent.replace(/let database = \[.*?\];/, `let database = ${JSON.stringify(database)};`);
+            htmlContent = htmlContent.replace(/let database = \[([\s\S]*?)\];/, `let database = ${formattedDatabase};`);
+
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
@@ -559,7 +574,7 @@
             let parentDropdown = `<select id="parentSelect">`;
             parentDropdown += `<option value="null" ${item.ParentKey === null ? "selected" : ""}>No Parent</option>`;
             database.forEach(otherItem => {
-                if (otherItem.ElementKey !== item.ElementKey) {
+                if (otherItem.ElementKey !== item.ElementKey && otherItem.ElementType !== "attribute") {
                     parentDropdown += `<option value="${otherItem.ElementKey}" ${item.ParentKey === otherItem.ElementKey ? "selected" : ""}>${otherItem.Name}</option>`;
                 }
             });
@@ -962,8 +977,4 @@
             input.focus();  // Focus the admin input field
         };
     </script>
-
-
-
-
 </body></html>
