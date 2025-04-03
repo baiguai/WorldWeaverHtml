@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Standalone Console</title>
+    <title>WorldWeaver</title>
 
     <!--
         Formatting notes:
@@ -180,7 +180,7 @@
     </div>
     
     <script>
-        let database = [{"ElementType":"game","ElementKey":"game","Name":"Sample Game","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"player","ElementKey":"player","Name":"Player","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pf4wcjaqs9jm8zq6awm","Name":"admin pass","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_adminpass","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"9wh0ai7glyhm8zq92fn","Name":"error","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_error","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"nyoy47hnhtgm8zqaoi8","Name":"die message","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_die","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"j0j70z5382m91nuded","Name":"stats dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"dra3hmv3nnem91nvmgq","Name":"money dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z9tqbp2st2m91nw9ep","Name":"life roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z2i2lbhfwxm91nwx9d","Name":"armor roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"armor_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"2au1o4qznt5m91nxeao","Name":"strength roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"az85m9vwmcbm91nxw20","Name":"intelligence roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"intelligence_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"6jdbqtsxpanm91nyncm","Name":"cunning roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pvzdehgcs28m91nz4ta","Name":"gold roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"3e573l95rtkm91o5dpu","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_roll))>>d6]","Tags":"stats|life","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"uonxrshx72rm91o71d3","Name":"max life","ParentKey":"player","Syntax":"","Logic":"","Output":"player((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kd8qk3jx4vhm91o7sji","Name":"Armor","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d6+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kcchdhvqojam91o8zat","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"ccowsmp5kc6m91oa4us","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((intelligence_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"xvpexadit7hm91oas1w","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"yv26edvaibom91ocqjl","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_roll))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"player_armed","Name":"armed weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"armed|stats|name","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"cur_heal_round","Name":"cur heal round","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4yru4bgbvolm91onmxr","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attackplayer","ElementKey":"ym8tqvff76im91ooiy7","Name":"Attack Player","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attack","ElementKey":"tydkk947zvpm91op8ta","Name":"Attack","ParentKey":"ym8tqvff76im91ooiy7","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"82t6lun7um4m91opqwu","Name":"target","ParentKey":"tydkk947zvpm91op8ta","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"/(?i)\\b(.*your .*sword|.*sword)\\b/","Logic":"","Output":"","Tags":"inventory","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"74yr0t7hrm91ouzn5","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"[rand:4|12]","Output":"","Tags":"damage","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"79liampktaem91ow6sv","Name":"friendly name","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(title)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(stats)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(inventory|inv)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(arm .*)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""}];
+        let database = [];
         let currentParent = null;
         let newElementParentKey = "";
         let expandedNodes = new Set();
@@ -302,14 +302,29 @@
         }
 
         function saveFile() {
+            let elemLimit = 5; // Number of elements per line
             let htmlDoc = document.documentElement.cloneNode(true);
             htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
+
+            // Make sure the latest database is stored
+            let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+
+            // Build compact JSON with newlines every elemLimit items
+            let lines = [];
+            for (let i = 0; i < latestDatabase.length; i += elemLimit) {
+                let chunk = latestDatabase.slice(i, i + elemLimit);
+                lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
+            }
+            let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
+
+            // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
-            htmlContent = htmlContent.replace(/let database = \[.*?\];/, `let database = ${JSON.stringify(database)};`);
+            htmlContent = htmlContent.replace(/let database = \[([\s\S]*?)\];/, `let database = ${formattedDatabase};`);
+
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
-            a.download = "console.html";
+            a.download = "worldweaver.html";
             a.click();
         }
 
@@ -559,7 +574,7 @@
             let parentDropdown = `<select id="parentSelect">`;
             parentDropdown += `<option value="null" ${item.ParentKey === null ? "selected" : ""}>No Parent</option>`;
             database.forEach(otherItem => {
-                if (otherItem.ElementKey !== item.ElementKey) {
+                if (otherItem.ElementKey !== item.ElementKey && otherItem.ElementType !== "attribute") {
                     parentDropdown += `<option value="${otherItem.ElementKey}" ${item.ParentKey === otherItem.ElementKey ? "selected" : ""}>${otherItem.Name}</option>`;
                 }
             });
@@ -962,8 +977,4 @@
             input.focus();  // Focus the admin input field
         };
     </script>
-
-
-
-
 </body></html>
