@@ -1,0 +1,7 @@
+I want to embed this .svg as a single line variable called:
+
+ico***
+
+Here is the .svg value:
+
+...
