@@ -11,8 +11,14 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs2" />
-  <path
-     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
-     d="M 0.69371456,2.1166666 H 3.5396187"
-     id="path3241" />
+  <text
+     xml:space="preserve"
+     style="font-weight:bold;font-size:3.45983px;font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;stroke-width:0.0126139;stroke-linejoin:bevel;paint-order:stroke fill markers"
+     x="1.644399"
+     y="3.3846965"
+     id="text21025"><tspan
+       id="tspan21023"
+       style="stroke-width:0.0126139"
+       x="1.644399"
+       y="3.3846965">i</tspan></text>
 </svg>
