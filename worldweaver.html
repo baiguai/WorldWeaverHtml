@@ -4,136 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Standalone Console</title>
-    <style>
-        body {
-            background-color: black;
-            color: white;
-            font-family: monospace;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-        }
 
-        #game-interface {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
+    <!--
+        Formatting notes:
+        This code is formatted for indentation level folding.
+        There are sections indented between comments, so that they
+        remain collapsed at certain levels, to make code navigation
+        and reading easier.
+    -->
 
-        #output {
-            flex: 1;
-            padding: 10px;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            border-bottom: 1px solid white;
-        }
+    <!-- Styles -->
+        <style>
+            body {
+                background-color: black;
+                color: white;
+                font-family: monospace;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+            }
 
-        #input-container {
-            display: flex;
-            padding: 10px;
-            background: black;
-            border-top: 1px solid white;
-        }
+            #game-interface {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
 
-        #input {
-            flex: 1;
-            background: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 1rem;
-            font-family: monospace;
-        }
+            #output {
+                flex: 1;
+                padding: 10px;
+                overflow-y: auto;
+                white-space: pre-wrap;
+                border-bottom: 1px solid white;
+            }
 
-        #input:focus {
-            outline: none;
-        }
+            #input-container {
+                display: flex;
+                padding: 10px;
+                background: black;
+                border-top: 1px solid white;
+            }
 
-        /* Initially hide the admin interface */
-        #admin-interface {
-            display: none; /* Hide admin interface by default */
-            flex: 1;
-            height: 100vh;
-            display: flex;
-        }
+            #input {
+                flex: 1;
+                background: black;
+                color: white;
+                border: none;
+                padding: 10px;
+                font-size: 1rem;
+                font-family: monospace;
+            }
 
-        #treeview {
-            width: 200px;
-            border-right: 1px solid white;
-            overflow-y: auto;
-            padding: 10px;
-            resize: horizontal;
-            min-width: 100px;
-            max-width: 50%;
-        }
+            #input:focus {
+                outline: none;
+            }
 
-        #treeview ul {
-            list-style: none;
-            padding-left: 10px;
-        }
+            /* Initially hide the admin interface */
+            #admin-interface {
+                display: none; /* Hide admin interface by default */
+                flex: 1;
+                height: 100vh;
+                display: flex;
+            }
 
-        #treeview li {
-            cursor: pointer;
-        }
+            #treeview {
+                width: 200px;
+                border-right: 1px solid white;
+                overflow-y: auto;
+                padding: 10px;
+                resize: horizontal;
+                min-width: 100px;
+                max-width: 50%;
+            }
 
-        #details {
-            flex: 1;
-            padding: 10px;
-        }
+            #treeview ul {
+                list-style: none;
+                padding-left: 10px;
+            }
 
-        #admin-input-container {
-            display: none;
-            padding: 10px;
-            background: black;
-            border-top: 1px solid white;
-        }
+            #treeview li {
+                cursor: pointer;
+            }
 
-        #admin-input {
-            width: 100%;
-            background: black;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 1rem;
-            font-family: monospace;
-        }
+            #details {
+                flex: 1;
+                padding: 10px;
+            }
 
-        #admin-input:focus {
-            outline: none;
-        }
+            #admin-input-container {
+                display: none;
+                padding: 10px;
+                background: black;
+                border-top: 1px solid white;
+            }
 
-        #editor-container {
-            display: none;
-            flex: 1;
-            padding: 10px;
-            flex-direction: column;
-        }
+            #admin-input {
+                width: 100%;
+                background: black;
+                color: white;
+                border: none;
+                padding: 10px;
+                font-size: 1rem;
+                font-family: monospace;
+            }
 
-        #editor {
-            flex: 1;
-            background: black;
-            color: white;
-            border: 1px solid white;
-            padding: 10px;
-            font-size: 1rem;
-            font-family: monospace;
-            white-space: pre;
-            overflow-y: auto;
-        }
+            #admin-input:focus {
+                outline: none;
+            }
 
-        #editor-close {
-            align-self: flex-end;
-            cursor: pointer;
-            padding: 5px;
-            color: red;
-        }
+            #editor-container {
+                display: none;
+                flex: 1;
+                padding: 10px;
+                flex-direction: column;
+            }
 
-        .link {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-    </style>
+            #editor {
+                flex: 1;
+                background: black;
+                color: white;
+                border: 1px solid white;
+                padding: 10px;
+                font-size: 1rem;
+                font-family: monospace;
+                white-space: pre;
+                overflow-y: auto;
+            }
+
+            #editor-close {
+                align-self: flex-end;
+                cursor: pointer;
+                padding: 5px;
+                color: red;
+            }
+
+            .link {
+                cursor: pointer;
+                text-decoration: underline;
+            }
+        </style>
+    <!-- End Styles -->
 </head>
 <body>
     <div id="game-interface">
@@ -307,58 +318,58 @@
             treeview.appendChild(ul);
         }
 
-function createTreeNode(item) {
-    let li = document.createElement("li");
-    li.dataset.key = item.ElementKey; // Store the ElementKey as a dataset
+        function createTreeNode(item) {
+            let li = document.createElement("li");
+            li.dataset.key = item.ElementKey; // Store the ElementKey as a dataset
 
-    let span = document.createElement("span");
-    span.style.cursor = "pointer";
+            let span = document.createElement("span");
+            span.style.cursor = "pointer";
 
-    // Determine which icon to use
-    let iconHTML = "";
-    if (item.ElementType === "game") {
-        iconHTML = icoGame;
-    } else if (item.ElementType === "player") {
-        iconHTML = icoPlayer;
-    } else if (item.ElementType === "room") {
-        iconHTML = icoRoom;
-    } else {
-        iconHTML = icoAttrib;
-    }
-
-    // Set the inner HTML with the icon and text
-    span.innerHTML = `${iconHTML} ${item.Name}`;
-
-    span.addEventListener("click", (event) => {
-        event.stopPropagation();
-        showDetails(item);
-        let childUl = li.querySelector("ul");
-        if (childUl) {
-            let isExpanded = childUl.style.display === "block";
-            childUl.style.display = isExpanded ? "none" : "block";
-
-            if (isExpanded) {
-                expandedNodes.delete(item.ElementKey);
+            // Determine which icon to use
+            let iconHTML = "";
+            if (item.ElementType === "game") {
+                iconHTML = icoGame;
+            } else if (item.ElementType === "player") {
+                iconHTML = icoPlayer;
+            } else if (item.ElementType === "room") {
+                iconHTML = icoRoom;
             } else {
-                expandedNodes.add(item.ElementKey);
+                iconHTML = icoAttrib;
             }
+
+            // Set the inner HTML with the icon and text
+            span.innerHTML = `${iconHTML} ${item.Name}`;
+
+            span.addEventListener("click", (event) => {
+                event.stopPropagation();
+                showDetails(item);
+                let childUl = li.querySelector("ul");
+                if (childUl) {
+                    let isExpanded = childUl.style.display === "block";
+                    childUl.style.display = isExpanded ? "none" : "block";
+
+                    if (isExpanded) {
+                        expandedNodes.delete(item.ElementKey);
+                    } else {
+                        expandedNodes.add(item.ElementKey);
+                    }
+                }
+            });
+
+            li.appendChild(span);
+
+            let children = database.filter(child => child.ParentKey === item.ElementKey);
+            if (children.length > 0) {
+                children.sort((a, b) => parseInt(a.Sort) - parseInt(b.Sort));
+
+                let ul = document.createElement("ul");
+                ul.style.display = expandedNodes.has(item.ElementKey) ? "block" : "none";
+                children.forEach(child => ul.appendChild(createTreeNode(child)));
+                li.appendChild(ul);
+            }
+
+            return li;
         }
-    });
-
-    li.appendChild(span);
-
-    let children = database.filter(child => child.ParentKey === item.ElementKey);
-    if (children.length > 0) {
-        children.sort((a, b) => parseInt(a.Sort) - parseInt(b.Sort));
-
-        let ul = document.createElement("ul");
-        ul.style.display = expandedNodes.has(item.ElementKey) ? "block" : "none";
-        children.forEach(child => ul.appendChild(createTreeNode(child)));
-        li.appendChild(ul);
-    }
-
-    return li;
-}
 
         function isSpecialSyntax(str) {
             str = str.trim(); // Ensure no leading/trailing spaces
@@ -433,6 +444,7 @@ function createTreeNode(item) {
             adminInput.focus();  // Focus the admin input field
         }
 
+        // !@! details
         function showDetails(item) {
             currentParent = item.ElementKey;
             
@@ -452,11 +464,13 @@ function createTreeNode(item) {
                 <p><strong>Parent Key:</strong> ${(item.ElementType != "game") ? parentDropdown : ""}</p>
                 <p><strong>Syntax:</strong> <span id="syntax-caption" class="link">${item.Syntax || "Click to Edit"}</span></p>
                 <p><strong>Logic:</strong> <span id="logic-field" class="link">${item.Logic || "Click to View/Edit"}</span></p>
-                <p><strong>Output:</strong> <span id="output-field" class="link">${(item.Output.length > 100) ? item.Output.substring(0, 100)+"..." : item.Output || "Click to View/Edit"}</span></p>
+                <p><strong>Output:</strong> <span id="output-field" class="link">${(item.Output && item.Output.length > 100) ? item.Output.substring(0, 100)+"..." : item.Output || "Click to View/Edit"}</span></p>
                 <p><strong>Tags:</strong> <span id="tags-field" class="link">${item.Tags || "Click to Edit"}</span></p>
                 <p><strong>Repeat:</strong> <span id="repeat-field-parent"><span id="repeat-field" class="link">${item.Repeat || "Click to Edit"}</span><span></p>
                 <p><strong>Active:</strong> <span><input id="element-active" type="checkbox" ${(item.Active === "true") ? "checked" : ""} /></span></p>
-                <p><strong>Sort:</strong> <span id="sort-field" style="cursor:pointer; text-decoration:underline;">${item.Sort || "Click to Edit"}</span></p>
+                <p><strong>Sort:</strong> <span id="sort-field" class="link">${item.Sort || "Click to Edit"}</span></p>
+                <br />
+                <p><span id="delete-element" class="link">Delete</span></p>
             `;
 
             document.getElementById("element-active").addEventListener("change", function() {
@@ -667,6 +681,23 @@ function createTreeNode(item) {
                 inputField.focus();
             }
 
+            // !@! delete
+            function deleteElement(elementKey) {
+                // Find all children of the element
+                let children = database.filter(el => el.ParentKey === elementKey);
+
+                // Recursively delete each child first
+                for (let child of children) {
+                    deleteElement(child.ElementKey);
+                }
+
+                // Now remove the element itself
+                let index = database.findIndex(el => el.ElementKey === elementKey);
+                if (index !== -1) {
+                    database.splice(index, 1);
+                }
+            }
+
             // Handle inline editing for ElementType
             document.getElementById("element-type").addEventListener("click", function() {
                 showEditField(this, "type");
@@ -770,6 +801,13 @@ function createTreeNode(item) {
             document.getElementById("output-field").addEventListener("click", function() {
                 currentField = "output";
                 showEditor(item);
+            });
+
+            // Handle delete
+            document.getElementById("delete-element").addEventListener("click", function() {
+                deleteElement(item.ElementKey);
+                buildTreeView();
+                details.innerHTML = "Select an item to see details.";
             });
 
             adminInput.focus();  // Focus the admin input field
