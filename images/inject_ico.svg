@@ -11,14 +11,18 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs2" />
+  <path
+     style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.185208;stroke-linejoin:bevel;paint-order:stroke fill markers;stroke-opacity:1"
+     d="M 1.952999,2.9316113 H 3.5563688"
+     id="path19525" />
   <text
      xml:space="preserve"
-     style="font-weight:bold;font-size:5.9418px;font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0216628;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
-     x="0.3608638"
-     y="4.0744905"
+     style="font-weight:bold;font-size:3.24209px;font-family:System-ui;-inkscape-font-specification:'System-ui Bold';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.0118201;stroke-linejoin:bevel;stroke-opacity:1;paint-order:stroke fill markers"
+     x="0.22496246"
+     y="3.1849368"
      id="text20814"><tspan
        id="tspan20812"
-       style="stroke-width:0.0216628"
-       x="0.3608638"
-       y="4.0744905">+</tspan></text>
+       style="stroke-width:0.0118201"
+       x="0.22496246"
+       y="3.1849368">+</tspan></text>
 </svg>
