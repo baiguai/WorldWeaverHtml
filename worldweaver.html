@@ -93,7 +93,7 @@
             const attackParsers = ["attribute", "logic", "action"];
             const fleeParsers = ["attribute", "logic", "action"]; 
             const attributeParsers = ["attribute"];
-            const enter-messageParsers = ["logic", "message", "action", "attack"];
+            const enterMessageParsers = ["logic", "message", "action", "attack"];
             const gameParsers = ["set_field", "set_game_state", "enter_message", "message", "action", "room", "input"];
             const globalParsers = ["logic", "input", "action", "message"];
             const inputParsers = ["logic", "preset", "set", "action", "attack", "flee", "message", "move"];
@@ -115,10 +115,13 @@
             const weaponParsers = ["dev_note"];
 
         // Classes
-            let gameOutput = [
+            let gameOutput = {
                 "MatchMade": "false",
                 "Output": ""
-            ];
+            };
+            let userInput = {
+                "Input": ""
+            };
 
         // Global Vars
             let gameStarted = false;
@@ -178,10 +181,19 @@
                 let command = input.value.trim();
                 if (command) {
                     processInput(command);
+                    showOutput();
                 }
                 input.value = "";
             }
         });
+
+        function showOutput()
+        {
+            if (gameOutput.MatchMade && gameOutput.Output)
+            {
+                logMessage(gameOutput.Output);
+            }
+        }
 
 
         function showGameStartScreen()
@@ -225,26 +237,54 @@
 
         function processInput(command)
         {
+            userInput = command;
             let playerElem = database.filter(item => item.ElementType === "player")[0];
 
             if (playerElem.Name === "" &&
-                command != "save" &&
-                command != "help")
+                userInput.Input != "save" &&
+                userInput.Input != "help")
             {
-                playerElem.Name = command;
+                playerElem.Name = userInput.Input;
                 showGameStartScreen();
             }
             if (command === "help")
             {
-                logMessage("I am here to help you!");
+                gameOutput.Output = "I am here to help you!";
+                gameOutput.MatchMade = true;
                 return;
             }
-            if (command === "save")
+            if (userInput.Input === "save")
             {
                 saveFile();
                 input.value = "";
                 input.focus();
                 return;
+            }
+        }
+
+
+        // Run the parsers
+        function parseGame(parsers)
+        {
+            let gameElem = database.filter(item => item.ElementType === "game")[0];
+
+            for (let prsr of gameParsers)
+            {
+                for (let child of database.filter(item => item.ParentElementKey === gameElem.ElementKey))
+                {
+                    callParser(prsr, gameElem, child);
+                }
+            }
+        }
+
+        // Parser managing function
+        function callParser(curParser, parentElement, childElement)
+        {
+            switch (curParser)
+            {
+                case "game":
+                    logMessage("Testing");
+                    break;
             }
         }
     </script>
