@@ -85,8 +85,40 @@
   {"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(inventory|inv)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/(?i)\\b(arm .*)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"room","ElementKey":"home","Name":"Testing Home Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"3yiz09d87evm92hgek0","Name":"Enter Message","ParentKey":"home","Syntax":"","Logic":"","Output":"Welcome to the WorldWeaver Testing Game.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"n1oy3odne3dm92hiusl","Name":"Look","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"gos1iqg1rgqm92hjg25","Name":"Look Msg","ParentKey":"n1oy3odne3dm92hiusl","Syntax":"","Logic":"","Output":"You are in the testing room.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"xhxecxcl42lm92iow8c","Name":"Navigation","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"Go to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"/(?i)\\b(look|l)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"injection","ElementKey":"r7eqlu5a1om92itw47","Name":"Look Inj","ParentKey":"home","Syntax":"","Logic":"inj_look","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"enter_message","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
+  {"ElementType":"enter_message","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
+
+        // Parsers
+            const actionParsers = ["attribute", "logic", "input", "action", "set", "move", "message"];
+            const attackParsers = ["attribute", "logic", "action"];
+            const fleeParsers = ["attribute", "logic", "action"]; 
+            const attributeParsers = ["attribute"];
+            const enter-messageParsers = ["logic", "message", "action", "attack"];
+            const gameParsers = ["set_field", "set_game_state", "enter_message", "message", "action", "room", "input"];
+            const globalParsers = ["logic", "input", "action", "message"];
+            const inputParsers = ["logic", "preset", "set", "action", "attack", "flee", "message", "move"];
+            const logicParsers = ["logic", "action", "set", "message"];
+            const lookParsers = ["navigation", "attack"];
+            const messageParssers = ["logic", "action", "message", "set"];
+            const generalParsers = ["logic", "enter_message", "message", "action", "set", "navigation"];
+            const moveParsers = ["logic", "set", "message"];
+            const npcParsers = ["link", "travel", "enter_message", "logic", "input", "action", "attack", "set", "message", "dev_note"];
+            const objectParsers = ["link", "travel", "enter_message", "object", "logic", "action", "set", "move", "message", "input", "dev_note"];
+            const playerParsers = ["link", "message", "attack", "flee", "input", "dev_note"];
+            const roomParsers = ["link", "logic", "action", "enter_message", "set", "object", "message", "input", "npc", "navigation", "move", "dev_note"];
+            const roundParsers = ["link", "logic", "action", "set"];
+            const rulesetParsers = ["rule"];
+            const ruleParsers = ["rule"];
+            const setParsers = ["logic", "set"];
+            const testParsers = ["teststep"];
+            const travelParsers = ["enter_message", "logic", "move", "message"];
+            const weaponParsers = ["dev_note"];
+
+        // Classes
+            let gameOutput = [
+                "MatchMade": "false",
+                "Output": ""
+            ];
 
         // Global Vars
             let gameStarted = false;
@@ -98,6 +130,7 @@
                 "input", "link", "logic", "message", "move", "navigation", "nothing", "npc", "object",
                 "room", "set", "travel"
             ];
+            let macroRunning = false;
 
 
         function logMessage(message) {
@@ -105,32 +138,17 @@
             output.scrollTop = output.scrollHeight;
         }
 
-        function processInput(command) {
-            if (command.includes("set player name"))
-            {
-                let playerElem = database.filter(item => item.ElementType === "player")[0];
-                playerElem.Name = command.replace("set player name ", "");
-                showGameStartScreen();
-            }
-            if (command === "help")
-            {
-                logMessage("I am here to help you!");
-                return;
-            }
-            if (command === "save")
-            {
-                saveFile();
-                input.value = "";
-                input.focus();
-                return;
-            }
-        }
-
-
         function saveFile() {
             let elemLimit = 5; // Number of elements per line
             let htmlDoc = document.documentElement.cloneNode(true);
             htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
+            let fileName = "worldweaver";
+
+            let fileNameElem = database.filter(item => item.Tags === "!_filename")[0];
+            if (fileNameElem && fileNameElem.Output !== "")
+            {
+                fileName = fileNameElem.Output;
+            }
 
             // Make sure the latest database is stored
             let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
@@ -150,7 +168,7 @@
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
-            a.download = "worldweaver.html";
+            a.download = `${fileName}.html`;
             a.click();
         }
 
@@ -170,11 +188,9 @@
         {
             let playerElem = database.filter(item => item.ElementKey === "player")[0];
 
-            alert(playerElem.Name);
-
             if (playerElem.Name === "")
             {
-                output.innerHTML = "Use: set player name <name>";
+                output.innerHTML = "Set player name:";
                 return;
             }
 
@@ -204,5 +220,32 @@
 
             input.focus();
         };
+
+
+
+        function processInput(command)
+        {
+            let playerElem = database.filter(item => item.ElementType === "player")[0];
+
+            if (playerElem.Name === "" &&
+                command != "save" &&
+                command != "help")
+            {
+                playerElem.Name = command;
+                showGameStartScreen();
+            }
+            if (command === "help")
+            {
+                logMessage("I am here to help you!");
+                return;
+            }
+            if (command === "save")
+            {
+                saveFile();
+                input.value = "";
+                input.focus();
+                return;
+            }
+        }
     </script>
 </body></html>

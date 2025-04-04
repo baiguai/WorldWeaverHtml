@@ -75,7 +75,7 @@
     
     <script>
         let database = [
-  {"ElementType":"game","ElementKey":"game","Name":"Sample Game","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"player","ElementKey":"player","Name":"Player","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pf4wcjaqs9jm8zq6awm","Name":"admin pass","ParentKey":"game","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"9wh0ai7glyhm8zq92fn","Name":"error","ParentKey":"game","Syntax":"","Logic":"","Output":"I don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"nyoy47hnhtgm8zqaoi8","Name":"die message","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_die","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
+  {"ElementType":"game","ElementKey":"game","Name":"Sample Game","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"player","ElementKey":"player","Name":"","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pf4wcjaqs9jm8zq6awm","Name":"admin pass","ParentKey":"game","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"9wh0ai7glyhm8zq92fn","Name":"error","ParentKey":"game","Syntax":"","Logic":"","Output":"I don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"nyoy47hnhtgm8zqaoi8","Name":"die message","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_die","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"attribute","ElementKey":"j0j70z5382m91nuded","Name":"stats dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"dra3hmv3nnem91nvmgq","Name":"money dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z9tqbp2st2m91nw9ep","Name":"life roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z2i2lbhfwxm91nwx9d","Name":"armor roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"armor_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"2au1o4qznt5m91nxeao","Name":"strength roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"attribute","ElementKey":"az85m9vwmcbm91nxw20","Name":"intelligence roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"intelligence_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"6jdbqtsxpanm91nyncm","Name":"cunning roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pvzdehgcs28m91nz4ta","Name":"gold roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"3e573l95rtkm91o5dpu","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_roll))>>d6]","Tags":"stats|life","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"uonxrshx72rm91o71d3","Name":"max life","ParentKey":"player","Syntax":"","Logic":"","Output":"player((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"attribute","ElementKey":"kd8qk3jx4vhm91o7sji","Name":"Armor","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d6+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kcchdhvqojam91o8zat","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"ccowsmp5kc6m91oa4us","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((intelligence_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"xvpexadit7hm91oas1w","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"yv26edvaibom91ocqjl","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_roll))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
@@ -87,7 +87,6 @@
   {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"Go to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"/(?i)\\b(look|l)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"injection","ElementKey":"r7eqlu5a1om92itw47","Name":"Look Inj","ParentKey":"home","Syntax":"","Logic":"inj_look","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"enter_message","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
-
 
         // Global Vars
             let gameStarted = false;
@@ -105,22 +104,6 @@
             output.innerHTML = message + "<br>";
             output.scrollTop = output.scrollHeight;
         }
-
-        function processInput(command) {
-            if (command === "help")
-            {
-                logMessage("I am here to help you!");
-                return;
-            }
-            if (command === "save")
-            {
-                saveFile();
-                input.value = "";
-                input.focus();
-                return;
-            }
-        }
-
 
         function saveFile() {
             let elemLimit = 5; // Number of elements per line
@@ -159,10 +142,17 @@
                 input.value = "";
             }
         });
-        
 
-        window.onload = function() {
-            gameInterface.style.display = "flex";
+
+        function showGameStartScreen()
+        {
+            let playerElem = database.filter(item => item.ElementKey === "player")[0];
+
+            if (playerElem.Name === "")
+            {
+                output.innerHTML = "Set player name:";
+                return;
+            }
 
             if (!gameStarted)
             {
@@ -170,13 +160,18 @@
                 let startMsg = database.filter(item => item.ParentKey === "game" && item.ElementType === "enter_message")[0];
                 output.innerHTML = startMsg.Output;
                 gameStarted = true;
-
-                let playerElem = database.filter(item => item.ElementKey === "player")[0];
             }
             else
             {
                 output.innerHTML = "";
             }
+        }
+        
+
+        window.onload = function() {
+            gameInterface.style.display = "flex";
+
+            showGameStartScreen();
 
             // Ensure the database is not overwritten if it was injected from a saved file
             if (!Array.isArray(database) || database.length === 0) {
@@ -185,5 +180,32 @@
 
             input.focus();
         };
+
+
+
+        function processInput(command)
+        {
+            let playerElem = database.filter(item => item.ElementType === "player")[0];
+
+            if (playerElem.Name === "" &&
+                command != "save" &&
+                command != "help")
+            {
+                playerElem.Name = command;
+                showGameStartScreen();
+            }
+            if (command === "help")
+            {
+                logMessage("I am here to help you!");
+                return;
+            }
+            if (command === "save")
+            {
+                saveFile();
+                input.value = "";
+                input.focus();
+                return;
+            }
+        }
     </script>
 </body></html>
