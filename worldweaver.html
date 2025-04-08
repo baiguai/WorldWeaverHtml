@@ -84,8 +84,8 @@
   {"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(title)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(stats)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(inventory|inv)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(arm .*)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"room","ElementKey":"home","Name":"Testing Home Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"3yiz09d87evm92hgek0","Name":"Enter Message","ParentKey":"home","Syntax":"","Logic":"","Output":"Welcome to the WorldWeaver Testing Game.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"n1oy3odne3dm92hiusl","Name":"Look","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"gos1iqg1rgqm92hjg25","Name":"Look Msg","ParentKey":"n1oy3odne3dm92hiusl","Syntax":"","Logic":"","Output":"You are in the testing room.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"xhxecxcl42lm92iow8c","Name":"Navigation","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"\nGo to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"/\\b(look|l)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"injection","ElementKey":"r7eqlu5a1om92itw47","Name":"Look Inj","ParentKey":"home","Syntax":"","Logic":"inj_look","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"!_start","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"gold_room","Name":"Gold Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"csgxp4xttqjm95dfyhv","Name":"enter message","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"Welcome to the Gold Room.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"33qw3awzi5am95dh8zu","Name":"GoldRoom Door","ParentKey":"home","Syntax":"/\\b(gold room)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"\nGo to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"injection","ElementKey":"r7eqlu5a1om92itw47","Name":"Look Inj","ParentKey":"home","Syntax":"","Logic":"inj_look","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"!_start","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"gold_room","Name":"Gold Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"csgxp4xttqjm95dfyhv","Name":"enter message","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"Welcome to the Gold Room.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"33qw3awzi5am95dh8zu","Name":"GoldRoom Door","ParentKey":"home","Syntax":"\\b(gold room)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"move","ElementKey":"k3gzbw6wmpqm95difm9","Name":"GoldRoomDoor Action","ParentKey":"33qw3awzi5am95dh8zu","Syntax":"","Logic":"gold_room","Output":"You have decided to test receiving money.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
 
@@ -115,6 +115,9 @@
             const testParsers = ["teststep"];
             const travelParsers = ["enter_message", "logic", "move", "message"];
             const weaponParsers = ["dev_note"];
+
+        // Config Items
+            const selfTypes = ["object", "room", "player", "npc", "game", "global"];
 
         // Classes
             let gameOutput = {
@@ -239,6 +242,21 @@
 
 
         // Helper Methods
+            function getElement(referenceString, currentElement)
+            {
+                if (referenceString === "[room]")
+                {
+                    return getCurrentRoom();
+                }
+                if (referenceString === "[player]")
+                {
+                    return getPlayer();
+                }
+                if (referenceString === "[self]")
+                {
+                    return getSelf(currentElement);
+                }
+            }
             function getElementByKey(elementKey)
             {
                 let foundElem = database.filter(item => item.ElementKey === elementKey)[0];
@@ -247,6 +265,24 @@
             function getElementByType(elementType)
             {
                 return database.filter(item => item.ElementType === elementType);
+            }
+            function getSelf(currentElement)
+            {
+                let parentElem = getElementByKey(currentElement.ParentKey);
+
+                if (currentElement.ParentKey === null)
+                {
+                    return null;
+                }
+
+                if (selfTypes.includes(parentElem.ElementType))
+                {
+                    return parentElem;
+                }
+                else
+                {
+                    getSelf(parentElem);
+                }
             }
             function getChildren(parentElement, includeAttributes)
             {
@@ -264,6 +300,11 @@
                 let playerElem = getElementByType("player")[0];
                 let roomElem = getElementByKey(playerElem.ParentKey);
                 return roomElem;
+            }
+            function getPlayer()
+            {
+                let playerElem = getElementByType("player")[0];
+                return playerElem;
             }
             function outputMatch(message, doAppend)
             {
@@ -288,8 +329,10 @@
 
         function processInput(command)
         {
-            userInput = command;
+            userInput.Input = command;
             output.innerHTML = "";
+            gameOutput.MatchMade = false;
+            gameOutput.Output = "";
             output.scrollTop = output.scrollHeight;
             let playerElem = database.filter(item => item.ElementType === "player")[0];
 
@@ -299,6 +342,9 @@
             {
                 playerElem.Name = userInput.Input;
                 showGameStartScreen();
+                parseGame(gameParsers);
+                parseRoom(roomParsers, true);
+                return;
             }
             if (command === "help")
             {
@@ -314,8 +360,11 @@
                 return;
             }
 
-            parseGame(gameParsers);
-            parseRoom(roomParsers);
+            if (!gameStarted)
+            {
+                parseGame(gameParsers);
+                parseRoom(roomParsers, false);
+            }
         }
 
 
@@ -340,16 +389,35 @@
                 return;
             }
 
-            alert(currentElement.Syntax);
-
             let pattern = new RegExp(currentElement.Syntax, 'i');
             if (pattern.test(userInput.Input))
             {
-                alert(`${currentElement.Syntax} matched!`);
+                parseElement(currentElement, inputParsers);
             }
         }
 
-        function parseRoom(parsers)
+        function parseMove(currentElement, parsers)
+        {
+            let targetKey = currentElement.Logic;
+            let targetKeyElem = getElementByKey(targetKey);
+            let movingElem = getElement(currentElement.Tags, currentElement);
+
+            if (movingElem != null && targetKeyElem != null)
+            {
+                movingElem.ParentKey = targetKey;
+                gameOutput.MatchMade = true;
+                if (currentElement.Output !== "")
+                {
+                    gameOutput.Output = currentElement.Output;
+                    if (movingElem.ElementType === "player")
+                    {
+                        parseRoom(playerParsers, true);
+                    }
+                }
+            }
+        }
+
+        function parseRoom(parsers, isEntering)
         {
             let roomElem = getCurrentRoom();
 
@@ -357,7 +425,7 @@
             {
                 for (let child of getChildren(roomElem, false))
                 {
-                    callParser(prsr, roomElem, child);
+                    callParser(prsr, roomElem, child, isEntering);
                 }
             }
         }
@@ -368,18 +436,18 @@
             {
                 for (let child of getChildren(parentElement, false))
                 {
-                    callParser(prsr, parentElement, child);
+                    callParser(prsr, parentElement, child, false);
                 }
             }
         }
 
         // Parser managing function
-        function callParser(curParser, parentElement, childElement)
+        function callParser(curParser, parentElement, childElement, isEntering)
         {
             switch (curParser)
             {
                 case "enter_message":
-                    if (childElement.ElementType === "enter_message" && parentElement.ElementType !== "game")
+                    if (childElement.ElementType === "enter_message" && parentElement.ElementType !== "game" && isEntering === true)
                     {
                         outputMatch(childElement.Output, true);
                     }
@@ -392,10 +460,14 @@
                     }
 
                 case "message":
-                    if (childElement.ElementType === "message")
+                    if (childElement.ElementType === "message" && parentElement.ElementType !== "game")
                     {
                         outputMatch(childElement.Output, true);
                     }
+                    break;
+
+                case "move":
+                    parseMove(childElement, moveParsers);
                     break;
 
                 case "navigation":
