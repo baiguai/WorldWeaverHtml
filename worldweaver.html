@@ -478,6 +478,23 @@
                 gameLogic.LogicPassed = true;
                 return;
             }
+            let logicPassed = true;
+            let logicRows = childElement.Logic.split(/\r?\n/);
+            let curOperator = "and";
+           
+            for (let row of logicRows)
+            {
+                if (row.startsWith('?')
+                {
+                    logicPassed = processLogicRow(parentElement, childElement, row.substring(1));
+                }
+            }
+        }
+        function processLogicRow(parentElement, childElement, row)
+        {
+            let tag = "";
+            let target = "";
+            let field = "Output";
         }
 
         function parseMove(currentElement, parsers)
