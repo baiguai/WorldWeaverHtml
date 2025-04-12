@@ -706,7 +706,49 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
             return "Output";
         }
         function valueComparison(operand, val1, val2)
-        {}
+        {
+
+// const operands = [" != ", " >= ", "<= ", " !~~ ", " ~~ ", " >< ", " <> ", " = ", " > ", " < "];
+
+            switch (operand.trim())
+            {
+                case "!=":
+                    if (val1 !== val2)
+                    {
+                        return true;
+                    }
+                    break;
+                case ">=":
+                    if (val1 >= val2)
+                    {
+                        return true;
+                    }
+                    break;
+                case "<=":
+                    if (val1 <= val2)
+                    {
+                        return true;
+                    }
+                    break;
+
+                case "!~~":
+                    return !val2.includes(val1);
+                case "~~":
+                    return val2.includes(val1);
+                case "><":
+                    return val1 < val2 || val1 > val2;
+                case "<>":
+                    return val1 > val2 && val1 < val2;
+                case "=":
+                    return val1 === val2;
+                case ">":
+                    return val1 > val2;
+                case "<":
+                    return val1 < val2
+            }
+
+            return false;
+        }
 
         function parseMove(currentElement, parsers)
         {
