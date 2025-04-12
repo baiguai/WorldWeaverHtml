@@ -119,8 +119,10 @@
             const weaponParsers = ["dev_note"];
 
         // Config Items
+            const fields = ["ElementType", "ElementKey", "Name", "ParentKey", "Syntax", "Logic", "Output", "Tags"];
             const selfTypes = ["object", "room", "player", "npc", "game", "global"];
             const canContainCustomElems = ["npc", "object", "room"];
+            const operands = [" != ", " >= ", "<= ", " !~~ ", " ~~ ", " >< ", " <> ", " = ", " > ", " < "];
 
         // Classes
             let gameOutput = {
@@ -484,18 +486,227 @@
            
             for (let row of logicRows)
             {
-                if (row.startsWith('?')
+                if (row.startsWith('?'))
                 {
                     logicPassed = processLogicRow(parentElement, childElement, row.substring(1));
                 }
             }
         }
+
+        /*
+
+LOGIC SYNTAX:
+
+-- operands --
+!= 	Not equals to
+>= 	Greater than or equal to
+<= 	Less than or equal to
+!~~ Is not in
+~~ 	Is in
+>< 	Is outside the bounds
+<> 	Is inside the bounds
+= 	Is equal to
+> 	Is greater than
+< 	Is less than
+
+-- relative codes --
+[room] 	    The current room
+[player] 	The player element
+[self] 	    This walks up to the first 'self' configured element - (See the SelfTypes.json file)
+[enemy] 	While fighting
+
+-- special values --
+[children] 	                Returns the child count of the [self] element
+[isday] 	                Returns true if it is 'day time'
+[missiondays] 	            Displays how many days the player has been on the current mission (If any)
+[totaldays] 	            Total in-game days that have passed
+rdm_<random expression> 	Generates a random value to check against (So it doesn't always fire etc) (See Random Syntax)
+
+
+-- examples --
+?(travel01)active = 'true'
+?(player)((life)) > 0
+?[self]active = 'true'
+?[self]((is_discovered)) = 'true'
+?[self]key ~~ ls(player)((inventory))key
+?[self]key ~~ ls[room]((discoverable))key
+?[self]key ~~ ls[room]((discoverable))children
+?[self]children > 0
+?(elem_by_key)children < 10
+?[self]active = 'true'
+
+        */
         function processLogicRow(parentElement, childElement, row)
         {
             let tag = "";
-            let target = "";
-            let field = "Output";
+            let target1 = "";
+            let field1 = "";
+            let specCode1 = "";
+            let value1 = "";
+            let target2 = "";
+            let field2 = "";
+            let specCode2 = "";
+            let value2 = "";
+            let comparisons = splitLogicByOperand(row);
+            let operand = getOperand(row);
+
+            if (!Array.isArray(comparisons) || comparisons.length !== 2)
+            {
+                alert("Malformed logic statement!");
+                return false;
+            }
+
+            if (operand === "")
+            {
+                return false;
+            }
+
+            value1 = getExplicitValue(comparisons[0]);
+            value2 = getExplicitValue(comparisons[1]);
+
+            if (value1 === "")
+            {
+                target1 = getLogicTarget(childElement, comparisons[0]);
+                field1 = getLogicField(comparisons[0]);
+                value1 = getFieldValue(target1, field1);
+            }
+            if (value2 === "")
+            {
+                target2 = getLogicTarget(childElement, comparisons[1]);
+                field2 = getLogicField(comparisons[1]);
+                value2 = getFieldValue(target2, field2);
+            }
+
+            return valueComparison(operand, value1, value2);
         }
+        function splitLogicByOperand(row)
+        {
+            let splt = "";
+            for (let oper of operands)
+            {
+                splt = row.split(oper);
+                if (splt.length === 2)
+                {
+                    return splt;
+                }
+            }
+        }
+        function getOperand(row)
+        {
+            for (let op of operands)
+            {
+                if (row.includes(op))
+                {
+                    return op.trim();
+                }
+            }
+
+            return "";
+        }
+        function getExplicitValue(row)
+        {
+            if (row.startsWith("'") && row.endsWith("'"))
+            {
+                return row.replaceAll("'", "");
+            }
+            return "";
+        }
+        function getFieldValue(curElem, field)
+        {
+            curElem = curElem[0];
+
+// const fields = ["ElementType", "ElementKey", "Name", "ParentKey", "Syntax", "Logic", "Output", "Tags"];
+
+            switch(field)
+            {
+                case "ElementType":
+                    return curElem.ElementType;
+                case "ElementKey":
+                    return curElem.ElementKey;
+                case "Name":
+                    return curElem.Name;
+                case "ParentKey":
+                    return curElem.ParentKey;
+                case "Syntax":
+                    return curElem.Syntax;
+                case "Logic":
+                    return curElem.Logic;
+                case "Output":
+                    return curElem.Output;
+                case "Tags":
+                    return curElem.Tags;
+                default:
+                    return "";
+            }
+        }
+        function getLogicTarget(childElement, row)
+        {
+            let tgt = "";
+            tgt = getLogicTargetById(row);
+
+            if (tgt === "")
+            {
+                tgt = getLogicTargetByRelCode(childElement, row);
+            }
+
+            if (row.endsWith("))"))
+            {
+                let arr = row.split("((");
+                if (arr.length === 2)
+                {
+                    let tag = arr[1].replace("))", "");
+                    tgt = getChildrenByTag(tgt, tag);
+                }
+            }
+
+            return tgt;
+        }
+        function getLogicTargetById(row)
+        {
+            if (row.startsWith("("))
+            {
+                row = row.substring(1);
+                let arr = row.split(")");
+                return arr[0].trim();
+            }
+
+            return "";
+        }
+        function getLogicTargetByRelCode(childElement, row)
+        {
+            if (row.startsWith("[self]"))
+            {
+                return getSelf(childElement);
+            }
+            if (row.startsWith("[room]"))
+            {
+                return getCurrentRoom();
+            }
+            if (row.startsWith("[player]"))
+            {
+                return getPlayer();
+            }
+            // TODO: Add GetEnemy
+        }
+        function getLogicField(row)
+        {
+            let arr = "";
+
+            if (row.endsWith("]") || row.endsWith("))") || row.endsWith(")"))
+            {
+                return "Output";
+            }
+
+            arr = row.split("((");
+            if (arr.length === 2)
+            {
+                return arr[1].replaceAll("))", "").trim();
+            }
+
+            return "Output";
+        }
+        function valueComparison(operand, val1, val2)
+        {}
 
         function parseMove(currentElement, parsers)
         {
