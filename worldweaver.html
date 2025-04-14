@@ -31,7 +31,7 @@
 
             #output {
                 flex: 1;
-                padding: 10px;
+                [""]padding: 10px;
                 overflow-y: auto;
                 white-space: pre-wrap;
                 border-bottom: 1px solid white;
@@ -89,7 +89,7 @@
   {"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around.\nYou are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"move","ElementKey":"m8p6rq3wzjgm99oruk2","Name":"HomeDoor Action","ParentKey":"fyf8b0e469mm99op8iu","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"obo9905ejlam99otgpl","Name":"Navigation","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"uri9nmp4ufam99ots0h","Name":"Nav Msg","ParentKey":"obo9905ejlam99otgpl","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"q359kjev8q9m9b4b60y","Name":"Look Input","ParentKey":"home","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"m5ypte6dvlm9b4bm9u","Name":"Look Action","ParentKey":"q359kjev8q9m9b4b60y","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Gold Coin","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a gold coin.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a gold coin.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
+  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
 
         // Parsers
@@ -378,6 +378,7 @@
             gameOutput.Output = "";
             gameOutput.ContinueParsing = true;
             gameOutput.EnterMsgDone = false;
+            gameOutput.LogicPassed = true;
             output.scrollTop = output.scrollHeight;
             let playerElem = database.filter(item => item.ElementType === "player")[0];
 
@@ -475,12 +476,12 @@
 
         function parseLogic(parentElement, childElement)
         {
+            gameOutput.LogicPassed = true;
             if (childElement.Logic === "")
             {
-                gameLogic.LogicPassed = true;
                 return;
             }
-            let logicPassed = true;
+            let logicPassed = [""];
             let logicRows = childElement.Logic.split(/\r?\n/);
             let curOperator = "and";
            
@@ -488,54 +489,82 @@
             {
                 if (row.startsWith('?'))
                 {
-                    logicPassed = processLogicRow(parentElement, childElement, row.substring(1));
+                    logicPassed.push(processLogicRow(parentElement, childElement, row.substring(1)));
                 }
+                else if (row.trim() === "and")
+                {
+                    curOperator = "and";
+                }
+                else if (row.trim() === "or")
+                {
+                    curOperator = "or";
+                }
+
+                if (logicPassed.length > 1)
+                {
+                    if (curOperator === "and" && logicPassed.includes(false))
+                    {
+                        gameOutput.LogicPassed = false;
+                        return;
+                    }
+                    if (curOperator === "or" && !logicPassed.includes(true))
+                    {
+                        gameOutput.LogicPassed = false;
+                        return;
+                    }
+                }
+            }
+
+            if (logicPassed.includes(false))
+            {
+                gameOutput.LogicPassed = false;
+                return;
             }
         }
 
-        /*
+            /*
 
-LOGIC SYNTAX:
+                LOGIC SYNTAX:
 
--- operands --
-!= 	Not equals to
->= 	Greater than or equal to
-<= 	Less than or equal to
-!~~ Is not in
-~~ 	Is in
->< 	Is outside the bounds
-<> 	Is inside the bounds
-= 	Is equal to
-> 	Is greater than
-< 	Is less than
+                -- operands --
+                != 	Not equals to
+                >= 	Greater than or equal to
+                <= 	Less than or equal to
+                !~~ Is not in
+                ~~ 	Is in
+                >< 	Is outside the bounds
+                <> 	Is inside the bounds
+                = 	Is equal to
+                > 	Is greater than
+                < 	Is less than
 
--- relative codes --
-[room] 	    The current room
-[player] 	The player element
-[self] 	    This walks up to the first 'self' configured element - (See the SelfTypes.json file)
-[enemy] 	While fighting
+                -- relative codes --
+                [room] 	    The current room
+                [player] 	The player element
+                [self] 	    This walks up to the first 'self' configured element - (See the SelfTypes.json file)
+                [enemy] 	While fighting
 
--- special values --
-[children] 	                Returns the child count of the [self] element
-[isday] 	                Returns true if it is 'day time'
-[missiondays] 	            Displays how many days the player has been on the current mission (If any)
-[totaldays] 	            Total in-game days that have passed
-rdm_<random expression> 	Generates a random value to check against (So it doesn't always fire etc) (See Random Syntax)
+                -- special values --
+                [children] 	                Returns the child count of the [self] element
+                [isday] 	                Returns true if it is 'day time'
+                [missiondays] 	            Displays how many days the player has been on the current mission (If any)
+                [totaldays] 	            Total in-game days that have passed
+                rdm_<random expression> 	Generates a random value to check against (So it doesn't always fire etc) (See Random Syntax)
 
 
--- examples --
-?(travel01)active = 'true'
-?(player)((life)) > 0
-?[self]active = 'true'
-?[self]((is_discovered)) = 'true'
-?[self]key ~~ ls(player)((inventory))key
-?[self]key ~~ ls[room]((discoverable))key
-?[self]key ~~ ls[room]((discoverable))children
-?[self]children > 0
-?(elem_by_key)children < 10
-?[self]active = 'true'
+                -- examples --
+                ?(travel01)active = 'true'
+                ?(player)((life)) > 0
+                ?[self]active = 'true'
+                ?[self]((is_discovered)) = 'true'
+                ?[self]key ~~ ls(player)((inventory))key
+                ?[self]key ~~ ls[room]((discoverable))key
+                ?[self]key ~~ ls[room]((discoverable))children
+                ?[self]children > 0
+                ?(elem_by_key)children < 10
+                ?[self]active = 'true'
 
-        */
+            */
         function processLogicRow(parentElement, childElement, row)
         {
             let tag = "";
@@ -614,8 +643,6 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
         function getFieldValue(curElem, field)
         {
             curElem = curElem[0];
-
-// const fields = ["ElementType", "ElementKey", "Name", "ParentKey", "Syntax", "Logic", "Output", "Tags"];
 
             switch(field)
             {
@@ -707,9 +734,6 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
         }
         function valueComparison(operand, val1, val2)
         {
-
-// const operands = [" != ", " >= ", "<= ", " !~~ ", " ~~ ", " >< ", " <> ", " = ", " > ", " < "];
-
             switch (operand.trim())
             {
                 case "!=":
@@ -793,6 +817,14 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
             }
         }
 
+        function parseSet(parentElement, currentElement, parsers)
+        {
+            if (tagsContain(currentElement.Tags, "arm"))
+            {
+                let armed = "Do the arming logic";
+            }
+        }
+
         function parseElement(parentElement, parsers)
         {
             if (!gameOutput.ContinueParsing)
@@ -816,6 +848,11 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
         // Parser managing function
         function callParser(curParser, parentElement, childElement, isEntering)
         {
+            if (!gameOutput.LogicPassed)
+            {
+                return;
+            }
+
             switch (curParser)
             {
                 case "action":
@@ -897,6 +934,12 @@ rdm_<random expression> 	Generates a random value to check against (So it doesn'
                     if (childElement.ElementType === "object")
                     {
                         parseObject(parentElement, childElement, objectParsers);
+                    }
+
+                case "set":
+                    if (childElement.ElementType === "set")
+                    {
+                        parseSet(parentElement, childElement, setParsers);
                     }
             }
         }
