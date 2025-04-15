@@ -366,6 +366,20 @@
                 let taglist = tags.split("|");
                 return taglist.includes(tagString);
             }
+            function addTag(currentElement, tagString)
+            {
+                let taglist = currentElement.Tags.split("|");
+                if (!taglist.includes(tagString))
+                {
+                    taglist.push(tagString);
+                }
+                currentElement.Tags = taglist.join("|");
+            }
+            function removeTag(currentElement, tagString)
+            {
+                let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
+                currentElement.Tags = taglist.join("|");
+            }
         // End Helper Methods
 
 
@@ -595,14 +609,14 @@
 
             if (value1 === "")
             {
-                target1 = getLogicTarget(childElement, comparisons[0]);
-                field1 = getLogicField(comparisons[0]);
+                target1 = getTargetByTag(childElement, comparisons[0]);
+                field1 = getField(comparisons[0]);
                 value1 = getFieldValue(target1, field1);
             }
             if (value2 === "")
             {
-                target2 = getLogicTarget(childElement, comparisons[1]);
-                field2 = getLogicField(comparisons[1]);
+                target2 = getTargetByTag(childElement, comparisons[1]);
+                field2 = getField(comparisons[1]);
                 value2 = getFieldValue(target2, field2);
             }
 
@@ -666,14 +680,40 @@
                     return "";
             }
         }
-        function getLogicTarget(childElement, row)
+        function setFieldValue(curElem, field, value)
+        {
+            curElem = curElem[0];
+
+            switch(field)
+            {
+                case "ElementType":
+                    return curElem.ElementType = value;
+                case "ElementKey":
+                    return curElem.ElementKey = value;
+                case "Name":
+                    return curElem.Name = value;
+                case "ParentKey":
+                    return curElem.ParentKey = value;
+                case "Syntax":
+                    return curElem.Syntax = value;
+                case "Logic":
+                    return curElem.Logic = value;
+                case "Output":
+                    return curElem.Output = value;
+                case "Tags":
+                    return curElem.Tags;
+                default:
+                    return "";
+            }
+        }
+        function getTargetByTag(childElement, row)
         {
             let tgt = "";
-            tgt = getLogicTargetById(row);
+            tgt = getTargetById(row);
 
             if (tgt === "")
             {
-                tgt = getLogicTargetByRelCode(childElement, row);
+                tgt = getTargetByRelCode(childElement, row);
             }
 
             if (row.endsWith("))"))
@@ -688,7 +728,7 @@
 
             return tgt;
         }
-        function getLogicTargetById(row)
+        function getTargetById(row)
         {
             if (row.startsWith("("))
             {
@@ -699,7 +739,7 @@
 
             return "";
         }
-        function getLogicTargetByRelCode(childElement, row)
+        function getTargetByRelCode(childElement, row)
         {
             if (row.startsWith("[self]"))
             {
@@ -715,7 +755,7 @@
             }
             // TODO: Add GetEnemy
         }
-        function getLogicField(row)
+        function getField(row)
         {
             let arr = "";
 
@@ -724,7 +764,7 @@
                 return "Output";
             }
 
-            arr = row.split("((");
+            arr = row.split("(");
             if (arr.length === 2)
             {
                 return arr[1].replaceAll("))", "").trim();
@@ -822,6 +862,70 @@
             if (tagsContain(currentElement.Tags, "arm"))
             {
                 let armed = "Do the arming logic";
+            }
+
+            let field = "";
+            let tgt = getTargetById(currentElement.Logic);
+            if (tgt.ElementKey === "")
+            {
+                tgt = getTargetByRelCode(currentElement, currentElement.Logic);
+            }
+            if (tgt.ElementKey !== "")
+            {
+                field = getField(currentElement.Logic);
+            }
+
+            updateElementField(tgt, field, currentElement.Output);
+        }
+
+        function updateElementField(currentElement, fieldName, newValue)
+        {
+            let curValue = getFieldValue(currentElement, fieldName);
+
+            if (newValue.startsWith("+="))
+            {
+                let inc = Number(newValue.replace("+=", ""));
+                curValue = Number(curValue) + inc;
+            }
+            if (newValue.startsWith("-="))
+            {
+                let dec = Number(newValue.replace("-=", ""));
+                curValue = Number(curValue) - dec;
+            }
+            if (newValue === "++")
+            {
+                curValue = Number(curValue) + 1;
+            }
+            if (newValue === "--")
+            {
+                curValue = Number(curValue) - 1;
+            }
+
+            switch(fieldName)
+            {
+                case "ElementType":
+                    currentElement.ElementType = newValue;
+                case "ElementKey":
+                    currentElement.ElementKey = newValue;
+                case "Name":
+                    currentElement.Name = newValue;
+                case "ParentKey":
+                    currentElement.ParentKey = newValue;
+                case "Syntax":
+                    currentElement.Syntax = newValue;
+                case "Logic":
+                    currentElement.Logic = newValue;
+                case "Output":
+                    currentElement.Output = newValue;
+                case "Tags":
+                    if (newValue.startsWith("+"))
+                    {
+                        addTag(currentElement, newValue.substring(1));
+                    }
+                    if (newValue.startsWith("-"))
+                    {
+                        removeTag(currentElement, newValue.substring(1));
+                    }
             }
         }
 
