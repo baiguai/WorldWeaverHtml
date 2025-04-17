@@ -237,6 +237,8 @@
         window.onload = function() {
             gameInterface.style.display = "flex";
 
+            doOnStartRandomFixes();
+
             showGameStartScreen();
 
             // Ensure the database is not overwritten if it was injected from a saved file
@@ -246,6 +248,149 @@
 
             input.focus();
         };
+
+
+
+        function doOnStartRandomFixes()
+        {
+            let randElems = database.filter(item => item.Output.startsWith("[rand:") || item.Output.startsWith("[roll:"));
+            
+            for (let rnd of randElems)
+            {
+                if (rnd.Output.startsWith("[rand:"))
+                {
+                    setRandValue(rnd);
+                }
+                else
+                {
+                    setRollDiceValue(rnd);
+                }
+            }
+        }
+
+        function setRandValue(rndElement) {
+            let range = rndElement.Output.replace("[rand:", "").replace(/](?!.*])/ , "").split("|");
+            let rndVal = 0;
+            if (range.length === 2)
+            {
+                if (range[0].startsWith("<<"))
+                {
+                    range[0] = getTargetByRelCode(rndElement, range[0])[0].Output;
+                }
+                if (range[1].startsWith("<<"))
+                {
+                    range[1] = getTargetByRelCode(rndElement, range[1])[0].Output;
+                }
+
+                rndVal = getRandomByRange(range[0], range[1]);
+                rndElement.Output = rndVal;
+            }
+        }
+
+        function getRandomByRange(min, max)
+        {
+            return Math.floor(Math.random() * Number(max) - Number(min) + 1) + Number(min);
+        }
+
+        function setRollDiceValue(rndElement)
+        {
+            let roll = rndElement.Output.replace("[roll:", "").replace(/](?!.*])/ , "");
+            let rndVal = -1;
+            let rollVals = [];
+            let totalDice = 0;
+            let modValue = 0;
+            let totalNumOfDice = 0;
+
+            roll = roll.replace(/<<(.+?)>>/g, (_, match) => {
+                return getTargetByRelCode(rndElement, roll)[0].Output;
+            });
+
+            if (roll.includes("+") || roll.includes("-"))
+            {
+                let delimiter = "+";
+                if (roll.includes("-"))
+                {
+                    delimiter = "-";
+                }
+                modValue = processModifier(rndElement, delimiter, roll);
+                let arr = roll.split(delimiter);
+                if (arr.Length === 2)
+                {
+                    roll = arr[0].trim();
+                }
+            }
+
+            if (roll.includes("(") && roll.includes(")"))
+            {
+                let arr = roll.split(")");
+                if (arr.length == 2)
+                {
+                    roll = arr[1].trim();
+                    arr[0] = arr[0].replace("(", "");
+                    try
+                    {
+                        totalNumOfDice = Number(arr[0]);
+                    }
+                    catch (Exception)
+                    {
+                        totalNumOfDice = 0;
+                    }
+                }
+            }
+
+            let diceSpec = roll.split('d');
+            try
+            {
+                if (diceSpec.length == 2)
+                {
+                    let numOfDice = Number(diceSpec[0].trim());
+                    if (diceSpec[1].includes("+") || diceSpec[1].includes("-"))
+                    {
+                        let sidesArr = diceSpec[1].split("+");
+                        if (sidesArr.length !== 2)
+                        {
+                            sidesArr = diceSpec[1].split("-");
+                            diceSpec[1] = sidesArr[0];
+                        }
+                        else
+                        {
+                            diceSpec[1] = sidesArr[0];
+                        }
+                    }
+                    let sides = Number(diceSpec[1].trim());
+                    let total = 0;
+                    let rollNum = numOfDice;
+                    if (totalNumOfDice > numOfDice)
+                    {
+                        rollNum = totalNumOfDice;
+                    }
+
+                    for (let rolls = 0; rolls <= rollNum - 1; rolls++)
+                    {
+                        let rollVal = getRandomByRange(1, sides + 1);
+                        rollVals.push(rollVal);
+                    }
+
+                    if (totalNumOfDice > numOfDice)
+                    {
+                        const sorted = rollVals.sort((a, b) => b - a);
+                        let taken = sorted.slice(0, numOfDice);
+                        total = taken.reduce((acc, curr) => acc + curr, 0);
+                    }
+                    else {
+                        total = rollVals.reduce((acc, curr) => acc + curr, 0);
+                    }
+
+                    rndVal = total;
+
+                    total = total + modValue;
+                }
+            }
+            catch (Exception)
+            {
+                return rndVal;
+            }
+        }
 
 
         // Helper Methods
@@ -368,6 +513,10 @@
             }
             function addTag(currentElement, tagString)
             {
+                if (currentElement.Tags === undefined)
+                {
+                    return;
+                }
                 let taglist = currentElement.Tags.split("|");
                 if (!taglist.includes(tagString))
                 {
@@ -379,6 +528,30 @@
             {
                 let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
                 currentElement.Tags = taglist.join("|");
+            }
+            function processModifier(currentElement, modifier, roll)
+            {
+                let arr = roll.split(modifier);
+                var modifierVal = 0;
+
+                if (arr.length != 2)
+                {
+                    return 0;
+                }
+
+                try{
+                    modifierVal = Number(getTargetByRelCode(currentElement, arr[1].trim()));
+                    if (modifier === "-")
+                    {
+                        modifierVal = -(modifierVal);
+                    }
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+
+                return modifierVal;
             }
         // End Helper Methods
 
@@ -741,19 +914,57 @@
         }
         function getTargetByRelCode(childElement, row)
         {
-            if (row.startsWith("[self]"))
+            let parent = null;
+            let childTag = "";
+            let returnString = row;
+            let relVal = "";
+
+            if (!row.includes("<<"))
             {
-                return getSelf(childElement);
+                if (Number.isInteger(Number(row)))
+                {
+                    return row;
+                }
             }
-            if (row.startsWith("[room]"))
+
+            relVal = [...row.matchAll(/<<(.+?)>>/g)].map(match => match[1]);
+            if (relVal === "undefined")
             {
-                return getCurrentRoom();
+                relVal = row;
             }
-            if (row.startsWith("[player]"))
+            if (relVal.length > 0)
             {
-                return getPlayer();
+                relVal = relVal[0];
+            }
+            else
+            {
+                relVal = row;
+            }
+
+            if (relVal.startsWith("[self]"))
+            {
+                parent = getSelf(childElement);
+            }
+            if (relVal.startsWith("[room]"))
+            {
+                parent = getCurrentRoom();
+            }
+            if (relVal.startsWith("[player]"))
+            {
+                parent = getPlayer();
             }
             // TODO: Add GetEnemy
+
+            let arr = relVal.split("))");
+            if (arr.length === 2)
+            {
+                arr = arr[0].split("((");
+                if (arr.length === 2)
+                {
+                    childTag = arr[1].trim();
+                    return getChildrenByTag(parent, childTag);
+                }
+            }
         }
         function getField(row)
         {
@@ -866,7 +1077,7 @@
 
             let field = "";
             let tgt = getTargetById(currentElement.Logic);
-            if (tgt.ElementKey === "")
+            if (typeof tgt.ElementKey === "undefined" || tgt.ElementKey === "")
             {
                 tgt = getTargetByRelCode(currentElement, currentElement.Logic);
             }
