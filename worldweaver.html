@@ -275,11 +275,11 @@
             {
                 if (range[0].startsWith("<<"))
                 {
-                    range[0] = getTargetByRelCode(rndElement, range[0])[0].Output;
+                    range[0] = getTargetsByRelCode(rndElement, range[0])[0].Output;
                 }
                 if (range[1].startsWith("<<"))
                 {
-                    range[1] = getTargetByRelCode(rndElement, range[1])[0].Output;
+                    range[1] = getTargetsByRelCode(rndElement, range[1])[0].Output;
                 }
 
                 rndVal = getRandomByRange(range[0], range[1]);
@@ -302,7 +302,7 @@
             let totalNumOfDice = 0;
 
             roll = roll.replace(/<<(.+?)>>/g, (_, match) => {
-                return getTargetByRelCode(rndElement, roll)[0].Output;
+                return getTargetsByRelCode(rndElement, roll)[0].Output;
             });
 
             if (roll.includes("+") || roll.includes("-"))
@@ -542,7 +542,7 @@
                 }
 
                 try{
-                    modifierVal = Number(getTargetByRelCode(currentElement, arr[1].trim()));
+                    modifierVal = Number(getTargetsByRelCode(currentElement, arr[1].trim()));
                     if (modifier === "-")
                     {
                         modifierVal = -(modifierVal);
@@ -675,7 +675,7 @@
         function parseListAction(currentElement)
         {
             let caption = currentElement.Output;
-            let items = getTargetByRelCode(currentElement, currentElement.Logic);
+            let items = getTargetsByRelCode(currentElement, currentElement.Logic);
             gameOutput.Output = caption + "\n";
             for (let item of items)
             {
@@ -854,7 +854,7 @@
         }
         function getFieldValue(curElem, field)
         {
-            curElem = curElem[0];
+            curElem = curElem;
 
             switch(field)
             {
@@ -911,7 +911,7 @@
 
             if (tgt === "")
             {
-                tgt = getTargetByRelCode(childElement, row);
+                tgt = getTargetsByRelCode(childElement, row);
             }
 
             if (row.endsWith("))"))
@@ -937,7 +937,7 @@
 
             return "";
         }
-        function getTargetByRelCode(childElement, row)
+        function getTargetsByRelCode(childElement, row)
         {
             let parent = null;
             let childTag = "";
@@ -1123,7 +1123,7 @@
             let tgt = getTargetById(currentElement.Logic);
             if (typeof tgt.ElementKey === "undefined" || tgt.ElementKey === "")
             {
-                tgt = getTargetByRelCode(currentElement, currentElement.Logic);
+                tgt = getTargetsByRelCode(currentElement, currentElement.Logic)[0];
             }
             if (tgt.ElementKey !== "")
             {
@@ -1135,7 +1135,6 @@
 
         function updateElementField(currentElement, fieldName, newValue)
         {
-            let dbElem = database.filter(item => item.ElementKey === currentElement.ElementKey);
             let curValue = getFieldValue(currentElement, fieldName);
 
             if (newValue.startsWith("+="))
@@ -1160,25 +1159,25 @@
             switch(fieldName)
             {
                 case "ElementType":
-                    dbElem.ElementType = curValue;
+                    currentElement.ElementType = curValue;
                     break;
                 case "ElementKey":
-                    dbElem.ElementKey = curValue;
+                    currentElement.ElementKey = curValue;
                     break;
                 case "Name":
-                    dbElem.Name = curValue;
+                    currentElement.Name = curValue;
                     break;
                 case "ParentKey":
-                    dbElem.ParentKey = curValue;
+                    currentElement.ParentKey = curValue;
                     break;
                 case "Syntax":
-                    dbElem.Syntax = curValue;
+                    currentElement.Syntax = curValue;
                     break;
                 case "Logic":
-                    dbElem.Logic = curValue;
+                    currentElement.Logic = curValue;
                     break;
                 case "Output":
-                    database.filter(item => item.ElementKey === dbElem.ElementKey).map(item => item.Output = curValue);
+                    currentElement.Output = curValue;
                     break;
                 case "Tags":
                     if (newValue.startsWith("+"))
