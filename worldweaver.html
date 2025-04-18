@@ -31,7 +31,7 @@
 
             #output {
                 flex: 1;
-                padding: 10px;
+                [""]padding: 10px;
                 overflow-y: auto;
                 white-space: pre-wrap;
                 border-bottom: 1px solid white;
@@ -81,14 +81,15 @@
   {"ElementType":"attribute","ElementKey":"kd8qk3jx4vhm91o7sji","Name":"Armor","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d6+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kcchdhvqojam91o8zat","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"ccowsmp5kc6m91oa4us","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((intelligence_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"xvpexadit7hm91oas1w","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"yv26edvaibom91ocqjl","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_roll))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"attribute","ElementKey":"player_armed","Name":"armed weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"armed|stats|name","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"cur_heal_round","Name":"cur heal round","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4yru4bgbvolm91onmxr","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attackplayer","ElementKey":"ym8tqvff76im91ooiy7","Name":"Attack Player","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
   {"ElementType":"attack","ElementKey":"tydkk947zvpm91op8ta","Name":"Attack","ParentKey":"ym8tqvff76im91ooiy7","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"82t6lun7um4m91opqwu","Name":"target","ParentKey":"tydkk947zvpm91op8ta","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"/\\b(.*your .*sword|.*sword)\\b/","Logic":"","Output":"","Tags":"inventory","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"74yr0t7hrm91ouzn5","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"[rand:4|12]","Output":"","Tags":"damage","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"79liampktaem91ow6sv","Name":"friendly name","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(title)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(stats)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(inventory|inv)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"/\\b(arm .*)\\b/","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(title)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(stats)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
+  {"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(inventory|inv)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(arm .*)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"room","ElementKey":"home","Name":"Testing Home Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"3yiz09d87evm92hgek0","Name":"Enter Message","ParentKey":"home","Syntax":"","Logic":"","Output":"Welcome to the WorldWeaver Testing Game.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"n1oy3odne3dm92hiusl","Name":"Look","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"gos1iqg1rgqm92hjg25","Name":"Look Msg","ParentKey":"n1oy3odne3dm92hiusl","Syntax":"","Logic":"","Output":"You are in the testing room.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"xhxecxcl42lm92iow8c","Name":"Navigation","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"\n\nGo to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"!_start","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"gold_room","Name":"Gold Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"csgxp4xttqjm95dfyhv","Name":"enter message","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"Welcome to the Gold Room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"33qw3awzi5am95dh8zu","Name":"GoldRoom Door","ParentKey":"home","Syntax":"\\b(gold room)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"k3gzbw6wmpqm95difm9","Name":"GoldRoomDoor Action","ParentKey":"33qw3awzi5am95dh8zu","Syntax":"","Logic":"gold_room","Output":"You have decided to test receiving money.\n\n","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around. You are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around.\nYou are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"move","ElementKey":"m8p6rq3wzjgm99oruk2","Name":"HomeDoor Action","ParentKey":"fyf8b0e469mm99op8iu","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"obo9905ejlam99otgpl","Name":"Navigation","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"uri9nmp4ufam99ots0h","Name":"Nav Msg","ParentKey":"obo9905ejlam99otgpl","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"q359kjev8q9m9b4b60y","Name":"Look Input","ParentKey":"home","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"m5ypte6dvlm9b4bm9u","Name":"Look Action","ParentKey":"q359kjev8q9m9b4b60y","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Key","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a key.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a key.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
+  {"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Gold Coin","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a gold coin.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a gold coin.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"You take the gold coin.\n","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
 
         // Parsers
@@ -118,14 +119,17 @@
             const weaponParsers = ["dev_note"];
 
         // Config Items
+            const fields = ["ElementType", "ElementKey", "Name", "ParentKey", "Syntax", "Logic", "Output", "Tags"];
             const selfTypes = ["object", "room", "player", "npc", "game", "global"];
             const canContainCustomElems = ["npc", "object", "room"];
+            const operands = [" != ", " >= ", "<= ", " !~~ ", " ~~ ", " >< ", " <> ", " = ", " > ", " < "];
 
         // Classes
             let gameOutput = {
                 "MatchMade": "false",
                 "ContinueParsing": "true",
                 "EnterMsgDone": "false",
+                "LogicPassed": "true",
                 "Output": ""
             };
             let userInput = {
@@ -233,6 +237,8 @@
         window.onload = function() {
             gameInterface.style.display = "flex";
 
+            doOnStartRandomFixes();
+
             showGameStartScreen();
 
             // Ensure the database is not overwritten if it was injected from a saved file
@@ -242,6 +248,151 @@
 
             input.focus();
         };
+
+
+
+        function doOnStartRandomFixes()
+        {
+            let randElems = database.filter(item => item.Output.startsWith("[rand:") || item.Output.startsWith("[roll:"));
+            
+            for (let rnd of randElems)
+            {
+                if (rnd.Output.startsWith("[rand:"))
+                {
+                    setRandValue(rnd);
+                }
+                else
+                {
+                    setRollDiceValue(rnd);
+                }
+            }
+        }
+
+        function setRandValue(rndElement) {
+            let range = rndElement.Output.replace("[rand:", "").replace(/](?!.*])/ , "").split("|");
+            let rndVal = 0;
+            if (range.length === 2)
+            {
+                if (range[0].startsWith("<<"))
+                {
+                    range[0] = getTargetsByRelCode(rndElement, range[0])[0].Output;
+                }
+                if (range[1].startsWith("<<"))
+                {
+                    range[1] = getTargetsByRelCode(rndElement, range[1])[0].Output;
+                }
+
+                rndVal = getRandomByRange(range[0], range[1]);
+                rndElement.Output = rndVal;
+            }
+        }
+
+        function getRandomByRange(min, max)
+        {
+            return Math.floor(Math.random() * Number(max) - Number(min) + 1) + Number(min);
+        }
+
+        function setRollDiceValue(rndElement)
+        {
+            let roll = rndElement.Output.replace("[roll:", "").replace(/](?!.*])/ , "");
+            let rndVal = -1;
+            let rollVals = [];
+            let totalDice = 0;
+            let modValue = 0;
+            let totalNumOfDice = 0;
+
+            roll = roll.replace(/<<(.+?)>>/g, (_, match) => {
+                return getTargetsByRelCode(rndElement, roll)[0].Output;
+            });
+
+            if (roll.includes("+") || roll.includes("-"))
+            {
+                let delimiter = "+";
+                if (roll.includes("-"))
+                {
+                    delimiter = "-";
+                }
+                modValue = processModifier(rndElement, delimiter, roll);
+                let arr = roll.split(delimiter);
+                if (arr.Length === 2)
+                {
+                    roll = arr[0].trim();
+                }
+            }
+
+            if (roll.includes("(") && roll.includes(")"))
+            {
+                let arr = roll.split(")");
+                if (arr.length == 2)
+                {
+                    roll = arr[1].trim();
+                    arr[0] = arr[0].replace("(", "");
+                    try
+                    {
+                        totalNumOfDice = Number(arr[0]);
+                    }
+                    catch (Exception)
+                    {
+                        totalNumOfDice = 0;
+                    }
+                }
+            }
+
+            let diceSpec = roll.split('d');
+            try
+            {
+                if (diceSpec.length == 2)
+                {
+                    let numOfDice = Number(diceSpec[0].trim());
+                    if (diceSpec[1].includes("+") || diceSpec[1].includes("-"))
+                    {
+                        let sidesArr = diceSpec[1].split("+");
+                        if (sidesArr.length !== 2)
+                        {
+                            sidesArr = diceSpec[1].split("-");
+                            diceSpec[1] = sidesArr[0];
+                        }
+                        else
+                        {
+                            diceSpec[1] = sidesArr[0];
+                        }
+                    }
+                    let sides = Number(diceSpec[1].trim());
+                    let total = 0;
+                    let rollNum = numOfDice;
+                    if (totalNumOfDice > numOfDice)
+                    {
+                        rollNum = totalNumOfDice;
+                    }
+
+                    for (let rolls = 0; rolls <= rollNum - 1; rolls++)
+                    {
+                        let rollVal = getRandomByRange(1, sides + 1);
+                        rollVals.push(rollVal);
+                    }
+
+                    if (totalNumOfDice > numOfDice)
+                    {
+                        const sorted = rollVals.sort((a, b) => b - a);
+                        let taken = sorted.slice(0, numOfDice);
+                        total = taken.reduce((acc, curr) => acc + curr, 0);
+                    }
+                    else {
+                        total = rollVals.reduce((acc, curr) => acc + curr, 0);
+                    }
+
+                    rndVal = total;
+
+                    total = total + modValue;
+
+                    rndElement.Output = total;
+                }
+            }
+            catch (Exception)
+            {
+                return rndVal;
+            }
+        }
 
 
         // Helper Methods
@@ -265,7 +416,7 @@
                 let foundElem = database.filter(item => item.ElementKey === elementKey)[0];
                 return foundElem;
             }
-            function getElementByType(elementType)
+            function getElementsByType(elementType)
             {
                 return database.filter(item => item.ElementType === elementType);
             }
@@ -287,6 +438,21 @@
                     getSelf(parentElem);
                 }
             }
+            function getParent(currentElement)
+            {
+                if (currentElement.ParentKey === null)
+                {
+                    return null;
+                }
+                let parentElem = database.filter(item => item.ElementKey === currentElement.ParentKey)[0];
+                return parentElem;
+            }
+            function getChildrenByTag(parentElement, tag)
+            {
+                let children = getChildren(parentElement, true);
+                let foundElems = children.filter(item => tagsContain(item.Tags, tag));
+                return foundElems;
+            }
             function getChildren(parentElement, includeAttributes)
             {
                 if (includeAttributes)
@@ -298,15 +464,31 @@
                     return database.filter(item => item.ParentKey === parentElement.ElementKey && item.ElementType !== "attribute");
                 }
             }
+            function getSelf(currentElement)
+            {
+                let parentElem = getParent(currentElement);
+                if (parentElem === null)
+                {
+                    return currentElement;
+                }
+                if (selfTypes.includes(parentElem.ElementType))
+                {
+                    return parentElem;
+                }
+                else
+                {
+                    return getSelf(parentElem);
+                }
+            }
             function getCurrentRoom()
             {
-                let playerElem = getElementByType("player")[0];
+                let playerElem = getElementsByType("player")[0];
                 let roomElem = getElementByKey(playerElem.ParentKey);
                 return roomElem;
             }
             function getPlayer()
             {
-                let playerElem = getElementByType("player")[0];
+                let playerElem = getElementsByType("player")[0];
                 return playerElem;
             }
             function outputMatch(message, doAppend)
@@ -331,10 +513,54 @@
                 let taglist = tags.split("|");
                 return taglist.includes(tagString);
             }
+            function addTag(currentElement, tagString)
+            {
+                if (currentElement.Tags === undefined)
+                {
+                    return;
+                }
+                let taglist = currentElement.Tags.split("|");
+                if (!taglist.includes(tagString))
+                {
+                    taglist.push(tagString);
+                }
+                currentElement.Tags = taglist.join("|");
+            }
+            function removeTag(currentElement, tagString)
+            {
+                let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
+                currentElement.Tags = taglist.join("|");
+            }
+            function processModifier(currentElement, modifier, roll)
+            {
+                let arr = roll.split(modifier);
+                var modifierVal = 0;
+
+                if (arr.length != 2)
+                {
+                    return 0;
+                }
+
+                try{
+                    modifierVal = Number(getTargetsByRelCode(currentElement, arr[1].trim()));
+                    if (modifier === "-")
+                    {
+                        modifierVal = -(modifierVal);
+                    }
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }
+
+                return modifierVal;
+            }
         // End Helper Methods
 
 
 
+        // Process the Player's input.
+        // This will call all the other parsers.
         function processInput(command)
         {
             userInput.Input = command;
@@ -343,6 +569,7 @@
             gameOutput.Output = "";
             gameOutput.ContinueParsing = true;
             gameOutput.EnterMsgDone = false;
+            gameOutput.LogicPassed = true;
             output.scrollTop = output.scrollHeight;
             let playerElem = database.filter(item => item.ElementType === "player")[0];
 
@@ -373,6 +600,7 @@
             if (gameStarted)
             {
                 parseGame(gameParsers);
+                parseGlobal(globalParsers);
                 parseRoom(roomParsers, false);
             }
         }
@@ -381,7 +609,7 @@
         // Run the parsers
         function parseGame(parsers)
         {
-            let gameElem = getElementByType("game")[0];
+            let gameElem = getElementsByType("game")[0];
 
             for (let prsr of parsers)
             {
@@ -400,6 +628,12 @@
                 currentElement.Logic !== "")
             {
                 parseCustomElement(getCurrentRoom(), currentElement.Logic);
+            }
+
+            if (tagsContain(currentElement.Tags, "list") &&
+                currentElement.Logic !== "")
+            {
+                parseListAction(currentElement);
             }
         }
 
@@ -438,16 +672,413 @@
             }
         }
 
+        function parseListAction(currentElement)
+        {
+            let caption = currentElement.Output;
+            let items = getTargetsByRelCode(currentElement, currentElement.Logic);
+            gameOutput.Output = caption + "\n";
+            for (let item of items)
+            {
+                gameOutput.Output += `${item.Name}: ${item.Output}`;
+                gameOutput.Output += "\n";
+            }
+            gameOutput.ContinueParsing = false;
+            gameOutput.MatchMade = true;
+        }
+
+        function parseLogic(parentElement, childElement)
+        {
+            gameOutput.LogicPassed = true;
+            if (childElement.Logic === "")
+            {
+                return;
+            }
+            let logicPassed = [""];
+            let logicRows = childElement.Logic.split(/\r?\n/);
+            let curOperator = "and";
+           
+            for (let row of logicRows)
+            {
+                if (row.startsWith('?'))
+                {
+                    logicPassed.push(processLogicRow(parentElement, childElement, row.substring(1)));
+                }
+                else if (row.trim() === "and")
+                {
+                    curOperator = "and";
+                }
+                else if (row.trim() === "or")
+                {
+                    curOperator = "or";
+                }
+
+                if (logicPassed.length > 1)
+                {
+                    if (curOperator === "and" && logicPassed.includes(false))
+                    {
+                        gameOutput.LogicPassed = false;
+                        return;
+                    }
+                    if (curOperator === "or" && !logicPassed.includes(true))
+                    {
+                        gameOutput.LogicPassed = false;
+                        return;
+                    }
+                }
+            }
+
+            if (logicPassed.includes(false))
+            {
+                gameOutput.LogicPassed = false;
+                return;
+            }
+        }
+
+            /*
+
+                LOGIC SYNTAX:
+
+                -- operands --
+                != 	Not equals to
+                >= 	Greater than or equal to
+                <= 	Less than or equal to
+                !~~ Is not in
+                ~~ 	Is in
+                >< 	Is outside the bounds
+                <> 	Is inside the bounds
+                = 	Is equal to
+                > 	Is greater than
+                < 	Is less than
+
+                -- relative codes --
+                [room] 	    The current room
+                [player] 	The player element
+                [self] 	    This walks up to the first 'self' configured element - (See the SelfTypes.json file)
+                [enemy] 	While fighting
+
+                -- special values --
+                [children] 	                Returns the child count of the [self] element
+                [isday] 	                Returns true if it is 'day time'
+                [missiondays] 	            Displays how many days the player has been on the current mission (If any)
+                [totaldays] 	            Total in-game days that have passed
+                rdm_<random expression> 	Generates a random value to check against (So it doesn't always fire etc) (See Random Syntax)
+
+
+                -- examples --
+                ?(travel01)active = 'true'
+                ?(player)((life)) > 0
+                ?[self]active = 'true'
+                ?[self]((is_discovered)) = 'true'
+                ?[self]key ~~ ls(player)((inventory))key
+                ?[self]key ~~ ls[room]((discoverable))key
+                ?[self]key ~~ ls[room]((discoverable))children
+                ?[self]children > 0
+                ?(elem_by_key)children < 10
+                ?[self]active = 'true'
+
+            */
+        function processLogicRow(parentElement, childElement, row)
+        {
+            let tag = "";
+            let target1 = "";
+            let field1 = "";
+            let specCode1 = "";
+            let value1 = "";
+            let target2 = "";
+            let field2 = "";
+            let specCode2 = "";
+            let value2 = "";
+            let comparisons = splitLogicByOperand(row);
+            let operand = getOperand(row);
+
+            if (!Array.isArray(comparisons) || comparisons.length !== 2)
+            {
+                alert("Malformed logic statement!");
+                return false;
+            }
+
+            if (operand === "")
+            {
+                return false;
+            }
+
+            value1 = getExplicitValue(comparisons[0]);
+            value2 = getExplicitValue(comparisons[1]);
+
+            if (value1 === "")
+            {
+                target1 = getTargetByTag(childElement, comparisons[0]);
+                field1 = getField(comparisons[0]);
+                value1 = getFieldValue(target1, field1);
+            }
+            if (value2 === "")
+            {
+                target2 = getTargetByTag(childElement, comparisons[1]);
+                field2 = getField(comparisons[1]);
+                value2 = getFieldValue(target2, field2);
+            }
+
+            return valueComparison(operand, value1, value2);
+        }
+        function splitLogicByOperand(row)
+        {
+            let splt = "";
+            for (let oper of operands)
+            {
+                splt = row.split(oper);
+                if (splt.length === 2)
+                {
+                    return splt;
+                }
+            }
+        }
+        function getOperand(row)
+        {
+            for (let op of operands)
+            {
+                if (row.includes(op))
+                {
+                    return op.trim();
+                }
+            }
+
+            return "";
+        }
+        function getExplicitValue(row)
+        {
+            if (row.startsWith("'") && row.endsWith("'"))
+            {
+                return row.replaceAll("'", "");
+            }
+            return "";
+        }
+        function getFieldValue(curElem, field)
+        {
+            curElem = curElem;
+
+            switch(field)
+            {
+                case "ElementType":
+                    return curElem.ElementType;
+                case "ElementKey":
+                    return curElem.ElementKey;
+                case "Name":
+                    return curElem.Name;
+                case "ParentKey":
+                    return curElem.ParentKey;
+                case "Syntax":
+                    return curElem.Syntax;
+                case "Logic":
+                    return curElem.Logic;
+                case "Output":
+                    return curElem.Output;
+                case "Tags":
+                    return curElem.Tags;
+                default:
+                    return "";
+            }
+        }
+        function setFieldValue(curElem, field, value)
+        {
+            curElem = curElem[0];
+
+            switch(field)
+            {
+                case "ElementType":
+                    return curElem.ElementType = value;
+                case "ElementKey":
+                    return curElem.ElementKey = value;
+                case "Name":
+                    return curElem.Name = value;
+                case "ParentKey":
+                    return curElem.ParentKey = value;
+                case "Syntax":
+                    return curElem.Syntax = value;
+                case "Logic":
+                    return curElem.Logic = value;
+                case "Output":
+                    return curElem.Output = value;
+                case "Tags":
+                    return curElem.Tags;
+                default:
+                    return "";
+            }
+        }
+        function getTargetByTag(childElement, row)
+        {
+            let tgt = "";
+            tgt = getTargetById(row);
+
+            if (tgt === "")
+            {
+                tgt = getTargetsByRelCode(childElement, row);
+            }
+
+            if (row.endsWith("))"))
+            {
+                let arr = row.split("((");
+                if (arr.length === 2)
+                {
+                    let tag = arr[1].replace("))", "");
+                    tgt = getChildrenByTag(tgt, tag);
+                }
+            }
+
+            return tgt;
+        }
+        function getTargetById(row)
+        {
+            if (row.startsWith("("))
+            {
+                row = row.substring(1);
+                let arr = row.split(")");
+                return arr[0].trim();
+            }
+
+            return "";
+        }
+        function getTargetsByRelCode(childElement, row)
+        {
+            let parent = null;
+            let childTag = "";
+            let returnString = row;
+            let relVal = "";
+
+            if (!row.includes("<<"))
+            {
+                if (Number.isInteger(Number(row)))
+                {
+                    return row;
+                }
+            }
+
+            relVal = [...row.matchAll(/<<(.+?)>>/g)].map(match => match[1]);
+            if (relVal === "undefined")
+            {
+                relVal = row;
+            }
+            if (relVal.length > 0)
+            {
+                relVal = relVal[0];
+            }
+            else
+            {
+                relVal = row;
+            }
+
+            if (relVal.startsWith("[self]"))
+            {
+                parent = getSelf(childElement);
+            }
+            if (relVal.startsWith("[room]"))
+            {
+                parent = getCurrentRoom();
+            }
+            if (relVal.startsWith("[player]"))
+            {
+                parent = getPlayer();
+            }
+            // TODO: Add GetEnemy
+
+            let arr = relVal.split("))");
+            if (arr.length === 2)
+            {
+                arr = arr[0].split("((");
+                if (arr.length === 2)
+                {
+                    childTag = arr[1].trim();
+                    return getChildrenByTag(parent, childTag);
+                }
+            }
+        }
+        function getField(row)
+        {
+            let arr = "";
+
+            if (row.endsWith("]") || row.endsWith("))") || row.endsWith(")"))
+            {
+                return "Output";
+            }
+
+            arr = row.split("(");
+            if (arr.length === 2)
+            {
+                return arr[1].replaceAll("))", "").trim();
+            }
+
+            return "Output";
+        }
+        function valueComparison(operand, val1, val2)
+        {
+            switch (operand.trim())
+            {
+                case "!=":
+                    if (val1 !== val2)
+                    {
+                        return true;
+                    }
+                    break;
+                case ">=":
+                    if (val1 >= val2)
+                    {
+                        return true;
+                    }
+                    break;
+                case "<=":
+                    if (val1 <= val2)
+                    {
+                        return true;
+                    }
+                    break;
+
+                case "!~~":
+                    return !val2.includes(val1);
+                case "~~":
+                    return val2.includes(val1);
+                case "><":
+                    return val1 < val2 || val1 > val2;
+                case "<>":
+                    return val1 > val2 && val1 < val2;
+                case "=":
+                    return val1 === val2;
+                case ">":
+                    return val1 > val2;
+                case "<":
+                    return val1 < val2
+            }
+
+            return false;
+        }
+
+        function parseGlobal(parsers)
+        {
+            let globalElems = getElementsByType("global");
+
+            for (let glob of globalElems)
+            {
+                for (let prsr of parsers)
+                {
+                    for (let child of getChildren(glob, false))
+                    {
+                        callParser(prsr, glob, child, false);
+                    }
+                }
+            }
+        }
+
         function parseMove(currentElement, parsers)
         {
             let targetKey = currentElement.Logic;
-            let targetKeyElem = getElementByKey(targetKey);
             let movingElem = getElement(currentElement.Tags, currentElement);
 
-            if (movingElem != null && targetKeyElem != null)
+            if (movingElem != null && targetKey !== "")
             {
                 movingElem.ParentKey = targetKey;
                 gameOutput.MatchMade = true;
+                if (currentElement.Output !== "")
+                {
+                    gameOutput.Output = currentElement.Output;
+                }
                 outputMatch(currentElement.Output, false);
                 if (movingElem.ElementType === "player")
                 {
@@ -481,6 +1112,86 @@
             }
         }
 
+        function parseSet(parentElement, currentElement, parsers)
+        {
+            if (tagsContain(currentElement.Tags, "arm"))
+            {
+                let armed = "Do the arming logic";
+            }
+
+            let field = "";
+            let tgt = getTargetById(currentElement.Logic);
+            if (typeof tgt.ElementKey === "undefined" || tgt.ElementKey === "")
+            {
+                tgt = getTargetsByRelCode(currentElement, currentElement.Logic)[0];
+            }
+            if (tgt.ElementKey !== "")
+            {
+                field = getField(currentElement.Logic);
+            }
+
+            updateElementField(tgt, field, currentElement.Output);
+        }
+
+        function updateElementField(currentElement, fieldName, newValue)
+        {
+            let curValue = getFieldValue(currentElement, fieldName);
+
+            if (newValue.startsWith("+="))
+            {
+                let inc = Number(newValue.replace("+=", ""));
+                curValue = Number(curValue) + inc;
+            }
+            if (newValue.startsWith("-="))
+            {
+                let dec = Number(newValue.replace("-=", ""));
+                curValue = Number(curValue) - dec;
+            }
+            if (newValue === "++")
+            {
+                curValue = Number(curValue) + 1;
+            }
+            if (newValue === "--")
+            {
+                curValue = Number(curValue) - 1;
+            }
+
+            switch(fieldName)
+            {
+                case "ElementType":
+                    currentElement.ElementType = curValue;
+                    break;
+                case "ElementKey":
+                    currentElement.ElementKey = curValue;
+                    break;
+                case "Name":
+                    currentElement.Name = curValue;
+                    break;
+                case "ParentKey":
+                    currentElement.ParentKey = curValue;
+                    break;
+                case "Syntax":
+                    currentElement.Syntax = curValue;
+                    break;
+                case "Logic":
+                    currentElement.Logic = curValue;
+                    break;
+                case "Output":
+                    currentElement.Output = curValue;
+                    break;
+                case "Tags":
+                    if (newValue.startsWith("+"))
+                    {
+                        addTag(currentElement, newValue.substring(1));
+                    }
+                    if (newValue.startsWith("-"))
+                    {
+                        removeTag(currentElement, newValue.substring(1));
+                    }
+                    break;
+            }
+        }
+
         function parseElement(parentElement, parsers)
         {
             if (!gameOutput.ContinueParsing)
@@ -504,6 +1215,11 @@
         // Parser managing function
         function callParser(curParser, parentElement, childElement, isEntering)
         {
+            if (!gameOutput.LogicPassed)
+            {
+                return;
+            }
+
             switch (curParser)
             {
                 case "action":
@@ -545,6 +1261,19 @@
                     {
                         parseInput(childElement, inputParsers);
                     }
+                    break;
+
+                case "logic":
+                    if (childElement.ElementType === "logic")
+                    {
+                        parseLogic(parentElement, childElement);
+                    }
+                    if (!gameOutput.LogicPassed)
+                    {
+                        gameOutput.ContinueParsing = false;
+                        return;
+                    }
+                    break;
 
                 case "message":
                     if (childElement.ElementType === "message" && parentElement.ElementType !== "game")
@@ -572,6 +1301,12 @@
                     if (childElement.ElementType === "object")
                     {
                         parseObject(parentElement, childElement, objectParsers);
+                    }
+
+                case "set":
+                    if (childElement.ElementType === "set")
+                    {
+                        parseSet(parentElement, childElement, setParsers);
                     }
             }
         }
