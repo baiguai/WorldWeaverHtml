@@ -13,28 +13,36 @@
 
     <!-- Styles -->
         <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
             body {
                 background-color: black;
                 color: white;
                 font-family: monospace;
-                margin: 0;
                 display: flex;
                 flex-direction: column;
-                height: 100vh;
+                height: 100dvh; /* better on mobile than 100vh */
+                overflow: hidden;
             }
 
             #game-interface {
                 display: flex;
                 flex-direction: column;
                 flex: 1;
+                min-height: 0; /* Allows flex children to shrink properly */
             }
 
             #output {
                 flex: 1;
-                [""]padding: 10px;
+                padding: 10px;
                 overflow-y: auto;
                 white-space: pre-wrap;
                 border-bottom: 1px solid white;
+                min-height: 0;
             }
 
             #input-container {
@@ -109,7 +117,10 @@
   {"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around.\nYou are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"move","ElementKey":"m8p6rq3wzjgm99oruk2","Name":"HomeDoor Action","ParentKey":"fyf8b0e469mm99op8iu","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"obo9905ejlam99otgpl","Name":"Navigation","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"uri9nmp4ufam99ots0h","Name":"Nav Msg","ParentKey":"obo9905ejlam99otgpl","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"q359kjev8q9m9b4b60y","Name":"Look Input","ParentKey":"home","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"m5ypte6dvlm9b4bm9u","Name":"Look Action","ParentKey":"q359kjev8q9m9b4b60y","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
   {"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Gold Coin","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a gold coin.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a gold coin.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"You take the gold coin.\n","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
+  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"You take the gold coin.\n","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"fight_room","Name":"Fight Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"navigation","ElementKey":"0g0niphdneaem9o0s1lx","Name":"Navigation","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"lzjuj21s7rcm9o0sjss","Name":"Nav Msg","ParentKey":"0g0niphdneaem9o0s1lx","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"2pkk0i39nzam9o0tnuk","Name":"FightRoom Door","ParentKey":"home","Syntax":"\\b(fight)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"udw9767eszrm9o0ujnu","Name":"FightRoomDoor Action","ParentKey":"2pkk0i39nzam9o0tnuk","Syntax":"","Logic":"fight_room","Output":"You have decided to test the fight room.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"kqq9ogdt4vm9o0w2q1","Name":"Home Input","ParentKey":"fight_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"move","ElementKey":"tsjdi0fijplm9o0wu7t","Name":"HomeDoor Action","ParentKey":"kqq9ogdt4vm9o0w2q1","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"zxuhe5uchxbm9o11rdv","Name":"Look Input","ParentKey":"fight_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"47ru55jsbqym9o12wor","Name":"Look Action","ParentKey":"zxuhe5uchxbm9o11rdv","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"6sfry8c4c0nm9o13ntn","Name":"Look","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"qm98k4dvvym9o14gky","Name":"Look Message","ParentKey":"6sfry8c4c0nm9o13ntn","Syntax":"","Logic":"","Output":"You look around.\nYou are in the fight test room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"object","ElementKey":"v1uynzyvm4qm9o1c6xn","Name":"Spawn Button","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"slufsccds0rm9o1dvs9","Name":"enter message","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"","Logic":"","Output":"\nYou see a red button in the center of the room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"804msoqw0vqm9o1f3r3","Name":"Click Input","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"\\b(click.*button|press.*button)\\b","Logic":"","Output":"\nYou've pressed the button.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"a4rhlx63sxhm9o28c8k","Name":"Look","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"d0qgpuzynltm9o28q7g","Name":"Look Message","ParentKey":"a4rhlx63sxhm9o28c8k","Syntax":"","Logic":"","Output":"\nYou see a red button in the middle of the room.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
 
         // Parsers
@@ -1108,6 +1119,9 @@
             return false;
         }
 
+        function parseEnterMessage()
+        {}
+
         function parseGlobal(parsers)
         {
             let globalElems = getElementsByType("global");
@@ -1146,13 +1160,13 @@
             }
         }
 
-        function parseObject(parentElement, currentElement, parsers)
+        function parseObject(parentElement, currentElement, parsers, isEntering)
         {
             for (let prsr of parsers)
             {
                 for (let child of getChildren(currentElement, false))
                 {
-                    callParser(prsr, currentElement, child, false);
+                    callParser(prsr, currentElement, child, isEntering);
                 }
             }
         }
@@ -1163,7 +1177,7 @@
 
             for (let prsr of parsers)
             {
-                for (let child of getChildren(roomElem, false))
+                for (let child of getChildren(roomElem, isEntering))
                 {
                     callParser(prsr, roomElem, child, isEntering);
                 }
@@ -1358,7 +1372,7 @@
                 case "object":
                     if (childElement.ElementType === "object")
                     {
-                        parseObject(parentElement, childElement, objectParsers);
+                        parseObject(parentElement, childElement, objectParsers, isEntering);
                     }
 
                 case "set":
