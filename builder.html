@@ -261,6 +261,17 @@
             }
         }
 
+        function setParent(newParent)
+        {
+            let elem = database.filter(item => item.ElementKey === currentParent)[0];
+
+            elem.ParentKey = newParent;
+
+            showDetails(elem);
+
+            buildTreeView(true);
+        }
+
         function createNewFullElement(
             elementType,
             elementKey,
@@ -332,6 +343,8 @@
 
             if (command.startsWith("add ")) {
                 createNewElement("", "", command.substring(4), true, true);
+            } else if (command.startsWith("parent ")) {
+                setParent(command.substring(7));
             } else if (command === "save") {
                 saveFile();
             } else {
@@ -992,10 +1005,4 @@
             enterAdminMode();
         };
     </script>
-
-
-
-
-
-
 </body></html>
