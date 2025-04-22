@@ -13,28 +13,36 @@
 
     <!-- Styles -->
         <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
             body {
                 background-color: black;
                 color: white;
                 font-family: monospace;
-                margin: 0;
                 display: flex;
                 flex-direction: column;
-                height: 100vh;
+                height: 100dvh; /* better on mobile than 100vh */
+                overflow: hidden;
             }
 
             #game-interface {
                 display: flex;
                 flex-direction: column;
                 flex: 1;
+                min-height: 0; /* Allows flex children to shrink properly */
             }
 
             #output {
                 flex: 1;
-                [""]padding: 10px;
+                padding: 10px;
                 overflow-y: auto;
                 white-space: pre-wrap;
                 border-bottom: 1px solid white;
+                min-height: 0;
             }
 
             #input-container {
@@ -72,24 +80,36 @@
             <input type="text" id="input" autofocus="">
         </div>
     </div>
+    <div id="fight-interface" style="display: none; flex-direction: column; flex: 1; padding: 20px; position: relative;">
+        <div style="position: absolute; top: 20px; left: 20px;">
+            <div>Player Life: <span id="player-life">0</span></div>
+            <div>Enemy Life: <span id="enemy-life">0</span></div>
+        </div>
+
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+            <div style="margin-right: 50px;">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="24mm" height="48mm" viewBox="0 0 24 48" version="1.1" id="svg130" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs127" /><g id="layer1"><path style="fill:#ffffff;stroke-width:0.0108946;fill-opacity:1" d="M 9.9604001,38.69619 C 9.1735285,38.629484 8.4623604,38.17153 8.0843307,37.488105 7.9507341,37.24658 7.870335,37.011109 7.8200355,36.714041 7.8017565,36.606089 7.8004786,36.372934 7.7973387,32.574079 l -0.00333,-4.025568 -1.4102125,-1.127595 -1.4102126,-1.127595 0.00318,-1.710457 c 0.00338,-1.820078 0.00238,-1.781662 0.056602,-2.168033 0.1429605,-1.018659 0.5499296,-2.002058 1.1722421,-2.832605 0.8195195,-1.093743 1.9706849,-1.887415 3.2876982,-2.266707 0.092367,-0.0266 0.1692362,-0.04966 0.1708214,-0.05125 0.00158,-0.0016 -0.04911,-0.03224 -0.1126549,-0.06811 -0.9459878,-0.534086 -1.638575,-1.430681 -1.901845,-2.462049 -0.09383,-0.367586 -0.1212933,-0.594871 -0.1211102,-1.002307 1.525e-4,-0.336912 0.013863,-0.486067 0.071107,-0.773519 0.2291196,-1.150525 0.9535944,-2.135622 1.9905447,-2.70662 0.4477091,-0.246532 0.9425221,-0.4021994 1.4783391,-0.4650843 0.208138,-0.024428 0.663432,-0.024428 0.871571,0 0.660553,0.077524 1.244326,0.2908173 1.781273,0.6508233 1.348343,0.904022 2.004513,2.502753 1.683019,4.100603 -0.22342,1.110414 -0.941096,2.090095 -1.947257,2.658153 -0.06354,0.03588 -0.114249,0.06652 -0.112675,0.06809 0.0016,0.0016 0.0858,0.02703 0.187163,0.05657 0.851626,0.248175 1.600864,0.64847 2.292414,1.224765 0.197027,0.164191 0.577186,0.542335 0.740962,0.737037 0.779499,0.926689 1.263046,2.014057 1.415711,3.183554 0.04772,0.365587 0.0475,0.356369 0.05108,2.122134 l 0.0035,1.70501 -1.356182,1.083526 -1.356183,1.083526 -9e-6,4.004269 c -6e-6,2.579841 -0.0039,4.0469 -0.01089,4.12411 -0.09012,0.992235 -0.817878,1.817908 -1.809776,2.05328 -0.256853,0.06095 -0.191317,0.05882 -1.87805,0.06106 -0.856863,0.0011 -1.605543,-0.002 -1.6637348,-0.0069 z" id="path266" /></g></svg>
+            </div>
+            <div style="margin-left: 50px;">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="24mm" height="48mm" viewBox="0 0 24 48" version="1.1" id="svg130" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs127" /><g id="layer1"><path style="fill:#ffffff;stroke-width:0.0404355;fill-opacity:1" d="m 2.4287764,35.493786 0.00823,-0.960343 0.7986009,-0.01096 0.7986008,-0.01096 V 33.62279 32.734064 h 0.626095 0.6260953 l 0.01145,-8.380254 0.01145,-8.380255 0.090076,-0.26283 C 5.708615,14.808398 6.5057076,14.151126 7.3987593,14.062059 l 0.2948604,-0.02941 0.011162,-0.616641 0.011162,-0.616641 h 1.0704875 1.070487 v -0.62675 -0.62675 h 2.1430808 2.143081 v 0.62675 0.62675 h 1.070487 1.070487 l 0.01116,0.616641 0.01116,0.616641 0.280694,0.02774 c 0.908081,0.08973 1.700375,0.738819 2.014441,1.650337 l 0.09056,0.26283 0.01076,8.380255 0.01076,8.380254 h 0.626096 0.626095 v 0.888726 0.888726 l 0.7986,0.01096 0.798601,0.01096 0.0082,0.960343 0.0082,0.960343 H 20.004275 18.42917 v -0.970452 -0.970452 h -1.43546 -1.435459 v -1.152411 -1.152411 h -0.424209 -0.424209 l -0.01047,2.092536 -0.01047,2.092536 -1.08165,0.01077 -1.081649,0.01077 v -2.103306 -2.103305 h -0.525661 -0.525661 v 2.103305 2.103306 l -1.08165,-0.01077 -1.0816489,-0.01077 -0.010473,-2.092536 -0.010473,-2.092536 H 8.8658849 8.4416762 v 1.152411 1.152411 H 7.0062165 5.5707567 v 0.970452 0.970452 H 3.9956514 2.4205461 Z M 10.82737,25.341148 c 0.0158,-0.23176 0.03735,-0.309004 0.09871,-0.353811 0.115072,-0.08404 2.073205,-0.08404 2.188277,0 0.06136,0.04481 0.08291,0.122051 0.09871,0.353811 l 0.02022,0.296488 0.602558,0.01122 0.602557,0.01122 -0.02539,-0.357651 c -0.04176,-0.588281 -0.238172,-1.077936 -0.521921,-1.301133 -0.05945,-0.04676 -0.195383,-0.125322 -0.302077,-0.174578 -0.188224,-0.08689 -0.234869,-0.08955 -1.569677,-0.08955 h -1.375689 l -0.261948,0.12977 c -0.298081,0.147669 -0.4563327,0.323463 -0.5906901,0.656167 -0.1371612,0.339646 -0.2294693,1.028067 -0.1486829,1.108854 0.015411,0.01541 0.2838013,0.02299 0.596423,0.01685 l 0.568404,-0.01117 z M 9.7356117,20.461894 V 19.956451 H 8.9875552 8.2394988 v 0.505443 0.505444 h 0.7480564 0.7480565 z m 6.0653233,0 v -0.505443 h -0.748057 -0.748056 v 0.505443 0.505444 h 0.748056 0.748057 z" id="path6103" /></g></svg>
+            </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
+            <button onclick="attackEnemy()">Attack</button>
+            <button onclick="exitFight()">Flee</button>
+        </div>
+    </div>
     
     <script>
+        // !@! Database
         let database = [
-  {"ElementType":"game","ElementKey":"game","Name":"Sample Game","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"player","ElementKey":"player","Name":"","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pf4wcjaqs9jm8zq6awm","Name":"admin pass","ParentKey":"game","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"9wh0ai7glyhm8zq92fn","Name":"error","ParentKey":"game","Syntax":"","Logic":"","Output":"I don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"nyoy47hnhtgm8zqaoi8","Name":"die message","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_die","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attribute","ElementKey":"j0j70z5382m91nuded","Name":"stats dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"dra3hmv3nnem91nvmgq","Name":"money dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z9tqbp2st2m91nw9ep","Name":"life roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z2i2lbhfwxm91nwx9d","Name":"armor roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"armor_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"2au1o4qznt5m91nxeao","Name":"strength roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attribute","ElementKey":"az85m9vwmcbm91nxw20","Name":"intelligence roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"intelligence_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"6jdbqtsxpanm91nyncm","Name":"cunning roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pvzdehgcs28m91nz4ta","Name":"gold roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"3e573l95rtkm91o5dpu","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_roll))>>d6]","Tags":"stats|life","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"uonxrshx72rm91o71d3","Name":"max life","ParentKey":"player","Syntax":"","Logic":"","Output":"player((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attribute","ElementKey":"kd8qk3jx4vhm91o7sji","Name":"Armor","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d6+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kcchdhvqojam91o8zat","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"ccowsmp5kc6m91oa4us","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((intelligence_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"xvpexadit7hm91oas1w","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"yv26edvaibom91ocqjl","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_roll))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attribute","ElementKey":"player_armed","Name":"armed weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"armed|stats|name","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"cur_heal_round","Name":"cur heal round","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4yru4bgbvolm91onmxr","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attackplayer","ElementKey":"ym8tqvff76im91ooiy7","Name":"Attack Player","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attack","ElementKey":"tydkk947zvpm91op8ta","Name":"Attack","ParentKey":"ym8tqvff76im91ooiy7","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"82t6lun7um4m91opqwu","Name":"target","ParentKey":"tydkk947zvpm91op8ta","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"/\\b(.*your .*sword|.*sword)\\b/","Logic":"","Output":"","Tags":"inventory","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"74yr0t7hrm91ouzn5","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"[rand:4|12]","Output":"","Tags":"damage","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"79liampktaem91ow6sv","Name":"friendly name","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(title)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(stats)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
-  {"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(inventory|inv)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(arm .*)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"room","ElementKey":"home","Name":"Testing Home Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"3yiz09d87evm92hgek0","Name":"Enter Message","ParentKey":"home","Syntax":"","Logic":"","Output":"Welcome to the WorldWeaver Testing Game.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"n1oy3odne3dm92hiusl","Name":"Look","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"gos1iqg1rgqm92hjg25","Name":"Look Msg","ParentKey":"n1oy3odne3dm92hiusl","Syntax":"","Logic":"","Output":"You are in the testing room.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"xhxecxcl42lm92iow8c","Name":"Navigation","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"\n\nGo to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"!_start","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"gold_room","Name":"Gold Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"csgxp4xttqjm95dfyhv","Name":"enter message","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"Welcome to the Gold Room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"33qw3awzi5am95dh8zu","Name":"GoldRoom Door","ParentKey":"home","Syntax":"\\b(gold room)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"k3gzbw6wmpqm95difm9","Name":"GoldRoomDoor Action","ParentKey":"33qw3awzi5am95dh8zu","Syntax":"","Logic":"gold_room","Output":"You have decided to test receiving money.\n\n","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around.\nYou are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"move","ElementKey":"m8p6rq3wzjgm99oruk2","Name":"HomeDoor Action","ParentKey":"fyf8b0e469mm99op8iu","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"obo9905ejlam99otgpl","Name":"Navigation","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"uri9nmp4ufam99ots0h","Name":"Nav Msg","ParentKey":"obo9905ejlam99otgpl","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"q359kjev8q9m9b4b60y","Name":"Look Input","ParentKey":"home","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"m5ypte6dvlm9b4bm9u","Name":"Look Action","ParentKey":"q359kjev8q9m9b4b60y","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Gold Coin","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a gold coin.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a gold coin.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
-  {"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"You take the gold coin.\n","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
+  {"ElementType":"game","ElementKey":"game","Name":"Sample Game","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"player","ElementKey":"player","Name":"","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pf4wcjaqs9jm8zq6awm","Name":"admin pass","ParentKey":"game","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"9wh0ai7glyhm8zq92fn","Name":"error","ParentKey":"game","Syntax":"","Logic":"","Output":"I don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"nyoy47hnhtgm8zqaoi8","Name":"die message","ParentKey":"game","Syntax":"","Logic":"","Output":"You have died.","Tags":"!_die","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"j0j70z5382m91nuded","Name":"stats dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"dra3hmv3nnem91nvmgq","Name":"money dice","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z9tqbp2st2m91nw9ep","Name":"life roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"z2i2lbhfwxm91nwx9d","Name":"armor roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"armor_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"2au1o4qznt5m91nxeao","Name":"strength roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"az85m9vwmcbm91nxw20","Name":"intelligence roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"intelligence_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"6jdbqtsxpanm91nyncm","Name":"cunning roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"pvzdehgcs28m91nz4ta","Name":"gold roll","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_roll","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"3e573l95rtkm91o5dpu","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_roll))>>d6]","Tags":"stats|life","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"uonxrshx72rm91o71d3","Name":"max life","ParentKey":"player","Syntax":"","Logic":"","Output":"player((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kd8qk3jx4vhm91o7sji","Name":"Armor","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d6+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"kcchdhvqojam91o8zat","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"ccowsmp5kc6m91oa4us","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((intelligence_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"xvpexadit7hm91oas1w","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_roll))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"yv26edvaibom91ocqjl","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_roll))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},
+  {"ElementType":"attribute","ElementKey":"player_armed","Name":"armed weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"armed|stats|name","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"cur_heal_round","Name":"cur heal round","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4yru4bgbvolm91onmxr","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attackplayer","ElementKey":"ym8tqvff76im91ooiy7","Name":"Attack Player","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attack","ElementKey":"tydkk947zvpm91op8ta","Name":"Attack","ParentKey":"ym8tqvff76im91ooiy7","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"82t6lun7um4m91opqwu","Name":"target","ParentKey":"tydkk947zvpm91op8ta","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"/\\b(.*your .*sword|.*sword)\\b/","Logic":"","Output":"","Tags":"inventory","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"74yr0t7hrm91ouzn5","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"[rand:4|12]","Output":"","Tags":"damage","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"79liampktaem91ow6sv","Name":"friendly name","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"global","ElementKey":"3ielqbe2ltm91oyuf9","Name":"Global","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"69lyn6u2u6nm91p0qv7","Name":"Title","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(title)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"vl9tfy7wmkm91p1baj","Name":"show game title","ParentKey":"69lyn6u2u6nm91p0qv7","Syntax":"","Logic":"game_title","Output":"","Tags":"key","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"du2fxwfitpum91p248p","Name":"Stats","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(stats)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"6tqadr9itmpm91p2w5t","Name":"show stats","ParentKey":"du2fxwfitpum91p248p","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"0e9uq8d1xdim91p5y52","Name":"Inventory","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(inventory|inv)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"pohxz1iocgm91p6pom","Name":"show inventory","ParentKey":"0e9uq8d1xdim91p5y52","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"list","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"w97g79kzvugm91p7k05","Name":"Arm","ParentKey":"3ielqbe2ltm91oyuf9","Syntax":"\\b(arm .*)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"51w1x5oxgt3m91p86i4","Name":"set armed weapon","ParentKey":"w97g79kzvugm91p7k05","Syntax":"","Logic":"player_armed","Output":"","Tags":"arm","Repeat":"","RepeatIndex":"","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"at73dh77pchm92hdikb","Name":"ROOMS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"room","ElementKey":"home","Name":"Testing Home Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"3yiz09d87evm92hgek0","Name":"Enter Message","ParentKey":"home","Syntax":"","Logic":"","Output":"Welcome to the WorldWeaver Testing Game.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"n1oy3odne3dm92hiusl","Name":"Look","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"gos1iqg1rgqm92hjg25","Name":"Look Msg","ParentKey":"n1oy3odne3dm92hiusl","Syntax":"","Logic":"","Output":"You are in the testing room.\nTo enter a test room simply enter its name.\n(No need to say \"go to\").\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"xhxecxcl42lm92iow8c","Name":"Navigation","ParentKey":"home","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"tr9whrpn83m92ipps2","Name":"Nav Msg","ParentKey":"xhxecxcl42lm92iow8c","Syntax":"","Logic":"","Output":"\n\nGo to Time Room (first)\nGo to Gold Room.\nGo to Traveling.\nGo to Taking and Putting.\nGo to Fight.\nGo to Weapon Arming.\nGo to Npc Follow.\nGo to Npc Path.\nGo to Tests Room.\nGo to Output Logic Test 01.\nGo to Dev Note.\nGo to Conversation Room.\nGo to Die Room.\nGo to Spawn Room\nGo to Ammo Room","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"zfofgknktfkm92iqoxe","Name":"INJECTIONS","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"inj_look","Name":"Inj Look","ParentKey":"zfofgknktfkm92iqoxe","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"xs69bo34pndm92isgbk","Name":"Inj Look Action","ParentKey":"inj_look","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"!_start","ElementKey":"suli02fs0cm92js21q","Name":"Start Screen","ParentKey":"game","Syntax":"","Logic":"","Output":"Welcome to\n\n\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀         \n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒          \n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░          \n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄          \n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄         \n ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒         \n ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░         \n ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░          \n   ░          ░  ░   ░     ░  ░            \n ░                                         \n █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ \n▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ \n░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ \n  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ \n  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ \n    ░        ░ ░     ░         ░  ░   ░    \n                                    ░  \n\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"n4n2fxgt2tm930w294","Name":"File Name","ParentKey":"game","Syntax":"","Logic":"","Output":"sample","Tags":"!_filename","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"gold_room","Name":"Gold Room","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"csgxp4xttqjm95dfyhv","Name":"enter message","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"Welcome to the Gold Room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"33qw3awzi5am95dh8zu","Name":"GoldRoom Door","ParentKey":"home","Syntax":"\\b(gold room)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"k3gzbw6wmpqm95difm9","Name":"GoldRoomDoor Action","ParentKey":"33qw3awzi5am95dh8zu","Syntax":"","Logic":"gold_room","Output":"You have decided to test receiving money.\n\n","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"byhgzjzj7qvm99nqh7r","Name":"Look","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"9o7qgeoftqfm99nqsum","Name":"Look Message","ParentKey":"byhgzjzj7qvm99nqh7r","Syntax":"","Logic":"","Output":"You look around.\nYou are in a small room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"dws4anifpxm99nruo4","Name":"Look Input","ParentKey":"gold_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"vzg2gexfy2qm99nsado","Name":"Look Action","ParentKey":"dws4anifpxm99nruo4","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"fyf8b0e469mm99op8iu","Name":"Home Input","ParentKey":"gold_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"move","ElementKey":"m8p6rq3wzjgm99oruk2","Name":"HomeDoor Action","ParentKey":"fyf8b0e469mm99op8iu","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"obo9905ejlam99otgpl","Name":"Navigation","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"uri9nmp4ufam99ots0h","Name":"Nav Msg","ParentKey":"obo9905ejlam99otgpl","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"q359kjev8q9m9b4b60y","Name":"Look Input","ParentKey":"home","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"m5ypte6dvlm9b4bm9u","Name":"Look Action","ParentKey":"q359kjev8q9m9b4b60y","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"zcfyy2e69fm9b4ht2r","Name":"Gold Coin","ParentKey":"gold_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"4fecftfhp3vm9b4jon6","Name":"moved","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"false","Tags":"moved","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"awmyn3yxzydm9b4l1i0","Name":"Look","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"j5qqe3os2om9b4lkog","Name":"Look Message","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"","Output":"\nYou see a gold coin.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"ntrf9qy5mgm9bt126v","Name":"enter message","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"","Logic":"","Output":"You see a gold coin.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"logic","ElementKey":"r694vnch6sm9cin5d3","Name":"Moved Logic","ParentKey":"awmyn3yxzydm9b4l1i0","Syntax":"","Logic":"?[self]((moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"xft1rox6b1rm9gt5pnn","Name":"Take Coin","ParentKey":"zcfyy2e69fm9b4ht2r","Syntax":"\\b(take gold coin|take coin)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"j2oimcm7sydm9gt90pb","Name":"Take Move","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"limbo","Output":"You take the gold coin.\n","Tags":"[self]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"set","ElementKey":"zg519drfg1km9gteyn6","Name":"Take Action","ParentKey":"xft1rox6b1rm9gt5pnn","Syntax":"","Logic":"[player]((gold))","Output":"+=1","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"room","ElementKey":"fight_room","Name":"Fight Room","ParentKey":"4c0kw4mj9nrm9s9acg4","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"navigation","ElementKey":"0g0niphdneaem9o0s1lx","Name":"Navigation","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"look|enter_message","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"lzjuj21s7rcm9o0sjss","Name":"Nav Msg","ParentKey":"0g0niphdneaem9o0s1lx","Syntax":"","Logic":"","Output":"\n\nYou can return home using:\nhome","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"2pkk0i39nzam9o0tnuk","Name":"FightRoom Door","ParentKey":"home","Syntax":"\\b(fight)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"move","ElementKey":"udw9767eszrm9o0ujnu","Name":"FightRoomDoor Action","ParentKey":"2pkk0i39nzam9o0tnuk","Syntax":"","Logic":"fight_room","Output":"You have decided to test the fight room.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"kqq9ogdt4vm9o0w2q1","Name":"Home Input","ParentKey":"fight_room","Syntax":"\\b(home)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"move","ElementKey":"tsjdi0fijplm9o0wu7t","Name":"HomeDoor Action","ParentKey":"kqq9ogdt4vm9o0w2q1","Syntax":"","Logic":"home","Output":"","Tags":"[player]","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"zxuhe5uchxbm9o11rdv","Name":"Look Input","ParentKey":"fight_room","Syntax":"\\b(look|l)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"47ru55jsbqym9o12wor","Name":"Look Action","ParentKey":"zxuhe5uchxbm9o11rdv","Syntax":"","Logic":"look","Output":"","Tags":"type|room","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"6sfry8c4c0nm9o13ntn","Name":"Look","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"qm98k4dvvym9o14gky","Name":"Look Message","ParentKey":"6sfry8c4c0nm9o13ntn","Syntax":"","Logic":"","Output":"You look around.\nYou are in the fight test room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"object","ElementKey":"v1uynzyvm4qm9o1c6xn","Name":"Spawn Button","ParentKey":"fight_room","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"enter_message","ElementKey":"slufsccds0rm9o1dvs9","Name":"enter message","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"","Logic":"","Output":"\nYou see a red button in the center of the room.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"804msoqw0vqm9o1f3r3","Name":"Click Input","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"\\b(click.*button|press.*button|push.*button)\\b","Logic":"","Output":"\nYou've pressed the button.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"look","ElementKey":"a4rhlx63sxhm9o28c8k","Name":"Look","ParentKey":"v1uynzyvm4qm9o1c6xn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"d0qgpuzynltm9o28q7g","Name":"Look Message","ParentKey":"a4rhlx63sxhm9o28c8k","Syntax":"","Logic":"","Output":"\nYou see a red button in the middle of the room.","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"npc","ElementKey":"npc_rat","Name":"Npc Rat","ParentKey":"m80q9u9n9cjm9pblryi","Syntax":"","Logic":"","Output":"","Tags":"enemy","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"m80q9u9n9cjm9pblryi","Name":"Npcs","ParentKey":null,"Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"qrd50b66eqlm9pbpp9a","Name":"stats dice","ParentKey":"npc_rat","Syntax":"","Logic":"[rand:3|4]","Output":"","Tags":"stats_dice","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"bv08g96f5gsm9pbr9ec","Name":"life_roll","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|4]","Tags":"life_roll","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"le0ql3m9nmbm9qnkj86","Name":"armor_roll","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"armor_roll","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"hbepqljbd7qm9qnluyk","Name":"max life","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"[self]((life))","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"s8dcvlqqvbm9qnnwze","Name":"Life","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_roll))>>d4]","Tags":"stats|life","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attribute","ElementKey":"v12y764bc9dm9qnre7b","Name":"Armor","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_roll))>>d4+3]","Tags":"stats|armor","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"action","ElementKey":"8xr09flmjeim9qntf6l","Name":"Spawn Action","ParentKey":"804msoqw0vqm9o1f3r3","Syntax":"","Logic":"npc_rat","Output":"[room]","Tags":"spawn","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":"0"},{"ElementType":"look","ElementKey":"lf27ucc1s3m9s965r3","Name":"Look","ParentKey":"npc_rat","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},
+  {"ElementType":"message","ElementKey":"1h85xa1p6e5m9s96d4u","Name":"Look Message","ParentKey":"lf27ucc1s3m9s965r3","Syntax":"","Logic":"","Output":"\nYou see a rat.\n","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"","ElementKey":"4c0kw4mj9nrm9s9acg4","Name":"Fighting","ParentKey":"at73dh77pchm92hdikb","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"message","ElementKey":"8r6x7rqvq0im9sahbmr","Name":"Spawn Message","ParentKey":"8xr09flmjeim9qntf6l","Syntax":"","Logic":"","Output":"\nA rat appears!","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"input","ElementKey":"2zh03itrf3mm9sarrg9","Name":"Attack Input","ParentKey":"npc_rat","Syntax":"\\b(attack.*rat|!.*rat)\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""},{"ElementType":"attack","ElementKey":"nvjgijhlnnam9satjvb","Name":"Attack","ParentKey":"2zh03itrf3mm9sarrg9","Syntax":"","Logic":"[self]","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Template":"","Active":"true","Sort":""}
 ];
 
         // Parsers
@@ -147,6 +167,7 @@
                 "room", "set", "travel"
             ];
             let macroRunning = false;
+            let currentEnemy = "";
 
 
         function logMessage(message) {
@@ -155,7 +176,7 @@
         }
 
         function saveFile() {
-            let elemLimit = 5; // Number of elements per line
+            let elemLimit = 20; // Number of elements per line
             let htmlDoc = document.documentElement.cloneNode(true);
             htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
             let fileName = "worldweaver";
@@ -271,15 +292,18 @@
         function setRandValue(rndElement) {
             let range = rndElement.Output.replace("[rand:", "").replace(/](?!.*])/ , "").split("|");
             let rndVal = 0;
+            let selElems = null;
             if (range.length === 2)
             {
                 if (range[0].startsWith("<<"))
                 {
-                    range[0] = getTargetsByRelCode(rndElement, range[0])[0].Output;
+                    selElems = getTargetsByRelCode(rndElement, range[0])[0];
+                    range[0] = selElems.Output;
                 }
                 if (range[1].startsWith("<<"))
                 {
-                    range[1] = getTargetsByRelCode(rndElement, range[1])[0].Output;
+                    selElems = getTargetsByRelCode(rndElement, range[1]);
+                    range[1] = selElems.Output;
                 }
 
                 rndVal = getRandomByRange(range[0], range[1]);
@@ -395,6 +419,47 @@
         }
 
 
+        // Fighting
+        function showFightInterface() {
+            let player = getPlayer();
+            let enemy = currentEnemy;
+            let lifeStat = getChildrenByTag(player, "life")[0]?.Output || "0";
+            let enemyLifeStat = getChildrenByTag(enemy, "life")[0]?.Output || "-1";
+            document.getElementById("player-life").textContent = lifeStat;
+            if (enemyLifeStat < 0)
+            {
+                return;
+            }
+            else
+            {
+                document.getElementById("enemy-life").textContent = enemyLifeStat;
+            }
+
+            gameInterface.style.display = "none";
+            document.getElementById("fight-interface").style.display = "flex";
+        }
+
+        function exitFight() {
+            document.getElementById("fight-interface").style.display = "none";
+            gameInterface.style.display = "flex";
+        }
+
+        function attackEnemy() {
+            let enemyLifeEl = document.getElementById("enemy-life");
+            let currentLife = parseInt(enemyLifeEl.textContent);
+            let damage = Math.floor(Math.random() * 5) + 1;
+            currentLife -= damage;
+
+            if (currentLife <= 0) {
+                enemyLifeEl.textContent = "0";
+                alert("Enemy defeated!");
+                exitFight();
+            } else {
+                enemyLifeEl.textContent = currentLife.toString();
+            }
+        }
+
+
         // Helper Methods
             function getElement(referenceString, currentElement)
             {
@@ -418,7 +483,7 @@
             }
             function getElementsByType(elementType)
             {
-                return database.filter(item => item.ElementType === elementType);
+                return database.filter(item => item.ElementType === elementType).orderBy(e => parseInt(e.Sort));
             }
             function getSelf(currentElement)
             {
@@ -450,18 +515,18 @@
             function getChildrenByTag(parentElement, tag)
             {
                 let children = getChildren(parentElement, true);
-                let foundElems = children.filter(item => tagsContain(item.Tags, tag));
+                let foundElems = children.filter(item => tagsContain(item.Tags, tag)).orderBy(e => parseInt(e.Sort));
                 return foundElems;
             }
             function getChildren(parentElement, includeAttributes)
             {
                 if (includeAttributes)
                 {
-                    return database.filter(item => item.ParentKey === parentElement.ElementKey);
+                    return database.filter(item => item.ParentKey === parentElement.ElementKey).orderBy(e => parseInt(e.Sort));
                 }
                 else
                 {
-                    return database.filter(item => item.ParentKey === parentElement.ElementKey && item.ElementType !== "attribute");
+                    return database.filter(item => item.ParentKey === parentElement.ElementKey && item.ElementType !== "attribute").orderBy(e => parseInt(e.Sort));
                 }
             }
             function getSelf(currentElement)
@@ -555,6 +620,19 @@
 
                 return modifierVal;
             }
+            function getGuid()
+            {
+                return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+            }
+            Array.prototype.orderBy = function(selector, desc = false) {
+              return [...this].sort((a, b) => {
+                a = selector(a);
+                b = selector(b);
+            
+                if (a == b) return 0;
+                return (desc ? a > b : a < b) ? -1 : 1;
+              });
+            };
         // End Helper Methods
 
 
@@ -599,6 +677,12 @@
 
             if (gameStarted)
             {
+                if (userInput.Input === "!fight")
+                {
+                    showFightInterface();
+                }
+
+
                 parseGame(gameParsers);
                 parseGlobal(globalParsers);
                 parseRoom(roomParsers, false);
@@ -627,7 +711,18 @@
             if (tagsContain(currentElement.Tags, "type") &&
                 currentElement.Logic !== "")
             {
-                parseCustomElement(getCurrentRoom(), currentElement.Logic);
+                if (tagsContain(currentElement.Tags, "room"))
+                {
+                    parseCustomElement(getCurrentRoom(), currentElement.Logic);
+                }
+                if (tagsContain(currentElement.Tags, "player"))
+                {
+                    parseCustomElement(getPlayer(), currentElement.Logic);
+                }
+                if (tagsContain(currentElement.Tags, "self"))
+                {
+                    parseCustomElement(getSelf(currentElement), currentElement.Logic);
+                }
             }
 
             if (tagsContain(currentElement.Tags, "list") &&
@@ -635,6 +730,18 @@
             {
                 parseListAction(currentElement);
             }
+
+            if (tagsContain(currentElement.Tags, "spawn") &&
+                currentElement.Logic !== "")
+            {
+                parseSpawnAction(currentElement);
+            }
+        }
+
+        function parseAttack(currentElement, parsers)
+        {
+            currentEnemy = getTargetsByRelCode(currentElement, currentElement.Logic);
+            showFightInterface();
         }
 
         function parseCustomElement(parentElement, customType)
@@ -732,6 +839,37 @@
                 gameOutput.LogicPassed = false;
                 return;
             }
+        }
+
+        // !@! Spawning
+        function parseSpawnAction(currentElement)
+        {
+            let spawnElem = database.filter(item => item.ElementKey === currentElement.Logic)[0];
+            let newParent = getTargetsByRelCode(currentElement, currentElement.Output);
+
+            spawnElement(spawnElem, newParent);
+        }
+
+        function spawnElement(spawnElem, newParent)
+        {
+            let newKey = "";
+            newParent = cloneElement(spawnElem, newParent.ElementKey);
+
+            for (let spawnChild of getChildren(spawnElem, true))
+            {
+                spawnElement(spawnChild, newParent);
+            }
+        }
+
+        function cloneElement(originalElement, newParentKey)
+        {
+            let entry = JSON.parse(JSON.stringify(originalElement));
+            entry.ElementKey = getGuid();
+            entry.ParentKey = newParentKey;
+
+            database.push(entry);
+
+            return entry;
         }
 
             /*
@@ -990,6 +1128,8 @@
                     return getChildrenByTag(parent, childTag);
                 }
             }
+
+            return parent;
         }
         function getField(row)
         {
@@ -1088,13 +1228,13 @@
             }
         }
 
-        function parseObject(parentElement, currentElement, parsers)
+        function parseObject(parentElement, currentElement, parsers, isEntering)
         {
             for (let prsr of parsers)
             {
                 for (let child of getChildren(currentElement, false))
                 {
-                    callParser(prsr, currentElement, child, false);
+                    callParser(prsr, currentElement, child, isEntering);
                 }
             }
         }
@@ -1105,7 +1245,7 @@
 
             for (let prsr of parsers)
             {
-                for (let child of getChildren(roomElem, false))
+                for (let child of getChildren(roomElem, isEntering))
                 {
                     callParser(prsr, roomElem, child, isEntering);
                 }
@@ -1223,91 +1363,113 @@
             switch (curParser)
             {
                 case "action":
-                    if (childElement.ElementType === "action")
+                    if (childElement.ElementType === curParser)
                     {
                         parseAction(childElement, actionParsers);
                     }
+                    break;
+
+                case "attack":
+                    if (childElement.ElementType === curParser)
+                    {
+                        parseAttack(childElement, attackParsers);
+                    }
+                    break;
 
                 case "enter_message":
-                    if (childElement.ElementType === "enter_message" &&
-                        parentElement.ElementType !== "game" &&
-                        isEntering === true &&
-                        !gameOutput.EnterMsgDone
-                    )
+                    if (childElement.ElementType === curParser)
                     {
-                        outputMatch(childElement.Output, true);
-
-                        // Parse non enter_message children
-                        let nonEnterChildren = database.filter(item => item.ParentKey === parentElement.ElementKey &&
-                            item.ElementType !== "enter_message");
-
-                        for (let nChild of nonEnterChildren)
+                        if (parentElement.ElementType !== "game" &&
+                            isEntering === true &&
+                            !gameOutput.EnterMsgDone
+                        )
                         {
-                            let childElems = database.filter(item => item.ParentKey === nChild.ElementKey &&
-                                item.ElementType === "enter_message");
+                            outputMatch(childElement.Output, true);
 
-                            for (let childElem of childElems)
+                            // Parse non enter_message children
+                            let nonEnterChildren = database.filter(item => item.ParentKey === parentElement.ElementKey &&
+                                item.ElementType !== "enter_message");
+
+                            for (let nChild of nonEnterChildren)
                             {
-                                callParser(curParser, nChild, childElem, isEntering);
-                            }
-                        }
+                                let childElems = database.filter(item => item.ParentKey === nChild.ElementKey &&
+                                    item.ElementType === "enter_message");
 
-                        gameOutput.EnterMsgDone = true;
+                                for (let childElem of childElems)
+                                {
+                                    callParser(curParser, nChild, childElem, isEntering);
+                                }
+                            }
+
+                            gameOutput.EnterMsgDone = true;
+                        }
                     }
                     break;
 
                 case "input":
-                    if (childElement.ElementType === "input")
+                    if (childElement.ElementType === curParser)
                     {
                         parseInput(childElement, inputParsers);
+                        for (let child of getChildren(childElement))
+                        {
+                            parseInput(child, inputParsers);
+                        }
                     }
                     break;
 
                 case "logic":
-                    if (childElement.ElementType === "logic")
+                    if (childElement.ElementType === curParser)
                     {
                         parseLogic(parentElement, childElement);
-                    }
-                    if (!gameOutput.LogicPassed)
-                    {
-                        gameOutput.ContinueParsing = false;
-                        return;
+                        if (!gameOutput.LogicPassed)
+                        {
+                            gameOutput.ContinueParsing = false;
+                            return;
+                        }
                     }
                     break;
 
                 case "message":
-                    if (childElement.ElementType === "message" && parentElement.ElementType !== "game")
+                    if (childElement.ElementType === curParser)
                     {
-                        outputMatch(childElement.Output, true);
+                        if (parentElement.ElementType !== "game")
+                        {
+                            outputMatch(childElement.Output, true);
+                        }
                     }
                     break;
 
                 case "move":
-                    parseMove(childElement, moveParsers);
-                    if (!gameOutput.ContinueParsing)
+                    if (childElement.ElementType === curParser)
                     {
-                        return;
+                        parseMove(childElement, moveParsers);
+                        if (!gameOutput.ContinueParsing)
+                        {
+                            return;
+                        }
                     }
                     break;
 
                 case "navigation":
-                    if (childElement.ElementType === "navigation")
+                    if (childElement.ElementType === curParser)
                     {
                         parseElement(childElement, navigationParsers); 
                     }
                     break;
 
                 case "object":
-                    if (childElement.ElementType === "object")
+                    if (childElement.ElementType === curParser)
                     {
-                        parseObject(parentElement, childElement, objectParsers);
+                        parseObject(parentElement, childElement, objectParsers, isEntering);
                     }
+                    break;
 
                 case "set":
-                    if (childElement.ElementType === "set")
+                    if (childElement.ElementType === curParser)
                     {
                         parseSet(parentElement, childElement, setParsers);
                     }
+                    break;
             }
         }
     </script>
