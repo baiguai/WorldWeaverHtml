@@ -1460,119 +1460,97 @@
                 return;
             }
 
+            if (childElement.ElementType !== curParser)
+            {
+                return;
+            }
+
             switch (curParser)
             {
                 case "action":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseAction(childElement, actionParsers);
-                    }
+                    parseAction(childElement, actionParsers);
                     break;
 
                 case "attack":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseAttack(childElement, attackParsers);
-                    }
+                    parseAttack(childElement, attackParsers);
                     break;
 
                 case "enter_message":
-                    if (childElement.ElementType === curParser)
+                    if (parentElement.ElementType !== "game" &&
+                        isEntering &&
+                        !gameOutput.EnterMsgDone
+                    )
                     {
-                        if (parentElement.ElementType !== "game" &&
-                            isEntering === true &&
-                            !gameOutput.EnterMsgDone
-                        )
+                        outputMatch(childElement.Output, true);
+
+                        // Parse non enter_message children
+                        const nonEnterChildren = database.filter(item =>
+                            item.ParentKey === parentElement.ElementKey &&
+                            item.ElementType !== "enter_message"
+                        );
+
+                        for (let nChild of nonEnterChildren)
                         {
-                            outputMatch(childElement.Output, true);
+                            const childElems = database.filter(item =>
+                                item.ParentKey === nChild.ElementKey &&
+                                item.ElementType === "enter_message"
+                            );
 
-                            // Parse non enter_message children
-                            let nonEnterChildren = database.filter(item => item.ParentKey === parentElement.ElementKey &&
-                                item.ElementType !== "enter_message");
-
-                            for (let nChild of nonEnterChildren)
+                            for (const childElem of childElems)
                             {
-                                let childElems = database.filter(item => item.ParentKey === nChild.ElementKey &&
-                                    item.ElementType === "enter_message");
-
-                                for (let childElem of childElems)
-                                {
-                                    callParser(curParser, nChild, childElem, isEntering);
-                                }
+                                callParser(curParser, nChild, childElem, isEntering);
                             }
-
-                            gameOutput.EnterMsgDone = true;
                         }
+
+                        gameOutput.EnterMsgDone = true;
                     }
                     break;
 
                 case "input":
-                    if (childElement.ElementType === curParser &&
-                        !gameOutput.InputMatchMade)
+                    if (!gameOutput.InputMatchMade)
                     {
                         parseInput(childElement, inputParsers);
                     }
                     break;
 
                 case "logic":
-                    if (childElement.ElementType === curParser)
+                    parseLogic(parentElement, childElement);
+                    if (!gameOutput.LogicPassed)
                     {
-                        parseLogic(parentElement, childElement);
-                        if (!gameOutput.LogicPassed)
-                        {
-                            gameOutput.ContinueParsing = false;
-                            return;
-                        }
+                        gameOutput.ContinueParsing = false;
+                        return;
                     }
                     break;
 
                 case "message":
-                    if (childElement.ElementType === curParser)
+                    if (parentElement.ElementType !== "game")
                     {
-                        if (parentElement.ElementType !== "game")
-                        {
-                            outputMatch(childElement.Output, true);
-                        }
+                        outputMatch(childElement.Output, true);
                     }
                     break;
 
                 case "move":
-                    if (childElement.ElementType === curParser)
+                    parseMove(childElement, moveParsers);
+                    if (!gameOutput.ContinueParsing)
                     {
-                        parseMove(childElement, moveParsers);
-                        if (!gameOutput.ContinueParsing)
-                        {
-                            return;
-                        }
+                        return;
                     }
                     break;
 
                 case "navigation":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseElement(childElement, navigationParsers); 
-                    }
+                    parseElement(childElement, navigationParsers); 
                     break;
 
                 case "npc":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseNpc(parentElement, childElement, objectParsers, isEntering);
-                    }
+                    parseNpc(parentElement, childElement, objectParsers, isEntering);
                     break;
 
                 case "object":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseObject(parentElement, childElement, objectParsers, isEntering);
-                    }
+                    parseObject(parentElement, childElement, objectParsers, isEntering);
                     break;
 
                 case "set":
-                    if (childElement.ElementType === curParser)
-                    {
-                        parseSet(parentElement, childElement, setParsers);
-                    }
+                    parseSet(parentElement, childElement, setParsers);
                     break;
             }
         }
