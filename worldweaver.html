@@ -884,6 +884,7 @@
                 showGameStartScreen();
                 parseGame(gameParsers);
                 parseRoom(roomParsers, true);
+                gameOutput.EnterMsgDone = true;
                 return;
             }
 
@@ -914,6 +915,7 @@
                 parseGame(gameParsers);
                 parseGlobal(globalParsers);
                 parseRoom(roomParsers, false);
+                gameOutput.EnterMsgDone = true;
             }
         }
 
@@ -1681,27 +1683,6 @@
                     )
                     {
                         outputMatch(childElement.Output, true);
-
-                        // Parse non enter_message children
-                        const nonEnterChildren = database.filter(item =>
-                            item.ParentKey === parentElement.ElementKey &&
-                            item.ElementType !== "enter_message"
-                        );
-
-                        for (let nChild of nonEnterChildren)
-                        {
-                            const childElems = database.filter(item =>
-                                item.ParentKey === nChild.ElementKey &&
-                                item.ElementType === "enter_message"
-                            );
-
-                            for (const childElem of childElems)
-                            {
-                                callParser(curParser, nChild, childElem, isEntering);
-                            }
-                        }
-
-                        gameOutput.EnterMsgDone = true;
                     }
                     break;
 
@@ -1738,10 +1719,20 @@
 
                 case "npc":
                     parseNpc(parentElement, childElement, objectParsers, isEntering);
+
+                    for (let npcChild of getChildren(childElement))
+                    {
+                        callParser(curParser, childElement, npcChild, isEntering);
+                    }
                     break;
 
                 case "object":
                     parseObject(parentElement, childElement, objectParsers, isEntering);
+
+                    for (let objChild of getChildren(childElement))
+                    {
+                        callParser(curParser, childElement, objChild, isEntering);
+                    }
                     break;
 
                 case "set":
