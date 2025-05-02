@@ -559,7 +559,7 @@
             }
             let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
 
-            textArea.value = "        let database = " + formattedDatabase;
+            textArea.value = "        let database = " + formattedDatabase + ";";
             modal.style.display = 'block';
         }
 
