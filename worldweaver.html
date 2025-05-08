@@ -794,9 +794,14 @@
                 let playerElem = getElementsByType("player")[0];
                 return playerElem;
             }
-            function getPlayerArmed()
+            function setPlayerArmed(elementKey)
             {
-                return database.filter(item => item.ParentKey === getPlayer().ElementKey && tagsContain(item.Tags, "!_armed"));
+                let armedAttrib = database.filter(item => item.ParentKey === getPlayer().ElementKey && tagsContain(item.Tags, "!_armed"));
+                if (armedAttrib.ElementKey === undefined)
+                {
+                    armedAttrib = armedAttrib[0];
+                }
+                armedAttrib.Output = elementKey;
             }
             function getPlayerInventory()
             {
@@ -889,6 +894,11 @@
             {
                 if (currentElement.Tags === undefined)
                 {
+                    return;
+                }
+                if (currentElement.Tags === "")
+                {
+                    currentElement.Tags = tagString;
                     return;
                 }
                 let taglist = currentElement.Tags.split("|");
@@ -1744,20 +1754,22 @@
 
             if (tagsContain(currentElement.Tags, "arm"))
             {
-                // - Get target by its syntax - in the player inventory.
-                // - Remove all !_armed tags.
-                // - Add !_armed tag to selected target.
-
-                let armed = getPlayerArmed();
                 let target = getChildrenBySyntax(getPlayer(), userInput.Input);
+                if (target === null || target.length < 1)
+                {
+                    gameOutput.Output = "You aren't carrying that weapon.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
                 if (target.ElementKey === null)
                 {
                     target = target[0];
                 }
-                armed.Output = target.ElementKey;
+
+                setPlayerArmed(target.ElementKey);
                 const title = getChildByTag(target, "title");
 
-                gameOutput.Output = `You are now armed with ${title.Output}`;
+                gameOutput.Output = `You are now armed with ${title.Output}.`;
                 gameOutput.MatchMade = true;
                 return;
             }
