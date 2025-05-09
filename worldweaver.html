@@ -1189,13 +1189,13 @@
                 return;
             }
 
-            if (inputParsers.includes("logic") && !processLogic(currentElement))
-            {
-                return;
-            }
-
             if (regexCheck(currentElement.Syntax, userInput.Input))
             {
+                if (inputParsers.includes("logic") && !processLogic(currentElement))
+                {
+                    return;
+                }
+
                 gameOutput.InputMatchMade = true;
                 parseElement(currentElement, inputParsers);
             }
@@ -1469,6 +1469,8 @@
                     return curElem.Logic;
                 case "output":
                     return curElem.Output;
+                case "parent":
+                    return curElem.ParentKey;
                 case "tags":
                     return curElem.Tags;
                 default:
