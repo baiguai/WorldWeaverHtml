@@ -433,11 +433,9 @@
 
         function getRandomByRange(min, max)
         {
-            if (min === 0)
-            {
-                min = -2;
-            }
-            return Math.floor(Math.random() * Number(max) - Number(min) + 1) + Number(min);
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
         function getRollDiceValue(rndElement, rndString)
