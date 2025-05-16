@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NRMN Importer</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #databaseText {
+      flex: 1;
+      background-color: #000;
+      color: #00ff00;
+      border: none;
+      resize: none;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    #bottom-bar {
+      background-color: #000;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #directoryPath {
+      background-color: #000;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 5px;
+      flex: 1;
+      font-family: monospace;
+    }
+
+    button {
+      background-color: #111;
+      color: #00ff00;
+      border: 1px solid #00ff00;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #222;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <textarea id="databaseText" readonly></textarea>
+
+  <div id="bottom-bar">
+    <input type="text" id="directoryPath" placeholder="Enter or choose a directory…" />
+    <button onclick="triggerBrowse()">Browse</button>
+    <input type="file" id="directoryPicker" webkitdirectory>
+    <button onclick="importNrmn()">Convert</button>
+    <button onclick="copyDatabase()">Copy</button>
+  </div>
+
+  <script>
+    let rootDirectoryPath = null;
+    let output = document.getElementById('databaseText');
+    const directoryPathInput = document.getElementById('directoryPath');
+    const directoryPicker = document.getElementById('directoryPicker');
+
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const input = document.getElementById('directoryPath');
+      input.focus();
+      input.select(); // Highlights any default text
+    });
+
+
+async function listAllFilesAndDirs(dirHandle, parentDir) {
+  const files = [];
+  for await (let [name, handle] of dirHandle) {
+    const { kind } = handle;
+    if (kind === 'directory') {
+//      files.push({ name, handle, kind, path: `${parentDir}${name}/`, content: "" });
+      const nestedFiles = await listAllFilesAndDirs(handle, `${parentDir}${name}/`);
+      files.push(...nestedFiles);
+    } else {
+      // Read file content
+      try {
+        const file = await handle.getFile();
+        const content = await file.text();
+        files.push({ name, handle, kind, path: `${parentDir}${name}`, content });
+      } catch (err) {
+        console.error(`Error reading file ${name}:`, err);
+        files.push({ name, handle, kind, content: "" });
+      }
+    }
+  }
+  return files;
+}
+
+    async function triggerBrowse() {
+      try {
+          const directoryHandle = await window.showDirectoryPicker()
+          rootDirectoryPath = directoryHandle;
+          const files = await listAllFilesAndDirs(directoryHandle, "./");
+          output.innerHTML = 'Files:\r\n';
+          for (file of files)
+          {
+              output.innerHTML += `${file.path}\r\n\r\n\r\n`;
+          }
+      }catch(e) {
+          console.log(e);
+      }
+    }
+
+    directoryPicker.addEventListener('change', function () {
+      if (this.files.length === 0) {
+        directoryPathInput.value = "";
+        rootDirectoryPath = null;
+        return;
+      }
+
+      const firstPath = this.files[0].webkitRelativePath;
+      if (firstPath) {
+        const rootFolder = firstPath.split('/')[0];
+        rootDirectoryPath = rootFolder;
+        directoryPathInput.value = '/' + rootFolder;
+      } else {
+        rootDirectoryPath = '';
+        directoryPathInput.value = '(Path unavailable)';
+      }
+    });
+
+    directoryPathInput.addEventListener('input', function () {
+      rootDirectoryPath = this.value.trim();
+    });
+
+    function importNrmn() {
+      if (!rootDirectoryPath || rootDirectoryPath === '') {
+        alert("Please enter or choose a directory first.");
+        return;
+      }
+
+      const log = `[Importing from: ${rootDirectoryPath}]`;
+      document.getElementById('databaseText').value += `\n${log}`;
+    }
+
+    function copyDatabase() {
+      const textArea = document.getElementById('databaseText');
+      textArea.select();
+      document.execCommand('copy');
+      alert('Database text copied to clipboard!');
+    }
+  </script>
+
+</body>
+</html>
