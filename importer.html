@@ -75,40 +75,47 @@
         let output = document.getElementById('databaseText');
         const directoryPathInput = document.getElementById('directoryPath');
         const directoryPicker = document.getElementById('directoryPicker');
+        let loadedDirs = [];
         let loadedFiles = [];
         let database = [];
 
 
         async function listAllFilesAndDirs(dirHandle, parentDir) {
-            const files = [];
             for await (let [name, handle] of dirHandle) {
                 const { kind } = handle;
                 if (kind === 'directory') {
+                    loadedDirs.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}/`, content: "" });
                     const nestedFiles = await listAllFilesAndDirs(handle, `${parentDir}${name}/`);
-                    files.push(...nestedFiles);
+                    loadedFiles.push(...nestedFiles);
                 } else {
                     // Read file content
                     try {
                         const file = await handle.getFile();
                         const content = await file.text();
-                        files.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content });
+                        loadedFiles.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content });
                     } catch (err) {
                         console.error(`Error reading file ${name}:`, err);
-                        files.push({ name, handle, content: "" });
+                        loadedFiles.push({ name, handle, content: "" });
                     }
                 }
             }
-            return files;
+            return "";
         }
 
         async function triggerBrowse() {
             try {
                     const directoryHandle = await window.showDirectoryPicker()
                     rootDirectoryPath = directoryHandle;
-                    const files = await listAllFilesAndDirs(directoryHandle, "~/");
-                    loadedFiles = files;
-                    output.innerHTML = 'Files:\r\n';
-                    for (file of files)
+                    // const files = await listAllFilesAndDirs(directoryHandle, "~/");
+                    await listAllFilesAndDirs(directoryHandle, "~/");
+                    output.innerHTML = 'Directories:\r\n';
+                    for (dir of loadedDirs)
+                    {
+                        output.innerHTML += `${dir.path}\r\n`;
+                    }
+                    output.innerHTML += '\r\n';
+                    output.innerHTML += 'Files:\r\n';
+                    for (file of loadedFiles)
                     {
                         output.innerHTML += `${file.path}\r\n`;
                     }
