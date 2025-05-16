@@ -75,27 +75,41 @@
         let output = document.getElementById('databaseText');
         const directoryPathInput = document.getElementById('directoryPath');
         const directoryPicker = document.getElementById('directoryPicker');
-        let loadedDirs = [];
-        let loadedFiles = [];
+        let depth = 0;
+        let inComments = false;
+        let dirs = [];
+        let files = [];
+        let injections = [];
         let database = [];
 
 
         async function listAllFilesAndDirs(dirHandle, parentDir) {
+            let sortValue = 1;
             for await (let [name, handle] of dirHandle) {
                 const { kind } = handle;
                 if (kind === 'directory') {
-                    loadedDirs.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}/`, content: "" });
+                    dirs.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}/`, content: "", sort: 0 });
                     const nestedFiles = await listAllFilesAndDirs(handle, `${parentDir}${name}/`);
-                    loadedFiles.push(...nestedFiles);
+                    files.push(...nestedFiles);
                 } else {
                     // Read file content
                     try {
                         const file = await handle.getFile();
                         const content = await file.text();
-                        loadedFiles.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content });
+
+                        if (name.endsWith(".inj"))
+                        {
+                            injections.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content, sort: 0 });
+                        }
+                        if (name.endsWith(".nrmn"))
+                        {
+                            files.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content, sort: sortValue });
+                        }
+
+                        sortValue += 1;
                     } catch (err) {
                         console.error(`Error reading file ${name}:`, err);
-                        loadedFiles.push({ name, handle, content: "" });
+                        files.push({ name, handle, content: "" });
                     }
                 }
             }
@@ -104,31 +118,482 @@
 
         async function triggerBrowse() {
             try {
-                    const directoryHandle = await window.showDirectoryPicker()
-                    rootDirectoryPath = directoryHandle;
-                    // const files = await listAllFilesAndDirs(directoryHandle, "~/");
-                    await listAllFilesAndDirs(directoryHandle, "~/");
-                    output.innerHTML = 'Directories:\r\n';
-                    for (dir of loadedDirs)
-                    {
-                        output.innerHTML += `${dir.path}\r\n`;
-                    }
-                    output.innerHTML += '\r\n';
-                    output.innerHTML += 'Files:\r\n';
-                    for (file of loadedFiles)
-                    {
-                        output.innerHTML += `${file.path}\r\n`;
-                    }
-            }catch(e) {
-                    console.log(e);
+                const directoryHandle = await window.showDirectoryPicker()
+                rootDirectoryPath = directoryHandle;
+                output.innerHTML = 'Loading...';
+                await listAllFilesAndDirs(directoryHandle, "~/");
+
+                loadGame();
+            } catch(e) {
+                console.log(e);
             }
         }
 
         function copyDatabase() {
             const textArea = document.getElementById('databaseText');
+
+            // Make sure the latest database is stored
+            let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+
+            // Build compact JSON with newlines every elemLimit items
+            let lines = [];
+            for (let i = 0; i < latestDatabase.length; i += elemLimit) {
+                let chunk = latestDatabase.slice(i, i + elemLimit);
+                lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
+            }
+            let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
+
+            textArea.value = "        let database = " + formattedDatabase + ";";
+            modal.style.display = 'block';
+
             textArea.select();
             document.execCommand('copy');
             alert('Database text copied to clipboard!');
+        }
+
+        // Parsing Methods
+        // File class:
+        //   name
+        //   handle (type)
+        //   parent
+        //   path
+        //   content
+        //   sort
+        function loadGame() {
+            for (dir of dirs) {
+                let dirChildren = files.filter(item => item.parent === dir.path);
+                dirChildren.sort((a, b) => parseInt(a.sort) - parseInt(b.sort));
+
+                for (file of dirChildren) {
+                    let lines = doInjection(file.content).split('\n').filter(item => item);
+                    parseElement(file, lines, "root", 0);
+                }
+            }
+        }
+
+        function doInjection(fileContents) {
+
+        }
+
+        function parseElement(file, lines, parentKey, startLine) {
+            currentDepth = depth;
+            element = null;
+            let initRow = startLine;
+            let currentRow = startLine;
+            let fieldVal = null;
+
+            for (let ix = startLine; ix < lines.length; ix++) {
+                currentRow = ix;
+                let line = lines[ix].trim();
+
+                if (!parsableRow(line)) {
+                    continue;
+                }
+                if (depth > currentDepth && !line === "}") {
+                    continue;
+                }
+
+                if (line.startsWith("{")) {
+                    let singleLine = line.endsWith("}");
+
+                    if (singleLine) {
+                        line = line.substring(0, line.length - 1).trim();
+                    }
+
+                    if (element === null)
+                    {
+                        element = createNewQuickElement(parentKey, file.sort);
+                        parseInlineProperties(element, line);
+
+                        if (line.length > 1) {
+                            if (element.ParentKey == null)
+                            {
+                                element.ParentKey = parentKey;
+                            }
+                        }
+
+                        if (singleLine)
+                        {
+                            database.push(element);
+                            return currentRow;
+                        }
+
+                        continue;
+                    } else {
+                        depth++;
+                        ix = ParseElement(lines, element.ElementKey, ix);
+                        depth--;
+
+                        // This should never happen
+                        if (depth < 0) {
+                            depth = 0;
+                        }
+
+                        if (ix < 0) {
+                            return -1;
+                        }
+
+                        continue;
+                    }
+                }
+
+                switch (true)
+                {
+                    case typeof line === 'string' && line.toLowerCase().startsWith("type="):
+                        if (element !== null)  {
+                            element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("key="):
+                        if (element !== null) {
+                            element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("name="):
+                        if (element !== null) {
+                            element.Name = line.replace(/^name=/i, '').safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("parent="):
+                        if (element !== null) {
+                            element.ParentKey = line.replace(/^parent=/i, '').safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("syntax="):
+                        if (element !== null) {
+                            element.Syntax = line.replace(/^syntax=/i, '').safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("logic="):
+                        if (element !== null) {
+                            fieldVal = getFieldValue(element, lines, "logic", ix);
+                            ix = fieldVal.currentRow;
+                            element.Logic = fieldVal.fieldValue.safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("repeat="):
+                        if (element !== null) {
+                            element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("output="):
+                        if (element !== null) {
+                            fieldVal = getFieldValue(element, lines, "output", ix);
+                            ix = fieldVal.currentRow;
+                            element.Output = fieldVal.fieldValue.safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("tags="):
+                        if (element !== null) {
+                            fieldVal = getFieldValue(element, lines, "tags", ix);
+                            ix = fieldVal.currentRow;
+                            element.Tags = fieldVal.fieldValue.safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("template="):
+                        if (element !== null) {
+                            fieldVal = getFieldValue(element, lines, "template", ix);
+                            ix = fieldVal.currentRow;
+                            element.Template = fieldVal.fieldValue.safe();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("active="):
+                        if (element !== null) {
+                            element.Active = line.replace(/^active=/i, '').toLowerCase();
+                        }
+                        break;
+
+                    case line.toLowerCase().startsWith("sort="):
+                        if (element !== null) {
+                            element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
+                        }
+                        break;
+
+                    case line === "}":
+                        if (element === null) {
+                            return currentRow - 1;
+                        }
+
+                        if (depth === currentDepth) {
+                            if (!element.ElementKey) {
+                                element.ElementKey = getGuid();
+                            }
+
+                            database.push(element);
+                            element = null;
+                        }
+                        break;
+                }
+            }
+
+            if (element !== null)
+            {
+                success = AddElement(connectionString, element);
+            }
+
+            return currentRow;
+        }
+
+        function parsableRow(dataRow) {
+            if (dataRow === "") {
+                return false;
+            }
+
+            if (dataRow.trim() === "*/") {
+                inComments = false;
+                return false;
+            }
+
+            if (inComments) {
+                return false;
+            }
+
+            if (dataRow.trim() === "/*") {
+                inComments = true;
+                return false;
+            }
+
+            if (dataRow.substring(0, 1) === "!") {
+                return false;
+            }
+
+            if (dataRow.trim().length > 1 && dataRow.trim().substring(0, 2) === "//") {
+                return false;
+            }
+
+            return true;
+        }
+
+        function parseInlineProperties(element, dataRow) {
+            dataRow = dataRow.replace("{", "");
+            const arr = dataRow.split(',');
+
+            // The first field can be the 'type' shorthand
+            // {action, logic="...", tags="..." }
+            if (!arr[0].includes("="))
+            {
+                element.ElementType = fixElementType(arr[0].trim());
+            }
+
+            for (pair of arr)
+            {
+                const parts = pair.trim().split('=');
+                const pairArr = [parts[0], parts.slice(1).join('=')];
+
+                if (pairArr.length == 2) {
+                    switch (pairArr[0].trim().toLowerCase()) {
+                        case "key":
+                            element.ElementKey = pairArr[1].trim().replace(' ', '_').safe();
+                            break;
+
+                        case "type":
+                            element.ElementType = fixElementType(pairArr[1].toLowerCase().trim()).safe();
+                            break;
+
+                        case "name":
+                            element.Name = pairArr[1].trim().safe();
+                            break;
+
+                        case "parent":
+                            element.ParentKey = pairArr[1].trim().safe();
+                            break;
+
+                        case "syntax":
+                            element.Syntax = pairArr[1].trim().safe();
+                            break;
+
+                        case "repeat":
+                            element.Repeat = pairArr[1].toLowerCase().trim().safe();
+                            break;
+
+                        case "logic":
+                            element.Logic = pairArr[1].trim().safe();
+                            break;
+
+                        case "output":
+                            element.Output = pairArr[1].trim().safe();
+                            break;
+
+                        case "tags":
+                            element.Tags = pairArr[1].trim().safe();
+                            break;
+
+                        case "template":
+                            element.Template = pairArr[1].trim().safe();
+                            break;
+
+                        case "active":
+                            element.Active = pairArr[1].toLowerCase().trim().safe();
+                            break;
+
+                        case "sort":
+                            if (element.ElementType === "devnote") {
+                                element.Sort = 9999;
+                            }
+                            else
+                            {
+                                element.Sort = Number(pairArr[1].trim());
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        function createNewFullElement(
+            parentKey,
+            sort
+        ) {
+            let elementKey = getGuid();
+
+            return createNewFullElement(
+                "",
+                elementKey,
+                "",
+                parentKey,
+                "",
+                "",
+                "",
+                "",
+                "",
+                sort
+            );
+        }
+        function createNewFullElement(
+            elementType,
+            elementKey,
+            name,
+            parentKey,
+            syntax,
+            logic,
+            output,
+            tags,
+            repeat,
+            sort
+        ) {
+            if (elementKey == "") {
+                elementKey = getGuid();
+            }
+
+            let entry = {
+                ElementType: elementType,
+                ElementKey: elementKey,
+                Name: name,
+                ParentKey: parentKey,
+                Syntax: syntax,
+                Logic: logic,
+                Output: output,
+                Tags: tags,
+                Repeat: repeat,
+                RepeatIndex: "0",
+                Template: "",
+                Active: "true",
+                Sort: sort
+            };
+
+            return entry;
+        }
+
+        function fixElementType(elementType) {
+            switch (elemType.toLowerCase())
+            {
+                case "act":
+                    return "action";
+                case "att":
+                    return "attack";
+                case "attrib":
+                    return "attribute";
+                case "enter":
+                    return "enter_message";
+                case "inj":
+                    return "injection";
+                case "inp":
+                    return "input";
+                case "msg":
+                    return "message";
+                case "nav":
+                    return "navigation";
+                case "obj":
+                    return "object";
+                case "plr":
+                    return "player";
+                case "rm":
+                    return "room";
+                case "trv":
+                    return "travel";
+
+                default:
+                    return elemType;
+            }
+        }
+
+        function getFieldValue(element, lines, fieldName, startRow) {
+            let currentRow = startRow;
+            let autoBreak = false;
+            let fieldValue = "";
+
+            for (let ix = startRow; ix < lines.length; ix++) {
+                let line = lines[ix].trim();
+
+                if (ix === startRow) {
+                    line = line.replace(new RegExp(`^${fieldName}=`, 'i'), "");
+
+                    if (!line.startsWith("{")) {
+                        fieldValue = line;
+                        currentRow = ix + 1;
+                        break;
+                    } else {
+                        if (line.replace("{", "") === "@") {
+                            autoBreak = true;
+                        }
+                        continue;
+                    }
+                }
+
+                if (line === "}") {
+                    currentRow = ix + 1;
+                    break;
+                } else {
+                    if (fieldValue !== "" && autoBreak) {
+                        fieldValue += '\n';
+                    }
+                    fieldValue += line;
+                }
+            }
+
+            return { currentRow, fieldValue };
+        }
+
+
+
+        // Extensions
+        String.prototype.safe = function stringSafe() {
+            if (this == null) return '';
+
+            let str = String(this);
+
+            // Remove control characters except for \n, \r, \t
+            str = str.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+
+            // Escape HTML special characters
+            str = str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+
+            return str.trim();
         }
     </script>
 
