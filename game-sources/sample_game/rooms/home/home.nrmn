@@ -17,18 +17,11 @@ You are in the testing room.
         }
     }
 
-    {navigation, tags=look|enter_message
-        {message
-            output={@
-
-Navigation:
-  Coin
-  Fight
-            }
-        }
-    }
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
 
     {input, syntax=(coin)
         {move, logic=coin_room, tags=[player]
@@ -38,11 +31,18 @@ You have decided to test receiving money.
             }
         }
     }
-
     {input, syntax=(fight)
         {move, logic=fight_room, tags=[player]
             output={@
 You have decided to test the fight room.
+
+            }
+        }
+    }
+    {input, syntax=(putting)
+        {move, logic=taking_room, tags=[player]
+            output={@
+You have decided to test the putting room.
 
             }
         }
