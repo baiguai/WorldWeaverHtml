@@ -1,0 +1,46 @@
+{object, name=Box, parent=taking_room
+    {enter_message
+        output={@
+You see a box.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a box.
+            }
+        }
+
+        {logic
+            logic={@
+?[self]parent = [room]
+            }
+        }
+    }
+
+    {examine_box
+        {act, logic=look, tags=type|children
+            output={@
+You examine the box.
+
+            }
+        }
+    }
+
+
+    {input, syntax=put.*in.*box
+        {move, logic=[self], tags=[syntax]
+            output={@
+You put the [target] in the box.
+
+            }
+        }
+    }
+
+    {input, syntax=examine.*box|x.*box
+        {act, logic=examine_box, tags=type|self }
+    }
+}

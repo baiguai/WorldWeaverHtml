@@ -1,7 +1,13 @@
 {navigation, tags=look|enter_message
     {message
         output={@
-You can go home, using: home
+
+Navigation:
+  Home
+  Coin
+  Fight
+  Putting
+
         }
     }
 }

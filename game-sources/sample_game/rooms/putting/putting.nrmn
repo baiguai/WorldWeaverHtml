@@ -1,0 +1,21 @@
+{room, name=The Taking and Putting Room, key=taking_room
+    {enter_message
+        output={@
+You are in the taking and putting room.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+
+            }
+        }
+    }
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

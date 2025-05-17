@@ -129,12 +129,20 @@
                 const directoryHandle = await window.showDirectoryPicker()
                 rootDirectoryPath = directoryHandle;
                 output.innerHTML = 'Loading...';
+                clearAll();
                 await listAllFilesAndDirs(directoryHandle, "~/");
 
                 loadGame();
             } catch(e) {
                 console.log(e);
             }
+        }
+
+        async function clearAll() {
+            dirs = [];
+            files = [];
+            injections = [];
+            database = [];
         }
 
         function displayDatabase() {
@@ -300,80 +308,73 @@
                     }
                 }
 
-                // if (parsedProps) {
-                //     database.push(element);
-                //     return currentRow - 1;
-                // } else {
-                    switch (true)
-                    {
-                        case typeof line === 'string' && line.toLowerCase().startsWith("type="):
-                            if (element !== null)  {
-                                element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
-                            }
-                            break;
+                switch (true)
+                {
+                    case typeof line === 'string' && line.toLowerCase().startsWith("type="):
+                        if (element !== null)  {
+                            element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
+                        }
+                        break;
 
-                        case line.toLowerCase().startsWith("key="):
-                            element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
-                            break;
+                    case line.toLowerCase().startsWith("key="):
+                        element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("name="):
-                            element.Name = line.replace(/^name=/i, '').safe();
-                            break;
+                    case line.toLowerCase().startsWith("name="):
+                        element.Name = line.replace(/^name=/i, '').safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("parent="):
-                            element.ParentKey = line.replace(/^parent=/i, '').safe();
-                            break;
+                    case line.toLowerCase().startsWith("parent="):
+                        element.ParentKey = line.replace(/^parent=/i, '').safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("syntax="):
-                            element.Syntax = line.replace(/^syntax=/i, '').safe();
-                            break;
+                    case line.toLowerCase().startsWith("syntax="):
+                        element.Syntax = line.replace(/^syntax=/i, '').safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("logic="):
-                            fieldVal = getFieldValue(element, lines, "logic", ix);
-                            ix = fieldVal.currentRow;
-                            element.Logic = fieldVal.fieldValue.safe();
-                            break;
+                    case line.toLowerCase().startsWith("logic="):
+                        fieldVal = getFieldValue(element, lines, "logic", ix);
+                        ix = fieldVal.currentRow;
+                        element.Logic = fieldVal.fieldValue.safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("repeat="):
-                            element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
-                            break;
+                    case line.toLowerCase().startsWith("repeat="):
+                        element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("output="):
-                            fieldVal = getFieldValue(element, lines, "output", ix);
-                            ix = fieldVal.currentRow;
-                            element.Output = fieldVal.fieldValue;
-                            break;
+                    case line.toLowerCase().startsWith("output="):
+                        fieldVal = getFieldValue(element, lines, "output", ix);
+                        ix = fieldVal.currentRow;
+                        element.Output = fieldVal.fieldValue;
+                        break;
 
-                        case line.toLowerCase().startsWith("tags="):
-                            fieldVal = getFieldValue(element, lines, "tags", ix);
-                            ix = fieldVal.currentRow;
-                            element.Tags = fieldVal.fieldValue.safe();
-                            break;
+                    case line.toLowerCase().startsWith("tags="):
+                        fieldVal = getFieldValue(element, lines, "tags", ix);
+                        ix = fieldVal.currentRow;
+                        element.Tags = fieldVal.fieldValue.safe();
+                        break;
 
-                        case line.toLowerCase().startsWith("active="):
-                            element.Active = line.replace(/^active=/i, '').toLowerCase();
-                            break;
+                    case line.toLowerCase().startsWith("active="):
+                        element.Active = line.replace(/^active=/i, '').toLowerCase();
+                        break;
 
-                        case line.toLowerCase().startsWith("sort="):
-                            element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
-                            break;
+                    case line.toLowerCase().startsWith("sort="):
+                        element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
+                        break;
 
-                        case line === "}":
-                            if (depth === currentDepth) {
-                                database.push(element);
-                                element = null;
-                                return currentRow;
-                            }
-                            break;
-                    }
-
-                    // parsedProps = true;
-                // }
+                    case line === "}":
+                        if (depth === currentDepth) {
+                            database.push(element);
+                            element = null;
+                            return currentRow;
+                        }
+                        break;
+                }
             }
 
             if (element !== null)
             {
-                database.push(element);
+                alert("ERROR! -- There may be a missing closing }");
             }
 
             return currentRow;
