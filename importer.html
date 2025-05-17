@@ -65,9 +65,9 @@
     <textarea id="databaseText" readonly></textarea>
 
     <div id="bottom-bar">
-        <button onclick="triggerBrowse()">Browse</button>
+        <button onclick="triggerBrowse()" accesskey="b">Browse</button>
         <input type="file" id="directoryPicker" webkitdirectory>
-        <button onclick="copyDatabase()">Copy</button>
+        <button onclick="copyDatabase()" accesskey="c">Copy</button>
     </div>
 
     <script>
@@ -81,10 +81,18 @@
         let files = [];
         let injections = [];
         let database = [];
+        const elemLimit = 20; // Number of elements per line in the db
 
 
-        async function listAllFilesAndDirs(dirHandle, parentDir) {
+
+        async function listAllFilesAndDirs(dirHandle, parentDir) { // !@! Iterate Files
             let sortValue = 1;
+
+            // add the root
+            if (dirs.length < 1 && parentDir === "~/") {
+                dirs.push({ name: "root", handle: "directory", parent: "~/", path: "~/", content: "", sort: 0 });
+            }
+
             for await (let [name, handle] of dirHandle) {
                 const { kind } = handle;
                 if (kind === 'directory') {
@@ -129,7 +137,7 @@
             }
         }
 
-        function copyDatabase() {
+        function displayDatabase() {
             const textArea = document.getElementById('databaseText');
 
             // Make sure the latest database is stored
@@ -144,7 +152,11 @@
             let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
 
             textArea.value = "        let database = " + formattedDatabase + ";";
-            modal.style.display = 'block';
+        }
+        function copyDatabase() {
+            const textArea = document.getElementById('databaseText');
+
+            displayDatabase();
 
             textArea.select();
             document.execCommand('copy');
@@ -160,27 +172,79 @@
         //   content
         //   sort
         function loadGame() {
+            const visitedFiles = new Set();
+
             for (dir of dirs) {
                 let dirChildren = files.filter(item => item.parent === dir.path);
                 dirChildren.sort((a, b) => parseInt(a.sort) - parseInt(b.sort));
 
                 for (file of dirChildren) {
-                    let lines = doInjection(file.content).split('\n').filter(item => item);
+                    let lines = doInjection(file, visitedFiles);
                     parseElement(file, lines, "root", 0);
                 }
             }
+
+            database = database.filter(item => item !== null);
+
+            displayDatabase();
         }
 
-        function doInjection(fileContents) {
+        function doInjection(file, visitedFiles) {
+            let lines = [];
 
+            // Prevent infinite loops from circular references
+            if (visitedFiles.has(file.path)) {
+                console.warn(`Warning: Circular reference detected - ${filePath}`);
+                return [`// Circular reference: ${file.path}`];
+            }
+
+            visitedFiles.add(file.path);
+
+            const pattern = /\{inject, logic=(?<logicPath>.+?)\s*\}/;
+            const result = [];
+
+            lines = file.content.split('\n').filter(item => item);
+
+            for (const line of lines) {
+                const match = line.match(pattern);
+                if (match && match.groups && match.groups.logicPath) {
+                    const logicPath = match.groups.logicPath.trim();
+                    let fullPath = "";
+
+                    if (logicPath.startsWith("./")) {
+                        fullPath = `${file.parent}${logicPath.slice(2)}`;
+                    } else if (logicPath.startsWith("/")) {
+                        fullPath = `~${logicPath}`;
+                    }
+
+                    // Normalize path (remove "//" etc.) -- this may be hardened more in the future
+                    fullPath = fullPath.replace(/\/+/g, "/");
+
+                    let injectedFile = injections.find(item => item.path === fullPath);
+
+                    if (injectedFile === null) {
+                        continue;
+                    }
+
+                    // Recursively process
+                    const injectedContent = doInjection(injectedFile, visitedFiles);
+                    result.push(...injectedContent);
+                } else {
+                    result.push(line);
+                }
+            }
+
+            visitedFiles.delete(file.path);
+            return result;
         }
 
         function parseElement(file, lines, parentKey, startLine) {
-            currentDepth = depth;
+            const currentDepth = depth;
             element = null;
             let initRow = startLine;
             let currentRow = startLine;
             let fieldVal = null;
+            let parsedProps = false;
 
             for (let ix = startLine; ix < lines.length; ix++) {
                 currentRow = ix;
@@ -189,7 +253,7 @@
                 if (!parsableRow(line)) {
                     continue;
                 }
-                if (depth > currentDepth && !line === "}") {
+                if (depth > currentDepth && line.trim() !== "}") {
                     continue;
                 }
 
@@ -203,6 +267,7 @@
                     if (element === null)
                     {
                         element = createNewQuickElement(parentKey, file.sort);
+                        parsedProps = false;
                         parseInlineProperties(element, line);
 
                         if (line.length > 1) {
@@ -221,7 +286,9 @@
                         continue;
                     } else {
                         depth++;
-                        ix = ParseElement(lines, element.ElementKey, ix);
+                        const tmpElement = element;
+                        ix = parseElement(file, lines, element.ElementKey, ix);
+                        element = tmpElement;
                         depth--;
 
                         // This should never happen
@@ -237,108 +304,80 @@
                     }
                 }
 
-                switch (true)
-                {
-                    case typeof line === 'string' && line.toLowerCase().startsWith("type="):
-                        if (element !== null)  {
-                            element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
-                        }
-                        break;
+                // if (parsedProps) {
+                //     database.push(element);
+                //     return currentRow - 1;
+                // } else {
+                    switch (true)
+                    {
+                        case typeof line === 'string' && line.toLowerCase().startsWith("type="):
+                            if (element !== null)  {
+                                element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
+                            }
+                            break;
 
-                    case line.toLowerCase().startsWith("key="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("key="):
                             element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("name="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("name="):
                             element.Name = line.replace(/^name=/i, '').safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("parent="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("parent="):
                             element.ParentKey = line.replace(/^parent=/i, '').safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("syntax="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("syntax="):
                             element.Syntax = line.replace(/^syntax=/i, '').safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("logic="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("logic="):
                             fieldVal = getFieldValue(element, lines, "logic", ix);
                             ix = fieldVal.currentRow;
                             element.Logic = fieldVal.fieldValue.safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("repeat="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("repeat="):
                             element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("output="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("output="):
                             fieldVal = getFieldValue(element, lines, "output", ix);
                             ix = fieldVal.currentRow;
                             element.Output = fieldVal.fieldValue.safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("tags="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("tags="):
                             fieldVal = getFieldValue(element, lines, "tags", ix);
                             ix = fieldVal.currentRow;
                             element.Tags = fieldVal.fieldValue.safe();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("template="):
-                        if (element !== null) {
-                            fieldVal = getFieldValue(element, lines, "template", ix);
-                            ix = fieldVal.currentRow;
-                            element.Template = fieldVal.fieldValue.safe();
-                        }
-                        break;
-
-                    case line.toLowerCase().startsWith("active="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("active="):
                             element.Active = line.replace(/^active=/i, '').toLowerCase();
-                        }
-                        break;
+                            break;
 
-                    case line.toLowerCase().startsWith("sort="):
-                        if (element !== null) {
+                        case line.toLowerCase().startsWith("sort="):
                             element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
-                        }
-                        break;
+                            break;
 
-                    case line === "}":
-                        if (element === null) {
-                            return currentRow - 1;
-                        }
-
-                        if (depth === currentDepth) {
-                            if (!element.ElementKey) {
-                                element.ElementKey = getGuid();
+                        case line === "}":
+                            if (depth === currentDepth) {
+                                database.push(element);
+                                element = null;
+                                return currentRow;
                             }
+                            break;
+                    }
 
-                            database.push(element);
-                            element = null;
-                        }
-                        break;
-                }
+                    // parsedProps = true;
+                // }
             }
 
             if (element !== null)
             {
-                success = AddElement(connectionString, element);
+                database.push(element);
             }
 
             return currentRow;
@@ -428,10 +467,6 @@
                             element.Tags = pairArr[1].trim().safe();
                             break;
 
-                        case "template":
-                            element.Template = pairArr[1].trim().safe();
-                            break;
-
                         case "active":
                             element.Active = pairArr[1].toLowerCase().trim().safe();
                             break;
@@ -450,7 +485,7 @@
             }
         }
 
-        function createNewFullElement(
+        function createNewQuickElement(
             parentKey,
             sort
         ) {
@@ -496,7 +531,6 @@
                 Tags: tags,
                 Repeat: repeat,
                 RepeatIndex: "0",
-                Template: "",
                 Active: "true",
                 Sort: sort
             };
@@ -504,7 +538,7 @@
             return entry;
         }
 
-        function fixElementType(elementType) {
+        function fixElementType(elemType) {
             switch (elemType.toLowerCase())
             {
                 case "act":
@@ -576,6 +610,14 @@
 
 
 
+        // Helpers
+        function getGuid()
+        {
+            return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+        }
+
+
+
         // Extensions
         String.prototype.safe = function stringSafe() {
             if (this == null) return '';
@@ -586,12 +628,12 @@
             str = str.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
 
             // Escape HTML special characters
-            str = str
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#39;');
+            // str = str
+            //     .replace(/&/g, '&amp;')
+            //     .replace(/</g, '&lt;')
+            //     .replace(/>/g, '&gt;')
+            //     .replace(/"/g, '&quot;')
+            //     .replace(/'/g, '&#39;');
 
             return str.trim();
         }
