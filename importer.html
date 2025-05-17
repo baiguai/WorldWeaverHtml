@@ -203,7 +203,7 @@
             const pattern = /\{inject, logic=(?<logicPath>.+?)\s*\}/;
             const result = [];
 
-            lines = file.content.split('\n').filter(item => item);
+            lines = file.content.split('\n'); // .filter(item => item);
 
             for (const line of lines) {
                 const match = line.match(pattern);
@@ -240,7 +240,7 @@
 
         function parseElement(file, lines, parentKey, startLine) {
             const currentDepth = depth;
-            element = null;
+            let element = null;
             let initRow = startLine;
             let currentRow = startLine;
             let fieldVal = null;
@@ -251,6 +251,10 @@
                 let line = lines[ix].trim();
 
                 if (!parsableRow(line)) {
+                    continue;
+                }
+                if (line === "")
+                {
                     continue;
                 }
                 if (depth > currentDepth && line.trim() !== "}") {
@@ -270,13 +274,6 @@
                         parsedProps = false;
                         parseInlineProperties(element, line);
 
-                        if (line.length > 1) {
-                            if (element.ParentKey == null)
-                            {
-                                element.ParentKey = parentKey;
-                            }
-                        }
-
                         if (singleLine)
                         {
                             database.push(element);
@@ -286,9 +283,8 @@
                         continue;
                     } else {
                         depth++;
-                        const tmpElement = element;
-                        ix = parseElement(file, lines, element.ElementKey, ix);
-                        element = tmpElement;
+                        const key = element.ElementKey;
+                        ix = parseElement(file, lines, key, ix);
                         depth--;
 
                         // This should never happen
@@ -345,7 +341,7 @@
                         case line.toLowerCase().startsWith("output="):
                             fieldVal = getFieldValue(element, lines, "output", ix);
                             ix = fieldVal.currentRow;
-                            element.Output = fieldVal.fieldValue.safe();
+                            element.Output = fieldVal.fieldValue;
                             break;
 
                         case line.toLowerCase().startsWith("tags="):
@@ -578,12 +574,13 @@
 
             for (let ix = startRow; ix < lines.length; ix++) {
                 let line = lines[ix].trim();
+                let lineFull = lines[ix];
 
                 if (ix === startRow) {
                     line = line.replace(new RegExp(`^${fieldName}=`, 'i'), "");
 
                     if (!line.startsWith("{")) {
-                        fieldValue = line;
+                        fieldValue = lineFull;
                         currentRow = ix + 1;
                         break;
                     } else {
@@ -595,11 +592,14 @@
                 }
 
                 if (line === "}") {
-                    currentRow = ix + 1;
+                    currentRow = ix;
                     break;
                 } else {
-                    if (fieldValue !== "" && autoBreak) {
+                    if (autoBreak) {
                         fieldValue += '\n';
+                    }
+                    else {
+                        fieldValue = fieldValue.trim();
                     }
                     fieldValue += line;
                 }
@@ -625,7 +625,7 @@
             let str = String(this);
 
             // Remove control characters except for \n, \r, \t
-            str = str.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+            // str = str.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
 
             // Escape HTML special characters
             // str = str
