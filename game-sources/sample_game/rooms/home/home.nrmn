@@ -1,0 +1,50 @@
+{room, key=home, name=Testing Home Room
+    {enter_message
+        output={@
+Welcome to the WorldWeaver Testing Game.
+{inject, logic=./instruct.inj }
+        }
+
+        {set, logic=[game]((game_started)), output=true }
+    }
+
+    {look
+        {message
+            output={@
+You are in the testing room.
+{inject, logic=./instruct.inj }
+            }
+        }
+    }
+
+    {navigation, tags=look|enter_message
+        {message
+            output={@
+
+Navigation:
+  Coin
+  Fight
+            }
+        }
+    }
+
+    {inject, logic=/look.inj }
+
+    {input, syntax=(coin)
+        {move, logic=coin_room, tags=[player]
+            output={@
+You have decided to test receiving money.
+
+            }
+        }
+    }
+
+    {input, syntax=(fight)
+        {move, logic=fight_room, tags=[player]
+            output={@
+You have decided to test the fight room.
+
+            }
+        }
+    }
+}

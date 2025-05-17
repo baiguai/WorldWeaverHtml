@@ -1,0 +1,39 @@
+{object, parent=fight_room
+    {enter_message
+        output={@
+
+You see a red button in the center of the room.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a red button in the middle of the room.
+            }
+        }
+    }
+
+    {input, syntax=(click.*button|press.*button|push.*button)
+        output={@
+
+You've pressed the button.
+
+        }
+        {action, output=[room], tags=spawn, logic=npc_rat
+            {message
+                output={@
+
+A rat appears!
+                }
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}
