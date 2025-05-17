@@ -1,0 +1,3 @@
+{input, syntax=(home)
+    {move, logic=home, tags=[player], output=You return to the testing home room. }
+}

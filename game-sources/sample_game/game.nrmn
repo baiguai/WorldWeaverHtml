@@ -1,0 +1,52 @@
+﻿{game
+    name=Sample Game
+    parent=root
+
+    {attrib, output=admin, tags=!_adminpass }
+    {attrib, tags=!_error
+        output={@
+I don't understand what you are trying to do.
+        }
+    }
+    {attrib, output=false, tags=game_started }
+    {attrib, output=look, tags=!_defact }
+
+
+    {message, tags=!_die
+        output={@
+You have died.
+        }
+    }
+
+    {message, tags=!_start
+        output={@
+
+Welcome to
+
+
+▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀
+▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒
+░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░
+░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄
+░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄
+ ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒
+ ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░
+ ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░
+   ░          ░  ░   ░     ░  ░
+ ░
+ █     █░ ▒█████   ██▀███   ██▓    ▓█████▄
+▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌
+▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌
+░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌
+░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓
+░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒
+  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒
+  ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░
+    ░        ░ ░     ░         ░  ░   ░
+                                    ░
+
+
+
+        }
+    }
+}

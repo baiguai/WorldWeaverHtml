@@ -1,0 +1,22 @@
+{room, key=coin_room, name=Coin Room
+    {enter_message
+        output={@
+You are in an empty room.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+You are in a small room.
+
+            }
+        }
+    }
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

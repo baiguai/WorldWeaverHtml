@@ -1,0 +1,22 @@
+{room, key=fight_room, name=Fight Room
+    {enter_message
+        output={@
+You step into the fighting arena!
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+You are in the fight test room.
+
+            }
+        }
+    }
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}
