@@ -1,0 +1,33 @@
+{object, name=Key, syntax=.*key.*, parent=taking_room
+    {enter_message
+        output={@
+You see a key.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a key.
+            }
+        }
+
+        {logic
+            logic={@
+?[self]parent = [room]
+            }
+        }
+    }
+
+
+    {input, syntax=^(take|pick up)\s+(the\s+)?key
+        {move, logic=[player], tags=[self]
+            output={@
+You take the key.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+    }
+}
