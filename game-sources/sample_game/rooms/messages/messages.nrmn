@@ -1,0 +1,30 @@
+{room, name=Messages Room, key=messages_room
+    {attrib, tags=oth_idx, output=1 }
+
+    {enter_message
+        output={@
+Welcome to the message testing room.
+To test the various message repeat options simply enter:
+
+look
+or
+l
+
+repeatedly.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

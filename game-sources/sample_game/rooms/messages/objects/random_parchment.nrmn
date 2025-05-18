@@ -1,0 +1,36 @@
+{object, name=Random Repeating Parchment, parent=messages_room
+    {enter_message
+        output={@
+You see a random message parchment.
+
+        }
+    }
+
+    {look
+        {message, name=Non Repeating Look Group, repeat=random
+            output={@
+This is the message group.
+It's random messages should show below:
+
+            }
+            {message
+                output={@
+Oh! This message is so random.
+
+                }
+            }
+            {message
+                output={@
+Yet another random message!
+
+                }
+            }
+            {message
+                output={@
+Oh man, another random message!
+
+                }
+            }
+        }
+    }
+}

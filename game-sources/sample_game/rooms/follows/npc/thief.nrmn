@@ -1,0 +1,30 @@
+{npc, name=Following Thief, parent=follows_room
+    {enter_message
+        output={@
+The thief follows you.
+
+        }
+
+        {logic, logic=[self]((nav))active = 'true' }
+    }
+
+    {look
+        {message
+            output={@
+You see a thief.
+
+            }
+        }
+    }
+
+    {travel, key=trv_following_thief, logic=[follow|player], tags=nav, active=false
+        {message, tags=!_enter
+            output={@
+The thief follows you.
+
+            }
+
+            {logic, logic=[self]((nav))active = 'true' }
+        }
+    }
+}
