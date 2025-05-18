@@ -23,6 +23,14 @@ You are in the testing room.
 
 
 
+    {input, syntax=(arming)
+        {move, logic=arming_room, tags=[player]
+            output={@
+You have decided to test arming weapons.
+
+            }
+        }
+    }
     {input, syntax=(coin)
         {move, logic=coin_room, tags=[player]
             output={@
@@ -35,6 +43,30 @@ You have decided to test receiving money.
         {move, logic=fight_room, tags=[player]
             output={@
 You have decided to test the fight room.
+
+            }
+        }
+    }
+    {input, syntax=(follows)
+        {move, logic=follows_room, tags=[player]
+            output={@
+You have decided to test the NPC follows the player room.
+
+            }
+        }
+    }
+    {input, syntax=(messages)
+        {move, logic=messages_room, tags=[player]
+            output={@
+You have decided to test messages.
+
+            }
+        }
+    }
+    {input, syntax=(path)
+        {move, logic=path_room, tags=[player]
+            output={@
+You have decided to test the NPC follows a path room.
 
             }
         }

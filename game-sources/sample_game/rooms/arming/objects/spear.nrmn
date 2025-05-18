@@ -1,0 +1,46 @@
+{object, name=Spear, key=spear_01, syntax=(spear).*, tags=!_weapon, parent=arming_room
+    {attrib, logic=[roll:(4)2d8], tags=!damage }
+    {attrib, output=a spear, tags=title }
+
+    {enter_message
+        output={@
+You see a spear.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a spear.
+
+            }
+        }
+
+        {logic, logic=[self]parent = [room] }
+    }
+
+
+    {input, syntax=(take.*spear)
+        {move, logic=[player], tags=[self]
+            output={@
+You take the spear.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+    }
+
+    {input, syntax=(drop.*spear)
+        {move, logic=[room], tags=[self]
+            output={@
+You drop the spear.
+            }
+        }
+        {set, logic=[self]tags, output=-inventory }
+        {logic, logic=[self]parent = [player]elementkey
+            output={@
+You aren't carrying that item.
+            }
+        }
+    }
+}

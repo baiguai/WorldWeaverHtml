@@ -1,0 +1,39 @@
+{room, name=Arming Room, key=arming_room
+    {enter_message
+        output={@
+Welcome to the weapon arming room.
+This is a place where you can pick up a weapon.
+Once you have picked it up you can use:
+
+arm [weapon]
+
+If you drop that armed weapon, you should automatically be armed
+with any other weapon you are carrying.
+If you have no weapons, you will deal a very low, empty hand
+amount of damage in fights.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+You are in a room where you can pick up a weapon.
+Once you have picked it up you can use:
+
+arm [weapon]
+
+If you drop that armed weapon, you should automatically be armed
+with any other weapon you are carrying.
+If you have no weapons, you will deal a very low, empty hand
+amount of damage in fights.
+
+            }
+        }
+    }
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

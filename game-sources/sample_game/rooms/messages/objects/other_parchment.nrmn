@@ -1,0 +1,31 @@
+{object, name=OTHER Repeating Parchment, parent=messages_room
+    {enter_message
+        output={@
+You see an 'other' repeating message parchment.
+
+        }
+    }
+
+    {look
+        {message, name=Non Repeating Look Group, repeat=[room]((oth_idx))
+            {message
+                output={@
+This is 'other' message 01.
+
+                }
+            }
+            {message
+                output={@
+This is 'other' message 02.
+
+                }
+            }
+            {message
+                output={@
+This is 'other' message 03.
+
+                }
+            }
+        }
+    }
+}

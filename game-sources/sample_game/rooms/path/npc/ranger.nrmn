@@ -1,0 +1,27 @@
+{npc, name=Traveling Ranger, parent=path_room
+    {enter_message
+        output={@
+The ranger is there.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a ranger.
+
+            }
+        }
+    }
+
+    {travel, key=trv_path_ranger, logic=[path|home|gold_room|home|path_room], active=false
+        {message, tags=!_enter
+            output={@
+The Ranger enters the room.
+
+            }
+
+            {logic, logic=[self]((nav))active = 'true' }
+        }
+    }
+}
