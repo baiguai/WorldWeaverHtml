@@ -23,7 +23,7 @@ There is a green button and a red button.
     }
 
 
-    {inject, logic=/nav.inj }
+    {inject, logic=/nav_home.inj }
     {inject, logic=/home.inj }
     {inject, logic=/look.inj }
 

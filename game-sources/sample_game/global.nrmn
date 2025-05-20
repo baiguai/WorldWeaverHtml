@@ -1,16 +1,12 @@
 {global, key=global01, parent=root
-    {input, syntax=(title)
-        {act, logic=game_title, tags=key }
-    }
-
     {input, syntax=(stats)
-        {act, logic=[player]((stats)), tags=list, output=Stats: }
+        {act, logic=[player]((stats)), tags=!_list, output=Stats: }
     }
     {input, syntax=(inventory|inv)
-        {act, logic=[player]((inventory)), tags=list, output=Inventory: }
+        {act, logic=[player]((inventory)), tags=!_list, output=Inventory: }
     }
 
     {input, syntax=(arm .*)
-        {set, logic=player_armed, tags=arm }
+        {set, logic=player_armed, tags=!_arm }
     }
 }

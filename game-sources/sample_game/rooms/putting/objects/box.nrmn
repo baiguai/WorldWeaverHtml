@@ -22,7 +22,7 @@ You see a box.
     }
 
     {examine_box
-        {act, logic=look, tags=type|children
+        {act, logic=look, tags=!_type|children
             output={@
 You examine the box.
 
@@ -41,6 +41,6 @@ You put the [target] in the box.
     }
 
     {input, syntax=examine.*box|x.*box
-        {act, logic=examine_box, tags=type|self }
+        {act, logic=examine_box, tags=!_type|self }
     }
 }
