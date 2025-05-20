@@ -27,4 +27,14 @@ You look around...
     {inject, logic=/nav_home.inj }
     {inject, logic=/home.inj }
     {inject, logic=/look.inj }
+
+
+
+    {dev_note, tags=Testing
+        output={@
+This is a Dev Note. It should only show if you are in admin mode.
+If you want to leave it in your messages.nrmn file, but don't want it to show,
+add an active=false attribute.
+        }
+    }
 }
