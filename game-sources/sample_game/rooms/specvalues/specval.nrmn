@@ -23,6 +23,12 @@ ORRR this text should show - because 'showthis' is false.
 <?[room]((showthis)) = 'true'?>
 And this should show only when showthis is true.
 </?>
+
+The following text will only show if the random value that is 'rolled'
+every time you 'look around' is > 2.
+<?rdm_[roll:1d6] > '2'?>
+You succeeded the roll!
+</?>
             }
         }
     }
