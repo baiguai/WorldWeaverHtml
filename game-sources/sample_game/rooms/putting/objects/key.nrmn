@@ -28,6 +28,10 @@ You see a key.
 You take the key.
             }
         }
-        {set, logic=[self]tags, output=+inventory }
+        {set, logic=[self]tags
+            output={@
++inventory
+            }
+        }
     }
 }

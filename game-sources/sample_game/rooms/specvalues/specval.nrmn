@@ -1,0 +1,34 @@
+{room, name=Special Values Room, key=specval_room
+    {attrib, tags=showthis, output=false }
+
+    {enter_message
+        output={@
+In this room you will see a message when you look around.
+It will contain special values (Your player's name for example).
+        }
+    }
+
+    {look
+        {message
+            output={@
+Greetings <<[player]name>>.
+
+In this room:
+<?[room]((showthis)) = 'true'?>
+This text should show - because 'showthis' is true.
+<else>
+ORRR this text should show - because 'showthis' is false.
+</?>
+
+<?[room]((showthis)) = 'true'?>
+And this should show only when showthis is true.
+</?>
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}
