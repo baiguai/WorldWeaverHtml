@@ -1731,6 +1731,21 @@
                 ?(elem_by_key)children < 10
                 ?[self]active = 'true'
 
+                -- inline logic examples --
+                <?[room]((someAttrib)) = 'true'?>
+                ...
+                </?>
+
+                <?[room]((someAttrib)) = 'true'?>
+                ...
+                <else>
+                ...
+                </?>
+
+                <?rdm_[roll:1d6] > '2'?>
+                ...
+                </?>
+
             */
         function processLogicRow(parentElement, childElement, row)
         {
