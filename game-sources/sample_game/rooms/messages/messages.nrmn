@@ -35,6 +35,14 @@ You look around...
 This is a Dev Note. It should only show if you are in admin mode.
 If you want to leave it in your messages.nrmn file, but don't want it to show,
 add an active=false attribute.
+
+Inactive Dev Notes WILL show if you use the _devnotes command however.
+        }
+    }
+
+    {dev_note, tags=Testing, active=false
+        output={@
+This is an inactive Dev Note. It will only show when you are listing your Dev Notes using: _devnotes [Search Criteria]
         }
     }
 }
