@@ -2494,6 +2494,22 @@
             return false;
         }
 
+        function parseEnterMessage(parentElement, childElement)
+        {
+            if (!processLogic(childElement))
+            {
+                return;
+            }
+
+            outputMatch(childElement.Output, true);
+
+            let children = getChildren(childElement, false);
+            for (let child of children)
+            {
+                parseElement(child, enterMessageParsers);
+            }
+        }
+
         function parseGlobal(parsers)
         {
             let globalElems = getElementsByType("global");
@@ -2883,10 +2899,7 @@
                         !gameOutput.EnterMsgDone
                     )
                     {
-                        if (processLogic(childElement))
-                        {
-                            outputMatch(childElement.Output, true);
-                        }
+                        parseEnterMessage(parentElement, childElement);
                         followPlayer();
                     }
                     break;
