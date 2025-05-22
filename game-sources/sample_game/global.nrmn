@@ -3,7 +3,7 @@
         {act, logic=[player]((stats)), tags=!_list, output=Stats: }
     }
     {input, syntax=(inventory|inv)
-        {act, logic=[player]((inventory)), tags=!_list, output=Inventory: }
+        {act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }
     }
 
     {input, syntax=(arm .*)
