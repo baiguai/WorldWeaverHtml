@@ -1,6 +1,5 @@
 ﻿{game
     name=Sample Game
-    parent=root
 
     {attrib, output=admin, tags=!_adminpass }
     {attrib, tags=!_error
@@ -8,7 +7,6 @@
 I don't understand what you are trying to do.
         }
     }
-    {attrib, output=false, tags=game_started }
     {attrib, output=look, tags=!_defact }
 
 

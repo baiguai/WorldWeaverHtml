@@ -1,1 +1,1 @@
-{macro, key=test, output=l|~|arming|~|take spear|~|inv }
+{macro, key=tr01, output=l|~|coin|~|take coin|~|home|~|tests|~|home }
