@@ -332,7 +332,14 @@
         {
             if (gameOutput.MatchMade && gameOutput.Output)
             {
-                output.innerHTML += gameOutput.Output + "<br>";
+                if (testResults.length > 0)
+                {
+                    showTestResults();
+                }
+                else
+                {
+                    output.innerHTML += gameOutput.Output + "<br>";
+                }
                 output.scrollTop = output.scrollHeight;
             }
         }
@@ -1637,11 +1644,6 @@
                 processInput(step);
             }
 
-            if (macroTesting && testResults.length > 0)
-            {
-                showTestResults();
-            }
-
             macroRunning = false;
         }
         function doAdminMacroList(command)
@@ -1690,6 +1692,7 @@
             {
                 output.innerHTML += `Room: ${res.Room}, Test: ${res.Name}, Result: ${res.Result}${brt}${brt}${brt}${brt}`;
             }
+            testResults.length = 0;
         }
 
 
