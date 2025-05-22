@@ -79,6 +79,14 @@ You have decided to test the putting room.
             }
         }
     }
+    {input, syntax=(tests)
+        {move, logic=test_room, tags=[player]
+            output={@
+You have decided to test the tests room.
+
+            }
+        }
+    }
     {input, syntax=(values)
         {move, logic=specval_room, tags=[player]
             output={@

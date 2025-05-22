@@ -1,0 +1,33 @@
+{room, key=test_room, name=Test Room
+    {enter_message
+        output={@
+To use this room, enter admin mode, create a macro.
+Store the macro in this game, then run it in test mode.
+Ensure that your macro passes through this room and the tests below will run
+when they are encountered.
+        }
+
+
+        {logic, name=player_armed_spear, tags=!_test
+            logic={@
+?[player]((!_armed)) = 'spear_01'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+To use this room, enter admin mode, create a macro.
+Store the macro in this game, then run it in test mode.
+Ensure that your macro passes through this room and the tests below will run
+when they are encountered.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

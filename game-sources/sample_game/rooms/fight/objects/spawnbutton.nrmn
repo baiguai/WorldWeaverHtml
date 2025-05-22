@@ -22,7 +22,7 @@ You see a red button in the middle of the room.
 You've pressed the button.
 
         }
-        {action, output=[room], tags=spawn, logic=npc_rat
+        {action, output=[room], tags=!_spawn, logic=npc_rat
             {message
                 output={@
 
