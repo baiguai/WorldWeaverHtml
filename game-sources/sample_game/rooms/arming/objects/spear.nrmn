@@ -1,4 +1,4 @@
-{object, name=Spear, key=spear_01, syntax=(spear).*, tags=!_weapon, parent=arming_room
+{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room
     {attrib, logic=[roll:(4)2d8], tags=!damage }
     {attrib, output=a spear, tags=title }
 
@@ -21,7 +21,7 @@ You see a spear.
     }
 
 
-    {input, syntax=(take.*spear)
+    {input, syntax=[tplt_syntax]((spear_take))
         {move, logic=[player], tags=[self]
             output={@
 You take the spear.
@@ -30,7 +30,7 @@ You take the spear.
         {set, logic=[self]tags, output=+inventory }
     }
 
-    {input, syntax=(drop.*spear)
+    {input, syntax=[tplt_syntax]((spear_drop))
         {move, logic=[room], tags=[self]
             output={@
 You drop the spear.

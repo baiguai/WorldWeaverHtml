@@ -28,8 +28,8 @@ There is a green button and a red button.
     {inject, logic=/look.inj }
 
 
-    {input, syntax=(push|press)\s+(the\s+)?green\s+button
-        {set, logic=(trv_following_thief)active, output=true }
+    {input, syntax=[tplt_syntax]((greenbutton_push))
+        {set, logic=[trv_following_thief]active, output=true }
         {message
             output={@
 You activate the thief's travel.
@@ -37,8 +37,8 @@ You activate the thief's travel.
             }
         }
     }
-    {input, syntax=(push|press)\s+(the\s+)?red\s+button
-        {set, logic=(trv_following_thief)active, output=false }
+    {input, syntax=[tplt_syntax]((redbutton_push))
+        {set, logic=[trv_following_thief]active, output=false }
         {message
             output={@
 You deactivate the thief's travel.
