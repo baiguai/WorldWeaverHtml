@@ -43,7 +43,7 @@ You see a rat.
     }
 
 
-    {input, syntax=(attack.*rat|!.*rat)
+    {input, syntax=[tplt_syntax]((rat_attack))
         {attack, logic=[self] }
     }
 

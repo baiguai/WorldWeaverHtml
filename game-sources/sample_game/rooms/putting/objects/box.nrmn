@@ -31,7 +31,7 @@ You examine the box.
     }
 
 
-    {input, syntax=put.*in.*box
+    {input, syntax=[tplt_syntax]((box_put))
         {move, logic=[self], tags=[syntax]
             output={@
 You put the [target] in the box.
@@ -40,7 +40,7 @@ You put the [target] in the box.
         }
     }
 
-    {input, syntax=examine.*box|x.*box
+    {input, syntax=[tplt_syntax]((box_examine))
         {act, logic=examine_box, tags=!_type|self }
     }
 }

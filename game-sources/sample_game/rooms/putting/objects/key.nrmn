@@ -1,4 +1,4 @@
-{object, name=Key, syntax=.*key.*, parent=taking_room
+{object, name=Key, syntax=[tplt_syntax]((key_id)), parent=taking_room
     {enter_message
         output={@
 You see a key.
@@ -22,7 +22,7 @@ You see a key.
     }
 
 
-    {input, syntax=^(take|pick up)\s+(the\s+)?key
+    {input, syntax=[tplt_syntax]((key_take))
         {move, logic=[player], tags=[self]
             output={@
 You take the key.

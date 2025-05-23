@@ -16,7 +16,7 @@ You see a red button in the middle of the room.
         }
     }
 
-    {input, syntax=(click.*button|press.*button|push.*button)
+    {input, syntax=[tplt_syntax]((redbutton_push))
         output={@
 
 You've pressed the button.

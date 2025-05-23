@@ -19,7 +19,7 @@ You see a gold coin.
     }
 
 
-    {input, syntax=^(take|pick up)\s+(the\s+)?coin
+    {input, syntax=[tplt_syntax]((coin_take))
         {move, logic=!_limbo, tags=[self]
             output={@
 You take the gold coin.
