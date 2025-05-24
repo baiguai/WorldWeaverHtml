@@ -208,11 +208,10 @@
             { "Description": "Look", "Regex": "(look(?: around)?|l)", "Test": "look" },
             { "Description": "Take X ITEM", "Regex": "^(take|pick up)\\s+(the\\s+)?ITEM", "Test": "take item" },
             { "Description": "Drop ITEM", "Regex": "^(drop|put down)\\s+(the\\s+)?ITEM", "Test": "drop item" },
-            { "Description": "Push Green Button", "Regex": "(push|press)\\s+(the\\s+)?green\\s+button", "Test": "push green button" },
             { "Description": "Put In ITEM", "Regex": "put.*in.*ITEM", "Test": "put the key in the item" },
             { "Description": "Attack FOE", "Regex": "(attack.*FOE|!.*FOE)", "Test": "!foe" },
-
-            { "Description": "Checker", "Regex": "\\bfollows\\b", "Test": "follows" }
+            { "Description": "Push Button", "Regex": "^(push|press)( the)? button$", "Test": "press the button" },
+            { "Description": "Push X Button", "Regex": "^(push|press)( the)?( X)? button$", "Test": "press the X button" }
         ];
 
 
