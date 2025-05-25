@@ -1,9 +1,9 @@
 {npc, key=npc_rat, tags=enemy
-    {attrib, logic=[rand:3|4], tags=stats_dice }
-    {attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=life_roll }
-    {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }
-    {attrib, name=Life, output=[rand:<<[self]((stats_dice))>>|4], tags=stats|life }
-    {attrib, output=[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|!_armor }
+    {attrib, logic=spn_[rand:3|4], tags=stats_dice }
+    {attrib, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=life_roll }
+    {attrib, output=spn_[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }
+    {attrib, name=Life, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=stats|life }
+    {attrib, output=spn_[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|!_armor }
 
     {attrib, output=rat_claws_01, tags=!_armed|name }
     {attrib, tags=!_hitmsg
@@ -25,6 +25,13 @@ You have killed the rat.
         }
     }
 
+    {attrib, tags=!_hitplayermsg
+        output={@
+The rat has attacked you!
+
+        }
+    }
+
     {attrib, tags=!_missplayermsg
         output={@
 The rat has attacked you, but missed.
@@ -42,8 +49,7 @@ You see a rat.
         }
     }
 
-
-    {input, syntax=[tplt_syntax]((rat_attack))
+    {input, syntax=(attack.*rat|!.*rat)
         {attack, logic=[self] }
     }
 
