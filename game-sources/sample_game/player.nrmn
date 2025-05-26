@@ -10,7 +10,7 @@
     {attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }
 
     {attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|life }
-    {attrib, output=[player]((life)), tags=maxlife }
+    {attrib, output=init_[player]((life)), tags=maxlife }
     {attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|!_armor }
     {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
