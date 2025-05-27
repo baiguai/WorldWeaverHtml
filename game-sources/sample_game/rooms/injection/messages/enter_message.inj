@@ -1,0 +1,9 @@
+{enter_message
+    output={@
+You are in a room that demonstrates both full path injection,
+as well as relative path injection.
+
+To see how this works - look at the 'injection' folder in the 'rooms'
+folder of the sample game.
+    }
+}

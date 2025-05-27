@@ -1,0 +1,9 @@
+{room, key=inject_room, name=Injection Room
+    {inject, logic=./messages/enter_message.inj }
+
+    {inject, logic=./messages/look_message.inj }
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

@@ -47,6 +47,22 @@ You have decided to test the fight room.
             }
         }
     }
+    {input, syntax=(healing)
+        {move, logic=healing_room, tags=[player]
+            output={@
+You have decided to test healing.
+
+            }
+        }
+    }
+    {input, syntax=(injection)
+        {move, logic=inject_room, tags=[player]
+            output={@
+You have decided to test injection.
+
+            }
+        }
+    }
     {input, syntax=(follows)
         {move, logic=follows_room, tags=[player]
             output={@

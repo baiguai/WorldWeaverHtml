@@ -1,0 +1,35 @@
+{room, key=healing_room, name=Healing Room
+    {enter_message
+        output={@
+You are in the healing test room.
+You see a red button. If you press it, you will lose 2 life points.
+If you look around enough times you will see your life increase.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+You are in the healing test room.
+You see a red button. If you press it, you will lose 2 life points.
+If you look around enough times you will see your life increase.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((redbutton_push))
+        {set, logic=[player]((life)), output=-=2 }
+        {message
+            output={@
+You just lost 2 life points.
+
+            }
+        }
+    }
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}
