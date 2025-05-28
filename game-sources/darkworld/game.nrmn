@@ -1,0 +1,44 @@
+﻿{game
+    name=DarkWorld
+
+    {attrib, output=admin, tags=!_adminpass }
+    {attrib, tags=!_error
+        output={@
+I don't understand what you are trying to do.
+        }
+    }
+    {attrib, output=look, tags=!_defact }
+    {attrib, output=4, tags=!_easingrounds }
+
+
+    {message, tags=!_die
+        output={@
+You have died.
+        }
+    }
+
+    {message, tags=!_start
+        output={@
+▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀ █     █░ ▒█████   ██▀███   ██▓    ▓█████▄ 
+▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒ ▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌
+░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░ ▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌
+░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄ ░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌
+░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓ 
+ ▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒ 
+ ░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒ 
+ ░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░   ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░ 
+   ░          ░  ░   ░     ░  ░       ░        ░ ░     ░         ░  ░   ░    
+ ░                                                                    ░      
+                                                                                           
+
+You have received a mysterious letter requesting you to meet up at a tavern
+in the village of Kalisto - called The Old Oak Inn. If you are there you will
+receive 200 gold pieces.
+
+This would be enough to resolve all of your life's troubles. So you decide to go...
+
+
+
+        }
+    }
+}
