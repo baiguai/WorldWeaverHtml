@@ -1,0 +1,31 @@
+{global, key=global01, parent=root
+    {input, syntax=(stats)
+        {act, logic=[player]((stats)), tags=!_list, output=Stats: }
+    }
+    {input, syntax=(inventory|inv)
+        {act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }
+    }
+
+    {input, syntax=(arm .*)
+        {set, logic=player_armed, tags=!_arm }
+    }
+
+    // Player Healing Logic
+    // -------------------------------------------------------------------------
+    {act
+        {set, logic=[player]((cur_heal_round)), output=++ }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[player]((cur_heal_round)) >= [player]((heal_rounds))
+                and
+                ?[player]((life)) < [player]((maxlife))
+            }
+        }
+        {set, logic=[player]((life)), output=++ }
+        {set, logic=[player]((cur_heal_round)), output=0 }
+    }
+    // -------------------------------------------------------------------------
+}

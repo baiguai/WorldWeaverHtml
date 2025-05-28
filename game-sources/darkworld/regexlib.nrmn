@@ -1,0 +1,29 @@
+{object, key=tplt_syntax
+    Look
+        {attrib, tags=look, output=^l(ook( around)?)?$ }
+        {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }
+        {attrib, tags=x_parchment, output=^(examine|x)(?: the)? parchment$ }
+
+    Identifying
+        {attrib, tags=key_id, output=.*key.* }
+        {attrib, tags=spear_id, output=(spear).* }
+
+    Taking
+        {attrib, tags=coin_take, output=^(take|pick up)( the)?( gold)? coin }
+        {attrib, tags=key_take, output=^(take|pick up)( the)? key$ }
+        {attrib, tags=spear_take, output=^(take|pick up)( the)? spear$ }
+
+    Dropping
+        {attrib, tags=spear_drop, output=(drop.*spear) }
+
+    Putting
+        {attrib, tags=box_put, output=put.*in.*box }
+
+    Interacting
+        {attrib, tags=box_examine, output=examine.*box|x.*box }
+        {attrib, tags=greenbutton_push, output=^(push|press)( the)?( green)? button$ }
+        {attrib, tags=redbutton_push, output=^(push|press)( the)?( red)? button$ }
+
+    Fighting
+        {attrib, tags=rat_attack, output=(attack.*rat|!.*rat) }
+}
