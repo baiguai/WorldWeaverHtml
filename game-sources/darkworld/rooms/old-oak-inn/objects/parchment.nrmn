@@ -1,0 +1,30 @@
+{object, name=parchment, parent=old_oak_inn
+    {x_tables
+        {message
+            output={@
+
+You see a partially rolled up piece of parchment sitting on one of the tables.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = 'old_oak_inn'
+            }
+        }
+    }
+
+    {x_parchment
+        {message
+            output={@
+You examine the parchment...
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_parchment))
+        {act, logic=x_parchment, tags=!_type|room }
+    }
+}
