@@ -1,5 +1,22 @@
 {object, name=parchment, parent=old_oak_inn
     {attrib, output='false', tags=parchment_found }
+    {attrib, output='false', tags=parchment_moved }
+
+    {look
+        {message
+            output={@
+You see a rolled up parchement.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [room]
+                and
+                ?[self]((parchment_moved)) = 'true'
+            }
+        }
+    }
 
     {x_tables
         {message
@@ -14,6 +31,8 @@ You see a partially rolled up piece of parchment sitting on one of the tables.
         {logic
             logic={@
                 ?[self]parent = 'old_oak_inn'
+                and
+                ?[self]((parchment_moved)) = 'false'
             }
         }
     }
@@ -48,6 +67,7 @@ You pick up the parchment.
             }
         }
         {set, logic=[self]tags, output=+inventory }
+        {set, logic=[self]((parchment_moved)), output=true }
 
         {logic
             logic={@
@@ -55,6 +75,25 @@ You pick up the parchment.
             }
             output={@
 I'm not sure what you're trying to take.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((parchment_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+You drop the parchment.
+            }
+        }
+
+        {set, logic=[self]tags, output=-inventory }
+
+        {logic
+            logic={@
+                ?[self]parent = [player]
+            }
+            output={@
+You aren't carrying a parchment.
             }
         }
     }

@@ -15,6 +15,7 @@
         {attrib, tags=spear_take, output=^(take|pick up)( the)? spear$ }
 
     Dropping
+        {attrib, tags=parchment_drop, output=(drop.*parchment) }
         {attrib, tags=spear_drop, output=(drop.*spear) }
 
     Putting
