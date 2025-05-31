@@ -11,6 +11,7 @@
     Taking
         {attrib, tags=coin_take, output=^(take|pick up)( the)?( gold)? coin }
         {attrib, tags=key_take, output=^(take|pick up)( the)? key$ }
+        {attrib, tags=parchment_take, output=^(take|pick up)( the)? parchment$ }
         {attrib, tags=spear_take, output=^(take|pick up)( the)? spear$ }
 
     Dropping

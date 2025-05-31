@@ -29,6 +29,8 @@ every time you 'look around' is > 2.
 <?rdm_[roll:1d6] > '2'?>
 You succeeded the roll!
 </?>
+
+And here is a random value: <<rdm_[roll:4d8]>>.
             }
         }
     }
