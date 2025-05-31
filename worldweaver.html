@@ -2321,6 +2321,15 @@
 
             if (value1 === "")
             {
+                value1 = getRelElementId(childElement, comparisons[0]);
+            }
+            if (value2 === "")
+            {
+                value2 = getRelElementId(childElement, comparisons[1]);
+            }
+
+            if (value1 === "")
+            {
                 target1 = getTargets(childElement, comparisons[0])?.[0] ?? null;
                 if (target1 === null)
                 {
@@ -2436,6 +2445,20 @@
                 default:
                     return "";
             }
+        }
+        function getRelElementId(currentElement, row)
+        {
+            switch(row)
+            {
+                case "[player]":
+                    return getPlayer().ElementKey;
+                case "[room]":
+                    return getCurrentRoom().ElementKey;
+                case "[self]":
+                    return getSelf(currentElement).ElementKey;
+            }
+
+            return "";
         }
         function getTargets(childElement, row)
         {
