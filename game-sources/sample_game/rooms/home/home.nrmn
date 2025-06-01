@@ -39,6 +39,14 @@ You have decided to test receiving money.
             }
         }
     }
+    {input, syntax=(discover)
+        {move, logic=discover_room, tags=[player]
+            output={@
+You have decided to test discovering objects.
+
+            }
+        }
+    }
     {input, syntax=(fight)
         {move, logic=fight_room, tags=[player]
             output={@

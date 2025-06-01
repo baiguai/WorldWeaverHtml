@@ -1,0 +1,37 @@
+{room, key=discover_room, name=Discover Room
+    {enter_message
+        output={@
+You are in the discover test room.
+You see round tables arrayed throughout.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around. You are in the discovery testing room.
+
+You see round tables arrayed throughout the large open floor.
+            }
+        }
+    }
+
+    {x_tables
+        {message
+            output={@
+You examine the tables.
+Some of them have crystal glasses sitting on them, still full of alcohol.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((x_tables))
+        {act, logic=x_tables, tags=!_type|room }
+    }
+}
+
