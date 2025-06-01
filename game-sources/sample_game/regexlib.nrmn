@@ -1,6 +1,8 @@
 {object, key=tplt_syntax
     Look
         {attrib, tags=look, output=^l(ook( around)?)?$ }
+        {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }
+        {attrib, tags=x_parchment, output=^(examine|x)(?: the)? parchment$ }
 
     Identifying
         {attrib, tags=key_id, output=.*key.* }
@@ -9,9 +11,11 @@
     Taking
         {attrib, tags=coin_take, output=^(take|pick up)( the)?( gold)? coin }
         {attrib, tags=key_take, output=^(take|pick up)( the)? key$ }
+        {attrib, tags=parchment_take, output=^(take|pick up)( the)? parchment$ }
         {attrib, tags=spear_take, output=^(take|pick up)( the)? spear$ }
 
     Dropping
+        {attrib, tags=parchment_drop, output=(drop.*parchment) }
         {attrib, tags=spear_drop, output=(drop.*spear) }
 
     Putting
