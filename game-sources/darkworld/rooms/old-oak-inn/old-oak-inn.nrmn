@@ -1,8 +1,23 @@
 {room, key=old_oak_inn, name=The Old Oak Inn
+    {attrib, tags=initial_msg, output='false' }
+
     {enter_message
         output={@
-Welcome to the Old Oak Inn.
+<?[self]((initial_msg)) = 'false'?>
+It is strangely empty.
+
+Completely abandoned. There isn't even a barkeep present.
+It is just you in an empty tavern.
+
+You see round tables arrayed throughout the large open floor.
+<else>
+The tavern is completely empty.
+
+You see round tables arrayed throughout the large open floor.
+</?>
         }
+
+        {set, logic=[self]((initial_msg)), output='true' }
     }
 
     {look
@@ -28,9 +43,13 @@ Some of them have crystal glasses sitting on them, still full of alcohol.
         }
     }
 
-    {navigation, tags=look|enter_message
+
+
+    {navigation
         {message
             output={@
+
+
 
 Navigation:
 Set into the north wall you see a door.
@@ -44,5 +63,14 @@ In the south wall is the door leading back out into the street.
 
     {input, syntax=[tplt_syntax]((x_tables))
         {act, logic=x_tables, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north_door))
+        {move, logic=oak_inn_backroom, tags=[player]
+            output={@
+You step through the door in the north wall.
+
+            }
+        }
     }
 }

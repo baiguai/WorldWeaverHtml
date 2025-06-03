@@ -1,0 +1,44 @@
+{room, key=oak_inn_cellar, name=The Old Oak Inn
+    {enter_message
+        output={@
+You are in a dark damp cellar.
+It appears to be empty but it is so large the room continues on into darkness.
+South of where you are standing you see a flickering candle.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the empty cellar.
+South of where you are standing you see a flickering candle.
+            }
+        }
+    }
+
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+Navigation:
+In the west wall you see a narrow staircase leading up.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_west_up))
+        {move, logic=oak_inn_backroom, tags=[player]
+            output={@
+You climb the stairs in the west end of the cellar.
+            }
+        }
+    }
+}

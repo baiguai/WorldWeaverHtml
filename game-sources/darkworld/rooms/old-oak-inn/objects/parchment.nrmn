@@ -40,7 +40,9 @@ You see a partially rolled up piece of parchment sitting on one of the tables.
     {x_parchment
         {message
             output={@
-You examine the parchment...
+You examine the parchment.
+The text that is written on it appears to be ancient elven.
+You are unable to read it.
             }
         }
 

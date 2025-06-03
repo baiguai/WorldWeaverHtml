@@ -1,4 +1,4 @@
-{navigation, tags=look|enter_message
+{navigation
     {message
         output={@
 
