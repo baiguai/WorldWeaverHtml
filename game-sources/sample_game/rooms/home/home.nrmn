@@ -4,8 +4,6 @@
 Welcome to the WorldWeaver Testing Game.
 {inject, logic=./instruct.inj }
         }
-
-        {set, logic=[game]((game_started)), output=true }
     }
 
     {look

@@ -1,8 +1,10 @@
 {object, key=tplt_syntax
     Look
         {attrib, tags=look, output=^l(ook( around)?)?$ }
-        {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }
+        {attrib, tags=x_casks, output=^(examine|x)(?: the)? casks$ }
         {attrib, tags=x_parchment, output=^(examine|x)(?: the)? parchment$ }
+        {attrib, tags=x_shelves, output=^(examine|x)(?: the)? shelves$ }
+        {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }
 
     Identifying
         {attrib, tags=key_id, output=.*key.* }
@@ -28,4 +30,11 @@
 
     Fighting
         {attrib, tags=rat_attack, output=(attack.*rat|!.*rat) }
+
+    Moving
+        {attrib, tags=go_north_door, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
+        {attrib, tags=go_south_door, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
+        {attrib, tags=go_east_door, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
+        {attrib, tags=go_west_door, output=^(?=.*\b(west|w)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
+        {attrib, tags=go_west_up, output=^(?=.*\b(west|w|up)\b)(?=.*\b(go|stairs|up)?\b).*$ }
 }
