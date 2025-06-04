@@ -55,7 +55,7 @@ You see a rat.
 
 
     {object, key=rat_claws_01, tags=!_weapon
-        {attrib, logic=[rand:4|9], tags=!_damage }
+        {attrib, logic=rdm_[rand:4|9], tags=!_damage }
         {attrib, output=rat claws, tags=title }
     }
 }
