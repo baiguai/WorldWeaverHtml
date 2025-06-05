@@ -7,7 +7,7 @@
     }
 
     {input, syntax=(arm .*)
-        {set, logic=player_armed, tags=!_arm }
+        {set, tags=!_arm }
     }
 
     // Player Healing Logic
