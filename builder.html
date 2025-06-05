@@ -333,7 +333,14 @@
         {
             let elem = database.filter(item => item.ElementKey === currentParent)[0];
 
-            elem.ParentKey = newParent;
+            if (newParent === "none" || newParent === "root")
+            {
+                elem.ParentKey = null;
+            }
+            else
+            {
+                elem.ParentKey = newParent;
+            }
 
             showDetails(elem);
 
