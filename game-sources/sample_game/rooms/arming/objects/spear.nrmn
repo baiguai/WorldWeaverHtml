@@ -37,7 +37,7 @@ You drop the spear.
             }
         }
         {set, logic=[self]tags, output=-inventory }
-        {logic, logic=[self]parent = [player]elementkey
+        {logic, logic=[self]parent = [player]
             output={@
 You aren't carrying that item.
             }
