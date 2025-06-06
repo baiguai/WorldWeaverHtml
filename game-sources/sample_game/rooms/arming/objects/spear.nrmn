@@ -1,6 +1,6 @@
 {object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room
-    {attrib, logic=[roll:(4)2d8], tags=!damage }
-    {attrib, output=a spear, tags=title }
+    {attrib, logic=[roll:(4)2d8], tags=!_damage }
+    {attrib, output=a spear, tags=!_title }
 
     {enter_message
         output={@

@@ -215,6 +215,7 @@
                 const spawnTag = "!_spawn";
                 const testTag = "!_test";
                 const typeTag = "!_type";
+                const titleTag = "!_title";
                 const typeEasing = "!_easingrounds";
 
         // Classes
@@ -2906,7 +2907,7 @@
                 }
 
                 setPlayerArmed(target.ElementKey);
-                const title = getChildByTag(target, "title");
+                const title = getChildByTag(target, titleTag);
 
                 gameOutput.Output = `You are now armed with ${title.Output}.`;
                 gameOutput.MatchMade = true;
