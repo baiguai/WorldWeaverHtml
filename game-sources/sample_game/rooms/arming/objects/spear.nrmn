@@ -17,7 +17,7 @@ You see a spear.
             }
         }
 
-        {logic, logic=[self]parent = [room] }
+        {logic, logic=?[self]parent = [room] }
     }
 
 
@@ -37,7 +37,7 @@ You drop the spear.
             }
         }
         {set, logic=[self]tags, output=-inventory }
-        {logic, logic=[self]parent = [player]
+        {logic, logic=?[self]parent = [player]
             output={@
 You aren't carrying that item.
             }

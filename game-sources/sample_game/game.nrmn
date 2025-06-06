@@ -2,6 +2,7 @@
     name=Sample Game
 
     {attrib, output=admin, tags=!_adminpass }
+    {attrib, output=sample game, tags=!_filename }
     {attrib, tags=!_error
         output={@
 I don't understand what you are trying to do.
