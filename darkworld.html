@@ -186,8 +186,8 @@
                 const startTag = "!_start";
                 const armTag = "!_arm";
                 const armedTag = "!_armed";
-                const armorTag = "!_armor";
                 const lifeTag = "!_life";
+                const armorTag = "!_armor";
                 const damageTag = "!_damage";
                 const weaponTag = "!_weapon";
                 const hitMsgTag = "!_hitmsg";
@@ -207,14 +207,14 @@
                 const typeEasing = "!_easingrounds";
 
         // Classes
-            let gameOutput = {
+            const gameOutput = {
                 "MatchMade": "false",
                 "InputMatchMade": "false",
                 "ContinueParsing": "true",
                 "EnterMsgDone": "false",
                 "Output": ""
             };
-            let userInput = {
+            const userInput = {
                 "Input": ""
             };
 
@@ -257,8 +257,8 @@
         }
 
         function saveFile() {
-            let elemLimit = 20; // Number of elements per line
-            let htmlDoc = document.documentElement.cloneNode(true);
+            const elemLimit = 20; // Number of elements per line
+            const htmlDoc = document.documentElement.cloneNode(true);
             htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
             let fileName = "worldweaver";
 
@@ -269,10 +269,10 @@
             }
 
             // Make sure the latest database is stored
-            let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+            const latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
 
             // Build compact JSON with newlines every elemLimit items
-            let lines = [];
+            const lines = [];
             for (let i = 0; i < latestDatabase.length; i += elemLimit) {
                 let chunk = latestDatabase.slice(i, i + elemLimit);
                 lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
@@ -293,7 +293,7 @@
         // Events
         input.addEventListener("keypress", (event) => {
             if (event.key === "Enter") {
-                let command = input.value.trim();
+                const command = input.value.trim();
                 if (command) {
                     processInput(command);
                     showOutput();
@@ -358,7 +358,7 @@
 
         function showGameStartScreen()
         {
-            let playerElem = getPlayer();
+            const playerElem = getPlayer();
 
             if (playerElem.Name === "")
             {
@@ -368,14 +368,14 @@
 
             if (!gameStarted)
             {
-                let easing = getChildByTag(getGame(), typeEasing);
+                const easing = getChildByTag(getGame(), typeEasing);
                 if (easing !== null && easing.Output && easing.Output !== "")
                 {
                     fightRoundsMax = Number(easing.Output);
                 }
 
 
-                let startMsg = database.find(item => item.ParentKey === getGameKey() && tagsContain(item.Tags, startTag)) ?? null;
+                const startMsg = database.find(item => item.ParentKey === getGameKey() && tagsContain(item.Tags, startTag)) ?? null;
                 if (startMsg !== null)
                 {
                     gameOutput.Output = startMsg.Output;
@@ -413,9 +413,9 @@
         function fixFolders() {
             const folders = database.filter(item => item.ElementType === "folder");
 
-            for (let folder of folders)
+            for (const folder of folders)
             {
-                let children = getChildren(folder, true);
+                const children = getChildren(folder, true);
                 for (let child of children)
                 {
                     let parent = getElementByKey(child.ParentKey);
@@ -439,10 +439,10 @@
         {
             const injElems = database.filter(item => item.ElementType === "injection");
 
-            for (let inj of injElems)
+            for (const inj of injElems)
             {
                 const parentElem = getParent(inj);
-                let injElem = getElementByKey(inj.Logic);
+                const injElem = getElementByKey(inj.Logic);
                 if (injElem === null)
                 {
                     continue;
@@ -452,7 +452,7 @@
             }
 
             // Remove injection elements
-            for (let inj of injElems)
+            for (const inj of injElems)
             {
                 deleteSingleElement(inj.ElementKey);
             }
@@ -460,7 +460,7 @@
 
         function doOnStartRandomFixes()
         {
-            let randElems = database
+            const randElems = database
                 .filter(item =>
                     typeof item.Output === 'string' &&
                     (item.Output.startsWith("[rand:") || item.Output.startsWith("[roll:"))
@@ -478,7 +478,7 @@
                     return getSortRank(a) - getSortRank(b);
                 });
 
-            for (let rnd of randElems)
+            for (const rnd of randElems)
             {
                 fixElementRandom(rnd);
             }
@@ -498,11 +498,11 @@
         }
         function updateInitOutputs()
         {
-            let inits = database.filter(item => typeof item.Output === "string" && item.Output.startsWith("init_"));
+            const inits = database.filter(item => typeof item.Output === "string" && item.Output.startsWith("init_"));
 
-            for (let init of inits)
+            for (const init of inits)
             {
-                let tgts = getTargets(init, init.Output.replace("init_", ""));
+                const tgts = getTargets(init, init.Output.replace("init_", ""));
                 if (tgts.length === 1)
                 {
                     init.Output = tgts[0].Output;
@@ -523,7 +523,7 @@
         }
 
         function getRandValue(rndElement, rndString) {
-            let range = rndString.replace("[rand:", "").replace(/](?!.*])/ , "").split("|");
+            const range = rndString.replace("[rand:", "").replace(/](?!.*])/ , "").split("|");
             let rndVal = 0;
             let selElems = null;
             if (range.length === 2)
@@ -580,13 +580,13 @@
 
             if (roll.includes("+") || roll.includes("-"))
             {
-                let delimiter = "+";
+                const delimiter = "+";
                 if (roll.includes("-"))
                 {
                     delimiter = "-";
                 }
                 modValue = processModifier(rndElement, delimiter, roll);
-                let arr = roll.split(delimiter);
+                const arr = roll.split(delimiter);
                 if (arr.Length === 2)
                 {
                     roll = arr[0].trim();
@@ -616,7 +616,7 @@
             {
                 if (diceSpec.length == 2)
                 {
-                    let numOfDice = Number(diceSpec[0].trim());
+                    const numOfDice = Number(diceSpec[0].trim());
                     if (diceSpec[1].includes("+") || diceSpec[1].includes("-"))
                     {
                         let sidesArr = diceSpec[1].split("+");
@@ -630,7 +630,7 @@
                             diceSpec[1] = sidesArr[0];
                         }
                     }
-                    let sides = Number(diceSpec[1].trim());
+                    const sides = Number(diceSpec[1].trim());
                     let total = 0;
                     let rollNum = numOfDice;
                     if (totalNumOfDice > numOfDice)
@@ -640,14 +640,14 @@
 
                     for (let rolls = 0; rolls <= rollNum - 1; rolls++)
                     {
-                        let rollVal = getRandomByRange(1, sides + 1);
+                        const rollVal = getRandomByRange(1, sides + 1);
                         rollVals.push(rollVal);
                     }
 
                     if (totalNumOfDice > numOfDice)
                     {
                         const sorted = rollVals.sort((a, b) => b - a);
-                        let taken = sorted.slice(0, numOfDice);
+                        const taken = sorted.slice(0, numOfDice);
                         total = taken.reduce((acc, curr) => acc + curr, 0);
                     }
                     else {
@@ -680,9 +680,9 @@
             }
 
             let msg = document.getElementById("fight-message");
-            let player = getPlayer();
-            let enemy = currentEnemy;
-            let lifeStat = getChildrenByTag(player, lifeTag)?.[0]?.Output || "0";
+            const player = getPlayer();
+            const enemy = currentEnemy;
+            const lifeStat = getChildrenByTag(player, lifeTag)?.[0]?.Output || "0";
             let enemyLifeStat = getChildrenByTag(enemy, lifeTag)?.[0]?.Output || "-1";
             document.getElementById("player-life").textContent = lifeStat;
             if (enemyLifeStat < 0)
@@ -741,6 +741,10 @@
             const damage = getDamageValue(playerWeapon);
             currentLife -= damage;
 
+            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+                currentLife = 0;
+            }
+
             if (currentLife <= 0) {
                 enemyLifeEl.textContent = "0";
                 alert(killMsg);
@@ -787,6 +791,10 @@
             currentLife -= damage;
             let lifeStat = getChildByTag(player, lifeTag);
             lifeStat.Output = currentLife;
+
+            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+                currentLife = 0;
+            }
 
             if (currentLife <= 0) {
                 playerLifeEl.textContent = "0";
@@ -848,9 +856,9 @@
             function getChildrenBySyntax(parentElement, syntax)
             {
                 const children = getChildren(parentElement, false);
-                for (let child of children)
+                for (const child of children)
                 {
-                    let sntxTgt = getTargets(child, child.Syntax);
+                    const sntxTgt = getTargets(child, child.Syntax);
                     let sntx = child.Syntax;
                     if (sntxTgt.length > 0 && sntxTgt[0])
                     {
@@ -880,7 +888,7 @@
             }
             function getSelf(currentElement)
             {
-                let parentElem = getElementByKey(currentElement.ParentKey);
+                const parentElem = getElementByKey(currentElement.ParentKey);
 
                 if (currentElement.ParentKey === null)
                 {
@@ -907,7 +915,7 @@
             }
             function getChildrenByTag(parentElement, tag)
             {
-                let children = getChildren(parentElement, true);
+                const children = getChildren(parentElement, true);
                 let foundChildren = [];
                 for (const child of children)
                 {
@@ -966,7 +974,7 @@
             }
             function getCurrentRoom()
             {
-                let playerElem = getPlayer();
+                const playerElem = getPlayer();
                 let roomElem = getElementByKey(playerElem.ParentKey);
                 return roomElem;
             }
@@ -985,7 +993,7 @@
             }
             function setDefaultWeapon(droppingElement)
             {
-                let weapons = database.find(item => item.ParentKey === getPlayer().ElementKey &&
+                const weapons = database.find(item => item.ParentKey === getPlayer().ElementKey &&
                                             tagsContain(item.Tags, weaponTag) &&
                                             item.ElementKey !== droppingElement.ElementKey) ?? null;
                 if (weapons === null)
@@ -1003,7 +1011,7 @@
 
             function getArmedWeapon(parentElement)
             {
-                let armedAttrib = getChildrenByTag(parentElement, armedTag)?.[0] ?? null;
+                const armedAttrib = getChildrenByTag(parentElement, armedTag)?.[0] ?? null;
                 if (armedAttrib === null)
                 {
                     return;
@@ -1023,7 +1031,7 @@
 
             function getArmorRating(parentElement)
             {
-                let armorAttrib = getChildrenByTag(parentElement, armorTag);
+                const armorAttrib = getChildrenByTag(parentElement, armorTag);
                 if (armorAttrib === null ||
                     armorAttrib.length !== 1)
                 {
@@ -1039,12 +1047,12 @@
                 {
                     return 1;
                 }
-                let damageAttrib = getChildrenByTag(armedWeapon, damageTag)?.[0] ?? null;
+                const damageAttrib = getChildrenByTag(armedWeapon, damageTag)?.[0] ?? null;
                 if (damageAttrib === null)
                 {
                     return 1;
                 }
-                let rndString = damageAttrib.Logic;
+                const rndString = damageAttrib.Logic;
                 return doRandomRoll(armedWeapon, rndString);
             }
 
@@ -1102,7 +1110,7 @@
             }
             function tagsContain(tags, tagString)
             {
-                let taglist = tags.split("|");
+                const taglist = tags.split("|");
                 return taglist.includes(tagString);
             }
             function addTag(currentElement, tagString)
@@ -1130,7 +1138,7 @@
             }
             function processModifier(currentElement, modifier, roll)
             {
-                let arr = roll.split(modifier);
+                const arr = roll.split(modifier);
                 var modifierVal = 0;
 
                 if (arr.length != 2)
@@ -1168,7 +1176,7 @@
             function deleteElement(elementKey)
             {
                 // Find all children of the element
-                let children = database.filter(el => el.ParentKey === elementKey);
+                const children = database.filter(el => el.ParentKey === elementKey);
 
                 // Recursively delete each child first
                 for (let child of children) {
@@ -1176,14 +1184,14 @@
                 }
 
                 // Now remove the element itself
-                let index = database.findIndex(el => el.ElementKey === elementKey);
+                const index = database.findIndex(el => el.ElementKey === elementKey);
                 if (index !== -1) {
                     database.splice(index, 1);
                 }
             }
             function deleteSingleElement(elementKey)
             {
-                let index = database.findIndex(el => el.ElementKey === elementKey);
+                const index = database.findIndex(el => el.ElementKey === elementKey);
                 if (index !== -1) {
                     database.splice(index, 1);
                 }
@@ -1194,7 +1202,7 @@
                 {
                     return false;
                 }
-                let pattern = new RegExp(regexString, 'i');
+                const pattern = new RegExp(regexString, 'i');
                 if (pattern.test(inputString))
                 {
                     return true;
@@ -1278,7 +1286,7 @@
                     let replaceBlock = output.substring(startPos, endPos);
                     let lgcBlock = replaceBlock.substring(2, replaceBlock.length - 5);
                     let newValue = "";
-                    let arr = splitWithLimit(lgcBlock, "?>", 2);
+                    const arr = splitWithLimit(lgcBlock, "?>", 2);
                     if (arr.length != 2)
                     {
                         output = output.replace(
@@ -1286,7 +1294,7 @@
                             "!! SOMETHING WENT WRONG IN THE COMPARISON LOGIC !!"
                         );
                     }
-                    let compareBlock = arr[0].trim();
+                    const compareBlock = arr[0].trim();
                     let contentBlock = arr[1];
                     let elseBlock = "";
 
@@ -1358,7 +1366,7 @@
                 let curCheck = true;
                 let operand = "";
 
-                for (let line of lines)
+                for (const line of lines)
                 {
                     let curline = line.trim();
 
@@ -1393,7 +1401,7 @@
 
             function getOperand(line)
             {
-                for (let op of operands)
+                for (const op of operands)
                 {
                     var arr = line.split(op);
                     if (arr.length > 1)
@@ -1628,7 +1636,7 @@
         }
         function doAdminLogin(command)
         {
-            let passAttrib = getElementsByTag(adminPassTag)?.[0] ?? null;
+            const passAttrib = getElementsByTag(adminPassTag)?.[0] ?? null;
             if (passAttrib === null)
             {
                 return false;
@@ -1779,7 +1787,7 @@
         }
         function showTestResults()
         {
-            let brt = "<br />";
+            const brt = "<br />";
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
             for (const res of testResults)
             {
@@ -1876,7 +1884,7 @@
         // Run the parsers
         function parseGame(parsers)
         {
-            let gameElem = getElementsByType("game")[0];
+            const gameElem = getElementsByType("game")[0];
 
             for (let prsr of parsers)
             {
@@ -1914,7 +1922,7 @@
                 if (tagsContain(currentElement.Tags, "children"))
                 {
                     gameOutput.Output = currentElement.Output;
-                    let children = getChildObjects(getSelf(currentElement));
+                    const children = getChildObjects(getSelf(currentElement));
 
                     for (let child of children)
                     {
@@ -1949,7 +1957,7 @@
         function parseCustomElement(rootElement, parentElement, customType, isRecursive)
         {
             // Parent Level
-            let custElems = database.filter(item => item.ElementType === customType &&
+            const custElems = database.filter(item => item.ElementType === customType &&
                 item.ParentKey === parentElement.ElementKey);
 
             for (let elem of custElems)
@@ -1963,7 +1971,7 @@
             }
            
             // Child Level
-            let childElems = database.filter(item => canContainCustomElems.includes(item.ElementType) &&
+            const childElems = database.filter(item => canContainCustomElems.includes(item.ElementType) &&
                 item.ParentKey === parentElement.ElementKey);
 
             for (let elem of childElems)
@@ -1982,7 +1990,7 @@
                 return;
             }
 
-            let sntxTgt = getTargets(currentElement, currentElement.Syntax);
+            const sntxTgt = getTargets(currentElement, currentElement.Syntax);
             let sntx = currentElement.Syntax;
             if (sntxTgt.length > 0 && sntxTgt[0])
             {
@@ -2003,8 +2011,8 @@
 
         function parseListAction(currentElement)
         {
-            let caption = currentElement.Output;
-            let items = getTargets(currentElement, currentElement.Logic);
+            const caption = currentElement.Output;
+            const items = getTargets(currentElement, currentElement.Logic);
             let pfx = "";
 
             if (tagsContain(currentElement.Tags, bulletTag))
@@ -2013,7 +2021,7 @@
             }
 
             gameOutput.Output = caption + "\n" + horizLine(caption) + "\n";
-            for (let item of items)
+            for (const item of items)
             {
                 if (tagsContain(item.Tags, armedTag))
                 {
@@ -2102,7 +2110,7 @@
                 return true;
             }
             let logicPassed = [];
-            let logicRows = logicString.split(/\r?\n/);
+            const logicRows = logicString.split(/\r?\n/);
             let curOperator = "and";
            
             for (let row of logicRows)
@@ -2143,12 +2151,12 @@
 
         function parseSpawnAction(currentElement)
         {
-            let spawnElem = database.find(item => item.ElementKey === currentElement.Logic) ?? null;
+            const spawnElem = database.find(item => item.ElementKey === currentElement.Logic) ?? null;
             if (spawnElem === null)
             {
                 return;
             }
-            let newParent = getTargets(currentElement, currentElement.Output)?.[0] ?? null;
+            const newParent = getTargets(currentElement, currentElement.Output)?.[0] ?? null;
 
             if (newParent === null)
             {
@@ -2191,7 +2199,7 @@
                 fixElementRandom(newParent);
             }
 
-            for (let spawnChild of getChildren(spawnElem, true))
+            for (const spawnChild of getChildren(spawnElem, true))
             {
                 spawnElement(spawnChild, newParent);
             }
@@ -2285,8 +2293,8 @@
             let field2 = "";
             let specCode2 = "";
             let value2 = "";
-            let comparisons = splitLogicByOperand(row);
-            let operand = getOperand(row);
+            const comparisons = splitLogicByOperand(row);
+            const operand = getOperand(row);
 
             if (!Array.isArray(comparisons) || comparisons.length !== 2)
             {
@@ -2346,7 +2354,7 @@
         function splitLogicByOperand(row)
         {
             let splt = "";
-            for (let oper of operands)
+            for (const oper of operands)
             {
                 splt = row.split(oper);
                 if (splt.length === 2)
@@ -2357,7 +2365,7 @@
         }
         function getOperand(row)
         {
-            for (let op of operands)
+            for (const op of operands)
             {
                 if (row.includes(op))
                 {
@@ -2468,10 +2476,10 @@
 
             if (row.endsWith("))"))
             {
-                let arr = row.split("((");
+                const arr = row.split("((");
                 if (arr.length === 2)
                 {
-                    let tag = arr[1].replace("))", "");
+                    const tag = arr[1].replace("))", "");
                     tgt = getChildrenByTag(tgt, tag);
                 }
             }
@@ -2500,7 +2508,7 @@
             if (row.startsWith("["))
             {
                 row = row.substring(1);
-                let arr = row.split("]");
+                const arr = row.split("]");
                 return getElementByKey(arr[0]);
             }
 
@@ -2510,7 +2518,6 @@
         {
             let parent = null;
             let childTag = "";
-            let returnString = row;
             let relVal = "";
 
             if (Number.isInteger(Number(row)))
@@ -2653,7 +2660,7 @@
 
         function parseGlobal(parsers)
         {
-            let globalElems = getElementsByType("global");
+            const globalElems = getElementsByType("global");
 
             for (let glob of globalElems)
             {
@@ -2807,7 +2814,7 @@
                 return;
             }
 
-            for (let prsr of parsers)
+            for (const prsr of parsers)
             {
                 for (let child of getChildren(currentElement, false))
                 {
@@ -2823,7 +2830,7 @@
                 return;
             }
 
-            for (let prsr of parsers)
+            for (const prsr of parsers)
             {
                 for (let child of getChildren(currentElement, false))
                 {
@@ -2836,7 +2843,7 @@
         {
             let roomElem = getCurrentRoom();
 
-            for (let prsr of parsers)
+            for (const prsr of parsers)
             {
                 for (let child of getChildren(roomElem, isEntering))
                 {
@@ -2850,7 +2857,7 @@
             let playerElem = getPlayer();
             const isEntering = false;
 
-            for (let prsr of parsers)
+            for (const prsr of parsers)
             {
                 for (let child of getChildren(playerElem, isEntering))
                 {
@@ -2920,11 +2927,11 @@
             switch (true)
             {
                 case (newValue.startsWith("+=")):
-                    let inc = Number(newValue.replace("+=", ""));
+                    const inc = Number(newValue.replace("+=", ""));
                     curValue = Number(curValue) + inc;
                     break;
                 case (newValue.startsWith("-=")):
-                    let dec = Number(newValue.replace("-=", ""));
+                    const dec = Number(newValue.replace("-=", ""));
                     curValue = Number(curValue) - dec;
                     break;
                 case (newValue === "++"):
@@ -2986,7 +2993,7 @@
                 return;
             }
 
-            for (let prsr of parsers)
+            for (const prsr of parsers)
             {
                 for (let child of getChildren(parentElement, false))
                 {
