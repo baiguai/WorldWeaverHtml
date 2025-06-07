@@ -139,14 +139,14 @@
     <script>
         // !@! Database
         let database = [
-  {"ElementType":"action","ElementKey":"kwklripp03fmbhpqhsg","Name":"","ParentKey":"4rfqxhibqwhmbhpqhsg","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"!_list","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"4rfqxhibqwhmbhpqhsg","Name":"","ParentKey":"global01","Syntax":"(stats)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"cc3eobi6y4gmbhpqhsg","Name":"","ParentKey":"e7kcaieb5xmmbhpqhsg","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"!_list|!_bullet","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"e7kcaieb5xmmbhpqhsg","Name":"","ParentKey":"global01","Syntax":"(inventory|inv)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"0bbo54suk1xmbhpqhsg","Name":"","ParentKey":"nj1auqnlh2fmbhpqhsg","Syntax":"","Logic":"player_armed","Output":"","Tags":"!_arm","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"nj1auqnlh2fmbhpqhsg","Name":"","ParentKey":"global01","Syntax":"(arm .*)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"zdh1eib9xrimbhpqhsg","Name":"","ParentKey":"d8n143yzu47mbhpqhsg","Syntax":"","Logic":"[player]((cur_heal_round))","Output":"++","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"d8n143yzu47mbhpqhsg","Name":"","ParentKey":"global01","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"ewxqlyg86s4mbhpqhsg","Name":"","ParentKey":"byouxv3c8wcmbhpqhsg","Syntax":"","Logic":"?[player]((cur_heal_round)) >= [player]((heal_rounds))\nand\n?[player]((life)) < [player]((maxlife))","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"5nbb0afoubembhpqhsg","Name":"","ParentKey":"byouxv3c8wcmbhpqhsg","Syntax":"","Logic":"[player]((life))","Output":"++","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"o886qun4jkmbhpqhsg","Name":"","ParentKey":"byouxv3c8wcmbhpqhsg","Syntax":"","Logic":"[player]((cur_heal_round))","Output":"0","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"byouxv3c8wcmbhpqhsg","Name":"","ParentKey":"global01","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"global","ElementKey":"global01","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"mcaq4ka3nicmbhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"attribute","ElementKey":"srgmst6zs2smbhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"\nI don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"attribute","ElementKey":"qjnyicpnvhjmbhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"look","Tags":"!_defact","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"attribute","ElementKey":"fisdf4e0cxqmbhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"4","Tags":"!_easingrounds","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"message","ElementKey":"p7i578bxbkgmbhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"\nYou have died.","Tags":"!_die","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"message","ElementKey":"g6c0r0324combhpqhsg","Name":"","ParentKey":"hi21rkm9ocombhpqhsg","Syntax":"","Logic":"","Output":"\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀ █     █░ ▒█████   ██▀███   ██▓    ▓█████▄\n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒ ▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░ ▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄ ░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓\n▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒\n░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒\n░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░   ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░\n░          ░  ░   ░     ░  ░       ░        ░ ░     ░         ░  ░   ░\n░                                                                    ░\n\n\nYou have received a mysterious letter requesting you to meet up at a tavern\nin the village of Kalisto - called The Old Oak Inn. If you are there you will\nreceive 200 gold pieces.\n\nThis would be enough to resolve all of your life's troubles. So you decide to go...\n\n\nWelcome to the Old Oak Inn.\n","Tags":"!_start","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"game","ElementKey":"hi21rkm9ocombhpqhsg","Name":"DarkWorld","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},
-  {"ElementType":"attribute","ElementKey":"abqpr2796ambhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"mnck0u63xxembhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"83fq5yjpg3wmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"1j0eq4taqgqmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|4]","Tags":"armor_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"a75xe3nonvhmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"rzhtzlfi3lfmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"int_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"m2oa7osma9mmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"gryj9c6k1eqmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"4n4zgwdql38mbhpqhsg","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_dice))>>d6]","Tags":"stats|!_life","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"eimedbyw2jmbhpqhsg","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"init_[player]((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"nm3plgqcw6ambhpqhsg","Name":"Armor Rating","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_dice))>>d6+3]","Tags":"stats|!_armor","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"52gshtq00dhmbhpqhsh","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"m3d98ikerzlmbhpqhsh","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((int_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"b53jaeieavmbhpqhsh","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"8051d61gykymbhpqhsh","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_dice))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"mlt64yda14imbhpqhsh","Name":"Armed Weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"!_armed|stats|name","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"ecsx6lapy3mbhpqhsh","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"5","Tags":"heal_rounds","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"f4pzfrpzstlmbhpqhsh","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"cur_heal_round","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"ihp2dmyqjj7mbhpqhsh","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},
-  {"ElementType":"attribute","ElementKey":"fss53tc9g8ambhpqhsh","Name":"","ParentKey":"5tjekshco5nmbhpqhsh","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attack","ElementKey":"5tjekshco5nmbhpqhsh","Name":"","ParentKey":"utwz1atmxaqmbhpqhsh","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attackplayer","ElementKey":"utwz1atmxaqmbhpqhsh","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"1tryeg0yjombhpqhsh","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"[rand:4|12]","Output":"","Tags":"!_damage","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"2w58nobu1brmbhpqhsh","Name":"","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"\\b(?:your\\s+)?long\\s+sword\\b","Logic":"","Output":"","Tags":"inventory|!_weapon","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"player","ElementKey":"player","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"t12045wfdxmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^l(ook( around)?)?$","Tags":"look","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"39k0kdenx9mbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? casks$","Tags":"x_casks","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"fkqdkyplk9tmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? parchment$","Tags":"x_parchment","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"bxkncs9y79mmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? shelves$","Tags":"x_shelves","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"7j9vcacshyhmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? tables$","Tags":"x_tables","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"y15kcwezapsmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":".*key.*","Tags":"key_id","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"9ahv1or3nk7mbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(spear).*","Tags":"spear_id","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"dmf4f9lwla5mbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)?( gold)? coin","Tags":"coin_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"ctzv7hobejwmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? key$","Tags":"key_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"lil6kc3wvymbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? parchment$","Tags":"parchment_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"5e0rzgmcmwqmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? spear$","Tags":"spear_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"z9dmc9yeh5pmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(drop.*parchment)","Tags":"parchment_drop","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"q8k8kn4vonsmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(drop.*spear)","Tags":"spear_drop","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},
-  {"ElementType":"attribute","ElementKey":"iqxj4cf7mhmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"put.*in.*box","Tags":"box_put","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"0hd3mmtjgf07mbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"examine.*box|x.*box","Tags":"box_examine","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"0o6k1suo5l7ambhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(push|press)( the)?( green)? button$","Tags":"greenbutton_push","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"l7wmxqykpcmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(push|press)( the)?( red)? button$","Tags":"redbutton_push","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"80q1khdpy4nmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(attack.*rat|!.*rat)","Tags":"rat_attack","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"w8njqjhx2xfmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(north|n)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_north_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"mcoadondp2mbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(south|s)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_south_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"r79mkhe5nfkmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(east|e)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_east_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"gry9g1398ambhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(west|w)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_west_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"aqtwu52a97wmbhpqhsh","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(west|w|up)\\b)(?=.*\\b(go|stairs|up)?\\b).*$","Tags":"go_west_up","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"object","ElementKey":"tplt_syntax","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"oc05edwwotombhpqhsh","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"'false'","Tags":"initial_msg","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"fqy14rp4b94mbhpqhsh","Name":"","ParentKey":"sua8pk276qcmbhpqhsh","Syntax":"","Logic":"[self]((initial_msg))","Output":"'true'","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"sua8pk276qcmbhpqhsh","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"\n<?[self]((initial_msg)) = 'false'?>\nIt is strangely empty.\n\nCompletely abandoned. There isn't even a barkeep present.\nIt is just you in an empty tavern.\n\nYou see round tables arrayed throughout the large open floor.\n<else>\nThe tavern is completely empty.\n\nYou see round tables arrayed throughout the large open floor.\n</?>","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"0e1uu88p69tmbhpqhsh","Name":"","ParentKey":"xcap65k6p5mbhpqhsh","Syntax":"","Logic":"","Output":"\nYou look around. You are in the Old Oak Inn.\nIt is strangely empty.\n\nCompletely abandoned. There isn't even a barkeep present.\nIt is just you in an empty tavern.\n\nYou see round tables arrayed throughout the large open floor.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"xcap65k6p5mbhpqhsh","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"4tp2044qlwcmbhpqhsi","Name":"","ParentKey":"nnjiz9zci7mbhpqhsi","Syntax":"","Logic":"","Output":"\nYou examine the tables.\nSome of them have crystal glasses sitting on them, still full of alcohol.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_tables","ElementKey":"nnjiz9zci7mbhpqhsi","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"wbotduz304kmbhpqhsi","Name":"","ParentKey":"5n6zca61ll5mbhpqhsi","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nSet into the north wall you see a door.\nIn the south wall is the door leading back out into the street.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"5n6zca61ll5mbhpqhsi","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
-  {"ElementType":"action","ElementKey":"ql4idnl8foembhpqhsi","Name":"","ParentKey":"rnb5h9yqkkmbhpqhsi","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"rnb5h9yqkkmbhpqhsi","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"ipjum8iyzajmbhpqhsi","Name":"","ParentKey":"fp6mrh2skembhpqhsi","Syntax":"","Logic":"x_tables","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"fp6mrh2skembhpqhsi","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((x_tables))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"1bgw3q7y5himbhpqhsi","Name":"","ParentKey":"3l2p29kgu4jmbhpqhsi","Syntax":"","Logic":"oak_inn_backroom","Output":"\nYou step through the door in the north wall.\n","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"3l2p29kgu4jmbhpqhsi","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((go_north_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"old_oak_inn","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"ifq7o09qo5jmbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"","Logic":"","Output":"'false'","Tags":"parchment_found","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"x9kktwh2gambhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"","Logic":"","Output":"'false'","Tags":"parchment_moved","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"bzpsuipbqfembhpqhsi","Name":"","ParentKey":"90d869rd6ucmbhpqhsi","Syntax":"","Logic":"","Output":"\nYou see a rolled up parchement.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"o24g6p6vbbmbhpqhsi","Name":"","ParentKey":"90d869rd6ucmbhpqhsi","Syntax":"","Logic":"?[self]parent = [room]\nand\n?[self]((parchment_moved)) = 'true'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"90d869rd6ucmbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"0tg9kr7a2bombhpqhsi","Name":"","ParentKey":"28xn3cl7n3zmbhpqhsi","Syntax":"","Logic":"","Output":"\n\nYou see a partially rolled up piece of parchment sitting on one of the tables.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"y8bgpjnqv3mbhpqhsi","Name":"","ParentKey":"28xn3cl7n3zmbhpqhsi","Syntax":"","Logic":"[self]((parchment_found))","Output":"'true'","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"uz00nstjolmbhpqhsi","Name":"","ParentKey":"28xn3cl7n3zmbhpqhsi","Syntax":"","Logic":"?[self]parent = 'old_oak_inn'\nand\n?[self]((parchment_moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_tables","ElementKey":"28xn3cl7n3zmbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"9u7wxpvcd5mmbhpqhsi","Name":"","ParentKey":"a8xydizcgf4mbhpqhsi","Syntax":"","Logic":"","Output":"\nYou examine the parchment.\nThe text that is written on it appears to be ancient elven.\nYou are unable to read it.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"bxgumw29unmbhpqhsi","Name":"","ParentKey":"a8xydizcgf4mbhpqhsi","Syntax":"","Logic":"?[self]((parchment_found)) = 'true'","Output":"\nI'm not sure what you're trying to examine.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_parchment","ElementKey":"a8xydizcgf4mbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"gkkaws8wyr6mbhpqhsi","Name":"","ParentKey":"co7wq7jao5cmbhpqhsi","Syntax":"","Logic":"x_parchment","Output":"","Tags":"!_type|self","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
-  {"ElementType":"input","ElementKey":"co7wq7jao5cmbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"[tplt_syntax]((x_parchment))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"yub1tnvqq59mbhpqhsi","Name":"","ParentKey":"by5fnrl7vfmbhpqhsi","Syntax":"","Logic":"[player]","Output":"\nYou pick up the parchment.","Tags":"[self]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"t8c84b7p4bbmbhpqhsi","Name":"","ParentKey":"by5fnrl7vfmbhpqhsi","Syntax":"","Logic":"[self]tags","Output":"+inventory","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"lmgpfglf03mbhpqhsi","Name":"","ParentKey":"by5fnrl7vfmbhpqhsi","Syntax":"","Logic":"[self]((parchment_moved))","Output":"true","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"kads6cisq4kmbhpqhsi","Name":"","ParentKey":"by5fnrl7vfmbhpqhsi","Syntax":"","Logic":"?[self]((parchment_found)) = 'true'","Output":"\nI'm not sure what you're trying to take.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"by5fnrl7vfmbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"[tplt_syntax]((parchment_take))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"s61pcjebbk7mbhpqhsi","Name":"","ParentKey":"7ozixfuitf2mbhpqhsi","Syntax":"","Logic":"[room]","Output":"\nYou drop the parchment.","Tags":"[self]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"apie92qkp7ambhpqhsi","Name":"","ParentKey":"7ozixfuitf2mbhpqhsi","Syntax":"","Logic":"[self]tags","Output":"-inventory","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"ffygfvfmoh7mbhpqhsi","Name":"","ParentKey":"7ozixfuitf2mbhpqhsi","Syntax":"","Logic":"?[self]parent = [player]","Output":"\nYou aren't carrying a parchment.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"7ozixfuitf2mbhpqhsi","Name":"","ParentKey":"wospcoek55rmbhpqhsi","Syntax":"[tplt_syntax]((parchment_drop))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"object","ElementKey":"wospcoek55rmbhpqhsi","Name":"parchment","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"j7opocrwdunmbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"\nYou are in a large storage room. Wooden shelves line the north wall.\nThey are filled with dishes, sacks of flour and sugar and spices, and candles.\nSome casks are stacked up against the west wall. In the east wall is a small door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"5e1w17u4l13mbhpqhsi","Name":"","ParentKey":"9w6z3k0jz3tmbhpqhsi","Syntax":"","Logic":"","Output":"\nYou are in a large storage room. Wooden shelves line the north wall.\nSome casks are stacked up against the west wall.\nIn the east wall is a small door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"9w6z3k0jz3tmbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"we1dd5l58skmbhpqhsi","Name":"","ParentKey":"f74o5x9t0s7mbhpqhsi","Syntax":"","Logic":"","Output":"\nYou examine the shelves.\nThey are filled with dishes, sacks of flour and sugar and spices, and candles.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_shelves","ElementKey":"f74o5x9t0s7mbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"wugsqrof6ifmbhpqhsi","Name":"","ParentKey":"g0mq9wgu50fmbhpqhsi","Syntax":"","Logic":"","Output":"\nYou examine the casks.\nThey appear to be mundane oak casks filled with mead and other liquors.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_casks","ElementKey":"g0mq9wgu50fmbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"p4cjev0ey9mbhpqhsi","Name":"","ParentKey":"urcswlc7qjimbhpqhsi","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nIn the east wall is a small door.\nIn the south wall is another door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"urcswlc7qjimbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
-  {"ElementType":"action","ElementKey":"seagctmroxmbhpqhsi","Name":"","ParentKey":"9drajl0bvesmbhpqhsi","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"9drajl0bvesmbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"yeuxjta25ymbhpqhsi","Name":"","ParentKey":"dw4k8cjzgs4mbhpqhsi","Syntax":"","Logic":"old_oak_inn","Output":"\nYou step through the door in the south wall.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"dw4k8cjzgs4mbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((go_south_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"ghsuam8hayjmbhpqhsi","Name":"","ParentKey":"3milhpqshb6mbhpqhsi","Syntax":"","Logic":"oak_inn_cellar","Output":"\nYou enter the door in the east.\nBeyond it is a staircase the descends into darkness.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"3milhpqshb6mbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((go_east_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"g360lidqokmbhpqhsi","Name":"","ParentKey":"18q21vzadlwmbhpqhsi","Syntax":"","Logic":"x_shelves","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"18q21vzadlwmbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((x_shelves))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"tdgskcrz5wmbhpqhsi","Name":"","ParentKey":"f9uo5gfdy0umbhpqhsi","Syntax":"","Logic":"x_casks","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"f9uo5gfdy0umbhpqhsi","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((x_casks))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"oak_inn_backroom","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"wt5ezfsc5vfmbhpqhsi","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"\nYou are in a dark damp cellar.\nIt appears to be empty but it is so large the room continues on into darkness.\nSouth of where you are standing you see a flickering candle.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"zq3n3vody5mbhpqhsi","Name":"","ParentKey":"yjaxv4azpbimbhpqhsi","Syntax":"","Logic":"","Output":"\nYou look around the empty cellar.\nSouth of where you are standing you see a flickering candle.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"yjaxv4azpbimbhpqhsi","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"xceudtgpbbmbhpqhsj","Name":"","ParentKey":"lo0o37e53qembhpqhsj","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nIn the west wall you see a narrow staircase leading up.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"lo0o37e53qembhpqhsj","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"5lhp9bc0osmbhpqhsj","Name":"","ParentKey":"dz70y808nimmbhpqhsj","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"dz70y808nimmbhpqhsj","Name":"","ParentKey":"oak_inn_cellar","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"kj56ei8p0acmbhpqhsj","Name":"","ParentKey":"c05vioyrw2pmbhpqhsj","Syntax":"","Logic":"oak_inn_backroom","Output":"\nYou climb the stairs in the west end of the cellar.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"c05vioyrw2pmbhpqhsj","Name":"","ParentKey":"oak_inn_cellar","Syntax":"[tplt_syntax]((go_west_up))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
-  {"ElementType":"room","ElementKey":"oak_inn_cellar","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1}
+  {"ElementType":"action","ElementKey":"aegg10lcp5mblx4caw","Name":"","ParentKey":"2zn4x3ur38bmblx4caw","Syntax":"","Logic":"[player]((stats))","Output":"Stats:","Tags":"!_list","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"input","ElementKey":"2zn4x3ur38bmblx4caw","Name":"","ParentKey":"global01","Syntax":"(stats)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"action","ElementKey":"94daoj1lybmblx4caw","Name":"","ParentKey":"frvcphez1g8mblx4caw","Syntax":"","Logic":"[player]((inventory))","Output":"Inventory:","Tags":"!_list|!_bullet","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"input","ElementKey":"frvcphez1g8mblx4caw","Name":"","ParentKey":"global01","Syntax":"(inventory|inv)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"set","ElementKey":"rwso04tkwwmblx4caw","Name":"","ParentKey":"txmq6kl92omblx4caw","Syntax":"","Logic":"","Output":"","Tags":"!_arm","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"input","ElementKey":"txmq6kl92omblx4caw","Name":"","ParentKey":"global01","Syntax":"(arm .*)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"set","ElementKey":"bofxkqf3mzvmblx4caw","Name":"","ParentKey":"l5z5wmlsaymblx4caw","Syntax":"","Logic":"[player]((cur_heal_round))","Output":"++","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"action","ElementKey":"l5z5wmlsaymblx4caw","Name":"","ParentKey":"global01","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"logic","ElementKey":"1b5jnluws0aimblx4caw","Name":"","ParentKey":"oa02u3fgmpsmblx4caw","Syntax":"","Logic":"?[player]((cur_heal_round)) >= [player]((heal_rounds))\nand\n?[player]((life)) < [player]((maxlife))","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"set","ElementKey":"uus0nai5b3mblx4caw","Name":"","ParentKey":"oa02u3fgmpsmblx4caw","Syntax":"","Logic":"[player]((life))","Output":"++","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"set","ElementKey":"jzhgyphb3damblx4caw","Name":"","ParentKey":"oa02u3fgmpsmblx4caw","Syntax":"","Logic":"[player]((cur_heal_round))","Output":"0","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"action","ElementKey":"oa02u3fgmpsmblx4caw","Name":"","ParentKey":"global01","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"global","ElementKey":"global01","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":2},{"ElementType":"attribute","ElementKey":"5o7bud5on1jmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^l(ook( around)?)?$","Tags":"look","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"ont647cbnbkmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? casks$","Tags":"x_casks","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"s7u5c9hs0omblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"\\b(look\\s+behind\\s+the\\s+casks|behind\\s+the\\s+casks|behind\\s+casks|look\\s+at\\s+the\\s+back\\s+of\\s+the\\s+casks|back\\s+of\\s+the\\s+casks|back\\s+of\\s+casks)\\b","Tags":"behind_casks","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"tvzncg186omblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? candle$","Tags":"x_candle","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"351n1swnzu9mblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? parchment$","Tags":"x_parchment","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"fkrjmcj83ulmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? shelves$","Tags":"x_shelves","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"54qii9bh6pmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(examine|x)(?: the)? tables$","Tags":"x_tables","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},
+  {"ElementType":"attribute","ElementKey":"56d3arwhnwvmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":".*key.*","Tags":"key_id","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"x2qpiwtx6xnmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(spear).*","Tags":"spear_id","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"0zmgfgc7376mblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)?( gold)? coin","Tags":"coin_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"13rbp8r5k1onmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? key$","Tags":"key_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"rvncezx3glbmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? parchment$","Tags":"parchment_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"3wx0ybrkydfmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(take|pick up)( the)? spear$","Tags":"spear_take","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"2rpap6b9uzvmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(drop.*parchment)","Tags":"parchment_drop","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"wdpfxkrxlsgmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(drop.*spear)","Tags":"spear_drop","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"i7s4v5o86mmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"put.*in.*box","Tags":"box_put","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"49cb1emeks9mblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"examine.*box|x.*box","Tags":"box_examine","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"5cer725bco9mblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(push|press)( the)?( green)? button$","Tags":"greenbutton_push","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"04eyhy0yoxdamblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(push|press)( the)?( red)? button$","Tags":"redbutton_push","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"ikvgu7w4cbomblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"(attack.*rat|!.*rat)","Tags":"rat_attack","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"1w0n4q0kxpxmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(north|n)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_north_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"qpkc6rezogfmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(south|s)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_south_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"7p6zhjnl7sfmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(east|e)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_east_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"cx8x89034nqmblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(west|w)\\b)(?=.*\\b(door|go|enter|step|through)?\\b).*$","Tags":"go_west_door","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"egg35t1h00emblx4caw","Name":"","ParentKey":"tplt_syntax","Syntax":"","Logic":"","Output":"^(?=.*\\b(west|w|up)\\b)(?=.*\\b(go|stairs|up)?\\b).*$","Tags":"go_west_up","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"object","ElementKey":"tplt_syntax","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":3},{"ElementType":"attribute","ElementKey":"8ssfyn68xyhmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:3|5]","Tags":"stats_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},
+  {"ElementType":"attribute","ElementKey":"xn69m3wm1gomblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:4|6]","Tags":"money_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"h937eamkr4dmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|6]","Tags":"life_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"2no3qycyd68mblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|4]","Tags":"armor_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"lid3hwygw1mblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"strength_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"w872kucptq8mblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"int_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"q097azwiqxmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((stats_dice))>>|5]","Tags":"cunning_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"3zqwrrfeqxtmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"[rand:<<[self]((money_dice))>>|9]","Tags":"gold_dice","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"02rnkomqdyhsmblx4cax","Name":"Life","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(8)<<[self]((life_dice))>>d6]","Tags":"stats|!_life","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"h22l32yzascmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"init_[player]((life))","Tags":"maxlife","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"jnopfmsg3imblx4cax","Name":"Armor Rating","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((armor_dice))>>d6+3]","Tags":"stats|!_armor","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"nsmwuaj1m6dmblx4cax","Name":"Strength","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((strength_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"3xm8unk6gqamblx4cax","Name":"Intelligence","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((int_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"j18nvlbvfvfmblx4cax","Name":"Cunning","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:(6)<<[self]((cunning_dice))>>d6]","Tags":"stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"oi9yadnf6hmblx4cax","Name":"Gold","ParentKey":"player","Syntax":"","Logic":"","Output":"[roll:<<[self]((gold_dice))>>d8]","Tags":"stats|gold","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"1kypw5srv72mblx4cax","Name":"Armed Weapon","ParentKey":"player","Syntax":"","Logic":"","Output":"long-sword_01","Tags":"!_armed|stats|name","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"experience","Name":"Experience","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"experience|stats","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"72wrbgtmd7xmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"5","Tags":"heal_rounds","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"epeu8sjrd3pmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"0","Tags":"cur_heal_round","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"0efmkfhjk6a5mblx4cax","Name":"Quest","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"stats|quest","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"23tpd65zqommblx4cax","Name":"","ParentKey":"vt7j493ucsmblx4cax","Syntax":"","Logic":"","Output":"[player]","Tags":"target","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},
+  {"ElementType":"attack","ElementKey":"vt7j493ucsmblx4cax","Name":"","ParentKey":"afy7ynms2qvmblx4cax","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attackplayer","ElementKey":"afy7ynms2qvmblx4cax","Name":"","ParentKey":"player","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"caiwg8g34hmblx4cax","Name":"Damage","ParentKey":"long-sword_01","Syntax":"","Logic":"rdm_[rand:4|12]","Output":"","Tags":"!_damage","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"ctyge0gpry8mblx4cax","Name":"","ParentKey":"long-sword_01","Syntax":"","Logic":"","Output":"a Long Sword","Tags":"title","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"object","ElementKey":"long-sword_01","Name":"Long Sword","ParentKey":"player","Syntax":"\\b(?:your\\s+)?long\\s+sword\\b","Logic":"","Output":"","Tags":"inventory|!_weapon","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"player","ElementKey":"player","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":4},{"ElementType":"attribute","ElementKey":"tzf4d45v15omblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"admin","Tags":"!_adminpass","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"attribute","ElementKey":"fxbey2vhagmblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"\nI don't understand what you are trying to do.","Tags":"!_error","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"attribute","ElementKey":"b3z91lr8lu9mblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"look","Tags":"!_defact","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"attribute","ElementKey":"lkdbrtzm8nrmblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"4","Tags":"!_easingrounds","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"message","ElementKey":"cyadaln3ukpmblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"\nYou have died.","Tags":"!_die","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"message","ElementKey":"bg58cyy1avbmblx4cax","Name":"","ParentKey":"7dar1dycq7pmblx4cax","Syntax":"","Logic":"","Output":"\n▓█████▄  ▄▄▄       ██▀███   ██ ▄█▀ █     █░ ▒█████   ██▀███   ██▓    ▓█████▄\n▒██▀ ██▌▒████▄    ▓██ ▒ ██▒ ██▄█▒ ▓█░ █ ░█░▒██▒  ██▒▓██ ▒ ██▒▓██▒    ▒██▀ ██▌\n░██   █▌▒██  ▀█▄  ▓██ ░▄█ ▒▓███▄░ ▒█░ █ ░█ ▒██░  ██▒▓██ ░▄█ ▒▒██░    ░██   █▌\n░▓█▄   ▌░██▄▄▄▄██ ▒██▀▀█▄  ▓██ █▄ ░█░ █ ░█ ▒██   ██░▒██▀▀█▄  ▒██░    ░▓█▄   ▌\n░▒████▓  ▓█   ▓██▒░██▓ ▒██▒▒██▒ █▄░░██▒██▓ ░ ████▓▒░░██▓ ▒██▒░██████▒░▒████▓\n▒▒▓  ▒  ▒▒   ▓▒█░░ ▒▓ ░▒▓░▒ ▒▒ ▓▒░ ▓░▒ ▒  ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░ ▒░▓  ░ ▒▒▓  ▒\n░ ▒  ▒   ▒   ▒▒ ░  ░▒ ░ ▒░░ ░▒ ▒░  ▒ ░ ░    ░ ▒ ▒░   ░▒ ░ ▒░░ ░ ▒  ░ ░ ▒  ▒\n░ ░  ░   ░   ▒     ░░   ░ ░ ░░ ░   ░   ░  ░ ░ ░ ▒    ░░   ░   ░ ░    ░ ░  ░\n░          ░  ░   ░     ░  ░       ░        ░ ░     ░         ░  ░   ░\n░                                                                    ░\n\n\nYou have received a mysterious letter requesting you to meet up at a tavern\nin the village of Kalisto - called The Old Oak Inn. If you are there you will\nreceive 200 gold pieces.\n\nThis would be enough to resolve all of your life's troubles. So you decide to go...\n\n\nWelcome to the Old Oak Inn.\n","Tags":"!_start","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"game","ElementKey":"7dar1dycq7pmblx4cax","Name":"DarkWorld","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":5},{"ElementType":"macro","ElementKey":"ooi_parchment","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"x tables|~|take parchment|~|l","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":6},{"ElementType":"attribute","ElementKey":"4kcbncyym6wmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"'false'","Tags":"initial_msg","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"o9qz8dcr1hmblx4cay","Name":"","ParentKey":"oxrh1b1y5lqmblx4cay","Syntax":"","Logic":"[self]((initial_msg))","Output":"'true'","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"oxrh1b1y5lqmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"\n<?[self]((initial_msg)) = 'false'?>\nIt is strangely empty.\n\nCompletely abandoned. There isn't even a barkeep present.\nIt is just you in an empty tavern.\n\nYou see round tables arrayed throughout the large open floor.\n<else>\nThe tavern is completely empty.\n\nYou see round tables arrayed throughout the large open floor.\n</?>","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"mmlobjw70uamblx4cay","Name":"","ParentKey":"ycwreq2bb5qmblx4cay","Syntax":"","Logic":"","Output":"\nYou look around. You are in the Old Oak Inn.\nIt is strangely empty.\n\nCompletely abandoned. There isn't even a barkeep present.\nIt is just you in an empty tavern.\n\nYou see round tables arrayed throughout the large open floor.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"o7m5uxxc5zdmblx4cay","Name":"old-oak-carrying-parch","ParentKey":"ycwreq2bb5qmblx4cay","Syntax":"","Logic":"?[player]((inventory)) ~~ 'parchment'","Output":"","Tags":"!_test","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"ycwreq2bb5qmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
+  {"ElementType":"message","ElementKey":"5q9ndnyft4fmblx4cay","Name":"","ParentKey":"ve7zfxiqoumblx4cay","Syntax":"","Logic":"","Output":"\nYou examine the tables.\nSome of them have crystal glasses sitting on them, still full of alcohol.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_tables","ElementKey":"ve7zfxiqoumblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"jh0ckyl57dmblx4cay","Name":"","ParentKey":"um5kvy47t6rmblx4cay","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nSet into the north wall you see a door.\nIn the south wall is the door leading back out into the street.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"um5kvy47t6rmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"d9xmxgiekwpmblx4cay","Name":"","ParentKey":"aruxdacis8kmblx4cay","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"aruxdacis8kmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"wsxct7splormblx4cay","Name":"","ParentKey":"mptrzbvuv3hmblx4cay","Syntax":"","Logic":"x_tables","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"mptrzbvuv3hmblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((x_tables))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"275txl2thqpmblx4cay","Name":"","ParentKey":"zzyxas42w3emblx4cay","Syntax":"","Logic":"oak_inn_backroom","Output":"\nYou step through the door in the north wall.\n","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"zzyxas42w3emblx4cay","Name":"","ParentKey":"old_oak_inn","Syntax":"[tplt_syntax]((go_north_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"old_oak_inn","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"uzawcp5a9gcmblx4cay","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"","Logic":"","Output":"'false'","Tags":"parchment_found","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"xotpj1zngj9mblx4cay","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"","Logic":"","Output":"'false'","Tags":"parchment_moved","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"2tpskg47j2emblx4cay","Name":"","ParentKey":"l219kko4ueomblx4cay","Syntax":"","Logic":"","Output":"\nYou see a rolled up parchement.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"79y08belmb8mblx4cay","Name":"","ParentKey":"l219kko4ueomblx4cay","Syntax":"","Logic":"?[self]parent = [room]\nand\n?[self]((parchment_moved)) = 'true'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"l219kko4ueomblx4cay","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"kuldorydd19mblx4cay","Name":"","ParentKey":"834idb37756mblx4cay","Syntax":"","Logic":"","Output":"\n\nYou see a partially rolled up piece of parchment sitting on one of the tables.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"3zrmacfuep4mblx4cay","Name":"","ParentKey":"834idb37756mblx4cay","Syntax":"","Logic":"[self]((parchment_found))","Output":"'true'","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"3zu560dcnw7mblx4caz","Name":"","ParentKey":"834idb37756mblx4cay","Syntax":"","Logic":"?[self]parent = 'old_oak_inn'\nand\n?[self]((parchment_moved)) = 'false'","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_tables","ElementKey":"834idb37756mblx4cay","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
+  {"ElementType":"message","ElementKey":"bo9pd6te9pvmblx4caz","Name":"","ParentKey":"gbf5xvhudvamblx4caz","Syntax":"","Logic":"","Output":"\nYou examine the parchment.\nThe text that is written on it appears to be ancient elven.\nYou are unable to read it.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"tpz7eosolbqmblx4caz","Name":"","ParentKey":"gbf5xvhudvamblx4caz","Syntax":"","Logic":"?[self]((parchment_found)) = 'true'","Output":"\nI'm not sure what you're trying to examine.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_parchment","ElementKey":"gbf5xvhudvamblx4caz","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"iphck2zygtmblx4cb3","Name":"","ParentKey":"uu6ugu385wrmblx4caz","Syntax":"","Logic":"x_parchment","Output":"","Tags":"!_type|self","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"uu6ugu385wrmblx4caz","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"[tplt_syntax]((x_parchment))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"o77hh7qay3mblx4cb3","Name":"","ParentKey":"4tua7ef3udqmblx4cb3","Syntax":"","Logic":"[player]","Output":"\nYou pick up the parchment.","Tags":"[self]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"br6u5u16ghmblx4cb3","Name":"","ParentKey":"4tua7ef3udqmblx4cb3","Syntax":"","Logic":"[self]tags","Output":"+inventory","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"suw77ym18skmblx4cb3","Name":"","ParentKey":"4tua7ef3udqmblx4cb3","Syntax":"","Logic":"[self]((parchment_moved))","Output":"true","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"54g9d3zgs7jmblx4cb3","Name":"","ParentKey":"4tua7ef3udqmblx4cb3","Syntax":"","Logic":"?[self]((parchment_found)) = 'true'","Output":"\nI'm not sure what you're trying to take.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"4tua7ef3udqmblx4cb3","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"[tplt_syntax]((parchment_take))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"obbiemrtmhimblx4cb3","Name":"","ParentKey":"60b6c8um7csmblx4cb3","Syntax":"","Logic":"[room]","Output":"\nYou drop the parchment.","Tags":"[self]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"set","ElementKey":"i33m4xv76sbmblx4cb3","Name":"","ParentKey":"60b6c8um7csmblx4cb3","Syntax":"","Logic":"[self]tags","Output":"-inventory","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"logic","ElementKey":"1svvgxkd2gimblx4cb3","Name":"","ParentKey":"60b6c8um7csmblx4cb3","Syntax":"","Logic":"?[self]parent = [player]","Output":"\nYou aren't carrying a parchment.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"60b6c8um7csmblx4cb3","Name":"","ParentKey":"q3swe6w6qmmblx4cay","Syntax":"[tplt_syntax]((parchment_drop))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"object","ElementKey":"q3swe6w6qmmblx4cay","Name":"parchment","ParentKey":"old_oak_inn","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"unlsivh8c4bmblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"\nYou are in a large storage room. Wooden shelves line the north wall.\nThey are filled with dishes, sacks of flour and sugar and spices, and candles.\nSome casks are stacked up against the west wall. In the east wall is a small door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"9rvvcktwsromblx4cb3","Name":"","ParentKey":"fbvdeuz35i6mblx4cb3","Syntax":"","Logic":"","Output":"\nYou are in a large storage room. Wooden shelves line the north wall.\nSome casks are stacked up against the west wall.\nIn the east wall is a small door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"fbvdeuz35i6mblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"zm055fmt4khmblx4cb3","Name":"","ParentKey":"p7nnvbqpdnmblx4cb3","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nIn the east wall is a small door.\nIn the south wall is another door.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"p7nnvbqpdnmblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
+  {"ElementType":"action","ElementKey":"cfzdwccgpm9mblx4cb3","Name":"","ParentKey":"zlaynqk6n38mblx4cb3","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"zlaynqk6n38mblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"jzu4u94l36mblx4cb3","Name":"","ParentKey":"zpj5rni7hbhmblx4cb3","Syntax":"","Logic":"","Output":"\nYou examine the shelves.\nThey are filled with dishes, sacks of flour and sugar and spices, and candles.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_shelves","ElementKey":"zpj5rni7hbhmblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"5klqzbzuuf6mblx4cb3","Name":"","ParentKey":"f13vde2qodmblx4cb3","Syntax":"","Logic":"","Output":"\nYou look behind the shelves...","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"b_shelves","ElementKey":"f13vde2qodmblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"9fz8uuhn32emblx4cb3","Name":"","ParentKey":"3u7i394oq8gmblx4cb3","Syntax":"","Logic":"x_shelves","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"3u7i394oq8gmblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((x_shelves))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"6q20vr2sydqmblx4cb3","Name":"","ParentKey":"4t9trumcpumblx4cb3","Syntax":"","Logic":"b_shelves","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"4t9trumcpumblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((behind_shelves))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"h72c2dgy9gjmblx4cb3","Name":"","ParentKey":"lxfnuul25smblx4cb3","Syntax":"","Logic":"","Output":"\nYou examine the casks.\nThey appear to be mundane oak casks filled with mead and other liquors.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_casks","ElementKey":"lxfnuul25smblx4cb3","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"3kyyad2enbqmblx4cb4","Name":"","ParentKey":"pi8mvt505plmblx4cb4","Syntax":"","Logic":"","Output":"\nYou look behind the casks. It is dusty and cobweb riddled however you don't see anything strange.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"b_casks","ElementKey":"pi8mvt505plmblx4cb4","Name":"","ParentKey":"oak_inn_backroom","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"jhzryutrtfjmblx4cb4","Name":"","ParentKey":"o4jiz8sj78mblx4cb4","Syntax":"","Logic":"x_casks","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"o4jiz8sj78mblx4cb4","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((x_casks))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"722wvihssxpmblx4cb4","Name":"","ParentKey":"5emc35y08yfmblx4cb4","Syntax":"","Logic":"b_casks","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"5emc35y08yfmblx4cb4","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((behind_casks))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"xjcubzqg2gmblx4cb4","Name":"","ParentKey":"cu3pkp04rzmmblx4cb4","Syntax":"","Logic":"old_oak_inn","Output":"\nYou step through the door in the south wall.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"cu3pkp04rzmmblx4cb4","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((go_south_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
+  {"ElementType":"move","ElementKey":"4hpcyrdtuwqmblx4cb4","Name":"","ParentKey":"1vu1as15lx4mblx4cb4","Syntax":"","Logic":"oak_inn_cellar","Output":"\nYou enter the door in the east.\nBeyond it is a staircase the descends into darkness.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"1vu1as15lx4mblx4cb4","Name":"","ParentKey":"oak_inn_backroom","Syntax":"[tplt_syntax]((go_east_door))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"oak_inn_backroom","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"bt2pkw01y9fmblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"\nYou are in a dark damp cellar.\nIt appears to be empty but it is so large the room continues on into darkness.\nSouth of where you are standing you see a flickering candle.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"a5ncqgv6jzgmblx4cb4","Name":"","ParentKey":"cy9pugtagicmblx4cb4","Syntax":"","Logic":"","Output":"\nYou look around the empty cellar.\nSouth of where you are standing you see a flickering candle.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"cy9pugtagicmblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"79amlyn1cc8mblx4cb4","Name":"","ParentKey":"6gi0wbu4rglmblx4cb4","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nIn the west wall you see a narrow staircase leading up.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"6gi0wbu4rglmblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"ciqhtpuebtsmblx4cb4","Name":"","ParentKey":"poft0dyub4hmblx4cb4","Syntax":"","Logic":"look","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"poft0dyub4hmblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"[tplt_syntax]((look))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"1n24fff7zwomblx4cb4","Name":"","ParentKey":"tni1n7ogkuemblx4cb4","Syntax":"","Logic":"","Output":"\nYou examine the candle...","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_candle","ElementKey":"tni1n7ogkuemblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"u7oj6tphszjmblx4cb4","Name":"","ParentKey":"n3n3bxxr1femblx4cb4","Syntax":"","Logic":"x_candle","Output":"","Tags":"!_type|room","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"n3n3bxxr1femblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"[tplt_syntax]((x_candle))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"move","ElementKey":"gdg04olx436mblx4cb4","Name":"","ParentKey":"8qymncoj9jmmblx4cb4","Syntax":"","Logic":"oak_inn_backroom","Output":"\nYou climb the stairs in the west end of the cellar.","Tags":"[player]","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"8qymncoj9jmmblx4cb4","Name":"","ParentKey":"oak_inn_cellar","Syntax":"[tplt_syntax]((go_west_up))","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"oak_inn_cellar","Name":"The Old Oak Inn","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1}
 ];
 
         // Parsers
@@ -265,7 +265,7 @@
             let fileNameElem = database.find(item => item.Tags === "!_filename") ?? null;
             if (fileNameElem)
             {
-                fileName = fileNameElem.Output;
+                fileName = toSafeFilename(fileNameElem.Output);
             }
 
             // Make sure the latest database is stored
@@ -510,14 +510,13 @@
             }
         }
 
-        function doRandomRoll(rndElement, rndString)
-        {
-            if (rndString.startsWith("[rand:"))
-            {
-                return getRandValue(rndElement, rndString);
+        function doRandomRoll(rndElement, rndString) {
+            if (rndString.startsWith("rdm_")) {
+                rndString = rndString.replace("rdm_", "");
             }
-            else
-            {
+            if (rndString.startsWith("[rand:")) {
+                return getRandValue(rndElement, rndString);
+            } else {
                 return getRollDiceValue(rndElement, rndString);
             }
         }
@@ -1136,6 +1135,20 @@
                 let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
                 currentElement.Tags = taglist.join("|");
             }
+            function toSafeFilename(input) {
+                if (typeof input !== 'string') return 'worldweaver';
+
+                // Normalize string: lowercase, remove accents
+                let safe = input.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                // Replace non-alphanumeric characters with hyphens
+                safe = safe.replace(/[^a-z0-9]+/g, '-');
+
+                // Collapse multiple hyphens and trim
+                safe = safe.replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+
+                return safe || 'worldweaver';
+            }
             function processModifier(currentElement, modifier, roll)
             {
                 const arr = roll.split(modifier);
@@ -1473,21 +1486,17 @@
 
         // Process the Player's input.
         // This will call all the other parsers.
-        function processInput(command)
-        {
-            if (playerDead === true)
-            {
+        function processInput(command) {
+            if (playerDead === true) {
                 output.innerHTML = "You are dead.";
                 return;
             }
 
-            if (macroRecording && !command.startsWith("_macro"))
-            {
+            if (macroRecording && !command.startsWith("_macro")) {
                 currentMacro.Output.push(command);
             }
 
-            if (!macroRunning)
-            {
+            if (!macroRunning) {
                 if (command) {
                     inputHistory.push(command);
                     if (inputHistory.length > maxHistorySize) {
@@ -1507,15 +1516,13 @@
             let playerElem = getPlayer();
 
             processAdminInput(command);
-            if (gameOutput.MatchMade)
-            {
+            if (gameOutput.MatchMade) {
                 return;
             }
 
             if (playerElem.Name === "" &&
                 userInput.Input != "save" &&
-                userInput.Input != "help")
-            {
+                userInput.Input != "help") {
                 output.innerHTML = "";
                 playerElem.Name = userInput.Input;
                 showGameStartScreen();
@@ -1528,8 +1535,7 @@
                 return;
             }
 
-            if (userInput.Input === "save")
-            {
+            if (userInput.Input === "save") {
                 saveFile();
                 input.value = "";
                 input.focus();
@@ -1538,15 +1544,13 @@
 
             output.innerHTML = "";
 
-            if (command === "help")
-            {
+            if (command === "help") {
                 outputMatch("I am here to help you!", false);
                 gameOutput.MatchMade = true;
                 return;
             }
 
-            if (gameStarted)
-            {
+            if (gameStarted) {
                 handleTravel();
                 parseGame(gameParsers);
                 parseGlobal(globalParsers);
@@ -1555,19 +1559,16 @@
 
                 processNavigation();
 
-                if (!gameOutput.Output || gameOutput.Output === "")
-                {
+                if (!gameOutput.Output || gameOutput.Output === "") {
                     const errMsg = getChildByTag(getElementByKey(getGameKey()), errorTag);
-                    if (errMsg !== null)
-                    {
+                    if (errMsg !== null) {
                         gameOutput.Output = errMsg.Output;
                         setOutputHtml();
                         return;
                     }
                 }
 
-                if (adminMode)
-                {
+                if (adminMode) {
                     parseDevNotes();
                 }
 
@@ -1575,12 +1576,9 @@
             }
         }
 
-        function processNavigation()
-        {
-            if (roomParsers.includes("navigation"))
-            {
-                for (const nav of getChildrenByType(getCurrentRoom(), "navigation"))
-                {
+        function processNavigation() {
+            if (roomParsers.includes("navigation")) {
+                for (const nav of getChildrenByType(getCurrentRoom(), "navigation")) {
                     const doContinue = gameOutput.ContinueParsing;
                     gameOutput.ContinueParsing = true;
                     parseElement(nav, navigationParsers); 
@@ -1589,21 +1587,22 @@
             }
         }
 
-        function processAdminInput(command)
-        {
-            switch (true)
-            {
+        function processAdminInput(command) {
+            switch (true) {
+                case (command === "_admin"):
+                    showAdminHelp();
+                    gameOutput.MatchMade = true;
+                    break;
+
                 case command.startsWith("_admin "):
-                    if (doAdminLogin(command))
-                    {
+                    if (doAdminLogin(command)) {
                         gameOutput.MatchMade = true;
                         return;
                     }
                     break;
 
                 case command.startsWith("_devnotes") && adminMode:
-                    if (doAdminDevNotes(command.replace("_devnotes", "")))
-                    {
+                    if (doAdminDevNotes(command.replace("_devnotes", ""))) {
                         gameOutput.MatchMade = true;
                         return;
                     }
@@ -1634,27 +1633,36 @@
                     return;
             }
         }
-        function doAdminLogin(command)
-        {
+        function showAdminHelp() {
+            let helpText = "";
+
+            helpText += "Admin Commands:<br /><br />";
+            helpText += "<li><strong>_admin</strong> : Shows this help document</li>";
+            helpText += "<li><strong>_admin (admin password)</strong> : Toggles admin mode</li>";
+            helpText += "<li><strong>_devnotes (optional filter text)</strong> : Shows dev notes - regardless of the room you are in</li>";
+            helpText += "<li><strong>_macror (unique macro name)</strong> : Begins recording a macro</li>";
+            helpText += "<li><strong>_macros</strong> : Stops recording the current macro and gives you the code/steps to add it to your game</li>";
+            helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
+            helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
+            helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
+
+            output.innerHTML = helpText;
+        }
+        function doAdminLogin(command) {
             const passAttrib = getElementsByTag(adminPassTag)?.[0] ?? null;
-            if (passAttrib === null)
-            {
+            if (passAttrib === null) {
                 return false;
             }
-            if (passAttrib.Output !== command.replace("_admin ", ""))
-            {
+            if (passAttrib.Output !== command.replace("_admin ", "")) {
                 return false;
             }
 
             adminMode = !adminMode;
 
-            if (adminMode)
-            {
-                output.innerHTML = "Admin mode enabled.";
+            if (adminMode) {
+                output.innerHTML = "Admin mode enabled.<br />Use <strong>_admin</strong> without a password, to display admin help.";
                 output.style.color = "yellow";
-            }
-            else
-            {
+            } else {
                 macroRunning = false;
                 macroRecording = false;
                 output.innerHTML = "Admin mode disabled.";
@@ -1663,30 +1671,23 @@
 
             return true;
         }
-        function doAdminDevNotes(command)
-        {
+        function doAdminDevNotes(command) {
             let devOutput = `${br}${br}${br}Dev Notes:`;
             let dNotes = null;
             
-            if (command.trim() === "")
-            {
+            if (command.trim() === "") {
                 dNotes = database.filter(item => item.ElementType === "dev_note");
-            }
-            else
-            {
+            } else {
                 dNotes = database.filter(item => item.ElementType === "dev_note" && item.Output.includes(command.trim()));
             }
-            if (dNotes.length < 1)
-            {
+            if (dNotes.length < 1) {
                 dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim()));
             }
-            if (dNotes.length < 1)
-            {
+            if (dNotes.length < 1) {
                 return false;
             }
 
-            for (const dNote of dNotes)
-            {
+            for (const dNote of dNotes) {
                 devOutput += `${br}Parent: ${dNote.ParentKey}${br}Tags: ${dNote.Tags}${br}${dNote.Output}${br}${br}`;
             }
 
@@ -1696,18 +1697,15 @@
         }
 
         // Macros
-        function doAdminMacroRecord(command)
-        {
+        function doAdminMacroRecord(command) {
             macroRunning = false;
-            if (command.trim() === "")
-            {
+            if (command.trim() === "") {
                 output.innerHTML = "Be sure to specify a unique macro name.";
                 return;
             }
             const macroName = command.trim();
             const uniqueCheck = database.filter(item => item.ElementKey === macroName);
-            if (uniqueCheck.length > 0)
-            {
+            if (uniqueCheck.length > 0) {
                 output.innerHTML = `There is already a macro in your game called ${macroName}.`;
                 return;
             }
@@ -1716,8 +1714,7 @@
             macroRecording = true;
             output.innerHTML = `Macro ${macroName} is now recording...`;
         }
-        function doAdminMacroStop()
-        {
+        function doAdminMacroStop() {
             const delString = currentMacro.Output.join("|~|");
             output.innerHTML = `Paste the below macro definition somewhere in your game sources${br}Usually in one central .nrmn file.${br}Then re-import the game source and paste the updated database into your game .html.`;
             output.innerHTML += `${br}${br}`;
@@ -1727,70 +1724,57 @@
             output.innerHTML += delString;
             macroRecording = false;
         }
-        function doAdminMacroRun(command)
-        {
+        function doAdminMacroRun(command) {
             testResults.length = 0;
             macroRecording = false;
             currentMacro = database.find(item => item.ElementKey === command.trim()) ?? null;
-            if (currentMacro === null)
-            {
+            if (currentMacro === null) {
                 output.innerHTML = `The specified macro: ${command.trim()} could not be found.`;
                 return;
             }
 
             macroRunning = true;
 
-            for (const step of currentMacro.Output.split("|~|"))
-            {
+            for (const step of currentMacro.Output.split("|~|")) {
                 processInput(step);
             }
 
             macroRunning = false;
         }
-        function doAdminMacroList(command)
-        {
+        function doAdminMacroList(command) {
             let selMacros = null;
             let lsOutput = ""
 
-            if (command.trim() === "")
-            {
+            if (command.trim() === "") {
                 selMacros = database.filter(item => item.ElementType === "macro") ?? null;
-                if (selMacros === null)
-                {
+                if (selMacros === null) {
                     output.innerHTML = "No macros found.";
                     return;
                 }
 
                 lsOutput = `Macros:${br}`;
-                for (const macro of selMacros)
-                {
+                for (const macro of selMacros) {
                     lsOutput += `${macro.ElementKey}${br}`;
                 }
-            }
-            else
-            {
+            } else {
                 selMacros = database.find(item => item.ElementKey === command.trim()) ?? null;
-                if (selMacros === null)
-                {
+                if (selMacros === null) {
                     output.innerHTML = "Unable to find that macro.";
                     return;
                 }
 
                 lsOutput = `Macro ${selMacros.ElementKey} Details:${br}`;
-                for (const macroStep of selMacros.Output.split("|~|"))
-                {
+                for (const macroStep of selMacros.Output.split("|~|")) {
                     lsOutput += `${macroStep}${br}`;
                 }
             }
 
             output.innerHTML = lsOutput;
         }
-        function showTestResults()
-        {
+        function showTestResults() {
             const brt = "<br />";
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
-            for (const res of testResults)
-            {
+            for (const res of testResults) {
                 output.innerHTML += `Room: ${res.Room}, Test: ${res.Name}, Result: ${res.Result}${brt}${brt}${brt}${brt}`;
             }
             testResults.length = 0;
@@ -1799,58 +1783,46 @@
 
 
         // Travel
-        function getActiveTraveling()
-        {
+        function getActiveTraveling() {
             return database.filter(item => item.ElementType === "travel" && item.Active === "true");
         }
-        function getOtherFollowingTraveling()
-        {
+        function getOtherFollowingTraveling() {
             return database.filter(item => item.ElementType === "travel" && item.Logic.startsWith("[follow|") && item.Logic !== "[follow|player]" && item.Active === "true");
         }
-        function getPlayerFollowingTraveling()
-        {
+        function getPlayerFollowingTraveling() {
             return database.filter(item => item.ElementType === "travel" && item.Logic === "[follow|player]" && item.Active === "true");
         }
-        function getAllTraveling()
-        {
+        function getAllTraveling() {
             return database.filter(item => item.ElementType === "travel");
         }
-        function handleTravel()
-        {
+        function handleTravel() {
             const trvls = getActiveTraveling();
 
-            for (const trv of trvls)
-            {
-                if (trv.Logic.startsWith("[path|"))
-                {
+            for (const trv of trvls) {
+                if (trv.Logic.startsWith("[path|")) {
                     handlePath(trv);
                 }
             }
         }
 
-        function handlePath(travelElement)
-        {
+        function handlePath(travelElement) {
             const path = travelElement.Logic.replace("[", "").replace("]", "").split("|").slice(1);
             const npc = getSelf(travelElement);
             let nextIx = 0;
 
-            for (let ix = 0; ix < path.length; ix++)
-            {
-                if (npc.ParentKey === path[ix])
-                {
+            for (let ix = 0; ix < path.length; ix++) {
+                if (npc.ParentKey === path[ix]) {
                     nextIx = ix + 1;
                     break;
                 }
             }
 
-            if (npc.RepeatIndex == 0)
-            {
+            if (npc.RepeatIndex == 0) {
                 npc.RepeatIndex++;
                 return;
             }
 
-            if (nextIx >= path.length)
-            {
+            if (nextIx >= path.length) {
                 nextIx = 0;
             }
 
@@ -1859,20 +1831,16 @@
             return;
         }
 
-        function followPlayer()
-        {
+        function followPlayer() {
             const trvls = getPlayerFollowingTraveling();
 
-            for (const trv of trvls)
-            {
+            for (const trv of trvls) {
                 let selfElement = getSelf(trv);
-                if (selfElement === null)
-                {
+                if (selfElement === null) {
                     return;
                 }
                 const enterMessage = getChildrenByTag(trv, enterTag)?.[0] ?? null;
-                if (enterMessage === null)
-                {
+                if (enterMessage === null) {
                     return;
                 }
                 selfElement.ParentKey = getCurrentRoom().ElementKey;
@@ -1882,88 +1850,70 @@
 
 
         // Run the parsers
-        function parseGame(parsers)
-        {
+        function parseGame(parsers) {
             const gameElem = getElementsByType("game")[0];
 
-            for (let prsr of parsers)
-            {
-                for (let child of getChildren(gameElem, false))
-                {
+            for (let prsr of parsers) {
+                for (let child of getChildren(gameElem, false)) {
                     callParser(prsr, gameElem, child);
                 }
             }
         }
 
-        function parseAction(currentElement, parsers)
-        {
-            if (actionParsers.includes("logic") && !processLogic(currentElement))
-            {
+        function parseAction(currentElement, parsers) {
+            if (actionParsers.includes("logic") && !processLogic(currentElement)) {
                 return;
             }
 
             parseElement(currentElement, parsers);
 
             if (tagsContain(currentElement.Tags, typeTag) &&
-                currentElement.Logic !== "")
-            {
-                if (tagsContain(currentElement.Tags, "room"))
-                {
+                currentElement.Logic !== "") {
+                if (tagsContain(currentElement.Tags, "room")) {
                     parseCustomElement(getCurrentRoom(), getCurrentRoom(), currentElement.Logic, false);
                 }
-                if (tagsContain(currentElement.Tags, "player"))
-                {
+                if (tagsContain(currentElement.Tags, "player")) {
                     parseCustomElement(getPlayer(), getPlayer(), currentElement.Logic, false);
                 }
-                if (tagsContain(currentElement.Tags, "self"))
-                {
+                if (tagsContain(currentElement.Tags, "self")) {
                     parseCustomElement(getSelf(currentElement), getSelf(currentElement), currentElement.Logic, false);
                 }
-                if (tagsContain(currentElement.Tags, "children"))
-                {
+                if (tagsContain(currentElement.Tags, "children")) {
                     gameOutput.Output = currentElement.Output;
                     const children = getChildObjects(getSelf(currentElement));
 
-                    for (let child of children)
-                    {
+                    for (let child of children) {
                         parseCustomElement(getSelf(currentElement), child, currentElement.Logic, false);
                     }
                 }
-                if (tagsContain(currentElement.Tags, "all"))
-                {
+                if (tagsContain(currentElement.Tags, "all")) {
                     parseCustomElement(getCurrentRoom(), getCurrentRoom(), currentElement.Logic, true);
                 }
             }
 
             if (tagsContain(currentElement.Tags, listTag) &&
-                currentElement.Logic !== "")
-            {
+                currentElement.Logic !== "") {
                 parseListAction(currentElement);
             }
 
             if (tagsContain(currentElement.Tags, spawnTag) &&
-                currentElement.Logic !== "")
-            {
+                currentElement.Logic !== "") {
                 parseSpawnAction(currentElement);
             }
         }
 
-        function parseAttack(currentElement, parsers)
-        {
+        function parseAttack(currentElement, parsers) {
             currentEnemy = getTargets(currentElement, currentElement.Logic)?.[0] ?? null;
             showFightInterface();
         }
 
-        function parseCustomElement(rootElement, parentElement, customType, isRecursive)
-        {
+        function parseCustomElement(rootElement, parentElement, customType, isRecursive) {
             // Parent Level
             const custElems = database.filter(item => item.ElementType === customType &&
                 item.ParentKey === parentElement.ElementKey);
 
-            for (let elem of custElems)
-            {
-                if (generalParsers.includes("logic") && !processLogic(elem))
-                {
+            for (let elem of custElems) {
+                if (generalParsers.includes("logic") && !processLogic(elem)) {
                     continue;
                 }
 
@@ -1974,33 +1924,26 @@
             const childElems = database.filter(item => canContainCustomElems.includes(item.ElementType) &&
                 item.ParentKey === parentElement.ElementKey);
 
-            for (let elem of childElems)
-            {
-                if (isRecursive || elem.ParentKey === rootElement.ElementKey)
-                {
+            for (let elem of childElems) {
+                if (isRecursive || elem.ParentKey === rootElement.ElementKey) {
                     parseCustomElement(rootElement, elem, customType, isRecursive);
                 }
             }
         }
 
-        function parseInput(currentElement, parsers)
-        {
-            if (currentElement.Syntax === "")
-            {
+        function parseInput(currentElement, parsers) {
+            if (currentElement.Syntax === "") {
                 return;
             }
 
             const sntxTgt = getTargets(currentElement, currentElement.Syntax);
             let sntx = currentElement.Syntax;
-            if (sntxTgt.length > 0 && sntxTgt[0])
-            {
+            if (sntxTgt.length > 0 && sntxTgt[0]) {
                 sntx = sntxTgt[0].Output;    
             }
 
-            if (regexCheck(sntx, userInput.Input))
-            {
-                if (inputParsers.includes("logic") && !processLogic(currentElement))
-                {
+            if (regexCheck(sntx, userInput.Input)) {
+                if (inputParsers.includes("logic") && !processLogic(currentElement)) {
                     return;
                 }
 
@@ -2009,30 +1952,23 @@
             }
         }
 
-        function parseListAction(currentElement)
-        {
+        function parseListAction(currentElement) {
             const caption = currentElement.Output;
             const items = getTargets(currentElement, currentElement.Logic);
             let pfx = "";
 
-            if (tagsContain(currentElement.Tags, bulletTag))
-            {
+            if (tagsContain(currentElement.Tags, bulletTag)) {
                 pfx = "  * ";
             }
 
             gameOutput.Output = caption + "\n" + horizLine(caption) + "\n";
-            for (const item of items)
-            {
-                if (tagsContain(item.Tags, armedTag))
-                {
+            for (const item of items) {
+                if (tagsContain(item.Tags, armedTag)) {
                     let wName = "";
                     const weapon = getArmedWeapon(getPlayer());
-                    if (weapon === null)
-                    {
+                    if (weapon === null) {
                         wName = "Empty hand";
-                    }
-                    else
-                    {
+                    } else {
                         wName = weapon.Name;
                     }
                     gameOutput.Output += `${pfx}${item.Name}: ${wName}`;
@@ -2040,12 +1976,9 @@
                     continue;
                 }
 
-                if (item.Output !== "")
-                {
+                if (item.Output !== "") {
                     gameOutput.Output += `${pfx}${item.Name}: ${item.Output}`;
-                }
-                else
-                {
+                } else {
                     gameOutput.Output += `${pfx}${item.Name}`;
                 }
                 gameOutput.Output += "\n";
@@ -2054,23 +1987,18 @@
             gameOutput.MatchMade = true;
         }
 
-        function processLogic(currentElement)
-        {
+        function processLogic(currentElement) {
             const children = getChildrenByType(currentElement, "logic");
-            if (children === null || children.length < 1)
-            {
+            if (children === null || children.length < 1) {
                 return true;
             }
 
 
-            for (const child of children)
-            {
+            for (const child of children) {
                 let tRes = "";
                 const passed = parseLogic(currentElement, child, child.Logic);
-                if (!passed)
-                {
-                    if (macroRunning && macroTesting && tagsContain(child.Tags, testTag))
-                    {
+                if (!passed) {
+                    if (macroRunning && macroTesting && tagsContain(child.Tags, testTag)) {
                         tRes = {
                             Room: getCurrentRoom().ElementKey,
                             Name: child.Name,
@@ -2082,11 +2010,8 @@
                     gameOutput.Output += child.Output;
 
                     return passed;
-                }
-                else
-                {
-                    if (macroRunning && macroTesting && tagsContain(child.Tags, testTag))
-                    {
+                } else {
+                    if (macroRunning && macroTesting && tagsContain(child.Tags, testTag)) {
                         tRes = {
                             Room: getCurrentRoom().ElementKey,
                             Name: child.Name,
@@ -2099,67 +2024,51 @@
 
             return true;
         }
-        function parseLogic(parentElement, childElement, logicString)
-        {
-            if (logicString === undefined || logicString.trim() === "")
-            {
+        function parseLogic(parentElement, childElement, logicString) {
+            if (logicString === undefined || logicString.trim() === "") {
                 return true;
             }
-            if (!macroRunning && !macroTesting && tagsContain(childElement.Tags, testTag))
-            {
+            if (!macroRunning && !macroTesting && tagsContain(childElement.Tags, testTag)) {
                 return true;
             }
             let logicPassed = [];
             const logicRows = logicString.split(/\r?\n/);
             let curOperator = "and";
            
-            for (let row of logicRows)
-            {
-                if (row.startsWith('?'))
-                {
+            for (let row of logicRows) {
+                if (row.startsWith('?')) {
                     logicPassed.push(processLogicRow(parentElement, childElement, row.substring(1)));
-                }
-                else if (row.trim() === "and")
-                {
+                } else if (row.trim() === "and") {
                     curOperator = "and";
-                }
-                else if (row.trim() === "or")
-                {
+                } else if (row.trim() === "or") {
                     curOperator = "or";
                 }
 
-                if (logicPassed.length > 1)
-                {
-                    if (curOperator === "and" && logicPassed.includes(false))
-                    {
+                if (logicPassed.length > 1) {
+                    if (curOperator === "and" && logicPassed.includes(false)) {
                         return false;
                     }
-                    if (curOperator === "or" && !logicPassed.includes(true))
-                    {
+                    if (curOperator === "or" && !logicPassed.includes(true)) {
                         return false;
                     }
                 }
             }
 
-            if (logicPassed.includes(false))
-            {
+            if (logicPassed.includes(false)) {
                 return false;
             }
 
             return true;
         }
 
-        function parseSpawnAction(currentElement)
-        {
+        function parseSpawnAction(currentElement) {
             const spawnElem = database.find(item => item.ElementKey === currentElement.Logic) ?? null;
-            if (spawnElem === null)
-            {
+            if (spawnElem === null) {
                 return;
             }
             const newParent = getTargets(currentElement, currentElement.Output)?.[0] ?? null;
 
-            if (newParent === null)
-            {
+            if (newParent === null) {
                 return;
             }
 
@@ -2170,45 +2079,38 @@
 
 
         // Run the Admin Parsers
-        function parseDevNotes()
-        {
+        function parseDevNotes() {
             const dNotes = database.filter(item => item.ElementType === "dev_note" && item.ParentKey === getCurrentRoom().ElementKey && item.Active === "true");
             let devOutput = `${br}${br}${br}Dev Notes:`;
 
-            for (const dNote of dNotes)
-            {
+            for (const dNote of dNotes) {
                 devOutput += `${br}${dNote.Output}${br}`;
             }
 
-            if (dNotes.length > 0)
-            {
+            if (dNotes.length > 0) {
                 gameOutput.Output += devOutput;
             }
         }
 
 
 
-        function spawnElement(spawnElem, newParent)
-        {
+        function spawnElement(spawnElem, newParent) {
             let newKey = "";
             newParent = cloneElement(spawnElem, newParent.ElementKey);
 
-            if (newParent.Output.startsWith("spn_"))
-            {
+            if (newParent.Output.startsWith("spn_")) {
                 newParent.Output = newParent.Output.slice(4);
                 fixElementRandom(newParent);
             }
 
-            for (const spawnChild of getChildren(spawnElem, true))
-            {
+            for (const spawnChild of getChildren(spawnElem, true)) {
                 spawnElement(spawnChild, newParent);
             }
 
             return newParent;
         }
 
-        function cloneElement(originalElement, newParentKey)
-        {
+        function cloneElement(originalElement, newParentKey) {
             let entry = JSON.parse(JSON.stringify(originalElement));
             entry.ElementKey = getGuid();
             entry.ParentKey = newParentKey;
@@ -2282,8 +2184,7 @@
                 </?>
 
             */
-        function processLogicRow(parentElement, childElement, row)
-        {
+        function processLogicRow(parentElement, childElement, row) {
             let tag = "";
             let target1 = "";
             let field1 = "";
@@ -2296,53 +2197,43 @@
             const comparisons = splitLogicByOperand(row);
             const operand = getOperand(row);
 
-            if (!Array.isArray(comparisons) || comparisons.length !== 2)
-            {
+            if (!Array.isArray(comparisons) || comparisons.length !== 2) {
                 alert("Malformed logic statement!");
                 return false;
             }
 
-            if (operand === "")
-            {
+            if (operand === "") {
                 return false;
             }
 
             value1 = getExplicitValue(comparisons[0]);
             value2 = getExplicitValue(comparisons[1]);
 
-            if (value1 === "" && comparisons[0].startsWith("rdm_"))
-            {
+            if (value1 === "" && comparisons[0].startsWith("rdm_")) {
                 value1 = doRandomRoll(childElement, comparisons[0].replace("rdm_", ""));
             }
-            if (value2 === "" && comparisons[1].startsWith("rdm_"))
-            {
+            if (value2 === "" && comparisons[1].startsWith("rdm_")) {
                 value2 = doRandomRoll(childElement, comparisons[1].replace("rdm_", ""));
             }
 
-            if (value1 === "")
-            {
+            if (value1 === "") {
                 value1 = getRelElementId(childElement, comparisons[0]);
             }
-            if (value2 === "")
-            {
+            if (value2 === "") {
                 value2 = getRelElementId(childElement, comparisons[1]);
             }
 
-            if (value1 === "")
-            {
+            if (value1 === "") {
                 target1 = getTargets(childElement, comparisons[0])?.[0] ?? null;
-                if (target1 === null)
-                {
+                if (target1 === null) {
                     return;
                 }
                 field1 = getField(comparisons[0]);
                 value1 = getFieldValue(target1, field1);
             }
-            if (value2 === "")
-            {
+            if (value2 === "") {
                 target2 = getTargets(childElement, comparisons[1])?.[0] ?? null;
-                if (target2 === null)
-                {
+                if (target2 === null) {
                     return;
                 }
                 field2 = getField(comparisons[1]);
@@ -2351,50 +2242,39 @@
 
             return valueComparison(operand, value1, value2);
         }
-        function splitLogicByOperand(row)
-        {
+        function splitLogicByOperand(row) {
             let splt = "";
-            for (const oper of operands)
-            {
+            for (const oper of operands) {
                 splt = row.split(oper);
-                if (splt.length === 2)
-                {
+                if (splt.length === 2) {
                     return splt;
                 }
             }
         }
-        function getOperand(row)
-        {
-            for (const op of operands)
-            {
-                if (row.includes(op))
-                {
+        function getOperand(row) {
+            for (const op of operands) {
+                if (row.includes(op)) {
                     return op.trim();
                 }
             }
 
             return "";
         }
-        function getExplicitValue(row)
-        {
+        function getExplicitValue(row) {
             // Special 'explicit' values
-            if (row.trim() === "[output]")
-            {
+            if (row.trim() === "[output]") {
                 return gameOutput.Output;
             }
 
-            if (row.startsWith("'") && row.endsWith("'"))
-            {
+            if (row.startsWith("'") && row.endsWith("'")) {
                 return row.replaceAll("'", "");
             }
             return "";
         }
-        function getFieldValue(curElem, field)
-        {
+        function getFieldValue(curElem, field) {
             curElem = curElem;
 
-            switch(field.toLowerCase())
-            {
+            switch(field.toLowerCase()) {
                 case "elementtype":
                     return curElem.ElementType;
                 case "elementkey":
@@ -2417,15 +2297,12 @@
                     return "";
             }
         }
-        function setFieldValue(curElem, field, value)
-        {
-            if (Array.isArray(curElem))
-            {
+        function setFieldValue(curElem, field, value) {
+            if (Array.isArray(curElem)) {
                 curElem = curElem[0];
             }
 
-            switch(field.toLowerCase())
-            {
+            switch(field.toLowerCase()) {
                 case "elementtype":
                     return curElem.ElementType = value;
                 case "elementkey":
@@ -2446,10 +2323,8 @@
                     return "";
             }
         }
-        function getRelElementId(currentElement, row)
-        {
-            switch(row)
-            {
+        function getRelElementId(currentElement, row) {
+            switch(row) {
                 case "[player]":
                     return getPlayer().ElementKey;
                 case "[room]":
@@ -2460,25 +2335,20 @@
 
             return "";
         }
-        function getTargets(childElement, row)
-        {
-            if (row.startsWith("<<"))
-            {
+        function getTargets(childElement, row) {
+            if (row.startsWith("<<")) {
                 row = row.replace("<<", "").replace(">>", "");
             }
             let tgt = "";
             tgt = getTargetById(childElement, row);
 
-            if (tgt === null)
-            {
+            if (tgt === null) {
                 tgt = getTargetsByRelCode(childElement, row);
             }
 
-            if (row.endsWith("))"))
-            {
+            if (row.endsWith("))")) {
                 const arr = row.split("((");
-                if (arr.length === 2)
-                {
+                if (arr.length === 2) {
                     const tag = arr[1].replace("))", "");
                     tgt = getChildrenByTag(tgt, tag);
                 }
@@ -2486,27 +2356,21 @@
 
             return Array.isArray(tgt) ? tgt : [tgt];
         }
-        function getTargetById(currentElement, row)
-        {
-            if (row.startsWith("[player]"))
-            {
+        function getTargetById(currentElement, row) {
+            if (row.startsWith("[player]")) {
                 return getPlayer();
             }
-            if (row.startsWith("[room]"))
-            {
+            if (row.startsWith("[room]")) {
                 return getCurrentRoom();
             }
-            if (row.startsWith("[self]"))
-            {
+            if (row.startsWith("[self]")) {
                 const self = getSelf(currentElement);
-                if (self === null)
-                {
+                if (self === null) {
                     return null;
                 }
                 return self;
             }
-            if (row.startsWith("["))
-            {
+            if (row.startsWith("[")) {
                 row = row.substring(1);
                 const arr = row.split("]");
                 return getElementByKey(arr[0]);
@@ -2514,51 +2378,40 @@
 
             return null;
         }
-        function getTargetsByRelCode(childElement, row)
-        {
+        function getTargetsByRelCode(childElement, row) {
             let parent = null;
             let childTag = "";
             let relVal = "";
 
-            if (Number.isInteger(Number(row)))
-            {
+            if (Number.isInteger(Number(row))) {
                 return row;
             }
 
             relVal = [...row.matchAll(/<<(.+?)>>/g)].map(match => match[1]);
-            if (relVal === "undefined")
-            {
+            if (relVal === "undefined") {
                 relVal = row;
             }
-            if (relVal.length > 0)
-            {
+            if (relVal.length > 0) {
                 relVal = relVal[0];
-            }
-            else
-            {
+            } else {
                 relVal = row;
             }
 
-            if (relVal.startsWith("[self]"))
-            {
+            if (relVal.startsWith("[self]")) {
                 parent = getSelf(childElement);
             }
-            if (relVal.startsWith("[room]"))
-            {
+            if (relVal.startsWith("[room]")) {
                 parent = getCurrentRoom();
             }
-            if (relVal.startsWith("[player]"))
-            {
+            if (relVal.startsWith("[player]")) {
                 parent = getPlayer();
             }
             // TODO: Add GetEnemy
 
             let arr = relVal.split("))");
-            if (arr.length === 2)
-            {
+            if (arr.length === 2) {
                 arr = arr[0].split("((");
-                if (arr.length === 2)
-                {
+                if (arr.length === 2) {
                     childTag = arr[1].trim();
                     return getChildrenByTag(parent, childTag);
                 }
@@ -2566,14 +2419,11 @@
 
             return parent;
         }
-        function getTargetsBySyntax(input, parentElement)
-        {
+        function getTargetsBySyntax(input, parentElement) {
             const roomChildren = getChildren(parentElement, false);
 
-            for (let child of roomChildren)
-            {
-                if (regexCheck(child.Syntax, input))
-                {
+            for (let child of roomChildren) {
+                if (regexCheck(child.Syntax, input)) {
                     return child;
                 }
 
@@ -2582,47 +2432,38 @@
 
             return null;
         }
-        function getField(row)
-        {
+        function getField(row) {
             let arr = "";
 
-            if (row.endsWith("]") || row.endsWith("))") || row.endsWith(")"))
-            {
+            if (row.endsWith("]") || row.endsWith("))") || row.endsWith(")")) {
                 return "Output";
             }
 
             arr = row.split("]");
-            if (arr.length !== 2)
-            {
+            if (arr.length !== 2) {
                 arr = row.split(")");
             }
 
-            if (arr.length === 2)
-            {
+            if (arr.length === 2) {
                 return arr[1].trim();
             }
 
             return "Output";
         }
-        function valueComparison(operand, val1, val2)
-        {
-            switch (operand.trim())
-            {
+        function valueComparison(operand, val1, val2) {
+            switch (operand.trim()) {
                 case "!=":
-                    if (val1.replaceAll("'", "") !== val2.replaceAll("'", ""))
-                    {
+                    if (val1.replaceAll("'", "") !== val2.replaceAll("'", "")) {
                         return true;
                     }
                     break;
                 case ">=":
-                    if (val1 >= val2)
-                    {
+                    if (val1 >= val2) {
                         return true;
                     }
                     break;
                 case "<=":
-                    if (val1 <= val2)
-                    {
+                    if (val1 <= val2) {
                         return true;
                     }
                     break;
@@ -2646,10 +2487,8 @@
             return false;
         }
 
-        function parseEnterMessage(parentElement, childElement)
-        {
-            if (!processLogic(childElement))
-            {
+        function parseEnterMessage(parentElement, childElement) {
+            if (!processLogic(childElement)) {
                 return;
             }
 
@@ -2658,45 +2497,35 @@
             parseElement(childElement, enterMessageParsers);
         }
 
-        function parseGlobal(parsers)
-        {
+        function parseGlobal(parsers) {
             const globalElems = getElementsByType("global");
 
-            for (let glob of globalElems)
-            {
-                for (let prsr of parsers)
-                {
-                    for (let child of getChildren(glob, false))
-                    {
+            for (let glob of globalElems) {
+                for (let prsr of parsers) {
+                    for (let child of getChildren(glob, false)) {
                         callParser(prsr, glob, child, false);
                     }
                 }
             }
         }
 
-        function parseMessage(parentElement, childElement)
-        {
+        function parseMessage(parentElement, childElement) {
             const msgs = database.filter(item => item.ParentKey === childElement.ElementKey);
-            if (msgs === null || msgs.length < 1)
-            {
-                if (childElement.Output === "")
-                {
+            if (msgs === null || msgs.length < 1) {
+                if (childElement.Output === "") {
                     return;
                 }
                 outputMatch(processSpecialOutput(childElement, childElement.Output), true);
                 return;
             }
 
-            if (childElement.Repeat === null || childElement.Repeat === "")
-            {
+            if (childElement.Repeat === null || childElement.Repeat === "") {
                 childElement.Repeat = "repeat";
             }
 
-            switch (childElement.Repeat)
-            {
+            switch (childElement.Repeat) {
                 case "random":
-                    if (msgs === null || msgs.length < 1)
-                    {
+                    if (msgs === null || msgs.length < 1) {
                         return;
                     }
                     const rndLen = msgs.length;
@@ -2706,12 +2535,10 @@
                 case "repeat":
                     const rptLen = msgs.length;
                     let rptIdx = parentElement.RepeatIndex;
-                    if (rptIdx === "")
-                    {
+                    if (rptIdx === "") {
                         rptIdx = -1;
                     }
-                    if (rptIdx > rptLen - 1)
-                    {
+                    if (rptIdx > rptLen - 1) {
                         rptIdx = 0;
                     }
                     outputMatch(processSpecialOutput(childElement, msgs[rptIdx].Output), true);
@@ -2721,34 +2548,28 @@
                 case "none":
                     const nLen = msgs.length;
                     let nIdx = parentElement.RepeatIndex;
-                    if (nIdx === "")
-                    {
+                    if (nIdx === "") {
                         nIdx = -1;
                     }
-                    if (nIdx > nLen - 1)
-                    {
+                    if (nIdx > nLen - 1) {
                         nIdx = (nLen - 1);
                     }
                     outputMatch(processSpecialOutput(childElement, msgs[nIdx].Output), true);
-                    if (nIdx < (nLen -1))
-                    {
+                    if (nIdx < (nLen -1)) {
                         nIdx = parseInt(nIdx) + 1;
                     }
                     parentElement.RepeatIndex = nIdx;
                     break;
                 default:
                     const tgt = getTargets(childElement, childElement.Repeat)?.[0] ?? null;
-                    if (tgt === null)
-                    {
+                    if (tgt === null) {
                         return;
                     }
                     const otherIndex = getFieldValue(tgt, getField(childElement.Repeat));
-                    try
-                    {
+                    try {
                         parentElement.RepeatIndex = parseInt(otherIndex);
                     }
-                    catch (Exception)
-                    {
+                    catch (Exception) {
                         parentElement.RepeatIndex = -1;
                     }
                     outputMatch(processSpecialOutput(childElement, msgs[parentElement.RepeatIndex].Output), true);
@@ -2756,50 +2577,39 @@
             }
         }
 
-        function parseMove(currentElement, parsers)
-        {
+        function parseMove(currentElement, parsers) {
             let outputText = "";
             let targetKey = "";
             let targetElem = null;
 
-            if (currentElement.Logic !== limboValue)
-            {
+            if (currentElement.Logic !== limboValue) {
                 targetElem = getElement(currentElement.Logic, currentElement);
-                if (targetElem === null)
-                {
+                if (targetElem === null) {
                     return;
                 }
                 targetKey = targetElem.ElementKey;
-            }
-            else
-            {
+            } else {
                 targetKey = limboValue;
             }
 
             let movingElem = getElement(currentElement.Tags, currentElement);
 
-            if (movingElem != null && targetKey !== "")
-            {
+            if (movingElem != null && targetKey !== "") {
                 const player = getPlayer();
                 const currentParent = movingElem.ParentKey;
                 movingElem.ParentKey = targetKey;
-                if (currentParent === player.ElementKey && targetKey !== player.ElementKey)
-                {
+                if (currentParent === player.ElementKey && targetKey !== player.ElementKey) {
                     setDefaultWeapon(movingElem.ElementKey);
                 }
                 gameOutput.MatchMade = true;
-                if (currentElement.Output !== "" && outputText === "")
-                {
+                if (currentElement.Output !== "" && outputText === "") {
                     gameOutput.Output = currentElement.Output.replace("[target]", movingElem.Name);
                     gameOutput.MatchMade = true;
                     gameOutput.ContinueParsing = false;
-                }
-                else
-                {
+                } else {
                     outputMatch(currentElement.Output, false);
                 }
-                if (movingElem.ElementType === "player")
-                {
+                if (movingElem.ElementType === "player") {
                     gameOutput.EnterMsgDone = false;
                     parseRoom(roomParsers, true);
                     return;
@@ -2807,66 +2617,50 @@
             }
         }
 
-        function parseNpc(parentElement, currentElement, parsers, isEntering)
-        {
-            if (npcParsers.includes("logic") && !processLogic(currentElement))
-            {
+        function parseNpc(parentElement, currentElement, parsers, isEntering) {
+            if (npcParsers.includes("logic") && !processLogic(currentElement)) {
                 return;
             }
 
-            for (const prsr of parsers)
-            {
-                for (let child of getChildren(currentElement, false))
-                {
+            for (const prsr of parsers) {
+                for (let child of getChildren(currentElement, false)) {
                     callParser(prsr, currentElement, child, isEntering);
                 }
             }
         }
 
-        function parseObject(parentElement, currentElement, parsers, isEntering)
-        {
-            if (objectParsers.includes("logic") && !processLogic(currentElement))
-            {
+        function parseObject(parentElement, currentElement, parsers, isEntering) {
+            if (objectParsers.includes("logic") && !processLogic(currentElement)) {
                 return;
             }
 
-            for (const prsr of parsers)
-            {
-                for (let child of getChildren(currentElement, false))
-                {
+            for (const prsr of parsers) {
+                for (let child of getChildren(currentElement, false)) {
                     callParser(prsr, currentElement, child, isEntering);
                 }
             }
         }
 
-        function parseRoom(parsers, isEntering)
-        {
+        function parseRoom(parsers, isEntering) {
             let roomElem = getCurrentRoom();
 
-            for (const prsr of parsers)
-            {
-                for (let child of getChildren(roomElem, isEntering))
-                {
+            for (const prsr of parsers) {
+                for (let child of getChildren(roomElem, isEntering)) {
                     callParser(prsr, roomElem, child, isEntering);
                 }
             }
         }
 
-        function parsePlayer(parsers)
-        {
+        function parsePlayer(parsers) {
             let playerElem = getPlayer();
             const isEntering = false;
 
-            for (const prsr of parsers)
-            {
-                for (let child of getChildren(playerElem, isEntering))
-                {
+            for (const prsr of parsers) {
+                for (let child of getChildren(playerElem, isEntering)) {
                     callParser(prsr, playerElem, child, isEntering);
 
-                    if (child.ElementType === "object")
-                    {
-                        for (let objChild of getChildren(child, isEntering))
-                        {
+                    if (child.ElementType === "object") {
+                        for (let objChild of getChildren(child, isEntering)) {
                             callParser(prsr, child, objChild, isEntering);
                         }
                     }
@@ -2874,30 +2668,24 @@
             }
         }
 
-        function parseSet(parentElement, currentElement, parsers)
-        {
-            if (setParsers.includes("logic") && !processLogic(currentElement))
-            {
+        function parseSet(parentElement, currentElement, parsers) {
+            if (setParsers.includes("logic") && !processLogic(currentElement)) {
                 return;
             }
 
-            if (tagsContain(currentElement.Tags, armTag))
-            {
+            if (tagsContain(currentElement.Tags, armTag)) {
                 let target = getChildrenBySyntax(getPlayer(), userInput.Input);
-                if (target === null || target.length < 1)
-                {
+                if (target === null || target.length < 1) {
                     gameOutput.Output = "You aren't carrying that weapon.";
                     gameOutput.MatchMade = true;
                     return;
                 }
-                if (!tagsContain(target.Tags, weaponTag))
-                {
+                if (!tagsContain(target.Tags, weaponTag)) {
                     gameOutput.Output = "That is not a weapon.";
                     gameOutput.MatchMade = true;
                     return;
                 }
-                if (Array.isArray(target))
-                {
+                if (Array.isArray(target)) {
                     target = target[0];
                 }
 
@@ -2911,8 +2699,7 @@
 
             let field = "";
             let tgt = getTargets(currentElement, currentElement.Logic)?.[0] ?? null;
-            if (tgt === null)
-            {
+            if (tgt === null) {
                 return;
             }
             field = getField(currentElement.Logic);
@@ -2920,12 +2707,10 @@
             updateElementField(tgt, field, currentElement.Output.trim());
         }
 
-        function updateElementField(currentElement, fieldName, newValue)
-        {
+        function updateElementField(currentElement, fieldName, newValue) {
             let curValue = getFieldValue(currentElement, fieldName);
 
-            switch (true)
-            {
+            switch (true) {
                 case (newValue.startsWith("+=")):
                     const inc = Number(newValue.replace("+=", ""));
                     curValue = Number(curValue) + inc;
@@ -2947,8 +2732,7 @@
                     curValue = newValue;
             }
 
-            switch(fieldName.toLowerCase())
-            {
+            switch(fieldName.toLowerCase()) {
                 case "active":
                     currentElement.Active = curValue;
                     break;
@@ -2974,32 +2758,25 @@
                     currentElement.Output = curValue;
                     break;
                 case "tags":
-                    if (newValue.startsWith("+"))
-                    {
+                    if (newValue.startsWith("+")) {
                         addTag(currentElement, newValue.substring(1));
                     }
-                    if (newValue.startsWith("-"))
-                    {
+                    if (newValue.startsWith("-")) {
                         removeTag(currentElement, newValue.substring(1));
                     }
                     break;
             }
         }
 
-        function parseElement(parentElement, parsers)
-        {
-            if (!gameOutput.ContinueParsing)
-            {
+        function parseElement(parentElement, parsers) {
+            if (!gameOutput.ContinueParsing) {
                 return;
             }
 
-            for (const prsr of parsers)
-            {
-                for (let child of getChildren(parentElement, false))
-                {
+            for (const prsr of parsers) {
+                for (let child of getChildren(parentElement, false)) {
                     callParser(prsr, parentElement, child, false);
-                    if (!gameOutput.ContinueParsing)
-                    {
+                    if (!gameOutput.ContinueParsing) {
                         return;
                     }
                 }
@@ -3007,15 +2784,12 @@
         }
 
         // Parser managing function
-        function callParser(curParser, parentElement, childElement, isEntering)
-        {
-            if (childElement.ElementType !== curParser)
-            {
+        function callParser(curParser, parentElement, childElement, isEntering) {
+            if (childElement.ElementType !== curParser) {
                 return;
             }
 
-            switch (curParser)
-            {
+            switch (curParser) {
                 case "action":
                     parseAction(childElement, actionParsers);
                     break;
@@ -3028,41 +2802,35 @@
                     if (parentElement.ElementType !== "game" &&
                         isEntering &&
                         !gameOutput.EnterMsgDone
-                    )
-                    {
+                    ) {
                         parseEnterMessage(parentElement, childElement);
                         followPlayer();
                     }
                     break;
 
                 case "input":
-                    if (!gameOutput.InputMatchMade)
-                    {
+                    if (!gameOutput.InputMatchMade) {
                         parseInput(childElement, inputParsers);
                     }
                     break;
 
                 case "message":
-                    if (messageParsers.includes("logic") && !processLogic(childElement))
-                    {
+                    if (messageParsers.includes("logic") && !processLogic(childElement)) {
                         return;
                     }
 
-                    if (parentElement.ElementType !== "game")
-                    {
+                    if (parentElement.ElementType !== "game") {
                         parseMessage(parentElement, childElement);
                     }
                     break;
 
                 case "move":
-                    if (moveParsers.includes("logic") && !processLogic(childElement))
-                    {
+                    if (moveParsers.includes("logic") && !processLogic(childElement)) {
                         return;
                     }
 
                     parseMove(childElement, moveParsers);
-                    if (!gameOutput.ContinueParsing)
-                    {
+                    if (!gameOutput.ContinueParsing) {
                         return;
                     }
                     break;
@@ -3070,8 +2838,7 @@
                 case "npc":
                     parseNpc(parentElement, childElement, objectParsers, isEntering);
 
-                    for (let npcChild of getChildren(childElement))
-                    {
+                    for (let npcChild of getChildren(childElement)) {
                         callParser(curParser, childElement, npcChild, isEntering);
                     }
                     break;
@@ -3079,8 +2846,7 @@
                 case "object":
                     parseObject(parentElement, childElement, objectParsers, isEntering);
 
-                    for (let objChild of getChildren(childElement))
-                    {
+                    for (let objChild of getChildren(childElement)) {
                         callParser(curParser, childElement, objChild, isEntering);
                     }
                     break;

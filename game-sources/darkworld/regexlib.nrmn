@@ -2,6 +2,8 @@
     Look
         {attrib, tags=look, output=^l(ook( around)?)?$ }
         {attrib, tags=x_casks, output=^(examine|x)(?: the)? casks$ }
+        {attrib, tags=behind_casks, output=\b(look\s+behind\s+the\s+casks|behind\s+the\s+casks|behind\s+casks|look\s+at\s+the\s+back\s+of\s+the\s+casks|back\s+of\s+the\s+casks|back\s+of\s+casks)\b }
+        {attrib, tags=x_candle, output=^(examine|x)(?: the)? candle$ }
         {attrib, tags=x_parchment, output=^(examine|x)(?: the)? parchment$ }
         {attrib, tags=x_shelves, output=^(examine|x)(?: the)? shelves$ }
         {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }

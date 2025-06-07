@@ -1,0 +1,1 @@
+{macro, key=ooi_parchment, output=x tables|~|take parchment|~|l }

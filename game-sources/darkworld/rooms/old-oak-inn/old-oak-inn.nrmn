@@ -32,6 +32,12 @@ It is just you in an empty tavern.
 You see round tables arrayed throughout the large open floor.
             }
         }
+
+        {logic, name=old-oak-carrying-parch, tags=!_test
+            logic={@
+                ?[player]((inventory)) ~~ 'parchment'
+            }
+        }
     }
 
     {x_tables

@@ -1,4 +1,6 @@
 {room, key=oak_inn_cellar, name=The Old Oak Inn
+    {attrib, tags=corpse_found, output=false }
+
     {enter_message
         output={@
 You are in a dark damp cellar.
@@ -17,7 +19,6 @@ South of where you are standing you see a flickering candle.
     }
 
 
-
     {navigation
         {message
             output={@
@@ -32,13 +33,6 @@ In the west wall you see a narrow staircase leading up.
 
 
     {inject, logic=/look.inj }
-
-
-    {input, syntax=[tplt_syntax]((go_west_up))
-        {move, logic=oak_inn_backroom, tags=[player]
-            output={@
-You climb the stairs in the west end of the cellar.
-            }
-        }
-    }
+    {inject, logic=./injections/candle.inj }
+    {inject, logic=./injections/doors.inj }
 }
