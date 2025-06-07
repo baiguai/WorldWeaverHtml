@@ -117,4 +117,12 @@ You have decided to test special message values.
             }
         }
     }
+    {input, syntax=(html)
+        {move, logic=html_room, tags=[player]
+            output={@
+You have decided to view the html demo.
+
+            }
+        }
+    }
 }

@@ -1591,6 +1591,7 @@
             switch (true) {
                 case (command === "_admin"):
                     showAdminHelp();
+                    gameOutput.MatchMade = true;
                     break;
 
                 case command.startsWith("_admin "):
@@ -1633,7 +1634,19 @@
             }
         }
         function showAdminHelp() {
+            let helpText = "";
 
+            helpText += "Admin Commands:<br /><br />";
+            helpText += "<li><strong>_admin</strong> : Shows this help document</li>";
+            helpText += "<li><strong>_admin (admin password)</strong> : Toggles admin mode</li>";
+            helpText += "<li><strong>_devnotes (optional filter text)</strong> : Shows dev notes - regardless of the room you are in</li>";
+            helpText += "<li><strong>_macror (unique macro name)</strong> : Begins recording a macro</li>";
+            helpText += "<li><strong>_macros</strong> : Stops recording the current macro and gives you the code/steps to add it to your game</li>";
+            helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
+            helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
+            helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
+
+            output.innerHTML = helpText;
         }
         function doAdminLogin(command) {
             const passAttrib = getElementsByTag(adminPassTag)?.[0] ?? null;
@@ -1647,7 +1660,7 @@
             adminMode = !adminMode;
 
             if (adminMode) {
-                output.innerHTML = "Admin mode enabled.";
+                output.innerHTML = "Admin mode enabled.<br />Use <strong>_admin</strong> without a password, to display admin help.";
                 output.style.color = "yellow";
             } else {
                 macroRunning = false;

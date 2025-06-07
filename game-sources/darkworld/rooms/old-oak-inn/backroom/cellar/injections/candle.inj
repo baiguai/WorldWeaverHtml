@@ -1,0 +1,18 @@
+{x_candle
+    {message
+        output={@
+You examine the candle.
+In the dim light you notice that there's a rotting corpse crumpled up in the corner of the cellar.
+        }
+    }
+
+    {set, logic=[room]((corpse_found)), output='true' }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_candle))
+    {act, logic=x_candle, tags=!_type|room }
+}

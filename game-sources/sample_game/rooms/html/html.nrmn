@@ -1,0 +1,31 @@
+{room, key=html_room, name=Html Demo
+    {enter_message
+        output={@
+This room demonstrates that you can use basic HTML to add some formatting to your games.
+Type: <strong>look</strong> or <strong>l</strong>
+        }
+    }
+
+    {look
+        {message
+            output={
+<h2>Heading</h2>
+<ul>
+    <li>list</li>
+    <li>one</li>
+</ul>
+<ol>
+    <li>and</li>
+    <li>list</li>
+    <li>two</li>
+</ol>
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

@@ -1,0 +1,7 @@
+{input, syntax=[tplt_syntax]((go_west_up))
+    {move, logic=oak_inn_backroom, tags=[player]
+        output={@
+You climb the stairs in the west end of the cellar.
+        }
+    }
+}
