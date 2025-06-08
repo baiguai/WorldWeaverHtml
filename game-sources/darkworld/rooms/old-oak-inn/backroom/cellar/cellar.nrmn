@@ -35,4 +35,12 @@ In the west wall you see a narrow staircase leading up.
     {inject, logic=/look.inj }
     {inject, logic=./injections/candle.inj }
     {inject, logic=./injections/doors.inj }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {attack, logic=[ooi_skel]
+            output={@
+As you approach the candle, a skeletal corpse that was lying in the shadows rushes at you!
+            }
+        } 
+    }
 }
