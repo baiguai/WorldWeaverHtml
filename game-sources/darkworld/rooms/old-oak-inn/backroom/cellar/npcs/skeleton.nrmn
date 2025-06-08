@@ -49,6 +49,16 @@ You see a skeleton.
         }
     }
 
+
+    {x_candle
+        {message
+            output={@
+In the dim light you notice that there's a rotting corpse crumpled up in the corner of the cellar.
+            }
+        }
+    }
+
+
     {input, syntax=(attack.*skeleton|!.*skeleton)
         {attack, logic=[self] }
     }
