@@ -39,4 +39,9 @@
         {attrib, tags=go_east_door, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
         {attrib, tags=go_west_door, output=^(?=.*\b(west|w)\b)(?=.*\b(door|go|enter|step|through)?\b).*$ }
         {attrib, tags=go_west_up, output=^(?=.*\b(west|w|up)\b)(?=.*\b(go|stairs|up)?\b).*$ }
+
+        {attrib, tags=go_north, output=^(?:go north|north|n)$ }
+        {attrib, tags=go_south, output=^(?:go south|south|s)$ }
+        {attrib, tags=go_east, output=^(?:go east|east|e)$ }
+        {attrib, tags=go_west, output=^(?:go west|west|w)$ }
 }

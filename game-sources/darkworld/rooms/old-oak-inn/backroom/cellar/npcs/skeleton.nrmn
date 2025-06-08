@@ -1,0 +1,71 @@
+{npc, key=ooi_skel, name=Skeleton, syntax=\b(?:the\s+)?skeleton\b
+    {attrib, logic=[rand:3|4], tags=stats_dice }
+    {attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=life_roll }
+    {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }
+    {attrib, name=Life, output=[rand:<<[self]((stats_dice))>>|4], tags=stats|!_life }
+    {attrib, output=[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|!_armor }
+
+    {attrib, output=ooi_skel_fists_01, tags=!_armed|name }
+    {attrib, tags=!_hitmsg
+        output={@
+You have hit the skeleton.
+
+        }
+    }
+    {attrib, tags=!_missmsg
+        output={@
+You have attacked the skeleton, but missed.
+
+        }
+    }
+    {attrib, tags=!_killmsg
+        output={@
+You have killed the skeleton.
+
+        }
+    }
+
+    {attrib, tags=!_hitplayermsg
+        output={@
+The skeleton has attacked you!
+
+        }
+    }
+
+    {attrib, tags=!_missplayermsg
+        output={@
+The skeleton has attacked you, but missed.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a skeleton.
+
+            }
+        }
+    }
+
+
+    {x_candle
+        {message
+            output={@
+In the dim light you notice that there's a rotting corpse crumpled up in the corner of the cellar.
+            }
+        }
+    }
+
+
+    {input, syntax=(attack.*skeleton|!.*skeleton)
+        {attack, logic=[self] }
+    }
+
+
+    {object, key=ooi_skel_fists_01, tags=!_weapon
+        {attrib, logic=rdm_[rand:4|9], tags=!_damage }
+        {attrib, output=skeleton fist, tags=title }
+    }
+}
