@@ -204,8 +204,9 @@
                 const armTag = "!_arm";
                 const armedTag = "!_armed";
                 const lifeTag = "!_life";
-                const armorTag = "!_armor";
+                const hitScoreTag = "!_hitscore";
                 const damageTag = "!_damage";
+                const damageAdjustTag = "!_damageadj";
                 const weaponTag = "!_weapon";
                 const hitMsgTag = "!_hitmsg";
                 const hitPlayerMsgTag = "!_hitplayermsg";
@@ -734,20 +735,17 @@
             }
 
             let msg = document.getElementById("fight-message");
-            let initMsgElem = document.getElementById("fight-intro");
             let enemyLifeEl = document.getElementById("enemy-life");
             let currentLife = parseInt(enemyLifeEl.textContent);
             const playerWeapon = getArmedWeapon(getPlayer());
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
-            const enemyArmorRating = getArmorRating(currentEnemy) + enemyArmorAdjust;
-
-            initMsgElem.innerHTML = "";
+            const enemyHitScore = getHitScore(currentEnemy) + enemyArmorAdjust;
 
             const missMsg = getChildMessageByTag(currentEnemy, missMsgTag, "You have missed.");
             const hitMsg = getChildMessageByTag(currentEnemy, hitMsgTag, "You hit your enemy.");
             const killMsg = getChildMessageByTag(currentEnemy, killMsgTag, "You have killed your enemy.");
 
-            if (attackRoll <= enemyArmorRating)
+            if (attackRoll <= enemyHitScore)
             {
                 currentFightRound++;
 
@@ -762,6 +760,11 @@
             enemyArmorAdjust = 0;
 
             const damage = getDamageValue(playerWeapon);
+            const damageAttribAdj = getChildrenByTag(getPlayer(), damageAdjustTag)?.[0] ?? null;
+            if (damageAttribAdj !== null && Number(damageAttribAdj.Output)) {
+                damage = damage + Number(damageAttribAdj.Output);
+            }
+
             currentLife -= damage;
 
             if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
@@ -791,21 +794,18 @@
 
         function attackPlayer() {
             let msg = document.getElementById("fight-message");
-            let initMsgElem = document.getElementById("fight-intro");
             let playerLifeEl = document.getElementById("player-life");
             let currentLife = parseInt(playerLifeEl.textContent);
             const enemyWeapon = getArmedWeapon(currentEnemy);
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
-            const playerArmorRating = getArmorRating(getPlayer());
+            const playerHitScore = getHitScore(getPlayer());
             const player = getPlayer();
-
-            initMsgElem.innerHTML = "";
 
             const hitMsg = getChildMessageByTag(player, hitPlayerMsgTag, "You have been hit.");
             const missMsg = getChildMessageByTag(currentEnemy, missPlayerMsgTag, "The attack on you has failed.");
             const dieMsg = getChildMessageByTag(player, dieTag, "x_x");
 
-            if (attackRoll <= playerArmorRating)
+            if (attackRoll <= playerHitScore)
             {
                 msg.innerHTML = missMsg;
                 return;
@@ -814,6 +814,11 @@
             msg.innerHTML = hitMsg;
 
             const damage = getDamageValue(enemyWeapon);
+            const damageAttribAdj = getChildrenByTag(currentEnemy, damageAdjustTag)?.[0] ?? null;
+            if (damageAttribAdj !== null && Number(damageAttribAdj.Output)) {
+                damage = damage + Number(damageAttribAdj.Output);
+            }
+
             currentLife -= damage;
             let lifeStat = getChildByTag(player, lifeTag);
             lifeStat.Output = currentLife;
@@ -912,24 +917,6 @@
             {
                 return database.filter(item => tagsContain(item.Tags, tag) === true);
             }
-            function getSelf(currentElement)
-            {
-                const parentElem = getElementByKey(currentElement.ParentKey);
-
-                if (currentElement.ParentKey === null)
-                {
-                    return null;
-                }
-
-                if (selfTypes.includes(parentElem.ElementType))
-                {
-                    return parentElem;
-                }
-                else
-                {
-                    getSelf(parentElem);
-                }
-            }
             function getParent(currentElement)
             {
                 if (currentElement.ParentKey === null)
@@ -984,6 +971,9 @@
             }
             function getSelf(currentElement)
             {
+                if (selfTypes.includes(currentElement.ElementType)) {
+                    return currentElement;
+                }
                 let parentElem = getParent(currentElement);
                 if (parentElem === null)
                 {
@@ -1055,16 +1045,16 @@
                 return getElementByKey(weaponKey);
             }
 
-            function getArmorRating(parentElement)
+            function getHitScore(parentElement)
             {
-                const armorAttrib = getChildrenByTag(parentElement, armorTag);
+                const armorAttrib = getChildrenByTag(parentElement, hitScoreTag);
                 if (armorAttrib === null ||
                     armorAttrib.length !== 1)
                 {
                     return 7;
                 }
 
-                return armorAttrib[0].Output;
+                return processSpecialOutputRelElems(parentElement, armorAttrib[0].Output);
             }
 
             function getDamageValue(armedWeapon)
