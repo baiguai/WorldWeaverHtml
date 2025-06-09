@@ -11,12 +11,14 @@
 
     {attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }
     {attrib, output=init_[player]((life)), tags=maxlife }
-    {attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|!_armor }
+    {attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }
+    {attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }
     {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
     {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }
     {attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }
     {attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }
+    {attrib, output=0, tags=!_damageadj }
 
     {attrib, name=Experience, key=experience, output=0, tags=experience|stats }
 
