@@ -1,0 +1,51 @@
+{global, key=help_main
+    {help_home
+        {message
+            output={@
+Welcome to the Sample Game help system.
+
+<strong style="color: #ffff00;">? commands</strong> : Commands Help
+
+
+
+
+            }
+        }
+    }
+
+    {help_commands
+        {message
+            output={@
+Interactive Fiction follows some common conventions. The commands below are some of these:
+
+<strong style="color: #ffff00;">look or l</strong> : To look around.
+<strong style="color: #ffff00;">look behind (object) or behind (object)</strong> : To look behind the specified object.
+<strong style="color: #ffff00;">look on (object) or on (object)</strong> : To look behind the specified object.
+<strong style="color: #ffff00;">look under (object) or under (object)</strong> : To look behind the specified object.
+<strong style="color: #ffff00;">look in (object) or in (object)</strong> : To look behind the specified object.
+<strong style="color: #ffff00;">take (object) or pick up (object)</strong> : To pick up the specified object.
+<strong style="color: #ffff00;">drop (object)</strong> : To drop the specified object.
+<strong style="color: #ffff00;">examine (object) or x (object)</strong> : To examine the specified object.
+<strong style="color: #ffff00;">arm (object)</strong> : To arm the player with the specified weapon.
+<strong style="color: #ffff00;">put (object) in (another object)</strong> : To put the specified object into another specified object.
+
+In this game, if you want to attack an opponent, use the following:
+<strong style="color: #ffff00;">! (opponent to attack)</strong> : Attack the opponent.
+
+
+
+
+            }
+        }
+    }
+
+
+
+    {input, syntax=^\?$|^help$
+        {act, logic=help_home, tags=!_type|self }
+    }
+
+    {input, syntax=^\? commands$|^help commands$
+        {act, logic=help_commands, tags=!_type|self }
+    }
+}

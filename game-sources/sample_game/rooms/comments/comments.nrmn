@@ -1,0 +1,40 @@
+{room, key=comments_room, name=Comments Test
+    {enter_message
+        output={@
+Welcome to the comments test. Use the command 'look' or simply 'l'. If the only text you see is:
+
+Testing Comments.
+
+The comments test has succeeded.
+        }
+    }
+
+    {look
+        {message
+            output={@
+Testing Comments.
+            }
+        }
+
+// This is a single line comment.
+/*
+This is
+a
+
+Multi-line comment.
+
+Cool.
+
+Example:
+{room, name=just a comment
+    ...
+}
+*/
+    }
+
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}
