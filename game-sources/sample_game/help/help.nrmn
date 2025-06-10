@@ -1,0 +1,27 @@
+{global, key=help_main
+    {help_home
+        {message
+            output={@
+This is the help home.
+            }
+        }
+    }
+
+    {help_commands
+        {message
+            output={@
+This is the commands help.
+            }
+        }
+    }
+
+
+
+    {input, syntax=^\?$|^help$
+        {act, logic=help_home, tags=!_type|self }
+    }
+
+    {input, syntax=^\? commands$|^help commands$
+        {act, logic=help_commands, tags=!_type|self }
+    }
+}

@@ -1561,12 +1561,6 @@
 
             output.innerHTML = "";
 
-            if (command === "help") {
-                outputMatch("I am here to help you!", false);
-                gameOutput.MatchMade = true;
-                return;
-            }
-
             if (gameStarted) {
                 handleTravel();
                 parseGame(gameParsers);
@@ -1606,7 +1600,7 @@
 
         function processAdminInput(command) {
             switch (true) {
-                case (command === "_admin"):
+                case (command === "_admin") && adminMode:
                     showAdminHelp();
                     gameOutput.MatchMade = true;
                     break;
