@@ -1,0 +1,102 @@
+{object, name=parchment, parent=old_oak_inn
+    {attrib, output='false', tags=parchment_found }
+    {attrib, output='false', tags=parchment_moved }
+
+    {look
+        {message
+            output={@
+You see a rolled up parchement.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [room]
+                and
+                ?[self]((parchment_moved)) = 'true'
+            }
+        }
+    }
+
+    {x_tables
+        {message
+            output={@
+
+You see a partially rolled up piece of parchment sitting on one of the tables.
+            }
+        }
+
+        {set, logic=[self]((parchment_found)), output='true' }
+
+        {logic
+            logic={@
+                ?[self]parent = 'old_oak_inn'
+                and
+                ?[self]((parchment_moved)) = 'false'
+            }
+        }
+    }
+
+    {x_parchment
+        {message
+            output={@
+You examine the parchment.
+The text that is written on it appears to be ancient elven.
+You are unable to read it.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((parchment_found)) = 'true'
+            }
+            output={@
+I'm not sure what you're trying to examine.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_parchment))
+        {act, logic=x_parchment, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((parchment_take))
+        {move, logic=[player], tags=[self]
+            output={@
+You pick up the parchment.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+        {set, logic=[self]((parchment_moved)), output=true }
+
+        {logic
+            logic={@
+                ?[self]((parchment_found)) = 'true'
+            }
+            output={@
+I'm not sure what you're trying to take.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((parchment_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+You drop the parchment.
+            }
+        }
+
+        {set, logic=[self]tags, output=-inventory }
+
+        {logic
+            logic={@
+                ?[self]parent = [player]
+            }
+            output={@
+You aren't carrying a parchment.
+            }
+        }
+    }
+}
