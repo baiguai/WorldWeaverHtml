@@ -49,18 +49,24 @@
                 overflow: hidden;
             }
 
-            a:link {
-              color: #009933;
-            }
-            a:visited {
-              color: #009933;
+            a:link, a:visited, a:active {
+                color: #009933;
             }
             a:hover {
-              color: #54F843;
+                color: #54F843;
             }
-            a:active {
-              color: #009933;
-            } 
+
+            blockquote, h2, h3, h4, ol, ul {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            ul {
+                display: grid;
+                gap: 5px;
+            }
 
             #game-interface {
                 display: flex;
