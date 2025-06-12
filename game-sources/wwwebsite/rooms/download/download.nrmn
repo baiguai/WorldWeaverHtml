@@ -1,0 +1,24 @@
+{room, key=download_room, name=Download WorldWeaver
+    {enter_message
+        output={@
+Written on the wall, you see:
+
+            {inject, logic=./look_msg.inj }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around. Written on the wall, you see:
+
+                {inject, logic=./look_msg.inj }
+            }
+        }
+    }
+
+
+    {inject, logic=/doors.inj }
+    {inject, logic=/look.inj }
+    {inject, logic=/nav.inj }
+}
