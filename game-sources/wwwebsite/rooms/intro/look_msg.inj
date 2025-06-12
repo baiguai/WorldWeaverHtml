@@ -1,4 +1,19 @@
-WorldWeaver is an Interactive Fiction engine written as a stand alone HTML file!
+WorldWeaver (WW) is an Interactive Fiction engine written as a stand alone HTML file!
+This means that not only can you play WW games on <strong>any</strong> device that has a JavaScript-enabled
+browser on it, but you can also build WW games on those devices.
+
+Also because WW is HTML/CSS/JavaScript - you can:
+
+<ol>
+    <li>Customize the look of WW however you like
+    With some HTML/CSS/JS work you can even completely change WW's layout as well.</li>
+    <li>Use HTML in your output to the player.
+    So if you are skilled at intense HTML and JS you can make point and click games if you like.</li>
+    <li>Your games will be compatible with nearly every OS and device.</li>
+    <li>Your games will be extremely portable.
+    The only dependency is a JS enabled browser - and the single file, that is your game.</li>
+</ol>
+
 
 To look around use:
 <strong style="color: #00ff00;">l</strong> or <strong style="color: #00ff00;">look</strong>
