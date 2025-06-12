@@ -1,0 +1,54 @@
+{room, key=md_room, name=Markdown Formatting
+    {enter_message
+        output={@
+WorldWeaver (WW) uses a custom form of markdown. Due to potential conflicts with inline logic and other
+special values used by WW.
+So see this in action, look around.
+
+To see how to do it, refer to the help system - OR look at the script used for this Room.
+        }
+    }
+
+    {look
+        {message
+            output={@
+## Heading 2 ##
+### Heading 3 ###
+#### Heading 4 ####
+
+And **this is bold**, *this is italic*, _this is underlined_.
+
+* List item 1
+* List item 2
+
+# Numbered 1
+# Numbered 2
+
+^ Indented text.
+And some more indented text.
+And even more.
+
+But now no more.
+
+|Col 1|Col 2|
+|:---|---:|
+|Something|Else|
+|And|Another|
+
+And some @#ff8800|colorful@ text.
+
+|^https://worldweaver.infinityfreeapp.com/sword.jpg^|
+
+
+
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

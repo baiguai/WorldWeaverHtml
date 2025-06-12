@@ -377,6 +377,7 @@
             }
 
             output.innerHTML += gameOutput.Output + "<br />";
+            output.innerHTML = customMarkdownToHTML(output.innerHTML);
             output.scrollTop = output.scrollHeight;
         }
 
@@ -1512,6 +1513,184 @@
                 };
 
                 return entry;
+            }
+
+
+
+            // Custom Markdown Processor
+            function customMarkdownToHTML(input) {
+                input = input.replace(/(^\^ .+(?:\n(?!\s*$).+)*)/gm, (match) => {
+                    // Remove leading ^ and any space
+                    const cleaned = match
+                        .split('\n')
+                        .map(line => line.replace(/^\^\s?/, ''))
+                        .join('\n');
+                    return `<blockquote>\n${cleaned}\n</blockquote>`;
+                });
+
+                // Handle Line Breaks
+                input = input.replace(/\\/g, '\n<br />\n');
+
+                // Handle headings level 2-4: ## Heading ##, ### Heading ###, #### Heading ####
+                input = input.replace(/^####\s*(.+?)\s*####$/gm, '<h4>$1</h4>\n');
+                input = input.replace(/^###\s*(.+?)\s*###$/gm, '<h3>$1</h3>\n');
+                input = input.replace(/^##\s*(.+?)\s*##$/gm, '<h2>$1</h2>\n');
+
+                // Handle images: |^URL^| 
+                input = input.replace(/\|\^(.+?)\^\|/g, (match, url) => {
+                    return `<img src="${url.trim()}" />`;
+                });
+
+                // Handle bold **text**
+                input = input.replace(/\*\*(.+?)\*\*/g, (match, p1) => {
+                    return `<strong>${p1}</strong>`;
+                });
+
+                // Handle italic *text*
+                input = input.replace(/\*(.+?)\*/g, (match, p1) => {
+                    // Avoid conflict with bold, simple heuristic: skip if inside <strong>
+                    if (/\*\*/.test(match)) return match; // already bold handled above
+                    return `<em>${p1}</em>`;
+                });
+
+                // Handle underline _text_
+                input = input.replace(/_(.+?)_/g, (match, p1) => {
+                    return `<u>${p1}</u>`;
+                });
+
+
+                // Handle unordered lists: lines starting with '* ' (ignore leading spaces)
+                // Mark # lines as <li-li>
+                input = input.replace(/^( *)(\* )(.+)$/gm, '<li-li>$3</li-li>');
+
+                // Then wrap consecutive <li-li> into <ol>
+                input = input.replace(/(?:<li-li>.*?<\/li-li>\s*)+/gs, (match) => {
+                    const items = match.match(/<li-li>(.*?)<\/li-li>/gs)
+                        .map(li => `<li>${li.slice(7, -9)}</li>`)
+                        .join('\n');
+                    return `<ul>\n${items}\n</ul>\n`;
+                });
+
+                // Handle ordered lists: lines starting with '# ' (ignore leading spaces)
+                // Mark # lines as <ol-li>
+                input = input.replace(/^( *)(# )(.+)$/gm, '<ol-li>$3</ol-li>');
+
+                // Then wrap consecutive <ol-li> into <ol>
+                input = input.replace(/(?:<ol-li>.*?<\/ol-li>\s*)+/gs, (match) => {
+                    const items = match.match(/<ol-li>(.*?)<\/ol-li>/gs)
+                        .map(li => `<li>${li.slice(7, -9)}</li>`)
+                        .join('\n');
+                    return `<ol>\n${items}\n</ol>\n`;
+                });
+
+
+                // Handle custom colors
+                input = input.replace(/@((#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})|[a-zA-Z]+|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)))\|([^@]+?)@/g, (match, color, text) => {
+                    return `<span style="color: ${color}">${text}</span>`;
+                });
+
+
+
+                // Handle tables: detect markdown tables and convert them
+                // Markdown table format:
+                // Optional header row: | col1 | col2 | col3 |
+                // Alignment row: | --- | :--: | --: |
+                // Followed by rows: | data | data | data |
+
+                // We'll split input by lines and scan for table blocks:
+                const lines = input.split('\n');
+                let outputLines = [];
+                let insideTable = false;
+                let tableLines = [];
+
+                function parseTable(tableLines) {
+                    const rows = tableLines
+                        .map(line => line.trim())
+                        .filter(line => line && /\|/.test(line))
+                        .map(line => line.replace(/^\||\|$/g, '').split('|').map(cell => cell.trim()));
+
+                    const alignRow = rows[1] || [];
+                    const alignments = alignRow.map(cell => {
+                        if (/^:-+:$/.test(cell)) return 'center';
+                        if (/^-+:$/.test(cell)) return 'right';
+                        if (/^:-+$/.test(cell)) return 'left';
+                        return null;
+                    });
+
+                    rows.splice(1, 1); // remove alignment row
+
+                    // Normalize row lengths
+                    const maxCols = Math.max(...rows.map(row => row.length));
+                    for (let row of rows) {
+                        while (row.length < maxCols) {
+                            row.push('');
+                        }
+                    }
+
+                    let html = `<table style="border-collapse: collapse; border: 1px solid #ccc;">\n`;
+
+                    if (rows.length > 0) {
+                        html += '  <thead>\n    <tr>\n';
+                        for (let i = 0; i < rows[0].length; i++) {
+                            const alignAttr = alignments[i] ? ` style="text-align:${alignments[i]}; border: 1px solid #ccc; padding: 4px;"` : ` style="border: 1px solid #ccc; padding: 4px;"`;
+                            html += `      <th${alignAttr}>${rows[0][i]}</th>\n`;
+                        }
+                        html += '    </tr>\n  </thead>\n';
+                        rows.shift();
+                    }
+
+                    html += '  <tbody>\n';
+                    for (const row of rows) {
+                        html += '    <tr>\n';
+                        for (let i = 0; i < row.length; i++) {
+                            const alignAttr = alignments[i] ? ` style="text-align:${alignments[i]}; border: 1px solid #ccc; padding: 4px;"` : ` style="border: 1px solid #ccc; padding: 4px;"`;
+                            html += `      <td${alignAttr}>${row[i]}</td>\n`;
+                        }
+                        html += '    </tr>\n';
+                    }
+                    html += '  </tbody>\n</table>\n';
+
+                    return html;
+                }
+
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i];
+
+                    // Table start
+                    if (!insideTable && line.includes('|') && i + 1 < lines.length) {
+                        const nextLine = lines[i + 1];
+                        if (/^\s*\|?(\s*:?-+:?\s*\|)+\s*$/.test(nextLine)) {
+                            insideTable = true;
+                            tableLines.push(line);
+                            tableLines.push(nextLine);
+                            i++; // skip next line
+                            continue;
+                        }
+                    }
+
+                    if (insideTable) {
+                        if (line.trim() !== '' && line.includes('|')) {
+                            tableLines.push(line);
+                        } else {
+                            // Table ended — flush it
+                            outputLines.push(parseTable(tableLines));
+                            tableLines = [];
+                            insideTable = false;
+                            outputLines.push(line);
+                        }
+                    } else {
+                        outputLines.push(line);
+                    }
+                }
+
+                // Final check: did the file end while still inside a table?
+                if (insideTable && tableLines.length > 0) {
+                    outputLines.push(parseTable(tableLines));
+                    insideTable = false;
+                    tableLines = [];
+                }
+
+                return outputLines.join('\n');
             }
 
 

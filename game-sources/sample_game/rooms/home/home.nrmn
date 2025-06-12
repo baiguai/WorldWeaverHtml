@@ -125,6 +125,14 @@ You have decided to view the html demo.
             }
         }
     }
+    {input, syntax=(markdown)
+        {move, logic=md_room, tags=[player]
+            output={@
+You have decided to view the markdown demo.
+
+            }
+        }
+    }
     {input, syntax=(comments)
         {move, logic=comments_room, tags=[player]
             output={@
