@@ -1,0 +1,39 @@
+{room, key=oak_inn_backroom, name=The Old Oak Inn
+    {enter_message
+        output={@
+You are in a large storage room. Wooden shelves line the north wall.
+They are filled with dishes, sacks of flour and sugar and spices, and candles.
+Some casks are stacked up against the west wall. In the east wall is a small door.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in a large storage room. Wooden shelves line the north wall.
+Some casks are stacked up against the west wall.
+In the east wall is a small door.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+Navigation:
+In the east wall is a small door.
+In the south wall is another door.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+    {inject, logic=./injections/shelves.inj }
+    {inject, logic=./injections/casks.inj }
+    {inject, logic=./injections/doors.inj }
+}

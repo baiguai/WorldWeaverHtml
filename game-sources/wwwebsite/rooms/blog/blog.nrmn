@@ -1,0 +1,24 @@
+{room, key=blog_room, name=WorldWeaver Blog
+    {enter_message
+        output={@
+You find a book, written in it is:
+
+            {inject, logic=./look_msg.inj }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You read the book:
+
+                {inject, logic=./look_msg.inj }
+            }
+        }
+    }
+
+
+    {inject, logic=/doors.inj }
+    {inject, logic=/look.inj }
+    {inject, logic=/nav.inj }
+}

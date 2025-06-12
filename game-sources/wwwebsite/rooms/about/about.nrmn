@@ -1,0 +1,24 @@
+{about, key=about_room, name=About WorldWeaver
+    {enter_message
+        output={@
+There is a parchment that reads:
+
+            {inject, logic=./look_msg.inj }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around and see a parchment that reads:
+
+                {inject, logic=./look_msg.inj }
+            }
+        }
+    }
+
+
+    {inject, logic=/doors.inj }
+    {inject, logic=/look.inj }
+    {inject, logic=/nav.inj }
+}

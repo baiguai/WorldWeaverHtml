@@ -1,0 +1,26 @@
+{x_shelves
+    {message
+        output={@
+You examine the shelves.
+They are filled with dishes, sacks of flour and sugar and spices, and candles.
+        }
+    }
+}
+{b_shelves
+    {message
+        output={@
+You look behind the shelves...
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_shelves))
+    {act, logic=x_shelves, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((behind_shelves))
+    {act, logic=b_shelves, tags=!_type|room }
+}

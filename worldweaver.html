@@ -49,6 +49,19 @@
                 overflow: hidden;
             }
 
+            a:link {
+              color: #009933;
+            }
+            a:visited {
+              color: #009933;
+            }
+            a:hover {
+              color: #54F843;
+            }
+            a:active {
+              color: #009933;
+            } 
+
             #game-interface {
                 display: flex;
                 flex-direction: column;
@@ -408,6 +421,13 @@
                 if (startMsg !== null)
                 {
                     gameOutput.Output = startMsg.Output;
+                    parseGame(gameParsers);
+                    parseRoom(roomParsers, true);
+                    parsePlayer(playerParsers);
+                    gameOutput.EnterMsgDone = true;
+
+                    processNavigation();
+                    showOutput();
                 }
                 gameStarted = true;
             }
@@ -967,6 +987,10 @@
             }
             function getChildren(parentElement, includeAttributes)
             {
+                if (parentElement === null)
+                {
+                    let why = "???";
+                }
                 if (includeAttributes)
                 {
                     return database.filter(item => item.ParentKey === parentElement.ElementKey).orderBy(e => parseInt(e.Sort));
@@ -1553,13 +1577,13 @@
                 userInput.Input != "help") {
                 output.innerHTML = "";
                 playerElem.Name = userInput.Input;
+            }
+            if (!gameStarted) {
                 showGameStartScreen();
                 parseGame(gameParsers);
                 parseRoom(roomParsers, true);
                 parsePlayer(playerParsers);
                 gameOutput.EnterMsgDone = true;
-
-                processNavigation();
                 return;
             }
 
@@ -1874,9 +1898,10 @@
         // Run the parsers
         function parseGame(parsers) {
             const gameElem = getElementsByType("game")[0];
+            const children = getChildren(gameElem, false);
 
             for (let prsr of parsers) {
-                for (let child of getChildren(gameElem, false)) {
+                for (let child of children) {
                     callParser(prsr, gameElem, child);
                 }
             }
@@ -2665,9 +2690,10 @@
 
         function parseRoom(parsers, isEntering) {
             let roomElem = getCurrentRoom();
+            const children = getChildren(roomElem, isEntering);
 
             for (const prsr of parsers) {
-                for (let child of getChildren(roomElem, isEntering)) {
+                for (let child of children) {
                     callParser(prsr, roomElem, child, isEntering);
                 }
             }

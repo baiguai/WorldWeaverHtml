@@ -1,0 +1,4 @@
+{object, key=tplt_syntax
+    Look
+        {attrib, tags=look, output=^l(ook( around)?)?$ }
+}

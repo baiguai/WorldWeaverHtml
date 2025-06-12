@@ -1,0 +1,15 @@
+{input, syntax=(introduction)
+    {move, logic=intro_room, tags=[player] }
+}
+
+{input, syntax=(about)
+    {move, logic=about_room, tags=[player] }
+}
+
+{input, syntax=(download)
+    {move, logic=download_room, tags=[player] }
+}
+
+{input, syntax=(blog)
+    {move, logic=blog_room, tags=[player] }
+}

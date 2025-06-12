@@ -1,0 +1,20 @@
+{room, key=intro_room, name=Introduction
+    {enter_message
+        output={@
+            {inject, logic=./look_msg.inj }
+        }
+    }
+
+    {look
+        {message
+            output={@
+                {inject, logic=./look_msg.inj }
+            }
+        }
+    }
+
+
+    {inject, logic=/doors.inj }
+    {inject, logic=/look.inj }
+    {inject, logic=/nav.inj }
+}

@@ -1,0 +1,20 @@
+{room, key=green_well, name=Well
+    {enter_message
+        output={@
+You find yourself in green world. Everything around you is green. It appears to be a desolate flat plane.
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+Navigation:
+East of where you are standing you see a large well.
+            }
+        }
+    }
+}
