@@ -1,0 +1,15 @@
+{navigation
+    {message
+        output={@
+
+
+
+Navigation:
+Introduction
+About
+Download
+Blog
+
+        }
+    }
+}

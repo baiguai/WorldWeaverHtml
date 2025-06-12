@@ -1,0 +1,6 @@
+WorldWeaver is an Interactive Fiction engine written as a stand alone HTML file!
+
+To look around use:
+<strong style="color: #00ff00;">l</strong> or <strong style="color: #00ff00;">look</strong>
+To enter a different room (go to a different page):
+Enter the room's name and hit <strong style="color: #00ff00;">enter</strong>.
