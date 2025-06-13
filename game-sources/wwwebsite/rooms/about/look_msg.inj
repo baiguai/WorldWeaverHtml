@@ -1,17 +1,9 @@
 WorldWeaver (WW) is an Interactive Fiction (IF) engine that was written in HTML, CSS, and Javascript.
 It is made up of three stand alone HTML files:
 
-<ul>
-    <li><strong>worldweaver.html</strong>
-    This file plays the games you've built. Make a copy of the core worldweaver.html file for each game you want to build. You can rename it to your game's name.
-    </li>
-    <li><strong>builder.html</strong>
-    This file is used to define WW games using a graphical interface. Make a copy of the core builder.html file for each game you want to build.
-    </li>
-    <li><strong>importer.html</strong>
-    This file allows you to define your games using Norman script.
-    </li>
-</ul>
+* **worldweaver.html**<br />This file plays the games you've built. Make a copy of the core worldweaver.html file for each game you want to build. You can rename it to your game's name.
+* **builder.html**<br />This file is used to define WW games using a graphical interface. Make a copy of the core builder.html file for each game you want to build.
+* **importer.html**<br />This file allows you to define your games using Norman script.
 
-It also ships with an exhaustive help system for people who wish to build games in WW. This is the <strong>ww_help.html</strong> file.
+It also ships with an exhaustive help system for people who wish to build games in WW. This is the **ww_help.html** file.
 Refer to this help system for in-depth information on WW.
