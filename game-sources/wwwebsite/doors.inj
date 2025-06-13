@@ -1,4 +1,4 @@
-{input, syntax=(introduction|intro)
+{input, syntax=(intro)
     {move, logic=intro_room, tags=[player] }
 }
 
