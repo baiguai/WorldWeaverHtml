@@ -49,18 +49,24 @@
                 overflow: hidden;
             }
 
-            a:link {
-              color: #009933;
-            }
-            a:visited {
-              color: #009933;
+            a:link, a:visited, a:active {
+                color: #009933;
             }
             a:hover {
-              color: #54F843;
+                color: #54F843;
             }
-            a:active {
-              color: #009933;
-            } 
+
+            blockquote, h2, h3, h4, hr, ol, ul {
+                margin-top: 0px;
+                margin-bottom: 0px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+            }
+
+            ul {
+                display: grid;
+                gap: 5px;
+            }
 
             #game-interface {
                 display: flex;
@@ -1535,6 +1541,9 @@
                     return `<blockquote>\n${cleaned}\n</blockquote>`;
                 });
 
+                // Handle horizontal lines
+                input = input.replace(/^---$/gm, '<hr />');
+
                 // Handle Line Breaks
                 input = input.replace(/\\/g, '\n<br />\n');
 
@@ -1592,9 +1601,13 @@
 
 
                 // Handle custom colors
-                input = input.replace(/@((#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})|[a-zA-Z]+|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\)))\|([^@]+?)@/g, (match, color, text) => {
+                input = input.replace(
+                  /@(?:#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})|[a-zA-Z]+|rgba?\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}(?:\s*,\s*(?:0|1|0?\.\d+))?\s*\))\|[^@]+@/g,
+                  (match) => {
+                    const [full, color, text] = match.match(/@([^|]+)\|([^@]+)@/);
                     return `<span style="color: ${color}">${text}</span>`;
-                });
+                  }
+                );
 
 
 
