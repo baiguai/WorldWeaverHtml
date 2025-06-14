@@ -1,31 +1,31 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look, output=^l(ook( around)?)?$ }
-        {attrib, tags=x_tables, output=^(examine|x)(?: the)? tables$ }
-        {attrib, tags=x_parchment, output=^(examine|x)(?: the)? parchment$ }
+        {attrib, tags=look|!_regex, output=^l(ook( around)?)?$, logic=l|look around|you look around the room }
+        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x the table|x tables|examine the tables }
+        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }
 
     Identifying
-        {attrib, tags=key_id, output=.*key.* }
-        {attrib, tags=spear_id, output=(spear).* }
+        {attrib, tags=key_id|!_regex, output=.*key.*, logic=the key|your key|the golden key }
+        {attrib, tags=spear_id|!_regex, output=(spear).*, logic=the spear|your spear|the ornate spear }
 
     Taking
-        {attrib, tags=coin_take, output=^(take|pick up)( the)?( gold)? coin }
-        {attrib, tags=key_take, output=^(take|pick up)( the)? key$ }
-        {attrib, tags=parchment_take, output=^(take|pick up)( the)? parchment$ }
-        {attrib, tags=spear_take, output=^(take|pick up)( the)? spear$ }
+        {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take the coin|take gold coin|take coin|pick up the gold coin|pick up coin }
+        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)? key$, logic=take key|take the gold key|pick up the key|pick up key }
+        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }
+        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear you see }
 
     Dropping
-        {attrib, tags=parchment_drop, output=(drop.*parchment) }
-        {attrib, tags=spear_drop, output=(drop.*spear) }
+        {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment }
+        {attrib, tags=spear_drop|!_regex, output=(drop.*spear), logic=drop the spear|drop spear }
 
     Putting
-        {attrib, tags=box_put, output=put.*in.*box }
+        {attrib, tags=box_put|!_regex, output=put.*in.*box, logic=put the thing in the box|put things in box|put key in box|put the necklace in the box }
 
     Interacting
-        {attrib, tags=box_examine, output=examine.*box|x.*box }
-        {attrib, tags=greenbutton_push, output=^(push|press)( the)?( green)? button$ }
-        {attrib, tags=redbutton_push, output=^(push|press)( the)?( red)? button$ }
+        {attrib, tags=box_examine|!_regex, output=examine.*box|x.*box, logic=x box|x the box|examine the box|examine the ornate box }
+        {attrib, tags=greenbutton_push|!_regex, output=^(push|press)( the)?( green)? button$, logic=push green button|push button|press the green button }
+        {attrib, tags=redbutton_push|!_regex, output=^(push|press)( the)?( red)? button$, logic=push red button|push button|press the red button }
 
     Fighting
-        {attrib, tags=rat_attack, output=(attack.*rat|!.*rat) }
+        {attrib, tags=rat_attack|!_regex, output=(attack.*rat|!.*rat), logic=attack the rat|attack rat|! rat|!rat }
 }

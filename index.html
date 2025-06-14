@@ -267,6 +267,7 @@
                 const typeTag = "!_type";
                 const titleTag = "!_title";
                 const typeEasing = "!_easingrounds";
+                const regexTag = "!_regex";
 
         // Classes
             const gameOutput = {
@@ -1611,9 +1612,9 @@
                     return `<ul>\n${items}\n</ul>\n`;
                 });
 
-                // Handle ordered lists: lines starting with '# ' (ignore leading spaces)
-                // Mark # lines as <ol-li>
-                input = input.replace(/^( *)(# )(.+)$/gm, '<ol-li>$3</ol-li>');
+                // Handle ordered lists: lines starting with '1. ' (ignore leading spaces)
+                // Mark 1. lines as <ol-li>
+                input = input.replace(/^( *)(1. )(.+)$/gm, '<ol-li>$3</ol-li>');
 
                 // Then wrap consecutive <ol-li> into <ol>
                 input = input.replace(/(?:<ol-li>.*?<\/ol-li>\s*)+/gs, (match) => {
@@ -1883,6 +1884,24 @@
                     doAdminMacroStop()
                     gameOutput.MatchMade = true;
                     return;
+
+                case command.startsWith("_regex ") && adminMode:
+                    output.innerHTML = "";
+                    doAdminRegexTest(command.replace("_regex ", ""));
+                    gameOutput.MatchMade = true;
+                    return;
+
+                case command.startsWith("_regex") && adminMode:
+                    const regexAttribs = database.filter(item => tagsContain(item.Tags, regexTag) && item.logic !== "");
+                    if (regexAttribs.length === 0) {
+                        return;
+                    }
+                    output.innerHTML = "";
+                    for (const regexAttrib of regexAttribs) {
+                        doAdminRegexTest(`${regexAttrib.Output}>>${regexAttrib.Logic}`);
+                    }
+                    gameOutput.MatchMade = true;
+                    return;
             }
         }
         function showAdminHelp() {
@@ -1897,6 +1916,7 @@
             helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
+            helpText += "<li><strong>_regex (regular expression)&gt;%gt;(test1|test2|test3|...)</strong> : Lets you test a regular expression against the test(s) you specify</li>";
 
             output.innerHTML = helpText;
         }
@@ -2022,6 +2042,35 @@
             }
 
             output.innerHTML = lsOutput;
+        }
+        function doAdminRegexTest(command) {
+            const lastIndex = command.lastIndexOf(">>");
+            if (lastIndex === -1) return;
+
+            const regex = command.slice(0, lastIndex).trim();
+            const tests = command.slice(lastIndex + 2).trim();
+            let tcs = [];
+            if (tests.includes("|")) {
+                tcs = tests.split("|");
+            } else {
+                tcs.push(tests);
+            }
+
+            if (tcs.length === 0 || regex === "") {
+                return;
+            }
+
+            output.innerHTML += `<strong>Regex Tests for:  ${regex}</strong>${br}${br}`;
+            let result = "";
+            for (const test of tcs) {
+                if (regexCheck(regex, test)) {
+                    result = "<span style='color: #00ff00;'>Passed</span>";
+                } else {
+                    result = "<span style='color: #ff0000;'>Failed</span>";
+                }
+                output.innerHTML += `<li> ${test} = ${result}</li>`;
+            }
+            output.innerHTML += `${br}${br}${br}`;
         }
         function showTestResults() {
             const brt = "<br />";
