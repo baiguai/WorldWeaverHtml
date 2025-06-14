@@ -24,8 +24,8 @@ Horizontal line:
 * List item 1
 * List item 2
 
-# Numbered 1
-# Numbered 2
+1. Numbered 1
+1. Numbered 2
 
 ^ Indented text.
 And some more indented text.
