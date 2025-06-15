@@ -1,3 +1,14 @@
+### @#ffff00|2025.06.15 - Regex Tester@ ###
+I've added two new tools to the admin arsenal. You can test a single regular expression using:
+**_regex (regular expression)>>(pipe delimited test strings)**
+OR
+If you are using a Regex Library - like the Sample Game - You can tag those regex Attribute
+Elements with !_regex and run: **_regex** (without anything after it) and it will test ALL of them.
+
+Check out the *Regular Expression Library* topic in the **ww_help.html** help system.
+
+---
+
 ### @#ffff00|2025.06.13 - Markdown!@ ###
 I've added a Markdown parser to the WorldWeaver, Sample Game, and DarkWorld files!
 Currently it IS somewhat custom, the image markdown is different etc. So be sure to
