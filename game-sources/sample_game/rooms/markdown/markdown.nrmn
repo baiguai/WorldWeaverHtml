@@ -27,7 +27,7 @@ Horizontal line:
 1. Numbered 1
 1. Numbered 2
 
-^ Indented text.
+^^ Indented text.
 And some more indented text.
 And even more.
 
@@ -40,7 +40,7 @@ But now no more.
 
 And some @#ff8800|colorful@ text.
 
-|^https://worldweaver.infinityfreeapp.com/sword.jpg^|
+![Sword](https://worldweaver.infinityfreeapp.com/sword.jpg)
 
 
 

@@ -40,6 +40,18 @@
                 padding: 0;
             }
 
+            input,
+            textarea,
+            pre,
+            code,
+            output,
+            kbd,
+            samp,
+            div,
+            span {
+                font-family: Consolas, 'Courier New', Courier, monospace;
+            }
+
             body {
                 background-color: black;
                 color: white;
@@ -186,7 +198,6 @@
   {"ElementType":"attribute","ElementKey":"sq8p69sh8igmbw1sb6u","Name":"","ParentKey":"ooi_skel","Syntax":"","Logic":"","Output":"\nThe skeleton has attacked you, but missed.\n","Tags":"!_missplayermsg","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"kpd4abf7dnmbw1sb6u","Name":"","ParentKey":"jngcdt6haupmbw1sb6u","Syntax":"","Logic":"","Output":"\n\nYou see a skeleton.\n","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"look","ElementKey":"jngcdt6haupmbw1sb6u","Name":"","ParentKey":"ooi_skel","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"bklvg3cqc3vmbw1sb6u","Name":"","ParentKey":"niy9d2mjatombw1sb6u","Syntax":"","Logic":"","Output":"\nIn the dim light you notice that there's a rotting corpse crumpled up in the corner of the cellar.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"x_candle","ElementKey":"niy9d2mjatombw1sb6u","Name":"","ParentKey":"ooi_skel","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attack","ElementKey":"qxwx3f3o0vcmbw1sb6u","Name":"","ParentKey":"cpr41pxr3kmbw1sb6u","Syntax":"","Logic":"[self]","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"cpr41pxr3kmbw1sb6u","Name":"","ParentKey":"ooi_skel","Syntax":"(attack.*skeleton|!.*skeleton)","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"tv8fqp2l5cmbw1sb6u","Name":"","ParentKey":"ooi_skel_fists_01","Syntax":"","Logic":"rdm_[rand:4|9]","Output":"","Tags":"!_damage","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"attribute","ElementKey":"1hcs3asgahtmbw1sb6u","Name":"","ParentKey":"ooi_skel_fists_01","Syntax":"","Logic":"","Output":"skeleton fist","Tags":"title","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"object","ElementKey":"ooi_skel_fists_01","Name":"","ParentKey":"ooi_skel","Syntax":"","Logic":"","Output":"","Tags":"!_weapon","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"npc","ElementKey":"ooi_skel","Name":"Skeleton","ParentKey":"root","Syntax":"\\b(?:the\\s+)?skeleton\\b","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"enter_message","ElementKey":"s896vd2gbombw1sb6u","Name":"","ParentKey":"green_well","Syntax":"","Logic":"","Output":"\nYou find yourself in green world. Everything around you is green. It appears to be a desolate flat plane.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"uwilejqhwkmbw1sb6u","Name":"","ParentKey":"3phw4ovwzwambw1sb6u","Syntax":"","Logic":"","Output":"\n\n\n\nNavigation:\nEast of where you are standing you see a large well.","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"navigation","ElementKey":"3phw4ovwzwambw1sb6u","Name":"","ParentKey":"green_well","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"room","ElementKey":"green_well","Name":"Well","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"4n1vwz3mn4vmbw1sb6u","Name":"","ParentKey":"dvujwy5fommbw1sb6u","Syntax":"","Logic":"","Output":"\nWelcome to the Sample Game help system.\n\n<strong style=\"color: #ffff00;\">? commands</strong> : Commands Help\n\n\n\n","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"help_home","ElementKey":"dvujwy5fommbw1sb6u","Name":"","ParentKey":"help_main","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"message","ElementKey":"frouchv8xtambw1sb6u","Name":"","ParentKey":"vrwilqgwbzmbw1sb6u","Syntax":"","Logic":"","Output":"\nInteractive Fiction follows some common conventions. The commands below are some of these:\n\n<strong style=\"color: #ffff00;\">look or l</strong> : To look around.\n<strong style=\"color: #ffff00;\">look behind (object) or behind (object)</strong> : To look behind the specified object.\n<strong style=\"color: #ffff00;\">look on (object) or on (object)</strong> : To look behind the specified object.\n<strong style=\"color: #ffff00;\">look under (object) or under (object)</strong> : To look behind the specified object.\n<strong style=\"color: #ffff00;\">look in (object) or in (object)</strong> : To look behind the specified object.\n<strong style=\"color: #ffff00;\">take (object) or pick up (object)</strong> : To pick up the specified object.\n<strong style=\"color: #ffff00;\">drop (object)</strong> : To drop the specified object.\n<strong style=\"color: #ffff00;\">examine (object) or x (object)</strong> : To examine the specified object.\n<strong style=\"color: #ffff00;\">arm (object)</strong> : To arm the player with the specified weapon.\n<strong style=\"color: #ffff00;\">put (object) in (another object)</strong> : To put the specified object into another specified object.\n\nIn this game, if you want to attack an opponent, use the following:\n<strong style=\"color: #ffff00;\">! (opponent to attack)</strong> : Attack the opponent.\n\n\n\n","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"help_commands","ElementKey":"vrwilqgwbzmbw1sb6u","Name":"","ParentKey":"help_main","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"n69zws4shtmbw1sb6u","Name":"","ParentKey":"savozubayfmbw1sb6u","Syntax":"","Logic":"help_home","Output":"","Tags":"!_type|self","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},
   {"ElementType":"input","ElementKey":"savozubayfmbw1sb6u","Name":"","ParentKey":"help_main","Syntax":"^\\?$|^help$","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"action","ElementKey":"mpf30w293hmbw1sb6u","Name":"","ParentKey":"vxr4xt6povmbw1sb6u","Syntax":"","Logic":"help_commands","Output":"","Tags":"!_type|self","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"input","ElementKey":"vxr4xt6povmbw1sb6u","Name":"","ParentKey":"help_main","Syntax":"^\\? commands$|^help commands$","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1},{"ElementType":"global","ElementKey":"help_main","Name":"","ParentKey":"root","Syntax":"","Logic":"","Output":"","Tags":"","Repeat":"","RepeatIndex":"0","Active":"true","Sort":1}
 ];
-
 
         // Parsers
             const actionParsers = ["attribute", "logic", "input", "action", "set", "move", "message"];
@@ -1535,29 +1546,28 @@
 
             // Custom Markdown Processor
             function customMarkdownToHTML(input) {
-                input = input.replace(/(^\^ .+(?:\n(?!\s*$).+)*)/gm, (match) => {
-                    // Remove leading ^ and any space
-                    const cleaned = match
-                        .split('\n')
-                        .map(line => line.replace(/^\^\s?/, ''))
-                        .join('\n');
-                    return `<blockquote>\n${cleaned}\n</blockquote>`;
-                });
+                // Handle indented text: ^^ the text
+input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
+    const lines = match.split('\n');
+    // Remove the ^^ from the first line
+    lines[0] = lines[0].replace(/^\^\^\s?/, '');
+    return `<blockquote>\n${lines.join('\n')}\n</blockquote>`;
+});
 
                 // Handle horizontal lines
                 input = input.replace(/^---$/gm, '<hr />');
 
                 // Handle Line Breaks
-                input = input.replace(/\\/g, '\n<br />\n');
+                input = input.replace(/\\n/g, '\n<br />\n');
 
                 // Handle headings level 2-4: ## Heading ##, ### Heading ###, #### Heading ####
                 input = input.replace(/^####\s*(.+?)\s*####$/gm, '<h4>$1</h4>\n');
                 input = input.replace(/^###\s*(.+?)\s*###$/gm, '<h3>$1</h3>\n');
                 input = input.replace(/^##\s*(.+?)\s*##$/gm, '<h2>$1</h2>\n');
 
-                // Handle images: |^URL^| 
-                input = input.replace(/\|\^(.+?)\^\|/g, (match, url) => {
-                    return `<img src="${url.trim()}" />`;
+                // Handle images: ![alt text](url)
+                input = input.replace(/!\[(.*?)\]\((.+?)\)/g, (match, alt, url) => {
+                    return `<img src="${url.trim()}" alt="${alt.trim()}" />`;
                 });
 
                 // Handle bold **text**
@@ -1570,11 +1580,6 @@
                     // Avoid conflict with bold, simple heuristic: skip if inside <strong>
                     if (/\*\*/.test(match)) return match; // already bold handled above
                     return `<em>${p1}</em>`;
-                });
-
-                // Handle underline _text_
-                input = input.replace(/_(.+?)_/g, (match, p1) => {
-                    return `<u>${p1}</u>`;
                 });
 
 

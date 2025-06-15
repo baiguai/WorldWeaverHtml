@@ -4,11 +4,11 @@ browser on it, but you can also build WW games on those devices.
 
 Also because WW is HTML/CSS/JavaScript - you can:
 
-# Customize the look of WW however you like<br />With some HTML/CSS/JS work you can even completely change WW's layout as well.
-# Use HTML in your output to the player.<br />So if you are skilled at intense HTML and JS you can make point and click games if you like.
-# Use customized Markdown in your output to the player.<br />See the *Markdown Formatting* article in the help system.
-# Your games will be compatible with nearly every OS and device.
-# Your games will be extremely portable.<br />The only dependency is a JS enabled browser - and the single file, that is your game.
+1. Customize the look of WW however you like<br />With some HTML/CSS/JS work you can even completely change WW's layout as well.
+1. Use HTML in your output to the player.<br />So if you are skilled at intense HTML and JS you can make point and click games if you like.
+1. Use customized Markdown in your output to the player.<br />See the *Markdown Formatting* article in the help system.
+1. Your games will be compatible with nearly every OS and device.
+1. Your games will be extremely portable.<br />The only dependency is a JS enabled browser - and the single file, that is your game.
 
 To look around use:
 @#00ff00|l@ or @#00ff00|look@
