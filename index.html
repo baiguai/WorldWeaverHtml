@@ -2287,7 +2287,7 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 if (item.Output !== "") {
                     gameOutput.Output += `${pfx}${item.Name}: ${item.Output}`;
                 } else {
-                    gameOutput.Output += `${pfx}${item.Name}`;
+                    gameOutput.Output += `${pfx}${item.Name} `;
                 }
                 gameOutput.Output += "\n";
             }

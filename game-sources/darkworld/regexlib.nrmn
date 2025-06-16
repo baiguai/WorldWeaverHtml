@@ -1,10 +1,10 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look|!_regex, output=^l(ook( around)?)?$, logic=l|look|look around }
-        {attrib, tags=x_casks|!_regex, output=^(examine|x)(?: the)? casks$, logic=x casks|x cask|examine the casks }
+        {attrib, tags=look|!_regex, output=\b(l|look|look around)\b, logic=l|look|look around }
+        {attrib, tags=x_casks|!_regex, output=^(examine|x)(?: the)? cask(s)?$, logic=x casks|x cask|examine the casks }
         {attrib, tags=behind_casks|!_regex, output=\b(look\s+behind\s+the\s+casks|behind\s+the\s+casks|behind\s+casks|look\s+at\s+the\s+back\s+of\s+the\s+casks|back\s+of\s+the\s+casks|back\s+of\s+casks)\b, logic=look behind the casks|look behind casks }
         {attrib, tags=x_candle|!_regex, output=^(examine|x)(?: the)? candle$, logic=x candle|x the candle|examine the candle|examine candle }
-        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=x key|x the key|examine key|examine the key }
+        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=x parchment|x the parchment|examine parchment|examine the parchment }
         {attrib, tags=x_shelves|!_regex, output=^(examine|x)(?: the)? shelves$, logic=x shelves|x the shelves|examine shelves|examine the shelves }
         {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x tables|examine tables|x the tables|examine the tables }
 
@@ -14,9 +14,9 @@
 
     Taking
         {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take coin|pick up coin|take the coin|pick up the coin|take gold coin|pick up gold coin }
-        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)? key$, logic=take key|take the key|take the golden key|pick up key|pick up the key|pick up gold key|pick up the gold key }
+        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)?( gold)?(en)? key$, logic=take key|take the key|take the golden key|pick up key|pick up the key|pick up gold key|pick up the gold key }
         {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the parchment|pick up parchment }
-        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)? spear$, logic=take spear|take the spear|pick up spear|pick up the spear|take the metal spear }
+        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)?( metal)? spear$, logic=take spear|take the spear|pick up spear|pick up the spear|take the metal spear }
 
     Dropping
         {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment|drop the rolled up parchment }
@@ -35,10 +35,9 @@
 
     Moving
         {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }
-        {attrib, tags=go_south_door|!_regex, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|south|go n|go south|enter the south door|enter south|south door|n door }
-        { }
-        {attrib, tags=go_east_door|!_regex, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|east|go east|step through the east door }
-        {attrib, tags=go_west_door|!_regex, output=^(?=.*\b(west|w)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|west|go west|step through the west door }
+        {attrib, tags=go_south_door|!_regex, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=s|south|go s|go south|enter the south door|enter south|south door|s door }
+        {attrib, tags=go_east_door|!_regex, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|east|go e|go east|step through the east door }
+        {attrib, tags=go_west_door|!_regex, output=^(?=.*\b(west|w)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=w|west|go w|go west|step through the west door }
         {attrib, tags=go_west_up|!_regex, output=^(?=.*\b(west|w|up)\b)(?=.*\b(go|stairs|up)?\b).*$, logic=up|up stairs|go up|go up stairs|w|west }
 
         {attrib, tags=go_north|!_regex, output=^(?:go north|north|n)$, logic=n|north|go north }

@@ -1,7 +1,7 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look|!_regex, output=^l(ook( around)?)?$, logic=l|look around|you look around the room }
-        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x the table|x tables|examine the tables }
+        {attrib, tags=look|!_regex, output=\b(l|look|look around)\b, logic=l|look around|you look around the room }
+        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? table(s)?$, logic=x the table|x tables|examine the tables }
         {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }
 
     Identifying
@@ -10,9 +10,9 @@
 
     Taking
         {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take the coin|take gold coin|take coin|pick up the gold coin|pick up coin }
-        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)? key$, logic=take key|take the gold key|pick up the key|pick up key }
-        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }
-        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear you see }
+        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)?( gold)?(en)? key$, logic=take key|take the gold key|take the golden key|pick up the key|pick up key }
+        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)?( rolled)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }
+        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)?( metal)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear }
 
     Dropping
         {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment }

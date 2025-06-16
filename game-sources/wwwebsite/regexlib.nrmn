@@ -1,4 +1,4 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look, output=^l(ook( around)?)?$ }
+        {attrib, tags=look|!_regex, output=\b(l|look|look around)\b, logic=l|look around|you look around the room }
 }
