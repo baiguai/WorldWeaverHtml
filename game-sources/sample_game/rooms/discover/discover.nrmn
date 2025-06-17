@@ -7,6 +7,8 @@ You see round tables arrayed throughout.
 Before you do anything, try taking the parchment that you haven't discovered yet.
 Then examine the tables - with x tables.
 Now try taking the parchment.
+
+Similar logic to this can be used for locking and unlocking objects.
         }
     }
 
@@ -17,6 +19,8 @@ You look around. You are in the discovery testing room.
 Before you do anything, try taking the parchment that you haven't discovered yet.
 Then examine the tables - with x tables.
 Now try taking the parchment.
+
+Similar logic to this can be used for locking and unlocking objects.
 
 You see round tables arrayed throughout the large open floor.
             }
