@@ -1,6 +1,6 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look|!_regex, output=\b(l|look|look around)\b, logic=l|look|look around }
+        {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look|look around|I look around }
         {attrib, tags=x_casks|!_regex, output=^(examine|x)(?: the)? cask(s)?$, logic=x casks|x cask|examine the casks }
         {attrib, tags=behind_casks|!_regex, output=\b(look\s+behind\s+the\s+casks|behind\s+the\s+casks|behind\s+casks|look\s+at\s+the\s+back\s+of\s+the\s+casks|back\s+of\s+the\s+casks|back\s+of\s+casks)\b, logic=look behind the casks|look behind casks }
         {attrib, tags=x_candle|!_regex, output=^(examine|x)(?: the)? candle$, logic=x candle|x the candle|examine the candle|examine candle }
@@ -29,6 +29,7 @@
         {attrib, tags=box_examine|!_regex, output=examine.*box|x.*box, logic=x box|x the box|examine box|examine the box|x ornate box|examine large box }
         {attrib, tags=greenbutton_push|!_regex, output=^(push|press)( the)?( green)? button$, logic=push the green button|push green button|push button|press the green button|press green button|press button }
         {attrib, tags=redbutton_push|!_regex, output=^(push|press)( the)?( red)? button$, logic=push the red button|push red button|push button|press the red button|press red button|press button }
+        {attrib, tags=touch_candle|!_regex, output=\btouch( the)?( green)?( flickering)?\s?candle\b, logic=touch the green flickering candle|touch the flickering candle|touch green candle|touch the candle|touch candle }
 
     Fighting
         {attrib, tags=rat_attack|!_regex, output=(attack.*rat|!.*rat), logic=attack the rat|attack rat|!rat|! rat }

@@ -15,5 +15,5 @@ You examine the candle. It emits a ghostly green light and it doesn't seem to be
 }
 
 {input, syntax=[tplt_syntax]((touch_candle))
-    {move, logic=[green_well], tags=[player], output=Everything flashes white for a moment. }
+    {move, logic=green_well, tags=[player], output=Everything flashes white for a moment. }
 }
