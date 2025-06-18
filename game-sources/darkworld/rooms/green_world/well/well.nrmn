@@ -2,6 +2,18 @@
     {enter_message
         output={@
 You find yourself in green world. Everything around you is green. It appears to be a desolate flat plane.
+A cold breeze crawls over the land. The odor of soil fills the air.
+
+You see what appears to be a large well east of where you are standing.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around. The entire world is green and extends in all directions.
+You see a well to the east of where you are standing.
+            }
         }
     }
 
@@ -17,4 +29,7 @@ East of where you are standing you see a large well.
             }
         }
     }
+
+
+    {inject, logic=/look.inj }
 }
