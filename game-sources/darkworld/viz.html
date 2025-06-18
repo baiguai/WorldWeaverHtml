@@ -362,7 +362,31 @@ function initializeNodes() {
   document.querySelectorAll('.node').forEach(setupNode);
 }
 
-window.onload = initializeNodes;
+function restoreConnectorsFromDOM() {
+  const lines = document.querySelectorAll('svg.connector line');
+  lines.forEach(line => {
+    const [x1, y1, x2, y2] = ['x1','y1','x2','y2'].map(attr => parseFloat(line.getAttribute(attr)));
+    let nodeA = null, nodeB = null;
+
+    for (const n of nodes) {
+      const cx = n.offsetLeft + n.offsetWidth / 2;
+      const cy = n.offsetTop + n.offsetHeight / 2;
+      if (Math.abs(cx - x1) < 10 && Math.abs(cy - y1) < 10) nodeA = n;
+      if (Math.abs(cx - x2) < 10 && Math.abs(cy - y2) < 10) nodeB = n;
+    }
+
+    if (nodeA && nodeB) {
+      connectors.push({ a: nodeA, b: nodeB });
+    }
+  });
+
+  updateConnectors();
+}
+
+window.onload = () => {
+  initializeNodes();
+  restoreConnectorsFromDOM();
+};
 </script>
 
 
