@@ -219,6 +219,13 @@ function addNode(type) {
   nodes.push(div);
 }
 
+function setSelectedNode(node) {
+  selectedNode = node;
+  nodes.forEach(n => {
+    n.style.borderColor = (n === selectedNode) ? '#00ff00' : 'white';
+  });
+}
+
 function setupNode(div) {
   const type = div.dataset.type;
   const textarea = div.querySelector('textarea');
@@ -231,13 +238,6 @@ function setupNode(div) {
       e.stopPropagation();
       removeNode(div);
     };
-  }
-
-  function setSelectedNode(node) {
-    selectedNode = node;
-    nodes.forEach(n => {
-      n.style.borderColor = (n === selectedNode) ? '#00ff00' : 'white';
-    });
   }
 
   const headerEl = div.querySelector('.node-header');
@@ -385,6 +385,13 @@ canvas.onmouseup = () => {
 
     selectedNode = null;
     updateConnectors();
+  }
+};
+
+canvas.onclick = e => {
+  // Only unselect if clicking on the canvas, not on a node
+  if (e.target === canvas) {
+    setSelectedNode(null);
   }
 };
 
