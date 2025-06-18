@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IF Visual Planner</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: white;
+      font-family: monospace;
+      overflow: hidden;
+    }
+    #toolbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #222;
+      padding: 5px;
+      z-index: 10;
+    }
+    #toolbar button {
+      margin-right: 5px;
+    }
+    #canvas {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: black;
+    }
+    .node {
+      position: absolute;
+      border: 1px solid white;
+      background: #111;
+      color: white;
+      cursor: move;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-width: 100px;
+      min-height: 60px;
+    }
+    .node-header {
+      font-weight: bold;
+      padding: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .delete-btn {
+      background: none;
+      border: none;
+      color: red;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .node-content {
+      flex: 1;
+      background: #111;
+      color: white;
+      border: none;
+      resize: none;
+      font-family: monospace;
+      padding: 4px;
+      font-size: 12px;
+    }
+    .dropzone {
+      flex: 1;
+      border-top: 1px dashed gray;
+      background: #111;
+      padding: 4px;
+      overflow: auto;
+    }
+    .connector {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="toolbar">
+  <button onclick="addNode('Room')">Add Room</button>
+  <button onclick="addNode('Item/NPC')">Add Item/NPC</button>
+  <button onclick="addNode('Note')">Add Note</button>
+  <button onclick="startConnector()">Room Connector</button>
+  <button onclick="download()">Save</button>
+</div>
+<div id="canvas" tabindex="0"></div>
+<script>
+let canvas = document.getElementById('canvas');
+let selectedNode = null;
+let offsetX, offsetY;
+let nodes = [];
+let connectors = [];
+let connecting = false;
+let connectStart = null;
+let focusedNode = null;
+
+function findEmptySpot() {
+  const spacing = 20;
+  const width = 150;
+  const height = 100;
+  const maxCols = Math.floor(canvas.clientWidth / (width + spacing));
+  const maxRows = Math.floor(canvas.clientHeight / (height + spacing));
+
+  for (let row = 0; row < maxRows; row++) {
+    for (let col = 0; col < maxCols; col++) {
+      const left = col * (width + spacing);
+      const top = row * (height + spacing);
+      const overlap = nodes.some(n => {
+        const nLeft = parseInt(n.style.left);
+        const nTop = parseInt(n.style.top);
+        const nRight = nLeft + parseInt(n.style.width);
+        const nBottom = nTop + parseInt(n.style.height);
+        return (
+          left < nRight &&
+          left + width > nLeft &&
+          top < nBottom &&
+          top + height > nTop
+        );
+      });
+      if (!overlap) return { left, top };
+    }
+  }
+  return { left: 100, top: 100 }; // fallback
+}
+
+function addNode(type) {
+  let div = document.createElement('div');
+  div.className = 'node';
+  const { left, top } = findEmptySpot();
+  div.style.left = left + 'px';
+  div.style.top = top + 'px';
+  div.style.width = '150px';
+  div.style.height = '100px';
+  div.dataset.type = type;
+  div.setAttribute('draggable', false);
+
+  let header = document.createElement('div');
+  header.className = 'node-header';
+  header.textContent = type;
+
+  let deleteBtn = document.createElement('button');
+  deleteBtn.innerHTML = '🗑️';
+  deleteBtn.className = 'delete-btn';
+  deleteBtn.onclick = e => {
+    e.stopPropagation();
+    removeNode(div);
+  };
+  header.appendChild(deleteBtn);
+  div.appendChild(header);
+
+  let textarea = document.createElement('textarea');
+  textarea.className = 'node-content';
+  textarea.placeholder = 'Enter notes...';
+  div.appendChild(textarea);
+
+  if (type === 'Room' || type === 'Item/NPC') {
+    let dropzone = document.createElement('div');
+    dropzone.className = 'dropzone';
+    dropzone.ondragover = e => e.preventDefault();
+    dropzone.ondrop = e => {
+      const id = e.dataTransfer.getData("text/plain");
+      const item = document.getElementById(id);
+      if (item) dropzone.appendChild(item);
+    };
+    div.appendChild(dropzone);
+  }
+
+  div.onmousedown = e => {
+    if (!connecting) {
+      selectedNode = div;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+    }
+    focusedNode = div;
+  };
+
+  div.onclick = e => {
+    if (connecting && type === 'Room') {
+      if (!connectStart) {
+        connectStart = div;
+      } else {
+        drawConnector(connectStart, div);
+        connectStart = null;
+        connecting = false;
+      }
+      e.stopPropagation();
+    }
+    focusedNode = div;
+  };
+
+  div.id = 'node-' + nodes.length;
+  div.draggable = true;
+  div.ondragstart = e => {
+    e.dataTransfer.setData("text/plain", div.id);
+  };
+
+  canvas.appendChild(div);
+  nodes.push(div);
+}
+
+function removeNode(node) {
+  connectors = connectors.filter(c => c.a !== node && c.b !== node);
+  updateConnectors();
+  canvas.removeChild(node);
+  nodes = nodes.filter(n => n !== node);
+  if (focusedNode === node) focusedNode = null;
+}
+
+canvas.onmousemove = e => {
+  if (selectedNode) {
+    selectedNode.style.left = (e.clientX - offsetX) + 'px';
+    selectedNode.style.top = (e.clientY - offsetY) + 'px';
+    updateConnectors();
+  }
+};
+
+canvas.onmouseup = () => selectedNode = null;
+
+canvas.addEventListener('keydown', e => {
+  if (!focusedNode) return;
+  if (!e.ctrlKey) return;
+  const step = 10;
+  let style = focusedNode.style;
+  let width = parseInt(style.width);
+  let height = parseInt(style.height);
+  let left = parseInt(style.left);
+
+  switch (e.key) {
+    case 'ArrowRight':
+      style.width = (width + step) + 'px';
+      break;
+    case 'ArrowLeft':
+      style.width = Math.max(50, width - step) + 'px';
+      break;
+    case 'ArrowDown':
+      style.height = (height + step) + 'px';
+      break;
+    case 'ArrowUp':
+      style.height = Math.max(40, height - step) + 'px';
+      break;
+  }
+  updateConnectors();
+  e.preventDefault();
+});
+
+function drawConnector(a, b) {
+  connectors.push({a, b});
+  updateConnectors();
+}
+
+function updateConnectors() {
+  document.querySelectorAll('svg.connector').forEach(c => c.remove());
+  connectors.forEach(({a, b}) => {
+    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.classList.add("connector");
+    svg.style.position = 'absolute';
+    svg.style.left = 0;
+    svg.style.top = 0;
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+
+    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    let ax = a.offsetLeft + a.offsetWidth / 2;
+    let ay = a.offsetTop + a.offsetHeight / 2;
+    let bx = b.offsetLeft + b.offsetWidth / 2;
+    let by = b.offsetTop + b.offsetHeight / 2;
+
+    line.setAttribute("x1", ax);
+    line.setAttribute("y1", ay);
+    line.setAttribute("x2", bx);
+    line.setAttribute("y2", by);
+    line.setAttribute("stroke", "white");
+    line.setAttribute("stroke-width", "2");
+    svg.appendChild(line);
+    canvas.insertBefore(svg, canvas.firstChild);
+  });
+}
+
+function startConnector() {
+  connecting = true;
+  connectStart = null;
+}
+
+function download() {
+  let html = document.documentElement.outerHTML;
+  let blob = new Blob([html], {type: 'text/html'});
+  let a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'if-visual-planner.html';
+  a.click();
+}
+</script>
+</body>
+</html>
