@@ -36,6 +36,16 @@
       overflow-x: auto;
       overflow-y: auto;
     }
+    .resize-handle {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      right: 0;
+      bottom: 0;
+      cursor: se-resize;
+      background: #444;
+      z-index: 2;
+    }
     .zoom-controls {
       position: fixed;
       bottom: 10px;
@@ -173,6 +183,10 @@ function addNode(type) {
   header.className = 'node-header';
   header.textContent = type;
 
+  const resizeHandle = document.createElement('div');
+  resizeHandle.className = 'resize-handle';
+  div.appendChild(resizeHandle);
+
   const deleteBtn = document.createElement('button');
   deleteBtn.innerHTML = '🗑️';
   deleteBtn.className = 'delete-btn';
@@ -269,6 +283,40 @@ function setupNode(div) {
   }
 
   if (!nodes.includes(div)) nodes.push(div);
+
+
+const resizeHandle = div.querySelector('.resize-handle');
+if (resizeHandle) {
+  let resizing = false;
+  let startX, startY, startWidth, startHeight;
+
+  resizeHandle.onmousedown = e => {
+    e.stopPropagation();
+    resizing = true;
+    startX = e.clientX;
+    startY = e.clientY;
+    startWidth = parseInt(document.defaultView.getComputedStyle(div).width, 10);
+    startHeight = parseInt(document.defaultView.getComputedStyle(div).height, 10);
+    document.body.style.cursor = 'se-resize';
+
+    document.onmousemove = e => {
+      if (resizing) {
+        const newWidth = Math.max(100, startWidth + (e.clientX - startX) / zoom);
+        const newHeight = Math.max(60, startHeight + (e.clientY - startY) / zoom);
+        div.style.width = newWidth + 'px';
+        div.style.height = newHeight + 'px';
+        updateConnectors();
+      }
+    };
+
+    document.onmouseup = () => {
+      resizing = false;
+      document.body.style.cursor = 'default';
+      document.onmousemove = null;
+      document.onmouseup = null;
+    };
+  };
+}
 }
 
 function removeNode(node) {
