@@ -21,6 +21,9 @@
     }
     #toolbar button {
       margin-right: 5px;
+      border: solid 1px #444;
+      background: #222;
+      color: #ddd;
     }
     #canvas {
       position: absolute;
@@ -205,7 +208,7 @@ function addNode(type) {
 function setupNode(div) {
   const type = div.dataset.type;
   const textarea = div.querySelector('textarea');
-  if (textarea) textarea.value = textarea.textContent;
+//  if (textarea) textarea.value = textarea.textContent;
 
   const header = div.querySelector('.node-header');
   const deleteBtn = header?.querySelector('.delete-btn');
@@ -216,13 +219,24 @@ function setupNode(div) {
     };
   }
 
-  div.onmousedown = e => {
+  function setSelectedNode(node) {
+    selectedNode = node;
+    nodes.forEach(n => {
+      n.style.borderColor = (n === selectedNode) ? '#00ff00' : 'white';
+    });
+  }
+
+  const headerEl = div.querySelector('.node-header');
+  headerEl.style.cursor = 'move';
+  headerEl.onmousedown = e => {
     if (!connecting) {
       selectedNode = div;
+      setSelectedNode(div);
       offsetX = e.offsetX;
       offsetY = e.offsetY;
+      focusedNode = div;
+      e.stopPropagation();
     }
-    focusedNode = div;
   };
 
   div.onclick = e => {
@@ -260,20 +274,71 @@ function setupNode(div) {
 function removeNode(node) {
   connectors = connectors.filter(c => c.a !== node && c.b !== node);
   updateConnectors();
-  canvas.removeChild(node);
+  if (node.parentElement) {
+    node.parentElement.removeChild(node);
+  }
   nodes = nodes.filter(n => n !== node);
   if (focusedNode === node) focusedNode = null;
 }
 
 canvas.onmousemove = e => {
   if (selectedNode) {
-    selectedNode.style.left = (e.clientX / zoom - offsetX) + 'px';
-    selectedNode.style.top = (e.clientY / zoom - offsetY) + 'px';
+    const parentRect = selectedNode.parentElement.getBoundingClientRect();
+    const newLeft = (e.clientX - parentRect.left) / zoom - offsetX;
+    const newTop = (e.clientY - parentRect.top) / zoom - offsetY;
+    selectedNode.style.left = newLeft + 'px';
+    selectedNode.style.top = newTop + 'px';
     updateConnectors();
   }
 };
 
-canvas.onmouseup = () => selectedNode = null;
+canvas.onmouseup = () => {
+  if (selectedNode) {
+    // Only consider attaching if this is NOT a Room node
+    if (selectedNode.dataset.type !== 'Room') {
+      const selectedRect = selectedNode.getBoundingClientRect();
+
+      for (let node of nodes) {
+        if (node === selectedNode) continue;
+        if (node.dataset.type !== 'Room') continue;
+
+        const nodeRect = node.getBoundingClientRect();
+        const overlap = !(
+          selectedRect.right < nodeRect.left ||
+          selectedRect.left > nodeRect.right ||
+          selectedRect.bottom < nodeRect.top ||
+          selectedRect.top > nodeRect.bottom
+        );
+
+        if (overlap) {
+          const dropzone = node.querySelector('.dropzone');
+          if (dropzone && !dropzone.contains(selectedNode)) {
+            // Remove from canvas if not already removed
+            if (selectedNode.parentElement === canvas) {
+              canvas.removeChild(selectedNode);
+            } else {
+              selectedNode.parentElement.removeChild(selectedNode);
+            }
+
+            // Adjust relative position
+            const parentRect = dropzone.getBoundingClientRect();
+            const newLeft = selectedRect.left - parentRect.left;
+            const newTop = selectedRect.top - parentRect.top;
+
+            selectedNode.style.left = newLeft + 'px';
+            selectedNode.style.top = newTop + 'px';
+
+            dropzone.appendChild(selectedNode);
+          }
+          break;
+        }
+      }
+    }
+
+    selectedNode = null;
+    updateConnectors();
+  }
+};
 
 canvas.addEventListener('keydown', e => {
   if (!focusedNode || ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
