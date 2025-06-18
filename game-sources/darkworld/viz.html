@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <title>IF Visual Planner</title>
   <style>
@@ -97,7 +95,7 @@
       z-index: 0;
     }
   </style>
-</head>
+<style type="text/css" id="operaUserStyle"></style></head>
 <body>
   <div id="toolbar">
     <button onclick="addNode('Room')">Add Room</button>
@@ -106,7 +104,8 @@
     <button onclick="startConnector()">Room Connector</button>
     <button onclick="download()">Save</button>
   </div>
-  <div id="canvas" tabindex="0"></div>
+  <div id="canvas" tabindex="0"><div class="node" data-type="Room" id="node-0" style="left: 40px; top: 78px; width: 260px; height: 250px;" draggable="true"><div class="node-header">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Old Oak Inn
+- Door: North</textarea><div class="dropzone"></div></div></div>
   <div class="zoom-controls">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
@@ -363,5 +362,6 @@ function initializeNodes() {
 
 window.onload = initializeNodes;
 </script>
-</body>
-</html>
+
+
+</body></html>
