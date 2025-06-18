@@ -104,8 +104,10 @@
     <button onclick="startConnector()">Room Connector</button>
     <button onclick="download()">Save</button>
   </div>
-  <div id="canvas" tabindex="0"><div class="node" data-type="Room" id="node-0" style="left: 40px; top: 78px; width: 260px; height: 250px;" draggable="true"><div class="node-header">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Old Oak Inn
-- Door: North</textarea><div class="dropzone"></div></div></div>
+  <div id="canvas" tabindex="0"><svg class="connector" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><line x1="191" y1="294" x2="552" y2="270" stroke="white" stroke-width="2"></line></svg><div class="node" data-type="Room" id="node-0" style="left: 40px; top: 78px; width: 300px; height: 430px;" draggable="true"><div class="node-header">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Old Oak Inn
+- Door: North</textarea><div class="dropzone"></div></div><div class="node" data-type="Item/NPC" id="node-1" style="left: 54px; top: 325px; width: 240px; height: 150px;" draggable="true"><div class="node-header">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Parchment
+- This will be important later.</textarea><div class="dropzone"></div></div><div class="node" data-type="Room" id="node-2" style="left: 411px; top: 94px; width: 280px; height: 350px;" draggable="true"><div class="node-header">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Storage Room</textarea><div class="dropzone"></div></div><div class="node" data-type="Item/NPC" id="node-4" style="left: 427px; top: 309px; width: 210px; height: 120px;" draggable="true"><div class="node-header">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Casks
+- There's nothing there</textarea><div class="dropzone"></div></div></div>
   <div class="zoom-controls">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
