@@ -8,7 +8,7 @@
       background: black;
       color: white;
       font-family: monospace;
-      overflow: hidden;
+      overflow: auto;
     }
     #toolbar {
       position: fixed;
@@ -35,6 +35,8 @@
       transform-origin: 0 0;
       overflow-x: auto;
       overflow-y: auto;
+      min-width: 500000px;
+      min-height: 500000px;
     }
     .resize-handle {
       position: absolute;
@@ -119,7 +121,7 @@
     <button onclick="download()">Save</button>
   </div>
   <div id="canvas" tabindex="0"></div>
-  <div class="zoom-controls" style="display: none;">
+  <div class="zoom-controls">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
@@ -142,6 +144,7 @@
     <h3>Shortcut Keys</h3>
     <p>
       <pre>
+a = Add a new node.
 c = Start connection (select a room and hit Enter,
     select the second room and hit Enter).
 D = Delete the selected node.
@@ -154,6 +157,10 @@ k = Move selected node up.
 K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
+< = Move selected node left by half a step.
+> = Move selected node right by half a step.
+^ = Move selected node up by half a step.
+- = Move selected node down by half a step.
 z = Increase selected node's text area.
 Z = Decrease selected node's text area.
 w = Cycles through the nodes.
@@ -184,35 +191,49 @@ function setZoom(z) {
 }
 
 function findEmptySpot() {
-  const spacing = 20;
-  const width = 150;
-  const height = 100;
-  const maxCols = Math.floor(canvas.clientWidth / (width + spacing));
-  const maxRows = Math.floor(canvas.clientHeight / (height + spacing));
+  const step = 40; // Movement step and spacing
+  const width = 160; // Rounded to nearest multiple of 40
+  const height = 120; // Rounded to nearest multiple of 40
+  const maxCols = Math.floor(canvas.clientWidth / (width + step));
+  const maxRows = Math.floor(canvas.clientHeight / (height + step));
 
   for (let row = 0; row < maxRows; row++) {
     for (let col = 0; col < maxCols; col++) {
-      const left = col * (width + spacing);
-      const top = row * (height + spacing);
+      const left = col * (width + step);
+      const top = row * (height + step);
+
+      // Snap to nearest multiple of step
+      const snappedLeft = Math.round(left / step) * step;
+      const snappedTop = Math.round(top / step) * step;
+
       const overlap = nodes.some(n => {
-        const nLeft = parseInt(n.style.left);
-        const nTop = parseInt(n.style.top);
-        const nRight = nLeft + parseInt(n.style.width);
-        const nBottom = nTop + parseInt(n.style.height);
+        const nLeft = Math.round(parseInt(n.style.left) / step) * step;
+        const nTop = Math.round(parseInt(n.style.top) / step) * step;
+        const nRight = nLeft + Math.round(parseInt(n.style.width) / step) * step;
+        const nBottom = nTop + Math.round(parseInt(n.style.height) / step) * step;
         return (
-          left < nRight &&
-          left + width > nLeft &&
-          top < nBottom &&
-          top + height > nTop
+          snappedLeft < nRight &&
+          snappedLeft + width > nLeft &&
+          snappedTop < nBottom &&
+          snappedTop + height > nTop
         );
       });
-      if (!overlap) return { left, top };
+
+      if (!overlap) return { left: snappedLeft, top: snappedTop };
     }
   }
-  return { left: 100, top: 100 };
+
+  return {
+    left: Math.round(100 / step) * step,
+    top: Math.round(100 / step) * step
+  };
 }
 
-function addNode(type) {
+function addNode() {
+  const input = prompt("Enter node type:");
+  if (!input) return; // Cancelled or empty
+  const type = input.trim();
+
   let div = document.createElement('div');
   div.className = 'node';
   div.style.width = '150px';
@@ -243,46 +264,31 @@ function addNode(type) {
   resizeHandle.className = 'resize-handle';
   div.appendChild(resizeHandle);
 
-  // Only add dropzone for Room or Item/NPC types
-  if (type === 'Room' || type === 'Item/NPC') {
-    const dropzone = document.createElement('div');
-    dropzone.className = 'dropzone';
-    dropzone.ondragover = e => e.preventDefault();
-    dropzone.ondrop = e => {
-      const id = e.dataTransfer.getData("text/plain");
-      const item = document.getElementById(id);
-      if (item) dropzone.appendChild(item);
-    };
-    div.appendChild(dropzone);
-  }
+  const dropzone = document.createElement('div');
+  dropzone.className = 'dropzone';
+  dropzone.ondragover = e => e.preventDefault();
+  dropzone.ondrop = e => {
+    const id = e.dataTransfer.getData("text/plain");
+    const item = document.getElementById(id);
+    if (item && !item.contains(div)) dropzone.appendChild(item);
+  };
+  div.appendChild(dropzone);
 
   setupNode(div);
 
   // === Nesting logic ===
-  if (
-    type !== 'Room' &&
-    selectedNode &&
-    selectedNode.dataset.type === 'Room'
-  ) {
-    let dropzone = selectedNode.querySelector('.dropzone');
-
-    // If selected Room doesn't have dropzone yet, create one
-    if (!dropzone) {
-      dropzone = document.createElement('div');
-      dropzone.className = 'dropzone';
-      dropzone.ondragover = e => e.preventDefault();
-      dropzone.ondrop = e => {
-        const id = e.dataTransfer.getData("text/plain");
-        const item = document.getElementById(id);
-        if (item) dropzone.appendChild(item);
-      };
-      selectedNode.appendChild(dropzone);
+  if (selectedNode) {
+    const parentDropzone = selectedNode.querySelector('.dropzone');
+    if (parentDropzone && !div.contains(parentDropzone)) {
+      div.style.left = '10px';
+      div.style.top = '10px';
+      parentDropzone.appendChild(div);
+    } else {
+      const { left, top } = findEmptySpot();
+      div.style.left = left + 'px';
+      div.style.top = top + 'px';
+      canvas.appendChild(div);
     }
-
-    div.style.position = 'absolute';
-    div.style.left = '10px';
-    div.style.top = '10px';
-    dropzone.appendChild(div);
   } else {
     const { left, top } = findEmptySpot();
     div.style.left = left + 'px';
@@ -292,7 +298,7 @@ function addNode(type) {
 
   nodes.push(div);
 
-  // === Resizing logic ===
+  // Resizing logic
   if (resizeHandle) {
     let resizing = false;
     let startX, startY, startWidth, startHeight;
@@ -326,6 +332,7 @@ function addNode(type) {
   }
 
   attachChild(div); // Check for drop if it's floating
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function getAllNodes() {
@@ -373,7 +380,7 @@ function setupNode(div) {
   };
 
   div.onclick = e => {
-    if (connecting && type === 'Room') {
+    if (connecting) {
       if (!connectStart) {
         connectStart = div;
       } else {
@@ -469,15 +476,10 @@ canvas.onmouseup = () => {
 };
 
 function attachChild(selectedNode) {
-  if (selectedNode.dataset.type === 'Room') {
-    return; 
-  }
-
   const selectedRect = selectedNode.getBoundingClientRect();
 
   for (let node of nodes) {
     if (node === selectedNode) continue;
-    if (node.dataset.type !== 'Room') continue;
 
     const nodeRect = node.getBoundingClientRect();
     const overlap = !(
@@ -534,11 +536,8 @@ document.addEventListener('keydown', e => {
   }
 
   switch (e.key) {
-    case 'r':
-      addNode('Room');
-      break;
-    case 'o':
-      addNode('Item/NPC');
+    case 'a':
+      addNode();
       break;
     case 's':
       download();
@@ -610,6 +609,9 @@ document.addEventListener('keydown', e => {
     case 'h':
       move(-step, 0);
       break;
+    case '<':
+      move(-(step/2), 0);
+      break;
     case 'H':
       resize(-step, 0);
       break;
@@ -622,11 +624,17 @@ document.addEventListener('keydown', e => {
     case 'j':
       move(0, step);
       break;
+    case '-':
+      move(0, (step/2));
+      break;
     case 'J':
       resize(0, step);
       break;
     case 'k':
       move(0, -step);
+      break;
+    case '^':
+      move(0, -(step/2));
       break;
     case 'K':
       resize(0, -step);
@@ -634,14 +642,14 @@ document.addEventListener('keydown', e => {
     case 'l':
       move(step, 0);
       break;
+    case '>':
+      move((step/2), 0);
+      break;
     case 'L':
       resize(step, 0);
       break;
     case 'm':
       resize(step, step);
-      break;
-    case 'n':
-      addNode('Note')
       break;
     case 'z':
       resizeDropzone(10);
@@ -653,16 +661,14 @@ document.addEventListener('keydown', e => {
       if (!connecting) {
         attachChild(focusedNode);
       } else {
-        if (focusedNode.dataset.type === 'Room') {
-          if (!connectStart) {
-            connectStart = focusedNode;
-          } else {
-            drawConnector(connectStart, focusedNode);
-            connectStart = null;
-            connecting = false;
-          }
-          e.stopPropagation();
+        if (!connectStart) {
+          connectStart = focusedNode;
+        } else {
+          drawConnector(connectStart, focusedNode);
+          connectStart = null;
+          connecting = false;
         }
+        e.stopPropagation();
       }
       break;
     default:
@@ -678,21 +684,56 @@ function drawConnector(a, b) {
 }
 
 function updateConnectors() {
+  // Remove old connectors
   document.querySelectorAll('svg.connector').forEach(c => c.remove());
-  connectors.forEach(({a, b}) => {
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+  // Utility to get ancestors up to #canvas
+  function getAncestors(node) {
+    const ancestors = [];
+    while (node && node !== canvas) {
+      ancestors.push(node);
+      node = node.parentElement;
+    }
+    if (node === canvas) ancestors.push(canvas);
+    return ancestors.reverse(); // from canvas down to node
+  }
+
+  // Find lowest common ancestor
+  function findLCA(a, b) {
+    const aAncestors = getAncestors(a);
+    const bAncestors = getAncestors(b);
+    let lca = canvas;
+    for (let i = 0; i < Math.min(aAncestors.length, bAncestors.length); i++) {
+      if (aAncestors[i] === bAncestors[i]) {
+        lca = aAncestors[i];
+      } else {
+        break;
+      }
+    }
+    return lca;
+  }
+
+  connectors.forEach(({ a, b }) => {
+    const lca = findLCA(a, b);
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.classList.add("connector");
     svg.style.position = 'absolute';
     svg.style.left = 0;
     svg.style.top = 0;
     svg.style.width = '100%';
     svg.style.height = '100%';
+    svg.style.zIndex = '0';
 
-    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    let ax = a.offsetLeft + a.offsetWidth / 2;
-    let ay = a.offsetTop + a.offsetHeight / 2;
-    let bx = b.offsetLeft + b.offsetWidth / 2;
-    let by = b.offsetTop + b.offsetHeight / 2;
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+    const lcaRect = lca.getBoundingClientRect();
+    const aRect = a.getBoundingClientRect();
+    const bRect = b.getBoundingClientRect();
+
+    const ax = aRect.left + aRect.width / 2 - lcaRect.left;
+    const ay = aRect.top + aRect.height / 2 - lcaRect.top;
+    const bx = bRect.left + bRect.width / 2 - lcaRect.left;
+    const by = bRect.top + bRect.height / 2 - lcaRect.top;
 
     line.setAttribute("x1", ax);
     line.setAttribute("y1", ay);
@@ -701,7 +742,27 @@ function updateConnectors() {
     line.setAttribute("stroke", "white");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
-    canvas.insertBefore(svg, canvas.firstChild);
+
+    // Determine the lowest index of a or b within the LCA to insert before
+    let insertBefore = null;
+    const lcaDescendants = Array.from(lca.querySelectorAll('.node'));
+
+    const aIndex = lcaDescendants.indexOf(a);
+    const bIndex = lcaDescendants.indexOf(b);
+
+    if (aIndex !== -1 && bIndex !== -1) {
+      insertBefore = lcaDescendants[Math.min(aIndex, bIndex)];
+    } else if (aIndex !== -1) {
+      insertBefore = lcaDescendants[aIndex];
+    } else if (bIndex !== -1) {
+      insertBefore = lcaDescendants[bIndex];
+    }
+
+    if (insertBefore && insertBefore.parentElement === lca) {
+      lca.insertBefore(svg, insertBefore);
+    } else {
+      lca.appendChild(svg);
+    }
   });
 }
 
