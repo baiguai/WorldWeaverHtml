@@ -165,6 +165,7 @@ Z = Decrease selected node's text area.
 w = Cycles through the nodes.
 , = Zoom out.
 . = Zoom in.
+/ = Search / Select node.
 Escape = Deselect the current note's text field.
 Enter = When connecting rooms sets the first
     or second room. When the current node
@@ -266,6 +267,7 @@ function addNode() {
   const header = document.createElement('div');
   header.className = 'node-header';
   header.textContent = type;
+  div.appendChild(header);
 
   const textarea = document.createElement('textarea');
   textarea.className = 'node-content';
@@ -324,6 +326,138 @@ function setSelectedNode(node) {
     n.style.borderColor = (n === selectedNode) ? '#fff' : '#aaa';
   });
 }
+
+
+
+
+function showNodeSelectorDialog() {
+  // Remove any existing popup
+  const existing = document.getElementById('nodeSelectorDialog');
+  if (existing) existing.remove();
+
+  const dialog = document.createElement('div');
+  dialog.id = 'nodeSelectorDialog';
+  dialog.style.position = 'fixed';
+  dialog.style.top = '10%';
+  dialog.style.left = '50%';
+  dialog.style.transform = 'translateX(-50%)';
+  dialog.style.width = '400px';
+  dialog.style.maxHeight = '70%';
+  dialog.style.overflow = 'hidden';
+  dialog.style.background = '#222';
+  dialog.style.color = '#fff';
+  dialog.style.border = '2px solid #444';
+  dialog.style.borderRadius = '10px';
+  dialog.style.zIndex = 9999;
+  dialog.style.fontFamily = 'monospace';
+  dialog.style.padding = '10px';
+  dialog.style.display = 'flex';
+  dialog.style.flexDirection = 'column';
+  dialog.style.boxShadow = '0 0 10px rgba(0,0,0,0.8)';
+
+  const filter = document.createElement('input');
+  filter.type = 'text';
+  filter.placeholder = 'Filter by type or text...';
+  filter.style.padding = '5px';
+  filter.style.marginBottom = '10px';
+  filter.style.background = '#111';
+  filter.style.color = '#fff';
+  filter.style.border = '1px solid #555';
+
+  const listContainer = document.createElement('div');
+  listContainer.style.overflowY = 'auto';
+  listContainer.style.flex = '1';
+  listContainer.style.borderTop = '1px solid #333';
+  listContainer.style.borderBottom = '1px solid #333';
+
+  const nodesList = Array.from(document.querySelectorAll('.node'));
+  let filteredList = [];
+  let selectedIndex = 0;
+
+  function renderList() {
+    listContainer.innerHTML = '';
+    const search = filter.value.toLowerCase();
+    filteredList = nodesList.filter(n => {
+      const type = n.dataset.type?.toLowerCase() || '';
+      const text = n.querySelector('textarea')?.value.toLowerCase() || '';
+      return type.includes(search) || text.includes(search);
+    });
+
+    filteredList.forEach((node, index) => {
+      const id = node.id || '(no id)';
+      const type = node.dataset.type || '(no type)';
+      const text = node.querySelector('textarea')?.value || '';
+      const preview = text.length > 30 ? text.substring(0, 30) + '…' : text;
+
+      const item = document.createElement('div');
+      item.textContent = `[${type}] — "${preview}" - ${id}`;
+      item.style.padding = '5px 8px';
+      item.style.cursor = 'pointer';
+      item.style.whiteSpace = 'nowrap';
+      item.style.overflow = 'hidden';
+      item.style.textOverflow = 'ellipsis';
+
+      if (index === selectedIndex) {
+        item.style.background = '#444';
+      }
+
+      item.addEventListener('mouseenter', () => {
+        selectedIndex = index;
+        renderList();
+      });
+
+      item.addEventListener('click', () => {
+        setSelectedNode(filteredList[selectedIndex]);
+        dialog.remove();
+      });
+
+      listContainer.appendChild(item);
+    });
+
+    if (filteredList.length === 0) {
+      const empty = document.createElement('div');
+      empty.textContent = '(no matching nodes)';
+      empty.style.padding = '5px';
+      empty.style.color = '#888';
+      listContainer.appendChild(empty);
+    }
+  }
+
+  filter.addEventListener('input', () => {
+    selectedIndex = 0;
+    renderList();
+  });
+
+  filter.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      selectedIndex = Math.min(selectedIndex + 1, filteredList.length - 1);
+      renderList();
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderList();
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      if (filteredList[selectedIndex]) {
+        setSelectedNode(filteredList[selectedIndex]);
+        dialog.remove();
+      }
+    } else if (e.key === 'Escape') {
+      dialog.remove();
+    }
+  });
+
+  dialog.appendChild(filter);
+  dialog.appendChild(listContainer);
+  document.body.appendChild(dialog);
+  filter.focus();
+
+  renderList();
+}
+
+
+
+
 
 function setupNode(div) {
   const type = div.dataset.type;
@@ -451,6 +585,10 @@ document.addEventListener('keydown', e => {
       break;
     case 's':
       download();
+      break;
+    case '/':
+      showNodeSelectorDialog();
+      e.preventDefault();
       break;
   }
 
