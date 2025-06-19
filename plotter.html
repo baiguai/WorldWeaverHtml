@@ -27,7 +27,7 @@
     }
     #canvas {
       position: absolute;
-      top: 35px;
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
@@ -93,7 +93,7 @@
       font-family: monospace;
       padding: 4px;
       font-size: 12px;
-      height: 100px;
+      height: 150px;
     }
     .dropzone {
       position: relative; /* Add this line */
@@ -119,7 +119,7 @@
     <button onclick="download()">Save</button>
   </div>
   <div id="canvas" tabindex="0"></div>
-  <div class="zoom-controls">
+  <div class="zoom-controls" style="display: none;">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
@@ -154,6 +154,8 @@ k = Move selected node up.
 K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
+z = Increase selected node's text area.
+Z = Decrease selected node's text area.
 w = Cycles through the nodes.
 Enter = When connecting rooms sets the first
     or second room. When the current node
@@ -543,7 +545,7 @@ document.addEventListener('keydown', e => {
       break;
   }
 
-  if (e.key === 'w') {
+  if (e.key === 'w' || e.key === 'W') {
     const nodes = getAllNodes();
     if (nodes.length === 0) return;
 
@@ -569,12 +571,24 @@ document.addEventListener('keydown', e => {
   const height = parseInt(style.height);
   const left = parseInt(style.left);
   const top = parseInt(style.top);
+  const dropzone = focusedNode.querySelector('.dropzone');
+  const textarea = focusedNode.querySelector('textarea');
 
   const resize = (dw, dh) => {
     const width = parseInt(focusedNode.style.width);
     const height = parseInt(focusedNode.style.height);
     focusedNode.style.width = Math.max(50, width + dw) + 'px';
     focusedNode.style.height = Math.max(40, height + dh) + 'px';
+  };
+
+  const resizeDropzone = (dh) => {
+    if (!dropzone) return;
+    const dzStyle = dropzone.style;
+    const txStyle = textarea.style;
+    const dzWidth = parseFloat(dzStyle.width) || 0;
+    const dzHeight = parseFloat(dzStyle.height) || 0;
+    dzStyle.height = Math.max(10, dzHeight + dh) + 'px';
+    txStyle.height = Math.max(10, dzHeight - dh) + 'px';
   };
   
   const move = (dx, dy) => {
@@ -600,7 +614,6 @@ document.addEventListener('keydown', e => {
       resize(-step, 0);
       break;
     case 'i':
-      const textarea = focusedNode.querySelector('textarea');
       if (textarea) {
         textarea.focus();
         e.preventDefault();
@@ -629,6 +642,12 @@ document.addEventListener('keydown', e => {
       break;
     case 'n':
       addNode('Note')
+      break;
+    case 'z':
+      resizeDropzone(10);
+      break;
+    case 'Z':
+      resizeDropzone(-10);
       break;
     case 'Enter':
       if (!connecting) {
