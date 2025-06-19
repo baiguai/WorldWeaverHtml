@@ -86,7 +86,6 @@
       font-size: 16px;
     }
     .node-content {
-      flex: 1;
       background: #111;
       color: white;
       border: none;
@@ -94,6 +93,7 @@
       font-family: monospace;
       padding: 4px;
       font-size: 12px;
+      height: 100px;
     }
     .dropzone {
       position: relative; /* Add this line */
@@ -111,7 +111,7 @@
   </style>
 <style type="text/css" id="operaUserStyle"></style></head>
 <body>
-  <div id="toolbar">
+  <div id="toolbar" style="display: none; height: 0px;">
     <button onclick="addNode('Room')">Add Room</button>
     <button onclick="addNode('Item/NPC')">Add Item/NPC</button>
     <button onclick="addNode('Note')">Add Note</button>
@@ -122,6 +122,46 @@
   <div class="zoom-controls">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
+  </div>
+
+  <div id="helpDialog" style="
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: white;
+    border: 2px solid #555;
+    padding: 20px;
+    z-index: 9999;
+    font-family: monospace;
+    max-width: 400px;
+    text-align: left;
+  ">
+    <h3>Shortcut Keys</h3>
+    <p>
+      <pre>
+c = Start connection (select a room and hit Enter,
+    select the second room and hit Enter).
+D = Delete the selected node.
+h = Move selected node left.
+H = Reduce width of selected node.
+i = Select current node's text field.
+j = Move selected node down.
+J = Increase selected node's height.
+k = Move selected node up.
+K = Reduce selected node's height.
+l = Move selected node right.
+L = Increase selected node's width.
+w = Cycles through the nodes.
+Enter = When connecting rooms sets the first
+    or second room. When the current node
+    is not a room, but is on top of one,
+    sets it as a child of the room.
+      </pre>
+    </p>
+    <p>Press ESC to close.</p>
   </div>
 
 <script>
@@ -284,6 +324,15 @@ function addNode(type) {
   }
 
   attachChild(div); // Check for drop if it's floating
+}
+
+function getAllNodes() {
+  return Array.from(document.querySelectorAll('.node'));
+}
+
+function setFocusedNode(node) {
+  focusedNode = node;
+  getAllNodes().forEach(n => n.style.borderColor = (n === node) ? '#00ff00' : 'white');
 }
 
 function setSelectedNode(node) {
@@ -468,10 +517,53 @@ canvas.onclick = e => {
   }
 };
 
-canvas.addEventListener('keydown', e => {
-  if (!focusedNode || ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+document.addEventListener('keydown', e => {
+  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
-  const step = 10;
+  if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+    document.getElementById('helpDialog').style.display = 'block';
+    e.preventDefault();
+    return;
+  }
+
+  if (e.key === 'Escape') {
+    document.getElementById('helpDialog').style.display = 'none';
+    return;
+  }
+
+  switch (e.key) {
+    case 'r':
+      addNode('Room');
+      break;
+    case 'o':
+      addNode('Item/NPC');
+      break;
+    case 's':
+      download();
+      break;
+  }
+
+  if (e.key === 'w') {
+    const nodes = getAllNodes();
+    if (nodes.length === 0) return;
+
+    const index = nodes.indexOf(focusedNode);
+    let nextIndex;
+    if (e.shiftKey) {
+      nextIndex = (index - 1 + nodes.length) % nodes.length;
+    } else {
+      nextIndex = (index + 1) % nodes.length;
+    }
+
+    setFocusedNode(nodes[nextIndex]);
+    return;
+  }
+
+  if (!focusedNode) {
+    return;
+  }
+
+  const step = 40;
   const style = focusedNode.style;
   const width = parseInt(style.width);
   const height = parseInt(style.height);
@@ -479,22 +571,40 @@ canvas.addEventListener('keydown', e => {
   const top = parseInt(style.top);
 
   const resize = (dw, dh) => {
-    style.width = Math.max(50, width + dw) + 'px';
-    style.height = Math.max(40, height + dh) + 'px';
+    const width = parseInt(focusedNode.style.width);
+    const height = parseInt(focusedNode.style.height);
+    focusedNode.style.width = Math.max(50, width + dw) + 'px';
+    focusedNode.style.height = Math.max(40, height + dh) + 'px';
   };
-
+  
   const move = (dx, dy) => {
-    style.left = (left + dx) + 'px';
-    style.top = (top + dy) + 'px';
+    const parent = focusedNode.offsetParent;
+    const currentLeft = focusedNode.offsetLeft;
+    const currentTop = focusedNode.offsetTop;
+    focusedNode.style.left = (currentLeft + dx) + 'px';
+    focusedNode.style.top = (currentTop + dy) + 'px';
     updateConnectors();
   };
 
   switch (e.key) {
+    case 'c':
+      startConnector()
+      break;
+    case 'D':
+      removeNode(focusedNode);
+      break;
     case 'h':
-      resize(step, 0);
+      move(-step, 0);
       break;
     case 'H':
       resize(-step, 0);
+      break;
+    case 'i':
+      const textarea = focusedNode.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+        e.preventDefault();
+      }
       break;
     case 'j':
       move(0, step);
@@ -517,15 +627,24 @@ canvas.addEventListener('keydown', e => {
     case 'm':
       resize(step, step);
       break;
-    case 'M':
-      resize(step, 0);
-      break;
     case 'n':
-    case 'N':
-      resize(-step, -step);
+      addNode('Note')
       break;
     case 'Enter':
-      attachChild(focusedNode);
+      if (!connecting) {
+        attachChild(focusedNode);
+      } else {
+        if (focusedNode.dataset.type === 'Room') {
+          if (!connectStart) {
+            connectStart = focusedNode;
+          } else {
+            drawConnector(connectStart, focusedNode);
+            connectStart = null;
+            connecting = false;
+          }
+          e.stopPropagation();
+        }
+      }
       break;
     default:
       return; // Don't prevent default for unrelated keys
@@ -581,7 +700,7 @@ function download() {
   let blob = new Blob([html], {type: 'text/html'});
   let a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'if-visual-planner.html';
+  a.download = 'plotter.html';
   a.click();
 }
 
@@ -613,6 +732,7 @@ function restoreConnectorsFromDOM() {
 window.onload = () => {
   initializeNodes();
   restoreConnectorsFromDOM();
+  canvas.focus();
 };
 </script>
 
