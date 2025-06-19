@@ -472,28 +472,65 @@ canvas.addEventListener('keydown', e => {
   if (!focusedNode || ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
   const step = 10;
-  let style = focusedNode.style;
-  let width = parseInt(style.width);
-  let height = parseInt(style.height);
-  let left = parseInt(style.left);
-  let top = parseInt(style.top);
+  const style = focusedNode.style;
+  const width = parseInt(style.width);
+  const height = parseInt(style.height);
+  const left = parseInt(style.left);
+  const top = parseInt(style.top);
 
-  if (e.ctrlKey) {
-    switch (e.key) {
-      case 'ArrowRight': style.width = (width + step) + 'px'; break;
-      case 'ArrowLeft':  style.width = Math.max(50, width - step) + 'px'; break;
-      case 'ArrowDown':  style.height = (height + step) + 'px'; break;
-      case 'ArrowUp':    style.height = Math.max(40, height - step) + 'px'; break;
-    }
-  } else {
-    switch (e.key) {
-      case 'ArrowRight': style.left = (left + step) + 'px'; break;
-      case 'ArrowLeft':  style.left = (left - step) + 'px'; break;
-      case 'ArrowDown':  style.top = (top + step) + 'px'; break;
-      case 'ArrowUp':    style.top = (top - step) + 'px'; break;
-    }
+  const resize = (dw, dh) => {
+    style.width = Math.max(50, width + dw) + 'px';
+    style.height = Math.max(40, height + dh) + 'px';
+  };
+
+  const move = (dx, dy) => {
+    style.left = (left + dx) + 'px';
+    style.top = (top + dy) + 'px';
+    updateConnectors();
+  };
+
+  switch (e.key) {
+    case 'h':
+      resize(step, 0);
+      break;
+    case 'H':
+      resize(-step, 0);
+      break;
+    case 'j':
+      move(0, step);
+      break;
+    case 'J':
+      resize(0, step);
+      break;
+    case 'k':
+      move(0, -step);
+      break;
+    case 'K':
+      resize(0, -step);
+      break;
+    case 'l':
+      move(step, 0);
+      break;
+    case 'L':
+      resize(step, 0);
+      break;
+    case 'm':
+      resize(step, step);
+      break;
+    case 'M':
+      resize(step, 0);
+      break;
+    case 'n':
+    case 'N':
+      resize(-step, -step);
+      break;
+    case 'Enter':
+      attachChild(focusedNode);
+      break;
+    default:
+      return; // Don't prevent default for unrelated keys
   }
-  updateConnectors();
+
   e.preventDefault();
 });
 
