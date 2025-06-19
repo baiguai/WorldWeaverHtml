@@ -106,7 +106,6 @@
       overflow: auto;
     }
     .connector {
-      position: absolute;
       pointer-events: none;
       z-index: 0;
     }
@@ -573,10 +572,8 @@ function drawConnector(a, b) {
 }
 
 function updateConnectors() {
-  // Remove old connectors
   document.querySelectorAll('svg.connector').forEach(c => c.remove());
 
-  // Utility to get ancestors up to #canvas
   function getAncestors(node) {
     const ancestors = [];
     while (node && node !== canvas) {
@@ -584,10 +581,9 @@ function updateConnectors() {
       node = node.parentElement;
     }
     if (node === canvas) ancestors.push(canvas);
-    return ancestors.reverse(); // from canvas down to node
+    return ancestors.reverse();
   }
 
-  // Find lowest common ancestor
   function findLCA(a, b) {
     const aAncestors = getAncestors(a);
     const bAncestors = getAncestors(b);
@@ -602,52 +598,47 @@ function updateConnectors() {
     return lca;
   }
 
+  function getNodeCenterRelativeToCanvas(node) {
+    const nodeRect = node.getBoundingClientRect();
+    const canvasRect = canvas.getBoundingClientRect();
+
+    return {
+      x: nodeRect.left + nodeRect.width / 2 - canvasRect.left + canvas.scrollLeft,
+      y: nodeRect.top + nodeRect.height / 2 - canvasRect.top + canvas.scrollTop
+    };
+  }
+
   connectors.forEach(({ a, b }) => {
+    const aCenter = getNodeCenterRelativeToCanvas(a);
+    const bCenter = getNodeCenterRelativeToCanvas(b);
     const lca = findLCA(a, b);
+
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.classList.add("connector");
     svg.style.position = 'absolute';
-    svg.style.left = 0;
-    svg.style.top = 0;
+    svg.style.left = '0';
+    svg.style.top = '0';
     svg.style.width = '100%';
     svg.style.height = '100%';
     svg.style.zIndex = '0';
+    svg.style.pointerEvents = 'none';
 
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-
-    const lcaRect = lca.getBoundingClientRect();
-    const aRect = a.getBoundingClientRect();
-    const bRect = b.getBoundingClientRect();
-
-    const ax = aRect.left + aRect.width / 2 - lcaRect.left;
-    const ay = aRect.top + aRect.height / 2 - lcaRect.top;
-    const bx = bRect.left + bRect.width / 2 - lcaRect.left;
-    const by = bRect.top + bRect.height / 2 - lcaRect.top;
-
-    line.setAttribute("x1", ax);
-    line.setAttribute("y1", ay);
-    line.setAttribute("x2", bx);
-    line.setAttribute("y2", by);
+    line.setAttribute("x1", aCenter.x);
+    line.setAttribute("y1", aCenter.y);
+    line.setAttribute("x2", bCenter.x);
+    line.setAttribute("y2", bCenter.y);
     line.setAttribute("stroke", "#aaa");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
 
-    // Determine the lowest index of a or b within the LCA to insert before
+    // Insert *before* the first of a/b if it exists directly in the LCA
     let insertBefore = null;
-    const lcaDescendants = Array.from(lca.querySelectorAll('.node'));
+    const children = Array.from(lca.children);
+    if (children.includes(a)) insertBefore = a;
+    else if (children.includes(b)) insertBefore = b;
 
-    const aIndex = lcaDescendants.indexOf(a);
-    const bIndex = lcaDescendants.indexOf(b);
-
-    if (aIndex !== -1 && bIndex !== -1) {
-      insertBefore = lcaDescendants[Math.min(aIndex, bIndex)];
-    } else if (aIndex !== -1) {
-      insertBefore = lcaDescendants[aIndex];
-    } else if (bIndex !== -1) {
-      insertBefore = lcaDescendants[bIndex];
-    }
-
-    if (insertBefore && insertBefore.parentElement === lca) {
+    if (insertBefore) {
       lca.insertBefore(svg, insertBefore);
     } else {
       lca.appendChild(svg);
