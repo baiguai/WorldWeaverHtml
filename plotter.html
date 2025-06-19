@@ -63,15 +63,15 @@
     }
     .node {
       position: absolute;
-      border: 1px solid white;
+      border: 1px solid #aaa;
       background: #111;
       color: white;
-      cursor: move;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-width: 100px;
       min-height: 60px;
+      z-index: 1;
     }
     .node-header {
       font-weight: bold;
@@ -166,6 +166,7 @@ Z = Decrease selected node's text area.
 w = Cycles through the nodes.
 , = Zoom out.
 . = Zoom in.
+Escape = Deselect the current note's text field.
 Enter = When connecting rooms sets the first
     or second room. When the current node
     is not a room, but is on top of one,
@@ -183,7 +184,6 @@ let nodes = [];
 let connectors = [];
 let connecting = false;
 let connectStart = null;
-let focusedNode = null;
 let zoom = 1;
 let dragging = false;
 
@@ -193,9 +193,9 @@ function setZoom(z) {
 }
 
 function findEmptySpot() {
-  const step = 40; // Movement step and spacing
-  const width = 160; // Rounded to nearest multiple of 40
-  const height = 120; // Rounded to nearest multiple of 40
+  const step = 40;
+  const width = 160;
+  const height = 120;
   const maxCols = Math.floor(canvas.clientWidth / (width + step));
   const maxRows = Math.floor(canvas.clientHeight / (height + step));
 
@@ -233,7 +233,7 @@ function findEmptySpot() {
 
 function addNode() {
   const input = prompt("Enter node type:");
-  if (!input) return; // Cancelled or empty
+  if (!input) return;
   const type = input.trim();
 
   let div = document.createElement('div');
@@ -247,24 +247,10 @@ function addNode() {
   header.className = 'node-header';
   header.textContent = type;
 
-//  const deleteBtn = document.createElement('button');
-//  deleteBtn.innerHTML = '🗑️';
-//  deleteBtn.className = 'delete-btn';
-//  deleteBtn.onclick = e => {
-//    e.stopPropagation();
-//    removeNode(div);
-//  };
-//  header.appendChild(deleteBtn);
-  div.appendChild(header);
-
   const textarea = document.createElement('textarea');
   textarea.className = 'node-content';
   textarea.placeholder = 'Enter notes...';
   div.appendChild(textarea);
-
-  const resizeHandle = document.createElement('div');
-  resizeHandle.className = 'resize-handle';
-  div.appendChild(resizeHandle);
 
   const dropzone = document.createElement('div');
   dropzone.className = 'dropzone';
@@ -300,39 +286,6 @@ function addNode() {
 
   nodes.push(div);
 
-  // Resizing logic
-  if (resizeHandle) {
-    let resizing = false;
-    let startX, startY, startWidth, startHeight;
-
-    resizeHandle.onmousedown = e => {
-      e.stopPropagation();
-      resizing = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      startWidth = parseInt(getComputedStyle(div).width, 10);
-      startHeight = parseInt(getComputedStyle(div).height, 10);
-      document.body.style.cursor = 'se-resize';
-
-      document.onmousemove = e => {
-        if (resizing) {
-          const newWidth = Math.max(100, startWidth + (e.clientX - startX) / zoom);
-          const newHeight = Math.max(60, startHeight + (e.clientY - startY) / zoom);
-          div.style.width = newWidth + 'px';
-          div.style.height = newHeight + 'px';
-          updateConnectors();
-        }
-      };
-
-      document.onmouseup = () => {
-        resizing = false;
-        document.body.style.cursor = 'default';
-        document.onmousemove = null;
-        document.onmouseup = null;
-      };
-    };
-  }
-
   attachChild(div); // Check for drop if it's floating
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -341,22 +294,16 @@ function getAllNodes() {
   return Array.from(document.querySelectorAll('.node'));
 }
 
-function setFocusedNode(node) {
-  focusedNode = node;
-  getAllNodes().forEach(n => n.style.borderColor = (n === node) ? '#00ff00' : 'white');
-}
-
 function setSelectedNode(node) {
   selectedNode = node;
   nodes.forEach(n => {
-    n.style.borderColor = (n === selectedNode) ? '#00ff00' : 'white';
+    n.style.borderColor = (n === selectedNode) ? '#fff' : '#aaa';
   });
 }
 
 function setupNode(div) {
   const type = div.dataset.type;
   const textarea = div.querySelector('textarea');
-//  if (textarea) textarea.value = textarea.textContent;
 
   const header = div.querySelector('.node-header');
   const deleteBtn = header?.querySelector('.delete-btn');
@@ -366,34 +313,6 @@ function setupNode(div) {
       removeNode(div);
     };
   }
-
-  const headerEl = div.querySelector('.node-header');
-  headerEl.style.cursor = 'move';
-  headerEl.onmousedown = e => {
-    if (!connecting) {
-      dragging = true;
-      selectedNode = div;
-      setSelectedNode(div);
-      offsetX = e.offsetX;
-      offsetY = e.offsetY;
-      focusedNode = div;
-      e.stopPropagation();
-    }
-  };
-
-  div.onclick = e => {
-    if (connecting) {
-      if (!connectStart) {
-        connectStart = div;
-      } else {
-        drawConnector(connectStart, div);
-        connectStart = null;
-        connecting = false;
-      }
-      e.stopPropagation();
-    }
-    focusedNode = div;
-  };
 
   div.draggable = true;
   div.ondragstart = e => {
@@ -411,40 +330,6 @@ function setupNode(div) {
   }
 
   if (!nodes.includes(div)) nodes.push(div);
-
-
-const resizeHandle = div.querySelector('.resize-handle');
-if (resizeHandle) {
-  let resizing = false;
-  let startX, startY, startWidth, startHeight;
-
-  resizeHandle.onmousedown = e => {
-    e.stopPropagation();
-    resizing = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startWidth = parseInt(document.defaultView.getComputedStyle(div).width, 10);
-    startHeight = parseInt(document.defaultView.getComputedStyle(div).height, 10);
-    document.body.style.cursor = 'se-resize';
-
-    document.onmousemove = e => {
-      if (resizing) {
-        const newWidth = Math.max(100, startWidth + (e.clientX - startX) / zoom);
-        const newHeight = Math.max(60, startHeight + (e.clientY - startY) / zoom);
-        div.style.width = newWidth + 'px';
-        div.style.height = newHeight + 'px';
-        updateConnectors();
-      }
-    };
-
-    document.onmouseup = () => {
-      resizing = false;
-      document.body.style.cursor = 'default';
-      document.onmousemove = null;
-      document.onmouseup = null;
-    };
-  };
-}
 }
 
 function removeNode(node) {
@@ -454,19 +339,8 @@ function removeNode(node) {
     node.parentElement.removeChild(node);
   }
   nodes = nodes.filter(n => n !== node);
-  if (focusedNode === node) focusedNode = null;
+  if (selectedNode === node) selectedNode = null;
 }
-
-canvas.onmousemove = e => {
-  if (selectedNode && dragging) {
-    const parentRect = selectedNode.parentElement.getBoundingClientRect();
-    const newLeft = (e.clientX - parentRect.left) / zoom - offsetX;
-    const newTop = (e.clientY - parentRect.top) / zoom - offsetY;
-    selectedNode.style.left = newLeft + 'px';
-    selectedNode.style.top = newTop + 'px';
-    updateConnectors();
-  }
-};
 
 canvas.onmouseup = () => {
   if (selectedNode) {
@@ -525,6 +399,11 @@ canvas.onclick = e => {
 };
 
 document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && selectedNode) {
+    const txt = selectedNode.querySelector('textarea');
+    txt.blur();
+  }
+
   if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
   if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
@@ -535,7 +414,8 @@ document.addEventListener('keydown', e => {
 
   if (e.key === 'Escape') {
     document.getElementById('helpDialog').style.display = 'none';
-    return;
+    selectedNode = null;
+    setSelectedNode(null);
   }
 
   switch (e.key) {
@@ -551,7 +431,7 @@ document.addEventListener('keydown', e => {
     const nodes = getAllNodes();
     if (nodes.length === 0) return;
 
-    const index = nodes.indexOf(focusedNode);
+    const index = nodes.indexOf(selectedNode);
     let nextIndex;
     if (e.shiftKey) {
       nextIndex = (index - 1 + nodes.length) % nodes.length;
@@ -559,28 +439,28 @@ document.addEventListener('keydown', e => {
       nextIndex = (index + 1) % nodes.length;
     }
 
-    setFocusedNode(nodes[nextIndex]);
+    setSelectedNode(nodes[nextIndex]);
     return;
   }
 
-  if (!focusedNode) {
+  if (!selectedNode) {
     return;
   }
 
   const step = 40;
-  const style = focusedNode.style;
+  const style = selectedNode.style;
   const width = parseInt(style.width);
   const height = parseInt(style.height);
   const left = parseInt(style.left);
   const top = parseInt(style.top);
-  const dropzone = focusedNode.querySelector('.dropzone');
-  const textarea = focusedNode.querySelector('textarea');
+  const dropzone = selectedNode.querySelector('.dropzone');
+  const textarea = selectedNode.querySelector('textarea');
 
   const resize = (dw, dh) => {
-    const width = parseInt(focusedNode.style.width);
-    const height = parseInt(focusedNode.style.height);
-    focusedNode.style.width = Math.max(50, width + dw) + 'px';
-    focusedNode.style.height = Math.max(40, height + dh) + 'px';
+    const width = parseInt(selectedNode.style.width);
+    const height = parseInt(selectedNode.style.height);
+    selectedNode.style.width = Math.max(50, width + dw) + 'px';
+    selectedNode.style.height = Math.max(40, height + dh) + 'px';
   };
 
   const resizeDropzone = (dh) => {
@@ -594,11 +474,11 @@ document.addEventListener('keydown', e => {
   };
   
   const move = (dx, dy) => {
-    const parent = focusedNode.offsetParent;
-    const currentLeft = focusedNode.offsetLeft;
-    const currentTop = focusedNode.offsetTop;
-    focusedNode.style.left = (currentLeft + dx) + 'px';
-    focusedNode.style.top = (currentTop + dy) + 'px';
+    const parent = selectedNode.offsetParent;
+    const currentLeft = selectedNode.offsetLeft;
+    const currentTop = selectedNode.offsetTop;
+    selectedNode.style.left = (currentLeft + dx) + 'px';
+    selectedNode.style.top = (currentTop + dy) + 'px';
     updateConnectors();
   };
 
@@ -607,7 +487,7 @@ document.addEventListener('keydown', e => {
       startConnector()
       break;
     case 'D':
-      removeNode(focusedNode);
+      removeNode(selectedNode);
       break;
     case 'h':
       move(-step, 0);
@@ -668,12 +548,12 @@ document.addEventListener('keydown', e => {
       break;
     case 'Enter':
       if (!connecting) {
-        attachChild(focusedNode);
+        attachChild(selectedNode);
       } else {
         if (!connectStart) {
-          connectStart = focusedNode;
+          connectStart = selectedNode;
         } else {
-          drawConnector(connectStart, focusedNode);
+          drawConnector(connectStart, selectedNode);
           connectStart = null;
           connecting = false;
         }
@@ -748,7 +628,7 @@ function updateConnectors() {
     line.setAttribute("y1", ay);
     line.setAttribute("x2", bx);
     line.setAttribute("y2", by);
-    line.setAttribute("stroke", "white");
+    line.setAttribute("stroke", "#aaa");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
 
