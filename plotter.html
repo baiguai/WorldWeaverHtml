@@ -121,7 +121,7 @@
     <button onclick="download()">Save</button>
   </div>
   <div id="canvas" tabindex="0"></div>
-  <div class="zoom-controls">
+  <div class="zoom-controls" style="display: none;">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
@@ -164,6 +164,8 @@ L = Increase selected node's width.
 z = Increase selected node's text area.
 Z = Decrease selected node's text area.
 w = Cycles through the nodes.
+, = Zoom out.
+. = Zoom in.
 Enter = When connecting rooms sets the first
     or second room. When the current node
     is not a room, but is on top of one,
@@ -245,14 +247,14 @@ function addNode() {
   header.className = 'node-header';
   header.textContent = type;
 
-  const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = '🗑️';
-  deleteBtn.className = 'delete-btn';
-  deleteBtn.onclick = e => {
-    e.stopPropagation();
-    removeNode(div);
-  };
-  header.appendChild(deleteBtn);
+//  const deleteBtn = document.createElement('button');
+//  deleteBtn.innerHTML = '🗑️';
+//  deleteBtn.className = 'delete-btn';
+//  deleteBtn.onclick = e => {
+//    e.stopPropagation();
+//    removeNode(div);
+//  };
+//  header.appendChild(deleteBtn);
   div.appendChild(header);
 
   const textarea = document.createElement('textarea');
@@ -477,39 +479,40 @@ canvas.onmouseup = () => {
 
 function attachChild(selectedNode) {
   const selectedRect = selectedNode.getBoundingClientRect();
+  let bestTarget = null;
+  let bestOverlapArea = 0;
 
   for (let node of nodes) {
-    if (node === selectedNode) continue;
+    if (node === selectedNode || node.contains(selectedNode)) continue;
 
     const nodeRect = node.getBoundingClientRect();
-    const overlap = !(
-      selectedRect.right < nodeRect.left ||
-      selectedRect.left > nodeRect.right ||
-      selectedRect.bottom < nodeRect.top ||
-      selectedRect.top > nodeRect.bottom
-    );
+    const overlapX = Math.max(0, Math.min(selectedRect.right, nodeRect.right) - Math.max(selectedRect.left, nodeRect.left));
+    const overlapY = Math.max(0, Math.min(selectedRect.bottom, nodeRect.bottom) - Math.max(selectedRect.top, nodeRect.top));
+    const overlapArea = overlapX * overlapY;
 
-    if (overlap) {
-      const dropzone = node.querySelector('.dropzone');
-      if (dropzone && !dropzone.contains(selectedNode)) {
-        // Remove from canvas if not already removed
-        if (selectedNode.parentElement === canvas) {
-          canvas.removeChild(selectedNode);
-        } else {
-          selectedNode.parentElement.removeChild(selectedNode);
-        }
+    if (overlapArea > bestOverlapArea) {
+      bestOverlapArea = overlapArea;
+      bestTarget = node;
+    }
+  }
 
-        // Adjust relative position
-        const parentRect = dropzone.getBoundingClientRect();
-        const newLeft = selectedRect.left - parentRect.left;
-        const newTop = selectedRect.top - parentRect.top;
-
-        selectedNode.style.left = newLeft + 'px';
-        selectedNode.style.top = newTop + 'px';
-
-        dropzone.appendChild(selectedNode);
+  if (bestTarget) {
+    const dropzone = bestTarget.querySelector('.dropzone');
+    if (dropzone && !dropzone.contains(selectedNode)) {
+      // Remove from current parent
+      if (selectedNode.parentElement) {
+        selectedNode.parentElement.removeChild(selectedNode);
       }
-      break;
+
+      // Calculate position relative to new parent
+      const parentRect = dropzone.getBoundingClientRect();
+      const newLeft = selectedRect.left - parentRect.left;
+      const newTop = selectedRect.top - parentRect.top;
+
+      selectedNode.style.left = newLeft + 'px';
+      selectedNode.style.top = newTop + 'px';
+
+      dropzone.appendChild(selectedNode);
     }
   }
 }
@@ -656,6 +659,12 @@ document.addEventListener('keydown', e => {
       break;
     case 'Z':
       resizeDropzone(-10);
+      break;
+    case ',':
+      setZoom(zoom - 0.1);
+      break;
+    case '.':
+      setZoom(zoom + 0.1);
       break;
     case 'Enter':
       if (!connecting) {
