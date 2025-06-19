@@ -195,23 +195,43 @@ function findEmptySpot() {
   const step = 40;
   const width = 160;
   const height = 120;
-  const maxCols = Math.floor(canvas.clientWidth / (width + step));
-  const maxRows = Math.floor(canvas.clientHeight / (height + step));
+
+  // Determine parent container to search in
+  let container = canvas;
+  if (selectedNode) {
+    const dropzone = selectedNode.querySelector('.dropzone');
+    if (dropzone && dropzone.children.length > 0) {
+      container = dropzone;
+    } else if (dropzone && dropzone.children.length === 0) {
+      // Dropzone exists but is empty — use top-left
+      return { left: 0, top: 0 };
+    }
+  }
+
+  // 🔧 Get all .node elements inside the container (recursive)
+  const allNodes = Array.from(container.querySelectorAll('.node'));
+
+  // If no nodes, place top-left
+  if (allNodes.length === 0) {
+    return { left: 0, top: 0 };
+  }
+
+  const maxCols = Math.floor(container.clientWidth / (width + step));
+  const maxRows = Math.floor(container.clientHeight / (height + step));
 
   for (let row = 0; row < maxRows; row++) {
     for (let col = 0; col < maxCols; col++) {
       const left = col * (width + step);
       const top = row * (height + step);
 
-      // Snap to nearest multiple of step
       const snappedLeft = Math.round(left / step) * step;
       const snappedTop = Math.round(top / step) * step;
 
-      const overlap = nodes.some(n => {
-        const nLeft = Math.round(parseInt(n.style.left) / step) * step;
-        const nTop = Math.round(parseInt(n.style.top) / step) * step;
-        const nRight = nLeft + Math.round(parseInt(n.style.width) / step) * step;
-        const nBottom = nTop + Math.round(parseInt(n.style.height) / step) * step;
+      const overlap = allNodes.some(n => {
+        const nLeft = Math.round(parseInt(n.style.left || '0') / step) * step;
+        const nTop = Math.round(parseInt(n.style.top || '0') / step) * step;
+        const nRight = nLeft + Math.round(parseInt(n.style.width || width) / step) * step;
+        const nBottom = nTop + Math.round(parseInt(n.style.height || height) / step) * step;
         return (
           snappedLeft < nRight &&
           snappedLeft + width > nLeft &&
@@ -224,6 +244,7 @@ function findEmptySpot() {
     }
   }
 
+  // Fallback position
   return {
     left: Math.round(100 / step) * step,
     top: Math.round(100 / step) * step
@@ -266,9 +287,13 @@ function addNode() {
   // === Nesting logic ===
   if (selectedNode) {
     const parentDropzone = selectedNode.querySelector('.dropzone');
+    const { left, top } = findEmptySpot();
+    div.style.left = left + 'px';
+    div.style.top = top + 'px';
+
     if (parentDropzone && !div.contains(parentDropzone)) {
-      div.style.left = '10px';
-      div.style.top = '10px';
+//      div.style.left = '10px';
+//      div.style.top = '10px';
       parentDropzone.appendChild(div);
     } else {
       const { left, top } = findEmptySpot();
@@ -341,21 +366,26 @@ function removeNode(node) {
   if (selectedNode === node) selectedNode = null;
 }
 
-canvas.onmouseup = () => {
-  if (selectedNode) {
-    attachChild(selectedNode);
-    dragging = false;
-
-    updateConnectors();
+function getNodeDepth(node) {
+  let depth = 0;
+  while (node.parentElement) {
+    node = node.parentElement;
+    if (nodes.includes(node)) {
+      depth++;
+    }
   }
-};
+  return depth;
+}
 
 function attachChild(selectedNode) {
   const selectedRect = selectedNode.getBoundingClientRect();
   let bestTarget = null;
   let bestOverlapArea = 0;
+  let prevDepth = 0;
+  let curDepth = 0;
 
   for (let node of nodes) {
+
     if (node === selectedNode || node.contains(selectedNode)) continue;
 
     const nodeRect = node.getBoundingClientRect();
@@ -364,12 +394,17 @@ function attachChild(selectedNode) {
     const overlapArea = overlapX * overlapY;
 
     if (overlapArea > bestOverlapArea) {
-      bestOverlapArea = overlapArea;
-      bestTarget = node;
+      curDepth = getNodeDepth(node);
+
+      if (curDepth === 0 || curDepth > prevDepth) {
+        bestOverlapArea = overlapArea;
+        bestTarget = node;
+        prevDepth = curDepth;
+      }
     }
   }
 
-  if (bestTarget) {
+  if (bestTarget && selectedNode !== null) {
     const dropzone = bestTarget.querySelector('.dropzone');
     if (dropzone && !dropzone.contains(selectedNode)) {
       // Remove from current parent
@@ -389,13 +424,6 @@ function attachChild(selectedNode) {
     }
   }
 }
-
-canvas.onclick = e => {
-  // Only unselect if clicking on the canvas, not on a node
-  if (e.target === canvas) {
-    setSelectedNode(null);
-  }
-};
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && selectedNode) {
@@ -576,65 +604,74 @@ function updateConnectors() {
 
   function getAncestors(node) {
     const ancestors = [];
-    while (node && node !== canvas) {
+    while (node && node !== canvas.parentElement) {  // go up until canvas parent, in case canvas is root
       ancestors.push(node);
       node = node.parentElement;
     }
-    if (node === canvas) ancestors.push(canvas);
     return ancestors.reverse();
   }
 
   function findLCA(a, b) {
     const aAncestors = getAncestors(a);
     const bAncestors = getAncestors(b);
-    let lca = canvas;
-    for (let i = 0; i < Math.min(aAncestors.length, bAncestors.length); i++) {
+    let lca = null;
+    const len = Math.min(aAncestors.length, bAncestors.length);
+    for (let i = 0; i < len; i++) {
       if (aAncestors[i] === bAncestors[i]) {
         lca = aAncestors[i];
       } else {
         break;
       }
     }
-    return lca;
+    return lca || canvas;
   }
 
-  function getNodeCenterRelativeToCanvas(node) {
+  function getNodeCenterRelativeToElement(node, element) {
     const nodeRect = node.getBoundingClientRect();
-    const canvasRect = canvas.getBoundingClientRect();
+    const elemRect = element.getBoundingClientRect();
 
     return {
-      x: nodeRect.left + nodeRect.width / 2 - canvasRect.left + canvas.scrollLeft,
-      y: nodeRect.top + nodeRect.height / 2 - canvasRect.top + canvas.scrollTop
+      x: nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft,
+      y: nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop
     };
   }
 
   connectors.forEach(({ a, b }) => {
-    const aCenter = getNodeCenterRelativeToCanvas(a);
-    const bCenter = getNodeCenterRelativeToCanvas(b);
     const lca = findLCA(a, b);
+
+    const aCenter = getNodeCenterRelativeToElement(a, lca);
+    const bCenter = getNodeCenterRelativeToElement(b, lca);
+
+    const minX = Math.min(aCenter.x, bCenter.x);
+    const minY = Math.min(aCenter.y, bCenter.y);
+    const maxX = Math.max(aCenter.x, bCenter.x);
+    const maxY = Math.max(aCenter.y, bCenter.y);
+
+    const width = Math.max(maxX - minX, 2);
+    const height = Math.max(maxY - minY, 2);
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.classList.add("connector");
     svg.style.position = 'absolute';
-    svg.style.left = '0';
-    svg.style.top = '0';
-    svg.style.width = '100%';
-    svg.style.height = '100%';
+    svg.style.left = `${minX}px`;
+    svg.style.top = `${minY}px`;
+    svg.style.width = `${width}px`;
+    svg.style.height = `${height}px`;
     svg.style.zIndex = '0';
     svg.style.pointerEvents = 'none';
 
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", aCenter.x);
-    line.setAttribute("y1", aCenter.y);
-    line.setAttribute("x2", bCenter.x);
-    line.setAttribute("y2", bCenter.y);
+    line.setAttribute("x1", aCenter.x - minX);
+    line.setAttribute("y1", aCenter.y - minY);
+    line.setAttribute("x2", bCenter.x - minX);
+    line.setAttribute("y2", bCenter.y - minY);
     line.setAttribute("stroke", "#aaa");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
 
-    // Insert *before* the first of a/b if it exists directly in the LCA
-    let insertBefore = null;
+    // Insert SVG into LCA before a or b if direct child, else append
     const children = Array.from(lca.children);
+    let insertBefore = null;
     if (children.includes(a)) insertBefore = a;
     else if (children.includes(b)) insertBefore = b;
 
