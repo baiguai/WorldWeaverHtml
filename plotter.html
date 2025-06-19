@@ -98,7 +98,7 @@
       height: 150px;
     }
     .dropzone {
-      position: relative; /* Add this line */
+      position: relative;
       border-top: 1px dashed gray;
       flex: 1;
       background: #111;
@@ -633,9 +633,16 @@ document.addEventListener('keydown', e => {
     const dzStyle = dropzone.style;
     const txStyle = textarea.style;
     const dzWidth = parseFloat(dzStyle.width) || 0;
-    const dzHeight = parseFloat(dzStyle.height) || 0;
+    let dzHeight = parseFloat(dzStyle.height) || 0;
+    const txHeight = parseFloat(txStyle.height) || 0;
+
+    if (!dzHeight) {
+      dzHeight = parseFloat(selectedNode.style.height) - txStyle.height; // node.getBoundingClientRect().height;
+      dzStyle.height = dzHeight + 'px';
+    }
+
     dzStyle.height = Math.max(10, dzHeight + dh) + 'px';
-    txStyle.height = Math.max(10, dzHeight - dh) + 'px';
+    txStyle.height = Math.max(10, parseFloat(window.getComputedStyle(textarea).height) - dh) + 'px';
   };
   
   const move = (dx, dy) => {
@@ -831,12 +838,34 @@ function download() {
     t.textContent = t.value;
   });
 
-  let html = document.documentElement.outerHTML;
-  let blob = new Blob([html], {type: 'text/html'});
-  let a = document.createElement('a');
+  // Remove any previous saved connector script
+  document.querySelectorAll('script[data-connectors]').forEach(s => s.remove());
+
+  // Prepare connector data as array of node IDs
+  const connectorData = connectors.map(({ a, b }) => ({
+    a: a.id,
+    b: b.id
+  }));
+
+  const script = document.createElement('script');
+  script.type = 'application/json';
+  script.dataset.connectors = 'true';
+  script.id = 'connector-data';
+  script.textContent = JSON.stringify(connectorData, null, 2);
+
+  // Append script to body
+  document.body.appendChild(script);
+
+  // Serialize the whole HTML
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'plotter.html';
   a.click();
+
+  // Clean up script so it doesn't persist during runtime
+  script.remove();
 }
 
 function initializeNodes() {
@@ -844,24 +873,25 @@ function initializeNodes() {
 }
 
 function restoreConnectorsFromDOM() {
-  const lines = document.querySelectorAll('svg.connector line');
-  lines.forEach(line => {
-    const [x1, y1, x2, y2] = ['x1','y1','x2','y2'].map(attr => parseFloat(line.getAttribute(attr)));
-    let nodeA = null, nodeB = null;
+  const script = document.getElementById('connector-data');
+  if (!script) return;
 
-    for (const n of nodes) {
-      const cx = n.offsetLeft + n.offsetWidth / 2;
-      const cy = n.offsetTop + n.offsetHeight / 2;
-      if (Math.abs(cx - x1) < 10 && Math.abs(cy - y1) < 10) nodeA = n;
-      if (Math.abs(cx - x2) < 10 && Math.abs(cy - y2) < 10) nodeB = n;
-    }
+  try {
+    const saved = JSON.parse(script.textContent);
+    connectors = [];
 
-    if (nodeA && nodeB) {
-      connectors.push({ a: nodeA, b: nodeB });
-    }
-  });
+    saved.forEach(({ a, b }) => {
+      const nodeA = document.getElementById(a);
+      const nodeB = document.getElementById(b);
+      if (nodeA && nodeB) {
+        connectors.push({ a: nodeA, b: nodeB });
+      }
+    });
 
-  updateConnectors();
+    updateConnectors();
+  } catch (err) {
+    console.error('Failed to restore connectors:', err);
+  }
 }
 
 window.onload = () => {
