@@ -479,7 +479,7 @@ function setupNode(div) {
     };
   }
 
-  div.draggable = true;
+  div.draggable = false;
   div.ondragstart = e => {
     e.dataTransfer.setData("text/plain", div.id);
   };
