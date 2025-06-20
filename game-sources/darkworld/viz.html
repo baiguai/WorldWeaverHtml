@@ -119,8 +119,7 @@
     <button onclick="startConnector()">Room Connector</button>
     <button onclick="download()">Save</button>
   </div>
-  <div id="canvas" tabindex="0"><div class="node" data-type="Old Oak Inn" id="node-0" style="width: 230px; height: 380px; left: 40px; top: 40px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Old Oak Inn</div><textarea class="node-content" placeholder="Enter notes..." style="height: 100px;">[north] &gt; storage room</textarea><div class="dropzone" style="height: 430px;"><div class="node" data-type="Parchment" id="node-2" style="width: 150px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Parchment</div><textarea class="node-content" placeholder="Enter notes...">This will be imprtant later.</textarea><div class="dropzone"></div></div></div></div><svg class="connector" style="position: absolute; left: 156px; top: 231px; width: 340px; height: 2px; z-index: 0; pointer-events: none;"><line x1="340" y1="0" x2="0" y2="0" stroke="#aaa" stroke-width="2"></line></svg><div class="node" data-type="Storage Room" id="node-4" style="width: 270px; height: 380px; left: 360px; top: 40px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Storage Room</div><textarea class="node-content" placeholder="Enter notes..." style="height: 100px;">[south] &gt; old oak inn
-[east] &gt; cellar</textarea><div class="dropzone" style="height: 430px;"><div class="node" data-type="Casks" id="node-6" style="width: 150px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Casks</div><textarea class="node-content" placeholder="Enter notes...">Nothing to find here.</textarea><div class="dropzone"></div></div></div></div><svg class="connector" style="position: absolute; left: 496px; top: 231px; width: 480px; height: 2px; z-index: 0; pointer-events: none;"><line x1="480" y1="0" x2="0" y2="0" stroke="#aaa" stroke-width="2"></line></svg><div class="node" data-type="Cellar" id="node-8" style="width: 510px; height: 380px; left: 720px; top: 40px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Cellar</div><textarea class="node-content" placeholder="Enter notes..." style="height: 100px;">[west] &gt; storage room</textarea><div class="dropzone" style="height: 430px;"><div class="node" data-type="Skeleton" id="node-10" style="width: 150px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Skeleton</div><textarea class="node-content" placeholder="Enter notes..."></textarea><div class="dropzone"></div></div><div class="node" data-type="Green Candle" id="node-12" style="width: 150px; height: 100px; left: 240px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Green Candle</div><textarea class="node-content" placeholder="Enter notes...">If the player touches it - they go to the Green World.</textarea><div class="dropzone"></div></div></div></div><svg class="connector" style="position: absolute; left: 896px; top: 231px; width: 80px; height: 540px; z-index: 0; pointer-events: none;"><line x1="0" y1="540" x2="80" y2="0" stroke="#aaa" stroke-width="2"></line></svg><div class="node" data-type="Green World" id="node-14" style="width: 1710px; height: 500px; left: 40px; top: 520px; border-color: rgb(255, 255, 255);" draggable="true"><div class="node-header">Green World</div><textarea class="node-content" placeholder="Enter notes..." style="height: 50px;"></textarea><div class="dropzone" style="height: 600px;"><svg class="connector" style="position: absolute; left: 96px; top: 72px; width: 220px; height: 2px; z-index: 0; pointer-events: none;"><line x1="0" y1="0" x2="220" y2="0" stroke="#aaa" stroke-width="2"></line></svg><div class="node" data-type="Green Well" id="node-16" style="width: 150px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Green Well</div><textarea class="node-content" placeholder="Enter notes...">The well leads to an underground city.</textarea><div class="dropzone"></div></div><svg class="connector" style="position: absolute; left: 316px; top: 72px; width: 240px; height: 2px; z-index: 0; pointer-events: none;"><line x1="0" y1="0" x2="240" y2="0" stroke="#aaa" stroke-width="2"></line></svg><div class="node" data-type="Green Courtyard" id="node-18" style="width: 150px; height: 100px; left: 240px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Green Courtyard</div><textarea class="node-content" placeholder="Enter notes..."></textarea><div class="dropzone"></div></div><div class="node" data-type="Green Castle" id="node-20" style="width: 150px; height: 100px; left: 480px; top: 20px; border-color: rgb(170, 170, 170);" draggable="true"><div class="node-header">Green Castle</div><textarea class="node-content" placeholder="Enter notes..."></textarea><div class="dropzone"></div></div></div></div></div>
+  <div id="canvas" tabindex="0"></div>
   <div class="zoom-controls" style="display: none;">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
@@ -143,7 +142,8 @@
   ">
     <h3>Shortcut Keys</h3>
     <p>
-      </p><pre>a = Add a new node.
+      <pre>
+a = Add a new node.
 c = Start connection (select a room and hit Enter,
     select the second room and hit Enter).
 X = Disconnects two nodes in the same manner as
@@ -158,8 +158,8 @@ k = Move selected node up.
 K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
-&lt; = Move selected node left by half a step.
-&gt; = Move selected node right by half a step.
+< = Move selected node left by half a step.
+> = Move selected node right by half a step.
 ^ = Move selected node up by half a step.
 - = Move selected node down by half a step.
 z = Increase selected node's text area.
@@ -172,7 +172,7 @@ s = Save the current diagram.
 / = Search and select a node.
 Escape = Deselect the current note's text field.
       </pre>
-    <p></p>
+    </p>
     <p>Press ESC to close.</p>
   </div>
 
@@ -312,12 +312,12 @@ function addNode() {
     div.style.left = left + 'px';
     div.style.top = top + 'px';
     canvas.appendChild(div);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   nodes.push(div);
 
   attachChild(div);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function getAllNodes() {
@@ -946,26 +946,4 @@ window.onload = () => {
 </script>
 
 
-
-<script type="application/json" data-connectors="true" id="connector-data">[
-  {
-    "a": "node-4",
-    "b": "node-0"
-  },
-  {
-    "a": "node-8",
-    "b": "node-4"
-  },
-  {
-    "a": "node-14",
-    "b": "node-8"
-  },
-  {
-    "a": "node-16",
-    "b": "node-18"
-  },
-  {
-    "a": "node-18",
-    "b": "node-20"
-  }
-]</script></body></html>
+</body></html>

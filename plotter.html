@@ -312,12 +312,12 @@ function addNode() {
     div.style.left = left + 'px';
     div.style.top = top + 'px';
     canvas.appendChild(div);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   nodes.push(div);
 
   attachChild(div);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function getAllNodes() {
