@@ -268,7 +268,7 @@ function addNode() {
   div.style.width = '150px';
   div.style.height = '100px';
   div.dataset.type = type;
-  div.id = 'node-' + nodes.length;
+  div.id = 'node-' + crypto.randomUUID();
 
   const header = document.createElement('div');
   header.className = 'node-header';
@@ -394,7 +394,7 @@ function showNodeSelectorDialog() {
       const preview = text.length > 30 ? text.substring(0, 30) + '…' : text;
 
       const item = document.createElement('div');
-      item.textContent = `[${type}] — "${preview}" - ${id}`;
+      item.textContent = `[${type}] — "${preview}"`;
       item.style.padding = '5px 8px';
       item.style.cursor = 'pointer';
       item.style.whiteSpace = 'nowrap';
