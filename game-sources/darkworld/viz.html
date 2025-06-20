@@ -63,15 +63,15 @@
     }
     .node {
       position: absolute;
-      border: 1px solid white;
+      border: 1px solid #aaa;
       background: #111;
       color: white;
-      cursor: move;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       min-width: 100px;
       min-height: 60px;
+      z-index: 1;
     }
     .node-header {
       font-weight: bold;
@@ -98,7 +98,7 @@
       height: 150px;
     }
     .dropzone {
-      position: relative; /* Add this line */
+      position: relative;
       border-top: 1px dashed gray;
       flex: 1;
       background: #111;
@@ -106,7 +106,6 @@
       overflow: auto;
     }
     .connector {
-      position: absolute;
       pointer-events: none;
       z-index: 0;
     }
@@ -120,28 +119,35 @@
     <button onclick="startConnector()">Room Connector</button>
     <button onclick="download()">Save</button>
   </div>
-  <div id="canvas" tabindex="0"><svg class="connector" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><line x1="176" y1="1171" x2="216" y2="811" stroke="white" stroke-width="2"></line></svg><svg class="connector" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><line x1="176" y1="491" x2="216" y2="811" stroke="white" stroke-width="2"></line></svg><svg class="connector" style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><line x1="176" y1="491" x2="176" y2="171" stroke="white" stroke-width="2"></line></svg><div class="node" data-type="Room" id="node-0" style="width: 270px; height: 260px; left: 40px; top: 40px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes..." style="height: 80px;">Old Oak Inn
-
-[north] &gt; storage room</textarea><div class="resize-handle"></div><div class="dropzone" style="height: 100px;"><div class="node" data-type="Item/NPC" id="node-2" style="width: 150px; height: 100px; left: 19px; top: 24px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Parchment
-- This will be important later on.</textarea><div class="resize-handle"></div><div class="dropzone"></div></div></div></div><div class="node" data-type="Room" id="node-4" style="width: 270px; height: 260px; left: 40px; top: 360px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes..." style="height: 90px;">Storage Room
-
-[south] &gt; old oak inn
-[east] &gt; cellar</textarea><div class="resize-handle"></div><div class="dropzone" style="height: 110px;"><div class="node" data-type="Item/NPC" id="node-6" style="width: 150px; height: 100px; left: 19px; top: 14px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Casks
-- Nothing of note</textarea><div class="resize-handle"></div><div class="dropzone"></div></div></div></div><div class="node" data-type="Room" id="node-8" style="width: 350px; height: 260px; left: 40px; top: 680px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes..." style="height: 90px;">Cellar
-
-[west] &gt; storage room</textarea><div class="resize-handle"></div><div class="dropzone" style="height: 110px;"><div class="node" data-type="Item/NPC" id="node-10" style="width: 150px; height: 100px; left: 19px; top: 14px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Skeleton</textarea><div class="resize-handle"></div><div class="dropzone"></div></div><div class="node" data-type="Item/NPC" id="node-12" style="width: 150px; height: 100px; left: 179px; top: 14px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Green Flame Candle
-- Takes the player to the green world</textarea><div class="resize-handle"></div><div class="dropzone"></div></div></div></div><div class="node" data-type="Room" id="node-14" style="width: 270px; height: 340px; left: 40px; top: 1000px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Room<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes..." style="height: 70px;">Green World - Well</textarea><div class="resize-handle"></div><div class="dropzone" style="height: 90px;"><div class="node" data-type="Item/NPC" id="node-16" style="width: 230px; height: 140px; left: 19px; top: 14px; border-color: white;" draggable="true"><div class="node-header" style="cursor: move;">Item/NPC<button class="delete-btn">🗑️</button></div><textarea class="node-content" placeholder="Enter notes...">Well
-- Transports the player into a dungeon.</textarea><div class="resize-handle"></div><div class="dropzone"></div></div></div></div></div>
-  <div class="zoom-controls">
+  <div id="canvas" tabindex="0"></div>
+  <div class="zoom-controls" style="display: none;">
     <button onclick="setZoom(zoom + 0.1)">Zoom In</button>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
 
-  <div id="helpDialog" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: rgb(34, 34, 34); color: white; border: 2px solid rgb(85, 85, 85); padding: 20px; z-index: 9999; font-family: monospace; max-width: 400px; text-align: left;">
+  <div id="helpDialog" style="
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: white;
+    border: 2px solid #555;
+    padding: 20px;
+    z-index: 9999;
+    font-family: monospace;
+    max-width: 400px;
+    text-align: left;
+  ">
     <h3>Shortcut Keys</h3>
     <p>
-      </p><pre>c = Start connection (select a room and hit Enter,
+      <pre>
+a = Add a new node.
+c = Start connection (select a room and hit Enter,
     select the second room and hit Enter).
+X = Disconnects two nodes in the same manner as
+    connecting them.
 D = Delete the selected node.
 h = Move selected node left.
 H = Reduce width of selected node.
@@ -152,21 +158,21 @@ k = Move selected node up.
 K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
-&lt; = Move selected node left by half a step.
-&gt; = Move selected node right by half a step.
+< = Move selected node left by half a step.
+> = Move selected node right by half a step.
 ^ = Move selected node up by half a step.
 - = Move selected node down by half a step.
 z = Increase selected node's text area.
 Z = Decrease selected node's text area.
 w = Cycles through the nodes.
+s = Save the current diagram.
 , = Zoom out.
 . = Zoom in.
-Enter = When connecting rooms sets the first
-    or second room. When the current node
-    is not a room, but is on top of one,
-    sets it as a child of the room.
+0 = Reset zoom.
+/ = Search and select a node.
+Escape = Deselect the current note's text field.
       </pre>
-    <p></p>
+    </p>
     <p>Press ESC to close.</p>
   </div>
 
@@ -178,7 +184,8 @@ let nodes = [];
 let connectors = [];
 let connecting = false;
 let connectStart = null;
-let focusedNode = null;
+let disconnecting = false;
+let disconnectStart = null;
 let zoom = 1;
 let dragging = false;
 
@@ -188,26 +195,44 @@ function setZoom(z) {
 }
 
 function findEmptySpot() {
-  const step = 40; // Movement step and spacing
-  const width = 160; // Rounded to nearest multiple of 40
-  const height = 120; // Rounded to nearest multiple of 40
-  const maxCols = Math.floor(canvas.clientWidth / (width + step));
-  const maxRows = Math.floor(canvas.clientHeight / (height + step));
+  const step = 40;
+  const width = 160;
+  const height = 120;
+
+  // Determine parent container to search in
+  let container = canvas;
+  if (selectedNode) {
+    const dropzone = selectedNode.querySelector('.dropzone');
+    if (dropzone && dropzone.children.length > 0) {
+      container = dropzone;
+    } else if (dropzone && dropzone.children.length === 0) {
+      // Dropzone exists but is empty — use top-left
+      return { left: 0, top: 0 };
+    }
+  }
+
+  const allNodes = Array.from(container.querySelectorAll('.node'));
+
+  if (allNodes.length === 0) {
+    return { left: 0, top: 0 };
+  }
+
+  const maxCols = Math.floor(container.clientWidth / (width + step));
+  const maxRows = Math.floor(container.clientHeight / (height + step));
 
   for (let row = 0; row < maxRows; row++) {
     for (let col = 0; col < maxCols; col++) {
       const left = col * (width + step);
       const top = row * (height + step);
 
-      // Snap to nearest multiple of step
       const snappedLeft = Math.round(left / step) * step;
       const snappedTop = Math.round(top / step) * step;
 
-      const overlap = nodes.some(n => {
-        const nLeft = Math.round(parseInt(n.style.left) / step) * step;
-        const nTop = Math.round(parseInt(n.style.top) / step) * step;
-        const nRight = nLeft + Math.round(parseInt(n.style.width) / step) * step;
-        const nBottom = nTop + Math.round(parseInt(n.style.height) / step) * step;
+      const overlap = allNodes.some(n => {
+        const nLeft = Math.round(parseInt(n.style.left || '0') / step) * step;
+        const nTop = Math.round(parseInt(n.style.top || '0') / step) * step;
+        const nRight = nLeft + Math.round(parseInt(n.style.width || width) / step) * step;
+        const nBottom = nTop + Math.round(parseInt(n.style.height || height) / step) * step;
         return (
           snappedLeft < nRight &&
           snappedLeft + width > nLeft &&
@@ -220,13 +245,24 @@ function findEmptySpot() {
     }
   }
 
+  // Fallback position
   return {
     left: Math.round(100 / step) * step,
     top: Math.round(100 / step) * step
   };
 }
 
-function addNode(type) {
+canvas.onclick = e => {
+  if (e.target === canvas) {
+    setSelectedNode(null);
+  }
+};
+
+function addNode() {
+  const input = prompt("Enter node type:");
+  if (!input) return;
+  const type = input.trim();
+
   let div = document.createElement('div');
   div.className = 'node';
   div.style.width = '150px';
@@ -237,15 +273,6 @@ function addNode(type) {
   const header = document.createElement('div');
   header.className = 'node-header';
   header.textContent = type;
-
-  const deleteBtn = document.createElement('button');
-  deleteBtn.innerHTML = '🗑️';
-  deleteBtn.className = 'delete-btn';
-  deleteBtn.onclick = e => {
-    e.stopPropagation();
-    removeNode(div);
-  };
-  header.appendChild(deleteBtn);
   div.appendChild(header);
 
   const textarea = document.createElement('textarea');
@@ -253,116 +280,195 @@ function addNode(type) {
   textarea.placeholder = 'Enter notes...';
   div.appendChild(textarea);
 
-  const resizeHandle = document.createElement('div');
-  resizeHandle.className = 'resize-handle';
-  div.appendChild(resizeHandle);
-
-  // Only add dropzone for Room or Item/NPC types
-  if (type === 'Room' || type === 'Item/NPC') {
-    const dropzone = document.createElement('div');
-    dropzone.className = 'dropzone';
-    dropzone.ondragover = e => e.preventDefault();
-    dropzone.ondrop = e => {
-      const id = e.dataTransfer.getData("text/plain");
-      const item = document.getElementById(id);
-      if (item) dropzone.appendChild(item);
-    };
-    div.appendChild(dropzone);
-  }
+  const dropzone = document.createElement('div');
+  dropzone.className = 'dropzone';
+  dropzone.ondragover = e => e.preventDefault();
+  dropzone.ondrop = e => {
+    const id = e.dataTransfer.getData("text/plain");
+    const item = document.getElementById(id);
+    if (item && !item.contains(div)) dropzone.appendChild(item);
+  };
+  div.appendChild(dropzone);
 
   setupNode(div);
 
   // === Nesting logic ===
-  if (
-    type !== 'Room' &&
-    selectedNode &&
-    selectedNode.dataset.type === 'Room'
-  ) {
-    let dropzone = selectedNode.querySelector('.dropzone');
+  if (selectedNode) {
+    const parentDropzone = selectedNode.querySelector('.dropzone');
+    const { left, top } = findEmptySpot();
+    div.style.left = left + 'px';
+    div.style.top = top + 'px';
 
-    // If selected Room doesn't have dropzone yet, create one
-    if (!dropzone) {
-      dropzone = document.createElement('div');
-      dropzone.className = 'dropzone';
-      dropzone.ondragover = e => e.preventDefault();
-      dropzone.ondrop = e => {
-        const id = e.dataTransfer.getData("text/plain");
-        const item = document.getElementById(id);
-        if (item) dropzone.appendChild(item);
-      };
-      selectedNode.appendChild(dropzone);
+    if (parentDropzone && !div.contains(parentDropzone)) {
+      parentDropzone.appendChild(div);
+    } else {
+      const { left, top } = findEmptySpot();
+      div.style.left = left + 'px';
+      div.style.top = top + 'px';
+      canvas.appendChild(div);
     }
-
-    div.style.position = 'absolute';
-    div.style.left = '10px';
-    div.style.top = '10px';
-    dropzone.appendChild(div);
   } else {
     const { left, top } = findEmptySpot();
     div.style.left = left + 'px';
     div.style.top = top + 'px';
     canvas.appendChild(div);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   nodes.push(div);
 
-  // === Resizing logic ===
-  if (resizeHandle) {
-    let resizing = false;
-    let startX, startY, startWidth, startHeight;
-
-    resizeHandle.onmousedown = e => {
-      e.stopPropagation();
-      resizing = true;
-      startX = e.clientX;
-      startY = e.clientY;
-      startWidth = parseInt(getComputedStyle(div).width, 10);
-      startHeight = parseInt(getComputedStyle(div).height, 10);
-      document.body.style.cursor = 'se-resize';
-
-      document.onmousemove = e => {
-        if (resizing) {
-          const newWidth = Math.max(100, startWidth + (e.clientX - startX) / zoom);
-          const newHeight = Math.max(60, startHeight + (e.clientY - startY) / zoom);
-          div.style.width = newWidth + 'px';
-          div.style.height = newHeight + 'px';
-          updateConnectors();
-        }
-      };
-
-      document.onmouseup = () => {
-        resizing = false;
-        document.body.style.cursor = 'default';
-        document.onmousemove = null;
-        document.onmouseup = null;
-      };
-    };
-  }
-
-  attachChild(div); // Check for drop if it's floating
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  attachChild(div);
 }
 
 function getAllNodes() {
   return Array.from(document.querySelectorAll('.node'));
 }
 
-function setFocusedNode(node) {
-  focusedNode = node;
-  getAllNodes().forEach(n => n.style.borderColor = (n === node) ? '#00ff00' : 'white');
-}
-
 function setSelectedNode(node) {
   selectedNode = node;
   nodes.forEach(n => {
-    n.style.borderColor = (n === selectedNode) ? '#00ff00' : 'white';
+    n.style.borderColor = (n === selectedNode) ? '#fff' : '#aaa';
   });
 }
+
+
+
+
+function showNodeSelectorDialog() {
+  // Remove any existing popup
+  const existing = document.getElementById('nodeSelectorDialog');
+  if (existing) existing.remove();
+
+  const dialog = document.createElement('div');
+  dialog.id = 'nodeSelectorDialog';
+  dialog.style.position = 'fixed';
+  dialog.style.top = '10%';
+  dialog.style.left = '50%';
+  dialog.style.transform = 'translateX(-50%)';
+  dialog.style.width = '400px';
+  dialog.style.maxHeight = '70%';
+  dialog.style.overflow = 'hidden';
+  dialog.style.background = '#222';
+  dialog.style.color = '#fff';
+  dialog.style.border = '2px solid #444';
+  dialog.style.borderRadius = '10px';
+  dialog.style.zIndex = 9999;
+  dialog.style.fontFamily = 'monospace';
+  dialog.style.padding = '10px';
+  dialog.style.display = 'flex';
+  dialog.style.flexDirection = 'column';
+  dialog.style.boxShadow = '0 0 10px rgba(0,0,0,0.8)';
+
+  const filter = document.createElement('input');
+  filter.type = 'text';
+  filter.placeholder = 'Filter by type or text...';
+  filter.style.padding = '5px';
+  filter.style.marginBottom = '10px';
+  filter.style.background = '#111';
+  filter.style.color = '#fff';
+  filter.style.border = '1px solid #555';
+
+  const listContainer = document.createElement('div');
+  listContainer.style.overflowY = 'auto';
+  listContainer.style.flex = '1';
+  listContainer.style.borderTop = '1px solid #333';
+  listContainer.style.borderBottom = '1px solid #333';
+
+  const nodesList = Array.from(document.querySelectorAll('.node'));
+  let filteredList = [];
+  let selectedIndex = 0;
+
+  function renderList() {
+    listContainer.innerHTML = '';
+    const search = filter.value.toLowerCase();
+    filteredList = nodesList.filter(n => {
+      const type = n.dataset.type?.toLowerCase() || '';
+      const text = n.querySelector('textarea')?.value.toLowerCase() || '';
+      return type.includes(search) || text.includes(search);
+    });
+
+    filteredList.forEach((node, index) => {
+      const id = node.id || '(no id)';
+      const type = node.dataset.type || '(no type)';
+      const text = node.querySelector('textarea')?.value || '';
+      const preview = text.length > 30 ? text.substring(0, 30) + '…' : text;
+
+      const item = document.createElement('div');
+      item.textContent = `[${type}] — "${preview}" - ${id}`;
+      item.style.padding = '5px 8px';
+      item.style.cursor = 'pointer';
+      item.style.whiteSpace = 'nowrap';
+      item.style.overflow = 'hidden';
+      item.style.textOverflow = 'ellipsis';
+
+      if (index === selectedIndex) {
+        item.style.background = '#444';
+      }
+
+      item.addEventListener('mouseenter', () => {
+        selectedIndex = index;
+        renderList();
+      });
+
+      item.addEventListener('click', () => {
+        setSelectedNode(filteredList[selectedIndex]);
+        dialog.remove();
+      });
+
+      listContainer.appendChild(item);
+    });
+
+    if (filteredList.length === 0) {
+      const empty = document.createElement('div');
+      empty.textContent = '(no matching nodes)';
+      empty.style.padding = '5px';
+      empty.style.color = '#888';
+      listContainer.appendChild(empty);
+    }
+  }
+
+  filter.addEventListener('input', () => {
+    selectedIndex = 0;
+    renderList();
+  });
+
+  filter.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown') {
+      selectedIndex = Math.min(selectedIndex + 1, filteredList.length - 1);
+      renderList();
+      e.preventDefault();
+    } else if (e.key === 'ArrowUp') {
+      selectedIndex = Math.max(selectedIndex - 1, 0);
+      renderList();
+      e.preventDefault();
+    } else if (e.key === 'Enter') {
+      if (filteredList[selectedIndex]) {
+        setSelectedNode(filteredList[selectedIndex]);
+        e.preventDefault();
+        e.stopPropagation();
+        dialog.remove();
+      }
+    } else if (e.key === 'Escape') {
+      dialog.remove();
+      e.stopPropagation();
+    }
+  });
+
+  dialog.appendChild(filter);
+  dialog.appendChild(listContainer);
+  document.body.appendChild(dialog);
+  filter.focus();
+
+  renderList();
+}
+
+
+
+
 
 function setupNode(div) {
   const type = div.dataset.type;
   const textarea = div.querySelector('textarea');
-//  if (textarea) textarea.value = textarea.textContent;
 
   const header = div.querySelector('.node-header');
   const deleteBtn = header?.querySelector('.delete-btn');
@@ -372,34 +478,6 @@ function setupNode(div) {
       removeNode(div);
     };
   }
-
-  const headerEl = div.querySelector('.node-header');
-  headerEl.style.cursor = 'move';
-  headerEl.onmousedown = e => {
-    if (!connecting) {
-      dragging = true;
-      selectedNode = div;
-      setSelectedNode(div);
-      offsetX = e.offsetX;
-      offsetY = e.offsetY;
-      focusedNode = div;
-      e.stopPropagation();
-    }
-  };
-
-  div.onclick = e => {
-    if (connecting && type === 'Room') {
-      if (!connectStart) {
-        connectStart = div;
-      } else {
-        drawConnector(connectStart, div);
-        connectStart = null;
-        connecting = false;
-      }
-      e.stopPropagation();
-    }
-    focusedNode = div;
-  };
 
   div.draggable = true;
   div.ondragstart = e => {
@@ -417,40 +495,6 @@ function setupNode(div) {
   }
 
   if (!nodes.includes(div)) nodes.push(div);
-
-
-const resizeHandle = div.querySelector('.resize-handle');
-if (resizeHandle) {
-  let resizing = false;
-  let startX, startY, startWidth, startHeight;
-
-  resizeHandle.onmousedown = e => {
-    e.stopPropagation();
-    resizing = true;
-    startX = e.clientX;
-    startY = e.clientY;
-    startWidth = parseInt(document.defaultView.getComputedStyle(div).width, 10);
-    startHeight = parseInt(document.defaultView.getComputedStyle(div).height, 10);
-    document.body.style.cursor = 'se-resize';
-
-    document.onmousemove = e => {
-      if (resizing) {
-        const newWidth = Math.max(100, startWidth + (e.clientX - startX) / zoom);
-        const newHeight = Math.max(60, startHeight + (e.clientY - startY) / zoom);
-        div.style.width = newWidth + 'px';
-        div.style.height = newHeight + 'px';
-        updateConnectors();
-      }
-    };
-
-    document.onmouseup = () => {
-      resizing = false;
-      document.body.style.cursor = 'default';
-      document.onmousemove = null;
-      document.onmouseup = null;
-    };
-  };
-}
 }
 
 function removeNode(node) {
@@ -460,81 +504,78 @@ function removeNode(node) {
     node.parentElement.removeChild(node);
   }
   nodes = nodes.filter(n => n !== node);
-  if (focusedNode === node) focusedNode = null;
+  if (selectedNode === node) selectedNode = null;
 }
 
-canvas.onmousemove = e => {
-  if (selectedNode && dragging) {
-    const parentRect = selectedNode.parentElement.getBoundingClientRect();
-    const newLeft = (e.clientX - parentRect.left) / zoom - offsetX;
-    const newTop = (e.clientY - parentRect.top) / zoom - offsetY;
-    selectedNode.style.left = newLeft + 'px';
-    selectedNode.style.top = newTop + 'px';
-    updateConnectors();
+function getNodeDepth(node) {
+  let depth = 0;
+  while (node.parentElement) {
+    node = node.parentElement;
+    if (nodes.includes(node)) {
+      depth++;
+    }
   }
-};
-
-canvas.onmouseup = () => {
-  if (selectedNode) {
-    attachChild(selectedNode);
-    dragging = false;
-
-    updateConnectors();
-  }
-};
+  return depth;
+}
 
 function attachChild(selectedNode) {
-  if (selectedNode.dataset.type === 'Room') {
-    return; 
-  }
-
   const selectedRect = selectedNode.getBoundingClientRect();
+  let bestTarget = null;
+  let bestOverlapArea = 0;
+  let prevDepth = 0;
+  let curDepth = 0;
 
   for (let node of nodes) {
-    if (node === selectedNode) continue;
-    if (node.dataset.type !== 'Room') continue;
+
+    if (node === selectedNode || node.contains(selectedNode)) continue;
 
     const nodeRect = node.getBoundingClientRect();
-    const overlap = !(
-      selectedRect.right < nodeRect.left ||
-      selectedRect.left > nodeRect.right ||
-      selectedRect.bottom < nodeRect.top ||
-      selectedRect.top > nodeRect.bottom
-    );
+    const overlapX = Math.max(0, Math.min(selectedRect.right, nodeRect.right) - Math.max(selectedRect.left, nodeRect.left));
+    const overlapY = Math.max(0, Math.min(selectedRect.bottom, nodeRect.bottom) - Math.max(selectedRect.top, nodeRect.top));
+    const overlapArea = overlapX * overlapY;
 
-    if (overlap) {
-      const dropzone = node.querySelector('.dropzone');
-      if (dropzone && !dropzone.contains(selectedNode)) {
-        // Remove from canvas if not already removed
-        if (selectedNode.parentElement === canvas) {
-          canvas.removeChild(selectedNode);
-        } else {
-          selectedNode.parentElement.removeChild(selectedNode);
-        }
+    if (overlapArea > bestOverlapArea) {
+      curDepth = getNodeDepth(node);
 
-        // Adjust relative position
-        const parentRect = dropzone.getBoundingClientRect();
-        const newLeft = selectedRect.left - parentRect.left;
-        const newTop = selectedRect.top - parentRect.top;
-
-        selectedNode.style.left = newLeft + 'px';
-        selectedNode.style.top = newTop + 'px';
-
-        dropzone.appendChild(selectedNode);
+      if (curDepth === 0 || curDepth > prevDepth) {
+        bestOverlapArea = overlapArea;
+        bestTarget = node;
+        prevDepth = curDepth;
       }
-      break;
+    }
+  }
+
+  if (bestTarget && selectedNode !== null) {
+    const dropzone = bestTarget.querySelector('.dropzone');
+    if (dropzone && !dropzone.contains(selectedNode)) {
+      // Remove from current parent
+      if (selectedNode.parentElement) {
+        selectedNode.parentElement.removeChild(selectedNode);
+      }
+
+      // Calculate position relative to new parent
+      const parentRect = dropzone.getBoundingClientRect();
+      const newLeft = selectedRect.left - parentRect.left;
+      const newTop = selectedRect.top - parentRect.top;
+
+      selectedNode.style.left = newLeft + 'px';
+      selectedNode.style.top = newTop + 'px';
+
+      dropzone.appendChild(selectedNode);
     }
   }
 }
 
-canvas.onclick = e => {
-  // Only unselect if clicking on the canvas, not on a node
-  if (e.target === canvas) {
-    setSelectedNode(null);
-  }
-};
-
 document.addEventListener('keydown', e => {
+  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+    if (e.key === 'Escape' && selectedNode) {
+      const txt = selectedNode.querySelector('textarea');
+      txt.blur();
+      e.stopPropagation();
+      return;
+    }
+  }
+
   if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
 
   if (e.key === '?' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
@@ -544,19 +585,35 @@ document.addEventListener('keydown', e => {
   }
 
   if (e.key === 'Escape') {
-    document.getElementById('helpDialog').style.display = 'none';
-    return;
+    if (document.getElementById('helpDialog').style.display === 'block') {
+      document.getElementById('helpDialog').style.display = 'none';
+      e.stopPropagation();
+      return;
+    } else {
+      selectedNode = null;
+      setSelectedNode(null);
+    }
   }
 
   switch (e.key) {
-    case 'r':
-      addNode('Room');
-      break;
-    case 'o':
-      addNode('Item/NPC');
+    case 'a':
+      addNode();
       break;
     case 's':
       download();
+      break;
+    case '/':
+      showNodeSelectorDialog();
+      e.preventDefault();
+      break;
+    case ',':
+      setZoom(zoom - 0.1);
+      break;
+    case '.':
+      setZoom(zoom + 0.1);
+      break;
+    case '0':
+      setZoom(1);
       break;
   }
 
@@ -564,7 +621,7 @@ document.addEventListener('keydown', e => {
     const nodes = getAllNodes();
     if (nodes.length === 0) return;
 
-    const index = nodes.indexOf(focusedNode);
+    const index = nodes.indexOf(selectedNode);
     let nextIndex;
     if (e.shiftKey) {
       nextIndex = (index - 1 + nodes.length) % nodes.length;
@@ -572,28 +629,28 @@ document.addEventListener('keydown', e => {
       nextIndex = (index + 1) % nodes.length;
     }
 
-    setFocusedNode(nodes[nextIndex]);
+    setSelectedNode(nodes[nextIndex]);
     return;
   }
 
-  if (!focusedNode) {
+  if (!selectedNode) {
     return;
   }
 
   const step = 40;
-  const style = focusedNode.style;
+  const style = selectedNode.style;
   const width = parseInt(style.width);
   const height = parseInt(style.height);
   const left = parseInt(style.left);
   const top = parseInt(style.top);
-  const dropzone = focusedNode.querySelector('.dropzone');
-  const textarea = focusedNode.querySelector('textarea');
+  const dropzone = selectedNode.querySelector('.dropzone');
+  const textarea = selectedNode.querySelector('textarea');
 
   const resize = (dw, dh) => {
-    const width = parseInt(focusedNode.style.width);
-    const height = parseInt(focusedNode.style.height);
-    focusedNode.style.width = Math.max(50, width + dw) + 'px';
-    focusedNode.style.height = Math.max(40, height + dh) + 'px';
+    const width = parseInt(selectedNode.style.width);
+    const height = parseInt(selectedNode.style.height);
+    selectedNode.style.width = Math.max(50, width + dw) + 'px';
+    selectedNode.style.height = Math.max(40, height + dh) + 'px';
   };
 
   const resizeDropzone = (dh) => {
@@ -601,17 +658,24 @@ document.addEventListener('keydown', e => {
     const dzStyle = dropzone.style;
     const txStyle = textarea.style;
     const dzWidth = parseFloat(dzStyle.width) || 0;
-    const dzHeight = parseFloat(dzStyle.height) || 0;
+    let dzHeight = parseFloat(dzStyle.height) || 0;
+    const txHeight = parseFloat(txStyle.height) || 0;
+
+    if (!dzHeight) {
+      dzHeight = parseFloat(selectedNode.style.height) - txStyle.height;
+      dzStyle.height = dzHeight + 'px';
+    }
+
     dzStyle.height = Math.max(10, dzHeight + dh) + 'px';
-    txStyle.height = Math.max(10, dzHeight - dh) + 'px';
+    txStyle.height = Math.max(10, parseFloat(window.getComputedStyle(textarea).height) - dh) + 'px';
   };
   
   const move = (dx, dy) => {
-    const parent = focusedNode.offsetParent;
-    const currentLeft = focusedNode.offsetLeft;
-    const currentTop = focusedNode.offsetTop;
-    focusedNode.style.left = (currentLeft + dx) + 'px';
-    focusedNode.style.top = (currentTop + dy) + 'px';
+    const parent = selectedNode.offsetParent;
+    const currentLeft = selectedNode.offsetLeft;
+    const currentTop = selectedNode.offsetTop;
+    selectedNode.style.left = (currentLeft + dx) + 'px';
+    selectedNode.style.top = (currentTop + dy) + 'px';
     updateConnectors();
   };
 
@@ -620,7 +684,10 @@ document.addEventListener('keydown', e => {
       startConnector()
       break;
     case 'D':
-      removeNode(focusedNode);
+      removeNode(selectedNode);
+      break;
+    case 'X':
+      startDisconnector();
       break;
     case 'h':
       move(-step, 0);
@@ -667,29 +734,40 @@ document.addEventListener('keydown', e => {
     case 'm':
       resize(step, step);
       break;
-    case 'n':
-      addNode('Note')
-      break;
     case 'z':
-      resizeDropzone(10);
-      break;
-    case 'Z':
       resizeDropzone(-10);
       break;
+    case 'Z':
+      resizeDropzone(10);
+      break;
     case 'Enter':
-      if (!connecting) {
-        attachChild(focusedNode);
-      } else {
-        if (focusedNode.dataset.type === 'Room') {
-          if (!connectStart) {
-            connectStart = focusedNode;
-          } else {
-            drawConnector(connectStart, focusedNode);
-            connectStart = null;
-            connecting = false;
-          }
-          e.stopPropagation();
+      if (disconnecting) {
+        if (!disconnectStart) {
+          disconnectStart = selectedNode;
+        } else {
+          // Remove connector if it exists
+          connectors = connectors.filter(conn => {
+            return !(
+              (conn.a === disconnectStart && conn.b === selectedNode) ||
+              (conn.b === disconnectStart && conn.a === selectedNode)
+            );
+          });
+          updateConnectors();
+          disconnecting = false;
+          disconnectStart = null;
         }
+        e.stopPropagation();
+      } else if (connecting) {
+        if (!connectStart) {
+          connectStart = selectedNode;
+        } else {
+          drawConnector(connectStart, selectedNode);
+          connectStart = null;
+          connecting = false;
+        }
+        e.stopPropagation();
+      } else {
+        attachChild(selectedNode);
       }
       break;
     default:
@@ -706,29 +784,88 @@ function drawConnector(a, b) {
 
 function updateConnectors() {
   document.querySelectorAll('svg.connector').forEach(c => c.remove());
-  connectors.forEach(({a, b}) => {
-    let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+
+  function getAncestors(node) {
+    const ancestors = [];
+    while (node && node !== canvas.parentElement) {  // go up until canvas parent, in case canvas is root
+      ancestors.push(node);
+      node = node.parentElement;
+    }
+    return ancestors.reverse();
+  }
+
+  function findLCA(a, b) {
+    const aAncestors = getAncestors(a);
+    const bAncestors = getAncestors(b);
+    let lca = null;
+    const len = Math.min(aAncestors.length, bAncestors.length);
+    for (let i = 0; i < len; i++) {
+      if (aAncestors[i] === bAncestors[i]) {
+        lca = aAncestors[i];
+      } else {
+        break;
+      }
+    }
+    return lca || canvas;
+  }
+
+  function getNodeCenterRelativeToElement(node, element) {
+    const nodeRect = node.getBoundingClientRect();
+    const elemRect = element.getBoundingClientRect();
+  
+    // Undo the zoom transformation
+    const scale = zoom || 1;
+  
+    return {
+      x: (nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft) / scale,
+      y: (nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop) / scale
+    };
+  }
+
+  connectors.forEach(({ a, b }) => {
+    const lca = findLCA(a, b);
+
+    const aCenter = getNodeCenterRelativeToElement(a, lca);
+    const bCenter = getNodeCenterRelativeToElement(b, lca);
+
+    const minX = Math.min(aCenter.x, bCenter.x);
+    const minY = Math.min(aCenter.y, bCenter.y);
+    const maxX = Math.max(aCenter.x, bCenter.x);
+    const maxY = Math.max(aCenter.y, bCenter.y);
+
+    const width = Math.max(maxX - minX, 2);
+    const height = Math.max(maxY - minY, 2);
+
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.classList.add("connector");
     svg.style.position = 'absolute';
-    svg.style.left = 0;
-    svg.style.top = 0;
-    svg.style.width = '100%';
-    svg.style.height = '100%';
+    svg.style.left = `${minX}px`;
+    svg.style.top = `${minY}px`;
+    svg.style.width = `${width}px`;
+    svg.style.height = `${height}px`;
+    svg.style.zIndex = '0';
+    svg.style.pointerEvents = 'none';
 
-    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    let ax = a.offsetLeft + a.offsetWidth / 2;
-    let ay = a.offsetTop + a.offsetHeight / 2;
-    let bx = b.offsetLeft + b.offsetWidth / 2;
-    let by = b.offsetTop + b.offsetHeight / 2;
-
-    line.setAttribute("x1", ax);
-    line.setAttribute("y1", ay);
-    line.setAttribute("x2", bx);
-    line.setAttribute("y2", by);
-    line.setAttribute("stroke", "white");
+    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    line.setAttribute("x1", aCenter.x - minX);
+    line.setAttribute("y1", aCenter.y - minY);
+    line.setAttribute("x2", bCenter.x - minX);
+    line.setAttribute("y2", bCenter.y - minY);
+    line.setAttribute("stroke", "#aaa");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
-    canvas.insertBefore(svg, canvas.firstChild);
+
+    // Insert SVG into LCA before a or b if direct child, else append
+    const children = Array.from(lca.children);
+    let insertBefore = null;
+    if (children.includes(a)) insertBefore = a;
+    else if (children.includes(b)) insertBefore = b;
+
+    if (insertBefore) {
+      lca.insertBefore(svg, insertBefore);
+    } else {
+      lca.appendChild(svg);
+    }
   });
 }
 
@@ -737,17 +874,41 @@ function startConnector() {
   connectStart = null;
 }
 
+function startDisconnector() {
+  disconnecting = true;
+  disconnectStart = null;
+}
+
 function download() {
   document.querySelectorAll('textarea.node-content').forEach(t => {
     t.textContent = t.value;
   });
 
-  let html = document.documentElement.outerHTML;
-  let blob = new Blob([html], {type: 'text/html'});
-  let a = document.createElement('a');
+  // Remove any previous connector data
+  document.querySelectorAll('script[data-connectors]').forEach(s => s.remove());
+
+  // Serialize connectors using node IDs
+  const connectorData = connectors.map(({ a, b }) => ({
+    a: a.id,
+    b: b.id
+  }));
+
+  const script = document.createElement('script');
+  script.type = 'application/json';
+  script.dataset.connectors = 'true';
+  script.id = 'connector-data';
+  script.textContent = JSON.stringify(connectorData, null, 2);
+
+  document.body.appendChild(script);
+
+  const html = document.documentElement.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'plotter.html';
   a.click();
+
+  script.remove(); // Remove after save to avoid duplicate
 }
 
 function initializeNodes() {
@@ -755,34 +916,34 @@ function initializeNodes() {
 }
 
 function restoreConnectorsFromDOM() {
-  const lines = document.querySelectorAll('svg.connector line');
-  lines.forEach(line => {
-    const [x1, y1, x2, y2] = ['x1','y1','x2','y2'].map(attr => parseFloat(line.getAttribute(attr)));
-    let nodeA = null, nodeB = null;
+  const script = document.getElementById('connector-data');
+  if (!script) return;
 
-    for (const n of nodes) {
-      const cx = n.offsetLeft + n.offsetWidth / 2;
-      const cy = n.offsetTop + n.offsetHeight / 2;
-      if (Math.abs(cx - x1) < 10 && Math.abs(cy - y1) < 10) nodeA = n;
-      if (Math.abs(cx - x2) < 10 && Math.abs(cy - y2) < 10) nodeB = n;
-    }
+  try {
+    const saved = JSON.parse(script.textContent);
+    connectors = [];
 
-    if (nodeA && nodeB) {
-      connectors.push({ a: nodeA, b: nodeB });
-    }
-  });
+    saved.forEach(({ a, b }) => {
+      const nodeA = document.getElementById(a);
+      const nodeB = document.getElementById(b);
+      if (nodeA && nodeB) {
+        connectors.push({ a: nodeA, b: nodeB });
+      }
+    });
 
-  updateConnectors();
+    updateConnectors();
+  } catch (err) {
+    console.error('Failed to restore connectors:', err);
+  }
 }
 
 window.onload = () => {
   initializeNodes();
   restoreConnectorsFromDOM();
+  updateConnectors();
   canvas.focus();
 };
 </script>
-
-
 
 
 </body></html>
