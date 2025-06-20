@@ -781,8 +781,12 @@ document.addEventListener('keydown', e => {
 function drawConnector(a, b) {
   if (!a || !b) return;
 
-  // Record connector metadata for saving
-  connectors.push({ a: a.id, b: b.id });
+  // Avoid duplicate connectors
+  if (connectors.some(c => (c.a === a && c.b === b) || (c.a === b && c.b === a))) {
+    return;
+  }
+
+  connectors.push({ a, b });
 
   const aRect = a.getBoundingClientRect();
   const bRect = b.getBoundingClientRect();
@@ -828,89 +832,16 @@ function drawConnector(a, b) {
 }
 
 function updateConnectors() {
+  // Remove all existing SVG lines
   document.querySelectorAll('svg.connector').forEach(c => c.remove());
 
-  function getAncestors(node) {
-    const ancestors = [];
-    while (node && node !== canvas.parentElement) {  // go up until canvas parent, in case canvas is root
-      ancestors.push(node);
-      node = node.parentElement;
-    }
-    return ancestors.reverse();
-  }
+  connectors.forEach(conn => {
+    const a = typeof conn.a === 'string' ? document.getElementById(conn.a) : conn.a;
+    const b = typeof conn.b === 'string' ? document.getElementById(conn.b) : conn.b;
 
-  function findLCA(a, b) {
-    const aAncestors = getAncestors(a);
-    const bAncestors = getAncestors(b);
-    let lca = null;
-    const len = Math.min(aAncestors.length, bAncestors.length);
-    for (let i = 0; i < len; i++) {
-      if (aAncestors[i] === bAncestors[i]) {
-        lca = aAncestors[i];
-      } else {
-        break;
-      }
-    }
-    return lca || canvas;
-  }
+    if (!a || !b) return;
 
-  function getNodeCenterRelativeToElement(node, element) {
-    const nodeRect = node.getBoundingClientRect();
-    const elemRect = element.getBoundingClientRect();
-  
-    // Undo the zoom transformation
-    const scale = zoom || 1;
-  
-    return {
-      x: (nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft) / scale,
-      y: (nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop) / scale
-    };
-  }
-
-  connectors.forEach(({ a, b }) => {
-    const lca = findLCA(a, b);
-
-    const aCenter = getNodeCenterRelativeToElement(a, lca);
-    const bCenter = getNodeCenterRelativeToElement(b, lca);
-
-    const minX = Math.min(aCenter.x, bCenter.x);
-    const minY = Math.min(aCenter.y, bCenter.y);
-    const maxX = Math.max(aCenter.x, bCenter.x);
-    const maxY = Math.max(aCenter.y, bCenter.y);
-
-    const width = Math.max(maxX - minX, 2);
-    const height = Math.max(maxY - minY, 2);
-
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    svg.classList.add("connector");
-    svg.style.position = 'absolute';
-    svg.style.left = `${minX}px`;
-    svg.style.top = `${minY}px`;
-    svg.style.width = `${width}px`;
-    svg.style.height = `${height}px`;
-    svg.style.zIndex = '0';
-    svg.style.pointerEvents = 'none';
-
-    const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", aCenter.x - minX);
-    line.setAttribute("y1", aCenter.y - minY);
-    line.setAttribute("x2", bCenter.x - minX);
-    line.setAttribute("y2", bCenter.y - minY);
-    line.setAttribute("stroke", "#aaa");
-    line.setAttribute("stroke-width", "2");
-    svg.appendChild(line);
-
-    // Insert SVG into LCA before a or b if direct child, else append
-    const children = Array.from(lca.children);
-    let insertBefore = null;
-    if (children.includes(a)) insertBefore = a;
-    else if (children.includes(b)) insertBefore = b;
-
-    if (insertBefore) {
-      lca.insertBefore(svg, insertBefore);
-    } else {
-      lca.appendChild(svg);
-    }
+    drawConnector(a, b);
   });
 }
 
