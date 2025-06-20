@@ -884,9 +884,10 @@ function download() {
     t.textContent = t.value;
   });
 
+  // Remove any previous connector data
   document.querySelectorAll('script[data-connectors]').forEach(s => s.remove());
 
-  // Prepare connector data as array of node IDs
+  // Serialize connectors using node IDs
   const connectorData = connectors.map(({ a, b }) => ({
     a: a.id,
     b: b.id
@@ -898,10 +899,8 @@ function download() {
   script.id = 'connector-data';
   script.textContent = JSON.stringify(connectorData, null, 2);
 
-  // Append script to body
   document.body.appendChild(script);
 
-  // Serialize the whole HTML
   const html = document.documentElement.outerHTML;
   const blob = new Blob([html], { type: 'text/html' });
   const a = document.createElement('a');
@@ -909,8 +908,7 @@ function download() {
   a.download = 'plotter.html';
   a.click();
 
-  // Clean up script so it doesn't persist during runtime
-  script.remove();
+  script.remove(); // Remove after save to avoid duplicate
 }
 
 function initializeNodes() {
@@ -942,10 +940,7 @@ function restoreConnectorsFromDOM() {
 window.onload = () => {
   initializeNodes();
   restoreConnectorsFromDOM();
-
-  setZoom(zoom);
   updateConnectors();
-
   canvas.focus();
 };
 </script>
