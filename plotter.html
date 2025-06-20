@@ -146,6 +146,8 @@
 a = Add a new node.
 c = Start connection (select a room and hit Enter,
     select the second room and hit Enter).
+X = Disconnects two nodes in the same manner as
+    connecting them.
 D = Delete the selected node.
 h = Move selected node left.
 H = Reduce width of selected node.
@@ -163,14 +165,12 @@ L = Increase selected node's width.
 z = Increase selected node's text area.
 Z = Decrease selected node's text area.
 w = Cycles through the nodes.
+s = Save the current diagram.
 , = Zoom out.
 . = Zoom in.
-/ = Search / Select node.
+0 = Reset zoom.
+/ = Search and select a node.
 Escape = Deselect the current note's text field.
-Enter = When connecting rooms sets the first
-    or second room. When the current node
-    is not a room, but is on top of one,
-    sets it as a child of the room.
       </pre>
     </p>
     <p>Press ESC to close.</p>
@@ -184,6 +184,8 @@ let nodes = [];
 let connectors = [];
 let connecting = false;
 let connectStart = null;
+let disconnecting = false;
+let disconnectStart = null;
 let zoom = 1;
 let dragging = false;
 
@@ -209,10 +211,8 @@ function findEmptySpot() {
     }
   }
 
-  // 🔧 Get all .node elements inside the container (recursive)
   const allNodes = Array.from(container.querySelectorAll('.node'));
 
-  // If no nodes, place top-left
   if (allNodes.length === 0) {
     return { left: 0, top: 0 };
   }
@@ -251,6 +251,12 @@ function findEmptySpot() {
     top: Math.round(100 / step) * step
   };
 }
+
+canvas.onclick = e => {
+  if (e.target === canvas) {
+    setSelectedNode(null);
+  }
+};
 
 function addNode() {
   const input = prompt("Enter node type:");
@@ -294,8 +300,6 @@ function addNode() {
     div.style.top = top + 'px';
 
     if (parentDropzone && !div.contains(parentDropzone)) {
-//      div.style.left = '10px';
-//      div.style.top = '10px';
       parentDropzone.appendChild(div);
     } else {
       const { left, top } = findEmptySpot();
@@ -312,7 +316,7 @@ function addNode() {
 
   nodes.push(div);
 
-  attachChild(div); // Check for drop if it's floating
+  attachChild(div);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -440,10 +444,13 @@ function showNodeSelectorDialog() {
     } else if (e.key === 'Enter') {
       if (filteredList[selectedIndex]) {
         setSelectedNode(filteredList[selectedIndex]);
+        e.preventDefault();
+        e.stopPropagation();
         dialog.remove();
       }
     } else if (e.key === 'Escape') {
       dialog.remove();
+      e.stopPropagation();
     }
   });
 
@@ -560,9 +567,13 @@ function attachChild(selectedNode) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && selectedNode) {
-    const txt = selectedNode.querySelector('textarea');
-    txt.blur();
+  if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+    if (e.key === 'Escape' && selectedNode) {
+      const txt = selectedNode.querySelector('textarea');
+      txt.blur();
+      e.stopPropagation();
+      return;
+    }
   }
 
   if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -574,9 +585,14 @@ document.addEventListener('keydown', e => {
   }
 
   if (e.key === 'Escape') {
-    document.getElementById('helpDialog').style.display = 'none';
-    selectedNode = null;
-    setSelectedNode(null);
+    if (document.getElementById('helpDialog').style.display === 'block') {
+      document.getElementById('helpDialog').style.display = 'none';
+      e.stopPropagation();
+      return;
+    } else {
+      selectedNode = null;
+      setSelectedNode(null);
+    }
   }
 
   switch (e.key) {
@@ -589,6 +605,15 @@ document.addEventListener('keydown', e => {
     case '/':
       showNodeSelectorDialog();
       e.preventDefault();
+      break;
+    case ',':
+      setZoom(zoom - 0.1);
+      break;
+    case '.':
+      setZoom(zoom + 0.1);
+      break;
+    case '0':
+      setZoom(1);
       break;
   }
 
@@ -637,7 +662,7 @@ document.addEventListener('keydown', e => {
     const txHeight = parseFloat(txStyle.height) || 0;
 
     if (!dzHeight) {
-      dzHeight = parseFloat(selectedNode.style.height) - txStyle.height; // node.getBoundingClientRect().height;
+      dzHeight = parseFloat(selectedNode.style.height) - txStyle.height;
       dzStyle.height = dzHeight + 'px';
     }
 
@@ -660,6 +685,9 @@ document.addEventListener('keydown', e => {
       break;
     case 'D':
       removeNode(selectedNode);
+      break;
+    case 'X':
+      startDisconnector();
       break;
     case 'h':
       move(-step, 0);
@@ -707,21 +735,29 @@ document.addEventListener('keydown', e => {
       resize(step, step);
       break;
     case 'z':
-      resizeDropzone(10);
-      break;
-    case 'Z':
       resizeDropzone(-10);
       break;
-    case ',':
-      setZoom(zoom - 0.1);
-      break;
-    case '.':
-      setZoom(zoom + 0.1);
+    case 'Z':
+      resizeDropzone(10);
       break;
     case 'Enter':
-      if (!connecting) {
-        attachChild(selectedNode);
-      } else {
+      if (disconnecting) {
+        if (!disconnectStart) {
+          disconnectStart = selectedNode;
+        } else {
+          // Remove connector if it exists
+          connectors = connectors.filter(conn => {
+            return !(
+              (conn.a === disconnectStart && conn.b === selectedNode) ||
+              (conn.b === disconnectStart && conn.a === selectedNode)
+            );
+          });
+          updateConnectors();
+          disconnecting = false;
+          disconnectStart = null;
+        }
+        e.stopPropagation();
+      } else if (connecting) {
         if (!connectStart) {
           connectStart = selectedNode;
         } else {
@@ -730,6 +766,8 @@ document.addEventListener('keydown', e => {
           connecting = false;
         }
         e.stopPropagation();
+      } else {
+        attachChild(selectedNode);
       }
       break;
     default:
@@ -774,10 +812,13 @@ function updateConnectors() {
   function getNodeCenterRelativeToElement(node, element) {
     const nodeRect = node.getBoundingClientRect();
     const elemRect = element.getBoundingClientRect();
-
+  
+    // Undo the zoom transformation
+    const scale = zoom || 1;
+  
     return {
-      x: nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft,
-      y: nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop
+      x: (nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft) / scale,
+      y: (nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop) / scale
     };
   }
 
@@ -833,12 +874,16 @@ function startConnector() {
   connectStart = null;
 }
 
+function startDisconnector() {
+  disconnecting = true;
+  disconnectStart = null;
+}
+
 function download() {
   document.querySelectorAll('textarea.node-content').forEach(t => {
     t.textContent = t.value;
   });
 
-  // Remove any previous saved connector script
   document.querySelectorAll('script[data-connectors]').forEach(s => s.remove());
 
   // Prepare connector data as array of node IDs
@@ -897,6 +942,10 @@ function restoreConnectorsFromDOM() {
 window.onload = () => {
   initializeNodes();
   restoreConnectorsFromDOM();
+
+  setZoom(zoom);
+  updateConnectors();
+
   canvas.focus();
 };
 </script>
