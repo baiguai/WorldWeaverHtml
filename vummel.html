@@ -905,7 +905,16 @@ function download() {
   const blob = new Blob([html], { type: 'text/html' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'plotter.html';
+
+  const pathParts = window.location.pathname.split('/');
+  let currentFileName = pathParts[pathParts.length - 1] || 'vummel.html';
+  
+  if (!currentFileName.includes('.')) {
+    currentFileName += '.html';
+  }
+
+  a.download = currentFileName;
+
   a.click();
 
   script.remove(); // Remove after save to avoid duplicate
@@ -938,6 +947,7 @@ function restoreConnectorsFromDOM() {
 }
 
 window.onload = () => {
+  setZoom(1);
   initializeNodes();
   restoreConnectorsFromDOM();
   updateConnectors();
