@@ -1,0 +1,19 @@
+{room, key=bedroom, name=Bedroom
+    {enter_message
+        output={@
+You are in your bedroom.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around. You are in your bedroom.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+}

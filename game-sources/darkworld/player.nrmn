@@ -1,4 +1,4 @@
-﻿{player, key=player, name=, parent=old_oak_inn
+﻿{player, key=player, name=, parent=bedroom
     {attrib, output=[rand:3|5], tags=stats_dice }
     {attrib, output=[rand:4|6], tags=money_dice }
 
@@ -17,7 +17,7 @@
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
     {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }
     {attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }
-    {attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }
+    {attrib, name=Armed Weapon, output=lazer-gun_01, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
 
     {attrib, name=Experience, key=experience, output=0, tags=experience|stats }
@@ -36,8 +36,8 @@
 
     ---- weapons ----
     ----------------------------------------------------------------------------
-    {object, key=long-sword_01, name=Long Sword, syntax=\b(?:your\s+)?long\s+sword\b, tags=inventory|!_weapon
+    {object, key=lazer-gun_01, name=Long Sword, syntax=\b(?:your\s+)?lazer\s+gun\b, tags=inventory|!_weapon
         {attribute, name=Damage, logic=rdm_[rand:4|12], tags=!_damage }
-        {attribute, output=a Long Sword, tags=title }
+        {attribute, output=a lazer gun, tags=title }
     }
 }
