@@ -1,0 +1,9 @@
+{object, name=Envelope, parent=bedroom
+    {x_desk, sort=555
+        {message
+            output={@
+Sitting on the desk is an envelope.
+            }
+        }
+    }
+}

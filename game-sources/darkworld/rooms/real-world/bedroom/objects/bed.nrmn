@@ -1,0 +1,41 @@
+{object, name=Bed, parent=bedroom
+    {enter_message
+        output={@
+You see your bed.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see your bed.
+            }
+        }
+    }
+
+    {x_bed
+        {message
+            output={@
+You examine your bed. It is neatly made and there's nothing sitting on it.
+            }
+        }
+    }
+
+    {under_bed
+        {message
+            output={@
+You look under your bed, there is rndom items piled up there, but nothing of interest to you.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_bed))
+        {act, logic=x_bed, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_under_bed))
+        {act, logic=under_bed, tags=!_type|room }
+    }
+}

@@ -1,38 +1,21 @@
 {object, key=tplt_syntax
     Look
         {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look|look around|I look around }
-        {attrib, tags=x_casks|!_regex, output=^(examine|x)(?: the)? cask(s)?$, logic=x casks|x cask|examine the casks }
-        {attrib, tags=behind_casks|!_regex, output=\b(look\s+behind\s+the\s+casks|behind\s+the\s+casks|behind\s+casks|look\s+at\s+the\s+back\s+of\s+the\s+casks|back\s+of\s+the\s+casks|back\s+of\s+casks)\b, logic=look behind the casks|look behind casks }
-        {attrib, tags=x_candle|!_regex, output=^(examine|x)(?: the)? candle$, logic=x candle|x the candle|examine the candle|examine candle }
-        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=x parchment|x the parchment|examine parchment|examine the parchment }
-        {attrib, tags=x_shelves|!_regex, output=^(examine|x)(?: the)? shelves$, logic=x shelves|x the shelves|examine shelves|examine the shelves }
-        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x tables|examine tables|x the tables|examine the tables }
+        {attrib, tags=x_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed(s)?$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk(s)?$, logic=x your desk|x desk|examine the desk }
+        {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
 
     Identifying
-        {attrib, tags=key_id|!_regex, output=.*key.*, logic=the key|the gold key|key }
-        {attrib, tags=spear_id|!_regex, output=(spear).*, logic=the spear|the metal spear|spear }
 
     Taking
-        {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take coin|pick up coin|take the coin|pick up the coin|take gold coin|pick up gold coin }
-        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)?( gold)?(en)? key$, logic=take key|take the key|take the golden key|pick up key|pick up the key|pick up gold key|pick up the gold key }
-        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the parchment|pick up parchment }
-        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)?( metal)? spear$, logic=take spear|take the spear|pick up spear|pick up the spear|take the metal spear }
 
     Dropping
-        {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment|drop the rolled up parchment }
-        {attrib, tags=spear_drop|!_regex, output=(drop.*spear), logic=drop spear|drop the spear|drop the gold spear }
 
     Putting
-        {attrib, tags=box_put|!_regex, output=put.*in.*box, logic=put the key in the box|put monster in box|put it in box }
 
     Interacting
-        {attrib, tags=box_examine|!_regex, output=examine.*box|x.*box, logic=x box|x the box|examine box|examine the box|x ornate box|examine large box }
-        {attrib, tags=greenbutton_push|!_regex, output=^(push|press)( the)?( green)? button$, logic=push the green button|push green button|push button|press the green button|press green button|press button }
-        {attrib, tags=redbutton_push|!_regex, output=^(push|press)( the)?( red)? button$, logic=push the red button|push red button|push button|press the red button|press red button|press button }
-        {attrib, tags=touch_candle|!_regex, output=\btouch( the)?( green)?( flickering)?\s?candle\b, logic=touch the green flickering candle|touch the flickering candle|touch green candle|touch the candle|touch candle }
 
     Fighting
-        {attrib, tags=rat_attack|!_regex, output=(attack.*rat|!.*rat), logic=attack the rat|attack rat|!rat|! rat }
 
     Moving
         {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }

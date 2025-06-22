@@ -1,0 +1,9 @@
+{object, name=Computer, parent=bedroom
+    {x_desk, sort=999
+        {message
+            output={@
+On your desk is your computer.
+            }
+        }
+    }
+}
