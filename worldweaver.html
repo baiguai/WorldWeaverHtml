@@ -2205,8 +2205,9 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
 
         function parseCustomElement(rootElement, parentElement, customType, isRecursive) {
             // Parent Level
-            const custElems = database.filter(item => item.ElementType === customType &&
-                item.ParentKey === parentElement.ElementKey);
+            const custElems = database
+              .filter(item => item.ElementType === customType && item.ParentKey === parentElement.ElementKey)
+              .sort((a, b) => a.Sort - b.Sort);
 
             for (let elem of custElems) {
                 if (generalParsers.includes("logic") && !processLogic(elem)) {

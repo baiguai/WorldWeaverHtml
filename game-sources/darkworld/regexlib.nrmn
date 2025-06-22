@@ -1,8 +1,9 @@
 {object, key=tplt_syntax
     Look
         {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look|look around|I look around }
-        {attrib, tags=x_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed(s)?$, logic=x your bed|x bed|examine the bed }
-        {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk(s)?$, logic=x your desk|x desk|examine the desk }
+        {attrib, tags=x_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
+        {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
 
     Identifying
