@@ -84,7 +84,12 @@
   </style>
 <style type="text/css" id="operaUserStyle"></style></head>
 <body>
-  <div id="canvas" tabindex="0"></div>
+  <div id="canvas" tabindex="0" style="transform: scale(1);"><div class="node" data-type="Bedroom" id="node-85571647-97d3-4cd3-b6cc-0855036d6e93" style="width: 550px; height: 260px; left: 40px; top: 160px; border-color: rgb(170, 170, 170);" draggable="false"><div class="node-header">Bedroom</div><textarea class="node-content" placeholder="Enter notes..." style="height: 80px;">- You've just received the final piece to hack into a virtual world.
+- Open the envelope, plug the USB into your computer.
+- Execute your 'plugin' app.</textarea><div class="dropzone" style="height: 530px;"><div class="node" data-type="Envelope" id="node-5452010d-a313-46aa-9fcd-d01d181b0ee2" style="width: 230px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170);" draggable="false"><div class="node-header">Envelope</div><textarea class="node-content" placeholder="Enter notes...">- Open
+- Plug in USB</textarea><div class="dropzone"></div></div><div class="node" data-type="Computer" id="node-9847edad-162f-4672-9c3f-51916284c435" style="width: 230px; height: 100px; left: 280px; top: 20px; border-color: rgb(170, 170, 170);" draggable="false"><div class="node-header">Computer</div><textarea class="node-content" placeholder="Enter notes...">- If USB plugged in...
+- plugin
+- Go to darkworld</textarea><div class="dropzone"></div></div></div></div><div class="node" data-type="Overview" id="node-ddfc529e-081e-41b8-ab5b-2626291ee26a" style="width: 1750px; height: 140px; left: 40px; top: 0px; border-color: rgb(255, 255, 255);" draggable="false"><div class="node-header">Overview</div><textarea class="node-content" placeholder="Enter notes...">The player is a hacker who has JUST received the USB they need to enter The Shellscape a VR darkweb, they just want to level up their pirating. In there they encounter factions, and realize something isn't right. The protection protocols are actually killing people - in real life. A hacker organization is behind it - RMRF. As the player solves puzzles, they are actually solving them for RMRF also. Ironically their goal is to bring down Shellscape by applying meatspace pressure on it.</textarea><div class="dropzone"></div></div></div>
 
   <div id="helpDialog" style="
     display: none;
@@ -103,8 +108,7 @@
   ">
     <h3>Key Bindings</h3>
     <p>
-      <pre>
-a = Add a new node.
+      </p><pre>a = Add a new node.
 c = Start connection (select a room and hit Enter,
     select the second room and hit Enter).
 X = Disconnects two nodes in the same manner as
@@ -119,8 +123,8 @@ k = Move selected node up.
 K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
-< = Move selected node left by half a step.
-> = Move selected node right by half a step.
+&lt; = Move selected node left by half a step.
+&gt; = Move selected node right by half a step.
 ^ = Move selected node up by half a step.
 - = Move selected node down by half a step.
 z = Increase selected node's text area.
@@ -133,7 +137,7 @@ s = Save the current diagram.
 / = Search and select a node.
 Escape = Deselect the current note's text field.
       </pre>
-    </p>
+    <p></p>
     <p>Press ESC to close.</p>
   </div>
 
@@ -917,4 +921,5 @@ window.onload = () => {
 </script>
 
 
-</body></html>
+
+<script type="application/json" data-connectors="true" id="connector-data">[]</script></body></html>
