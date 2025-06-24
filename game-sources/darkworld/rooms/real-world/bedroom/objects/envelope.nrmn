@@ -1,0 +1,23 @@
+{object, name=Envelope, parent=bedroom
+    {x_desk, sort=555
+        {message
+            output={@
+Sitting on the desk is an envelope.
+            }
+        }
+    }
+
+    {x_envelope
+        {message
+            output={@
+You examine the envelope...
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_envelope))
+        {act, logic=x_envelope, tags=!_type|room }
+    }
+}

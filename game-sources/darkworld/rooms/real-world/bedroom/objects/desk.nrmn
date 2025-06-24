@@ -1,0 +1,28 @@
+{object, name=Desk, parent=bedroom
+    {enter_message
+        output={@
+You see your desk.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see your desk.
+            }
+        }
+    }
+
+    {x_desk, sort=0
+        {message
+            output={@
+You examine your desk.
+            }
+        }
+    }
+
+
+    {input, syntax=[tplt_syntax]((x_desk))
+        {act, logic=x_desk, tags=!_type|room }
+    }
+}
