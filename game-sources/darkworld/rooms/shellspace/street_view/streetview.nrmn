@@ -1,0 +1,19 @@
+{room, key=street_vice_port, name=Vice Harbor
+    {enter_message
+        output={@
+You are next to a major street in the downtown district of a city called Vice Harbor.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+}

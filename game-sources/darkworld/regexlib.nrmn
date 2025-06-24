@@ -2,6 +2,7 @@
     Look
         {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look|look around|I look around }
         {attrib, tags=x_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
@@ -15,6 +16,7 @@
     Putting
 
     Interacting
+        {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=pluc usb into computer, plug in the usb, plug in usb }
 
     Fighting
 
@@ -29,4 +31,9 @@
         {attrib, tags=go_south|!_regex, output=^(?:go south|south|s)$, logic=s|south|go south }
         {attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }
         {attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }
+
+        {attrib, tags=down_ramp|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?ramp$, logic=go down the ramp|take ramp|ramp }
+        {attrib, tags=up_escalator|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?escalator$, logic=go up the escalator|take escalator|escalator }
+        {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }
+        {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
 }

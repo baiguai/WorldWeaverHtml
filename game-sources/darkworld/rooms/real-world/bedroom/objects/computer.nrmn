@@ -1,8 +1,34 @@
-{object, name=Computer, parent=bedroom
-    {x_desk, sort=999
+{object, name=Computer, parent=bedroom, sort=999
+    {x_desk
         {message
             output={@
 On your desk is your computer.
+            }
+        }
+    }
+
+    {x_computer
+        {message
+            output={@
+You examine your computer. Your Shellspace brute force hack app is running.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_computer))
+        {act, logic=x_computer, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((plug_in_usb))
+        {move, logic=shellspace_port, tags=[player]
+            output={@
+You plug the USB into your computer. Insert the VR jack into the back of your head and hit enter...
+You've made it! At last you've entered Shellspace.
+
+You are in a port.
+
             }
         }
     }

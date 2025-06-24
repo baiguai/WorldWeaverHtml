@@ -1,0 +1,56 @@
+{room, key=shellspace_port, name=Port
+    {enter_message
+        output={@
+A bright green fluorescent light runs around the roof of the large circular room.
+Along the walls are instructional screens that flicker with information.
+There is no one else in the port at the moment.
+
+You see an escalator and a moving ramp set into the wall.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around...
+A bright green fluorescent light runs around the roof of the large circular room.
+Along the walls are instructional screens that flicker with information.
+There is no one else in the port at the moment.
+            }
+        }
+    }
+
+    {navigation
+        {message
+            output={@
+
+
+
+There is an escalator going up
+and a moving ramp going down.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((up_escalator))
+        {move, logic=monorail_port, tags=[player]
+            output={@
+You ascend the escalator.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((down_ramp))
+        {move, logic=street_vice_port, tags=[player]
+            output={@
+You step onto the ramp and it descends into darkness.
+After a moment you emerge on the bright bustling streets of the city.
+            }
+        }
+    }
+}
