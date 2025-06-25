@@ -14,6 +14,25 @@ give ticket
         }
     }
 
+    {look
+        {message
+            output={@
+
+You look around.
+You are on the monorail bay.
+Your path is blocked by a ticket booth.
+
+<?[player]((monorail_ticket)) = 'false' ?>
+You are stopped and asked for a ticket.
+This is a problem, you don't have a ticket.
+<else>
+You have a ticket and can give it to him using:
+give ticket
+</?>
+            }
+        }
+    }
+
 
     {navigation
         {message
@@ -25,6 +44,8 @@ There is an escalator going down.
             }
         }
     }
+
+    {inject, logic=/look.inj }
 
 
 

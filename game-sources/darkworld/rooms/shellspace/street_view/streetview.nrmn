@@ -8,12 +8,33 @@ You are next to a major street in the downtown district of a city called Vice Ha
     {look
         {message
             output={@
-You look around...
+
+You look around.
+You are next to a major street in the downtown district of a city called Vice Harbor.
             }
         }
     }
 
 
+    {navigation
+        {message
+            output={@
+
+
+
+Behind you is a moving ramp going up.
+            }
+        }
+    }
 
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((up_ramp))
+        {move, logic=shellspace_port, tags=[player]
+            output={@
+You step on the ramp and it returns you to the port.
+            }
+        }
+    }
 }
