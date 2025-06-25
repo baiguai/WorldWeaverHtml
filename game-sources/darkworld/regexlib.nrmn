@@ -16,6 +16,7 @@
     Putting
 
     Interacting
+        {attrib, tags=want_switchblade|!_regex, output=(yes|yep|yeah|i\s+(would(\s+like)?|want))(\s+(a|one))?/, logic=yeah I would like a switchblade|Yes I want a switchblade|I want a switchblade|I would like a switchblade }
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
 
     Fighting
@@ -36,4 +37,7 @@
         {attrib, tags=up_escalator|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?escalator$, logic=go up the escalator|take escalator|escalator }
         {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }
         {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
+
+    Conversation
+        {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
 }

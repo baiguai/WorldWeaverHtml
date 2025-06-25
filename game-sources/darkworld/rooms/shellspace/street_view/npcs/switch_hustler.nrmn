@@ -1,0 +1,28 @@
+{npc, name=Switchblade Hustler, parent=street_vice_port
+    {attrib, output=smalltalk, tags=topic }
+    {attrib, output=initial, tags=step }
+
+    {enter_message
+        output={@
+
+You see a shifty looking character on the corner, south of where you are,
+trying to sell people switchblades.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a shifty character.
+            }
+        }
+    }
+
+
+
+    // Conversation
+
+    // Small talk
+    {inject, logic=./injections/smalltalk.inj }
+}

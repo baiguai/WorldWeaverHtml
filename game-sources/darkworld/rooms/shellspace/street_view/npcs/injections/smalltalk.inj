@@ -1,0 +1,55 @@
+{conv_sml_greet
+    {message
+        output={@
+
+The man smiles. Half of his teeth are silver or micro-chipped.
+"How are you my friend?
+You know in this city you can't be too careful.
+Would you like to buy a switchblade?"
+        }
+    }
+}
+
+{buy_knife
+    {message
+        output={@
+You transfer the credits and he hands you a large switchblade knife.
+        }
+    }
+}
+
+
+// Initial Greeting
+{input, syntax=[tplt_syntax]((conv_shifty_char))
+    {act, logic=conv_sml_greet, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'initial'
+        }
+        output={@
+The man seems confused.
+        }
+    }
+
+    {set, logic=[self]((step)), output=buy }
+}
+
+// Buy Switchblade
+{input, syntax=[tplt_syntax]((want_switchblade))
+    {act, logic=buy_knife, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'buy'
+        }
+        output = {@
+
+"Wait, what?"
+        }
+    }
+}

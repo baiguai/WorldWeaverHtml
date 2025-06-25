@@ -7,7 +7,7 @@
     {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }
     {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }
     {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }
-    {attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }
+    {attrib, output=[rand:<<[self]((money_dice))>>|9], tags=credits_dice }
 
     {attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }
     {attrib, output=init_[player]((life)), tags=maxlife }
@@ -16,7 +16,7 @@
     {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
     {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }
-    {attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }
+    {attrib, name=Credits, output=[roll:<<[self]((credits_dice))>>d8], tags=stats|credits }
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
 
