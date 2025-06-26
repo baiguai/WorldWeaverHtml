@@ -5,7 +5,7 @@
 The man smiles. Half of his teeth are silver or micro-chipped.
 "How are you my friend?
 You know in this city you can't be too careful.
-Would you like to buy a switchblade?"
+Would you like to buy a switchblade? - They're only 5 credits."
         }
     }
 }
@@ -14,9 +14,35 @@ Would you like to buy a switchblade?"
     {message
         output={@
 You transfer the credits and he hands you a large switchblade knife.
+
+"Will that be all my new friend?"
+        }
+    }
+
+    {logic
+        logic={@
+            ?[self]((credits)) >= '5000'
+        }
+        output={@
+
+"What are you trying to pull?
+Is there anything I can help you with 'friend'?"
         }
     }
 }
+{refuse_knife
+    {message
+        output={@
+"Suit yourself.
+What can I do for you friend?"
+        }
+    }
+}
+
+
+
+
+
 
 
 // Initial Greeting
@@ -38,8 +64,8 @@ The man seems confused.
 }
 
 
-// Buy Switchblade
-{input, syntax=[tplt_syntax]((want_switchblade))
+// Buy Switchblade / Yes No
+{input, syntax=[tplt_syntax]((yes))
     {act, logic=buy_knife, tags=!_type|room }
 
     {logic
@@ -53,4 +79,23 @@ The man seems confused.
 "Wait, what?"
         }
     }
+
+    {set, logic=[self]((step)), output=help }
+}
+{input, syntax=[tplt_syntax]((no))
+    {act, logic=refuse_knife, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'buy'
+        }
+        output = {@
+
+"Wait, what?"
+        }
+    }
+
+    {set, logic=[self]((step)), output=help }
 }

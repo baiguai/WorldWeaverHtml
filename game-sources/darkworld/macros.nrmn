@@ -1,1 +1,1 @@
-{macro, key=port, output=plug usb into computer }
+{macro, key=char, output=put usb in computer|~|take ramp|~|greet character }
