@@ -37,6 +37,7 @@ The man seems confused.
     {set, logic=[self]((step)), output=buy }
 }
 
+
 // Buy Switchblade
 {input, syntax=[tplt_syntax]((want_switchblade))
     {act, logic=buy_knife, tags=!_type|room }
