@@ -70,7 +70,7 @@ The man seems confused.
 
 // Buy Switchblade / Yes No
 
-{input, syntax=[tplt_syntax]((no))
+{input, syntax = [tplt_syntax]((no))
     {act, logic=refuse_knife, tags=!_type|room }
 
     {logic
@@ -79,7 +79,7 @@ The man seems confused.
             and
             ?[self]((step)) = 'buy'
         }
-        output={@
+        output = {@
 
 "Huh?"
         }
