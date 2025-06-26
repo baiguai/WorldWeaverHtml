@@ -69,21 +69,7 @@ The man seems confused.
 
 
 // Buy Switchblade / Yes No
-{input, syntax=[tplt_syntax]((yes))
-    {act, logic=buy_knife, tags=!_type|room }
 
-    {logic
-        logic={@
-            ?[self]((topic)) = 'smalltalk'
-            and
-            ?[self]((step)) = 'buy'
-        }
-        output = {@
-
-"Wait, what?"
-        }
-    }
-}
 {input, syntax=[tplt_syntax]((no))
     {act, logic=refuse_knife, tags=!_type|room }
 
@@ -93,7 +79,25 @@ The man seems confused.
             and
             ?[self]((step)) = 'buy'
         }
-        output = {@
+        output={@
+
+"Huh?"
+        }
+    }
+}
+
+
+
+{input, syntax=[tplt_syntax]((yes))
+    {act, logic=buy_knife, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'buy'
+        }
+        output={@
 
 "Wait, what?"
         }
