@@ -41,6 +41,6 @@
         {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
 
     Responding
-        {attrib, tags=yes|!_regex, output=^(yes|yeah|yep)$, logic=yes|yea|yes I would|yep|um yes }
-        {attrib, tags=no|!_regex, output=^(no|nope)$, logic=yes|yea|yes I would|yep|um yes }
+        {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
+        {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=yes|yea|yes I would|yep|um yes }
 }

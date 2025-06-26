@@ -29,6 +29,8 @@ You transfer the credits and he hands you a large switchblade knife.
 Is there anything I can help you with 'friend'?"
         }
     }
+
+    {set, logic=[self]((step)), output=help }
 }
 {refuse_knife
     {message
@@ -37,6 +39,8 @@ Is there anything I can help you with 'friend'?"
 What can I do for you friend?"
         }
     }
+
+    {set, logic=[self]((step)), output=help }
 }
 
 
@@ -79,8 +83,6 @@ The man seems confused.
 "Wait, what?"
         }
     }
-
-    {set, logic=[self]((step)), output=help }
 }
 {input, syntax=[tplt_syntax]((no))
     {act, logic=refuse_knife, tags=!_type|room }
@@ -96,6 +98,4 @@ The man seems confused.
 "Wait, what?"
         }
     }
-
-    {set, logic=[self]((step)), output=help }
 }
