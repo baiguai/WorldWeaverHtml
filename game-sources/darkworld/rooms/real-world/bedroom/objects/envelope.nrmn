@@ -1,5 +1,5 @@
-{object, name=Envelope, parent=bedroom
-    {x_desk, sort=555
+{object, name=Envelope, parent=bedroom, sort=555
+    {x_desk
         {message
             output={@
 Sitting on the desk is an envelope.
@@ -11,6 +11,9 @@ Sitting on the desk is an envelope.
         {message
             output={@
 You examine the envelope...
+Inside is the USB stick you've been waiting for.
+All you have to do is plug it into your computer and you will
+be able to jack into Shellspace.
             }
         }
     }
