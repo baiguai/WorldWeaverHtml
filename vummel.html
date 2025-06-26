@@ -166,6 +166,7 @@ z = Increase selected node's text area.
 Z = Decrease selected node's text area.
 w = Cycles through the nodes.
 s = Save the current diagram.
+G = Scroll to the top left.
 , = Zoom out.
 . = Zoom in.
 0 = Reset zoom.
@@ -312,7 +313,7 @@ function addNode() {
     div.style.left = left + 'px';
     div.style.top = top + 'px';
     canvas.appendChild(div);
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   nodes.push(div);
@@ -327,8 +328,17 @@ function getAllNodes() {
 function setSelectedNode(node) {
   selectedNode = node;
   nodes.forEach(n => {
-    n.style.borderColor = (n === selectedNode) ? '#fff' : '#aaa';
+    n.style.borderColor = (n === selectedNode) ? '#B5DBFA' : '#aaa';
+    n.style.borderWidth = (n === selectedNode) ? '2px' : '1px';
   });
+
+  if (selectedNode) {
+    selectedNode.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center'
+    });
+  }
 }
 
 
@@ -615,6 +625,10 @@ document.addEventListener('keydown', e => {
     case '0':
       setZoom(1);
       break;
+    case 'G':
+      setSelectedNode(null);
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+      break;
   }
 
   if (e.key === 'w' || e.key === 'W') {
@@ -852,7 +866,7 @@ function updateConnectors() {
     line.setAttribute("y1", aCenter.y - minY);
     line.setAttribute("x2", bCenter.x - minX);
     line.setAttribute("y2", bCenter.y - minY);
-    line.setAttribute("stroke", "#aaa");
+    line.setAttribute("stroke", "#333");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
 

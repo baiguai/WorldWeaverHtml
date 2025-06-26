@@ -310,55 +310,55 @@
 
                 switch (true)
                 {
-                    case typeof line === 'string' && line.toLowerCase().startsWith("type="):
+                    case typeof line === 'string' && regexCheck("^type\\s*=", line):
                         if (element !== null)  {
                             element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
                         }
                         break;
 
-                    case line.toLowerCase().startsWith("key="):
+                    case regexCheck("^key\\s*=", line):
                         element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
                         break;
 
-                    case line.toLowerCase().startsWith("name="):
+                    case regexCheck("^name\\s*=", line):
                         element.Name = line.replace(/^name=/i, '').safe();
                         break;
 
-                    case line.toLowerCase().startsWith("parent="):
+                    case regexCheck("^parent\\s*=", line):
                         element.ParentKey = line.replace(/^parent=/i, '').safe();
                         break;
 
-                    case line.toLowerCase().startsWith("syntax="):
+                    case regexCheck("^syntax\\s*=", line):
                         element.Syntax = line.replace(/^syntax=/i, '').safe();
                         break;
 
-                    case line.toLowerCase().startsWith("logic="):
+                    case regexCheck("^logic\\s*=", line):
                         fieldVal = getFieldValue(element, lines, "logic", ix);
                         ix = fieldVal.currentRow;
                         element.Logic = fieldVal.fieldValue.safe();
                         break;
 
-                    case line.toLowerCase().startsWith("repeat="):
+                    case regexCheck("^repeat\\s*=", line):
                         element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
                         break;
 
-                    case line.toLowerCase().startsWith("output="):
+                    case regexCheck("^output\\s*=", line):
                         fieldVal = getFieldValue(element, lines, "output", ix);
                         ix = fieldVal.currentRow;
                         element.Output = fieldVal.fieldValue;
                         break;
 
-                    case line.toLowerCase().startsWith("tags="):
+                    case regexCheck("^tags\\s*=", line):
                         fieldVal = getFieldValue(element, lines, "tags", ix);
                         ix = fieldVal.currentRow;
                         element.Tags = fieldVal.fieldValue.safe();
                         break;
 
-                    case line.toLowerCase().startsWith("active="):
+                    case regexCheck("^active\\s*=", line):
                         element.Active = line.replace(/^active=/i, '').toLowerCase();
                         break;
 
-                    case line.toLowerCase().startsWith("sort="):
+                    case regexCheck("^sort\\s*=", line):
                         element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
                         break;
 
@@ -578,7 +578,7 @@
                 let lineFull = lines[ix];
 
                 if (ix === startRow) {
-                    line = line.replace(new RegExp(`^${fieldName}=`, 'i'), "");
+                    line = line.replace(new RegExp(`^${fieldName}\\s*=\\s*`, 'i'), "");
 
                     if (!line.startsWith("{")) {
                         fieldValue = lineFull;
@@ -615,6 +615,19 @@
         function getGuid()
         {
             return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+        }
+        function regexCheck(regexString, inputString)
+        {
+            if (regexString === "" || inputString === "")
+            {
+                return false;
+            }
+            const pattern = new RegExp(regexString, 'i');
+            if (pattern.test(inputString))
+            {
+                return true;
+            }
+            return false;
         }
 
 

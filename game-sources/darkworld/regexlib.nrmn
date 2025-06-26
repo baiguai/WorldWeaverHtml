@@ -42,5 +42,5 @@
 
     Responding
         {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
-        {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=yes|yea|yes I would|yep|um yes }
+        {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=no|nope|no I would not|um no }
 }
