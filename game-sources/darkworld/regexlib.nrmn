@@ -16,7 +16,6 @@
     Putting
 
     Interacting
-        {attrib, tags=want_switchblade|!_regex, output=(yes|yep|yeah|i\s+(would(\s+like)?|want))(\s+(a|one))?/, logic=yeah I would like a switchblade|Yes I want a switchblade|I want a switchblade|I would like a switchblade }
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
 
     Fighting
@@ -40,4 +39,8 @@
 
     Conversation
         {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
+
+    Responding
+        {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
+        {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=yes|yea|yes I would|yep|um yes }
 }
