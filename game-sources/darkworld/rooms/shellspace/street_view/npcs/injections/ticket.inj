@@ -1,0 +1,28 @@
+{need_ticket
+    {message
+        output={@
+OH! You need a ticket!
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((conv_need_ticket))
+    {act, logic=need_ticket, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'help'
+        }
+        output={@
+
+"Wait, what?"
+        }
+    }
+}

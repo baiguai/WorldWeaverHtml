@@ -39,6 +39,7 @@
 
     Conversation
         {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
+        {attrib, tags=conv_need_ticket|!_regex, output=\b(I need a|I'm looking for a) (monorail )?ticket( for the monorail)?\b, logic=I need a ticket|I need a monorail ticket|I need a ticket for the monorail|I'm looking for a monorail ticket|I'm looking for a ticket for the monorail }
 
     Responding
         {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }

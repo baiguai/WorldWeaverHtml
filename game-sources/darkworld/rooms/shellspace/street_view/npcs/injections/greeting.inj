@@ -1,0 +1,30 @@
+{conv_sml_greet
+    {message
+        output={@
+
+The man smiles. Half of his teeth are silver or micro-chipped.
+"How are you my friend?
+You know in this city you can't be too careful.
+Would you like to buy a switchblade? - They're only 5 credits."
+        }
+    }
+}
+
+
+// Initial Greeting
+{input, syntax=[tplt_syntax]((conv_shifty_char))
+    {act, logic=conv_sml_greet, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'initial'
+        }
+        output={@
+The man seems confused.
+        }
+    }
+
+    {set, logic=[self]((step)), output=buy }
+}
