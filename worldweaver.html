@@ -1896,6 +1896,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                     }
                     gameOutput.MatchMade = true;
                     return;
+
+                case command.startsWith("_room") && adminMode:
+                    doAdminRoomDesc();
+                    gameOutput.MatchMade = true;
+                    return;
             }
         }
         function showAdminHelp() {
@@ -1911,6 +1916,8 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
             helpText += "<li><strong>_regex (regular expression)&gt;%gt;(test1|test2|test3|...)</strong> : Lets you test a regular expression against the test(s) you specify</li>";
+            helpText += "<li><strong>_regex</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
             output.innerHTML = helpText;
         }
@@ -2066,6 +2073,34 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             }
             output.innerHTML += `${br}${br}${br}`;
         }
+        function doAdminRoomDesc() {
+            const room = getCurrentRoom();
+            gameOutput.Output = describeChildren(room, "");
+        }
+        function describeChildren(parentElem, indentString) {
+            let description = "";
+            const spc = " ";
+
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name}${br}`;
+            indentString += spc.repeat(3);
+
+            for (const attrib of getChildrenByType(parentElem, "attribute")) {
+                description += `${indentString}attribute -- Output: ${attrib.Output} -- Tags: ${attrib.Tags}${br}`;
+            }
+
+            for (const npc of getChildrenByType(parentElem, "npc")) {
+                description += describeChildren(npc, indentString);
+            }
+
+            for (const obj of getChildrenByType(parentElem, "object")) {
+                description += describeChildren(obj, indentString);                
+            }
+
+            description += br;
+
+            return description;
+        }
+
         function showTestResults() {
             const brt = "<br />";
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
@@ -2211,7 +2246,7 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
 
             for (let elem of custElems) {
                 if (generalParsers.includes("logic") && !processLogic(elem)) {
-                    continue;
+                    return;
                 }
 
                 parseElement(elem, generalParsers);
@@ -2219,7 +2254,8 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
            
             // Child Level
             const childElems = database.filter(item => canContainCustomElems.includes(item.ElementType) &&
-                item.ParentKey === parentElement.ElementKey);
+                item.ParentKey === parentElement.ElementKey)
+                .sort((a, b) => a.Sort - b.Sort);
 
             for (let elem of childElems) {
                 if (isRecursive || elem.ParentKey === rootElement.ElementKey) {
@@ -2807,12 +2843,16 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
         }
 
         function parseMessage(parentElement, childElement) {
-            const msgs = database.filter(item => item.ParentKey === childElement.ElementKey);
+            const msgs = database.filter(item => item.ParentKey === childElement.ElementKey && item.ElementType === "message");
             if (msgs === null || msgs.length < 1) {
                 if (childElement.Output === "") {
                     return;
                 }
                 outputMatch(processSpecialOutput(childElement, childElement.Output), true);
+
+                for (let child of getChildren(childElement, false)) {
+                    parseElement(child, messageParsers);
+                }
                 return;
             }
 
@@ -2871,6 +2911,12 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                     }
                     outputMatch(processSpecialOutput(childElement, msgs[parentElement.RepeatIndex].Output), true);
                     break;
+            }
+
+            for (let child of getChildren(childElement, false)) {
+                if (child.ElementType !== "message") {
+                    parseElement(child, messageParsers);
+                }
             }
         }
 
@@ -3156,4 +3202,3 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
         }
     </script>
 </body></html>
-

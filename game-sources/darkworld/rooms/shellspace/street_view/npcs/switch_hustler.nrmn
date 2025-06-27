@@ -2,6 +2,8 @@
     {attrib, output=smalltalk, tags=topic }
     {attrib, output=initial, tags=step }
 
+    {attrib, output=false, tags=ticket_answered }
+
     {enter_message
         output={@
 
