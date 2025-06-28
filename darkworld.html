@@ -2838,9 +2838,7 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 }
                 outputMatch(processSpecialOutput(childElement, childElement.Output), true);
 
-                for (let child of getChildren(childElement, false)) {
-                    parseElement(child, messageParsers);
-                }
+                parseElement(childElement, messageParsers);
                 return;
             }
 
