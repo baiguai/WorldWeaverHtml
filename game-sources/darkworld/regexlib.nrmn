@@ -8,10 +8,13 @@
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
 
     Identifying
+        {attrib, tags=knife_01_id|!_regex, output=(knife).*, logic=the knife|your knife|the knife }
 
     Taking
+        {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
 
     Dropping
+        {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
 
     Putting
 
@@ -40,6 +43,8 @@
     Conversation
         {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
         {attrib, tags=conv_need_ticket|!_regex, output=\b(I need a|I'm looking for a) (monorail )?ticket( for the monorail)?\b, logic=I need a ticket|I need a monorail ticket|I need a ticket for the monorail|I'm looking for a monorail ticket|I'm looking for a ticket for the monorail }
+        {attrib, tags=conv_piracy|!_regex, output=\b(what about\s+)?(hacking|piracy)\??\b, logic=what about hacking?|what about piracy|hacking|piracy }
+        {attrib, tags=conv_streets|!_regex, output=(can you tell me about the roads|where do( all)? (the|these)? (roads|streets) go|what are( all)? (these|the)? (roads|streets)|where do I go|where should I go|i(?:'|’)m lost|im lost|i don'?t know where to go|tell me about the (streets|city)), logic=where do the streets go?|what are all the roads?|can you tell me about the roads?|can you tell me about the streets?|where should I go|I'm lost|I dont know where to go }
 
     Responding
         {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
