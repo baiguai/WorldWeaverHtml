@@ -7,17 +7,6 @@ You transfer the credits and he hands you a large switchblade knife.
         }
     }
 
-    {logic
-        logic={@
-            ?[self]((credits)) >= '5000'
-        }
-        output={@
-
-"What are you trying to pull?
-Is there anything I can help you with 'friend'?"
-        }
-    }
-
     {set, logic=[self]((step)), output=help }
 }
 {refuse_knife
@@ -65,4 +54,19 @@ What can I do for you friend?"
 "Wait, what?"
         }
     }
+
+    {logic
+        logic={@
+            ?[self]((credits)) >= '5'
+        }
+        output={@
+
+"What are you trying to pull?
+Is there anything I can help you with 'friend'?"
+        }
+    }
+
+    {move, logic=[player], tags=knife_01 }
+    {set, logic=[knife_01]tags, output=+inventory }
+    {set, logic=[player]((credits)), output=-=5 }
 }

@@ -1,0 +1,41 @@
+{piracy
+    {message
+        output={@
+
+He grins wickedly.
+"Hit the slums, my friend. Good luck."
+        }
+
+        {set, logic=[self]((piracy_answered)), output=true }
+    }
+
+    {logic
+        logic={@
+            ?[self]((piracy_answered)) = 'false'
+        }
+        output={@
+"Are you a Security Agent?!"
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((conv_piracy))
+    {act, logic=piracy, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'help'
+        }
+        output={@
+
+"Huh?"
+        }
+    }
+}

@@ -1,0 +1,46 @@
+{streets
+    {message
+        output={@
+
+He sighs.
+"Well... If you go west, that takes you along the water.
+Northwest goes into the business district, beyond that is the slums.
+North goes along the park to the tech sector.
+Northeast is the art district, then the residential area.
+East takes you to the industrial area.
+And Southeast takes you along the water."
+        }
+
+        {set, logic=[self]((streets_answered)), output=true }
+    }
+
+    {logic
+        logic={@
+            ?[self]((streets_answered)) = 'false'
+        }
+        output={@
+"Man, I already told you."
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((conv_streets))
+    {act, logic=streets, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'help'
+        }
+        output={@
+
+"Wait, what?"
+        }
+    }
+}
