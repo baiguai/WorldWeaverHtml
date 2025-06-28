@@ -2,6 +2,8 @@
     {attrib, output=smalltalk, tags=topic }
     {attrib, output=initial, tags=step }
 
+    {attrib, output=false, tags=ticket_answered }
+
     {enter_message
         output={@
 
@@ -22,7 +24,7 @@ You see a shifty character.
 
 
     // Conversation
-
-    // Small talk
-    {inject, logic=./injections/smalltalk.inj }
+    {inject, logic=./injections/greeting.inj }
+    {inject, logic=./injections/knife.inj }
+    {inject, logic=./injections/ticket.inj }
 }

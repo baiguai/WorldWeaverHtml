@@ -1,0 +1,47 @@
+{need_ticket
+    {message
+        output={@
+
+"Ahh. You're looking to ride the Mono.
+Well you could get a job."
+He chuckles to himself.
+"I DO know a guy, out of the north end of the park,
+he does plugin work and possibly get you a simple
+hack module."
+        }
+
+        {set, logic=[self]((ticket_answered)), output=true }
+    }
+
+    {logic
+        logic={@
+            ?[self]((ticket_answered)) = 'false'
+        }
+        output={@
+
+"Are you Ok? I just answered you.
+Anything else I can do for you, n00bie?"
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((conv_need_ticket))
+    {act, logic=need_ticket, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'help'
+        }
+        output={@
+
+"Wait, what?"
+        }
+    }
+}
