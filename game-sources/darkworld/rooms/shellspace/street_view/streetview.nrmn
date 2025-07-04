@@ -34,6 +34,19 @@ And one going southeast.
         }
     }
 
+
+    {navigation
+        {message
+            output={@
+
+
+
+There is an escalator going down.
+            }
+        }
+    }
+
+
     {inject, logic=/look.inj }
 
 
@@ -41,6 +54,14 @@ And one going southeast.
         {move, logic=shellspace_port, tags=[player]
             output={@
 You step on the ramp and it returns you to the port.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=waterfront_west, tags=[player]
+            output={@
+You walk along the water, to the west.
             }
         }
     }
