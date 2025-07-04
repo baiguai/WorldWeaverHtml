@@ -1,0 +1,42 @@
+{room, key=waterfront_west, name=Waterfront
+    {enter_message
+        output={
+You are walking along the waterfront in a west direction.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You are walking along the waterfront in a west direction.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+East of where you are is where the ramp dropped you off.
+West of where you are is a ticket booth.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=street_vice_port, tags=[player]
+            output={@
+You return to the street corner where the ramp left you.
+            }
+        }
+    }
+}
