@@ -5,6 +5,7 @@
         {attrib, tags=x_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
+        {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? screens$, logic=x the screens|x screens|examine the screens }
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
 
     Identifying
@@ -41,6 +42,7 @@
         {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
 
     Conversation
+        {attrib, tags=need_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }
         {attrib, tags=conv_shifty_char|!_regex, output=\b(greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
         {attrib, tags=conv_need_ticket|!_regex, output=\b(I need a|I'm looking for a) (monorail )?ticket( for the monorail)?\b, logic=I need a ticket|I need a monorail ticket|I need a ticket for the monorail|I'm looking for a monorail ticket|I'm looking for a ticket for the monorail }
         {attrib, tags=conv_piracy|!_regex, output=\b(what about\s+)?(hacking|piracy)\??\b, logic=what about hacking?|what about piracy|hacking|piracy }
@@ -49,4 +51,7 @@
     Responding
         {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
         {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=no|nope|no I would not|um no }
+
+    System
+        {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 }

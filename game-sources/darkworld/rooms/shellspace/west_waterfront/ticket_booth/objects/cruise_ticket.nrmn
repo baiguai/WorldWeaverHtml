@@ -1,0 +1,17 @@
+{object, key=cruise_ticket, name=Cruise Ticket
+    {look
+        {message
+            output={@
+You see a cruise ticket.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [room]
+            }
+        }
+    }
+
+    {inject, logic=/look.inj }
+}

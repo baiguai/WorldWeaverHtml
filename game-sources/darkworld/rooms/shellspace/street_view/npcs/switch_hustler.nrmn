@@ -23,7 +23,27 @@ You see a shifty character.
         }
     }
 
+    {char_hint
+        {message
+            output={@
 
+HINT:
+* There is a conversation flow - first respond to his initial question.
+* Ask him where to go.
+* Ask him about various topics you would like to pursue.
+* Tell him you need a monorail ticket.
+
+
+
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((hint))
+        {act, logic=char_hint, tags=!_type|self }
+    }
 
     // Conversation
     {inject, logic=./injections/greeting.inj }

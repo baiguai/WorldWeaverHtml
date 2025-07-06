@@ -1,0 +1,53 @@
+{buy_ticket
+    {message
+        output={@
+Great!
+Let me charge you and send your ticket.
+        }
+    }
+}
+
+{refuse_ticket
+    {message
+        output={@
+I'm sorry you won't be cruising with us.
+Have a nice day!
+        }
+    }
+}
+
+
+
+{input, syntax=[tplt_syntax]((yes))
+    {act, logic=buy_ticket, tags=!_type|self }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'buy'
+        }
+
+        {message
+            output={@
+What are you trying to do?
+            }
+        }
+    }
+
+    {logic
+        logic={@
+            ?[self]((credits)) >= '10'
+        }
+        output={@
+
+It appears you don't have enough credits to buy a ticket.
+        }
+    }
+
+    {move, logic=[player], tags=cruise_ticket }
+    {set, logic=[cruise_ticket]tags, output=+inventory }
+    {set, logic=[player]((credits)), output=-=10 }
+}
+
+{input, syntax=[tplt_syntax]((no))
+    {act, logic=refuse_ticket, tags=!_type|self }
+}

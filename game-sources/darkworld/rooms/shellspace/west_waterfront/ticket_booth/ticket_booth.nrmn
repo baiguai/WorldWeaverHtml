@@ -1,0 +1,32 @@
+{room, key=vice_port_tickets, name=Ticket Booth
+    {look
+        {message
+            output={@
+You look around.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+East of where you are takes you back to the waterfront.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=waterfront_west, tags=[player]
+            output={@
+You return to the waterfront.
+            }
+        }
+    }
+}

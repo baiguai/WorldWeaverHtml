@@ -1,0 +1,28 @@
+{npc, name=Ticket Booth Woman, parent=vice_port_tickets
+    {attrib, output=greeting, tags=topic }
+
+    {enter_message
+        output={@
+There is a woman inside the ticket booth.
+She has long silver hair and her eyes are solid mirrored chrome.
+Silver rings hover along the length of her neck.
+
+She smiles.
+"Can I help you?"
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a woman in the ticket booth.
+            }
+        }
+    }
+
+
+    // Conversation
+    {inject, logic=./injections/greeting.inj }
+    {inject, logic=./injections/buy.inj }
+}

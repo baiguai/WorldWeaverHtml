@@ -61,7 +61,7 @@ You step on the ramp and it returns you to the port.
     {input, syntax=[tplt_syntax]((go_west))
         {move, logic=waterfront_west, tags=[player]
             output={@
-You walk along the water, to the west.
+You go west.
             }
         }
     }
