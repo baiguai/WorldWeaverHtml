@@ -81,7 +81,7 @@
         let files = [];
         let injections = [];
         let database = [];
-        const elemLimit = 20; // Number of elements per line in the db
+        const elemLimit = 150; // Number of elements per line in the db
 
 
 
@@ -258,7 +258,7 @@
                 currentRow = ix;
                 let line = lines[ix].trim();
 
-                if (!parsableRow(line)) {
+                if (!parsableRow(file, line)) {
                     continue;
                 }
                 if (line === "")
@@ -285,7 +285,13 @@
                         if (singleLine)
                         {
                             database.push(element);
-                            return currentRow;
+                            if (depth > 0) {
+                                // Since we have depth, this call is an iteration, so return.
+                                return currentRow;
+                            } else {
+                                // For root level single line Elements, keep parsing through the file
+                                element = null;
+                            }
                         }
 
                         continue;
@@ -380,7 +386,7 @@
             return currentRow;
         }
 
-        function parsableRow(dataRow) {
+        function parsableRow(file, dataRow) {
             if (dataRow === "") {
                 return false;
             }
@@ -404,6 +410,23 @@
             }
 
             if (dataRow.trim().length > 1 && dataRow.trim().substring(0, 2) === "//") {
+                return false;
+            }
+
+            if (!typoCheck(file, dataRow)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        // Here we look for typos that have actually occurred.
+        // In the future it would be good to leverage the power
+        // of REGEX to make this more robust.
+        function typoCheck(file, dataRow) {
+            let pattern = /outpu\s*=\s*{/i;
+            if (dataRow.match(pattern)) {
+                alert(`A typo was found in ${file.path}, in this line: ${dataRow}`);
                 return false;
             }
 

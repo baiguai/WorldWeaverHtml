@@ -1,0 +1,55 @@
+{room, key=vice_port_tickets, name=Ticket Booth
+    {look
+        {message
+            output={@
+You look around.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+East of where you are takes you back to the waterfront.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=waterfront_west, tags=[player]
+            output={@
+You return to the waterfront.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_ship, tags=[player]
+            output={@
+You ascend the ramp.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[cruise_ticket]parent = [player]
+            }
+            output={@
+A security guard approaches you.
+"Can I see your ticket?"
+You have nothing to give him.
+"I'm sorry, but you cannot board this ship."
+            }
+        }
+
+        {move, logic=limbo, tags=cruise_ticket }
+        {set, logic=[cruise_ticket]tags, output=-inventory }
+    }
+}

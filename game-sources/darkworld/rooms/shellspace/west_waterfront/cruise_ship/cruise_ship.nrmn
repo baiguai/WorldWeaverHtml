@@ -1,0 +1,19 @@
+{room, key=cruise_ship, name=Cruise Ship
+    {enter_message
+        output={@
+You step aboard the cruise ship.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the cruise ship.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+}

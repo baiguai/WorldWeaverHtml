@@ -1,0 +1,29 @@
+{need_ticket
+    {message
+        output={@
+Oh! You would like to buy a ticket.
+That will be 10 credits.
+Would you like to purchase a ticket?
+        }
+    }
+
+    {set, logic=[self]((topic)), output=buy }
+}
+
+
+
+{input, syntax=[tplt_syntax]((need_cruise_ticket))
+    {act, logic=need_ticket, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'greeting'
+        }
+
+        {message
+            output={@
+Excuse me?
+            }
+        }
+    }
+}

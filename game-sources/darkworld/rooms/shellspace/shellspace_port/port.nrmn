@@ -21,6 +21,32 @@ There is no one else in the port at the moment.
         }
     }
 
+    {x_screens
+        {message
+            output={@
+
+You examine the screens.
+Each one is typing out helpful instructions in a black and green terminal.
+
+One of the screens informs you that due to safety concerns monorail tickets
+may not be purchased in the port. They will have to be purchased at authorized
+locations throughout the city.
+
+Another screen lets you know that for their safety oracles are disguised. If
+you happen to identify one, you can ask them various questions about the city
+or get information on various topics of concern to you. There is often an
+oracle near the port.
+
+A third screen tells you that hacking, outside of heavily regulated and licensed
+organizations is strictly illegal. Immediate and permanent expulsion from
+Shellspace can result.
+
+Another screen says that the new spaceport will be operational shortly. Due
+to cost savings it has been built in the south end of the industrial district.
+            }
+        }
+    }
+
     {navigation
         {message
             output={@
@@ -36,6 +62,10 @@ and a moving ramp going down.
 
 
     {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((x_screens))
+        {act, logic=x_screens, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((up_escalator))
         {move, logic=monorail_port, tags=[player]

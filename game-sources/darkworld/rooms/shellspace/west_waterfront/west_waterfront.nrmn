@@ -1,7 +1,14 @@
 {room, key=waterfront_west, name=Waterfront
     {enter_message
-        output={
-You are walking along the waterfront in a west direction.
+        output={@
+
+You are walking along the waterfront.
+To the south of you is the harbor. Lit up boats and cruise ships slowly enter or
+pass out to the open sea.
+There are couples and individuals walking along the water. It is a beautiful sight.
+
+Further west you see a small booth with a neon sign that reads:
+Cruise Tickets
         }
     }
 
@@ -9,7 +16,7 @@ You are walking along the waterfront in a west direction.
         {message
             output={@
 
-You are walking along the waterfront in a west direction.
+You are walking along the waterfront.
             }
         }
     }
@@ -36,6 +43,14 @@ West of where you are is a ticket booth.
         {move, logic=street_vice_port, tags=[player]
             output={@
 You return to the street corner where the ramp left you.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=vice_port_tickets, tags=[player]
+            output={@
+You approach the ticket booth.
             }
         }
     }

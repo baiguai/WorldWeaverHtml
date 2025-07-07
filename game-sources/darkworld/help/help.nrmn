@@ -19,6 +19,7 @@ Welcome to the Sample Game help system.
 Interactive Fiction follows some common conventions. The commands below are some of these:
 
 <strong style="color: #ffff00;">look or l</strong> : To look around.
+<strong style="color: #ffff00;">?hint</strong> : To display possible hints.
 <strong style="color: #ffff00;">look behind (object) or behind (object)</strong> : To look behind the specified object.
 <strong style="color: #ffff00;">look on (object) or on (object)</strong> : To look behind the specified object.
 <strong style="color: #ffff00;">look under (object) or under (object)</strong> : To look behind the specified object.
