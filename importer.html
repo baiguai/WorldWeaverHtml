@@ -285,7 +285,13 @@
                         if (singleLine)
                         {
                             database.push(element);
-                            return currentRow;
+                            if (depth > 0) {
+                                // Since we have depth, this call is an iteration, so return.
+                                return currentRow;
+                            } else {
+                                // For root level single line Elements, keep parsing through the file
+                                element = null;
+                            }
                         }
 
                         continue;
