@@ -1,14 +1,45 @@
 {room, key=cruise_ship, name=Cruise Ship
     {enter_message
         output={@
-You step aboard the cruise ship.
+You step aboard the cruise ship and are immediately surrounded
+by purple neon glow.
+Synth music pulses through the air and the excitement of vacation
+is palpable.
+
+I virtual woman approaches you with a smile on her slightly
+translucent face.
+"Welcome aboard! I will need you to make your way up to the top
+desk for the required muster drill. Thank you and have a fun
+vacation!"
+
+Then she walks off to greet other travelers.
         }
+
+        {set, logic=[player]((quest)), output=Attend the muster drill }
     }
 
     {look
         {message
             output={@
 You look around the cruise ship.
+You are surrounded by purple neon glow.
+Synth music pulses through the air.
+<?[player]((quest)) = 'Attend the muster drill'?>
+You must attend the muster drill on the top deck.
+</?>
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+South, the hall continues into the heart of the cruise ship.
+North, exits the cruise ship.
             }
         }
     }
@@ -16,4 +47,13 @@ You look around the cruise ship.
 
 
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=vice_port_tickets, tags=[player]
+            output={@
+You exit the cruise ship back to the ticket booth.
+            }
+        }
+    }
 }
