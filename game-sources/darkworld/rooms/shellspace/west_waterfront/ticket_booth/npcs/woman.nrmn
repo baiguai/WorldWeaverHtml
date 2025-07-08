@@ -10,6 +10,8 @@ Silver rings hover along the length of her neck.
 She smiles.
 "Can I help you?"
         }
+
+        {set, logic=[self]((topic)), output=greeting }
     }
 
     {look
