@@ -27,4 +27,13 @@ You see a woman in the ticket booth.
     // Conversation
     {inject, logic=./injections/greeting.inj }
     {inject, logic=./injections/buy.inj }
+    {inject, logic=./injections/done.inj }
+}
+
+
+{dev_note, tags=TODO
+    output={@
+Define a travel agency, and move the: cruise_ticket Element to that location.
+Or at least move it to the Player when they purchase it.
+    }
 }

@@ -11,7 +11,6 @@ Would you like to purchase a ticket?
 }
 
 
-
 {input, syntax=[tplt_syntax]((need_cruise_ticket))
     {act, logic=need_ticket, tags=!_type|room }
 
