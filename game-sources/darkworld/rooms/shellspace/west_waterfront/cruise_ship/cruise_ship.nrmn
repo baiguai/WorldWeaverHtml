@@ -56,4 +56,12 @@ You exit the cruise ship back to the ticket booth.
             }
         }
     }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You go deeper into the heart of the cruise ship.
+            }
+        }
+    }
 }

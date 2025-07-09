@@ -1,0 +1,26 @@
+{no_ticket
+    {message
+        output={@
+I'm sorry but we are currently out of tickets for this particular cruise.
+If you go to the Business District, there are some travel agencies
+that will have tickets to sell you.
+        }
+    }
+}
+
+
+{input, syntax=[tplt_syntax]((need_cruise_ticket))
+    {act, logic=no_ticket, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'done'
+        }
+
+        {message
+            output={@
+Excuse me?
+            }
+        }
+    }
+}
