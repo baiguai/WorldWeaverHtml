@@ -1,6 +1,6 @@
 <html lang="en"><head>
   <meta charset="UTF-8">
-  <title>IF Visual Planner</title>
+  <title>DarkWorld Plot Diagram</title>
   <style>
     html, body {
       margin: 0;
@@ -144,10 +144,24 @@ You can try again here.</textarea><div class="dropzone"></div></div></div>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
 
-  <div id="helpDialog" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: rgb(34, 34, 34); color: white; border: 2px solid rgb(85, 85, 85); padding: 20px; z-index: 9999; font-family: monospace; max-width: 400px; text-align: left;">
+  <div id="helpDialog" style="
+    display: none;
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #222;
+    color: white;
+    border: 2px solid #555;
+    padding: 20px;
+    z-index: 9999;
+    font-family: monospace;
+    max-width: 400px;
+    text-align: left;
+  ">
     <h3>Key Bindings</h3>
     <p>
-      </p><pre>a = Add a new node.
+      <pre>a = Add a new node.
 = = Duplicate current node.
 r = Rename node (change its type).
 u = Add a new link node.
@@ -185,7 +199,7 @@ p = Start snap (select the second node
 / = Search and select a node.
 Escape = Deselect the current note's text field.
       </pre>
-    <p></p>
+    </p>
     <p>Press ESC to close.</p>
   </div>
 
@@ -1411,6 +1425,11 @@ function updateConnectors() {
     initializeNodes();
     restoreConnectorsFromDOM();
     updateConnectors();
+
+    if (canvas.innerHTML === "") {
+        document.getElementById('helpDialog').style.display = 'block';
+    }
+
     canvas.focus();
   };
   
