@@ -36,6 +36,8 @@
         {attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }
         {attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }
 
+        {attrib, tags=go_up|!_regex, output=^(?=.*\bup\b).*$, logic=up|go up|up stairs }
+
         {attrib, tags=down_ramp|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?ramp$, logic=go down the ramp|take ramp|ramp }
         {attrib, tags=up_escalator|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?escalator$, logic=go up the escalator|take escalator|escalator }
         {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }

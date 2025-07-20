@@ -1,0 +1,29 @@
+{room, key=cruise_top_deck, name=Top Deck
+    {attrib, output=muster, tags=activity }
+
+    {enter_message
+        output={@
+<?[self]((activity)) = 'muster'?>
+You are attending the mandatory muster drill.
+Another virtual woman goes over the process of abandoning the ship should something go wrong.
+You are to report to section A.
+</?>
+        }
+
+        {set, logic=[self]((activity)), output=general }
+    }
+
+    {look
+        {message
+            output={@
+<?[self]((activity)) = 'muster'?>
+You look around...
+You are on the top deck.
+</?>
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+}

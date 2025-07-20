@@ -44,4 +44,12 @@ You return to the entrance area of the cruise ship.
             }
         }
     }
+
+    {input, syntax=[tplt_syntax]((go_up))
+        {move, logic=cruise_top_deck, tags=[player]
+            output={@
+You walk up the stairs.
+            }
+        }
+    }
 }
