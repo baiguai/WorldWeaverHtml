@@ -249,6 +249,9 @@
                 const titleTag = "!_title";
                 const typeEasing = "!_easingrounds";
                 const regexTag = "!_regex";
+                const addNoteTag = "!_add";
+                const deleteNoteTag = "!_delete";
+                const notesNoteTag = "!_notes";
 
         // Classes
             const gameOutput = {
@@ -294,6 +297,8 @@
             let currentFightRound = 0;
             let enemyArmorAdjust = 0;
 
+            let playerNotes = [];
+
 
         function logMessage(message) {
             output.innerHTML = message + "<br>";
@@ -313,7 +318,10 @@
             }
 
             // Make sure the latest database is stored
-            const latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+            const latestDatabase = JSON.parse(JSON.stringify(database));
+            // Make sure the latest playerNotes is stored
+            const latestPlayerNotes = JSON.parse(JSON.stringify(playerNotes));
+            const formattedPlayerNotes = JSON.stringify(latestPlayerNotes);
 
             // Build compact JSON with newlines every elemLimit items
             const lines = [];
@@ -325,7 +333,8 @@
 
             // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
-            htmlContent = htmlContent.replace(/let database = \[([\s\S]*?)\];/, `let database = ${formattedDatabase};`);
+            htmlContent = htmlContent.replace(/let database = \[([\s\s]*?)\];/, `let database = ${formattedDatabase};`);
+            htmlContent = htmlContent.replace(/let playerNotes = \[([\s\s]*?)\];/, `let playerNotes = ${formattedPlayerNotes};`);
 
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
@@ -1190,6 +1199,60 @@
                 let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
                 currentElement.Tags = taglist.join("|");
             }
+            function addNote(userInput) {
+                const arr = userInput.split("|");
+                if (arr.length != 2) {
+                    gamOutput.Output = "To add a note use: <strong>!noteadd <em>note id</em>|<em>note text</em>";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+                createNewNote(arr[0].trim(), arr[1].trim());
+                gameOutput.Output = "Note created.";
+                gameOutput.MatchMade = true;
+            }
+            function deleteNote(userInput) {
+                if (!deleteSelectedNote(userInput)) {
+                    gameOutput.Output = "The specified note id could not be found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = "Note deleted.";
+                gameOutput.MatchMade = true;
+            }
+            function viewNote(userInput) {
+                const note = playerNotes.find(item => item.NoteId === userInput) ?? null;
+
+                if (note === null ) {
+                    gameOutput.Output = "The specified Note ID could not be found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = note.NoteText;
+                gameOutput.MatchMade = true;
+            }
+            function listNotes(userInput) {
+                let notes = playerNotes.filter(item => item.NoteId.includes(userInput) || item.NoteText.includes(userInput)) ?? null;
+
+                if (userInput === "*") {
+                    notes = playerNotes;
+                }
+
+                if (notes === null || notes.length === 0 ) {
+                    gameOutput.Output = "No notes were found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = "";
+
+                for (const note of notes) {
+                    gameOutput.Output += `${note.NoteId} :${br}${note.NoteText}${br}${br}`;
+                }
+
+                gameOutput.MatchMade = true;
+            }
             function toSafeFilename(input) {
                 if (typeof input !== 'string') return 'worldweaver';
 
@@ -1534,6 +1597,31 @@
                 return entry;
             }
 
+            function createNewNote(noteId, noteText) {
+                let note = {
+                    NoteId: noteId,
+                    NoteText: noteText
+                };
+
+                if (playerNotes.find(item => item.NoteId === note.NoteId)) {
+                    return `There is already a note with the ID: ${note.NoteId}`;
+                }
+
+                playerNotes.push(note);
+
+                return "Something went wrong creating the new note.";
+            }
+
+            function deleteSelectedNote(noteId) {
+                const index = playerNotes.findIndex(nt => nt.NoteId === noteId);
+                if (index !== -1) {
+                    playerNotes.splice(index, 1);
+                    return true;
+                }
+
+                return false;
+            }
+
 
 
             // Custom Markdown Processor
@@ -1779,6 +1867,10 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             output.innerHTML = "";
 
             if (gameStarted) {
+                if (parseNotes()) {
+                    showOutput();
+                    return;
+                }
                 handleTravel();
                 parseGame(gameParsers);
                 parseGlobal(globalParsers);
@@ -1786,6 +1878,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 parsePlayer(playerParsers);
 
                 processNavigation();
+
+                processNotes();
+                if (output.MatchMade) {
+                    return;
+                }
 
                 if (!gameOutput.Output || gameOutput.Output === "") {
                     const errMsg = getChildByTag(getElementByKey(getGameKey()), errorTag);
@@ -1801,6 +1898,52 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 }
 
                 gameOutput.EnterMsgDone = true;
+            }
+        }
+
+        function processNotes() {
+            if (userInput.Input.startsWith("!notesadd ")) {
+                const inp = userInput.Input.replace("!notesadd", "");
+                var notesArr = inp.split(",");
+
+                if (!Array.isArray(notesArr) || notesArr.length !== 2) {
+                    output.outputMatch = true;
+                    output.Output = "To add a note use: !notesadd (name), (note)";
+                    return;
+                }
+
+                const name = notesArr[0].trim();
+                const notes = notesArr[1].trim();
+
+                elementType,
+                elementKey,
+                name,
+                parentKey,
+                syntax,
+                logic,
+                output,
+                tags,
+                repeat,
+                sort
+
+                const notesAttrib = createNewFullElement(
+                    "notes",
+                    null,
+                    name,
+                    "[player]",
+                    "",
+                    "",
+                    notes,
+                    notesTag,
+                    "",
+                    null
+                );
+
+                database.push(notesAttrib);
+
+                output.output = "New note added.";
+                output.MatchMade = true;
+                return;
             }
         }
 
@@ -2169,6 +2312,30 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 for (let child of children) {
                     callParser(prsr, gameElem, child);
                 }
+            }
+        }
+
+        function parseNotes() {
+            if (!/^(?:!(noteadd|notedelete|note|notes)\s|!notes$)/.test(userInput.Input)) {
+                return false;
+            }
+
+            switch (true) {
+                case (userInput.Input.startsWith("!noteadd ")):
+                    addNote(userInput.Input.replace("!noteadd", ""));
+                    return true;
+                case (userInput.Input.startsWith("!notedelete ")):
+                    deleteNote(userInput.Input.replace("!notedelete ", ""));
+                    return true;
+                case (userInput.Input.startsWith("!note ")):
+                    viewNote(userInput.Input.replace("!note ", ""));
+                    return true;
+                case (userInput.Input === "!notes"):
+                    listNotes("*");
+                    return true;
+                case (userInput.Input.startsWith("!notes ")):
+                    listNotes(userInput.Input.replace("!notes ", ""));
+                    return true;
             }
         }
 
