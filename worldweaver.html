@@ -76,6 +76,11 @@
                 padding-bottom: 0px;
             }
 
+            hr {
+                border: 0px;
+                border-top: 1px solid #222;
+            }
+
             ul {
                 display: grid;
                 gap: 5px;
@@ -1627,12 +1632,12 @@
             // Custom Markdown Processor
             function customMarkdownToHTML(input) {
                 // Handle indented text: ^^ the text
-input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
-    const lines = match.split('\n');
-    // Remove the ^^ from the first line
-    lines[0] = lines[0].replace(/^\^\^\s?/, '');
-    return `<blockquote>\n${lines.join('\n')}\n</blockquote>`;
-});
+                input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
+                    const lines = match.split('\n');
+                    // Remove the ^^ from the first line
+                    lines[0] = lines[0].replace(/^\^\^\s?/, '');
+                    return `<blockquote>\n${lines.join('\n')}\n</blockquote>`;
+                });
 
                 // Handle horizontal lines
                 input = input.replace(/^---$/gm, '<hr />');
@@ -1644,6 +1649,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 input = input.replace(/^####\s*(.+?)\s*####$/gm, '<h4>$1</h4>\n');
                 input = input.replace(/^###\s*(.+?)\s*###$/gm, '<h3>$1</h3>\n');
                 input = input.replace(/^##\s*(.+?)\s*##$/gm, '<h2>$1</h2>\n');
+
+                // Handle Color
+                input = input.replace(/#\[(#[0-9a-fA-F]{6})\]([\s\S]+?)#/g, (match, color, text) => {
+                    return `<span style="color: ${color}">${text}</span>`;
+                });
 
                 // Handle images: ![alt text](url)
                 input = input.replace(/!\[(.*?)\]\((.+?)\)/g, (match, alt, url) => {
