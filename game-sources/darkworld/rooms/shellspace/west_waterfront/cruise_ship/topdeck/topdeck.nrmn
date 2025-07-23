@@ -7,6 +7,9 @@
 You are attending the mandatory muster drill.
 Another virtual woman goes over the process of abandoning the ship should something go wrong.
 You are to report to section A.
+<else>
+You are on the top deck near the railing.
+Before you, the ocean extends on to the horizon.
 </?>
         }
 
@@ -17,13 +20,48 @@ You are to report to section A.
         {message
             output={@
 <?[self]((activity)) = 'muster'?>
+You are standing among the crowd, as the muster drill is underway.
+<else>
 You look around...
-You are on the top deck.
+You are on the top deck near the railing.
+Before you, the ocean extends on to the horizon.
 </?>
+            }
+        }
+    }
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+North, the pool and hot tubs are situated here.
+East, is the bar.
+South, is the adults-only sunbathing area.
+Down, leads into the heart of the cruise ship.
             }
         }
     }
 
 
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_down))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You decend into the heart of the cruise ship.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=cruise_top_pool, tags=[player]
+            output={@
+You go north.
+            }
+        }
+    }
 }

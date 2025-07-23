@@ -21,7 +21,7 @@ You are next to a major street in the downtown district of a city called Vice Ha
             output={@
 
 
-
+---
 Behind you is a moving ramp going up.
 6 streets extend off into the distance.
 One going west.
@@ -30,18 +30,6 @@ One going north.
 One going northeast.
 One going east.
 And one going southeast.
-            }
-        }
-    }
-
-
-    {navigation
-        {message
-            output={@
-
-
-
-There is an escalator going down.
             }
         }
     }
