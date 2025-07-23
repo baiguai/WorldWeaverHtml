@@ -39,7 +39,7 @@ give ticket
             output={@
 
 
-
+---
 There is an escalator going down.
             }
         }

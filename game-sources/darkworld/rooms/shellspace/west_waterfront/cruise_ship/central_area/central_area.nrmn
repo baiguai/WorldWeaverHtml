@@ -25,11 +25,12 @@ And a staircase that leads down into the lower decks.
             output={@
 
 
-
+---
 Up to the top deck.
 West to the entertainment area.
+East to the food and shops.
 North to return to the entrance of the cruise ship.
-down to the lower decks.
+Down to the lower decks.
             }
         }
     }

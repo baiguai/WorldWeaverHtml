@@ -27,7 +27,7 @@ You are walking along the waterfront.
             output={@
 
 
-
+---
 East of where you are is where the ramp dropped you off.
 West of where you are is a ticket booth.
             }

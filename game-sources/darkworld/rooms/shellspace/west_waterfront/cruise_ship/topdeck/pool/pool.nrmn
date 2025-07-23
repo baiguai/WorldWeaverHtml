@@ -1,0 +1,39 @@
+{room, key=cruise_top_pool, name=Pool Area
+    {enter_message
+        output={@
+You are in the pool area.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around, you are in the pool area.
+            }
+        }
+    }
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+South, top deck, railing.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_deck, tags=[player]
+            output={@
+You go south.
+            }
+        }
+    }
+}
