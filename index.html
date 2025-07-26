@@ -277,6 +277,9 @@
                 const titleTag = "!_title";
                 const typeEasing = "!_easingrounds";
                 const regexTag = "!_regex";
+                const addNoteTag = "!_add";
+                const deleteNoteTag = "!_delete";
+                const notesNoteTag = "!_notes";
 
         // Classes
             const gameOutput = {
@@ -322,6 +325,8 @@
             let currentFightRound = 0;
             let enemyArmorAdjust = 0;
 
+            let playerNotes = [];
+
 
         function logMessage(message) {
             output.innerHTML = message + "<br>";
@@ -341,7 +346,10 @@
             }
 
             // Make sure the latest database is stored
-            const latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+            const latestDatabase = JSON.parse(JSON.stringify(database));
+            // Make sure the latest playerNotes is stored
+            const latestPlayerNotes = JSON.parse(JSON.stringify(playerNotes));
+            const formattedPlayerNotes = JSON.stringify(latestPlayerNotes);
 
             // Build compact JSON with newlines every elemLimit items
             const lines = [];
@@ -353,7 +361,8 @@
 
             // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
-            htmlContent = htmlContent.replace(/let database = \[([\s\S]*?)\];/, `let database = ${formattedDatabase};`);
+            htmlContent = htmlContent.replace(/let database = \[([\s\s]*?)\];/, `let database = ${formattedDatabase};`);
+            htmlContent = htmlContent.replace(/let playerNotes = \[([\s\s]*?)\];/, `let playerNotes = ${formattedPlayerNotes};`);
 
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
@@ -425,7 +434,7 @@
 
             output.innerHTML += gameOutput.Output + "<br />";
             output.innerHTML = customMarkdownToHTML(output.innerHTML);
-            output.scrollTop = output.scrollHeight;
+            output.scrollTop = 0; // output.scrollHeight;
         }
 
 
@@ -1218,6 +1227,60 @@
                 let taglist = currentElement.Tags.split("|").filter(item => item !== tagString);
                 currentElement.Tags = taglist.join("|");
             }
+            function addNote(userInput) {
+                const arr = userInput.split("|");
+                if (arr.length != 2) {
+                    gamOutput.Output = "To add a note use: <strong>!noteadd <em>note id</em>|<em>note text</em>";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+                createNewNote(arr[0].trim(), arr[1].trim());
+                gameOutput.Output = "Note created.";
+                gameOutput.MatchMade = true;
+            }
+            function deleteNote(userInput) {
+                if (!deleteSelectedNote(userInput)) {
+                    gameOutput.Output = "The specified note id could not be found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = "Note deleted.";
+                gameOutput.MatchMade = true;
+            }
+            function viewNote(userInput) {
+                const note = playerNotes.find(item => item.NoteId === userInput) ?? null;
+
+                if (note === null ) {
+                    gameOutput.Output = "The specified Note ID could not be found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = note.NoteText;
+                gameOutput.MatchMade = true;
+            }
+            function listNotes(userInput) {
+                let notes = playerNotes.filter(item => item.NoteId.includes(userInput) || item.NoteText.includes(userInput)) ?? null;
+
+                if (userInput === "*") {
+                    notes = playerNotes;
+                }
+
+                if (notes === null || notes.length === 0 ) {
+                    gameOutput.Output = "No notes were found.";
+                    gameOutput.MatchMade = true;
+                    return;
+                }
+
+                gameOutput.Output = "";
+
+                for (const note of notes) {
+                    gameOutput.Output += `${note.NoteId} :${br}${note.NoteText}${br}${br}`;
+                }
+
+                gameOutput.MatchMade = true;
+            }
             function toSafeFilename(input) {
                 if (typeof input !== 'string') return 'worldweaver';
 
@@ -1562,17 +1625,42 @@
                 return entry;
             }
 
+            function createNewNote(noteId, noteText) {
+                let note = {
+                    NoteId: noteId,
+                    NoteText: noteText
+                };
+
+                if (playerNotes.find(item => item.NoteId === note.NoteId)) {
+                    return `There is already a note with the ID: ${note.NoteId}`;
+                }
+
+                playerNotes.push(note);
+
+                return "Something went wrong creating the new note.";
+            }
+
+            function deleteSelectedNote(noteId) {
+                const index = playerNotes.findIndex(nt => nt.NoteId === noteId);
+                if (index !== -1) {
+                    playerNotes.splice(index, 1);
+                    return true;
+                }
+
+                return false;
+            }
+
 
 
             // Custom Markdown Processor
             function customMarkdownToHTML(input) {
                 // Handle indented text: ^^ the text
-input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
-    const lines = match.split('\n');
-    // Remove the ^^ from the first line
-    lines[0] = lines[0].replace(/^\^\^\s?/, '');
-    return `<blockquote>\n${lines.join('\n')}\n</blockquote>`;
-});
+                input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
+                    const lines = match.split('\n');
+                    // Remove the ^^ from the first line
+                    lines[0] = lines[0].replace(/^\^\^\s?/, '');
+                    return `<blockquote>\n${lines.join('\n')}\n</blockquote>`;
+                });
 
                 // Handle horizontal lines
                 input = input.replace(/^---$/gm, '<hr />');
@@ -1584,6 +1672,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 input = input.replace(/^####\s*(.+?)\s*####$/gm, '<h4>$1</h4>\n');
                 input = input.replace(/^###\s*(.+?)\s*###$/gm, '<h3>$1</h3>\n');
                 input = input.replace(/^##\s*(.+?)\s*##$/gm, '<h2>$1</h2>\n');
+
+                // Handle Color
+                input = input.replace(/#\[(#[0-9a-fA-F]{6})\]([\s\S]+?)#/g, (match, color, text) => {
+                    return `<span style="color: ${color}">${text}</span>`;
+                });
 
                 // Handle images: ![alt text](url)
                 input = input.replace(/!\[(.*?)\]\((.+?)\)/g, (match, alt, url) => {
@@ -1774,7 +1867,7 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             gameOutput.Output = "";
             gameOutput.ContinueParsing = true;
             gameOutput.EnterMsgDone = false;
-            output.scrollTop = output.scrollHeight;
+            output.scrollTop = 0; // output.scrollHeight;
             let playerElem = getPlayer();
 
             processAdminInput(command);
@@ -1807,6 +1900,10 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             output.innerHTML = "";
 
             if (gameStarted) {
+                if (parseNotes()) {
+                    showOutput();
+                    return;
+                }
                 handleTravel();
                 parseGame(gameParsers);
                 parseGlobal(globalParsers);
@@ -1814,6 +1911,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 parsePlayer(playerParsers);
 
                 processNavigation();
+
+                processNotes();
+                if (output.MatchMade) {
+                    return;
+                }
 
                 if (!gameOutput.Output || gameOutput.Output === "") {
                     const errMsg = getChildByTag(getElementByKey(getGameKey()), errorTag);
@@ -1829,6 +1931,52 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                 }
 
                 gameOutput.EnterMsgDone = true;
+            }
+        }
+
+        function processNotes() {
+            if (userInput.Input.startsWith("!notesadd ")) {
+                const inp = userInput.Input.replace("!notesadd", "");
+                var notesArr = inp.split(",");
+
+                if (!Array.isArray(notesArr) || notesArr.length !== 2) {
+                    output.outputMatch = true;
+                    output.Output = "To add a note use: !notesadd (name), (note)";
+                    return;
+                }
+
+                const name = notesArr[0].trim();
+                const notes = notesArr[1].trim();
+
+                elementType,
+                elementKey,
+                name,
+                parentKey,
+                syntax,
+                logic,
+                output,
+                tags,
+                repeat,
+                sort
+
+                const notesAttrib = createNewFullElement(
+                    "notes",
+                    null,
+                    name,
+                    "[player]",
+                    "",
+                    "",
+                    notes,
+                    notesTag,
+                    "",
+                    null
+                );
+
+                database.push(notesAttrib);
+
+                output.output = "New note added.";
+                output.MatchMade = true;
+                return;
             }
         }
 
@@ -1905,6 +2053,11 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                     }
                     gameOutput.MatchMade = true;
                     return;
+
+                case command.startsWith("_room") && adminMode:
+                    doAdminRoomDesc();
+                    gameOutput.MatchMade = true;
+                    return;
             }
         }
         function showAdminHelp() {
@@ -1920,6 +2073,8 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
             helpText += "<li><strong>_regex (regular expression)&gt;%gt;(test1|test2|test3|...)</strong> : Lets you test a regular expression against the test(s) you specify</li>";
+            helpText += "<li><strong>_regex</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
             output.innerHTML = helpText;
         }
@@ -2075,6 +2230,34 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             }
             output.innerHTML += `${br}${br}${br}`;
         }
+        function doAdminRoomDesc() {
+            const room = getCurrentRoom();
+            gameOutput.Output = describeChildren(room, "");
+        }
+        function describeChildren(parentElem, indentString) {
+            let description = "";
+            const spc = " ";
+
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name}${br}`;
+            indentString += spc.repeat(3);
+
+            for (const attrib of getChildrenByType(parentElem, "attribute")) {
+                description += `${indentString}attribute -- Output: ${attrib.Output} -- Tags: ${attrib.Tags}${br}`;
+            }
+
+            for (const npc of getChildrenByType(parentElem, "npc")) {
+                description += describeChildren(npc, indentString);
+            }
+
+            for (const obj of getChildrenByType(parentElem, "object")) {
+                description += describeChildren(obj, indentString);                
+            }
+
+            description += br;
+
+            return description;
+        }
+
         function showTestResults() {
             const brt = "<br />";
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
@@ -2165,6 +2348,41 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
             }
         }
 
+        function parseNotes() {
+            if (userInput.Input === "!noteadd") {
+                gameOutput.Output = "To add a note use: **!noteadd** [note id]|[note text]";
+                gameOutput.MatchMade = true;
+                return;
+            }
+            if (userInput.Input === "!notedelete") {
+                gameOutput.Output = "To delete a note use: **!notedelete** [note id]";
+                gameOutput.MatchMade = true;
+                return;
+            }
+
+            if (!/^(?:!(noteadd|notedelete|note|notes)\s|!notes$)/.test(userInput.Input)) {
+                return false;
+            }
+
+            switch (true) {
+                case (userInput.Input.startsWith("!noteadd")):
+                    addNote(userInput.Input.replace("!noteadd", ""));
+                    return true;
+                case (userInput.Input.startsWith("!notedelete")):
+                    deleteNote(userInput.Input.replace("!notedelete", ""));
+                    return true;
+                case (userInput.Input.startsWith("!note ")):
+                    viewNote(userInput.Input.replace("!note ", ""));
+                    return true;
+                case (userInput.Input === "!notes"):
+                    listNotes("*");
+                    return true;
+                case (userInput.Input.startsWith("!notes ")):
+                    listNotes(userInput.Input.replace("!notes ", ""));
+                    return true;
+            }
+        }
+
         function parseAction(currentElement, parsers) {
             if (actionParsers.includes("logic") && !processLogic(currentElement)) {
                 return;
@@ -2214,12 +2432,13 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
 
         function parseCustomElement(rootElement, parentElement, customType, isRecursive) {
             // Parent Level
-            const custElems = database.filter(item => item.ElementType === customType &&
-                item.ParentKey === parentElement.ElementKey);
+            const custElems = database
+              .filter(item => item.ElementType === customType && item.ParentKey === parentElement.ElementKey)
+              .sort((a, b) => a.Sort - b.Sort);
 
             for (let elem of custElems) {
                 if (generalParsers.includes("logic") && !processLogic(elem)) {
-                    continue;
+                    return;
                 }
 
                 parseElement(elem, generalParsers);
@@ -2227,7 +2446,8 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
            
             // Child Level
             const childElems = database.filter(item => canContainCustomElems.includes(item.ElementType) &&
-                item.ParentKey === parentElement.ElementKey);
+                item.ParentKey === parentElement.ElementKey)
+                .sort((a, b) => a.Sort - b.Sort);
 
             for (let elem of childElems) {
                 if (isRecursive || elem.ParentKey === rootElement.ElementKey) {
@@ -2815,12 +3035,14 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
         }
 
         function parseMessage(parentElement, childElement) {
-            const msgs = database.filter(item => item.ParentKey === childElement.ElementKey);
+            const msgs = database.filter(item => item.ParentKey === childElement.ElementKey && item.ElementType === "message");
             if (msgs === null || msgs.length < 1) {
                 if (childElement.Output === "") {
                     return;
                 }
                 outputMatch(processSpecialOutput(childElement, childElement.Output), true);
+
+                parseElement(childElement, messageParsers);
                 return;
             }
 
@@ -2879,6 +3101,12 @@ input = input.replace(/^(\^\^ .*(?:\n(?!\s*$).*)*)/gm, (match) => {
                     }
                     outputMatch(processSpecialOutput(childElement, msgs[parentElement.RepeatIndex].Output), true);
                     break;
+            }
+
+            for (let child of getChildren(childElement, false)) {
+                if (child.ElementType !== "message") {
+                    parseElement(child, messageParsers);
+                }
             }
         }
 
