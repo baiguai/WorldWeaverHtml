@@ -411,7 +411,7 @@
 
             output.innerHTML += gameOutput.Output + "<br />";
             output.innerHTML = customMarkdownToHTML(output.innerHTML);
-            output.scrollTop = output.scrollHeight;
+            output.scrollTop = 0; // output.scrollHeight;
         }
 
 
@@ -1844,7 +1844,7 @@
             gameOutput.Output = "";
             gameOutput.ContinueParsing = true;
             gameOutput.EnterMsgDone = false;
-            output.scrollTop = output.scrollHeight;
+            output.scrollTop = 0; // output.scrollHeight;
             let playerElem = getPlayer();
 
             processAdminInput(command);
@@ -2326,16 +2326,27 @@
         }
 
         function parseNotes() {
+            if (userInput.Input === "!noteadd") {
+                gameOutput.Output = "To add a note use: **!noteadd** [note id]|[note text]";
+                gameOutput.MatchMade = true;
+                return;
+            }
+            if (userInput.Input === "!notedelete") {
+                gameOutput.Output = "To delete a note use: **!notedelete** [note id]";
+                gameOutput.MatchMade = true;
+                return;
+            }
+
             if (!/^(?:!(noteadd|notedelete|note|notes)\s|!notes$)/.test(userInput.Input)) {
                 return false;
             }
 
             switch (true) {
-                case (userInput.Input.startsWith("!noteadd ")):
+                case (userInput.Input.startsWith("!noteadd")):
                     addNote(userInput.Input.replace("!noteadd", ""));
                     return true;
-                case (userInput.Input.startsWith("!notedelete ")):
-                    deleteNote(userInput.Input.replace("!notedelete ", ""));
+                case (userInput.Input.startsWith("!notedelete")):
+                    deleteNote(userInput.Input.replace("!notedelete", ""));
                     return true;
                 case (userInput.Input.startsWith("!note ")):
                     viewNote(userInput.Input.replace("!note ", ""));
@@ -2985,7 +2996,6 @@
 
             outputMatch(processSpecialOutput(childElement, childElement.Output), true);
 
-            gameOutput.ContinueParsing = true;
             parseElement(childElement, enterMessageParsers);
         }
 
