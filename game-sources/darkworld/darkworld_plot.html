@@ -1351,21 +1351,41 @@ function updateConnectors() {
     svg.appendChild(line);
 
     if (arrow) {
-      const arrowSize = 10;
-      const midX = (startX + endX) / 2;
-      const midY = (startY + endY) / 2;
+      const arrowSize = 12;
+      const buffer = arrowSize + 1;
 
-      const ax1 = midX - minX;
-      const ay1 = midY - minY;
+      // Get node B's size
+      const bRect = b.getBoundingClientRect();
+      const lcaRect = lca.getBoundingClientRect();
+      const scale = zoom || 1;
+      const bWidth = bRect.width / scale;
+      const bHeight = bRect.height / scale;
 
-      const ax2 = ax1 - unitX * arrowSize - unitY * arrowSize / 2;
-      const ay2 = ay1 - unitY * arrowSize + unitX * arrowSize / 2;
+      // Calculate how far we need to backtrack from the center to the edge
+      // Projected distance along the unit vector to the edge of the box
+      const halfDiagonalProjection = Math.min(
+        Math.abs(bWidth / 2 / unitX || Infinity),
+        Math.abs(bHeight / 2 / unitY || Infinity)
+      );
 
-      const ax3 = ax1 - unitX * arrowSize + unitY * arrowSize / 2;
-      const ay3 = ay1 - unitY * arrowSize - unitX * arrowSize / 2;
+      const edgeX = bCenter.x - unitX * halfDiagonalProjection;
+      const edgeY = bCenter.y - unitY * halfDiagonalProjection;
+
+      // Position the arrow just outside the node
+      const tipX = edgeX - unitX * buffer;
+      const tipY = edgeY - unitY * buffer;
+
+      const baseLeftX = tipX - unitX * arrowSize - unitY * arrowSize / 2;
+      const baseLeftY = tipY - unitY * arrowSize + unitX * arrowSize / 2;
+
+      const baseRightX = tipX - unitX * arrowSize + unitY * arrowSize / 2;
+      const baseRightY = tipY - unitY * arrowSize - unitX * arrowSize / 2;
 
       const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-      polygon.setAttribute("points", `${ax1},${ay1} ${ax2},${ay2} ${ax3},${ay3}`);
+      polygon.setAttribute(
+        "points",
+        `${tipX - minX},${tipY - minY} ${baseLeftX - minX},${baseLeftY - minY} ${baseRightX - minX},${baseRightY - minY}`
+      );
       polygon.setAttribute("fill", "#ccc");
 
       svg.appendChild(polygon);
