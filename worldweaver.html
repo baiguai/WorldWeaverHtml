@@ -2031,6 +2031,11 @@
                     gameOutput.MatchMade = true;
                     return;
 
+                case command.startsWith("_object ") && adminMode:
+                    doAdminObjectDesc(command.replace("_object ", ""));
+                    gameOutput.MatchMade = true;
+                    return;
+
                 case command.startsWith("_room") && adminMode:
                     doAdminRoomDesc();
                     gameOutput.MatchMade = true;
@@ -2210,6 +2215,10 @@
         function doAdminRoomDesc() {
             const room = getCurrentRoom();
             gameOutput.Output = describeChildren(room, "");
+        }
+        function doAdminObjectDesc(objId) {
+            const obj = getElementByKey(objId);
+            gameOutput.Output = describeChildren(obj, "");
         }
         function describeChildren(parentElem, indentString) {
             let description = "";
