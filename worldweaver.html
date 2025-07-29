@@ -458,7 +458,7 @@
         window.onload = function() {
             gameInterface.style.display = "flex";
 
-            
+            setupUi();            
 
             fixFolders();
             doOnStartInjection();
@@ -475,6 +475,19 @@
         };
 
 
+        function setupUi() {
+            let game = getGame();
+
+            let fgColor = getTarget(game, "[game]((!_ui_foreground))");
+            let bgColor = getTarget(game, "[game]((!_ui_background))");
+
+            document.body.style.backgroundColor = bgColor.Output;
+            document.getElementById("input-container").style.backgroundColor = bgColor.Output;
+            document.getElementById("input").style.backgroundColor = bgColor.Output;
+            document.body.style.color = fgColor.Output;
+            document.getElementById("input-container").style.color = fgColor.Output;
+            document.getElementById("input").style.color = fgColor.Output;
+        }
 
         function fixFolders() {
             const folders = database.filter(item => item.ElementType === "folder");
@@ -2224,7 +2237,7 @@
             let description = "";
             const spc = " ";
 
-            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name}${br}`;
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
             indentString += spc.repeat(3);
 
             for (const attrib of getChildrenByType(parentElem, "attribute")) {
@@ -2846,19 +2859,19 @@
 
             return "";
         }
-        function getTargets(childElement, row) {
-            if (row.startsWith("<<")) {
-                row = row.replace("<<", "").replace(">>", "");
+        function getTargets(childElement, relcode) {
+            if (relcode.startsWith("<<")) {
+                relcode = relcode.replace("<<", "").replace(">>", "");
             }
             let tgt = "";
-            tgt = getTargetById(childElement, row);
+            tgt = getTargetById(childElement, relcode);
 
             if (tgt === null) {
-                tgt = getTargetsByRelCode(childElement, row);
+                tgt = getTargetsByRelCode(childElement, relcode);
             }
 
-            if (row.endsWith("))")) {
-                const arr = row.split("((");
+            if (relcode.endsWith("))")) {
+                const arr = relcode.split("((");
                 if (arr.length === 2) {
                     const tag = arr[1].replace("))", "");
                     tgt = getChildrenByTag(tgt, tag);
@@ -2867,7 +2880,14 @@
 
             return Array.isArray(tgt) ? tgt : [tgt];
         }
+        function getTarget(childElement, relcode) {
+            const tgts = getTargets(childElement, relcode);
+            return Array.isArray(tgts) ? tgts[0] : tgts;
+        }
         function getTargetById(currentElement, row) {
+            if (row.startsWith("[game]")) {
+                return getGame();
+            }
             if (row.startsWith("[player]")) {
                 return getPlayer();
             }
@@ -3253,6 +3273,18 @@
                     curValue = newValue;
             }
 
+            switch (true) {
+                case (newValue === "[player]"):
+                    curValue = getPlayer().ElementKey;
+                    break;
+                case (newValue === "[room]"):
+                    curValue = getCurrentRoom().ElementKey;
+                    break;
+                case (newValue === "[self]"):
+                    curValue = getSelf(currentElement).ElementKey;
+                    break;
+            }
+
             switch(fieldName.toLowerCase()) {
                 case "active":
                     currentElement.Active = curValue;
@@ -3267,6 +3299,7 @@
                     currentElement.Name = curValue;
                     break;
                 case "parentkey":
+                case "parent":
                     currentElement.ParentKey = curValue;
                     break;
                 case "syntax":
