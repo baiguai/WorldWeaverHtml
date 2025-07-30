@@ -152,6 +152,8 @@ Error message and password prompt
 
 <li>_devnotes (optional filter text)</li>
 
+<li>_game</li>
+
 <li>_macro (macro name)</li>
 
 <li>_macrols</li>
@@ -165,6 +167,8 @@ Error message and password prompt
 <li>_regex</li>
 
 <li>_regex (regular expression)&gt;&gt;(tests)</li>
+
+<li>_room</li>
 
 <li>!_adminpass</li>
 
@@ -1023,6 +1027,8 @@ Error message and password prompt
 ,
 {"title":"_devnotes (optional filter text)","text":"```\n _devnotes (optional filter text) : Shows dev notes - regardless of the room you are in \n```","type":"text/markdown","created":"20250614080205290","modified":"20250614080217554","tags":"[[Current Admin Commands]] databundle","revision":"0","bag":"default"}
 ,
+{"created":"20250730181934102","text":"```\n _game : Describes the current state of the game Element.\n```","title":"_game","type":"text/markdown","modified":"20250730181956048","tags":"[[Current Admin Commands]] databundle","revision":"1","bag":"default"}
+,
 {"title":"_macro (macro name)","text":"```\n _macro (macro name) : Runs the specific macro \n```","type":"text/markdown","created":"20250614080415506","modified":"20250614080427318","tags":"[[Current Admin Commands]] databundle","revision":"0","bag":"default"}
 ,
 {"title":"_macrols","text":"```\n _macrols : Lists all the macros that are in your game \n```","type":"text/markdown","created":"20250614080346781","modified":"20250614080358471","tags":"[[Current Admin Commands]] databundle","revision":"0","bag":"default"}
@@ -1036,6 +1042,8 @@ Error message and password prompt
 {"title":"_regex","text":"```\n_regex\n```\nIf you enter **_regex** without specifying the regex itself, AND the tests WorldWeaver will go through **ALL** the Attribute Elements you have Tagged with **!_regex** and will run a regex test on them. See [this topic](#The%20Regex%20Command).","type":"text/markdown","created":"20250614083141727","modified":"20250614083350176","tags":"[[Current Admin Commands]] databundle","revision":"0","bag":"default"}
 ,
 {"title":"_regex (regular expression)>>(tests)","text":"```\n _regex (regular expression)>%gt;(test1|test2|test3|...) : Lets you test a regular expression against the test(s) you specify \n```","type":"text/markdown","created":"20250614080552654","modified":"20250614080647515","tags":"[[Current Admin Commands]] databundle","revision":"0","bag":"default"}
+,
+{"created":"20250730181905670","text":"```\n _room : Describes the current state of the room the Player is in.\n```","title":"_room","type":"text/markdown","modified":"20250730181929393","tags":"[[Current Admin Commands]] databundle","revision":"1","bag":"default"}
 ,
 {"title":"!_adminpass","text":"```\n!_adminpass\n```\n\nThis tag lets WorldWeaver know that the current **Attribute Element**'s **Output** is the game's *admin password*. See [Admin Tools Introduction](#Game%20Author%20Tools).","type":"text/markdown","created":"20250427075152944","modified":"20250608185922640","tags":"[[Special Function Tags]] databundle","revision":"0","bag":"default"}
 ,
@@ -1277,7 +1285,7 @@ Error message and password prompt
 ,
 {"title":"$:/status/UserName","text":"","revision":"1","bag":"default"}
 ,
-{"title":"$:/StoryList","created":"20250730085123576","text":"","list":"","modified":"20250730085132766","revision":"8","bag":"default"}
+{"title":"$:/StoryList","created":"20250730181831693","text":"","list":"","modified":"20250730181859634","revision":"16","bag":"default"}
 ,
 {"title":"$:/tags/ViewToolbar","created":"20240808064420023","list":"$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit [[Cocktail Tiddler]] $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/fold $:/core/ui/Buttons/fold-bar $:/PSaT/button/copy-text $:/PSaT/button/copy-title $:/PSaT/button/copy-title-link $:/PSaT/button/copy-title-transclude $:/plugins/danielo515/encryptTiddler/crypt-button $:/core/ui/Buttons/close","modified":"20240828182931010","revision":"0","tags":"configbundle $:/tags/Commander/Working","type":"text/vnd.tiddlywiki","bag":"default"}
 ,
@@ -1593,7 +1601,7 @@ Error message and password prompt
 ,
 {"title":"Manager","created":"20240125075247145","masquerading":"$:/Manager","modified":"20240620065653736","revision":"0","tags":"[[Fav: Masquerades]] bundle01","type":"text/vnd.tiddlywiki","bag":"default"}
 ,
-{"created":"20250730085139354","text":"You can also create or edit macros manually. Below is an example of a macro from the DarkWorld game:\n\n```\n{macro, key=man, output=put usb in computer|~|down|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }\n```\n\nThis macro can be called (if you are in **admin mode**) using:\n```\n_macro man\n```\n\nAnd each command it calls is separated by **|~|** so if you have an existing macro and want to manually add steps to it simply add the commands with the separator between them. In the macro above the **down** command had to be manually edited because I changed the syntax from **use ramp** to **down** which caused the macro to not work anymore.\n\nThe **key** property serves as the macro's name and the **output** are the macro's steps.","tags":"Macros databundle","type":"text/markdown","title":"Manually Editing Macros","modified":"20250730085550151","revision":"1","bag":"default"}
+{"title":"Manually Editing Macros","text":"You can also create or edit macros manually. Below is an example of a macro from the DarkWorld game:\n\n```\n{macro, key=man, output=put usb in computer|~|down|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }\n```\n\nThis macro can be called (if you are in **admin mode**) using:\n```\n_macro man\n```\n\nAnd each command it calls is separated by **|~|** so if you have an existing macro and want to manually add steps to it simply add the commands with the separator between them. In the macro above the **down** command had to be manually edited because I changed the syntax from **use ramp** to **down** which caused the macro to not work anymore.\n\nThe **key** property serves as the macro's name and the **output** are the macro's steps.","type":"text/markdown","created":"20250730085139354","modified":"20250730085550151","tags":"Macros databundle","revision":"0","bag":"default"}
 ,
 {"title":"Markdown Formatting","text":"You can use a somewhat customized form of Markdown in your Output Field values (usually Message Element Outputs).\n\n> **Note:**\\\nIf you aren't familiar with Markdown, read [this article](https://www.markdownguide.org/getting-started/).\n\n## WorldWeaver Markdown Guide\n```\n## Heading 2 ##\n### Heading 3 ###\n#### Heading 4 ####\n\nNormal text... #[#ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800] colorful text with spaces #... and normal text again.\n\n**Bold text**\n*Italic text*\n\nHorizontal line:\n---\n\n* List item 1\n* List item 2\n\n1. Numbered 1\n1. Numbered 2\n\n^^ Indented text.\nAnd some more indented text.\nAnd even more.\n\nBut now no more, because there is a blank line separating it.\n\n|Col 1|Col 2|\n|:---|---:|\n|This is a table|Else|\n|And|Another|\n\nAnd some @#ff8800|colorful@ text.\n\nImages:\\\n![alternate text](https://worldweaver.infinityfreeapp.com/sword.jpg)\n```","type":"text/markdown","created":"20250613074347792","modified":"20250722062713843","tags":"[[Output Fields]] databundle","revision":"0","bag":"default"}
 ,
