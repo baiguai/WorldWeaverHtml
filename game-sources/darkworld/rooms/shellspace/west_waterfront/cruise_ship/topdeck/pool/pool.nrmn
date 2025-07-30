@@ -2,13 +2,22 @@
     {enter_message
         output={@
 You are in the pool area.
+Children and adults are bobbing in the pool.
+Overhead there are numerous water slides filled with people
+screaming as they shoot down the twisting tubes.
+
+There are a couple of hot tubs in this area, filled with
+adults conversing with one another.
         }
     }
 
     {look
         {message
             output={@
-You look around, you are in the pool area.
+You look around, you are in the pool area
+and the various water slides overhead.
+
+Scattered throughout are a couple of hot tubs.
             }
         }
     }

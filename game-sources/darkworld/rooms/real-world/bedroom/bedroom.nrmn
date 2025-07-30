@@ -14,6 +14,20 @@ You look around. You are in your bedroom.
     }
 
 
+    {hint
+        {message
+            output={@
+You have the coveted USB stick, you can try putting it in your computer.
+            }
+        }
+    }
+
+
 
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((hint))
+        {act, logic=hint, tags=!_type|room }
+    }
 }

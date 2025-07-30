@@ -2,6 +2,7 @@
     Look
         {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look|look around|I look around }
         {attrib, tags=x_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip$, logic=x the chip|x chip|examine the chip|examine chip }
         {attrib, tags=x_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
