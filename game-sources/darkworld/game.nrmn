@@ -43,4 +43,39 @@ A USB stick from Perihelion.
 
         }
     }
+
+    {attrib, output=15, tags=currenthour }
+    {attrib, output=0, tags=currentminute|!_isminutes }
+    {time
+        {message
+            output={@
+                Current Time:
+                <<[game]((currenthour))>>:<<[game]((currentminute))>>
+            }
+        }
+    }
+    {attrib, output=20, tags=nighthour }
+    {attrib, output=6, tags=dayhour }
+    {attrib, output=0, tags=totaldays }
+    {days
+        {message
+            output={@
+                Days in Shellspace:
+                <<[game]((totaldays))>>
+            }
+        }
+    }
+    {attrib, output=0, tags=missiondays }
+    {attrib, output=true, tags=isday }
+    {day
+        {message
+            output={@
+                <?[game]((isday)) = 'true'?>
+It is day time.
+                <else>
+It is night time.
+                </?>
+            }
+        }
+    }
 }
