@@ -257,6 +257,7 @@
                 const addNoteTag = "!_add";
                 const deleteNoteTag = "!_delete";
                 const notesNoteTag = "!_notes";
+                const isMinutesTag = "!_isminutes";
 
         // Classes
             const gameOutput = {
@@ -2053,6 +2054,11 @@
                     doAdminRoomDesc();
                     gameOutput.MatchMade = true;
                     return;
+
+                case command.startsWith("_game") && adminMode:
+                    doAdminGameDesc();
+                    gameOutput.MatchMade = true;
+                    return;
             }
         }
         function showAdminHelp() {
@@ -2229,6 +2235,11 @@
             const room = getCurrentRoom();
             gameOutput.Output = describeChildren(room, "");
         }
+        function doAdminGameDesc() {
+            const game = getGame();
+            gameOutput.Output = describeChildren(game, "");
+
+        }
         function doAdminObjectDesc(objId) {
             const obj = getElementByKey(objId);
             gameOutput.Output = describeChildren(obj, "");
@@ -2391,6 +2402,9 @@
 
             if (tagsContain(currentElement.Tags, typeTag) &&
                 currentElement.Logic !== "") {
+                if (tagsContain(currentElement.Tags, "game")) {
+                    parseCustomElement(getGame(), getGame(), currentElement.Logic, false);
+                }
                 if (tagsContain(currentElement.Tags, "room")) {
                     parseCustomElement(getCurrentRoom(), getCurrentRoom(), currentElement.Logic, false);
                 }
@@ -2673,9 +2687,6 @@
 
                 -- special values --
                 [children]                  Returns the child count of the [self] element
-                [isday]                     Returns true if it is 'day time'
-                [missiondays]               Displays how many days the player has been on the current mission (If any)
-                [totaldays]                 Total in-game days that have passed
                 rdm_<random expression>     Generates a random value every time it is called
                 spn_<random expression>     Generates a random value when the Element is spawned
 
@@ -2812,7 +2823,11 @@
                 case "logic":
                     return curElem.Logic;
                 case "output":
-                    return curElem.Output;
+                    if (tagsContain(curElem.Tags, isMinutesTag) && !isNaN(curElem.Output) && parseInt(curElem.Output) < 10) {
+                        return "0" + curElem.Output;
+                    } else {
+                        return curElem.Output;
+                    }
                 case "parent":
                     return curElem.ParentKey;
                 case "tags":
@@ -3008,6 +3023,12 @@
                 case "<>":
                     return val1 > val2 && val1 < val2;
                 case "=":
+                    if (!isNaN(val1)) {
+                        val1 = `'${val1}'`;
+                    }
+                    if (!isNaN(val2)) {
+                        val2 = `'${val2}'`;
+                    }
                     return val1.replaceAll("'", "") === val2.replaceAll("'", "");
                 case ">":
                     return val1 > val2;
