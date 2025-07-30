@@ -64,4 +64,20 @@ You go north.
             }
         }
     }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_adults, tags=[player]
+            output={@
+You go south.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=cruise_top_bar, tags=[player]
+            output={@
+You go east.
+            }
+        }
+    }
 }

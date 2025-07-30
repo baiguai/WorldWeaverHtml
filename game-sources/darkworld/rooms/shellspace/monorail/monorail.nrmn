@@ -49,7 +49,7 @@ There is an escalator going down.
 
 
 
-    {input, syntax=[tplt_syntax]((down_escalator))
+    {input, syntax=[tplt_syntax]((go_down))
         {move, logic=shellspace_port, tags=[player]
             output={@
 You descend the escalator into the port.

@@ -67,7 +67,7 @@ and a moving ramp going down.
         {act, logic=x_screens, tags=!_type|room }
     }
 
-    {input, syntax=[tplt_syntax]((up_escalator))
+    {input, syntax=[tplt_syntax]((go_up))
         {move, logic=monorail_port, tags=[player]
             output={@
 You ascend the escalator.
@@ -75,7 +75,7 @@ You ascend the escalator.
         }
     }
 
-    {input, syntax=[tplt_syntax]((down_ramp))
+    {input, syntax=[tplt_syntax]((go_down))
         {move, logic=street_vice_port, tags=[player]
             output={@
 You step onto the ramp and it descends into darkness.

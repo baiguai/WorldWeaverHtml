@@ -1,0 +1,30 @@
+{object, key=invite_chip, name=Chip
+    {attrib, output=false, tags=moved }
+    {enter_message
+        output={@
+You see a chip.
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'true'
+                and
+                ?[self]parent = [room]
+            }
+        }
+    }
+
+    {examine_invite_chip
+        {message
+            output={@
+You examine the chip.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_chip))
+        {act, logic=examine_invite_chip, tags=!_type|self }
+    }
+}

@@ -38,7 +38,7 @@ And one going southeast.
     {inject, logic=/look.inj }
 
 
-    {input, syntax=[tplt_syntax]((up_ramp))
+    {input, syntax=[tplt_syntax]((go_up))
         {move, logic=shellspace_port, tags=[player]
             output={@
 You step on the ramp and it returns you to the port.

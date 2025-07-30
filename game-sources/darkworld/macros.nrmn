@@ -1,2 +1,3 @@
 {macro, key=char, output=put usb in computer|~|take ramp|~|greet character }
-{macro, key=crs, output=put usb in computer|~|take ramp|~|w|~|w|~|i need a ticket|~|yes|~|s }
+{macro, key=crs, output=put usb in computer|~|down|~|w|~|w|~|i need a ticket|~|yes|~|s }
+{macro, key=man, output=put usb in computer|~|down|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }

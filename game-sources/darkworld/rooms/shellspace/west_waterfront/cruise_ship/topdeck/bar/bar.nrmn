@@ -1,0 +1,58 @@
+{room, key=cruise_top_bar, name=The Bar
+    {enter_message
+        output={@
+You approach the bar.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the bar.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+North, the pool and hot tubs are situated here.
+West, top deck, railing.
+South, is the adults-only sunbathing area.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=cruise_top_pool, tags=[player]
+            output={@
+You go north.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=cruise_top_deck, tags=[player]
+            output={@
+You go west.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_adults, tags=[player]
+            output={@
+You go south.
+            }
+        }
+    }
+}
