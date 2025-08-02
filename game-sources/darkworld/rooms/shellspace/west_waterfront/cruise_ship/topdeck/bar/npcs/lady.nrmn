@@ -1,0 +1,29 @@
+{npc, key=top_deck_lady, name=Lady, parent=cruise_top_bar
+    {enter_message
+        output={@
+You see a lady sitting at the bar.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a lady at the bar.
+            }
+        }
+    }
+
+    {x_woman
+        {message
+            output={@
+You examine the woman...
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_woman))
+        {act, logic=x_woman, tags=!_type|self }
+    }
+}

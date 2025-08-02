@@ -1,0 +1,31 @@
+{npc, key=top_deck_bartender, name=Bartender, parent=cruise_top_bar
+    {attrib, output=greet, tags=topic }
+
+    {enter_message
+        output={@
+There is a bartender standing behind the bar.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see the bartender.
+            }
+        }
+    }
+
+    {drink
+        {message
+            output={@
+You order a drink...
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((conv_drink))
+        {act, logic=drink, tags=!_type|self }
+    }
+}

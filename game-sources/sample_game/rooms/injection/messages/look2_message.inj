@@ -1,0 +1,13 @@
+To see how this works - look at the 'injection' folder in the 'rooms'
+folder of the sample game.
+
+AND if you are seeing this text, you can see that injections can be
+nested. So one injection file can contain a reference to another one
+(absolute, or relative to the injection file that is pointing to the
+other injection file).
+
+And unlike other Elements Injection Elements can be placed anywhere
+as long as it's on its own line in your script file. Injections are
+handled before any other Element processing is done so you can
+place injection Elements inside Message Outputs or other areas that
+would normally be problematic.

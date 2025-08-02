@@ -1,1 +1,2 @@
 {macro, key=tr01, output=l|~|coin|~|take coin|~|home|~|tests|~|home }
+{macro, key=ft, output=fight|~|push button }
