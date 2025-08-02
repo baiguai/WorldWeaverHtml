@@ -127,6 +127,71 @@
                 cursor: pointer;
                 text-decoration: underline;
             }
+
+
+            @keyframes attack-lunge {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(80px); }
+                100% { transform: translateX(0); }
+                25%  { filter: drop-shadow(0 0 12px yellow); }
+                50%  { filter: drop-shadow(0 0 6px yellow); }
+            }
+            
+            @keyframes enemy-lunge {
+                0% { transform: translateX(0); }
+                50% { transform: translateX(-80px); }
+                100% { transform: translateX(0); }
+                25%  { filter: drop-shadow(0 0 12px yellow); }
+                50%  { filter: drop-shadow(0 0 6px yellow); }
+            }
+            
+            /* Flash effect for being hit */
+            @keyframes hit-flash {
+              0%   { filter: none; }
+              25%  { filter: drop-shadow(0 0 12px red); }
+              50%  { filter: drop-shadow(0 0 6px red); }
+              100% { filter: none; }
+            }
+            
+            .hit {
+              animation: hit-flash 0.3s ease;
+            }
+            
+            /* Screen shake effect */
+            @keyframes shake {
+              0%   { transform: translate(0, 0); }
+              20%  { transform: translate(-3px, 2px); }
+              40%  { transform: translate(2px, -2px); }
+              60%  { transform: translate(-2px, 1px); }
+              80%  { transform: translate(1px, -1px); }
+              100% { transform: translate(0, 0); }
+            }
+            
+            .shake {
+              animation: shake 0.2s ease;
+            }
+            
+            @keyframes miss-dodge {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+            
+            .attack {
+                animation: attack-lunge 0.3s ease;
+            }
+            
+            .enemy-attack {
+                animation: enemy-lunge 0.3s ease;
+            }
+            
+            .hit {
+                animation: hit-flash 0.3s ease;
+            }
+            
+            .miss {
+                animation: miss-dodge 0.3s ease;
+            }
         </style>
     <!-- End Styles -->
 </head>
@@ -482,12 +547,17 @@
             let fgColor = getTarget(game, "[game]((!_ui_foreground))");
             let bgColor = getTarget(game, "[game]((!_ui_background))");
 
-            document.body.style.backgroundColor = bgColor.Output;
-            document.getElementById("input-container").style.backgroundColor = bgColor.Output;
-            document.getElementById("input").style.backgroundColor = bgColor.Output;
-            document.body.style.color = fgColor.Output;
-            document.getElementById("input-container").style.color = fgColor.Output;
-            document.getElementById("input").style.color = fgColor.Output;
+            if (bgColor !== undefined && bgColor !== null) {
+                document.body.style.backgroundColor = bgColor.Output;
+                document.getElementById("input-container").style.backgroundColor = bgColor.Output;
+                document.getElementById("input").style.backgroundColor = bgColor.Output;
+            }
+
+            if (fgColor !== undefined && fgColor !== null) {
+                document.body.style.color = fgColor.Output;
+                document.getElementById("input-container").style.color = fgColor.Output;
+                document.getElementById("input").style.color = fgColor.Output;
+            }
         }
 
         function fixFolders() {
@@ -786,6 +856,13 @@
             input.focus();
         }
 
+        function animateOnce(el, className, duration = 400) {
+          el.classList.add(className);
+          setTimeout(() => {
+            el.classList.remove(className);
+          }, duration);
+        }
+
         function attackEnemy() {
             // Ensure the player can actually hit the enemy
             // But this resets any time the player hits the enemy,
@@ -795,6 +872,10 @@
                 enemyArmorAdjust--;
                 currentFightRound = 0;
             }
+
+            const playerEl = document.getElementById("player-sprite");
+            const enemyEl = document.getElementById("enemy-sprite");
+            animateOnce(playerEl, "attack");
 
             let msg = document.getElementById("fight-message");
             let enemyLifeEl = document.getElementById("enemy-life");
@@ -829,13 +910,13 @@
 
             currentLife -= damage;
 
-            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+            if (isNaN(currentLife)) {
                 currentLife = 0;
             }
 
             if (currentLife <= 0) {
+                animateOnce(enemyEl, "hit");
                 enemyLifeEl.textContent = "0";
-                alert(killMsg);
 
                 let enemy = getElementByKey(currentEnemy.ElementKey);
                 enemy.ParentKey = "limbo";
@@ -843,14 +924,19 @@
 
                 currentEnemy = "";
 
-                exitFight();
+                msg.innerHTML = killMsg;
+                setTimeout(() => {
+                    exitFight();
+                }, 4000);
             } else {
+                animateOnce(enemyEl, "hit");
+                animateOnce(document.getElementById("fight-screen"), "shake");
                 enemyLifeEl.textContent = currentLife.toString();
 
                 msg.innerHTML = hitMsg;
                 setTimeout(() => {
                     attackPlayer();
-                }, 2000); // 1 second delay
+                }, 1000);
             }
         }
 
@@ -862,6 +948,11 @@
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
             const playerHitScore = getHitScore(getPlayer());
             const player = getPlayer();
+
+            const playerEl = document.getElementById("player-sprite");
+            const enemyEl = document.getElementById("enemy-sprite");
+
+            animateOnce(enemyEl, "enemy-attack");
 
             const hitMsg = getChildMessageByTag(player, hitPlayerMsgTag, "You have been hit.");
             const missMsg = getChildMessageByTag(currentEnemy, missPlayerMsgTag, "The attack on you has failed.");
@@ -885,7 +976,7 @@
             let lifeStat = getChildByTag(player, lifeTag);
             lifeStat.Output = currentLife;
 
-            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+            if (isNaN(currentLife)) {
                 currentLife = 0;
             }
 
@@ -896,6 +987,8 @@
 
                 exitFight();
             } else {
+                animateOnce(playerEl, "hit");
+                animateOnce(document.getElementById("fight-screen"), "shake");
                 playerLifeEl.textContent = currentLife.toString();
             }
         }
