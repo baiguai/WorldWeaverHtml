@@ -4,8 +4,7 @@
 You look around. You are in the injection room.
 This demonstrates the power of building your games in script versus using the graphical builder tool.
 
-To see how this works - look at the 'injection' folder in the 'rooms'
-folder of the sample game.
+{inject, logic=./look2_message.inj }
         }
     }
 }

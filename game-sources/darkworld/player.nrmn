@@ -34,4 +34,8 @@
             {attribute, output=[player], tags=target }
         }
     }
+
+
+
+    {attrib, output=false, tags=drunk }
 }

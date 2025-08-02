@@ -1,4 +1,6 @@
 {room, key=cruise_top_bar, name=The Bar
+    {attrib, output=chat, tags=topic }
+
     {enter_message
         output={@
 You approach the bar.

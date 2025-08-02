@@ -1,6 +1,6 @@
 {object, key=tplt_syntax
     Look
-        {attrib, tags=look|!_regex, output=\b(l|look|look around)\b, logic=l|look around|you look around the room }
+        {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look around|I look around the room }
         {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? table(s)?$, logic=x the table|x tables|examine the tables }
         {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }
 

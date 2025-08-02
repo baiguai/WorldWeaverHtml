@@ -73,8 +73,16 @@
         {logic
             logic={@
                 ?[game]((currenthour)) >= [game]((nighthour))
-                and
-                ?[game]((currenthour)) <= [game]((dayhour))
+            }
+        }
+
+        {set, logic=[game]((isday)), output=false }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currenthour)) < [game]((dayhour))
             }
         }
 
@@ -86,7 +94,7 @@
             logic={@
                 ?[game]((currenthour)) >= [game]((dayhour))
                 and
-                ?[game]((currenthour)) <= [game]((nighthour))
+                ?[game]((currenthour)) < [game]((nighthour))
             }
         }
 

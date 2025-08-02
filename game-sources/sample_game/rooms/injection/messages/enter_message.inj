@@ -5,5 +5,8 @@ as well as relative path injection.
 
 To see how this works - look at the 'injection' folder in the 'rooms'
 folder of the sample game.
+
+This message is shown via an injection file. To see all of the
+injected messages try the **look** or **l** command.
     }
 }
