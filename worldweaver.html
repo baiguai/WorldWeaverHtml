@@ -2121,19 +2121,28 @@
                     return;
 
                 case command.startsWith("_regex ") && adminMode:
-                    output.innerHTML = "";
-                    doAdminRegexTest(command.replace("_regex ", ""));
-                    gameOutput.MatchMade = true;
-                    return;
-
                 case command.startsWith("_regex") && adminMode:
-                    const regexAttribs = database.filter(item => tagsContain(item.Tags, regexTag) && item.logic !== "");
+                    const filt = command.replace ("_regex ", "");
+                    function matchesFilters(item) {
+                        return tagsContain(item.Tags, regexTag) &&
+                               item.Tags !== "" &&
+                               (filt === "" || (
+                                       item.Tags.includes(filt) ||
+                                       item.Output.includes(filt)
+                                   )
+                               );
+                    }
+                    
+                    const regexAttribs = database.filter(matchesFilters);
                     if (regexAttribs.length === 0) {
                         return;
                     }
                     output.innerHTML = "";
+                    let cleaned = "";
                     for (const regexAttrib of regexAttribs) {
-                        doAdminRegexTest(`${regexAttrib.Output}>>${regexAttrib.Logic}`);
+                        cleaned = regexAttrib.Tags.replace(regexTag, "");
+                        cleaned = cleaned.replace(/^(\|)|(\|)$/g, "");
+                        doAdminRegexTest(cleaned, `${regexAttrib.Output}>>${regexAttrib.Logic}`);
                     }
                     gameOutput.MatchMade = true;
                     return;
@@ -2166,8 +2175,8 @@
             helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
-            helpText += "<li><strong>_regex (regular expression)&gt;%gt;(test1|test2|test3|...)</strong> : Lets you test a regular expression against the test(s) you specify</li>";
-            helpText += "<li><strong>_regex</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_regex (optional filter)</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_game</strong> : Describes the current state of the Game Element.</li>";
             helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
             output.innerHTML = helpText;
@@ -2295,7 +2304,7 @@
 
             output.innerHTML = lsOutput;
         }
-        function doAdminRegexTest(command) {
+        function doAdminRegexTest(tags, command) {
             const lastIndex = command.lastIndexOf(">>");
             if (lastIndex === -1) return;
 
@@ -2312,7 +2321,11 @@
                 return;
             }
 
-            output.innerHTML += `<strong>Regex Tests for:  ${regex}</strong>${br}${br}`;
+            if (tags !== "") {
+                tags = `: <em>${tags}</em>, regex`;
+            }
+
+            output.innerHTML += `<strong>Regex Tests for${tags}:  ${regex}</strong>${br}${br}`;
             let result = "";
             for (const test of tcs) {
                 if (regexCheck(regex, test)) {

@@ -280,6 +280,7 @@
                 const addNoteTag = "!_add";
                 const deleteNoteTag = "!_delete";
                 const notesNoteTag = "!_notes";
+                const isMinutesTag = "!_isminutes";
 
         // Classes
             const gameOutput = {
@@ -481,7 +482,7 @@
         window.onload = function() {
             gameInterface.style.display = "flex";
 
-            
+            setupUi();            
 
             fixFolders();
             doOnStartInjection();
@@ -498,6 +499,24 @@
         };
 
 
+        function setupUi() {
+            let game = getGame();
+
+            let fgColor = getTarget(game, "[game]((!_ui_foreground))");
+            let bgColor = getTarget(game, "[game]((!_ui_background))");
+
+            if (bgColor !== undefined && bgColor !== null) {
+                document.body.style.backgroundColor = bgColor.Output;
+                document.getElementById("input-container").style.backgroundColor = bgColor.Output;
+                document.getElementById("input").style.backgroundColor = bgColor.Output;
+            }
+
+            if (fgColor !== undefined && fgColor !== null) {
+                document.body.style.color = fgColor.Output;
+                document.getElementById("input-container").style.color = fgColor.Output;
+                document.getElementById("input").style.color = fgColor.Output;
+            }
+        }
 
         function fixFolders() {
             const folders = database.filter(item => item.ElementType === "folder");
@@ -795,6 +814,13 @@
             input.focus();
         }
 
+        function animateOnce(el, className, duration = 400) {
+          el.classList.add(className);
+          setTimeout(() => {
+            el.classList.remove(className);
+          }, duration);
+        }
+
         function attackEnemy() {
             // Ensure the player can actually hit the enemy
             // But this resets any time the player hits the enemy,
@@ -804,6 +830,10 @@
                 enemyArmorAdjust--;
                 currentFightRound = 0;
             }
+
+            const playerEl = document.getElementById("player-sprite");
+            const enemyEl = document.getElementById("enemy-sprite");
+            animateOnce(playerEl, "attack");
 
             let msg = document.getElementById("fight-message");
             let enemyLifeEl = document.getElementById("enemy-life");
@@ -838,13 +868,13 @@
 
             currentLife -= damage;
 
-            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+            if (isNaN(currentLife)) {
                 currentLife = 0;
             }
 
             if (currentLife <= 0) {
+                animateOnce(enemyEl, "hit");
                 enemyLifeEl.textContent = "0";
-                alert(killMsg);
 
                 let enemy = getElementByKey(currentEnemy.ElementKey);
                 enemy.ParentKey = "limbo";
@@ -852,14 +882,19 @@
 
                 currentEnemy = "";
 
-                exitFight();
+                msg.innerHTML = killMsg;
+                setTimeout(() => {
+                    exitFight();
+                }, 4000);
             } else {
+                animateOnce(enemyEl, "hit");
+                animateOnce(document.getElementById("fight-screen"), "shake");
                 enemyLifeEl.textContent = currentLife.toString();
 
                 msg.innerHTML = hitMsg;
                 setTimeout(() => {
                     attackPlayer();
-                }, 2000); // 1 second delay
+                }, 1000);
             }
         }
 
@@ -871,6 +906,11 @@
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
             const playerHitScore = getHitScore(getPlayer());
             const player = getPlayer();
+
+            const playerEl = document.getElementById("player-sprite");
+            const enemyEl = document.getElementById("enemy-sprite");
+
+            animateOnce(enemyEl, "enemy-attack");
 
             const hitMsg = getChildMessageByTag(player, hitPlayerMsgTag, "You have been hit.");
             const missMsg = getChildMessageByTag(currentEnemy, missPlayerMsgTag, "The attack on you has failed.");
@@ -894,7 +934,7 @@
             let lifeStat = getChildByTag(player, lifeTag);
             lifeStat.Output = currentLife;
 
-            if (isNaN(currentLife)) { // !@! TODO: why is this NaN??
+            if (isNaN(currentLife)) {
                 currentLife = 0;
             }
 
@@ -905,6 +945,8 @@
 
                 exitFight();
             } else {
+                animateOnce(playerEl, "hit");
+                animateOnce(document.getElementById("fight-screen"), "shake");
                 playerLifeEl.textContent = currentLife.toString();
             }
         }
@@ -2037,25 +2079,49 @@
                     return;
 
                 case command.startsWith("_regex ") && adminMode:
-                    output.innerHTML = "";
-                    doAdminRegexTest(command.replace("_regex ", ""));
-                    gameOutput.MatchMade = true;
-                    return;
-
                 case command.startsWith("_regex") && adminMode:
-                    const regexAttribs = database.filter(item => tagsContain(item.Tags, regexTag) && item.logic !== "");
+                    const filt = command.replace ("_regex ", "");
+                    function matchesFilters(item) {
+                        return tagsContain(item.Tags, regexTag) &&
+                               item.Tags !== "" &&
+                               (filt === "" || (
+                                       item.Tags.includes(filt) ||
+                                       item.Output.includes(filt)
+                                   )
+                               );
+                    }
+                    
+                    const regexAttribs = database.filter(matchesFilters);
                     if (regexAttribs.length === 0) {
                         return;
                     }
                     output.innerHTML = "";
+                    let cleaned = "";
                     for (const regexAttrib of regexAttribs) {
-                        doAdminRegexTest(`${regexAttrib.Output}>>${regexAttrib.Logic}`);
+                        cleaned = regexAttrib.Tags.replace(regexTag, "");
+                        cleaned = cleaned.replace(/^(\|)|(\|)$/g, "");
+                        doAdminRegexTest(cleaned, `${regexAttrib.Output}>>${regexAttrib.Logic}`);
                     }
+                    gameOutput.MatchMade = true;
+                    return;
+
+                case command.startsWith("_object ") && adminMode:
+                    doAdminObjectDesc(command.replace("_object ", ""));
                     gameOutput.MatchMade = true;
                     return;
 
                 case command.startsWith("_room") && adminMode:
                     doAdminRoomDesc();
+                    gameOutput.MatchMade = true;
+                    return;
+
+                case command.startsWith("_player") && adminMode:
+                    doAdminPlayerDesc();
+                    gameOutput.MatchMade = true;
+                    return;
+
+                case command.startsWith("_game") && adminMode:
+                    doAdminGameDesc();
                     gameOutput.MatchMade = true;
                     return;
             }
@@ -2072,8 +2138,9 @@
             helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
-            helpText += "<li><strong>_regex (regular expression)&gt;%gt;(test1|test2|test3|...)</strong> : Lets you test a regular expression against the test(s) you specify</li>";
-            helpText += "<li><strong>_regex</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_regex (optional filter)</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
+            helpText += "<li><strong>_game</strong> : Describes the current state of the Game Element.</li>";
+            helpText += "<li><strong>_player</strong> : Describes the current state of the Player Element.</li>";
             helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
             output.innerHTML = helpText;
@@ -2201,7 +2268,7 @@
 
             output.innerHTML = lsOutput;
         }
-        function doAdminRegexTest(command) {
+        function doAdminRegexTest(tags, command) {
             const lastIndex = command.lastIndexOf(">>");
             if (lastIndex === -1) return;
 
@@ -2218,7 +2285,11 @@
                 return;
             }
 
-            output.innerHTML += `<strong>Regex Tests for:  ${regex}</strong>${br}${br}`;
+            if (tags !== "") {
+                tags = `: <em>${tags}</em>, regex`;
+            }
+
+            output.innerHTML += `<strong>Regex Tests for${tags}:  ${regex}</strong>${br}${br}`;
             let result = "";
             for (const test of tcs) {
                 if (regexCheck(regex, test)) {
@@ -2234,11 +2305,25 @@
             const room = getCurrentRoom();
             gameOutput.Output = describeChildren(room, "");
         }
+        function doAdminGameDesc() {
+            const game = getGame();
+            gameOutput.Output = describeChildren(game, "");
+
+        }
+        function doAdminPlayerDesc() {
+            const player = getPlayer();
+            gameOutput.Output = describeChildren(player, "");
+
+        }
+        function doAdminObjectDesc(objId) {
+            const obj = getElementByKey(objId);
+            gameOutput.Output = describeChildren(obj, "");
+        }
         function describeChildren(parentElem, indentString) {
             let description = "";
             const spc = " ";
 
-            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name}${br}`;
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
             indentString += spc.repeat(3);
 
             for (const attrib of getChildrenByType(parentElem, "attribute")) {
@@ -2392,6 +2477,9 @@
 
             if (tagsContain(currentElement.Tags, typeTag) &&
                 currentElement.Logic !== "") {
+                if (tagsContain(currentElement.Tags, "game")) {
+                    parseCustomElement(getGame(), getGame(), currentElement.Logic, false);
+                }
                 if (tagsContain(currentElement.Tags, "room")) {
                     parseCustomElement(getCurrentRoom(), getCurrentRoom(), currentElement.Logic, false);
                 }
@@ -2674,9 +2762,6 @@
 
                 -- special values --
                 [children]                  Returns the child count of the [self] element
-                [isday]                     Returns true if it is 'day time'
-                [missiondays]               Displays how many days the player has been on the current mission (If any)
-                [totaldays]                 Total in-game days that have passed
                 rdm_<random expression>     Generates a random value every time it is called
                 spn_<random expression>     Generates a random value when the Element is spawned
 
@@ -2731,8 +2816,8 @@
                 return false;
             }
 
-            value1 = getExplicitValue(comparisons[0]);
-            value2 = getExplicitValue(comparisons[1]);
+            value1 = getExplicitValue(childElement, comparisons[0]);
+            value2 = getExplicitValue(childElement, comparisons[1]);
 
             if (value1 === "" && comparisons[0].startsWith("rdm_")) {
                 value1 = doRandomRoll(childElement, comparisons[0].replace("rdm_", ""));
@@ -2785,7 +2870,7 @@
 
             return "";
         }
-        function getExplicitValue(row) {
+        function getExplicitValue(curElement, row) {
             // Special 'explicit' values
             if (row.trim() === "[output]") {
                 return gameOutput.Output;
@@ -2794,6 +2879,8 @@
             if (row.startsWith("'") && row.endsWith("'")) {
                 return row.replaceAll("'", "");
             }
+
+            let value = getTarget(curElement, row);
             return "";
         }
         function getFieldValue(curElem, field) {
@@ -2813,7 +2900,11 @@
                 case "logic":
                     return curElem.Logic;
                 case "output":
-                    return curElem.Output;
+                    if (tagsContain(curElem.Tags, isMinutesTag) && !isNaN(curElem.Output) && parseInt(curElem.Output) < 10) {
+                        return "0" + curElem.Output;
+                    } else {
+                        return curElem.Output;
+                    }
                 case "parent":
                     return curElem.ParentKey;
                 case "tags":
@@ -2860,19 +2951,19 @@
 
             return "";
         }
-        function getTargets(childElement, row) {
-            if (row.startsWith("<<")) {
-                row = row.replace("<<", "").replace(">>", "");
+        function getTargets(childElement, relcode) {
+            if (relcode.startsWith("<<")) {
+                relcode = relcode.replace("<<", "").replace(">>", "");
             }
             let tgt = "";
-            tgt = getTargetById(childElement, row);
+            tgt = getTargetById(childElement, relcode);
 
             if (tgt === null) {
-                tgt = getTargetsByRelCode(childElement, row);
+                tgt = getTargetsByRelCode(childElement, relcode);
             }
 
-            if (row.endsWith("))")) {
-                const arr = row.split("((");
+            if (relcode.endsWith("))")) {
+                const arr = relcode.split("((");
                 if (arr.length === 2) {
                     const tag = arr[1].replace("))", "");
                     tgt = getChildrenByTag(tgt, tag);
@@ -2881,7 +2972,14 @@
 
             return Array.isArray(tgt) ? tgt : [tgt];
         }
+        function getTarget(childElement, relcode) {
+            const tgts = getTargets(childElement, relcode);
+            return Array.isArray(tgts) ? tgts[0] : tgts;
+        }
         function getTargetById(currentElement, row) {
+            if (row.startsWith("[game]")) {
+                return getGame();
+            }
             if (row.startsWith("[player]")) {
                 return getPlayer();
             }
@@ -3002,6 +3100,12 @@
                 case "<>":
                     return val1 > val2 && val1 < val2;
                 case "=":
+                    if (!isNaN(val1)) {
+                        val1 = `'${val1}'`;
+                    }
+                    if (!isNaN(val2)) {
+                        val2 = `'${val2}'`;
+                    }
                     return val1.replaceAll("'", "") === val2.replaceAll("'", "");
                 case ">":
                     return val1 > val2;
@@ -3267,6 +3371,18 @@
                     curValue = newValue;
             }
 
+            switch (true) {
+                case (newValue === "[player]"):
+                    curValue = getPlayer().ElementKey;
+                    break;
+                case (newValue === "[room]"):
+                    curValue = getCurrentRoom().ElementKey;
+                    break;
+                case (newValue === "[self]"):
+                    curValue = getSelf(currentElement).ElementKey;
+                    break;
+            }
+
             switch(fieldName.toLowerCase()) {
                 case "active":
                     currentElement.Active = curValue;
@@ -3281,6 +3397,7 @@
                     currentElement.Name = curValue;
                     break;
                 case "parentkey":
+                case "parent":
                     currentElement.ParentKey = curValue;
                     break;
                 case "syntax":
