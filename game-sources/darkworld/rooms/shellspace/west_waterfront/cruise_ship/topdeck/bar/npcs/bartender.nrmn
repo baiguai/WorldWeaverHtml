@@ -15,17 +15,94 @@ You see the bartender.
         }
     }
 
+    {ex_bartender
+        {message
+            output={@
+You chat with the bartender.
+He asks if you would like to buy a drink, it costs 5 credits.
+            }
+        }
+
+        {set, logic=[self]((topic)), output=drink }
+    }
+
     {drink
         {message
             output={@
-You order a drink...
+You order a drink.
+After a couple of minutes the bartender sets a cocktail glass
+in front of you.
             }
         }
+
+        {set, logic=[player]((credits)), output=-=5 }
+        {set, logic=[player]((drink_count)), output=++ }
     }
 
 
 
     {input, syntax=[tplt_syntax]((conv_drink))
         {act, logic=drink, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((conv_bartender))
+        {act, logic=ex_bartender, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'greet'
+            }
+            output={@
+He stops polishing the glass in his hand.
+"Can I get anything for you?"
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=drink, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[player]((credits)) >= '5'
+            }
+            output={@
+    
+It appears you don't have enough credits to buy a drink.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'drink'
+            }
+            output={@
+"What can I get for you?"
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((conv_drink))
+        {act, logic=drink, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[player]((credits)) >= '5'
+            }
+            output={@
+    
+It appears you don't have enough credits to buy a drink.
+            }
+        }
+    }
+
+
+    {dev_note, tags=ToDo
+    	output={@
+Be sure to do drunk checks after this encounter.
+And add the drunk count down to the global element.
+    	}
     }
 }

@@ -10,9 +10,9 @@
     {attrib, output=[rand:<<[self]((money_dice))>>|9], tags=credits_dice }
 
     {attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }
-    {attrib, output=init_[player]((life)), tags=maxlife }
+    {attrib, output=init_[player]((!_life)), tags=maxlife }
     {attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }
-    {attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }
+    {attrib, name=Hit Score, output=init_[self]((armor)), tags=!_hitscore }
     {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
     {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }
@@ -21,6 +21,11 @@
     {attrib, output=0, tags=!_damageadj }
 
     {attrib, name=Experience, key=experience, output=0, tags=experience|stats }
+
+    {attrib, output=0, tags=drink_count }
+    {attrib, output=3, tags=drunk_count }
+    {attrib, output=0, tags=drunk_round }
+    {attrib, output=10, tags=drunk_rounds }
 
     {attrib, output=5, tags=heal_rounds }
     {attrib, output=0, tags=cur_heal_round }

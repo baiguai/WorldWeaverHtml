@@ -11,6 +11,13 @@
 
 You see a shifty looking character on the corner, south of where you are,
 trying to sell people switchblades.
+
+HINT:
+* First 'examine' the shifty character: x shifty character
+* There is a conversation flow - first respond to his initial question. Then...
+* Ask him where to go. - or
+* Ask him about various topics you would like to pursue: piracy, let him know you need a monorail ticket. - or
+* Tell him you need a monorail ticket.
         }
     }
 
@@ -30,7 +37,7 @@ You see a shifty character.
 HINT:
 * There is a conversation flow - first respond to his initial question.
 * Ask him where to go.
-* Ask him about various topics you would like to pursue.
+* Ask him about various topics you would like to pursue: piracy, let him know you need a monorail ticket.
 * Tell him you need a monorail ticket.
 
 
