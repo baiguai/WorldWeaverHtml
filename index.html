@@ -2115,6 +2115,11 @@
                     gameOutput.MatchMade = true;
                     return;
 
+                case command.startsWith("_player") && adminMode:
+                    doAdminPlayerDesc();
+                    gameOutput.MatchMade = true;
+                    return;
+
                 case command.startsWith("_game") && adminMode:
                     doAdminGameDesc();
                     gameOutput.MatchMade = true;
@@ -2135,6 +2140,7 @@
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
             helpText += "<li><strong>_regex (optional filter)</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
             helpText += "<li><strong>_game</strong> : Describes the current state of the Game Element.</li>";
+            helpText += "<li><strong>_player</strong> : Describes the current state of the Player Element.</li>";
             helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
             output.innerHTML = helpText;
@@ -2302,6 +2308,11 @@
         function doAdminGameDesc() {
             const game = getGame();
             gameOutput.Output = describeChildren(game, "");
+
+        }
+        function doAdminPlayerDesc() {
+            const player = getPlayer();
+            gameOutput.Output = describeChildren(player, "");
 
         }
         function doAdminObjectDesc(objId) {
@@ -2805,8 +2816,8 @@
                 return false;
             }
 
-            value1 = getExplicitValue(comparisons[0]);
-            value2 = getExplicitValue(comparisons[1]);
+            value1 = getExplicitValue(childElement, comparisons[0]);
+            value2 = getExplicitValue(childElement, comparisons[1]);
 
             if (value1 === "" && comparisons[0].startsWith("rdm_")) {
                 value1 = doRandomRoll(childElement, comparisons[0].replace("rdm_", ""));
@@ -2859,7 +2870,7 @@
 
             return "";
         }
-        function getExplicitValue(row) {
+        function getExplicitValue(curElement, row) {
             // Special 'explicit' values
             if (row.trim() === "[output]") {
                 return gameOutput.Output;
@@ -2868,6 +2879,8 @@
             if (row.startsWith("'") && row.endsWith("'")) {
                 return row.replaceAll("'", "");
             }
+
+            let value = getTarget(curElement, row);
             return "";
         }
         function getFieldValue(curElem, field) {
