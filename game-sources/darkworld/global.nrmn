@@ -30,6 +30,30 @@
     // -------------------------------------------------------------------------
 
 
+    // Drunk Logic
+    // -------------------------------------------------------------------------
+    {act
+        {logic
+            logic={@
+                ?[player]((drink_count)) >= [player]((drunk_count))
+            }
+        }
+        {set, logic=[player]((drunk_round)), output=++ }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[player]((drunk_round)) >= [player]((drunk_rounds))
+            }
+        }
+
+        {set, logic=[player]((drink_count)), output=0 }
+        {set, logic=[player]((drunk_round)), output=0 }
+    }
+    // -------------------------------------------------------------------------
+
+
     // Time Passage
     // -------------------------------------------------------------------------
     {input, syntax=(time)
