@@ -1,0 +1,38 @@
+{room, key=cruise_top_adults, name=Adults Only Area
+    {enter_message
+        output={@
+You are in the adults-only pool area on the cruise ship's top deck.
+There are several women lounging on chairs, topless and a few men
+in small speedos relaxing under the pulsating lights of the virtual
+sky above.
+Energetic dance music is playing over the large speakers that surround
+the lit up pool.
+
+Two couples are in the pool talking among themselves.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+Groups of adults are lounging on their chairs under the pulsating lights
+of the virtual sky.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=cruise_top_deck, tags=[player]
+            output={@
+You go north.
+            }
+        }
+    }
+}
