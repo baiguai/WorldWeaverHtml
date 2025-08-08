@@ -793,8 +793,8 @@
             }
             const player = getPlayer();
             const enemy = currentEnemy;
-            const lifeStat = getChildrenByTag(player, lifeTag)?.[0]?.Output || "0";
-            let enemyLifeStat = getChildrenByTag(enemy, lifeTag)?.[0]?.Output || "-1";
+            const lifeStat = getChildByTag(player, lifeTag)?.Output || "0";
+            let enemyLifeStat = getChildByTag(enemy, lifeTag)?.Output || "-1";
             document.getElementById("player-life").textContent = lifeStat;
             if (enemyLifeStat < 0)
             {
@@ -861,7 +861,7 @@
             enemyArmorAdjust = 0;
 
             const damage = getDamageValue(playerWeapon);
-            const damageAttribAdj = getChildrenByTag(getPlayer(), damageAdjustTag)?.[0] ?? null;
+            const damageAttribAdj = getChildByTag(getPlayer(), damageAdjustTag);
             if (damageAttribAdj !== null && Number(damageAttribAdj.Output)) {
                 damage = damage + Number(damageAttribAdj.Output);
             }
@@ -925,7 +925,7 @@
             msg.innerHTML = hitMsg;
 
             const damage = getDamageValue(enemyWeapon);
-            const damageAttribAdj = getChildrenByTag(currentEnemy, damageAdjustTag)?.[0] ?? null;
+            const damageAttribAdj = getChildByTag(currentEnemy, damageAdjustTag);
             if (damageAttribAdj !== null && Number(damageAttribAdj.Output)) {
                 damage = damage + Number(damageAttribAdj.Output);
             }
@@ -1144,7 +1144,7 @@
 
             function getArmedWeapon(parentElement)
             {
-                const armedAttrib = getChildrenByTag(parentElement, armedTag)?.[0] ?? null;
+                const armedAttrib = getChildByTag(parentElement, armedTag);
                 if (armedAttrib === null)
                 {
                     return;
@@ -1164,7 +1164,7 @@
 
             function getHitScore(parentElement)
             {
-                const armorAttrib = getChildrenByTag(parentElement, hitScoreTag);
+                const armorAttrib = getChildByTag(parentElement, hitScoreTag);
                 if (armorAttrib === null ||
                     armorAttrib.length !== 1)
                 {
@@ -1180,7 +1180,7 @@
                 {
                     return 1;
                 }
-                const damageAttrib = getChildrenByTag(armedWeapon, damageTag)?.[0] ?? null;
+                const damageAttrib = getChildByTag(armedWeapon, damageTag);
                 if (damageAttrib === null)
                 {
                     return 1;
@@ -2223,8 +2223,7 @@
         }
         function doAdminMacroRun(command) {
             testResults.length = 0;
-            macroRecording = false;
-            currentMacro = database.find(item => item.ElementKey === command.trim()) ?? null;
+            let specMacro = database.find(item => item.ElementKey === command.trim()) ?? null;
             if (currentMacro === null) {
                 output.innerHTML = `The specified macro: ${command.trim()} could not be found.`;
                 return;
@@ -2232,7 +2231,7 @@
 
             macroRunning = true;
 
-            for (const step of currentMacro.Output.split("|~|")) {
+            for (const step of specMacro.Output.split("|~|")) {
                 processInput(step);
             }
 
@@ -2411,7 +2410,7 @@
                 if (selfElement === null) {
                     return;
                 }
-                const enterMessage = getChildrenByTag(trv, enterTag)?.[0] ?? null;
+                const enterMessage = getChildByTag(trv, enterTag);
                 if (enterMessage === null) {
                     return;
                 }
