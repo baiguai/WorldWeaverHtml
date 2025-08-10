@@ -1,0 +1,17 @@
+{npc, name=Topless Robot, parent=cruise_top_adults
+    {enter_message
+        output={@
+
+You see a topless woman robot.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+There is a topless robot woman.
+            }
+        }
+    }
+}
