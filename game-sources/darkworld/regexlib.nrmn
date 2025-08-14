@@ -10,6 +10,7 @@
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
         {attrib, tags=x_bartender|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bartender\b, logic=examine the bartender|examine bartender|x the bartender|x bartender|x woman }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
+        {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
 
     Identifying
         {attrib, tags=knife_01_id|!_regex, output=(knife).*, logic=the knife|your knife|the knife }
