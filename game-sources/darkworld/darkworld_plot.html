@@ -112,13 +112,6 @@
   </style>
 <style type="text/css" id="operaUserStyle"></style></head>
 <body>
-  <div id="toolbar" style="display: none; height: 0px;">
-    <button onclick="addNode('Room')">Add Room</button>
-    <button onclick="addNode('Item/NPC')">Add Item/NPC</button>
-    <button onclick="addNode('Note')">Add Note</button>
-    <button onclick="startConnector()">Room Connector</button>
-    <button onclick="download()">Save</button>
-  </div>
   <div id="canvas" tabindex="0" style="transform: scale(1);"><div class="node" data-type="Bedroom" id="node-85571647-97d3-4cd3-b6cc-0855036d6e93" style="width: 550px; height: 260px; left: 40px; top: 200px; border-color: rgb(170, 170, 170); border-width: 1px;" draggable="false"><div class="node-header">Bedroom</div><textarea class="node-content" placeholder="Enter notes..." style="height: 80px;">- You've just received the final piece to hack into a virtual world.
 - Open the envelope, plug the USB into your computer.
 - Execute your 'plugin' app.</textarea><div class="dropzone" style="height: 530px;"><div class="node" data-type="Envelope" id="node-5452010d-a313-46aa-9fcd-d01d181b0ee2" style="width: 230px; height: 100px; left: 20px; top: 20px; border-color: rgb(170, 170, 170); border-width: 1px;" draggable="false"><div class="node-header">Envelope</div><textarea class="node-content" placeholder="Enter notes...">- Open
@@ -144,10 +137,28 @@ You can try again here.</textarea><div class="dropzone"></div></div></div>
     <button onclick="setZoom(zoom - 0.1)">Zoom Out</button>
   </div>
 
-  <div id="helpDialog" style="display: none; position: fixed; top: 20%; left: 50%; transform: translateX(-50%); background: rgb(34, 34, 34); color: white; border: 2px solid rgb(85, 85, 85); padding: 20px; z-index: 9999; font-family: monospace; max-width: 400px; text-align: left;">
+  <div id="helpDialog" style="
+      display: none;
+      position: fixed;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgb(34, 34, 34);
+      color: white;
+      border: 2px solid rgb(244, 243, 66);
+      padding: 20px;
+      z-index: 9999;
+      font-family: monospace;
+      max-width: 820px;
+      text-align: left;
+      box-shadow: rgb(0, 0, 0) 0px 0px 40px;">
     <h3>Key Bindings</h3>
-    <p>
-      </p><pre>a = Add a new node.
+    <p></p>
+    <table style="border-collapse: collapse; border: none; width: 100%;">
+        <tr>
+            <td style="vertical-align: top; padding-right: 10px;">
+                <pre>
+a = Add a new node.
 = = Duplicate current node.
 r = Rename node (change its type).
 u = Add a new link node.
@@ -166,7 +177,13 @@ K = Reduce selected node's height.
 l = Move selected node right.
 L = Increase selected node's width.
 &lt; = Move selected node left by half a step.
+&gt; = (while connecting) Creates a line pointed
+    from the first selected node to the second one.
 &gt; = Move selected node right by half a step.
+                </pre>
+            </td>
+            <td style="vertical-align: top; padding-left: 10px;">
+                <pre>
 ^ = Move selected node up by half a step.
 - = Move selected node down by half a step.
 z = Increase selected node's text area.
@@ -180,12 +197,20 @@ G = Scroll to the top left.
 p = Start snap (select the second node
     and hit Enter). The selected node will
     snap to the right of the second node.
-# = Sets a custom color for the node. Enter
-    an HTML HEX color value and hit Enter.
+# = Sets a custom color for the node.
+    OR manages existing color 'palettes'.
 / = Search and select a node.
+m&lt;letter&gt; = Set mark (A-Z, a-z).
+`&lt;letter&gt; = Go to mark (A-Z, a-z).
+m- = Remove mark.
 Escape = Deselect the current note's text field.
-      </pre>
-    <p></p>
+                </pre>
+            </td>
+        </tr>
+    </table>
+    <pre>
+       </pre>
+     <p></p>
     <p>Press ESC to close.</p>
   </div>
 
@@ -204,6 +229,110 @@ let snapping = false;
 let snapTarget = null;
 let zoom = 1;
 let dragging = false;
+
+// === VIM-style Marks ===
+let marks = {}; // { letter: nodeId }
+let markMode = false; // waiting for mark letter after 'm'
+let gotoMarkMode = false; // waiting for mark letter after '`'
+
+function setMark(letter) {
+  if (!selectedNode) return;
+  // Remove from any other node
+  Object.keys(marks).forEach(k => {
+    if (marks[k] === selectedNode.id) return; // same node, skip
+    if (marks[k] === selectedNode.id || marks[k] && document.getElementById(marks[k]) === selectedNode) {
+      // nothing
+    }
+  });
+  // Remove mark from any other node
+  Object.keys(marks).forEach(k => {
+    if (marks[k] === selectedNode.id) return;
+    if (marks[k] && marks[k] === selectedNode.id) delete marks[k];
+  });
+  // Also remove mark from other nodes if letter used
+  Object.keys(marks).forEach(k => {
+    if (k === letter) {
+      removeMarkBadge(document.getElementById(marks[k]));
+      delete marks[k];
+    }
+  });
+  // Assign
+  marks[letter] = selectedNode.id;
+  addMarkBadge(selectedNode, letter);
+}
+
+function removeMarkFromNode(node) {
+  if (!node) return;
+  // Find the letter for this node
+  let letterToRemove = null;
+  Object.keys(marks).forEach(letter => {
+    if (marks[letter] === node.id) {
+      letterToRemove = letter;
+    }
+  });
+  if (letterToRemove) {
+    delete marks[letterToRemove];
+    removeMarkBadge(node);
+  }
+}
+
+
+function gotoMark(letter) {
+  if (marks[letter]) {
+    const node = document.getElementById(marks[letter]);
+    if (node) setSelectedNode(node);
+  }
+}
+
+function addMarkBadge(node, letter) {
+  if (!node) return;
+  removeMarkBadge(node);
+
+  const bg = '#333';
+  const brdr = '#000';
+  const fg = '#fff';
+
+  const badge = document.createElement('div');
+  badge.className = 'mark-badge';
+  badge.textContent = letter;
+  badge.style.position = 'absolute';
+  badge.style.top = '2px';
+  badge.style.right = '2px';
+  badge.style.fontSize = '10px';
+  badge.style.fontWeight = 'bold';
+  badge.style.width = '14px';
+  badge.style.height = '14px';
+  badge.style.textAlign = 'center';
+  badge.style.lineHeight = '14px';
+  badge.style.borderRadius = '2px';
+  badge.style.border = '1px solid ' + brdr;
+  badge.style.background = bg;
+  badge.style.color = fg;
+  badge.style.zIndex = '3';
+  node.appendChild(badge);
+}
+
+function removeMarkBadge(node) {
+  if (!node) return;
+  const existing = node.querySelector('.mark-badge');
+  if (existing) existing.remove();
+}
+
+function restoreMarksFromDOM() {
+  const script = document.querySelector('script[data-marks]');
+  if (!script) return;
+  try {
+    marks = JSON.parse(script.textContent) || {};
+    Object.keys(marks).forEach(letter => {
+      const node = document.getElementById(marks[letter]);
+      if (node) addMarkBadge(node, letter);
+    });
+  } catch (e) {
+    console.warn('Could not parse saved marks:', e);
+  }
+}
+
+
 
 function setZoom(z) {
   zoom = Math.max(0.2, Math.min(z, 3));
@@ -315,6 +444,7 @@ function addNode() {
 
   const textarea = document.createElement('textarea');
   textarea.className = 'node-content';
+  textarea.spellcheck = 'false';
   textarea.placeholder = 'Enter notes...';
   div.appendChild(textarea);
 
@@ -547,15 +677,24 @@ function showNodeSelectorDialog() {
     const search = filter.value.toLowerCase();
     filteredList = nodesList.filter(n => {
       const type = n.dataset.type?.toLowerCase() || '';
-      const text = n.querySelector('textarea')?.value.toLowerCase() || '';
-      return type.includes(search) || text.includes(search);
+      const textareaText = n.querySelector('textarea')?.value.toLowerCase() || '';
+      const anchorText = n.querySelector('a')?.textContent.toLowerCase() || '';
+      return type.includes(search) || textareaText.includes(search) || anchorText.includes(search);
     });
 
     filteredList.forEach((node, index) => {
-      const id = node.id || '(no id)';
       const type = node.dataset.type || '(no type)';
-      const text = node.querySelector('textarea')?.value || '';
-      const preview = text.length > 30 ? text.substring(0, 30) + '…' : text;
+      let preview = '';
+
+      if (type.toLowerCase() === 'link') {
+        const anchor = node.querySelector('a');
+        const url = anchor?.href || '';
+        preview = url.length > 100 ? url.substring(0, 100) + '…' : url;
+      } else {
+        const textarea = node.querySelector('textarea');
+        const text = textarea?.value || '';
+        preview = text.length > 30 ? text.substring(0, 30) + '…' : text;
+      }
 
       const item = document.createElement('div');
       item.textContent = `[${type}] — "${preview}"`;
@@ -663,7 +802,8 @@ function setupNode(div) {
 
 function removeNode(node) {
   connectors = connectors.filter(c => c.a !== node && c.b !== node);
-  updateConnectors();
+  restoreMarksFromDOM();
+    updateConnectors();
   if (node.parentElement) {
     node.parentElement.removeChild(node);
   }
@@ -759,7 +899,54 @@ document.addEventListener('keydown', e => {
     }
   }
 
-  switch (e.key) {
+  
+  // Handle mark/goto mark modes
+  if (markMode) {
+    if (e.key === '-') {
+      removeMarkFromNode(selectedNode);
+      markMode = false;
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key.length === 1 && /^[a-zA-Z]$/.test(e.key)) {
+      setMark(e.key);
+      markMode = false;
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key.length === 1) {
+      gotoMarkMode = false;
+      e.preventDefault();
+      return;
+    }
+  }
+  if (gotoMarkMode) {
+    if (e.key.length === 1 && /^[a-zA-Z]$/.test(e.key)) {
+      gotoMark(e.key);
+      gotoMarkMode = false;
+      e.preventDefault();
+      return;
+    }
+
+    if (e.key.length === 1) {
+      gotoMarkMode = false;
+      e.preventDefault();
+      return;
+    }
+  }
+  if (e.key === 'm') {
+    markMode = true;
+    e.preventDefault();
+    return;
+  }
+  if (e.key === '`') {
+    gotoMarkMode = true;
+    e.preventDefault();
+    return;
+  }
+switch (e.key) {
     case 'a':
       addNode();
       break;
@@ -911,8 +1098,17 @@ document.addEventListener('keydown', e => {
       break;
     case 'r':
       renameNode();
+      break;
     case '>':
-      move((step/2), 0);
+        if (connecting && connectStart && selectedNode && connectStart !== selectedNode) {
+            drawConnector(connectStart, selectedNode, true); // pass arrow = true
+            connectStart = null;
+            connecting = false;
+            e.preventDefault();
+            return;
+        } else {
+            move((step / 2), 0);
+        }
       break;
     case 'L':
       resize(step, 0);
@@ -1229,8 +1425,8 @@ function applyColorToNode(baseColor) {
   }
 }
 
-function drawConnector(a, b) {
-  connectors.push({a, b});
+function drawConnector(a, b, arrow = false) {
+  connectors.push({ a, b, arrow });
   updateConnectors();
 }
 
@@ -1239,7 +1435,7 @@ function updateConnectors() {
 
   function getAncestors(node) {
     const ancestors = [];
-    while (node && node !== canvas.parentElement) {  // go up until canvas parent, in case canvas is root
+    while (node && node !== canvas.parentElement) {
       ancestors.push(node);
       node = node.parentElement;
     }
@@ -1264,29 +1460,37 @@ function updateConnectors() {
   function getNodeCenterRelativeToElement(node, element) {
     const nodeRect = node.getBoundingClientRect();
     const elemRect = element.getBoundingClientRect();
-  
-    // Undo the zoom transformation
     const scale = zoom || 1;
-  
     return {
       x: (nodeRect.left + nodeRect.width / 2 - elemRect.left + element.scrollLeft) / scale,
       y: (nodeRect.top + nodeRect.height / 2 - elemRect.top + element.scrollTop) / scale
     };
   }
 
-  connectors.forEach(({ a, b }) => {
+  connectors.forEach(conn => {
+    const { a, b, arrow } = conn;
     const lca = findLCA(a, b);
-
     const aCenter = getNodeCenterRelativeToElement(a, lca);
     const bCenter = getNodeCenterRelativeToElement(b, lca);
 
-    const minX = Math.min(aCenter.x, bCenter.x);
-    const minY = Math.min(aCenter.y, bCenter.y);
-    const maxX = Math.max(aCenter.x, bCenter.x);
-    const maxY = Math.max(aCenter.y, bCenter.y);
+    let dx = bCenter.x - aCenter.x;
+    let dy = bCenter.y - aCenter.y;
+    const length = Math.sqrt(dx * dx + dy * dy);
+    if (length === 0) return;
 
-    const width = Math.max(maxX - minX, 2);
-    const height = Math.max(maxY - minY, 2);
+    const unitX = dx / length;
+    const unitY = dy / length;
+
+    const pad = 10;
+    const startX = aCenter.x + unitX * pad;
+    const startY = aCenter.y + unitY * pad;
+    const endX = bCenter.x - unitX * pad;
+    const endY = bCenter.y - unitY * pad;
+
+    const minX = Math.min(startX, endX) - 20;
+    const minY = Math.min(startY, endY) - 20;
+    const width = Math.abs(endX - startX) + 40;
+    const height = Math.abs(endY - startY) + 40;
 
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.classList.add("connector");
@@ -1299,25 +1503,56 @@ function updateConnectors() {
     svg.style.pointerEvents = 'none';
 
     const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    line.setAttribute("x1", aCenter.x - minX);
-    line.setAttribute("y1", aCenter.y - minY);
-    line.setAttribute("x2", bCenter.x - minX);
-    line.setAttribute("y2", bCenter.y - minY);
-    line.setAttribute("stroke", "#333");
+    line.setAttribute("x1", startX - minX);
+    line.setAttribute("y1", startY - minY);
+    line.setAttribute("x2", endX - minX);
+    line.setAttribute("y2", endY - minY);
+    line.setAttribute("stroke", "#ccc");
     line.setAttribute("stroke-width", "2");
     svg.appendChild(line);
 
-    // Insert SVG into LCA before a or b if direct child, else append
-    const children = Array.from(lca.children);
-    let insertBefore = null;
-    if (children.includes(a)) insertBefore = a;
-    else if (children.includes(b)) insertBefore = b;
+    if (arrow) {
+      const arrowSize = 12;
+      const buffer = arrowSize + 1;
 
-    if (insertBefore) {
-      lca.insertBefore(svg, insertBefore);
-    } else {
-      lca.appendChild(svg);
+      // Get node B's size
+      const bRect = b.getBoundingClientRect();
+      const lcaRect = lca.getBoundingClientRect();
+      const scale = zoom || 1;
+      const bWidth = bRect.width / scale;
+      const bHeight = bRect.height / scale;
+
+      // Calculate how far we need to backtrack from the center to the edge
+      // Projected distance along the unit vector to the edge of the box
+      const halfDiagonalProjection = Math.min(
+        Math.abs(bWidth / 2 / unitX || Infinity),
+        Math.abs(bHeight / 2 / unitY || Infinity)
+      );
+
+      const edgeX = bCenter.x - unitX * halfDiagonalProjection;
+      const edgeY = bCenter.y - unitY * halfDiagonalProjection;
+
+      // Position the arrow just outside the node
+      const tipX = edgeX - unitX * buffer;
+      const tipY = edgeY - unitY * buffer;
+
+      const baseLeftX = tipX - unitX * arrowSize - unitY * arrowSize / 2;
+      const baseLeftY = tipY - unitY * arrowSize + unitX * arrowSize / 2;
+
+      const baseRightX = tipX - unitX * arrowSize + unitY * arrowSize / 2;
+      const baseRightY = tipY - unitY * arrowSize - unitX * arrowSize / 2;
+
+      const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+      polygon.setAttribute(
+        "points",
+        `${tipX - minX},${tipY - minY} ${baseLeftX - minX},${baseLeftY - minY} ${baseRightX - minX},${baseRightY - minY}`
+      );
+      polygon.setAttribute("fill", "#ccc");
+
+      svg.appendChild(polygon);
     }
+
+    lca.appendChild(svg);
   });
 }
 
@@ -1337,6 +1572,12 @@ function updateConnectors() {
   }
 
   function download() {
+    selectedNode = null;
+    nodes.forEach(n => {
+      n.style.borderColor = '#aaa';
+      n.style.borderWidth = '1px';
+    });
+
     document.querySelectorAll('textarea.node-content').forEach(t => {
       t.textContent = t.value;
     });
@@ -1345,9 +1586,10 @@ function updateConnectors() {
     document.querySelectorAll('script[data-connectors]').forEach(s => s.remove());
   
     // Serialize connectors using node IDs
-    const connectorData = connectors.map(({ a, b }) => ({
-      a: a.id,
-      b: b.id
+    const connectorData = connectors.map(({ a, b, arrow }) => ({
+        a: a.id,
+        b: b.id,
+        arrow: !!arrow
     }));
   
     const script = document.createElement('script');
@@ -1369,7 +1611,18 @@ function updateConnectors() {
     }
     paletteScript.textContent = JSON.stringify(colorPalettes, null, 2);
   
-    const html = document.documentElement.outerHTML;
+    
+    // Save marks data
+    let marksScript = document.querySelector('script[data-marks]');
+    if (!marksScript) {
+      marksScript = document.createElement('script');
+      marksScript.type = 'application/json';
+      marksScript.dataset.marks = 'true';
+      marksScript.id = 'marks-data';
+      document.body.appendChild(marksScript);
+    }
+    marksScript.textContent = JSON.stringify(marks, null, 2);
+const html = document.documentElement.outerHTML;
     const blob = new Blob([html], { type: 'text/html' });
     const a = document.createElement('a');
     let currentFileName = location.pathname.split('/').pop() || 'vummel.html';
@@ -1390,27 +1643,33 @@ function updateConnectors() {
     if (!script) return;
   
     try {
-      const saved = JSON.parse(script.textContent);
-      connectors = [];
+        const saved = JSON.parse(script.textContent);
+        connectors = [];
   
-      saved.forEach(({ a, b }) => {
-        const nodeA = document.getElementById(a);
-        const nodeB = document.getElementById(b);
-        if (nodeA && nodeB) {
-          connectors.push({ a: nodeA, b: nodeB });
-        }
-      });
+        saved.forEach(({ a, b, arrow }) => {
+            const nodeA = document.getElementById(a);
+            const nodeB = document.getElementById(b);
+            if (nodeA && nodeB) {
+                connectors.push({ a: nodeA, b: nodeB, arrow: !!arrow });
+            }
+        });
   
-      updateConnectors();
+        updateConnectors();
     } catch (err) {
-      console.error('Failed to restore connectors:', err);
+        console.error('Failed to restore connectors:', err);
     }
   }
   
   window.onload = () => {
     initializeNodes();
+    restoreMarksFromDOM();
     restoreConnectorsFromDOM();
     updateConnectors();
+
+    if (canvas.innerHTML === "") {
+        document.getElementById('helpDialog').style.display = 'block';
+    }
+
     canvas.focus();
   };
   
@@ -1435,6 +1694,10 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
   function hexToRgb(hex) {
+      if (hex === undefined || hex === null ) {
+          return;
+      }
+
     const shorthand = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
     hex = hex.replace(shorthand, (_, r, g, b) => r + r + g + g + b + b);
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
