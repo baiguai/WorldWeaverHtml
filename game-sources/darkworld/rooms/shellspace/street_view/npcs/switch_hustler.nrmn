@@ -5,6 +5,7 @@
     {attrib, output=false, tags=streets_answered }
     {attrib, output=false, tags=ticket_answered }
     {attrib, output=false, tags=piracy_answered }
+    {attrib, output=false, tags=secrets_answered }
 
     {enter_message
         output={@
@@ -13,11 +14,8 @@ You see a shifty looking character on the corner, south of where you are,
 trying to sell people switchblades.
 
 HINT:
-* An easy way to strike up conversations 'examine' the characters: x shifty character
-* There is a conversation flow - first respond to his initial question. Then...
-* Ask him where to go. - or
-* Ask him about various topics you would like to pursue: piracy, let him know you need a monorail ticket. - or
-* Tell him you need a monorail ticket.
+* An easy way to strike up conversations 'examine' the characters: x shifty character OR x character
+
         }
     }
 
@@ -35,11 +33,7 @@ You see a shifty character.
             output={@
 
 HINT:
-* There is a conversation flow - first respond to his initial question.
-* Ask him where to go.
-* Ask him about various topics you would like to pursue: piracy, let him know you need a monorail ticket.
-* Tell him you need a monorail ticket.
-
+* There is a conversation flow - first respond to his initial question - yes or no.
 
 
             }
@@ -58,4 +52,5 @@ HINT:
     {inject, logic=./injections/ticket.inj }
     {inject, logic=./injections/streets.inj }
     {inject, logic=./injections/piracy.inj }
+    {inject, logic=./injections/secrets.inj }
 }

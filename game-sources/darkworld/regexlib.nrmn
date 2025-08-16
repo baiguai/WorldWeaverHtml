@@ -54,7 +54,8 @@
         {attrib, tags=conv_shifty_char|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
         {attrib, tags=conv_need_ticket|!_regex, output=\b(I need a|I'm looking for a) (monorail )?ticket( for the monorail)?\b, logic=I need a ticket|I need a monorail ticket|I need a ticket for the monorail|I'm looking for a monorail ticket|I'm looking for a ticket for the monorail }
         {attrib, tags=conv_piracy|!_regex, output=\b(what about\s+)?(hacking|piracy)\??\b, logic=what about hacking?|what about piracy|hacking|piracy }
-        {attrib, tags=conv_streets|!_regex, output=(can you tell me about the roads|where do( all)? (the|these)? (roads|streets) go|what are( all)? (these|the)? (roads|streets)|where do I go|where should I go|i(?:'|’)m lost|im lost|i don'?t know where to go|tell me about the (streets|city)), logic=where do the streets go?|what are all the roads?|can you tell me about the roads?|can you tell me about the streets?|where should I go|I'm lost|I dont know where to go }
+        {attrib, tags=conv_secrets|!_regex, output=\b(what about\s+)?(secrets)\??\b, logic=what about secrets?|secrets }
+        {attrib, tags=conv_streets|!_regex, output=\b(?:the\s+)?streets\b, logic=what about the streets?|yes tell me about the streets|the streets|streets }
         {attrib, tags=conv_drink|!_regex, output=(can\s+i\s+(order|buy)\s+a\s+)?(i\s+need\s+a\s+)?(i\s+would\s+like\s+a\s+)?(a\s+)?(drink|cocktail)(\s+please)?\??, logic=Can I order a drink?|Can I buy a drink?|I need a drink?|A drink please|I would like a drink|Can I order a cocktail?|Can I buy a cocktail?|I need a cocktail|a cocktail please|I would like a cocktail|drink|cocktail|drink|cocktail }
 
     Responding

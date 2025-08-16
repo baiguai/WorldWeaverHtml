@@ -19,6 +19,27 @@ Would you like to buy a switchblade? - They're only 5 credits."
 }
 
 
+{refuse_knife
+    {message
+        output={@
+"Suit yourself."
+He leans in close and whispers,
+"I know a lot of things.
+
+I can tell you about piracy.
+I can tell you about the streets. This city can be confusing, I know where ALL these streets go.
+You just came from the monorail station, do you need anything? I can probably help you get it.
+I can tell you secrets."
+
+He nods slowly, his eyes boring into you.
+
+        }
+    }
+
+    {set, logic=[self]((step)), output=help }
+}
+
+
 // Initial Greeting
 {input, syntax=[tplt_syntax]((conv_shifty_char))
     {act, logic=conv_sml_greet, tags=!_type|room }

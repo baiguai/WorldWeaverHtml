@@ -231,7 +231,7 @@
             const logicParsers = ["logic", "action", "set", "message"];
             const messageParsers = ["logic", "action", "message", "set"];
             const navigationParsers = ["message"];
-            const generalParsers = ["logic", "enter_message", "message", "action", "set", "npc"];
+            const generalParsers = ["logic", "enter_message", "message", "move", "action", "set", "npc"];
             const moveParsers = ["logic", "set", "message"];
             const npcParsers = ["travel", "enter_message", "logic", "input", "action", "attack", "set", "message", "dev_note"];
             const objectParsers = ["travel", "enter_message", "object", "logic", "action", "set", "move", "message", "input", "dev_note"];
@@ -1739,25 +1739,25 @@
 
 
                 // Handle unordered lists: lines starting with '* ' (ignore leading spaces)
-                // Mark # lines as <li-li>
+                // Mark * lines as <li-li>
                 input = input.replace(/^( *)(\* )(.+)$/gm, '<li-li>$3</li-li>');
-
-                // Then wrap consecutive <li-li> into <ol>
+                
+                // Then wrap consecutive <li-li> into <ul>
                 input = input.replace(/(?:<li-li>.*?<\/li-li>\s*)+/gs, (match) => {
                     const items = match.match(/<li-li>(.*?)<\/li-li>/gs)
-                        .map(li => `<li>${li.slice(7, -9)}</li>`)
+                        .map(li => `<li>${li.slice(7, -8)}</li>`)
                         .join('\n');
                     return `<ul>\n${items}\n</ul>\n`;
                 });
-
+                
                 // Handle ordered lists: lines starting with '1. ' (ignore leading spaces)
                 // Mark 1. lines as <ol-li>
-                input = input.replace(/^( *)(1. )(.+)$/gm, '<ol-li>$3</ol-li>');
-
+                input = input.replace(/^( *)(1\. )(.+)$/gm, '<ol-li>$3</ol-li>');
+                
                 // Then wrap consecutive <ol-li> into <ol>
                 input = input.replace(/(?:<ol-li>.*?<\/ol-li>\s*)+/gs, (match) => {
                     const items = match.match(/<ol-li>(.*?)<\/ol-li>/gs)
-                        .map(li => `<li>${li.slice(7, -9)}</li>`)
+                        .map(li => `<li>${li.slice(7, -8)}</li>`)
                         .join('\n');
                     return `<ol>\n${items}\n</ol>\n`;
                 });

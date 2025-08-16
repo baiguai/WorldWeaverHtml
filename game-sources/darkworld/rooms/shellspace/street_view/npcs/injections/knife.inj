@@ -2,22 +2,12 @@
     {message
         output={@
 You transfer the credits and he hands you a large switchblade knife.
+Then he wanders off into the crowd.
 
-"Will that be all my new friend?"
         }
     }
 
-    {set, logic=[self]((step)), output=help }
-}
-{refuse_knife
-    {message
-        output={@
-"Suit yourself.
-What can I do for you friend?"
-        }
-    }
-
-    {set, logic=[self]((step)), output=help }
+    {move, logic=!_limbo, tags=[self] }
 }
 
 
