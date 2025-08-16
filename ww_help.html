@@ -400,6 +400,12 @@ Error message and password prompt
 
 <li>$:/state/http-requests</li>
 
+<li>$:/state/openmenu--232442599</li>
+
+<li>$:/state/toc/TOC-Reference--232442599</li>
+
+<li>$:/state/toc/TOC/Reference-Element Reference--232442599</li>
+
 <li>$:/status/IsAnonymous</li>
 
 <li>$:/status/IsLoggedIn</li>
@@ -1305,6 +1311,12 @@ Error message and password prompt
 ,
 {"title":"$:/state/http-requests","text":"0","revision":"1","bag":"default"}
 ,
+{"created":"20250816083415890","title":"$:/state/openmenu--232442599","text":"close","modified":"20250816083415890","revision":"1","bag":"default"}
+,
+{"created":"20250816080402129","title":"$:/state/toc/TOC-Reference--232442599","text":"close","modified":"20250816083415887","revision":"2","bag":"default"}
+,
+{"created":"20250816080404766","title":"$:/state/toc/TOC/Reference-Element Reference--232442599","text":"close","modified":"20250816083415889","revision":"2","bag":"default"}
+,
 {"title":"$:/status/IsAnonymous","text":"yes","revision":"1","bag":"default"}
 ,
 {"title":"$:/status/IsLoggedIn","text":"yes","revision":"2","bag":"default"}
@@ -1315,7 +1327,7 @@ Error message and password prompt
 ,
 {"title":"$:/status/UserName","text":"","revision":"1","bag":"default"}
 ,
-{"title":"$:/StoryList","created":"20250807073403605","text":"","list":"","modified":"20250807073419843","revision":"9","bag":"default"}
+{"title":"$:/StoryList","created":"20250816075742073","text":"","list":"","modified":"20250816080410000","revision":"8","bag":"default"}
 ,
 {"title":"$:/tags/ViewToolbar","created":"20240808064420023","list":"$:/core/ui/Buttons/more-tiddler-actions $:/core/ui/Buttons/info $:/core/ui/Buttons/new-here $:/core/ui/Buttons/new-journal-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/export-tiddler $:/core/ui/Buttons/edit [[Cocktail Tiddler]] $:/core/ui/Buttons/delete $:/core/ui/Buttons/permalink $:/core/ui/Buttons/permaview $:/core/ui/Buttons/open-window $:/core/ui/Buttons/close-others $:/core/ui/Buttons/fold-others $:/core/ui/Buttons/fold $:/core/ui/Buttons/fold-bar $:/PSaT/button/copy-text $:/PSaT/button/copy-title $:/PSaT/button/copy-title-link $:/PSaT/button/copy-title-transclude $:/plugins/danielo515/encryptTiddler/crypt-button $:/core/ui/Buttons/close","modified":"20240828182931010","revision":"0","tags":"configbundle $:/tags/Commander/Working","type":"text/vnd.tiddlywiki","bag":"default"}
 ,
@@ -1415,7 +1427,7 @@ Error message and password prompt
 ,
 {"title":"Current Admin Commands","text":"You can view the available **admin** commands (if you are in admin mode) by entering:\n```\n_admin\n```\n\n> **Note:**\\\nThis is just like the _admin mode toggle command, but without a password at all.\n\nWhile I endeavor to keep this help system up to date, the best way to see the current admin commands is to run the above command in the WorldWeaver code base you have downloaded. However you can reference the commands here as well - since they may link off to more in-depth discussions of the individual commands.\n\n**Current Admin Commands**\n\u003C\u003Cls>>","type":"text/markdown","created":"20250614075315396","modified":"20250614080654933","tags":"[[Game Author Tools]] databundle","revision":"0","bag":"default"}
 ,
-{"title":"Custom Elements","text":"```\n    {examine_box\n        {act, logic=look, tags=!_type|children\n            output={@\n...\n\n            }\n        }\n    }\n\n```\n\n## Description\nUsed in conjunction with the **!_type** special tag, you can define custom Elements. These aren't processed along with the standard WorldWeaver (WW) Elements. They are only considered when Elements like Action Elements call them, using the **!_type** tag.\n\nAnd this tag can be used with another *scope* tag like **children** or **self** or **room**.\n\n## Special Behaviors\nRemember that because these are Element types that are unknown to WW if you are simply using them as message types etc, you will want to make those children of the custom Elements (Unlike enter_message Elements for example - which can simply show the player their output property).\n\n---\n\n### Allowed Children\n* logic\n* enter_message\n* message\n* action\n* set\n* npc\n\n### Examples\n```\n{examine_box\n\t{act, logic=look, tags=!_type|children\n\t\toutput={@\nYou examine the box.\n\n\t\t}\n\t}\n}\n\n\n{look\n\t{message\n\t\toutput={@\nYou look around...\n\n\t\t}\n\t}\n}\n\n{input, syntax=^l(ook( around)?)?$\n    {act, logic=look, tags=!_type|room }\n}\n```\n\n## In the builder.html Tool\nTo create custom Elements in the builder tool you simply select **custom** then type in what the custom Element Type should be.\\\nSo to create a **look** Element, select **custom** and enter **look** in the text field.","type":"text/markdown","caption":"Custom","created":"20250518083442840","modified":"20250610083150731","tags":"[[Element Reference]] databundle","revision":"0","bag":"default"}
+{"created":"20250518083442840","text":"```\n    {examine_box\n        {act, logic=look, tags=!_type|children\n            output={@\n...\n\n            }\n        }\n    }\n\n```\n\n## Description\nUsed in conjunction with the **!_type** special tag, you can define custom Elements. These aren't processed along with the standard WorldWeaver (WW) Elements. They are only considered when Elements like Action Elements call them, using the **!_type** tag.\n\nAnd this tag can be used with another *scope* tag like **children** or **self** or **room**.\n\n## Special Behaviors\nRemember that because these are Element types that are unknown to WW if you are simply using them as message types etc, you will want to make those children of the custom Elements (Unlike enter_message Elements for example - which can simply show the player their output property).\n\n---\n\n### Allowed Children\n* logic\n* enter_message\n* message\n* move\n* action\n* set\n* npc\n\n### Examples\n```\n{examine_box\n\t{act, logic=look, tags=!_type|children\n\t\toutput={@\nYou examine the box.\n\n\t\t}\n\t}\n}\n\n\n{look\n\t{message\n\t\toutput={@\nYou look around...\n\n\t\t}\n\t}\n}\n\n{input, syntax=^l(ook( around)?)?$\n    {act, logic=look, tags=!_type|room }\n}\n```\n\n## In the builder.html Tool\nTo create custom Elements in the builder tool you simply select **custom** then type in what the custom Element Type should be.\\\nSo to create a **look** Element, select **custom** and enter **look** in the text field.","title":"Custom Elements","type":"text/markdown","caption":"Custom","modified":"20250816080427377","tags":"[[Element Reference]] databundle","revision":"1","bag":"default"}
 ,
 {"title":"Custom Tiddler via Button as Link","text":"```\n\\define newTiddlerActionWidget()\n\u003C$action-sendmessage\n    $message=\"tm-new-tiddler\"\n    title=\"My New Tiddler\"\n    tags=\"[[My First Tag]] [[My Second Tag]]\"\n\t\ttype=\"text/markdown\"\n\t\tTestField01=\"cool\"\n\t\tTestField02=\"yes!\"\n\t\ttext=\"\nThis is the text for the custom tiddler.\n\nYou can do **whatever** you want to here\n\n|||\n|:---|:---|\n|Even|create|\n\ntables etc.\n\t\t\"\n/>\t\t\n\\end\n\n\u003C$button actions=\u003C\u003CnewTiddlerActionWidget>> class=\"linkbtn\">\n\ttest\n\t\u003C$list filter=\"[\u003Ctv-config-toolbar-icons>match[yes]]\">\n\t{{newdoc.svg}}\n\t\u003C/$list>\n\t\u003C$list filter=\"[\u003Ctv-config-toolbar-text>match[yes]]\">\n\t\u003Cspan class=\"tc-btn-text\">\u003C$text text=\"New Custom\"/>\u003C/span>\n\t\u003C/$list>\n\u003C/$button>\n```","type":"text/markdown","created":"20240811083231365","modified":"20240904211241491","revision":"0","tags":"[[Fav: TW Examples]] bundle01 favbundle","bag":"default"}
 ,
@@ -1705,7 +1717,7 @@ Error message and password prompt
 ,
 {"title":"Random Values","text":"\u003C\u003Cls>>","type":"text/markdown","created":"20250520094129530","list":"[[Introduction to Random Values]] [[Where Random Values Can Be Used]] [[Specifying Different Random Types]] [[RolePlaying Dice Rolls]] [[Specifying When the Random Values are Processed]] [[Complex Random Values]]","modified":"20250602073936050","tags":"[[Special Values]] databundle","revision":"0","bag":"default"}
 ,
-{"created":"20250603084436305","text":"Once you are in admin mode you can begin recording a macro using:\n```\n_macror \u003Cunique macro name - the shorter the better>\n```\n\nOnce the macro recording has begun simply enter the commands you want it to contain (Play your game to the point where you want the macro to stop).\n\n> **Note:**\\\nWhen you are recording a macro - you CAN call other macros, so you can build upon what you've already recorded.\n\n\u003Cbr />\n\n> **Note:**\\\nFighting is ignored when macros are running or recording.\n\nWhen you are done recording the macro's steps, [stop the macro recording](#Stopping%20a%20Macro%20Recording).","title":"Recording Macros","type":"text/markdown","modified":"20250807073531896","tags":"Macros databundle","revision":"2","bag":"default"}
+{"title":"Recording Macros","text":"Once you are in admin mode you can begin recording a macro using:\n```\n_macror \u003Cunique macro name - the shorter the better>\n```\n\nOnce the macro recording has begun simply enter the commands you want it to contain (Play your game to the point where you want the macro to stop).\n\n> **Note:**\\\nWhen you are recording a macro - you CAN call other macros, so you can build upon what you've already recorded. However, bear in mind when you do this it records each step of the previously saved macro - not just the macro call itself. So if you change the previous macro it won't affect other macros that call it.\n\n\u003Cbr />\n\n> **Note:**\\\nFighting is ignored when macros are running or recording.\n\nWhen you are done recording the macro's steps, [stop the macro recording](#Stopping%20a%20Macro%20Recording).","type":"text/markdown","created":"20250603084436305","modified":"20250809082326984","tags":"Macros databundle","revision":"0","bag":"default"}
 ,
 {"title":"Reference","text":"> **Note**:\\\nThe following topics are based on the default WorldWeaver (WW) configuration.\\\nIf you modify the parsers, these topics will no longer be accurate.\n\n\u003C\u003Cls>>","type":"text/markdown","created":"20250427074413771","list":"[[Norman Script]] [[Element Reference]] [[Field Reference]] [[Tag Reference]] [[Special Values]] [[Regular Expressions]] [[Arming Weapons]]","modified":"20250601072812763","tags":"databundle TOC","revision":"0","bag":"default"}
 ,
