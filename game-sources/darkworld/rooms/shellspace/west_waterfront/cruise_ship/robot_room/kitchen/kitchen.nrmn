@@ -1,0 +1,7 @@
+{room, key=toplessrobot_kitchen, name=Kitchen
+    {enter_message
+        output={@
+You are in the kitchen.
+        }
+    }
+}

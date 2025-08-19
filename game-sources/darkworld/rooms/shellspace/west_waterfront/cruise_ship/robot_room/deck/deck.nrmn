@@ -1,0 +1,7 @@
+{room, key=toplessrobot_deck, name=Deck
+    {enter_message
+        output={@
+You are on the deck.
+        }
+    }
+}

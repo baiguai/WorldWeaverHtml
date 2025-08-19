@@ -2,6 +2,73 @@
     {enter_message
         output={@
 You are in the topless robot's room.
+It leans in close to you and whispers,
+"Secdyne can get you to the multiplexer."
+
+She then goes into a separate room and emerges draped
+in a translucent robe.
+"Have a drink with me. Gin fizz?"
+
+She makes a cocktail in a tall slender glass and steps
+through a large sliding glass door in the north wall.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+The apartment is luxurious and modern.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+North, there is an open sliding glass door.
+East is the kitchen
+South, exits the room, back toward the adult area.
+West, you see a door into what you assume is the bedroom.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_adults, tags=[player]
+            output={@
+You return to the adult-only area of the cruise ship's top deck.
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=toplessrobot_deck, tags=[player]
+            output={@
+You step through the large sliding glass door.
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=toplessrobot_kitchen, tags=[player]
+            output={@
+You enter the apartment's kitchen.
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=toplessrobot_bedroom, tags=[player]
+            output={@
+You go into the bedroom.
+            }
         }
     }
 }
