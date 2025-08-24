@@ -4,4 +4,39 @@
 You are in the kitchen.
         }
     }
+
+    {look
+        {message
+            output={@
+You look around.
+You are in the kitchen.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+West, Exit the kitchen.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=toplessrobot_room, tags=[player]
+            output={@
+
+You exit the kitchen.
+            }
+        }
+    }
 }

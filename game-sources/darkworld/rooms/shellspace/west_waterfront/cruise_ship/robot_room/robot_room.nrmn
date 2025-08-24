@@ -1,6 +1,9 @@
 {room, key=toplessrobot_room, name=Robot's Room
+    {attrib, output=false, tags=init }
+
     {enter_message
         output={@
+<?[room]((init)) = 'false'?>
 You are in the topless robot's room.
 It leans in close to you and whispers,
 "Secdyne can get you to the multiplexer."
@@ -9,9 +12,15 @@ She then goes into a separate room and emerges draped
 in a translucent robe.
 "Have a drink with me. Gin fizz?"
 
-She makes a cocktail in a tall slender glass and steps
-through a large sliding glass door in the north wall.
+She makes cocktails in tall slender glasses and steps
+out of the hotel room through a large sliding glass
+door in the north wall.
+<else>
+You are in the robot's luxurious hotel room.
+</?>
         }
+
+        {set, logic=[room]((init)), output=true }
     }
 
     {look
