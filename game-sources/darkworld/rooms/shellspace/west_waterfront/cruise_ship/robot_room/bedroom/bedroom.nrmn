@@ -4,4 +4,39 @@
 You are in the bedroom.
         }
     }
+
+    {look
+        {message
+            output={@
+You look around.
+You are in the bedroom.
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+East, Exit the bedroom.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=toplessrobot_room, tags=[player]
+            output={@
+
+You exit the bedroom.
+            }
+        }
+    }
 }

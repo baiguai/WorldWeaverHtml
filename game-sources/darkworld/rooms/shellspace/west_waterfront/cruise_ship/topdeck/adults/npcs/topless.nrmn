@@ -54,6 +54,7 @@ The robot leaves.
     }
 
     {input, syntax=[tplt_syntax]((yes))
+        {move, logic=!_limbo, tags=[self] }
         {move, logic=toplessrobot_room, tags=[player]
             output={@
 

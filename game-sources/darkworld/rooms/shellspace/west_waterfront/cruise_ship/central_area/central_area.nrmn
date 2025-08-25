@@ -53,4 +53,20 @@ You walk up the stairs.
             }
         }
     }
+
+    {input, syntax=[tplt_syntax]((go_down))
+        {move, logic=cruise_lower_02, tags=[player]
+            output={@
+You walk down the stairs.
+            }
+        }
+    }
+
+
+    {dev_note, tags=Todo
+        output={@
+* Entertainment area.
+* Food and shops.
+        }
+    }
 }
