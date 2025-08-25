@@ -23,6 +23,18 @@ of the virtual sky.
     }
 
 
+    {navigation
+        {message
+            output={@
+
+
+
+---
+North, top deck, railing.
+            }
+        }
+    }
+
 
     {inject, logic=/look.inj }
 
