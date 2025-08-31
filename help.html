@@ -269,6 +269,7 @@ i = Edit current note
 / = Search (begin with : to search labels)
 f = Find/Replace text in the current note 
 # = Show note links dialog
+< = Show the history dialog
 
 s = Save the current file
 S = Save as
@@ -287,6 +288,7 @@ E = Expand all the tree nodes
 / = Search (begin with : to search labels)
 f = Find text in the current note 
 # = Show note links dialog
+< = Show the history dialog
             </pre>
 <p></p>
 <p style="display: none;">
@@ -328,6 +330,15 @@ f = Find text in the current note
 </div>
 <div id="replaceResults">Match 1 of 1</div>
 </div>
+
+<div id="historyDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);
+    width: 600px; max-height: 70%; background: #222; color: #fff; border: 2px solid #444;
+    border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);">
+  <h3>History</h3>
+  <div id="historyList"></div>
+</div>
+
 <script>
         //---- Data Model ------------------------------------------------------
         const makeId = () => Math.random().toString(36).slice(2, 10);
@@ -336,8 +347,12 @@ f = Find text in the current note
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"hjrbkvt5","title":"Introduction to WorlWeaver","content":"Introduction to WorlWeaver\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an Interactive Fiction engine written as stand-alone .html\nfiles.\n\n-- Why Html Files? --\nI've actually written this game engine first in Java, then in C#.\n\nHowever, the biggest issue with all of my efforts was - I want to allow\ngame authors to have the ability to let their players play their games on\nwhatever devices they want to.\n\nThat was the shortcoming I saw with EVERY IF engine I had tried.\nSee _IF Engine Pros and Cons_\n\nThis topic: _WW History_ explains the progression of this project.\n\n\nHow are Games Built?\n--------------------------------------------------------------------------------\n\nWW games are built using a custom scripting language specifically designed\nfor defining WW games. It somewhat resembles JSON (see link below).\n\nThis custom script is called NormanScript (NS).\n\nThe goal of NS is to make game building as painless as possible, yet as powerful\nas possible.\n\nSee _Everything is an Element_\nSee _What Sets WW Apart_\n\n--------------------------------------------------------------------------------\n\nLINKS:\n* https://www.json.org/json-en.html","children":[],"expanded":false},{"id":"jwpst80h","title":"General Information","content":"","children":[{"id":"kjj6fuu9","title":"About","content":"","children":[{"id":"a8sxsdnx","title":"WW History","content":"WW History\n--------------------------------------------------------------------------------\n\nI had originally built WW using Java.\nAt that time it was the best option for cross-platform development I had\nencountered... However...\n\nA couple of years later VSCode became an option for Linux people - like myself.\nSo I re-created the WW project in C#.\n\nHOWEVER...\nThat means that the users of my IF engine AND people who wanted to play my games\nhad to have the .NET framework on their machines.\n\n--------------------------------------------------------------------------------\n\nThen Came Tiddlywiki...\n\nInspired by Tiddlywiki (my FAVORITE note-taking application)\n\n* https://tiddlywiki.com\n\nI realized that if TW can handle massive amounts of available plugins and\nseemingly endless amounts of data - all within a stand alone .html file...\n\nSurely I could build an IF engine AND game authors could write HUGE games and\nnever really run into size problems.","children":[],"expanded":false},{"id":"6rp9avku","title":"What Sets WW Apart","content":"What Sets WW Apart\n--------------------------------------------------------------------------------\n\nThere are a number of extremely powerful IF game-building engines out there.\nSome are designed to appeal to more DEVELOPER leaning game authors, while others\nlean into the AUTHOR - more book-form IF games.\n\nI personally prefer the more Developer style engines, because I feel like they\noffer more power and freedom to the game authors.\n\nI wanted to build an IF engine that achieved the followeing:\n\n* The game author can easily define game elements however they want.\n  See: _Everything is an Element_\n* The game author can build games that are TRUE IF games.\n  See: _True IF Games_\n* The game author can build role playing games.\n  See: _Roleplaying Games_\n* Compatibility - Games can be played on various devices.\n  See: _Compatibility_\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"dde3eeum","title":"IF Engine Pros and Cons","content":"IF Engine Pros and Cons\n--------------------------------------------------------------------------------\n\nI've tried a few different IF engines.\n\nSome aim to make game development easy for people who just want to write\nstories... and make those interactive.\n\nSome are geared towards people who are comfortable with building applications\nor similar 'developer' minded projects.\n\nI've tried a few game engines that fall all along this spectrum. And what I\nfound was that MOST IF game engines, by making game development easier, ended\nup boxing their game authors in. The moment you need to do something that\ndoesn't fit neatly within the bounds of the engine... Have Fun With That!\n\n\nThis could be something as simple as:\nI don't want to use compass directions for player navigation.\nOr tweaking the behavior of doors, containers, etc.\n\n--------------------------------------------------------------------------------\n\nI wanted to build something that didn't provide preset doors, or containers,\nor pre-set navigation syntax, etc.\n\nYET!\n\nWas easy to define such behaviors within your game.\n\nIf you don't want to use compass directions for navigation - That's fine!\nIt is YOU who defines what the player enters to move around your game, and it\nis as simple as a few lines of NS script to do so!","children":[],"expanded":false},{"id":"fgpyqjxv","title":"Everything is an Element","content":"Everything is an Element\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"q1lgrsj4","title":"Compatibility","content":"Compatibility\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"8nwdqx6j","title":"The Files","content":"","children":[{"id":"2iy8ephh","title":"Introduction to the WorldWeaver Files","content":"Introduction to the WorldWeaver Files\n--------------------------------------------------------------------------------\n\nThe core files that you will need to use to build, play, and distribute WW\ngames are:\n\n* _Importer.html_\n* _WorldWeaver.html_\n\nAlong with these files, there are some other usefult tools included with WW:\n\n* _Vummel.html_\n* _Httree.html_ (this help system was built with this tool)\n\n** Note **\nTo jump to topics surrounded by underscores (_) or to jump to any web links\nin this help system, hit the # key to bring up the links list dialog.\n\n--------------------------------------------------------------------------------\n\nYou may notice that there is a builder.html file in the WW repository.\nThis is a GUI game editor that was built early on in the development of WW,\nhowever building games in _Norman Script_ is SOO much more powerful the\nBuilder quickly became... not ideal.\n\nIt's still out there and you can try your hand at using it to recreate what is\ndone in NS but there are no help topics here, so you will need to expirement\nand see what it can do for you.","children":[],"expanded":false},{"id":"l622yggm","title":"Importer.html","content":"Importer.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"m4afhgwk","title":"WorldWeaver.html","content":"WorldWeaver.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"fe3h0odd","title":"Vummel.html","content":"Vummel.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"s0radg50","title":"Httree.html","content":"Httree.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"nbhawl05","title":"Norman Script","content":"","children":[{"id":"e6dnbv8s","title":"Introduction to Norman Script (NS)","content":"Introduction to Norman Script (NS)\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"qrjjeylu","title":"IF Game Variants","content":"","children":[{"id":"c5dznbnn","title":"True IF Games","content":"True IF Games\n--------------------------------------------------------------------------------\n\nTrue Interactive Fiction games are somewhat akin to Choose Your Own Adventure\ngames.\n\n* https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure\n\nThe primary focus of these games is the story. However the reader is able to\nnot only choose their path through the story but make changes to the objects\nthey encounter, or interact with living creatures/people they meet along\nthe way.","children":[],"expanded":false},{"id":"wahxgt8d","title":"Roleplaying Games","content":"Roleplaying Games\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"zl5658ph","title":"Reference","content":"","children":[],"expanded":false}
+  {"id":"hjrbkvt5","title":"Introduction to WorlWeaver","content":"Introduction to WorlWeaver\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an Interactive Fiction engine written as stand-alone .html\nfiles.\n\n-- Why Html Files? --\nI've actually written this game engine first in Java, then in C#.\n\nHowever, the biggest issue with all of my efforts was - I want to allow\ngame authors to have the ability to let their players play their games on\nwhatever devices they want to.\n\nThat was the shortcoming I saw with EVERY IF engine I had tried.\nSee _IF Engine Pros and Cons_\n\nThis topic: _WW History_ explains the progression of this project.\n\n\nHow are Games Built?\n--------------------------------------------------------------------------------\n\nWW games are built using a custom scripting language specifically designed\nfor defining WW games. It somewhat resembles JSON (see link below).\n\nThis custom script is called NormanScript (NS).\n\nThe goal of NS is to make game building as painless as possible, yet as powerful\nas possible.\n\nSee _Everything is an Element_\nSee _What Sets WW Apart_\n\n--------------------------------------------------------------------------------\n\nLINKS:\n* https://www.json.org/json-en.html","children":[],"expanded":false},{"id":"jwpst80h","title":"General Information","content":"","children":[{"id":"kjj6fuu9","title":"About","content":"","children":[{"id":"a8sxsdnx","title":"WW History","content":"WW History\n--------------------------------------------------------------------------------\n\nI had originally built WW using Java.\nAt that time it was the best option for cross-platform development I had\nencountered... However...\n\nA couple of years later VSCode became an option for Linux people - like myself.\nSo I re-created the WW project in C#.\n\nHOWEVER...\nThat means that the users of my IF engine AND people who wanted to play my games\nhad to have the .NET framework on their machines.\n\n--------------------------------------------------------------------------------\n\nThen Came Tiddlywiki...\n\nInspired by Tiddlywiki (my FAVORITE note-taking application)\n\n* https://tiddlywiki.com\n\nI realized that if TW can handle massive amounts of available plugins and\nseemingly endless amounts of data - all within a stand alone .html file...\n\nSurely I could build an IF engine AND game authors could write HUGE games and\nnever really run into size problems.","children":[],"expanded":false},{"id":"6rp9avku","title":"What Sets WW Apart","content":"What Sets WW Apart\n--------------------------------------------------------------------------------\n\nThere are a number of extremely powerful IF game-building engines out there.\nSome are designed to appeal to more DEVELOPER leaning game authors, while others\nlean into the AUTHOR - more book-form IF games.\n\nI personally prefer the more Developer style engines, because I feel like they\noffer more power and freedom to the game authors.\n\nI wanted to build an IF engine that achieved the followeing:\n\n* The game author can easily define game elements however they want.\n  See: _Everything is an Element_\n* The game author can build games that are TRUE IF games.\n  See: _True IF Games_\n* The game author can build role playing games.\n  See: _Roleplaying Games_\n* Compatibility - Games can be played on various devices.\n  See: _Compatibility_\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"dde3eeum","title":"IF Engine Pros and Cons","content":"IF Engine Pros and Cons\n--------------------------------------------------------------------------------\n\nI've tried a few different IF engines.\n\nSome aim to make game development easy for people who just want to write\nstories... and make those interactive.\n\nSome are geared towards people who are comfortable with building applications\nor similar 'developer' minded projects.\n\nI've tried a few game engines that fall all along this spectrum. And what I\nfound was that MOST IF game engines, by making game development easier, ended\nup boxing their game authors in. The moment you need to do something that\ndoesn't fit neatly within the bounds of the engine... Have Fun With That!\n\n\nThis could be something as simple as:\nI don't want to use compass directions for player navigation.\nOr tweaking the behavior of doors, containers, etc.\n\n--------------------------------------------------------------------------------\n\nI wanted to build something that didn't provide preset doors, or containers,\nor pre-set navigation syntax, etc.\n\nYET!\n\nWas easy to define such behaviors within your game.\n\nIf you don't want to use compass directions for navigation - That's fine!\nIt is YOU who defines what the player enters to move around your game, and it\nis as simple as a few lines of NS script to do so!","children":[],"expanded":false},{"id":"fgpyqjxv","title":"Everything is an Element","content":"Everything is an Element\n--------------------------------------------------------------------------------\n\nIn WW everything you define in your game is an Element. There ARE some basic\ntypes of Elements, because WW needs to know how to handle these basic Elements,\nbut it is up to the game author to determine specifically what those Elements\nare.\n\nAs an example:\nSome IF engines will define things like Doors or Containers etc for you.\nIn WW there are no doors, the game's author defines those using Input Elements\nand Move Elements. For containers the game's author can define an Object\nElement, and using Input Elements, Logic Elements, etc to specify the Object's\nbehavior.\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"q1lgrsj4","title":"Compatibility","content":"Compatibility\n--------------------------------------------------------------------------------\n\nCompatibility really sets WW apart from other Interactive Fiction engines.\nSince WW is comprised of stand alone .html files there is no need to install\nANYTHING. It simply runs on ANY device that has a contemporary web browser on\nit.\n\n** Note **\nWhile WW will run on pretty much anything, if you attempt to use it on devices\nthat utilize virtual keyboards (like phones) you may run into issues, since\nthe keyboard is only visible when a text field is selected, and certain keys\nlike Escape are not typically found on these keyboards.\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"8nwdqx6j","title":"The Files","content":"","children":[{"id":"2iy8ephh","title":"Introduction to the WorldWeaver Files","content":"Introduction to the WorldWeaver Files\n--------------------------------------------------------------------------------\n\nThe core files that you will need to use to build, play, and distribute WW\ngames are:\n\n* _Importer.html_\n* _WorldWeaver.html_\n\nAlong with these files, there are some other usefult tools included with WW:\n\n* _Vummel.html_\n* _Httree.html_ (this help system was built with this tool)\n\n** Note **\nTo jump to topics surrounded by underscores (_) or to jump to any web links\nin this help system, hit the # key to bring up the links list dialog.\n\n--------------------------------------------------------------------------------\n\nYou may notice that there is a builder.html file in the WW repository.\nThis is a GUI game editor that was built early on in the development of WW,\nhowever building games in _Norman Script_ is SOO much more powerful the\nBuilder quickly became... not ideal.\n\nIt's still out there and you can try your hand at using it to recreate what is\ndone in NS but there are no help topics here, so you will need to expirement\nand see what it can do for you.","children":[],"expanded":false},{"id":"l622yggm","title":"Importer.html","content":"Importer.html\n--------------------------------------------------------------------------------\n\nThe importer.html file is a tool that lets you specify your game's root\ndirectory. It will then parse through all of your game's .nrmn scripts and\ngive you the database value that you can paste into your game's .html file.\n\nSee _Game Development Workflow_ for more details on how to update your game\nusing the importer.html.","children":[],"expanded":false},{"id":"m4afhgwk","title":"WorldWeaver.html","content":"WorldWeaver.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"fe3h0odd","title":"Vummel.html","content":"Vummel.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"s0radg50","title":"Httree.html","content":"Httree.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"623dnl1a","title":"Getting Started","content":"","children":[{"id":"bfwg5rr8","title":"Game Development Workflow","content":"Game Development Workflow\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":true}],"expanded":true},{"id":"nbhawl05","title":"Norman Script","content":"","children":[{"id":"e6dnbv8s","title":"Introduction to Norman Script (NS)","content":"Introduction to Norman Script (NS)\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"qrjjeylu","title":"IF Game Variants","content":"","children":[{"id":"c5dznbnn","title":"True IF Games","content":"True IF Games\n--------------------------------------------------------------------------------\n\nTrue Interactive Fiction games are somewhat akin to Choose Your Own Adventure\ngames.\n\n* https://en.wikipedia.org/wiki/Choose_Your_Own_Adventure\n\nThe primary focus of these games is the story. However the reader is able to\nnot only choose their path through the story but make changes to the objects\nthey encounter, or interact with living creatures/people they meet along\nthe way.","children":[],"expanded":false},{"id":"wahxgt8d","title":"Roleplaying Games","content":"Roleplaying Games\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false}],"expanded":true},{"id":"zl5658ph","title":"Reference","content":"","children":[],"expanded":false}
 ];
+        let historyStack = [];
+        let showingHistory = false;
+        let historyIndex = 0;
+
         const showInitHelp = false;
         const readOnly = false;
         let selectedId = null;
@@ -396,6 +411,23 @@ f = Find text in the current note
                 segments.push(info.node.title || "Untitled");
             })(id);
             return '/' + segments.join('/');
+        }
+
+        function recordHistory(id) {
+            const node = findNodeAndParentById(id)?.node;
+            if (!node) return;
+            if (isFolder(node)) return; // only record notes
+        
+            // Remove any existing entry for this id
+            historyStack = historyStack.filter(entry => entry.id !== id);
+        
+            // Add it at the end (latest)
+            historyStack.push({ id, title: node.title || "(untitled)" });
+        
+            // Cap size at 100
+            if (historyStack.length > 100) {
+                historyStack.shift();
+            }
         }
 
 
@@ -474,6 +506,8 @@ f = Find text in the current note
             }
 
             modeEl.textContent = editing ? 'INSERT' : 'NORMAL';
+
+            if (selectedId) recordHistory(selectedId);
         }
 
 
@@ -727,6 +761,33 @@ f = Find text in the current note
         function closeLinksDialog() {
             showingLinks = false;
             document.getElementById('linksDialog').style.display = 'none';
+        }
+
+        function openHistoryDialog() {
+            showingHistory = true;
+            historyIndex = 0;
+            renderHistoryList();
+            document.getElementById('historyDialog').style.display = 'block';
+        }
+        
+        function closeHistoryDialog() {
+            showingHistory = false;
+            document.getElementById('historyDialog').style.display = 'none';
+        }
+        
+        function renderHistoryList() {
+            const listEl = document.getElementById('historyList');
+            listEl.innerHTML = '';
+            const recent = historyStack.slice(-15).reverse(); // latest first
+            recent.forEach((entry, i) => {
+                const div = document.createElement('div');
+                div.textContent = entry.title;
+                if (i === historyIndex) {
+                    div.classList.add('selected');
+                    div.style.background = '#444'; // ensure visible
+                }
+                listEl.appendChild(div);
+            });
         }
 
 
@@ -1039,6 +1100,10 @@ f = Find text in the current note
                 case ']': resizeTree(30); break;
                 case '[': resizeTree(-30); break;
                 case '#': openLinksDialog(); break;
+                case '<':
+                    openHistoryDialog();
+                    e.preventDefault();
+                    return;
                 default: did = false; break;
             }
             if (did) { e.preventDefault(); render(); }
@@ -1207,6 +1272,33 @@ f = Find text in the current note
         }
     }
 
+    function handleHistoryKey(e) {
+        if (!showingHistory) return;
+        if (e.key === 'ArrowDown') {
+            historyIndex = Math.min(historyIndex + 1, Math.min(14, historyStack.length - 1));
+            renderHistoryList();
+            e.preventDefault();
+        } else if (e.key === 'ArrowUp') {
+            historyIndex = Math.max(historyIndex - 1, 0);
+            renderHistoryList();
+            e.preventDefault();
+        } else if (e.key === 'Enter') {
+            const recent = historyStack.slice(-15).reverse();
+            if (recent[historyIndex]) {
+                expandToNode(recent[historyIndex].id);
+                selectedId = recent[historyIndex].id;
+                closeHistoryDialog();
+                render();
+            }
+            e.preventDefault();
+        } else if (e.key === 'Escape' || e.key === 'q') {
+            closeHistoryDialog();
+            e.preventDefault();
+        }
+        return;
+    }
+
+    window.addEventListener('keydown', handleHistoryKey, { capture: true });
     window.addEventListener('keydown', handleLinksKey, { capture: true });
 </script>
 </body></html>
