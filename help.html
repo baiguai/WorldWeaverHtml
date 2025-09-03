@@ -1,6 +1,7 @@
-<!DOCTYPE html><html><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1" name="viewport">
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>Httree</title>
 <style>
         :root {
@@ -246,8 +247,10 @@
 <td style="vertical-align: top; padding-right: 10px;">
 <pre>r = Add root level node
 R = Rename current Folder
-j = Select the next sibling tree node
-k = Select the previous sibling tree node
+j = Select the next tree node
+k = Select the previous tree node
+, = Select the next sibling tree node
+. = Select the previous sibling tree node
 l = Expand the current tree node
 h = Collapse the current tree node
 C = Collapse all the tree nodes
@@ -258,7 +261,7 @@ a = Add next sibling tree node
 [ = Shrink the treeview panel
 g = Select top tree node
 G = Select bottom tree node
-                        </pre>
+</pre>
 </td>
 <td style="vertical-align: top; padding-left: 10px;">
 <pre>H = Move current node to the parent node
@@ -270,17 +273,20 @@ i = Edit current note
 / = Search (begin with : to search labels)
 f = Find/Replace text in the current note 
 # = Show note links dialog
-&lt; = Show the history dialog
+< = Show the history dialog
 X = Show broken note links
 
 s = Save the current file
 S = Save as
-                        </pre>
+</pre>
 </td>
 </tr>
 </tbody></table>
-<pre id="readerHelp" style="display: none;">j = Select the next sibling tree node
-k = Select the previous sibling tree node
+<pre id="readerHelp" style="display: none;">
+j = Select the next tree node
+k = Select the previous tree node
+, = Select the next sibling tree node
+. = Select the previous sibling tree node
 l = Expand the current tree node
 h = Collapse the current tree node
 C = Collapse all the tree nodes
@@ -290,10 +296,10 @@ E = Expand all the tree nodes
 / = Search (begin with : to search labels)
 f = Find text in the current note 
 # = Show note links dialog
-&lt; = Show the history dialog
+< = Show the history dialog
 g = Select top tree node
 G = Select bottom tree node
-            </pre>
+</pre>
 <p></p>
 <p style="display: none;">
 <a href="#" style="color: #fff; text-decoration: underline;" target="_blank">
@@ -302,31 +308,31 @@ G = Select bottom tree node
 </p>
 <p>Press ESC to close.</p>
 </div>
-<aside class="tree" id="tree"><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Getting Started</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Downloading WorldWeaver</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Importing the Database</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">WorldWeaver Files</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Norman Script</span></div><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction to Norman Script</span></div></li></ul></li></ul></li></ul></aside>
+<aside class="tree" id="tree"><ul><li><div class="node selected"><span class="twisty"><svg height="6" viewbox="0 0 6 6" width="6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" fill="currentColor" r="1"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg height="16" id="svg5" version="1.1" viewbox="0 0 4.2333334 4.2333334" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65" style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <path d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404" style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <rect height="0.24694447" id="rect5117" style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="1.0583334" x="1.5875001" y="1.3772104"></rect> <rect height="0.24694447" id="rect5737" style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="1.0583334" x="1.5875001" y="1.8710994"></rect> <rect height="0.24694447" id="rect5739" style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="1.0583334" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg height="10" viewbox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg height="16" id="svg5" version="1.1" viewbox="0 0 4.2333334 4.2333334" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65" style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <path d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924" style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <rect height="9.260417" id="rect1561" style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="17.197916" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">The Interface</span></div></li><li><div class="node"><span class="twisty"><svg height="10" viewbox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg height="16" id="svg5" version="1.1" viewbox="0 0 4.2333334 4.2333334" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65" style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <path d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924" style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <rect height="9.260417" id="rect1561" style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="17.197916" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Saving</span></div></li><li><div class="node"><span class="twisty"><svg height="10" viewbox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg height="16" id="svg5" version="1.1" viewbox="0 0 4.2333334 4.2333334" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65" style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <path d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924" style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <rect height="9.260417" id="rect1561" style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="17.197916" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Configuration</span></div></li><li><div class="node"><span class="twisty"><svg height="10" viewbox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg height="16" id="svg5" version="1.1" viewbox="0 0 4.2333334 4.2333334" width="16" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65" style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <path d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924" style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"></path> <rect height="9.260417" id="rect1561" style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" width="17.197916" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Linking</span></div></li></ul></aside>
 <section class="editor">
 <div class="status">
-<span class="dim" id="path">/Getting Started/Norman Script/Introduction to Norman Script</span>
+<span class="dim" id="path">/Introduction</span>
 <span class="pill" id="mode" style="display: block;">NORMAL</span>
 <span class="pill" id="kind">FILE</span>
 </div>
-<textarea id="editorArea" spellcheck="false" readonly="readonly"></textarea>
+<textarea id="editorArea" readonly="readonly" spellcheck="false"></textarea>
 </section>
 </div>
 <div class="search-dialog" id="searchDialog" style="display: none;">
-<input id="searchInput" placeholder="Search..." type="text">
+<input id="searchInput" placeholder="Search..." type="text"/>
 <div class="search-results" id="searchList"><div>Resizing the Tree Panel</div><div class="selected">Introduction to Saving</div><div>Save</div><div>Save As</div></div>
 </div>
 <div id="linksDialog" style="display: none;">
 <h3>Links in Note</h3>
-<div id="linksList"><a href="#" data-node-id="c7jyl15v" class="selected">Norman Script</a></div>
+<div id="linksList"><a href="#">Persistent Settings</a><br/></div>
 </div>
 <div id="replaceDialog" style="display: none;">
 <h3>Find &amp; Replace</h3>
 <label for="searchText">Find</label>
-<input id="searchText" type="text">
+<input id="searchText" type="text"/>
 <div id="replaceTools" style="display: block;">
 <label for="replaceText">Replace With</label>
-<input id="replaceText" type="text">
+<input id="replaceText" type="text"/>
 <div style="display: none;">
 <button onclick="doFind()">Find</button>
 <button onclick="doReplaceAll()">Replace All</button>
@@ -335,9 +341,12 @@ G = Select bottom tree node
 <div id="replaceResults">Match 1 of 1</div>
 </div>
 
-<div id="historyDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 600px; max-height: 70%; background: rgb(34, 34, 34); color: rgb(255, 255, 255); border: 2px solid rgb(68, 68, 68); border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; overflow-y: auto; box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 20px;">
+<div id="historyDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%);
+    width: 600px; max-height: 70%; background: #222; color: #fff; border: 2px solid #444;
+    border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);">
   <h3>History</h3>
-  <div id="historyList"><div>vummel.html</div><div class="selected" style="background: rgb(68, 68, 68);">Downloading WorldWeaver</div><div>Importing the Database</div><div>worldweaver.html</div><div>Introduction</div><div>importer.html</div><div>Saving</div></div>
+  <div id="historyList"></div>
 </div>
 
 <script>
@@ -348,7 +357,7 @@ G = Select bottom tree node
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"7t1zfwoc","title":"Introduction","content":"Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine built as stand alone HTML\nfiles. The benefits of this approach is that all you need to build WW games,\nor play WW games, is a standard web browser.\n\nThe downsides are you need to become familiar with the limitations imposed by\nthe browser itself.\n\n--------------------------------------------------------------------------------\n\nWW games are defined using a custom scripting language called Norman Script.\n\nTo learn about this script and its syntax, refer to this topic: _Norman Script_.","children":[],"expanded":false},{"id":"zed8qmc0","title":"Getting Started","content":"","children":[{"id":"orfg1ilt","title":"Downloading WorldWeaver","content":"Downloading WorldWeaver\n--------------------------------------------------------------------------------\n\nWhen you first download WW from GIT, you will see a number of files. However\nthere are only a few that you need to be concerned with:\n\n* _worldweaver.html_\n* _importer.html_\n* _vummel.html_\n\nThe rest of the files are mainly for those of you who wish to contribute to the\ndevelopment of WW.","children":[],"expanded":false},{"id":"j2xmxbr6","title":"Importing the Database","content":"Importing the Database\n--------------------------------------------------------------------------------\n\nBuilding WW games consists of the following:\n\n* Defining .nrmn script files within a common root game directory (usually\nstored in the ~/Documents directory.\n* Compiling those scripts using the _importer.html_ tool.\n* Copying the generated database into your game's .html file (a copy of the\nworldweaver.html file).\n\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"g3l61mum","title":"WorldWeaver Files","content":"","children":[{"id":"gnrdfdy3","title":"worldweaver.html","content":"worldweaver.html\n--------------------------------------------------------------------------------\n\nThis is the actual game-playing file. Be sure to keep a clean copy of it handy\nso that you can start new games from it, or rollback any errors that might\noccur.\n\nSo the first thing you will want to do is copy this file and give it your\ngame's name, being sure to use a valid file name for it.","children":[],"expanded":false},{"id":"vzq2adxm","title":"importer.html","content":"importer.html\n--------------------------------------------------------------------------------\n\nThe importer.html file is used to compile your games' Norman Script into a\ndatabase that can be copied into your copy of the worldweaver.html file.\n\nFor information on importing this database, refer to: _Importing the Database_.\n\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"sxb5n7ik","title":"vummel.html","content":"vummel.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"c7jyl15v","title":"Norman Script","content":"","children":[{"id":"532jkuyh","title":"Introduction to Norman Script","content":"Introduction to Norman Script\n--------------------------------------------------------------------------------\n\nNorman Script was created to make WW game development as painless as possible.\nIt was designed to be as verbose as possible. It SOMEWHAT resembles JSON, but\nwithout all the double quotes etc.","children":[],"expanded":false}],"expanded":true}],"expanded":true}
+  {"id":"7t1zfwoc","title":"Introduction","content":"Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine built as stand alone HTML\nfiles. The benefits of this approach is that all you need to build WW games,\nor play WW games, is a standard web browser.\n\nThe downsides are you need to become familiar with the limitations imposed by\nthe browser itself.\n\n--------------------------------------------------------------------------------\n\nWW games are defined using a custom scripting language called Norman Script.\n\nTo learn about this script and its syntax, refer to this topic: _Norman Script_.","children":[],"expanded":false},{"id":"zed8qmc0","title":"Getting Started","content":"","children":[{"id":"orfg1ilt","title":"Downloading WorldWeaver","content":"Downloading WorldWeaver\n--------------------------------------------------------------------------------\n\nWhen you first download WW from GIT, you will see a number of files. However\nthere are only a few that you need to be concerned with:\n\n* _worldweaver.html_\n* _importer.html_\n* _vummel.html_\n\nThe rest of the files are mainly for those of you who wish to contribute to the\ndevelopment of WW.","children":[],"expanded":false},{"id":"j2xmxbr6","title":"Importing the Database","content":"Importing the Database\n--------------------------------------------------------------------------------\n\nBuilding WW games consists of the following:\n\n* Defining .nrmn script files within a common root game directory (usually\nstored in the ~/Documents directory.\n* Compiling those scripts using the _importer.html_ tool.\n* Copying the generated database into your game's .html file (a copy of the\nworldweaver.html file).\n\n\nYou can identify the database by opening the game file in a text editor and\nsearching for:\n\nlet database = [\n\nAnd it ends with\n];\n\nSo you will replace all of the database object with what you copied in the\n_importer.html_ file.","children":[],"expanded":false},{"id":"g3l61mum","title":"WorldWeaver Files","content":"","children":[{"id":"gnrdfdy3","title":"worldweaver.html","content":"worldweaver.html\n--------------------------------------------------------------------------------\n\nThis is the actual game-playing file. Be sure to keep a clean copy of it handy\nso that you can start new games from it, or rollback any errors that might\noccur.\n\nSo the first thing you will want to do is copy this file and give it your\ngame's name, being sure to use a valid file name for it.","children":[],"expanded":false},{"id":"vzq2adxm","title":"importer.html","content":"importer.html\n--------------------------------------------------------------------------------\n\nThe importer.html file is used to compile your games' Norman Script into a\ndatabase that can be copied into your copy of the worldweaver.html file.\n\nFor information on importing this database, refer to: _Importing the Database_.\n\n--------------------------------------------------------------------------------","children":[],"expanded":false},{"id":"sxb5n7ik","title":"vummel.html","content":"vummel.html\n--------------------------------------------------------------------------------\n--------------------------------------------------------------------------------","children":[],"expanded":false}],"expanded":false},{"id":"c7jyl15v","title":"Norman Script","content":"","children":[{"id":"532jkuyh","title":"Introduction to Norman Script","content":"Introduction to Norman Script\n--------------------------------------------------------------------------------\n\nNorman Script was created to make WW game development as painless as possible.\nIt was designed to be as verbose as possible. It SOMEWHAT resembles JSON, but\nwithout all the double quotes etc.","children":[],"expanded":false}],"expanded":true}],"expanded":true}
 ];
 
         let historyStack = [];
@@ -596,17 +605,19 @@ G = Select bottom tree node
                 render();
             }
         }
-        function selectNextSibling() {
+        function selectNextSibling(curLevelOnly) {
             const info = findNodeAndParentById(selectedId);
             if (!info) return;
         
             // Case 1: current is a folder with children
-            if (isFolder(info.node) && info.node.children.length) {
-                if (!info.node.expanded) {
-                    info.node.expanded = true; // expand if collapsed
+            if (!curLevelOnly) {
+                if (isFolder(info.node) && info.node.children.length) {
+                    if (!info.node.expanded) {
+                        info.node.expanded = true; // expand if collapsed
+                    }
+                    selectedId = info.node.children[0].id;
+                    return;
                 }
-                selectedId = info.node.children[0].id;
-                return;
             }
         
             // Case 2: move to next sibling at this level
@@ -618,29 +629,32 @@ G = Select bottom tree node
             }
         
             // Case 3: last sibling → climb ancestors until one has a next sibling
-            let ancestorId = ctx.parent ? ctx.parent.id : null;
-            while (ancestorId) {
-                const actx = getSiblingsAndIndex(ancestorId);
-                if (!actx) break;
-        
-                if (actx.index < actx.siblings.length - 1) {
-                    selectedId = actx.siblings[actx.index + 1].id;
-                    return;
+            if (!curLevelOnly) {
+                let ancestorId = ctx.parent ? ctx.parent.id : null;
+                while (ancestorId) {
+                    const actx = getSiblingsAndIndex(ancestorId);
+                    if (!actx) break;
+            
+                    if (actx.index < actx.siblings.length - 1) {
+                        selectedId = actx.siblings[actx.index + 1].id;
+                        return;
+                    }
+            
+                    // go up another level
+                    ancestorId = actx.parent ? actx.parent.id : null;
                 }
-        
-                // go up another level
-                ancestorId = actx.parent ? actx.parent.id : null;
             }
         }
-        
-        function selectPrevSibling() {
+        function selectPrevSibling(curLevelOnly) {
             const ctx = getSiblingsAndIndex(selectedId);
             if (!ctx) return;
         
             // If we are the first child, go to parent instead
-            if (ctx.index === 0 && ctx.parent) {
-                selectedId = ctx.parent.id;
-                return;
+            if (!curLevelOnly) {
+                if (ctx.index === 0 && ctx.parent) {
+                    selectedId = ctx.parent.id;
+                    return;
+                }
             }
         
             // Otherwise go to previous sibling
@@ -1157,8 +1171,10 @@ G = Select bottom tree node
                 case 'f': openReplaceDialog(); break;
                 case 'r': if (!readOnly) addRoot(); break;
                 case 'R': if (!readOnly) renameFolder(); break;
-                case 'j': selectNextSibling(); break;
-                case 'k': selectPrevSibling(); break;
+                case 'j': selectNextSibling(false); break;
+                case 'k': selectPrevSibling(false); break;
+                case ',': selectNextSibling(true); break;
+                case '.': selectPrevSibling(true); break;
                 case 'l': expandOrFirstChild(); break;
                 case 'h': collapseCurrent(); break;
                 case 'C': collapseAll(); break;
