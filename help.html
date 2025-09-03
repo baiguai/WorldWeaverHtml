@@ -494,7 +494,7 @@ G = Select bottom tree node
                 pathEl.textContent = computePath(selInfo.node.id);
                 kindEl.textContent = isFolder(selInfo.node) ? 'FOLDER' : 'FILE';
                 if (!editing) {
-                    editorArea.value = selInfo.node.content || '';
+                    editorArea.value = safeRestoreText(selInfo.node.content) || '';
                     editorArea.setAttribute('readonly', 'readonly');
                 } else {
                     editorArea.removeAttribute('readonly');
@@ -527,11 +527,29 @@ G = Select bottom tree node
         function syncFile() {
             const info = findNodeAndParentById(selectedId);
             if (!info) return;
-            info.node.content = editorArea.value;
+            info.node.content = safeStoreText(editorArea.value);
             updateTitleFromContent(info.node);
             // File vs folder might have changed; keep UI responsive
             render();
         }
+
+
+        function safeStoreText(text) {
+            if (!text) return "";
+            return text
+                .replace(/<\/script/gi, "<\\/script")   // prevent script tag breakouts
+                .replace(/<\/style/gi, "<\\/style")     // style tag safety
+                .replace(/]]>/g, "]]\\>");              // prevent CDATA close
+        }
+        
+        function safeRestoreText(text) {
+            if (!text) return "";
+            return text
+                .replace(/<\\\/script/gi, "</script")
+                .replace(/<\\\/style/gi, "</style")
+                .replace(/]]\\>/g, "]]>");
+        }
+
 
         editorArea.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -744,7 +762,7 @@ G = Select bottom tree node
             const info = findNodeAndParentById(selectedId);
             if (!info || !info.node.content) return;
 
-            const content = info.node.content;
+            const content = safeRestoreText(info.node.content);
             const urlRegex = /\bhttps?:\/\/[^\s]+/gi;
             const nodeLinkRegex = /_(.+?)_/g;
 
@@ -878,7 +896,7 @@ G = Select bottom tree node
                 return;
             }
 
-            const content = info.node.content || '';
+            const content = safeRestoreText(info.node.content) || '';
             // Escape user input for regex
             const regex = new RegExp(searchVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
 
@@ -920,12 +938,12 @@ G = Select bottom tree node
             }
 
             const regex = new RegExp(searchVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-            let content = info.node.content || '';
+            let content = safeRestoreText(info.node.content) || '';
             const matchCount = (content.match(regex) || []).length;
 
             if (matchCount > 0) {
                 content = content.replace(regex, replaceVal);
-                info.node.content = content;
+                safeStoreText(info.node.content) = content;
                 render();
                 resultsEl.textContent = `Replaced ${matchCount} occurrence(s).`;
             } else {
@@ -1227,7 +1245,7 @@ G = Select bottom tree node
         const info = findNodeAndParentById(selectedId);
         if (!info || !info.node.content) return;
 
-        const content = info.node.content;
+        const content = safeRestoreText(info.node.content);
         const urlRegex = /\bhttps?:\/\/[^\s]+/gi;
         const nodeLinkRegex = /_(.+?)_/g;
 
@@ -1443,5 +1461,4 @@ G = Select bottom tree node
     window.addEventListener('keydown', handleHistoryKey, { capture: true });
     window.addEventListener('keydown', handleLinksKey, { capture: true });
 </script>
-
 </body></html>
