@@ -379,6 +379,10 @@ let treeData = [
         let showingLinks = false;
         let finding = false;
         let fileName = "help";
+        let mode_insert = false;
+        let mode_repeat = 1;
+        let mode_counting = false;
+        let mode_going = false;
 
         let searchActive = false;
         let searchMatches = [];
@@ -575,7 +579,216 @@ let treeData = [
                 editorArea.blur();
                 render();
             }
+
+            vimKeys(e);
         });
+
+
+
+        // ---- VIM Keys -------------------------------------------------------
+        // modeEl.textContent = 'NORMAL';
+        function vimKeys(e) {
+            // Escape to normal mode with Ctrl+E
+            if (e.ctrlKey && e.key === "e") {
+                e.preventDefault();
+                mode_insert = false;
+                modeEl.textContent = 'NORMAL';
+                return;
+            }
+        
+            // Insert mode logic
+            if (mode_insert) {
+                if (e.key === "Tab") {
+                    // Expand tab into 4 spaces
+                    e.preventDefault();
+                    const start = editorArea.selectionStart;
+                    const end = editorArea.selectionEnd;
+        
+                    editorArea.setRangeText("    ", start, end, "end");
+                }
+                return; // In insert mode, otherwise let typing behave normally
+            }
+
+            if (mode_insert) {
+                return;
+            }
+
+            e.preventDefault();
+        
+            // Normal mode logic
+            if (!isNaN(parseInt(e.key, 10))) {
+                const digit = parseInt(e.key, 10);
+                if (!mode_counting) {
+                    if (digit !== 0) {
+                        mode_repeat = digit;
+                        mode_counting = true;
+                        return;
+                    }
+                } else {
+                    mode_repeat = (mode_repeat * 10) + digit;
+                    return;
+                }
+            }
+
+
+            // Cancel any multi-key flags
+            if (e.key !== 'g') {
+                mode_going = false;
+            }
+            if (mode_counting && isNaN(parseInt(e.key, 10))) {
+                mode_counting = false;
+            }
+
+        
+            // Execute commands with repeat count
+            const count = mode_repeat;
+            let performed = false;
+        
+            switch (e.key) {
+                case "i": // Enter insert mode
+                    mode_insert = true;
+                    performed = true;
+                    modeEl.textContent = 'INSERT';
+                    break;
+        
+                case "h": // Move left
+                    editorArea.selectionStart = Math.max(0, editorArea.selectionStart - count);
+                    editorArea.selectionEnd = editorArea.selectionStart;
+                    performed = true;
+                    break;
+        
+                case "l": // Move right
+                    editorArea.selectionStart = Math.min(editorArea.value.length, editorArea.selectionStart + count);
+                    editorArea.selectionEnd = editorArea.selectionStart;
+                    performed = true;
+                    break;
+        
+                case "j": // Move down lines
+                    for (let i = 0; i < count; i++) moveCursorVertical(1);
+                    performed = true;
+                    break;
+        
+                case "k": // Move up lines
+                    for (let i = 0; i < count; i++) moveCursorVertical(-1);
+                    performed = true;
+                    break;
+        
+                case "0": // Jump to beginning of line
+                    const before0 = editorArea.value.lastIndexOf("\n", editorArea.selectionStart - 1);
+                    editorArea.selectionStart = editorArea.selectionEnd = (before0 === -1 ? 0 : before0 + 1);
+                    performed = true;
+                    break;
+        
+                case "$": // Jump to end of line
+                    const after$ = editorArea.value.indexOf("\n", editorArea.selectionStart);
+                    editorArea.selectionStart = editorArea.selectionEnd = (after$ === -1 ? editorArea.value.length : after$);
+                    performed = true;
+                    break;
+
+                case "w": // Forward word(s)
+                    for (let i = 0; i < count; i++) moveWord(1);
+                    performed = true;
+                    break;
+
+                case "W": // Backward word(s)
+                    for (let i = 0; i < count; i++) moveWord(-1);
+                    performed = true;
+                    break;
+        
+                case "x": // Delete character(s) under cursor
+                    const start = editorArea.selectionStart;
+                    if (start < editorArea.value.length) {
+                        editorArea.setRangeText("", start, start + count, "end");
+                    }
+                    performed = true;
+                    break;
+
+                case "g": // Possible gg
+                    if (mode_going) {
+                        if (count > 1) {
+                            // Go to line N
+                            const lines = editorArea.value.split("\n");
+                            const lineIndex = Math.min(count - 1, lines.length - 1);
+                            let pos = 0;
+                            for (let i = 0; i < lineIndex; i++) {
+                                pos += lines[i].length + 1;
+                            }
+                            performed = true;
+                            mode_repeat = 1;
+                            editorArea.selectionStart = editorArea.selectionEnd = pos;
+                        } else {
+                            mode_going = false;
+                            editorArea.selectionStart = editorArea.selectionEnd = 0;
+                            performed = true;
+                            mode_repeat = 1;
+                        }
+                    } else {
+                        mode_going = true;
+                    }
+                    break;
+
+                case "G": // End of buffer, or Nth line
+                    editorArea.selectionStart = editorArea.selectionEnd = editorArea.value.length;
+                    performed = true;
+                    break;
+            }
+        
+            // Reset repeat count after command
+            if (performed) {
+                mode_repeat = 1;
+                mode_counting = false;
+                mode_going = false;
+            }
+        
+            // --- Helper for j/k ---
+            function moveCursorVertical(direction) {
+                const text = editorArea.value;
+                const pos = editorArea.selectionStart;
+        
+                // Find current line start/end
+                const lineStart = text.lastIndexOf("\n", pos - 1) + 1;
+                const lineEnd = text.indexOf("\n", pos);
+                const currentCol = pos - lineStart;
+        
+                // Target line
+                let targetLineStart, targetLineEnd;
+                if (direction > 0) { // down
+                    if (lineEnd === -1) return; // already last line
+                    targetLineStart = lineEnd + 1;
+                    targetLineEnd = text.indexOf("\n", targetLineStart);
+                    if (targetLineEnd === -1) targetLineEnd = text.length;
+                } else { // up
+                    if (lineStart === 0) return; // already first line
+                    targetLineEnd = lineStart - 1;
+                    targetLineStart = text.lastIndexOf("\n", targetLineEnd - 1) + 1;
+                }
+        
+                // Keep column if possible, else move to end of line
+                const targetPos = Math.min(targetLineStart + currentCol, targetLineEnd);
+                editorArea.selectionStart = editorArea.selectionEnd = targetPos;
+            }
+
+            function moveWord(direction) {
+                const text = editorArea.value;
+                let pos = editorArea.selectionStart;
+
+                if (direction > 0) {
+                    // Skip current non-word chars
+                    while (pos < text.length && /\W/.test(text[pos])) pos++;
+                    // Skip word chars
+                    while (pos < text.length && /\w/.test(text[pos])) pos++;
+                } else {
+                    // Move left past non-word chars
+                    while (pos > 0 && /\W/.test(text[pos - 1])) pos--;
+                    // Move left past word chars
+                    while (pos > 0 && /\w/.test(text[pos - 1])) pos--;
+                }
+
+                editorArea.selectionStart = editorArea.selectionEnd = pos;
+            }
+        }
+        // ---------------------------------------------------------------------
+
 
 
         //---- Commands --------------------------------------------------------
@@ -1166,6 +1379,7 @@ let treeData = [
                 case 'i':
                     if (!readOnly) {
                         const info = findNodeAndParentById(selectedId); if (!info) return;
+                        mode_insert = true;
                         editing = true; render();
                         editorArea.focus();
                         // editorArea.setSelectionRange(editorArea.value.length, editorArea.value.length);
@@ -1489,11 +1703,5 @@ let treeData = [
     window.addEventListener('keydown', handleHistoryKey, { capture: true });
     window.addEventListener('keydown', handleLinksKey, { capture: true });
 </script>
-
-
-
-
-
-
 
 </body></html>
