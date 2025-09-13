@@ -302,6 +302,8 @@ f = Find text in the current note
 &lt; = Show the history dialog
 g = Select top tree node
 G = Select bottom tree node
+
+V = Editor Vim keys help
 </pre>
 <p></p>
 <p style="display: none;">
@@ -367,7 +369,7 @@ variable to true in this .html file.
 <p>Press ESC to close.</p>
 </div>
 
-<div id="optionsDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 400px; background: #222; color: #fff; border: 2px solid #444; border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);">
+<div id="optionsDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 400px; background: rgb(34, 34, 34); color: rgb(255, 255, 255); border: 2px solid rgb(68, 68, 68); border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 20px;">
 <h3>Options</h3>
 <label><input type="checkbox" id="optShowInitHelp"> Show Init Help</label><br><br>
 <label>File Name: <input type="text" id="optFileName" style="background:#111;color:#fff;border:1px solid #555;"></label><br><br>
@@ -375,23 +377,23 @@ variable to true in this .html file.
 <p>Press Enter to save, Esc to cancel.</p>
 </div>
 
-<aside class="tree" id="tree"><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">The Interface</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">The Parts of the Interface</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Treeview</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Editor</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction to the Editor</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Linking to Other Nodes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Special Key Codes</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Horizontal Rule</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Editor VIM Keys</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction to the Editor's VIM Keys</span></div></li><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Modes</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Navigation</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Repeating Commands</span></div></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Find and Replace</span></div></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Saving</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Configuration</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Linking</span></div></li></ul></aside>
+<aside class="tree" id="tree"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">The Interface</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Saving</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Configuration</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Linking</span></div></li></ul></aside>
 <section class="editor">
 <div class="status">
 <span class="pill" id="mode" style="display: block;">TREE</span>
 <span class="pill" id="kind">FILE</span>
-<span class="dim" id="path">/The Interface/Editor/Special Key Codes/Editor VIM Keys/Modes</span>
+<span class="dim" id="path">/Introduction</span>
 </div>
 <textarea id="editorArea" spellcheck="false" readonly="readonly"></textarea>
 </section>
 </div>
 <div class="search-dialog" id="searchDialog" style="display: none;">
 <input id="searchInput" placeholder="Search..." type="text">
-<div class="search-results" id="searchList"><div>The Information Panel</div><div>The Editor Panel</div><div>Introduction to the Editor</div><div>Linking to Other Nodes</div><div class="selected">Modes</div><div>Read Only Mode</div></div>
+<div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
 </div>
 <div id="linksDialog" style="display: none;">
 <h3>Links in Note</h3>
-<div id="linksList"><a href="#" data-node-id="ue3uci6k" class="selected">Editor VIM Keys</a></div>
+<div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
 </div>
 <div id="replaceDialog" style="display: none;">
 <h3>Find &amp; Replace</h3>
@@ -405,12 +407,12 @@ variable to true in this .html file.
 <button onclick="doReplaceAll()">Replace All</button>
 </div>
 </div>
-<div id="replaceResults">Match 1 of 3</div>
+<div id="replaceResults">Replaced 1 occurrence(s).</div>
 </div>
 
 <div id="historyDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 600px; max-height: 70%; background: rgb(34, 34, 34); color: rgb(255, 255, 255); border: 2px solid rgb(68, 68, 68); border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; overflow-y: auto; box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 20px;">
   <h3>History</h3>
-  <div id="historyList"><div>About the Sample Game</div><div class="selected" style="background: rgb(68, 68, 68);">Introduction to Norman Script</div><div>worldweaver.html</div><div>Importing the Database</div><div>Downloading WorldWeaver</div><div>Quick Links</div><div>Elements</div><div>Introduction</div></div>
+  <div id="historyList"><div>The Options Dialog</div><div class="selected" style="background: rgb(68, 68, 68);">Editor Vim Help</div><div>Read Only Mode</div><div>The Options Dialog</div><div>Help Dialog</div><div>Dialogs Introduction</div><div>Introduction to Configuration</div><div>Help Dialog</div><div>Modes</div><div>Introduction</div><div>Switching Between Modes</div><div>The Modes</div></div>
 </div>
 
 <script>
@@ -459,10 +461,14 @@ let treeData = [
         let searchActive = false;
         let searchMatches = [];
         let searchIndex = 0;
+        const helpDialog = document.getElementById('helpDialog');
+        const helpDialogVimEdit = document.getElementById('helpDialogVimEdit');
+        const helpDialogVimDisabled = document.getElementById('helpDialogVimDisabled');
+        const optionsDialog = document.getElementById('optionsDialog');
         const searchDialog = document.getElementById('searchDialog');
+        const replaceDialog = document.getElementById('replaceDialog');
         const searchInput = document.getElementById('searchInput');
         const searchList = document.getElementById('searchList');
-        const optionsDialog = document.getElementById('optionsDialog');
         const optShowInitHelp = document.getElementById('optShowInitHelp');
         const optFileName = document.getElementById('optFileName');
         const optModeVim = document.getElementById('optModeVim');
@@ -1362,12 +1368,14 @@ let treeData = [
 
             if (matchCount > 0) {
                 content = content.replace(regex, replaceVal);
-                safeStoreText(info.node.content) = content;
+                info.node.content = safeStoreText(content);
                 render();
                 resultsEl.textContent = `Replaced ${matchCount} occurrence(s).`;
             } else {
                 resultsEl.textContent = 'No matches found.';
             }
+
+            syncFile();
         }
 
         const searchInputEl = document.getElementById('searchText');
@@ -1564,7 +1572,7 @@ let treeData = [
                 return;
             }
 
-            if (e.key === '/') {
+            if (e.key === '/' && !editing && !dialogOpen()) {
                 openSearch();
                 e.preventDefault();
                 return;
@@ -1574,6 +1582,11 @@ let treeData = [
 
             const k = e.key; // compare exact letter; do not rely on shift state
             let did = true;
+
+            if (dialogOpen()) {
+                return;
+            }
+
             switch (k) {
                 case 'i':
                     if (!readOnly) {
@@ -1601,7 +1614,7 @@ let treeData = [
                         did = false;
                     }
                     break; // handled in textarea
-                case 'f': openReplaceDialog(); break;
+                case 'f': if (!editing) openReplaceDialog(); break;
                 case 'r': if (!readOnly) addRoot(); break;
                 case 'R': if (!readOnly) renameFolder(); break;
                 case 'j': selectNextSibling(false); break;
@@ -1638,8 +1651,8 @@ let treeData = [
         }
 
         document.addEventListener('keydown', e => {
-            if (e.key === '?' && !editing) {
-                document.getElementById('helpDialog').style.display = 'block';
+            if (e.key === '?' && !editing && !dialogOpen()) {
+                helpDialog.style.display = 'block';
                 e.preventDefault();
                 return;
             }
@@ -1665,15 +1678,15 @@ let treeData = [
                         document.activeElement.checked = !document.activeElement.checked;
                     }
                 }
-            } else if (e.key === '!' && !editing && !readOnly) {
+            } else if (e.key === '!' && !editing && !readOnly && !dialogOpen()) {
                 e.preventDefault();
                 openOptionsDialog();
             }
-            if (e.key === 'V' && !editing && !readOnly) {
+            if (e.key === 'V' && !editing && !dialogOpen()) {
                 if (mode_vim) {
-                    document.getElementById('helpDialogVimEdit').style.display = 'block';
+                    helpDialogVimEdit.style.display = 'block';
                 } else {
-                    document.getElementById('helpDialogVimDisabled').style.display = 'block';
+                    helpDialogVimDisabled.style.display = 'block';
                 }
                 e.preventDefault();
                 return;
@@ -1682,16 +1695,16 @@ let treeData = [
             if (e.key === 'Escape') {
                 repeatCount = 1;
 
-                if (document.getElementById('helpDialog').style.display === 'block') {
-                    document.getElementById('helpDialog').style.display = 'none';
+                if (helpDialog.style.display === 'block') {
+                    helpDialog.style.display = 'none';
                     e.stopPropagation();
                     return;
-                } else if (document.getElementById('helpDialogVimEdit').style.display === 'block') {
-                    document.getElementById('helpDialogVimEdit').style.display = 'none';
+                } else if (helpDialogVimEdit.style.display === 'block') {
+                    helpDialogVimEdit.style.display = 'none';
                     e.stopPropagation();
                     return;
-                } else if (document.getElementById('helpDialogVimDisabled').style.display === 'block') {
-                    document.getElementById('helpDialogVimDisabled').style.display = 'none';
+                } else if (helpDialogVimDisabled.style.display === 'block') {
+                    helpDialogVimDisabled.style.display = 'none';
                     e.stopPropagation();
                 } else {
                     selectedNode = null;
@@ -1705,30 +1718,10 @@ let treeData = [
             return json.replace(/<\//g, '<\\/'); // avoid closing script tags
         }
 
-        //---- Init ------------------------------------------------------------
-        window.addEventListener('load', function() {
-            if (readOnly) {
-                document.getElementById('authorHelp').style.display = 'none';
-                document.getElementById('readerHelp').style.display = 'block';
-                document.getElementById('authorHelpVim').style.display = 'none';
-                document.getElementById('readerHelpVim').style.display = 'block';
-                document.getElementById('mode').style.display = 'none';
-                document.getElementById('replaceTools').style.display = 'none';
-            } else {
-                document.getElementById('authorHelpVim').style.display = 'block';
-                document.getElementById('readerHelpVim').style.display = 'none';
-                document.getElementById('mode').style.display = 'block';
-                document.getElementById('replaceTools').style.display = 'block';
-            }
+        function dialogActive() {
 
-            if (showInitHelp) {
-                document.getElementById('helpDialog').style.display = 'block';
-            }
+        }
 
-            selectedId = treeData[0]?.id || null;
-            render();
-        });
-    
     let linksIndex = 0;
     let linksCount = 0;
 
@@ -1951,9 +1944,64 @@ let treeData = [
         return;
     }
 
+    function dialogOpen() {
+        let openDialog = false;
+
+        if (helpDialog.style.display === "block") {
+            openDialog = true;
+        }
+        if (helpDialogVimEdit.style.display === "block") {
+            openDialog = true;
+        }
+        if (helpDialogVimDisabled.style.display === "block") {
+            openDialog = true;
+        }
+        if (optionsDialog.style.display === "block") {
+            openDialog = true;
+        }
+        if (searchDialog.style.display === "flex") {
+            openDialog = true;
+        }
+        if (replaceDialog.style.display === "block") {
+            openDialog = true;
+        }
+
+        return openDialog;
+    }
+
+
+
+
     window.addEventListener('keydown', handleHistoryKey, { capture: true });
     window.addEventListener('keydown', handleLinksKey, { capture: true });
+
+    //---- Init ------------------------------------------------------------
+    window.addEventListener('load', function() {
+        if (readOnly) {
+            document.getElementById('authorHelp').style.display = 'none';
+            document.getElementById('readerHelp').style.display = 'block';
+            document.getElementById('authorHelpVim').style.display = 'none';
+            document.getElementById('readerHelpVim').style.display = 'block';
+            document.getElementById('mode').style.display = 'none';
+            document.getElementById('replaceTools').style.display = 'none';
+        } else {
+            document.getElementById('authorHelpVim').style.display = 'block';
+            document.getElementById('readerHelpVim').style.display = 'none';
+            document.getElementById('mode').style.display = 'block';
+            document.getElementById('replaceTools').style.display = 'block';
+        }
+
+        if (showInitHelp) {
+            helpDialog.style.display = 'block';
+        }
+
+        selectedId = treeData[0]?.id || null;
+        render();
+    });
 </script>
+
+
+
 
 
 
