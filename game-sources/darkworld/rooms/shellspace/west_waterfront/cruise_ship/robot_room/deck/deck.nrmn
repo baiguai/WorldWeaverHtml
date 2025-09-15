@@ -1,5 +1,6 @@
 {room, key=toplessrobot_deck, name=Deck
     {attrib, output=false, tags=init }
+    {attrib, output=help, tags=topic }
 
     {enter_message
         output={@
@@ -20,7 +21,8 @@ When I accidentally overheard an argument among a couple of
 developers regarding re-purposing the security protocols to
 kill people, not only here, but in *meat space*...
 
-I figured you were my only hope in stopping this."
+I figured you were my only hope in stopping this.
+Will you help me?"
 <else>
 The robot woman is sitting on one of the lounge chairs,
 looking out over the city.
@@ -52,6 +54,24 @@ South, Go back into the hotel room.
     }
 
 
+
+    {agree
+        {message
+            output={@
+"Oh good!
+
+If you were to take something from this room, and I know about it -
+they'll know about it."
+She nods slightly at you.
+"If you need to use the restroom, my bedroom is through the west door."
+
+She reclines again, looking out over the neon lights of the city.
+            }
+        }
+    }
+
+
+
     {inject, logic=/look.inj }
 
 
@@ -61,6 +81,56 @@ South, Go back into the hotel room.
 You get up and step through the large sliding glass door,
 into the hotel room.
             }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=agree, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'help'
+            }
+            output={@
+She seems confused.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
+        {move, logic=cruise_players_room, tags=[player]
+            output={@
+She shakes her head gravely.
+"I'm so sorry."
+She gets up and approaches you then wraps her arms around you
+and leans in close.
+After looking into your eyes for a moment she kisses you on the
+lips and the world goes dark...
+
+
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'help'
+            }
+            output={@
+She seems confused.
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Todo
+        output={@
+* Define the lazer gun - hidden in her bedroom.
+* Ensure that the player gets the Secdyne, multiplexer clue.
+* If the player refuses to help - restrict most of the game.
         }
     }
 }
