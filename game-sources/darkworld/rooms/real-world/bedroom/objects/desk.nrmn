@@ -22,7 +22,7 @@ You examine your desk.
     }
 
 
-    {input, syntax=[tplt_syntax]((x_desk))
+    {input, syntax=[tplt_syntax]((x_your_desk))
         {act, logic=x_desk, tags=!_type|room }
     }
 }

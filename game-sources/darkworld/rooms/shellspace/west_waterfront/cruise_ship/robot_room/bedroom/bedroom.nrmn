@@ -1,7 +1,10 @@
 {room, key=toplessrobot_bedroom, name=Bedroom
     {enter_message
         output={@
-You are in the bedroom.
+In the center of the room is a large bed and the entire north wall is a window.
+Along the wall next to you is a minimalistic dresser. It has slender chrome
+handles on each of its drawers. An asymmetrical rectangular mirror hangs on
+the south wall to the left of a door that leads into the bathroom.
         }
     }
 
@@ -15,6 +18,33 @@ You are in the bedroom.
     }
 
 
+
+    {x_dresser
+        {message
+            output={@
+You examine the dresser...
+            }
+        }
+    }
+
+    {x_bed
+        {message
+            output={@
+You examine the bed...
+            }
+        }
+    }
+
+    {under_bed
+        {message
+            output={@
+You look under the bed...
+            }
+        }
+    }
+
+
+
     {navigation
         {message
             output={@
@@ -23,6 +53,7 @@ You are in the bedroom.
 
 ---
 East, Exit the bedroom.
+South, Enter the bathroom.
             }
         }
     }
@@ -31,11 +62,33 @@ East, Exit the bedroom.
     {inject, logic=/look.inj }
 
 
+    {input, syntax=[tplt_syntax]((x_dresser))
+        {act, logic=x_dresser, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_bed))
+        {act, logic=x_bed, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_under_bed))
+        {act, logic=under_bed, tags=!_type|room }
+    }
+
+
     {input, syntax=[tplt_syntax]((go_east))
         {move, logic=toplessrobot_room, tags=[player]
             output={@
 
 You exit the bedroom.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=toplessrobot_bathroom, tags=[player]
+            output={@
+
+You step into the bathroom.
             }
         }
     }

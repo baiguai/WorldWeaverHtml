@@ -1,0 +1,41 @@
+{room, key=toplessrobot_bathroom, name=Bathroom
+    {enter_message
+        output={@
+You are in the bathroom
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+            }
+        }
+    }
+
+
+    {navigation
+        {message
+            output={@
+
+
+
+---
+North, Exit the bathroom.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=toplessrobot_bedroom, tags=[player]
+            output={@
+
+You return to the bedroom.
+            }
+        }
+    }
+}
