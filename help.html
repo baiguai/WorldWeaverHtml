@@ -261,6 +261,9 @@ a = Add next sibling tree node
 [ = Shrink the treeview panel
 g = Select top tree node
 G = Select bottom tree node
+
+y = Copy note node
+p = Paste copied note node
 </pre>
 </td>
 <td style="vertical-align: top; padding-left: 10px;">
@@ -446,6 +449,8 @@ variable to true in this .html file.
         let historyStack = [];
         let showingHistory = false;
         let historyIndex = 0;
+
+        let copiedNoteId = null;
 
         let fileName = "help";
         let showInitHelp = false;
@@ -1408,6 +1413,43 @@ variable to true in this .html file.
 
 
 
+        //---- Copy / Paste ----------------------------------------------------
+        function copyNode() {
+            const info = findNodeAndParentById(selectedId);
+            if (info && !isFolder(info.node)) {
+                copiedNoteId = info.node.id;
+            } else {
+                copiedNoteId = null;
+            }
+        }
+
+        function pasteNode() {
+            if (copiedNoteId) {
+                const info = findNodeAndParentById(selectedId);
+                if (info && isFolder(info.node)) {
+                    const original = findNodeAndParentById(copiedNoteId)?.node;
+                    if (original) {
+                        // Deep clone the note (new ID)
+                        const cloneNode = JSON.parse(JSON.stringify(original));
+                        cloneNode.id = makeId();
+                        // Recursively assign new IDs to all children
+                        (function fixIds(n) {
+                            n.id = makeId();
+                            n.children.forEach(fixIds);
+                        })(cloneNode);
+                        info.node.children.push(cloneNode);
+                        info.node.expanded = true;
+                        selectedId = cloneNode.id;
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
 
 
         //---- Search ----------------------------------------------------------
@@ -1496,7 +1538,7 @@ variable to true in this .html file.
                     selectSearchResult(searchIndex);
                     closeSearch();
                 }
-            } else if (e.key === 'Escape' || e.key === 'q') {
+            } else if (e.key === 'Escape') {
                 closeSearch();
             }
         });
@@ -1685,6 +1727,8 @@ variable to true in this .html file.
                 case '[': resizeTree(-30); break;
                 case '#': openLinksDialog(); break;
                 case 'X': openMissingLinksDialog(); break;
+                case 'y': if (!readOnly) copyNode(); break;
+                case 'p': if (!readOnly) pasteNode(); break;
                 case '<':
                     openHistoryDialog();
                     e.preventDefault();
@@ -2078,13 +2122,6 @@ variable to true in this .html file.
         render();
     });
 </script>
-
-
-
-
-
-
-
 
 
 
