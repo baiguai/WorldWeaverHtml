@@ -1559,7 +1559,7 @@ variable to true in this .html file.
 
         function exportNoteAsTxt() {
             const editorArea = document.getElementById("editorArea");
-            if (!editorArea) return;
+            if (!editorArea || editorArea.value === "") return;
 
             let content = editorArea.value;
 
