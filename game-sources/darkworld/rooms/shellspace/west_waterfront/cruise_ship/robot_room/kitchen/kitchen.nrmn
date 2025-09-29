@@ -23,6 +23,15 @@ And above the counters are cupboards.
         }
     }
 
+    {x_counters
+        {message
+            output={@
+You examine the counters.
+Apart from the stylish appliances you don't see anything of interest.
+            }
+        }
+    }
+
     {x_cupboards
         {message
             output={@
@@ -68,6 +77,10 @@ You exit the kitchen.
         }
     }
 
+
+    {input, syntax=[tplt_syntax]((x_counters))
+        {act, logic=x_counters, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((x_cupboards))
         {act, logic=x_cupboards, tags=!_type|room }

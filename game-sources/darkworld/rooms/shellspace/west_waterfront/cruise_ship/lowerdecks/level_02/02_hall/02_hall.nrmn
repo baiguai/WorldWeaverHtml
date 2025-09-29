@@ -1,16 +1,21 @@
 {room, key=cruise_lower_02, name=Lower Deck 02
     {enter_message
         output={@
+
 You are on the lower deck 02.
-A hall of doors stretches out before you.
+A hall of doors stretches out before you they are numbered
+from 200 to 230.
         }
     }
 
     {look
         {message
             output={@
+
 You look around...
 You are on lower deck number 02.
+A hall of doors stretches out before you they are numbered
+from 200 to 230.
             }
         }
     }
@@ -32,6 +37,14 @@ Up to the cruise ship's central area.
         {move, logic=cruise_central_area, tags=[player]
             output={@
 You walk up the stairs.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((room_201))
+        {move, logic=cruise_players_room, tags=[player]
+            output={@
+You enter room 201.
             }
         }
     }
