@@ -9,9 +9,18 @@
         {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
+        {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers }
+        {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
+        {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
         {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? screens$, logic=x the screens|x screens|examine the screens }
+        {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
+        {attrib, tags=x_sink|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(sink)\b, logic=examine the sink|x the sink|examine sink|x sink }
+        {attrib, tags=x_toilet|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(toilet)\b, logic=examine the toilet|x the toilet|examine toilet|x toilet }
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(bed)\b, logic=look under the bed|look under bed|examine under the bed|x under bed }
+        {attrib, tags=x_under_dresser|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(dresser)\b, logic=look under the dresser|look under dresser|examine under the dresser|x under dresser }
+        {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
+        {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
@@ -23,9 +32,11 @@
 
     Taking
         {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
+        {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
 
     Dropping
         {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
+        {attrib, tags=lcd_watch_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=drop the watch|drop watch|drop lcd watch|put down the watch|put down watch|put down lcd watch }
 
     Putting
 
@@ -53,6 +64,8 @@
         {attrib, tags=up_escalator|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?escalator$, logic=go up the escalator|take escalator|escalator }
         {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }
         {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
+
+        {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
 
     Conversation
         {attrib, tags=purchase_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }

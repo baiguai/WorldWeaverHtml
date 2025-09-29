@@ -2925,7 +2925,7 @@
             return "";
         }
         function getFieldValue(curElem, field) {
-            curElem = curElem;
+            if (curElem === undefined) return "";
 
             switch(field.toLowerCase()) {
                 case "elementtype":

@@ -1,6 +1,14 @@
 {room, key=toplessrobot_bedroom, name=Bedroom
+    {attrib, tags=navigation
+        output={@
+East, Exit the bedroom.
+South, Enter the bathroom.
+        }
+    }
+
     {enter_message
         output={@
+
 In the center of the room is a large bed and the entire north wall is a window.
 Along the wall next to you is a minimalistic dresser. It has slender chrome
 handles on each of its drawers. An asymmetrical rectangular mirror hangs on
@@ -11,8 +19,12 @@ the south wall to the left of a door that leads into the bathroom.
     {look
         {message
             output={@
+
 You look around.
-You are in the bedroom.
+There is a large bed in the center of the room.
+The entire north wall is a window.
+You see a dresser set against the wall next to you.
+In the south wall is a door that leads to the bathroom.
             }
         }
     }
@@ -22,7 +34,27 @@ You are in the bedroom.
     {x_dresser
         {message
             output={@
-You examine the dresser...
+The dresser is very minimalist with slender chrome handles on each
+of its drawers.
+            }
+        }
+    }
+
+    {x_in_dresser
+        {message
+            output={@
+You go through the dresser's drawers.
+<?[lcd_watch]((moved)) = 'true'?>
+They are empty.
+</?>
+            }
+        }
+    }
+
+    {x_under_dresser
+        {message
+            output={@
+You look under the dresser...
             }
         }
     }
@@ -45,25 +77,18 @@ You look under the bed...
 
 
 
-    {navigation
-        {message
-            output={@
-
-
-
----
-East, Exit the bedroom.
-South, Enter the bathroom.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
+    {input, syntax=[tplt_syntax]((x_in_dresser))
+        {act, logic=x_in_dresser, tags=!_type|room }
+    }
     {input, syntax=[tplt_syntax]((x_dresser))
         {act, logic=x_dresser, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_under_dresser))
+        {act, logic=x_under_dresser, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_bed))

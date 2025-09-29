@@ -1,8 +1,14 @@
 {room, key=cruise_players_room, name=Your Cruise Ship Room
+    {attrib, tags=navigation
+        output={@
+South, Go back into the hotel room.
+        }
+    }
     {attrib, output=false, tags=from_robot }
 
     {enter_message
         output={@
+
 You are in your cruise ship room.
         }
     }
@@ -10,24 +16,13 @@ You are in your cruise ship room.
     {look
         {message
             output={@
+
 You look around your room...
             }
         }
     }
 
 
-    {navigation
-        {message
-            output={@
-
-
-
----
-South, Go back into the hotel room.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 }

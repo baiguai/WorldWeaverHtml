@@ -1,4 +1,10 @@
 {room, key=cruise_top_pool, name=Pool Area
+    {attrib, tags=navigation
+        output={@
+South, top deck, railing.
+        }
+    }
+
     {enter_message
         output={@
 You are in the pool area.
@@ -22,19 +28,7 @@ Scattered throughout are a couple of hot tubs.
         }
     }
 
-    {navigation
-        {message
-            output={@
-
-
-
----
-South, top deck, railing.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
@@ -43,6 +37,15 @@ South, top deck, railing.
             output={@
 You go south.
             }
+        }
+    }
+
+
+    {dev_note, tags=TODO
+        output={@
+* Define how to read the chip.
+* Define the clue that it gives.
+* Define joining the secret society.
         }
     }
 }
