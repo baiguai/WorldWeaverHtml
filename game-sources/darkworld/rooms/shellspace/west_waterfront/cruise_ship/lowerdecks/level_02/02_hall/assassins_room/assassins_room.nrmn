@@ -1,15 +1,14 @@
-{room, key=cruise_players_room, name=Your Cruise Ship Room
+{room, key=assassins_room, name=Stranger's Room
     {attrib, tags=navigation
         output={@
 South, Go back into the hall.
         }
     }
-    {attrib, output=false, tags=from_robot }
 
     {enter_message
         output={@
 
-You are in your cruise ship room.
+You enter a stranger's room...
         }
     }
 
@@ -17,7 +16,7 @@ You are in your cruise ship room.
         {message
             output={@
 
-You look around your room...
+You look around the stranger's room...
             }
         }
     }
@@ -30,7 +29,7 @@ You look around your room...
     {input, syntax=[tplt_syntax]((go_south))
         {move, logic=cruise_lower_02, tags=[player]
             output={@
-You exit your room.
+You exit the stranger's room.
             }
         }
     }
