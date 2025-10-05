@@ -1,4 +1,10 @@
 {room, key=cruise_lower_02, name=Lower Deck 02
+    {attrib, tags=navigation
+        output={@
+Up, Return to the cruise ship's central area.
+        }
+    }
+
     {enter_message
         output={@
 
@@ -20,17 +26,44 @@ from 200 to 230.
         }
     }
 
-
-    {navigation
-        {message
-            output={@
-
-
----
-Up to the cruise ship's central area.
+    {locked_rooms
+        {message, repeat=repeat
+            {message
+                output={@
+The room is locked.
+                }
+            }
+            {message
+                output={@
+You try the door, but it's locked.
+                }
+            }
+            {message
+                output={@
+The door won't open, it's locked.
+                }
+            }
+            {message
+                output={@
+Hmm the door is locked.
+                }
+            }
+            {message
+                output={@
+That door is locked.
+                }
+            }
+            {message
+                output={@
+You cannot enter, the door is locked.
+                }
             }
         }
     }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
 
 
     {input, syntax=[tplt_syntax]((go_up))
@@ -47,5 +80,17 @@ You walk up the stairs.
 You enter room 201.
             }
         }
+    }
+
+    {input, syntax=[tplt_syntax]((room_223))
+        {move, logic=assassins_room, tags=[player]
+            output={@
+You try door 223, and it is actually unlocked.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((locked_cruise_rooms))
+        {act, logic=locked_rooms, tags=!_type|room }
     }
 }
