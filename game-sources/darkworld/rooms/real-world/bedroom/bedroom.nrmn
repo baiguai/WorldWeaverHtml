@@ -1,14 +1,83 @@
 {room, key=bedroom, name=Bedroom
     {enter_message
         output={@
-You are in your bedroom.
+
+Your bedroom spreads out before you.
+
+Your bed is set against the far wall. Above it are two large windows.
+You have installed light strips under the bed so purple light emanates from
+under it.
+
+Your desk sits to the left of the bed. Cords and networking cables are strewn
+over it. And a mess of wires are piled up beneath it.
+
+Three monitors are arrayed on the desk, each one showing a slow, geometric
+screen saver.
+
+In the right side of the desk is your computer.
         }
     }
 
     {look
         {message
             output={@
-You look around. You are in your bedroom.
+You look around.
+
+Your bed is set against the far wall.
+
+Your desk sits to the left of the bed. 
+
+Three monitors are arrayed on the desk.
+In the right side of the desk is your computer.
+            }
+        }
+    }
+
+    {x_bed
+        {message
+            output={@
+You examine your bed. It is neatly made and there's nothing sitting on it.
+            }
+        }
+    }
+
+    {under_bed
+        {message
+            output={@
+You look under your bed, there is rndom items piled up there, but nothing of
+interest to you.
+            }
+        }
+    }
+
+    {x_desk
+        {message
+            output={@
+You examine your desk.
+
+Three monitors are arrayed on the desk.
+In the right side of the desk is your computer.
+
+Among the mess you notice an envelope.
+            }
+        }
+    }
+
+    {x_computer
+        {message
+            output={@
+You examine your computer. Your Shellspace brute force hack app is running.
+            }
+        }
+    }
+
+    {x_envelope
+        {message
+            output={@
+You examine the envelope...
+Inside is the USB stick you've been waiting for.
+All you have to do is plug it into your computer and you will
+be able to jack into Shellspace.
             }
         }
     }
@@ -29,5 +98,38 @@ You have the coveted USB stick, you can try putting it in your computer.
 
     {input, syntax=[tplt_syntax]((hint))
         {act, logic=hint, tags=!_type|room }
+    }
+
+
+    {input, syntax=[tplt_syntax]((x_your_bed))
+        {act, logic=x_bed, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_under_your_bed))
+        {act, logic=under_bed, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_your_desk))
+        {act, logic=x_desk, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_your_computer))
+        {act, logic=x_computer, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((plug_in_usb))
+        {move, logic=shellspace_port, tags=[player]
+            output={@
+You plug the USB into your computer. Insert the VR jack into the back of your head and hit enter...
+You've made it! At last you've entered Shellspace.
+
+You are in a port.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((x_envelope))
+        {act, logic=x_envelope, tags=!_type|room }
     }
 }

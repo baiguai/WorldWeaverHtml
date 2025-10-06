@@ -6,6 +6,7 @@
         {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip$, logic=x the chip|x chip|examine the chip|examine chip }
         {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
         {attrib, tags=x_cupboards|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cupboards)\b, logic=examine the cupboards|x the cupboards|examine cupboards|x cupboards }
+        {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
@@ -31,10 +32,12 @@
         {attrib, tags=knife_01_id|!_regex, output=(knife).*, logic=the knife|your knife|the knife }
 
     Taking
+        {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
         {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
         {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
 
     Dropping
+        {attrib, tags=chip_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?chip\b, logic=drop the chip|drop chip|put down the chip|put down chip }
         {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
         {attrib, tags=lcd_watch_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=drop the watch|drop watch|drop lcd watch|put down the watch|put down watch|put down lcd watch }
 

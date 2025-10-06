@@ -20,13 +20,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="1"
-     inkscape:cx="822.5"
-     inkscape:cy="474.5"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="721.24892"
+     inkscape:cy="563.91766"
      inkscape:window-width="1916"
-     inkscape:window-height="1074"
+     inkscape:window-height="1068"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="4"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <g
@@ -34288,5 +34288,39 @@
          x="1054.2798"
          y="625.41754"
          style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1">Industrial Area</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:25.7498px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus, Normal';fill:#46ffe5;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="477.51663"
+       y="509.79831"
+       id="text11488"><tspan
+         sodipodi:role="line"
+         id="tspan11486"
+         x="477.51663"
+         y="509.79831"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1">Cruise Ship</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus, Normal';fill:#46ffe5;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="477.51663"
+       y="538.69934"
+       id="text21468"><tspan
+         sodipodi:role="line"
+         id="tspan21466"
+         x="477.51663"
+         y="538.69934"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         dy="0"
+         dx="0">* LCD Watch</tspan><tspan
+         sodipodi:role="line"
+         x="477.51663"
+         y="558.84827"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan21470">* Message Jammer</tspan><tspan
+         sodipodi:role="line"
+         x="477.51663"
+         y="578.99719"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan26412">* Life Chip</tspan></text>
   </g>
 </svg>
