@@ -1,4 +1,4 @@
-{object, key=invite_chip, name=Chip
+{object, key=invite_chip, name=Access Chip
     {attrib, output=false, tags=moved }
     {enter_message
         output={@
