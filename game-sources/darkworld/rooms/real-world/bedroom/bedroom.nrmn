@@ -132,4 +132,15 @@ You are in a port.
     {input, syntax=[tplt_syntax]((x_envelope))
         {act, logic=x_envelope, tags=!_type|room }
     }
+
+
+
+
+
+    {dev_note, tags=Todo
+        output={@
+Be sure to add clues to let the player know what's going on. Check the following Attrib:
+knows_about_killing
+        }
+    }
 }
