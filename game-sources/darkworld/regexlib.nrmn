@@ -13,6 +13,7 @@
         {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers }
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
+        {attrib, tags=x_monitor|!_regex, output=^(examine|x)(?: the)?(?: computer)? monitor$, logic=x the monitor|x monitor|examine the computer monitor }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
         {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? screens$, logic=x the screens|x screens|examine the screens }
         {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
@@ -33,6 +34,8 @@
 
     Taking
         {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
+        {attrib, tags=chips_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip(s)?\b, logic=take the chip|take chip|take the chips|take chips|pick up the chip|pick up the chips }
+        {attrib, tags=gun_take|!_regex, output=^(take|pick up)( the)? gun$, logic=take the gun|take gun|pick up gun|pick up the gun }
         {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
         {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
 
