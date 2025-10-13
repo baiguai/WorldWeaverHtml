@@ -43,5 +43,6 @@
     {attrib, output=false, tags=monorail_ticket }
 
     // Game-wide Flags
+    {attrib, output=false, tags=knows_about_killing }
     {attrib, output=false, tags=secdyne_clue }
 }
