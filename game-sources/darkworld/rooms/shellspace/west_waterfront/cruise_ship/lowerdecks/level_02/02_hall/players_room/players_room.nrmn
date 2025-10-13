@@ -10,6 +10,8 @@ East, Bathroom.
     {enter_message
         output={@
 
+You are in your own cruise ship quarters.
+
 Set into the opposite wall is a circular window looking out over the water.
 Neon light reflections dance over its surface.
 To the left of the window is a mini bar stocked full of tall narrow bottles

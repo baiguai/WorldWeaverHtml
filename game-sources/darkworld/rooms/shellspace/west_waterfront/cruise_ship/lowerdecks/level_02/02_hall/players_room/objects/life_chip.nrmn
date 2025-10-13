@@ -1,4 +1,4 @@
-{object, key=cruise_health_chip, name=Health Chip, parent=cruise_players_room
+{object, key=cruise_health_chip, name=Life Chip, parent=cruise_players_room
     {attrib, tags=moved, output=false }
     {attrib, tags=can_take, output=false }
 
@@ -17,6 +17,19 @@ You see a chip!
         {message
             output={@
 You examine the chip...
+It is an xraa_01.05 - these are designed to restore 5 life points to a VR user.
+
+To use it, enter:
+use life chip
+            }
+        }
+    }
+
+
+    {use_chip
+        {message
+            output={@
+Your life has been increased by 5, or restored to the maximum.
             }
         }
     }
@@ -49,6 +62,17 @@ What are you trying to pick up?
 you drop the chip.
 			}
 		}
+		{set, logic=[self]tags, output=-inventory }
+    }
+
+
+    {input, syntax=[tplt_syntax]((use_life_chip))
+        {set, logic=[player]((life)), output=+=5 }
+        {set, logic=[player]((life)), output=[player]((maxlife))
+            {logic, logic=[player]((life)) > [player]((maxlife)) }
+        }
+        {act, logic=use_chip, tags=!_type|self }
+        {move, logic=!_limbo, tags=[self] }
 		{set, logic=[self]tags, output=-inventory }
     }
 }
