@@ -1,4 +1,4 @@
-<!DOCTYPE html><html style="--app-height: 981px;"><head>
+<!DOCTYPE html><html style="--app-height: 987px;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>WorldWeaver Help</title>
@@ -510,7 +510,7 @@
 
 <div class="search-dialog" id="searchDialog" style="display: none;">
     <input id="searchInput" placeholder="Search..." type="text">
-    <div class="search-results" id="searchList"><div class="selected">Introduction</div><div>Quick Links</div><div>Introduction to Norman Script</div><div>Dev Note</div><div>Game</div><div>!_adminpass</div><div>Admin Tools</div><div>Admin Tools Introduction</div><div>Admin Mode</div><div>Admin Password</div><div>Allow the Player to Fight</div><div>Where to Go From Here</div><div>How WorldWeaver Came To Be</div></div>
+    <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
 </div>
 
 <div class="search-dialog" id="helpDialogUnified" style="display:none;">
@@ -735,9 +735,9 @@
             { key: "x", mode: "VISUAL", description: "Virtual cut the selected text" },
             { key: "d", mode: "VISUAL", description: "Delete selected text" },
 
-            { key: "Control+-", mode: "INSERT", description: "Insert horizontal line" },
-            { key: "Control+*", mode: "INSERT", description: "Convert selection to list" },
-            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
+            { key: "Control+-", mode: "INSERT/NORMAL", description: "Insert horizontal line" },
+            { key: "Control+\\", mode: "INSERT/NORMAL", description: "Wrap selected text" },
+            { key: "Control+;", mode: "INSERT/NORMAL", description: "Converts the selected text to a table" },
 
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -1794,38 +1794,6 @@
 
             syncFile();
         }
-        function insertList() {
-            e.preventDefault();
-            e.stopPropagation();
-        
-            const start = editorArea.selectionStart;
-            const end = editorArea.selectionEnd;
-            const text = editorArea.value;
-        
-            // Expand selection to full lines
-            const lineStart = text.lastIndexOf("\n", start - 1) + 1;
-            const lineEnd = (text.indexOf("\n", end) === -1 ? text.length : text.indexOf("\n", end));
-        
-            const before = text.substring(0, lineStart);
-            const selected = text.substring(lineStart, lineEnd);
-            const after = text.substring(lineEnd);
-        
-            // Prefix non-empty lines with "* "
-            const bulleted = selected
-                .split("\n")
-                .map(line => line.trim().length ? `* ${line}` : line)
-                .join("\n");
-        
-            editorArea.value = before + bulleted + after;
-        
-            // Reselect the transformed text
-            editorArea.selectionStart = lineStart;
-            editorArea.selectionEnd = lineStart + bulleted.length;
-        
-            // Persist model & UI
-            syncFile();               // update node.content and re-render title
-            showMessage("Converted to bulleted list");
-        }
         function wrapSelection() {
             const start = editorArea.selectionStart;
             const end = editorArea.selectionEnd;
@@ -1856,6 +1824,63 @@
         
             syncFile();
             showMessage("Wrapped to 80 characters");
+        }
+        function formatMarkdownTable() {
+            const ta = document.getElementById("editorArea");
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            const value = ta.value;
+
+            // Get selection or current line if none
+            const sel = start !== end
+                ? value.slice(start, end)
+                : (() => {
+                    const ls = value.lastIndexOf("\n", start - 1) + 1;
+                    const le = value.indexOf("\n", start);
+                    return value.slice(ls, le === -1 ? value.length : le);
+                })();
+
+            // Only process if text contains at least one '|'
+            if (!/\|/.test(sel)) return;
+
+            const lines = sel.trim().split(/\r?\n/);
+            const table = lines.map(line =>
+                line.split("|")
+                    .map(c => c.trim())
+                    .filter((c, i, arr) => !(i === 0 && c === "") && !(i === arr.length - 1 && c === ""))
+            );
+
+            // Determine max width of each column
+            const widths = [];
+            table.forEach(row => {
+                row.forEach((cell, i) => {
+                    widths[i] = Math.max(widths[i] || 0, cell.length);
+                });
+            });
+
+            // Helper to make a separator row
+            const makeSep = () =>
+                "|" + widths.map(w => " " + "-".repeat(w) + " ").join("|") + "|";
+
+            // Pad cells for alignment
+            const padded = table.map(row =>
+                "|" + row.map((cell, i) => {
+                    const pad = widths[i] - cell.length;
+                    return " " + cell + " ".repeat(pad) + " ";
+                }).join("|") + "|"
+            );
+
+            // Add separator row after header if not already present
+            if (padded.length > 1 && !/^ *\| *-/.test(lines[1])) {
+                padded.splice(1, 0, makeSep());
+            }
+
+            // Add separator row at the end as well
+            padded.push(makeSep());
+
+            // Replace selection
+            const formatted = padded.join("\n");
+            ta.setRangeText(formatted, start, end, "select");
         }
         function setMark(e) {
             e.preventDefault();
@@ -2558,20 +2583,16 @@
                     return;
                 }
 
-                if ((e.ctrlKey || e.metaKey) && (
-                        e.key === "*" ||
-                        (e.key === "8" && e.shiftKey) ||            // some browsers report "8" + shift
-                        (e.code === "Digit8" && e.shiftKey)         // fallback to code check
-                    )) {
-                    insertList();
-                    return;
-                }
-
                 if ((e.ctrlKey || e.metaKey) && (e.key === "\\" || e.code === "Backslash")) {
                     e.preventDefault();
                     e.stopPropagation();
                     wrapSelection();
                     return;
+                }
+
+                if (e.ctrlKey && e.key === ";") {
+                    e.preventDefault();
+                    formatMarkdownTable();
                 }
 
                 return;
@@ -3188,7 +3209,6 @@
         render();
     });
 </script>
-
 
 
 </body></html>
