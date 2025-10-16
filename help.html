@@ -653,8 +653,6 @@
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
             { key: "l", mode: "TREE", description: "Expand the current tree node" },
             { key: "h", mode: "TREE", description: "Collapse the current tree node" },
             { key: "u", mode: "TREE", description: "Go up a tree node level" },
@@ -672,14 +670,15 @@
             { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
         ];
+
+//            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
+//            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
         
         const helpVimEnabled = [
             { key: "r", mode: "TREE", description: "Add root level node" },
             { key: "R", mode: "TREE", description: "Rename current Folder" },
             { key: "j", mode: "TREE", description: "Select the next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
             { key: "l", mode: "TREE", description: "Expand the current tree node" },
             { key: "h", mode: "TREE", description: "Collapse the current tree node" },
             { key: "u", mode: "TREE", description: "Go up a tree node level" },
@@ -747,8 +746,6 @@
             { key: "R", mode: "TREE", description: "Rename current Folder" },
             { key: "j", mode: "TREE", description: "Select the next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
             { key: "l", mode: "TREE", description: "Expand the current tree node" },
             { key: "h", mode: "TREE", description: "Collapse the current tree node" },
             { key: "u", mode: "TREE", description: "go up a tree node level" },
@@ -1568,6 +1565,7 @@
                 modeEl.textContent = 'INSERT';
             } else {
                 mode_insert = false;
+                exitVisualMode();
                 modeEl.textContent = 'NORMAL';
             }
         }
@@ -1646,7 +1644,7 @@
                 return;
             }
         
-            // Case 3: last sibling → climb ancestors until one has a next sibling
+            // Case 3: last sibling climb ancestors until one has a next sibling
             if (!curLevelOnly) {
                 let ancestorId = ctx.parent ? ctx.parent.id : null;
                 while (ancestorId) {
@@ -1840,47 +1838,63 @@
                     return value.slice(ls, le === -1 ? value.length : le);
                 })();
 
-            // Only process if text contains at least one '|'
             if (!/\|/.test(sel)) return;
 
-            const lines = sel.trim().split(/\r?\n/);
-            const table = lines.map(line =>
+            const rawLines = sel.trim().split(/\r?\n/);
+
+            // Detect and remove divider rows (|----|----| or ----)
+            const dividerPattern = /^\s*\|?\s*-+\s*(\|\s*-+\s*)*\|?\s*$/;
+            const hasDivider = rawLines.some(line => dividerPattern.test(line));
+            const contentLines = rawLines.filter(line => !dividerPattern.test(line));
+
+            if (contentLines.length === 0) return;
+
+            // Parse table cells
+            const table = contentLines.map(line =>
                 line.split("|")
-                    .map(c => c.trim())
+                    .map(c => c.trimEnd())
                     .filter((c, i, arr) => !(i === 0 && c === "") && !(i === arr.length - 1 && c === ""))
             );
 
-            // Determine max width of each column
+            // Determine max width for each column
             const widths = [];
             table.forEach(row => {
                 row.forEach((cell, i) => {
-                    widths[i] = Math.max(widths[i] || 0, cell.length);
+                    widths[i] = Math.max(widths[i] || 0, cell.trim().length);
                 });
             });
 
-            // Helper to make a separator row
+            // Helper to make divider row
             const makeSep = () =>
                 "|" + widths.map(w => " " + "-".repeat(w) + " ").join("|") + "|";
 
-            // Pad cells for alignment
+            // Pad all cells
             const padded = table.map(row =>
                 "|" + row.map((cell, i) => {
-                    const pad = widths[i] - cell.length;
-                    return " " + cell + " ".repeat(pad) + " ";
+                    const trimmed = cell.trim();
+                    const pad = widths[i] - trimmed.length;
+                    return " " + trimmed + " ".repeat(pad) + " ";
                 }).join("|") + "|"
             );
 
-            // Add separator row after header if not already present
-            if (padded.length > 1 && !/^ *\| *-/.test(lines[1])) {
-                padded.splice(1, 0, makeSep());
+            // If there were divider rows, rebuild keeping their positions;
+            // otherwise just return padded rows.
+            let finalRows = [];
+
+            if (hasDivider) {
+                let contentIndex = 0;
+                for (const line of rawLines) {
+                    if (dividerPattern.test(line)) {
+                        finalRows.push(makeSep());
+                    } else if (contentIndex < padded.length) {
+                        finalRows.push(padded[contentIndex++]);
+                    }
+                }
+            } else {
+                finalRows = padded;
             }
 
-            // Add separator row at the end as well
-            padded.push(makeSep());
-
-            // Replace selection
-            const formatted = padded.join("\n");
-            ta.setRangeText(formatted, start, end, "select");
+            ta.setRangeText(finalRows.join("\n"), start, end, "select");
         }
         function setMark(e) {
             e.preventDefault();
@@ -2671,7 +2685,7 @@
                 case 'f': if (!editing) openReplaceDialog(); break;
                 case 'r': if (!readOnly) addRoot(); break;
                 case 'R': if (!readOnly) renameFolder(); break;
-                case 'j': if (!dialogOpen()) selectNextSibling(false); break;
+                case 'j': if (!dialogOpen()) selectNextSibling(true); break;
                 case 'k': if (!dialogOpen()) selectPrevSibling(false); break;
                 case ',': selectNextSibling(true); break;
                 case '.': selectPrevSibling(true); break;
