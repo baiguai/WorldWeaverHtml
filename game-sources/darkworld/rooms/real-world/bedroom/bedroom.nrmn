@@ -44,8 +44,16 @@ You examine your bed. It is neatly made and there's nothing sitting on it.
     {under_bed
         {message
             output={@
-You look under your bed, there is rndom items piled up there, but nothing of
+You look under your bed, there is random items piled up there, but nothing of
 interest to you.
+            }
+        }
+    }
+
+    {on_bed
+        {message
+            output={@
+You look on your bed. You don't see anything on it besides pillows.
             }
         }
     }
@@ -59,6 +67,29 @@ Three monitors are arrayed on the desk.
 In the right side of the desk is your computer.
 
 Among the mess you notice an envelope.
+            }
+        }
+    }
+
+    {on_desk
+        {message
+            output={@
+You examine what's on your desk.
+
+Three monitors are arrayed on the desk.
+In the right side of the desk is your computer.
+
+Among the mess you notice an envelope.
+            }
+        }
+    }
+
+    {under_desk
+        {message
+            output={@
+You duck down and look under your desk.
+There are numerous candy wrappers, other bits of garbage, and cords and other
+computer components but nothing of particular interest.
             }
         }
     }
@@ -109,8 +140,20 @@ You have the coveted USB stick, you can try putting it in your computer.
         {act, logic=under_bed, tags=!_type|room }
     }
 
+    {input, syntax=[tplt_syntax]((x_on_your_bed))
+        {act, logic=on_bed, tags=!_type|room }
+    }
+
     {input, syntax=[tplt_syntax]((x_your_desk))
         {act, logic=x_desk, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_on_your_desk))
+        {act, logic=on_desk, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_under_your_desk))
+        {act, logic=under_desk, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_your_computer))
@@ -141,6 +184,15 @@ You are in a port.
         output={@
 Be sure to add clues to let the player know what's going on. Check the following Attrib:
 knows_about_killing
+        }
+    }
+
+
+
+    {dev_note, tags=Checkout
+        output={@
+Checkout:
+General tasks have been checked out.
         }
     }
 }
