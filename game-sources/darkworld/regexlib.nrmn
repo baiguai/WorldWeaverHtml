@@ -14,6 +14,8 @@
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
         {attrib, tags=x_monitor|!_regex, output=^(examine|x)(?: the)?(?: computer)? monitor$, logic=x the monitor|x monitor|examine the computer monitor }
+        {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
+        {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
         {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? screens$, logic=x the screens|x screens|examine the screens }
         {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
@@ -24,6 +26,7 @@
         {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
         {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
+        {attrib, tags=x_under_your_desk|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?desk$, logic=x under your desk|x under desk|examine under the desk }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
         {attrib, tags=x_your_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }

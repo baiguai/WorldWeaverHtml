@@ -71,7 +71,7 @@ Apparently the glowing band is holding it in place.
     {take_chip
         {message
             output={@
-You attempt to take the chips from the suitcase. They don't budge.
+You attempt to take one of the chips from the suitcase. They don't budge.
 Apparently the glowing band is holding them in place.
             }
         }
@@ -100,6 +100,9 @@ You exit the stranger's room.
     }
 
     {input, syntax=[tplt_syntax]((chips_take))
+        {act, logic=take_chip, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((chip_take))
         {act, logic=take_chip, tags=!_type|room }
     }
 }
