@@ -1,7 +1,7 @@
-<!DOCTYPE html><html style="--app-height: 981px;"><head>
+<!DOCTYPE html><html style="--app-height: 988px;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>Plot</title>
+<title>DarkWorld Plot</title>
 <style>
     .app {
         display: grid;
@@ -51,7 +51,7 @@
         }
 
         textarea#editorArea {
-            height: 100%;
+            height: 90dvh;
             overflow: auto;
         }
 
@@ -123,7 +123,7 @@
     }
 
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    /* html, body { height: 100%; } */
     body {
         margin: 0;
         background: var(--bg);
@@ -449,6 +449,7 @@
     <button id="mblLinks" onclick="activateTree(); openLinksDialog();">Links</button>
     &nbsp;
     <button id="mblExport" onclick="exportNoteAsTxt();">Export Note</button>
+    <button id="mblSave" onclick="saveAsHtml('');">Save As</button>
     <button id="mblSave" onclick="saveAsHtml(fileName);">Save</button>
 </header>
 
@@ -651,34 +652,33 @@
 
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
-            { Key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { Key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { Key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
-            { Key: "l", mode: "TREE", description: "Expand the current tree node" },
-            { Key: "h", mode: "TREE", description: "Collapse the current tree node" },
-            { Key: "u", mode: "TREE", description: "Go up a tree node level" },
-            { Key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
-            { Key: "E", mode: "TREE", description: "Expand all the tree nodes" },
-            { Key: "]", mode: "TREE", description: "Expand the treeview panel" },
-            { Key: "[", mode: "TREE", description: "Shrink the treeview panel" },
-            { Key: "/", mode: "TREE", description: "Search (begin with : to search labels)" },
-            { Key: "f", mode: "TREE", description: "Find text in the current note " },
-            { Key: "#", mode: "TREE", description: "Show note links dialog" },
-            { Key: "<", mode: "TREE", description: "Show the history dialog" },
-            { Key: "gg", mode: "TREE", description: "Select first root tree node" },
-            { Key: "G", mode: "TREE", description: "Select last root tree node" },
-            { Key: "T", mode: "TREE", description: "Export current note as .txt" },
-            { Key: "m", mode: "TREE", description: "Bookmark current node" },
-            { Key: "`", mode: "TREE", description: "Show bookmarks" },
+            { key: "k", mode: "TREE", description: "Select the previous tree node" },
+            { key: "l", mode: "TREE", description: "Expand the current tree node" },
+            { key: "h", mode: "TREE", description: "Collapse the current tree node" },
+            { key: "u", mode: "TREE", description: "Go up a tree node level" },
+            { key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
+            { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
+            { key: "]", mode: "TREE", description: "Expand the treeview panel" },
+            { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
+            { key: "/", mode: "TREE", description: "Search (begin with : to search labels)" },
+            { key: "f", mode: "TREE", description: "Find text in the current note " },
+            { key: "#", mode: "TREE", description: "Show note links dialog" },
+            { key: "<", mode: "TREE", description: "Show the history dialog" },
+            { key: "gg", mode: "TREE", description: "Select first root tree node" },
+            { key: "G", mode: "TREE", description: "Select last root tree node" },
+            { key: "T", mode: "TREE", description: "Export current note as .txt" },
+            { key: "m", mode: "TREE", description: "Bookmark current node" },
+            { key: "`", mode: "TREE", description: "Show bookmarks" },
         ];
+
+//            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
+//            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
         
         const helpVimEnabled = [
             { key: "r", mode: "TREE", description: "Add root level node" },
             { key: "R", mode: "TREE", description: "Rename current Folder" },
             { key: "j", mode: "TREE", description: "Select the next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
             { key: "l", mode: "TREE", description: "Expand the current tree node" },
             { key: "h", mode: "TREE", description: "Collapse the current tree node" },
             { key: "u", mode: "TREE", description: "Go up a tree node level" },
@@ -734,9 +734,9 @@
             { key: "x", mode: "VISUAL", description: "Virtual cut the selected text" },
             { key: "d", mode: "VISUAL", description: "Delete selected text" },
 
-            { key: "Control+-", mode: "INSERT", description: "Insert horizontal line" },
-            { key: "Control+*", mode: "INSERT", description: "Convert selection to list" },
-            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
+            { key: "Control+-", mode: "INSERT/NORMAL", description: "Insert horizontal line" },
+            { key: "Control+\\", mode: "INSERT/NORMAL", description: "Wrap selected text" },
+            { key: "Control+;", mode: "INSERT/NORMAL", description: "Converts the selected text to a table" },
 
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -746,8 +746,6 @@
             { key: "R", mode: "TREE", description: "Rename current Folder" },
             { key: "j", mode: "TREE", description: "Select the next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
-            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
             { key: "l", mode: "TREE", description: "Expand the current tree node" },
             { key: "h", mode: "TREE", description: "Collapse the current tree node" },
             { key: "u", mode: "TREE", description: "go up a tree node level" },
@@ -1567,6 +1565,7 @@
                 modeEl.textContent = 'INSERT';
             } else {
                 mode_insert = false;
+                exitVisualMode();
                 modeEl.textContent = 'NORMAL';
             }
         }
@@ -1645,7 +1644,7 @@
                 return;
             }
         
-            // Case 3: last sibling → climb ancestors until one has a next sibling
+            // Case 3: last sibling climb ancestors until one has a next sibling
             if (!curLevelOnly) {
                 let ancestorId = ctx.parent ? ctx.parent.id : null;
                 while (ancestorId) {
@@ -1793,38 +1792,6 @@
 
             syncFile();
         }
-        function insertList() {
-            e.preventDefault();
-            e.stopPropagation();
-        
-            const start = editorArea.selectionStart;
-            const end = editorArea.selectionEnd;
-            const text = editorArea.value;
-        
-            // Expand selection to full lines
-            const lineStart = text.lastIndexOf("\n", start - 1) + 1;
-            const lineEnd = (text.indexOf("\n", end) === -1 ? text.length : text.indexOf("\n", end));
-        
-            const before = text.substring(0, lineStart);
-            const selected = text.substring(lineStart, lineEnd);
-            const after = text.substring(lineEnd);
-        
-            // Prefix non-empty lines with "* "
-            const bulleted = selected
-                .split("\n")
-                .map(line => line.trim().length ? `* ${line}` : line)
-                .join("\n");
-        
-            editorArea.value = before + bulleted + after;
-        
-            // Reselect the transformed text
-            editorArea.selectionStart = lineStart;
-            editorArea.selectionEnd = lineStart + bulleted.length;
-        
-            // Persist model & UI
-            syncFile();               // update node.content and re-render title
-            showMessage("Converted to bulleted list");
-        }
         function wrapSelection() {
             const start = editorArea.selectionStart;
             const end = editorArea.selectionEnd;
@@ -1856,7 +1823,80 @@
             syncFile();
             showMessage("Wrapped to 80 characters");
         }
-        function setMark() {
+        function formatMarkdownTable() {
+            const ta = document.getElementById("editorArea");
+            const start = ta.selectionStart;
+            const end = ta.selectionEnd;
+            const value = ta.value;
+
+            // Get selection or current line if none
+            const sel = start !== end
+                ? value.slice(start, end)
+                : (() => {
+                    const ls = value.lastIndexOf("\n", start - 1) + 1;
+                    const le = value.indexOf("\n", start);
+                    return value.slice(ls, le === -1 ? value.length : le);
+                })();
+
+            if (!/\|/.test(sel)) return;
+
+            const rawLines = sel.trim().split(/\r?\n/);
+
+            // Detect and remove divider rows (|----|----| or ----)
+            const dividerPattern = /^\s*\|?\s*-+\s*(\|\s*-+\s*)*\|?\s*$/;
+            const hasDivider = rawLines.some(line => dividerPattern.test(line));
+            const contentLines = rawLines.filter(line => !dividerPattern.test(line));
+
+            if (contentLines.length === 0) return;
+
+            // Parse table cells
+            const table = contentLines.map(line =>
+                line.split("|")
+                    .map(c => c.trimEnd())
+                    .filter((c, i, arr) => !(i === 0 && c === "") && !(i === arr.length - 1 && c === ""))
+            );
+
+            // Determine max width for each column
+            const widths = [];
+            table.forEach(row => {
+                row.forEach((cell, i) => {
+                    widths[i] = Math.max(widths[i] || 0, cell.trim().length);
+                });
+            });
+
+            // Helper to make divider row
+            const makeSep = () =>
+                "|" + widths.map(w => " " + "-".repeat(w) + " ").join("|") + "|";
+
+            // Pad all cells
+            const padded = table.map(row =>
+                "|" + row.map((cell, i) => {
+                    const trimmed = cell.trim();
+                    const pad = widths[i] - trimmed.length;
+                    return " " + trimmed + " ".repeat(pad) + " ";
+                }).join("|") + "|"
+            );
+
+            // If there were divider rows, rebuild keeping their positions;
+            // otherwise just return padded rows.
+            let finalRows = [];
+
+            if (hasDivider) {
+                let contentIndex = 0;
+                for (const line of rawLines) {
+                    if (dividerPattern.test(line)) {
+                        finalRows.push(makeSep());
+                    } else if (contentIndex < padded.length) {
+                        finalRows.push(padded[contentIndex++]);
+                    }
+                }
+            } else {
+                finalRows = padded;
+            }
+
+            ta.setRangeText(finalRows.join("\n"), start, end, "select");
+        }
+        function setMark(e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -2557,20 +2597,16 @@
                     return;
                 }
 
-                if ((e.ctrlKey || e.metaKey) && (
-                        e.key === "*" ||
-                        (e.key === "8" && e.shiftKey) ||            // some browsers report "8" + shift
-                        (e.code === "Digit8" && e.shiftKey)         // fallback to code check
-                    )) {
-                    insertList();
-                    return;
-                }
-
                 if ((e.ctrlKey || e.metaKey) && (e.key === "\\" || e.code === "Backslash")) {
                     e.preventDefault();
                     e.stopPropagation();
                     wrapSelection();
                     return;
+                }
+
+                if (e.ctrlKey && e.key === ";") {
+                    e.preventDefault();
+                    formatMarkdownTable();
                 }
 
                 return;
@@ -2649,7 +2685,7 @@
                 case 'f': if (!editing) openReplaceDialog(); break;
                 case 'r': if (!readOnly) addRoot(); break;
                 case 'R': if (!readOnly) renameFolder(); break;
-                case 'j': if (!dialogOpen()) selectNextSibling(false); break;
+                case 'j': if (!dialogOpen()) selectNextSibling(true); break;
                 case 'k': if (!dialogOpen()) selectPrevSibling(false); break;
                 case ',': selectNextSibling(true); break;
                 case '.': selectPrevSibling(true); break;
@@ -2673,7 +2709,7 @@
                 case ']': resizeTree(30); break;
                 case '[': resizeTree(-30); break;
                 case '#': openLinksDialog(); break;
-                case 'm': setMark(); break;
+                case 'm': setMark(e); break;
                 case '`': openMarksDialog(); break;
                 case 'X': openMissingLinksDialog(); break;
                 case 'y': copyNode(); break;
@@ -3144,11 +3180,36 @@
     window.addEventListener('keydown', handleLinksKey, { capture: true });
     window.addEventListener('keydown', handleMarksKey, { capture: true });
 
-    function setAppHeight() {
-        document.documentElement.style.setProperty('--app-height', window.innerHeight + 'px');
+
+
+
+    //---- Mobile Sizing -------------------------------------------------------
+    function isMobile() {
+        return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
-    window.addEventListener('resize', setAppHeight);
+    function setAppHeight() {
+        document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+    }
     setAppHeight();
+    window.addEventListener('resize', setAppHeight);
+
+    editorArea.addEventListener('focus', () => {
+        if (isMobile()) {
+            document.querySelector('.app').style.height = `60dvh`;
+            // document.querySelector('.app').style.height = `${window.innerHeight-400}px`;
+            // setTimeout(() => window.scrollTo(0, 0), 50);
+        }
+    });
+    
+    editorArea.addEventListener('blur', () => {
+        if (isMobile()) {
+            document.querySelector('.app').style.height = '100dvh';
+            setTimeout(setAppHeight, 100);
+        }
+    });
+
+
+
 
     //---- Init ------------------------------------------------------------
     window.addEventListener('load', function() {

@@ -377,38 +377,22 @@
         }
 
         function saveFile() {
-            const elemLimit = 20; // Number of elements per line
-            const htmlDoc = document.documentElement.cloneNode(true);
-            htmlDoc.querySelector("#output").innerHTML = ""; // Clear output before saving
-            let fileName = "worldweaver";
+            const html = document.documentElement.outerHTML;
+            const fileNameElem = database.find(item => item.Tags === "!_filename");
+            const fileName = fileNameElem ? toSafeFilename(fileNameElem.Output) : "worldweaver";
 
-            let fileNameElem = database.find(item => item.Tags === "!_filename") ?? null;
-            if (fileNameElem)
-            {
-                fileName = toSafeFilename(fileNameElem.Output);
-            }
+            // Create a clean JSON string of the live database
+            const dbString = JSON.stringify(database, null, 2);
 
-            // Make sure the latest database is stored
-            const latestDatabase = JSON.parse(JSON.stringify(database));
-            // Make sure the latest playerNotes is stored
-            const latestPlayerNotes = JSON.parse(JSON.stringify(playerNotes));
-            const formattedPlayerNotes = JSON.stringify(latestPlayerNotes);
+            // Replace the database section in the HTML with the current one
+            const updatedHtml = html.replace(
+                /let\s+database\s*=\s*\[[\s\S]*?\];/,
+                `let database = ${dbString};`
+            );
 
-            // Build compact JSON with newlines every elemLimit items
-            const lines = [];
-            for (let i = 0; i < latestDatabase.length; i += elemLimit) {
-                let chunk = latestDatabase.slice(i, i + elemLimit);
-                lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
-            }
-            let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
-
-            // Ensure correct replacement of the old database
-            let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
-            htmlContent = htmlContent.replace(/let database = \[([\s\s]*?)\];/, `let database = ${formattedDatabase};`);
-            htmlContent = htmlContent.replace(/let playerNotes = \[([\s\s]*?)\];/, `let playerNotes = ${formattedPlayerNotes};`);
-
-            let blob = new Blob([htmlContent], { type: "text/html" });
-            let a = document.createElement("a");
+            // Save the updated HTML to disk
+            const blob = new Blob(["<!DOCTYPE html>\n" + updatedHtml], { type: "text/html" });
+            const a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
             a.download = `${fileName}.html`;
             a.click();
