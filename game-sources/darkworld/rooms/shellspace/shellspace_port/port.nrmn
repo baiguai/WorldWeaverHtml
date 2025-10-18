@@ -1,4 +1,11 @@
 {room, key=shellspace_port, name=Port
+    {attrib, tags=navigation
+        output={@
+There is an escalator going up
+and a moving ramp going down.
+        }
+    }
+
     {enter_message
         output={@
 A bright green neon light runs around the ceiling of the large circular room.
@@ -47,24 +54,27 @@ to cost savings it has been built in the south end of the industrial district.
         }
     }
 
-    {navigation
+    {x_lights
         {message
             output={@
-
-
----
-There is an escalator going up
-and a moving ramp going down.
+You examine the green lights.
+They are mundane neon tubes, glowing green. They were very popular in the era
+when Shellspace was originally coded.
             }
         }
     }
 
 
 
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
     {input, syntax=[tplt_syntax]((x_screens))
         {act, logic=x_screens, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_green_lights))
+        {act, logic=x_lights, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((go_up))
@@ -86,6 +96,15 @@ super-imposed in the top left corner of your vision.
 
 
             }
+        }
+    }
+
+
+
+    {dev_note, tags=Checkout
+        output={@
+Checkout:
+The Port has been checked out.
         }
     }
 }
