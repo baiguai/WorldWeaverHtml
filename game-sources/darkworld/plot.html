@@ -1957,7 +1957,7 @@
 
             const content = safeRestoreText(info.node.content);
             const urlRegex = /\b(http|file)s?:\/\/[^\s]+/gi;
-            const nodeLinkRegex = /(?:^|\s)_(.+?)_(?=\s|[.,!?;:)]|$)/g;
+            const nodeLinkRegex = /(?:^|\s|\()_(.+?)_(?=\s|[.,!?;:)]|$)/g;
 
             const urlMatches = content.match(urlRegex) || [];
 
