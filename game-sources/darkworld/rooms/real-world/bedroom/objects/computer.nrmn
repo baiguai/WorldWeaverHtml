@@ -17,7 +17,7 @@ You examine your computer. Your Shellspace brute force hack app is running.
 
 
 
-    {input, syntax=[tplt_syntax]((x_computer))
+    {input, syntax=[tplt_syntax]((x_your_computer))
         {act, logic=x_computer, tags=!_type|room }
     }
 

@@ -1,0 +1,79 @@
+{room, key=cruise_players_room, name=Your Cruise Ship Room
+    {attrib, tags=navigation
+        output={@
+South, Go back into the hall.
+East, Bathroom.
+        }
+    }
+    {attrib, output=false, tags=from_robot }
+
+    {enter_message
+        output={@
+
+You are in your own cruise ship quarters.
+
+Set into the opposite wall is a circular window looking out over the water.
+Neon light reflections dance over its surface.
+To the left of the window is a mini bar stocked full of tall narrow bottles
+of liquor and slender martini glasses.
+
+Spotlights dot the ceiling.
+
+Set against the wall to your right (east) is a wide bed with a stylized sunset
+glowing on the wall above it.
+
+Next to the bed is a narrow door, leading into the bathroom.
+
+Mounted onto the wall to your left (west) is a thick glass desk. Two glass pane
+monitors are arranged on the desk, displaying various cruise ship amenities
+and services.
+
+A TV is mounted on the wall above the desk.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around your room.
+
+In the opposite wall is a circular window.
+To the left of the window is a mini bar.
+
+Set against the wall to your right (east) is a wide bed.
+Next to the bed is a narrow door, leading into the bathroom.
+
+Mounted onto the wall to your left (west) is a thick glass desk.
+
+A TV is mounted on the wall above the desk.
+            }
+        }
+    }
+
+    {x_desk
+        {message
+            output={@
+You examine the desk...
+            }
+        }
+    }
+
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((x_desk))
+        {act, logic=x_desk, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_lower_02, tags=[player]
+            output={@
+You exit your room.
+            }
+        }
+    }
+}

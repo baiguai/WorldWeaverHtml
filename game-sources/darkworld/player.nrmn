@@ -20,27 +20,29 @@
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
 
+    {attrib, name=Quest, output=, tags=stats|quest }
+    {attrib, output=false, tags=regected_mission }
     {attrib, name=Experience, key=experience, output=0, tags=experience|stats }
-
-    {attrib, output=0, tags=drink_count }
-    {attrib, output=3, tags=drunk_count }
-    {attrib, output=0, tags=drunk_round }
-    {attrib, output=10, tags=drunk_rounds }
 
     {attrib, output=5, tags=heal_rounds }
     {attrib, output=0, tags=cur_heal_round }
-
-    {attrib, name=Quest, output=, tags=stats|quest }
-
-    {attrib, output=false, tags=monorail_ticket }
-
     {attackplayer
         {attack
             {attribute, output=[player], tags=target }
         }
     }
 
-
-
+    // Behavior
+    {attrib, output=0, tags=drink_count }
+    {attrib, output=3, tags=drunk_count }
+    {attrib, output=0, tags=drunk_round }
+    {attrib, output=10, tags=drunk_rounds }
     {attrib, output=false, tags=drunk }
+
+    // Items
+    {attrib, output=false, tags=monorail_ticket }
+
+    // Game-wide Flags
+    {attrib, output=false, tags=knows_about_killing }
+    {attrib, output=false, tags=secdyne_clue }
 }

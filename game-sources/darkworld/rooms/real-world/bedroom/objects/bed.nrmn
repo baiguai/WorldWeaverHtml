@@ -31,11 +31,11 @@ You look under your bed, there is rndom items piled up there, but nothing of int
 
 
 
-    {input, syntax=[tplt_syntax]((x_bed))
+    {input, syntax=[tplt_syntax]((x_your_bed))
         {act, logic=x_bed, tags=!_type|room }
     }
 
-    {input, syntax=[tplt_syntax]((x_under_bed))
+    {input, syntax=[tplt_syntax]((x_under_your_bed))
         {act, logic=under_bed, tags=!_type|room }
     }
 }

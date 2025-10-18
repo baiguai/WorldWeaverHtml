@@ -1,7 +1,13 @@
 {room, key=toplessrobot_kitchen, name=Kitchen
     {enter_message
         output={@
-You are in the kitchen.
+The kitchen is spacious and sleek in its decor. The counters are brushed metal.
+There is a robin's egg and chrome refrigerator at the far end. You don't
+recognize most of the other appliances but they have space age lines to their
+shapes and rocket ship-style details.
+
+Above the counters are cupboards with equally space-age style handles on them.
+
         }
     }
 
@@ -9,7 +15,38 @@ You are in the kitchen.
         {message
             output={@
 You look around.
-You are in the kitchen.
+Against the facing wall is a refrigerator and other unidentified appliances
+line the counters.
+And above the counters are cupboards.
+
+            }
+        }
+    }
+
+    {x_counters
+        {message
+            output={@
+You examine the counters.
+Apart from the stylish appliances you don't see anything of interest.
+            }
+        }
+    }
+
+    {x_cupboards
+        {message
+            output={@
+You examine the cupboards.
+They are filled with rotting food. The stench of it steals your breath.
+Piles of barely recognizable rot fill them.
+            }
+        }
+    }
+
+    {x_fridge
+        {message
+            output={@
+You open the refrigerator. It is completely empty except for a large mirror
+standing on the top shelf.
             }
         }
     }
@@ -38,5 +75,18 @@ West, Exit the kitchen.
 You exit the kitchen.
             }
         }
+    }
+
+
+    {input, syntax=[tplt_syntax]((x_counters))
+        {act, logic=x_counters, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_cupboards))
+        {act, logic=x_cupboards, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_fridge))
+        {act, logic=x_fridge, tags=!_type|room }
     }
 }
