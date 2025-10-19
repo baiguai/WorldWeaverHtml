@@ -98,15 +98,14 @@
                 padding: 10px;
                 overflow-y: auto;
                 white-space: pre-wrap;
-                border-bottom: 1px solid white;
                 min-height: 0;
             }
 
             #input-container {
                 display: flex;
-                padding: 10px;
+                padding: 4px;
                 background: black;
-                border-top: 1px solid white;
+                border-top: 1px solid #222;
             }
 
             #input {
@@ -114,7 +113,7 @@
                 background: black;
                 color: white;
                 border: none;
-                padding: 10px;
+                padding: 3px;
                 font-size: 1rem;
                 font-family: monospace;
             }
@@ -2192,7 +2191,7 @@
 
             if (adminMode) {
                 output.innerHTML = "Admin mode enabled.<br />Use <strong>_admin</strong> without a password, to display admin help.";
-                output.style.color = "yellow";
+                output.style.color = "#a5cfe5";
             } else {
                 macroRunning = false;
                 macroRecording = false;

@@ -626,6 +626,8 @@
         let visual_end = 0;
         let vim_clipboard = '';
 
+        let undoValue = "";
+
         let searchActive = false;
         let searchMatches = [];
         let searchIndex = 0;
@@ -729,6 +731,8 @@
             { key: "V", mode: "NORMAL", description: "Enter line select mode" },
             { key: "v", mode: "NORMAL", description: "Enter standard select mode" },
             { key: "x", mode: "NORMAL", description: "Delete the character under the cursor" },
+            { key: "r", mode: "NORMAL", description: "Updates the undo cache with the current note text" },
+            { key: "u", mode: "NORMAL", description: "Restores the note text to the undo cache value" },
 
             { key: "y", mode: "VISUAL", description: "Virtual copy the selected text" },
             { key: "x", mode: "VISUAL", description: "Virtual cut the selected text" },
@@ -957,6 +961,7 @@
                 if (!editing) {
                     if (currentEditorNodeId !== selInfo.node.id) {
                         editorArea.value = safeRestoreText(selInfo.node.content) || '';
+                        addUndo();
                         currentEditorNodeId = selInfo.node.id;
                     }
                     editorArea.setAttribute('readonly', 'readonly');
@@ -1014,10 +1019,15 @@
         function syncFile() {
             const info = findNodeAndParentById(selectedId);
             if (!info) return;
+
             info.node.content = safeStoreText(editorArea.value);
             updateTitleFromContent(info.node);
             // File vs folder might have changed; keep UI responsive
             render();
+        }
+
+        function addUndo() {
+            undoValue = editorArea.value;
         }
 
         function safeStoreText(text) {
@@ -1252,6 +1262,19 @@
                     let moveEnd = editorArea.selectionEnd = (after$ === -1 ? editorArea.value.length : after$);
                     moveChar(moveEnd, false);
                     performed = true;
+                    break;
+
+                case "u":
+                    if (!mode_insert) {
+                        doUndo();
+                        performed = true;
+                    }
+                    break;
+                case "r":
+                    if (!mode_insert) {
+                        addUndo();
+                        performed = true;
+                    }
                     break;
 
                 case "v": // Enter visual mode
@@ -1539,7 +1562,9 @@
 
 
         //---- Commands --------------------------------------------------------
-        function ensureSelection(){ if (!selectedId && treeData[0]) selectedId = treeData[0].id; }
+        function ensureSelection(){
+            if (!selectedId && treeData[0]) selectedId = treeData[0].id;
+        }
 
         function keyPerformed() {
             mode_repeat = 1;
@@ -2233,6 +2258,14 @@
 
 
 
+        //---- Undo / Redo -----------------------------------------------------
+        function doUndo() {
+            editorArea.value = undoValue;
+            syncFile();
+        }
+
+
+
         //---- Visual Mode Helpers ---------------------------------------------
         function enterVisualMode(lineMode = false) {
             mode_visual = true;
@@ -2665,18 +2698,20 @@
                         editorArea.focus();
                         editorArea.setSelectionRange(0, 0); 
                         scrollToCursor();
+                        addUndo();
                         if (mode_vim) {
                             setVimMode(false);
                             return;
-                         } else {
+                        } else {
                             setVimMode(true);
                             return;
-                         }
+                        }
                     }
                     break;
                 case 'I':
                     if (!readOnly) {
                         e.preventDefault();
+                        addUndo();
                         const info = findNodeAndParentById(selectedId); if (!info) return;
                         editing = true; render();
                         editorArea.focus();
