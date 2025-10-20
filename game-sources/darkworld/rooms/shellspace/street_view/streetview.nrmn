@@ -1,4 +1,17 @@
 {room, key=street_vice_port, name=Vice Harbor
+    {attrib, tags=navigation
+        output={@
+Behind you is a moving ramp going up.
+6 streets extend off into the distance.
+One going west.
+One going northwest.
+One going north.
+One going northeast.
+One going east.
+And one going southeast.
+        }
+    }
+
     {enter_message
         output={@
 You are next to a major street in the downtown district of a city called Vice Harbor.
@@ -16,25 +29,7 @@ You are next to a major street in the downtown district of a city called Vice Ha
     }
 
 
-    {navigation
-        {message
-            output={@
-
-
----
-Behind you is a moving ramp going up.
-6 streets extend off into the distance.
-One going west.
-One going northwest.
-One going north.
-One going northeast.
-One going east.
-And one going southeast.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
