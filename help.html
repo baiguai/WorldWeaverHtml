@@ -2112,6 +2112,7 @@
                     e.preventDefault();
                     const newTitle = titleInput.value.trim() || 'Untitled';
                     const newFile = fileInput.value.trim() || 'untitled';
+                    fileName = newFile;
                     document.title = newTitle;
                     closeDialog();
                     saveAsHtml(newFile);
