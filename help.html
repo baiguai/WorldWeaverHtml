@@ -1,4 +1,4 @@
-<!DOCTYPE html><html style="--app-height: 988px;"><head>
+<!DOCTYPE html><html style="--app-height: 1058px;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>WorldWeaver Help</title>
@@ -2030,7 +2030,7 @@
 
             // --- Collect underscore note links not already captured ---
             while ((match = nodeLinkRegex.exec(content)) !== null) {
-                const title = match[1].trim();
+                const title = match[1].trim().replace(/^_+|_+$/g, "");
                 const wrapped = `_${title}_`;
                 if (!foundLinks.some(l => l.target === wrapped)) {
                     foundLinks.push({ label: title, target: wrapped });
@@ -2043,7 +2043,14 @@
             } else {
                 for (const { label, target, fromMarkdown } of foundLinks) {
                     const a = document.createElement('a');
-                    a.textContent = fromMarkdown ? label : target;
+                    let displayLabel = fromMarkdown ? label : target;
+                    
+                    // If it's a wrapped note link (e.g. _Some Note_), show only the inner text
+                    if (/^_.+_$/.test(displayLabel)) {
+                        displayLabel = displayLabel.slice(1, -1);
+                    }
+                    
+                    a.textContent = displayLabel;
 
                     if (/^(https?|file):\/\//i.test(target)) {
                         // External URL

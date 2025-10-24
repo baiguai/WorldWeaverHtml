@@ -1,2 +1,14 @@
 {object, key=xplt_cloak, name=The Cloak
+    {attrib, output=false, tags=active }
+
+    {input, syntax=[tplt_syntax]((use_cloak))
+        {set, logic=[xplt_cloak]((active)), output='true' }
+
+        {message
+            output={@
+You activate the Cloak Exploit.
+
+            }
+        }
+    }
 }

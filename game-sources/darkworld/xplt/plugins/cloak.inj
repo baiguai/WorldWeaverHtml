@@ -1,0 +1,7 @@
+{logic
+    logic={@
+        [xplt_cloak]parent = [player]
+        and
+        [xplt_cloak]((active)) = 'false'
+    }
+}

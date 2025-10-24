@@ -99,6 +99,7 @@
         {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=no|nope|no I would not|um no }
 
     Using
+        {attrib, tags=use_cloak|!_regex, output=^(?:use\s+(?:the\s+)?)?cloak\b$, logic=use cloak|use the cloak }
         {attrib, tags=use_life_chip|!_regex, output=^(?:use\s+(?:the\s+)?)?life\s+chip\b$, logic=use life chip|life chip|use the life chip }
 
     System
