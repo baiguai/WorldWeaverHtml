@@ -617,6 +617,7 @@
         let historyStack = [];
         let showingHistory = false;
         let historyIndex = 0;
+        const historyStackMax = 200;
 
         let copiedNoteId = null;
 
@@ -873,7 +874,7 @@
             historyStack.push({ id, title: node.title || "(untitled)" });
         
             // Cap size at 100
-            if (historyStack.length > 100) {
+            if (historyStack.length > historyStackMax) {
                 historyStack.shift();
             }
         }
@@ -2143,6 +2144,8 @@
                     fileName = newFile;
                     document.title = newTitle;
                     closeDialog();
+                    historyStack = [];
+                    bookmarks = [];
                     saveAsHtml(newFile);
                 } else if (e.key === 'Escape') {
                     e.preventDefault();
@@ -2673,6 +2676,10 @@
             htmlContent = htmlContent.replace(
                 /let\s+bookmarks\s*=\s*\[[\s\S]*?\];/,
                 "let bookmarks = " + JSON.stringify(bookmarks, null, 4) + ";"
+            );
+            htmlContent = htmlContent.replace(
+                /let\s+historyStack\s*=\s*\[[\s\S]*?\];/,
+                "let historyStack = " + JSON.stringify(historyStack, null, 4) + ";"
             );
 
             let blob = new Blob([htmlContent], { type: "text/html" });
