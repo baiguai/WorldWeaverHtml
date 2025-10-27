@@ -78,8 +78,4 @@ It is night time.
             }
         }
     }
-
-
-    {attrib, tags=can_talk, output=true }
-    {attrib, tags=can_examine, output=true }
 }

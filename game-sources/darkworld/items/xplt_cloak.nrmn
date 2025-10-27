@@ -2,7 +2,7 @@
     {attrib, output=false, tags=active }
 
     {input, syntax=[tplt_syntax]((use_cloak))
-        {set, logic=[game]((can_talk)), output='false' }
+        {set, logic=[player]((invisible)), output='true' }
 
         {message
             output={@

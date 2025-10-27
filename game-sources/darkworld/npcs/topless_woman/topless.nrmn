@@ -1,0 +1,65 @@
+{npc, name=Topless Robot, parent=cruise_top_adults
+    {attrib, output=room, tags=topic }
+    {enter_message
+        output={@
+
+A female robot approaches you.
+Incredibly, it is topless.
+It stops just in front of you and says
+"I know you. Would you like to come with me to my room?"
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+There is a topless robot woman.
+            }
+        }
+    }
+
+    {x_robot
+        {message
+            output={@
+It is a female robot. It is wearing a short skirt... and that is all.
+You've heard about people who have fetishes for robots and this one would be
+VERY popular among that crowd.
+<?[self]((topic)) = 'room'?>
+It shifts its weight from one leg to the other.
+"Would you like to come to my room?"
+</?>
+            }
+        }
+    }
+
+    {conv_no
+        {message
+            output={@
+"Too bad. I could have made it worth your while."
+The robot leaves.
+            }
+        }
+    }
+
+
+    {input, syntax=[tplt_syntax]((x_robot))
+        {act, logic=x_robot, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
+        {act, logic=conv_no, tags=!_type|self }
+
+        {move, logic=!_limbo, tags=[self] }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {move, logic=!_limbo, tags=[self] }
+        {move, logic=toplessrobot_room, tags=[player]
+            output={@
+
+You follow the robot.
+            }
+        }
+    }
+}

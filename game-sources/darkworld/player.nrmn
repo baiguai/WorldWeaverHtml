@@ -45,4 +45,10 @@
     // Game-wide Flags
     {attrib, output=false, tags=knows_about_killing }
     {attrib, output=false, tags=secdyne_clue }
+
+
+    // Exploits
+    {attrib, output=false, tags=invisible }
+    {attrib, output=3, tags=hidden_rounds }
+    {attrib, output=0, tags=cur_hidden_round }
 }
