@@ -1,0 +1,65 @@
+{buy_knife
+    {message
+        output={@
+You transfer the credits and he hands you a large switchblade knife.
+Then he wanders off into the crowd.
+
+        }
+    }
+
+    {move, logic=!_limbo, tags=[self] }
+}
+
+
+// Buy Switchblade / Yes No
+{input, syntax = [tplt_syntax]((no))
+    {act, logic=refuse_knife, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'buy'
+        }
+        output = {@
+
+"Huh?"
+        }
+    }
+
+    {set, logic=[self]((step)), output=help }
+}
+
+
+
+{input, syntax=[tplt_syntax]((yes))
+    {act, logic=buy_knife, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((topic)) = 'smalltalk'
+            and
+            ?[self]((step)) = 'buy'
+        }
+        output={@
+
+"Wait, what?"
+        }
+    }
+
+    {logic
+        logic={@
+            ?[self]((credits)) >= '5'
+        }
+        output={@
+
+"What are you trying to pull?
+Is there anything I can help you with 'friend'?"
+        }
+    }
+
+    {move, logic=[player], tags=knife_01 }
+    {set, logic=[knife_01]tags, output=+inventory }
+    {set, logic=[player]((credits)), output=-=5 }
+    {set, logic=[self]((step)), output=help }
+}

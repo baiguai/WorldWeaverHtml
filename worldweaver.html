@@ -2153,6 +2153,11 @@
                     gameOutput.MatchMade = true;
                     return;
 
+                case command.startsWith("_global") && adminMode:
+                    doAdminGlobalDesc();
+                    gameOutput.MatchMade = true;
+                    return;
+
                 case command.startsWith("_game") && adminMode:
                     doAdminGameDesc();
                     gameOutput.MatchMade = true;
@@ -2173,6 +2178,7 @@
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
             helpText += "<li><strong>_regex (optional filter)</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
             helpText += "<li><strong>_game</strong> : Describes the current state of the Game Element.</li>";
+            helpText += "<li><strong>_global</strong> : Describes the current state of the Global Elements.</li>";
             helpText += "<li><strong>_player</strong> : Describes the current state of the Player Element.</li>";
             helpText += "<li><strong>_room</strong> : Describes the current game state of the Room the Player is in.</li>";
 
@@ -2346,6 +2352,13 @@
             const player = getPlayer();
             gameOutput.Output = describeChildren(player, "");
 
+        }
+        function doAdminGlobalDesc() {
+            const globalElems = getElementsByType("global");
+
+            for (const global of globalElems) {
+                gameOutput.Output += describeChildren(global, "");
+            }
         }
         function doAdminObjectDesc(objId) {
             const obj = getElementByKey(objId);

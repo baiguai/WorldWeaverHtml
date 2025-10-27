@@ -39,6 +39,8 @@ You are next to a major street in the downtown district of a city called Vice Ha
 You step on the ramp and it returns you to the port.
             }
         }
+
+        {set, logic=[switch_hustler]parent, tags=!_limbo }
     }
 
     {input, syntax=[tplt_syntax]((go_west))
@@ -47,5 +49,7 @@ You step on the ramp and it returns you to the port.
 You go west.
             }
         }
+
+        {set, logic=[switch_hustler]parent, tags=!_limbo }
     }
 }

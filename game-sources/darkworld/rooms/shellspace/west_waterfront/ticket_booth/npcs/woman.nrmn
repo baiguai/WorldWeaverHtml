@@ -7,8 +7,12 @@ There is a woman inside the ticket booth.
 She has long silver hair and her eyes are solid mirrored chrome.
 Silver rings hover along the length of her neck.
 
+<?[game]((can_talk)) = 'true'?>
 She smiles.
 "Can I help you?"
+<else>
+The woman says nothing.
+</?>
         }
 
         {set, logic=[self]((topic)), output=greeting }
