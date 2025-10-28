@@ -320,7 +320,7 @@
         display: block;
         color: #00d1b2;
         text-decoration: underline;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         word-break: break-all;
     }
     #linksDialog .close {
@@ -328,6 +328,10 @@
         color: #ccc;
         cursor: pointer;
         display: inline-block;
+    }
+    #linksList a.selected {
+        background: #444;
+        display: block;
     }
 
     /* History Dialog */
@@ -505,11 +509,6 @@
     ::-webkit-scrollbar { width: 10px; height: 10px; }
     ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 2px; }
     ::-webkit-scrollbar-track { background: #0b0f17; }
-    
-    #linksList a.selected {
-        background: #444;
-        display: block;
-    }
     </style>
 </head>
 <body>
@@ -1090,9 +1089,11 @@
         });
 
         editorArea.addEventListener('click', () => {
-            mode_insert = true;
-            editing = true;
-            render();
+            if (!readOnly) {
+                mode_insert = true;
+                editing = true;
+                render();
+            }
 
             // Close dialogs - this is for mobile envs
             closeDialogs();
@@ -2164,7 +2165,6 @@
                     }
 
                     listEl.appendChild(a);
-                    listEl.appendChild(document.createElement('br'));
                 }
 
                 const links = listEl.querySelectorAll('a');

@@ -18,6 +18,16 @@ You have a ticket and can give it to him using:
 give ticket
 </?>
         }
+
+        {logic
+            logic={@
+                ?[player]((invisible)) = 'false'
+            }
+            output={@
+A ticket agent blocks the way past the ticket booth.
+He doesn't say anything to you.
+            }
+        }
     }
 
     {look
