@@ -1,9 +1,10 @@
 {macro, key=usb, output=put usb into computer }
 
 {macro, key=char, output=put usb in computer|~|down|~|greet character }
-{macro, key=crs, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s }
-{macro, key=man, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }
-{macro, key=adult, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes }
-{macro, key=lower, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes|~|w|~|take watch|~|e|~|s|~|n|~|down|~|down }
+{macro, key=crs_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s }
+{macro, key=man_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }
+{macro, key=adult_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes }
+{macro, key=lower_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes|~|w|~|take watch|~|e|~|s|~|n|~|down|~|down }
+{macro, key=lower_tch, output=put usb in computer|~|down|~|x character|~|tech trace|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes|~|w|~|take watch|~|e|~|s|~|n|~|down|~|down }
 
 {macro, key=isday, output=l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l }
