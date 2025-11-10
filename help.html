@@ -118,7 +118,7 @@
     :root {
         --bg: #000;
         --fg: #f5f5f5;
-        --muted: #9aa0a6;
+        --muted: #555;
         --accent: #00d1b2;
         --danger: #ff5577;
         --sel-bg: #111827;
@@ -249,6 +249,12 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    .find-highlight {
+        background: yellow;
+        color: black;
+        font-weight: bold;
     }
         
     /* Highlighted selection */
@@ -517,10 +523,10 @@
     <button id="hamburger" class="hamburger" style="display:none;">☰</button>
     <button id="mblSearch" onclick="closeDialogs(); activateTree(); openSearch();">Search</button>
     <button id="mblLinks" onclick="closeDialogs(); activateTree(); openLinksDialog();">Links</button>
-    &nbsp;
-    <button id="mblExport" onclick="closeDialogs(); exportNoteAsTxt();">Export Note</button>
+    <button id="mblExport" onclick="closeDialogs(); exportNoteAsTxt();">Export</button>
     <button id="mblSave" onclick="closeDialogs(); saveAsHtml('');">Save As</button>
     <button id="mblSave" onclick="closeDialogs(); saveAsHtml(fileName);">Save</button>
+    <button id="mblSave" onclick="closeDialogs(); openHelpDialog('VimDisabled');">?</button>
 </header>
 
 <div id="treeDialog" class="tree-dialog">
@@ -574,7 +580,8 @@
     <h3>Options</h3>
     <label><input type="checkbox" id="optShowInitHelp"> Show Init Help</label><br><br>
     <label>File Name: <input type="text" id="optFileName" style="background:#111;color:#fff;border:1px solid #555;"></label><br><br>
-    <label><input type="checkbox" id="optModeVim"> Enable Vim Mode</label>
+    <label><input type="checkbox" id="optModeVim"> Enable Vim Mode</label><br><br>
+    <label>Node Port: <input type="text" id="optPort" style="background:#111;color:#fff;border:1px solid #555;"></label>
     <p>Press Enter to save, Esc to cancel.</p>
 </div>
 
@@ -619,6 +626,7 @@
         </div>
     </div>
     <div id="replaceResults">Replaced 1 occurrence(s).</div>
+    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"></div>
 </div>
 
 <div id="historyDialog" style="display: none;">
@@ -681,6 +689,8 @@
             "\\);": "^^^func^^^"
         };
 
+        let nodePort = 0;
+
         let currentEditorNodeId = null;
         let historyStack = [];
         let showingHistory = false;
@@ -732,11 +742,9 @@
         const optShowInitHelp = document.getElementById('optShowInitHelp');
         const optFileName = document.getElementById('optFileName');
         const optModeVim = document.getElementById('optModeVim');
+        const optPort = document.getElementById('optPort');
         let optionFields = [optShowInitHelp, optFileName, optModeVim];
         let optionIndex = 0;
-
-        let findMatches = [];
-        let findIndex = 0;
 
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
@@ -758,9 +766,6 @@
             { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
         ];
-
-//            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-//            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
         
         const helpVimEnabled = [
             { key: "r", mode: "TREE", description: "Add root level node" },
@@ -794,6 +799,7 @@
             { key: "X", mode: "TREE", description: "Show broken note links" },
             { key: "s", mode: "TREE", description: "Save the current file" },
             { key: "S", mode: "TREE", description: "Save as" },
+            { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
             { key: "U", mode: "TREE", description: "Upgrade (import existing data)" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
@@ -863,6 +869,7 @@
             { key: "X", mode: "TREE", description: "Show broken note links" },
             { key: "s", mode: "TREE", description: "Save the current file" },
             { key: "S", mode: "TREE", description: "Save as" },
+            { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
             { key: "U", mode: "TREE", description: "Upgrade (import existing data)" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
@@ -1086,6 +1093,7 @@
         //---- Editor Sync -----------------------------------------------------
         editorArea.addEventListener('input', () => {
             syncFile();
+            scheduleAutoSave();
         });
 
         editorArea.addEventListener('click', () => {
@@ -1195,6 +1203,8 @@
                     break;
         
                 case 'Enter':
+                    if (finding) break;
+
                     e.preventDefault();
                     e.stopPropagation();
         
@@ -1210,8 +1220,11 @@
                     break;
             }
 
-            setAppHeight();
-            scrollToCursor();
+            if (!mode_insert) {
+                // Only adjust scrolling when *not* editing
+                setAppHeight();
+                scrollToCursor();
+            }
 
             if (e.key === 'Escape') {
                 e.preventDefault();
@@ -1306,7 +1319,8 @@
                 }
             }
 
-        
+
+            //---- These are the keys to be processed when in NORMAL mode ------
             switch (e.key) {
                 case "i": // Enter insert mode
                 case "a":
@@ -1443,6 +1457,7 @@
                     scrollToCursor();
                     break;
             }
+            //------------------------------------------------------------------
         
             if (performed) {
                 keyPerformed();
@@ -2047,6 +2062,7 @@
             optShowInitHelp.checked = showInitHelp;
             optFileName.value = fileName;
             optModeVim.checked = mode_vim;
+            optPort.value = nodePort;
             optionsDialog.style.display = 'block';
             optionIndex = 0;
             optionFields[optionIndex].focus();
@@ -2058,6 +2074,7 @@
             showInitHelp = optShowInitHelp.checked;
             fileName = optFileName.value || fileName;
             mode_vim = optModeVim.checked;
+            nodePort = optPort.value;
             closeOptionsDialog();
         }
 
@@ -2277,6 +2294,10 @@
         //---- Finding and Replacing -------------------------------------------
         function openReplaceDialog() {
             finding = true;
+            findMatches = [];
+            currentFindIndex = -1;
+            const resultsEl = document.getElementById('findResults');
+            resultsEl.innerHTML = '';
             document.getElementById('searchText').value = '';
             document.getElementById('replaceText').value = '';
             document.getElementById('replaceDialog').style.display = 'block';
@@ -2284,49 +2305,102 @@
         }
 
         function closeReplaceDialog() {
-            finding = false;
             document.getElementById('replaceDialog').style.display = 'none';
+            finding = false;
         }
 
         function doFind() {
             const info = findNodeAndParentById(selectedId);
             if (!info) return;
 
-            const searchVal = document.getElementById('searchText').value;
-            const resultsEl = document.getElementById('replaceResults');
+            const searchVal = document.getElementById('searchText').value.trim();
+            const resultsEl = document.getElementById('findResults');
             const area = document.getElementById('editorArea');
+            const content = safeRestoreText(info.node.content) || '';
+
+            resultsEl.innerHTML = '';
+            findMatches = [];
+            currentFindIndex = -1;
 
             if (!searchVal) {
                 resultsEl.textContent = 'Enter something to search for.';
                 return;
             }
 
-            const content = safeRestoreText(info.node.content) || '';
-            // Escape user input for regex
             const regex = new RegExp(searchVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-
-            // Create a list of match start indexes
-            findMatches = [];
             let match;
+            const contextRadius = 20;
+            let resultHTML = '';
+
             while ((match = regex.exec(content)) !== null) {
-                findMatches.push({ start: match.index, end: match.index + match[0].length });
+                const start = Math.max(0, match.index - contextRadius);
+                const end = Math.min(content.length, match.index + match[0].length + contextRadius);
+                const context = content.substring(start, end)
+                    .replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const highlighted = context.replace(new RegExp(searchVal, 'gi'), 
+                    m => `<span class="find-highlight">${m}</span>`);
+
+                findMatches.push({ index: match.index, length: match[0].length });
+                resultHTML += `<div class="find-item" data-idx="${findMatches.length - 1}" 
+                                style="cursor:pointer; padding:2px; overflow: auto; font-size: 60%;">
+                                ${highlighted}
+                               </div>`;
             }
 
             if (findMatches.length === 0) {
                 resultsEl.textContent = 'No matches found.';
-                return;
+            } else {
+                resultsEl.innerHTML = resultHTML;
             }
 
-            // Cycle to the next match
-            if (findIndex >= findMatches.length) findIndex = 0;
-            const current = findMatches[findIndex];
+            if (findMatches.length > 0) {
+                currentFindIndex = 0;
+                const first = resultsEl.querySelectorAll('.find-item')[0];
+                if (first) {
+                    first.style.background = '#333';
+                    first.scrollIntoView({ block: 'nearest' });
+                }
+            }
 
-            // Move the caret/selection to the match
+            // Click handler
+            resultsEl.querySelectorAll('.find-item').forEach(div => {
+                div.addEventListener('click', e => {
+                    const idx = parseInt(div.dataset.idx);
+                    selectFindMatch(idx);
+                    closeReplaceDialog();
+                });
+            });
+        }
+        function selectFindMatch(idx) {
+            if (idx < 0 || idx >= findMatches.length) return;
+
+            const area = document.getElementById('editorArea');
+            const match = findMatches[idx];
+            currentFindIndex = idx;
+
+            // Scroll and select
+            area.setSelectionRange(match.index, match.index + match.length);
+            setVimMode(false);
+            editing = true;
             area.focus();
-            area.setSelectionRange(current.start, current.end);
+        }
+        function navigateFindResults(dir) {
+            if (findMatches.length === 0) return;
+            if (currentFindIndex === -1) currentFindIndex = 0;
+            else currentFindIndex = (currentFindIndex + dir + findMatches.length) % findMatches.length;
 
-            resultsEl.textContent = `Match ${findIndex + 1} of ${findMatches.length}`;
-            findIndex++;
+            const resultDivs = document.querySelectorAll('#findResults .find-item');
+            resultDivs.forEach(div => div.style.background = '');
+            const active = resultDivs[currentFindIndex];
+            if (active) {
+                active.style.background = '#333';
+                active.scrollIntoView({ block: 'nearest' });
+            }
+            // Keep selection synced with highlighted result
+            const area = document.getElementById('editorArea');
+            const match = findMatches[currentFindIndex];
+            area.focus();
+            area.setSelectionRange(match.index, match.index + match.length);
         }
 
         function doReplaceAll() {
@@ -2348,6 +2422,7 @@
 
             if (matchCount > 0) {
                 content = content.replace(regex, replaceVal);
+                editorArea.value = content;
                 info.node.content = safeStoreText(content);
                 render();
                 resultsEl.textContent = `Replaced ${matchCount} occurrence(s).`;
@@ -2364,6 +2439,7 @@
         replaceInputEl.addEventListener('keydown', e => {
             if (e.key === 'Enter') {
                 e.preventDefault();
+                e.stopPropagation();
                 doReplaceAll(); // replaces all
                 closeReplaceDialog();
             }
@@ -2416,7 +2492,6 @@
             editorArea.value = undoValue;
             syncFile();
         }
-
 
 
         //---- Visual Mode Helpers ---------------------------------------------
@@ -2504,6 +2579,7 @@
                 editorArea.setRangeText("", lineStart, lineEnd, "start");
                 editorArea.selectionStart = editorArea.selectionEnd = lineStart;
             } else {
+                if (end === start) end += 1;
                 const deletedLength = end - start;
                 visual_end = visual_start;
                 editorArea.setRangeText("", start, end, "start");
@@ -2633,21 +2709,16 @@
             function matches(h, term) {
                 let t = term.trim().replace(/\s+/g, '').toLowerCase();
                 let key = h.key.replace(/\s+/g, '').toLowerCase();
-                let mode = "";
-                if (mode != "ReadOnly") {
-                    mode = mode.toLowerCase();
-                } else {
-                    mode = "";
-                }
+                let mode = h.mode ? h.mode.toLowerCase() : "";
                 let desc = h.description.toLowerCase();
             
                 // If the search starts with ":", search keys only
                 if (t.startsWith(':')) {
                     t = t.slice(1); // remove ':'
-                    mode = '';
-                    desc = '';
+                    return key.includes(t);
                 }
             
+                // Otherwise search all fields
                 return key.includes(t) || mode.includes(t) || desc.includes(t);
             }
         
@@ -2698,15 +2769,7 @@
 
 
         //---- Saving ----------------------------------------------------------
-        function saveAsHtml(currentFileName) {
-            let name = currentFileName;
-            let saveName = false;
-            if (name === "") {
-                name = prompt("Save as .html (enter name without extension):", "");
-                if (!name) return;
-                saveName = true;
-            }
-
+        function getContents(name, saveName) {
             const elemLimit = 20; // Number of elements per line
             const htmlDoc = document.documentElement.cloneNode(true);
 
@@ -2744,6 +2807,12 @@
               `let mode_vim = ${mode_vim};`
             );
 
+            // nodePort
+            htmlContent = htmlContent.replace(
+                /let\s+nodePort\s*=\s*\d+;/,
+                `let nodePort = ${nodePort};`
+            );
+
             htmlContent = htmlContent.replace(/let\s+treeData\s*=\s*\[[\s\S]*?\];/, `let treeData = ${formattedDatabase};`);
 
             htmlContent = htmlContent.replace(
@@ -2755,11 +2824,42 @@
                 "let historyStack = " + JSON.stringify(historyStack, null, 4) + ";"
             );
 
+            return htmlContent;
+        }
+
+
+        function saveAsHtml(currentFileName) {
+            let name = currentFileName;
+            let saveName = false;
+            if (name === "") {
+                name = prompt("Save as .html (enter name without extension):", "");
+                if (!name) return;
+                saveName = true;
+            }
+
+            let htmlContent = getContents(name, saveName);
+
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
             a.download = `${name}.html`;
             a.click();
+        }
+
+        async function saveViaNode() {
+            const content = getContents(fileName, false);
+
+            const res = await fetch("http://localhost:"+nodePort+"/save", {
+                method: "POST",
+                headers: { "Content-Type": "text/plain" },
+                body: content
+            });
+
+            if (res.ok) {
+                showMessage("Saved successfully");
+            } else {
+                showMessage("Save failed: " + (await res.text()));
+            }
         }
 
         function exportNoteAsTxt() {
@@ -2825,9 +2925,24 @@
                     case 'Escape':
                         closeReplaceDialog();
                         break;
-
+                    case 'ArrowDown':
+                        navigateFindResults(1);
+                        e.preventDefault();
+                        break;
+                    case 'ArrowUp':
+                        navigateFindResults(-1);
+                        e.preventDefault();
+                        break;
                     case "Enter":
-                        doFind();
+                        if (document.getElementById('replaceText').value !== "") break;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentFindIndex !== -1) {
+                            selectFindMatch(currentFindIndex);
+                            closeReplaceDialog();
+                        } else {
+                            doFind();
+                        }
                         break;
                 }
 
@@ -2895,8 +3010,6 @@
                 case 'R': if (!readOnly) renameFolder(); break;
                 case 'j': if (!dialogOpen()) selectNextSibling(true); break;
                 case 'k': if (!dialogOpen()) selectPrevSibling(false); break;
-                case ',': selectNextSibling(true); break;
-                case '.': selectPrevSibling(true); break;
                 case 'l': moveRight(); break;
                 case 'h': moveLeft(true); break;
                 case 'u': moveLeft(false); break;
@@ -2913,6 +3026,7 @@
                 case 'D': deleteNode(); break;
                 case 's': saveAsHtml(fileName); break;
                 case 'S': openSaveAsDialog(); break;
+                case 'n': saveViaNode(); break;
                 case 'T': exportNoteAsTxt(); break;
                 case ']': resizeTree(30); break;
                 case '[': resizeTree(-30); break;
@@ -2992,6 +3106,8 @@
 
     let linksIndex = 0;
     let linksCount = 0;
+    let findMatches = [];
+    let currentFindIndex = -1;
 
     function openMissingLinksDialog() {
         if (readOnly) return;
@@ -3431,7 +3547,23 @@
         selectedId = treeData[0]?.id || null;
         render();
     });
+
+
+    //---- Node AutoSaver ------------------------------------------------------
+    let autoSaveTimer = null;
+
+    function scheduleAutoSave() {
+        if (nodePort == 0) return;
+        if (!mode_insert) return;
+
+        clearTimeout(autoSaveTimer);
+        autoSaveTimer = setTimeout(() => {
+        saveViaNode();
+        }, 3000);                               // wait 3s after last change
+    }
 </script>
+
+
 
 
 </body></html>

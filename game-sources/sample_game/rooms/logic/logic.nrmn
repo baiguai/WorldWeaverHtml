@@ -1,0 +1,42 @@
+{room, key=logic_room, name=Logic Room
+    {attrib, output=no, tags=checkone }
+    {attrib, output=no, tags=checktwo }
+
+    {enter_message
+        output={@
+You should NOT see this message.
+        }
+
+        {logic
+            logic={@
+                ?[self]((checkone)) = 'yes'
+            }
+            output={@
+Logic check, number one.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((checktwo)) = 'yes'
+            }
+            output={@
+Logic check, number two.
+            }
+        }
+    }
+
+
+    {look
+        {message
+            output={@
+To test this room, simply leave then return to it.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+}

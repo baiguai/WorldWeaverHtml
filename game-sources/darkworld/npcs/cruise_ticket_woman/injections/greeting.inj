@@ -14,6 +14,8 @@ Would you like to purchase a ticket?
 {input, syntax=[tplt_syntax]((purchase_cruise_ticket))
     {act, logic=need_ticket, tags=!_type|room }
 
+    {inject, logic=/items/xplt_cloak/cloak.inj }
+
     {logic
         logic={@
             ?[self]((topic)) = 'greeting'

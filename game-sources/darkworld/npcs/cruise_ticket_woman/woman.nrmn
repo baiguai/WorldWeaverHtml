@@ -16,6 +16,8 @@ She smiles.
         }
 
         {set, logic=[self]((topic)), output=greeting }
+
+        {inject, logic=/items/xplt_cloak/cloak.inj }
     }
 
     {look

@@ -1,0 +1,10 @@
+{logic
+    logic={@
+        ?[player]((invisible)) = 'false'
+    }
+    {message
+        output={@
+The womand doesn't seem to see you.
+        }
+    }
+}
