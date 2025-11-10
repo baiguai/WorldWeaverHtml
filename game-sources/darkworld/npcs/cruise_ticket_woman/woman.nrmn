@@ -1,9 +1,10 @@
 {npc, name=Ticket Booth Woman, parent=vice_port_tickets
     {attrib, output=greeting, tags=topic }
-    {attrib, output=she, tags=ref_as }
-    {attrib, output=She, tags=ref_as_prop }
-    {attrib, output=her, tags=ref_of }
-    {attrib, output=true, tags=single }
+    {attrib, tags=invisible
+        output={@
+The woman doesn't seem to see you.
+        }
+    }
 
     {enter_message
         output={@

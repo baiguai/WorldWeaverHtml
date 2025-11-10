@@ -1,10 +1,10 @@
 {logic
     logic={@
-        ?[player]((invisible)) = 'false'
+        ?[xplt_cloak]parent != [player]
+        or
+        ?[xplt_cloak]((invisible)) = 'false'
     }
-    {message
-        output={@
-The womand doesn't seem to see you.
-        }
+    output={@
+<<[self]((invisible))output>>
     }
 }
