@@ -1,4 +1,6 @@
 {room, key=bedroom, name=Bedroom
+    {attrib, output=false, tags=tested }
+
     {enter_message
         output={@
 
@@ -15,6 +17,12 @@ Three monitors are arrayed on the desk, each one showing a slow, geometric
 screen saver.
 
 In the right side of the desk is your computer.
+        }
+
+        {logic, name=Meatspace room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -174,25 +182,5 @@ You are in a port.
 
     {input, syntax=[tplt_syntax]((x_envelope))
         {act, logic=x_envelope, tags=!_type|room }
-    }
-
-
-
-
-
-    {dev_note, tags=Todo
-        output={@
-Be sure to add clues to let the player know what's going on. Check the following Attrib:
-knows_about_killing
-        }
-    }
-
-
-
-    {dev_note, tags=Checkout
-        output={@
-Checkout:
-General tasks have been checked out.
-        }
     }
 }

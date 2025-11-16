@@ -14,7 +14,7 @@
         {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers }
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
-        {attrib, tags=x_monitor|!_regex, output=^(examine|x)(?: the)?(?: computer)? monitor$, logic=x the monitor|x monitor|examine the computer monitor }
+        {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
