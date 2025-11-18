@@ -1,4 +1,4 @@
-<!DOCTYPE html><html style="--app-height: 1013px;"><head>
+<!DOCTYPE html><html style="--app-height: 1052px;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>DarkWorld Plot</title>
@@ -118,7 +118,7 @@
     :root {
         --bg: #000;
         --fg: #f5f5f5;
-        --muted: #9aa0a6;
+        --muted: #555;
         --accent: #00d1b2;
         --danger: #ff5577;
         --sel-bg: #111827;
@@ -250,6 +250,12 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
+
+    .find-highlight {
+        background: yellow;
+        color: black;
+        font-weight: bold;
+    }
         
     /* Highlighted selection */
     .search-results div.selected, 
@@ -320,7 +326,7 @@
         display: block;
         color: #00d1b2;
         text-decoration: underline;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         word-break: break-all;
     }
     #linksDialog .close {
@@ -328,6 +334,77 @@
         color: #ccc;
         cursor: pointer;
         display: inline-block;
+    }
+    #linksList a.selected {
+        background: #444;
+        display: block;
+    }
+
+    /* History Dialog */
+    #historyDialog {
+        display: none;
+        position: fixed;
+        top: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        max-width: 90vw;
+        max-height: 70vh;
+        background: #222;
+        color: #fff;
+        border: 2px solid #444;
+        border-radius: 6px;
+
+        /* move padding to children to avoid parent padding affecting height calculations */
+        padding: 0;
+        z-index: 9999;
+        font-family: monospace;
+        box-shadow: rgba(0, 0, 0, 0.8) 0 0 20px;
+
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;        /* prevent dialog itself from scrolling */
+    }
+
+    /* header: keep height predictable and out of the scroller */
+    #historyDialog > h3 {
+        margin: 0;
+        padding: 15px 20px 8px 20px;
+        border-bottom: 1px solid #444;
+        flex-shrink: 0;
+    }
+
+    /* wrapper that holds the scrollable list */
+    #historyDialog .history-content {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;       /* ensure only child scrolls */
+        min-height: 0;          /* CRITICAL: allows it to shrink inside max-height parent */
+    }
+
+    /* the actual scrollable area */
+    #historyList {
+        flex: 1 1 auto;         /* fill remaining space under header */
+        overflow-y: auto;       /* scroll only here */
+        padding: 10px 20px 20px 20px;
+        min-height: 0;          /* CRITICAL: allows the element to shrink inside flex parent */
+        border-top: 1px solid #444;
+    }
+
+    /* ✅ Responsive adjustments for smaller screens */
+    @media (max-width: 700px) {
+        #historyDialog {
+            width: 90vw;
+            top: 5%;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        #historyDialog h3 {
+            font-size: 1em;
+            padding-bottom: 6px;
+        }
     }
 
     /* Search/Replace Dialog */
@@ -438,23 +515,19 @@
     ::-webkit-scrollbar { width: 10px; height: 10px; }
     ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 2px; }
     ::-webkit-scrollbar-track { background: #0b0f17; }
-    
-    #linksList a.selected {
-        background: #444;
-        display: block;
-    }
     </style>
 </head>
 <body>
 <div class="app">
 <header id="mobileMenu" style="display: none;">
     <button id="hamburger" class="hamburger" style="display:none;">☰</button>
-    <button id="mblSearch" onclick="closeDialogs(); activateTree(); openSearch();">Search</button>
-    <button id="mblLinks" onclick="closeDialogs(); activateTree(); openLinksDialog();">Links</button>
-    &nbsp;
-    <button id="mblExport" onclick="closeDialogs(); exportNoteAsTxt();">Export Note</button>
-    <button id="mblSave" onclick="closeDialogs(); saveAsHtml('');">Save As</button>
-    <button id="mblSave" onclick="closeDialogs(); saveAsHtml(fileName);">Save</button>
+    <button id="mblSearch" style="border: none;" onclick="closeDialogs(); activateTree(); openSearch();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" width="20" height="20" viewBox="0 0 12.8 12.8" version="1.1" id="svg69" sodipodi:docname="search.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"> <defs id="defs73"></defs> <sodipodi:namedview id="namedview71" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="17.748839" inkscape:cx="9.972483" inkscape:cy="10.000654" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg69"></sodipodi:namedview> <title id="title65">search</title> <path d="M 11.105177,12.060916 8.2526636,9.2084027 q -1.235109,0.9410353 -2.7936989,0.9410353 -1.2645164,0 -2.3525887,-0.6175543 Q 2.0183038,8.8849216 1.4007493,7.7968494 0.75378744,6.7087772 0.75378744,5.4442609 q 0,-1.2645164 0.64696186,-2.3525886 Q 2.0183038,2.0036 3.106376,1.3860455 4.1944483,0.73908369 5.4589647,0.73908369 q 1.2645163,0 2.3525885,0.64696181 1.0880725,0.6175545 1.7350341,1.7056268 0.6175547,1.0880722 0.6175547,2.3525886 0,1.5879973 -0.9704432,2.823106 L 12.046213,11.119881 Z M 5.4295573,8.7672925 q 1.3821458,0 2.3525886,-0.9704431 0.9410353,-0.9704427 0.9410353,-2.3231812 0,-1.3821458 -0.9410353,-2.3231812 -0.9704428,-0.9704428 -2.3525886,-0.9704428 -1.3527384,0 -2.3231813,0.9704428 -0.9704428,0.9410354 -0.9704428,2.3231812 0,1.3527385 0.9704428,2.3231812 0.9704429,0.9704431 2.3231813,0.9704431 z" id="path67" style="fill:#ffffff;fill-opacity:1;stroke-width:0.0294074"></path> <metadata id="metadata1636"> <rdf:rdf> <cc:work rdf:about=""> <dc:title>search</dc:title> </cc:work> </rdf:rdf> </metadata> </svg></button>
+    <button id="mblLinks" style="border: none;" onclick="closeDialogs(); activateTree(); openLinksDialog();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" version="1.1" id="Capa_1" width="20" height="20" viewBox="0 0 11.05615 11.05615" xml:space="preserve" sodipodi:docname="link.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1691"></defs><sodipodi:namedview id="namedview1689" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="25.923538" inkscape:cx="9.9909202" inkscape:cy="10.010208" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="Capa_1"></sodipodi:namedview> <g id="g1686" style="fill:#ffecec;fill-opacity:1" transform="matrix(0.0216909,0,0,0.0216909,0.73171554,0.73170181)"> <g id="g1684" style="fill:#ffecec;fill-opacity:1"> <path d="m 409.657,32.474 c -43.146,-43.146 -113.832,-43.146 -156.978,0 l -84.763,84.762 c 29.07,-8.262 60.589,-6.12 88.129,6.732 l 44.063,-44.064 c 17.136,-17.136 44.982,-17.136 62.118,0 17.136,17.136 17.136,44.982 0,62.118 l -55.386,55.386 -36.414,36.414 c -17.136,17.136 -44.982,17.136 -62.119,0 l -47.43,47.43 c 11.016,11.017 23.868,19.278 37.332,24.48 36.415,14.382 78.643,8.874 110.467,-16.219 3.06,-2.447 6.426,-5.201 9.18,-8.262 l 57.222,-57.222 34.578,-34.578 c 43.453,-43.145 43.453,-113.525 10e-4,-156.977 z" id="path1680" style="fill:#ffecec;fill-opacity:1"></path> <path d="m 184.135,320.114 -42.228,42.228 c -17.136,17.137 -44.982,17.137 -62.118,0 -17.136,-17.136 -17.136,-44.981 0,-62.118 l 91.8,-91.799 c 17.136,-17.136 44.982,-17.136 62.119,0 l 47.43,-47.43 c -11.016,-11.016 -23.868,-19.278 -37.332,-24.48 -38.25,-15.3 -83.232,-8.262 -115.362,20.502 -1.53,1.224 -3.06,2.754 -4.284,3.978 l -91.8,91.799 c -43.146,43.146 -43.146,113.832 0,156.979 43.146,43.146 113.832,43.146 156.978,0 l 82.927,-83.845 c -42.23,9.791 -52.022,8.568 -88.13,-5.814 z" id="path1682" style="fill:#ffecec;fill-opacity:1"></path> </g> </g> </svg></button>
+    <button id="mblHistory" style="border: none;" onclick="closeDialogs(); activateTree(); openHistoryDialog();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="131 -131 20 20" xml:space="preserve" sodipodi:docname="history_1.svg" width="20" height="20" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs4320"></defs><sodipodi:namedview id="namedview4318" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="35.582519" inkscape:cx="10.004913" inkscape:cy="10.018965" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="Layer_1"></sodipodi:namedview> <g id="XMLID_5_" style="fill:#ffffff;fill-opacity:1" transform="matrix(0.03235501,0,0,0.03235501,128.47861,-125.04437)"> <path id="XMLID_9_" d="M 423.7,-93.5 C 302.8,-93.5 204.4,4.9 204.4,125.8 H 131 l 94.2,94.2 1.7,3.3 L 327,125 h -73.4 c 0,-94.2 75.9,-170.1 170.1,-170.1 94.2,0 170.1,75.9 170.1,170.1 0,94.2 -75.9,170.1 -170.1,170.1 -46.7,0 -89.2,-19.2 -120.1,-50 l -34.2,34.2 c 40,40 94.2,64.2 155.1,64.2 C 545.4,343.5 643,245.1 643,124.2 643,4.1 544.6,-93.5 423.7,-93.5 Z M 399.5,27.4 v 121.7 l 104.2,61.7 17.5,-29.2 -85.1,-50.9 V 27.4 Z" style="fill:#ffffff;fill-opacity:1"></path> </g> </svg></button>
+    <button id="mblExport" style="border: none;" onclick="closeDialogs(); exportNoteAsTxt();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" height="20" width="20" version="1.1" id="Capa_1" viewBox="0 0 12.338125 12.338125" xml:space="preserve" sodipodi:docname="export-button.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2217"></defs><sodipodi:namedview id="namedview2215" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="28.278008" inkscape:cx="10.007777" inkscape:cy="10.025459" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="Capa_1"></sodipodi:namedview> <g id="XMLID_30_" style="fill:#ffffff;fill-opacity:1" transform="matrix(0.02193514,0,0,0.02193514,0.75629126,0.75627966)"> <path id="XMLID_32_" d="M 430.557,79.556 H 218.44 c 21.622,12.688 40.255,29.729 54.859,49.906 h 157.258 c 7.196,0 13.063,5.863 13.063,13.06 v 238.662 c 0,7.199 -5.866,13.064 -13.063,13.064 H 191.894 c -7.198,0 -13.062,-5.865 -13.062,-13.064 V 222.173 c -6.027,-3.1 -12.33,-5.715 -18.845,-7.732 -3.818,11.764 -12.105,21.787 -23.508,27.781 -2.39,1.252 -4.987,2.014 -7.554,2.844 v 136.119 c 0,34.717 28.25,62.971 62.968,62.971 h 238.663 c 34.718,0 62.969,-28.254 62.969,-62.971 V 142.522 c 0,-34.716 -28.25,-62.966 -62.968,-62.966 z" style="fill:#ffffff;fill-opacity:1"></path> <path id="XMLID_31_" d="m 129.037,175.989 c 51.419,1.234 96.388,28.283 122.25,68.865 2.371,3.705 6.434,5.848 10.657,5.848 1.152,0 2.322,-0.162 3.46,-0.486 5.377,-1.545 9.114,-6.418 9.179,-12.006 0,-0.504 0,-1.01 0,-1.51 0,-81.148 -64.853,-147.023 -145.527,-148.957 V 64.155 c 0,-5.492 -3.038,-10.512 -7.879,-13.078 -2.16,-1.139 -4.533,-1.707 -6.889,-1.707 -2.94,0 -5.848,0.88 -8.35,2.584 L 5.751,120.526 C 2.162,122.98 0.018,127.041 0,131.394 c -0.017,4.338 2.113,8.418 5.687,10.902 l 100.17,69.451 c 2.518,1.753 5.459,2.631 8.414,2.631 2.355,0 4.696,-0.553 6.857,-1.676 4.855,-2.549 7.909,-7.6 7.909,-13.092 z" style="fill:#ffffff;fill-opacity:1"></path> </g> </svg></button>
+    <button id="mblSave" style="border: none;" onclick="closeDialogs(); saveAsHtml('');"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3265" sodipodi:docname="save-as.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3269"></defs> <sodipodi:namedview id="namedview3267" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="24.074045" inkscape:cx="10.010781" inkscape:cy="10.03155" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg3265"></sodipodi:namedview> <g id="g3753" transform="matrix(0.02662214,0,0,0.02662214,-0.03277494,-0.0328002)"> <path d="M 5.75,3 C 4.23122,3 3,4.23122 3,5.75 v 12.5 C 3,19.7688 4.23122,21 5.75,21 H 9.99852 C 9.99129,20.8075 10.011,20.6088 10.0613,20.4075 L 10.2882,19.5 H 7.5 v -5.25 c 0,-0.4142 0.33579,-0.75 0.75,-0.75 h 6.6031 l 1.4352,-1.4352 C 16.1158,12.0225 15.9355,12 15.75,12 H 8.25 C 7.00736,12 6,13.0074 6,14.25 V 19.5 H 5.75 C 5.05964,19.5 4.5,18.9404 4.5,18.25 V 5.75 C 4.5,5.05964 5.05964,4.5 5.75,4.5 H 7 V 7.25 C 7,8.49264 8.00736,9.5 9.25,9.5 h 4.5 C 14.9926,9.5 16,8.49264 16,7.25 V 4.52344 c 0.3582,0.05925 0.6918,0.22902 0.9519,0.48912 L 18.9874,7.0481 C 19.3156,7.37629 19.5,7.8214 19.5,8.28553 V 10.007 C 19.5709,10.0024 19.642,10 19.713,10 h 0.0021 c 0.437,2e-4 0.8749,0.0874 1.2849,0.2615 V 8.28553 C 21,7.42358 20.6576,6.59693 20.0481,5.98744 L 18.0126,3.9519 C 17.4031,3.34241 16.5764,3 15.7145,3 Z M 8.5,7.25 V 4.5 h 6 V 7.25 C 14.5,7.66421 14.1642,8 13.75,8 H 9.25 C 8.83579,8 8.5,7.66421 8.5,7.25 Z" fill="#212121" id="path3261" style="fill:#ffffff;fill-opacity:1"></path> <path d="m 19.7152,11 h -0.0021 c -0.5846,3e-4 -1.1692,0.2234 -1.6152,0.6695 l -5.9024,5.9024 c -0.3442,0.3441 -0.5883,0.7753 -0.7063,1.2475 l -0.4577,1.8307 c -0.199,0.7961 0.5221,1.5173 1.3182,1.3182 l 1.8307,-0.4577 c 0.4722,-0.118 0.9034,-0.3621 1.2475,-0.7063 l 5.9024,-5.9024 c 0.8927,-0.8926 0.8927,-2.3398 0,-3.2324 C 20.8843,11.2234 20.2998,11.0003 19.7152,11 Z" fill="#212121" id="path3263" style="fill:#ffffff;fill-opacity:1"></path> </g> </svg></button>
+    <button id="mblSave" style="border: none;" onclick="closeDialogs(); saveAsHtml(fileName);"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" width="20" height="20" viewBox="0 0 0.6 0.6" data-name="Layer 1" version="1.1" id="svg2738" sodipodi:docname="save.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2742"></defs> <sodipodi:namedview id="namedview2740" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="29.391603" inkscape:cx="10.002857" inkscape:cy="10.019869" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg2738"></sodipodi:namedview> <path d="M 0.54425579,0.22400297 0.37599669,0.05574388 a 0.02804318,0.02804318 0 0 0 -0.008974,-0.0058891 0.03056707,0.03056707 0 0 0 -0.0109368,-0.0022435 H 0.13174058 A 0.08412955,0.08412955 0 0 0 0.04761104,0.1317409 V 0.4682591 A 0.08412955,0.08412955 0 0 0 0.13174058,0.5523886 H 0.46825876 A 0.08412955,0.08412955 0 0 0 0.55238831,0.4682591 V 0.24391363 a 0.02804318,0.02804318 0 0 0 -0.008133,-0.0199107 z M 0.21587013,0.10369772 h 0.11217273 v 0.0560864 H 0.21587013 Z M 0.38412922,0.49630228 H 0.21587013 v -0.0841295 a 0.02804318,0.02804318 0 0 1 0.0280432,-0.0280432 h 0.11217272 a 0.02804318,0.02804318 0 0 1 0.0280432,0.0280432 z m 0.11217273,-0.0280432 a 0.02804318,0.02804318 0 0 1 -0.0280432,0.0280432 H 0.44021558 V 0.41217273 A 0.08412955,0.08412955 0 0 0 0.35608604,0.32804318 H 0.24391331 a 0.08412955,0.08412955 0 0 0 -0.0841295,0.0841295 v 0.0841295 H 0.13174058 A 0.02804318,0.02804318 0 0 1 0.1036974,0.4682591 V 0.1317409 A 0.02804318,0.02804318 0 0 1 0.1317406,0.1036977 H 0.1597838 V 0.1878272 A 0.02804318,0.02804318 0 0 0 0.187827,0.2158704 H 0.35608609 A 0.02804318,0.02804318 0 0 0 0.38412929,0.1878272 V 0.1432386 l 0.11217272,0.11217273 z" id="path2736" style="fill:#ffffff;fill-opacity:1;stroke-width:0.0280432"></path> </svg></button>
+    <button id="mblSave" style="border: none;" onclick="closeDialogs(); openHelpDialog('VimDisabled');"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3794" sodipodi:docname="help.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3798"></defs> <sodipodi:namedview id="namedview3796" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="19.716907" inkscape:cx="9.9914251" inkscape:cy="10.016784" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="0" inkscape:window-maximized="1" inkscape:current-layer="svg3794"></sodipodi:namedview> <g id="Warning / Help" style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1" transform="matrix(0.032969,0,0,0.032969,-0.09884509,-0.11376456)"> <path id="Vector" d="M 8.19531,8.76498 C 8.42304,8.06326 8.84053,7.43829 9.40137,6.95899 9.96221,6.47968 10.6444,6.16501 11.373,6.0494 c 0.7287,-0.1156 1.4756,-0.02738 2.1573,0.2548 0.6816,0.28217 1.2713,0.74746 1.7051,1.34424 0.4337,0.59677 0.6941,1.30164 0.7521,2.0371 0.058,0.73546 -0.089,1.47256 -0.4239,2.12986 -0.3349,0.6574 -0.8444,1.2097 -1.4735,1.5952 -0.629,0.3855 -1.3524,0.5896 -2.0901,0.5896 v 0.9996 M 12.0498,19 v 0.1 l -0.0996,2e-4 V 19 Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1"></path> </g> </svg></button>
 </header>
 
 <div id="treeDialog" class="tree-dialog">
@@ -508,7 +581,8 @@
     <h3>Options</h3>
     <label><input type="checkbox" id="optShowInitHelp"> Show Init Help</label><br><br>
     <label>File Name: <input type="text" id="optFileName" style="background:#111;color:#fff;border:1px solid #555;"></label><br><br>
-    <label><input type="checkbox" id="optModeVim"> Enable Vim Mode</label>
+    <label><input type="checkbox" id="optModeVim"> Enable Vim Mode</label><br><br>
+    <label>Node Port: <input type="text" id="optPort" style="background:#111;color:#fff;border:1px solid #555;"></label>
     <p>Press Enter to save, Esc to cancel.</p>
 </div>
 
@@ -553,11 +627,14 @@
         </div>
     </div>
     <div id="replaceResults">Replaced 1 occurrence(s).</div>
+    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"></div>
 </div>
 
-<div id="historyDialog" style="display: none; position: fixed; top: 10%; left: 50%; transform: translateX(-50%); width: 600px; max-height: 70%; background: rgb(34, 34, 34); color: rgb(255, 255, 255); border: 2px solid rgb(68, 68, 68); border-radius: 2px; padding: 20px; z-index: 9999; font-family: monospace; overflow-y: auto; box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 20px;">
+<div id="historyDialog" style="display: none;">
     <h3>History</h3>
-    <div id="historyList"></div>
+    <div class="history-content">
+        <div id="historyList"></div>
+    </div>
 </div>
 
 <div id="saveAsDialog" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgb(0, 0, 0); color: rgb(255, 255, 255); border: 2px solid rgb(68, 68, 68); border-radius: 6px; padding: 20px; width: 320px; z-index: 9999; font-family: monospace; box-shadow: rgba(0, 0, 0, 0.8) 0px 0px 20px;">
@@ -572,11 +649,11 @@
 </div>
 
 
-<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">High Level Plot</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Groups Involved</span></div></li><li><div class="node selected"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Exploits</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65"></path> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994"></rect> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883"></rect> </svg></span><span class="title">All Elems/Categories</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Heal</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">Tech Trace</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65"></path> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924"></path> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417"></rect> </g> </g> </svg></span><span class="title">The Cloak</span></div></li></ul></li></ul></aside>
+<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">High Level Plot</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Groups Involved</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Exploits</span></div></li></ul></aside>
 <section class="editor">
     <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
         <span class="pill" id="mode" style="display: block;">TREE</span>
-        <span class="pill" id="kind">FOLDER</span>
+        <span class="pill" id="kind">FILE</span>
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
@@ -594,16 +671,18 @@
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"5li5aqla","title":"All Elems/Categories","content":"All Elems/Categories\n\n\n* Action\n    * Drop\n    * Take\n    * Use\n* Fight\n* Message\n    * Conversation\n    * Examine\n* Player Life","children":[],"expanded":false},{"id":"b3susw34","title":"Heal","content":"","children":[{"id":"dumnfczf","title":"Heal Detaills","content":"Heal Detaills\n\n\nWhen this is used the player's life is healed by up to 5 points.","children":[],"expanded":false},{"id":"u9icujo3","title":"Elements/Categories","content":"Elements/Categories\n\n\n* Player Life (+5)","children":[],"expanded":false}],"expanded":false},{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false},{"id":"2jvowzyb","title":"Elements/Categories","content":"Elements/Categories\n\n\n* Message\n    * Examine","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So NPCs don't talk to the player, and they don't see them.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false},{"id":"cafjoscr","title":"Elements/Categories","content":"Elements/Categories\n\n\n* Action\n    * Drop\n    * Take\n    * Use\n* Message\n    * Conversation\n* Fight","children":[],"expanded":false}],"expanded":false}],"expanded":true}
+  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false}
 ];
-
-
         let bookmarks = [];
+        let historyStack = [
+    {
+        "id": "t3i1xrfc",
+        "title": "High Level Plot"
+    }
+];
 
         // !@!
         const readOnly = false;
-
-
 
         const SAFE_MAP = {
             "</script": "^^^script^^^",
@@ -613,44 +692,14 @@
             "\\);": "^^^func^^^"
         };
 
+        let nodePort = 0;
+
         let currentEditorNodeId = null;
-        let historyStack = [
-    {
-        "id": "5li5aqla",
-        "title": "All Elems/Categories"
-    },
-    {
-        "id": "wlq6ko6c",
-        "title": "Cloak Details"
-    },
-    {
-        "id": "cafjoscr",
-        "title": "Elements/Categories"
-    },
-    {
-        "id": "2jvowzyb",
-        "title": "Elements/Categories"
-    },
-    {
-        "id": "bg7nt5cu",
-        "title": "Tech Trace Details"
-    },
-    {
-        "id": "u9icujo3",
-        "title": "Elements/Categories"
-    },
-    {
-        "id": "dumnfczf",
-        "title": "Heal Detaills"
-    },
-    {
-        "id": "t3i1xrfc",
-        "title": "High Level Plot"
-    }
-];
+
+
         let showingHistory = false;
         let historyIndex = 0;
-        const historyStackMax = 200;
+        const historyStackMax = 30;
 
         let copiedNoteId = null;
 
@@ -697,11 +746,9 @@
         const optShowInitHelp = document.getElementById('optShowInitHelp');
         const optFileName = document.getElementById('optFileName');
         const optModeVim = document.getElementById('optModeVim');
+        const optPort = document.getElementById('optPort');
         let optionFields = [optShowInitHelp, optFileName, optModeVim];
         let optionIndex = 0;
-
-        let findMatches = [];
-        let findIndex = 0;
 
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
@@ -723,9 +770,6 @@
             { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
         ];
-
-//            { key: ",", mode: "TREE", description: "Select the next sibling level tree node" },
-//            { key: ".", mode: "TREE", description: "Select the previous sibling level tree node" },
         
         const helpVimEnabled = [
             { key: "r", mode: "TREE", description: "Add root level node" },
@@ -759,6 +803,7 @@
             { key: "X", mode: "TREE", description: "Show broken note links" },
             { key: "s", mode: "TREE", description: "Save the current file" },
             { key: "S", mode: "TREE", description: "Save as" },
+            { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
             { key: "U", mode: "TREE", description: "Upgrade (import existing data)" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
@@ -772,8 +817,10 @@
             { key: "k", mode: "NORMAL", description: "Move up" },
             { key: "0", mode: "NORMAL", description: "Jump to the beginning of the line" },
             { key: "$", mode: "NORMAL", description: "Jump to the end of the line" },
+            { key: "b", mode: "NORMAL", description: "Move backward one word" },
+            { key: "B", mode: "NORMAL", description: "Move backward to the next space" },
             { key: "w", mode: "NORMAL", description: "Move forward one word" },
-            { key: "W", mode: "NORMAL", description: "Move back a word" },
+            { key: "W", mode: "NORMAL", description: "Move forward to the next space" },
             { key: "D", mode: "NORMAL", description: "Delete everything right of the cursor" },
             { key: "dd", mode: "NORMAL", description: "Delete current row" },
             { key: "gg", mode: "NORMAL", description: "Go to the start of the note" },
@@ -828,6 +875,7 @@
             { key: "X", mode: "TREE", description: "Show broken note links" },
             { key: "s", mode: "TREE", description: "Save the current file" },
             { key: "S", mode: "TREE", description: "Save as" },
+            { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
             { key: "U", mode: "TREE", description: "Upgrade (import existing data)" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
@@ -906,7 +954,6 @@
             // Add it at the end (latest)
             historyStack.push({ id, title: node.title || "(untitled)" });
         
-            // Cap size at 100
             if (historyStack.length > historyStackMax) {
                 historyStack.shift();
             }
@@ -967,8 +1014,8 @@
                 const icon = document.createElement('span');
                 icon.className = 'icon';
                 icon.innerHTML = isFolder(n)
-                    ? `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="g5951" transform="matrix(0.18666667,0,0,0.18666667,-0.22930552,-0.10583338)"> <g id="layer1"> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="M 2.6458333,3.96875 H 11.90625 l 2.645833,2.6458332 h 7.9375 V 19.84375 H 2.6458333 Z" id="path65" /> <path style="fill:#466779;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 3.96875,5.2916667 h 7.408333 l 2.38125,2.38125 h 7.408334 V 18.520833 H 3.96875 Z" id="path924" /> <rect style="fill:#364750;fill-opacity:1;stroke-width:7.9375;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect1561" width="17.197916" height="9.260417" x="3.96875" y="9.260417" /> </g> </g> </svg>`
-                    : `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Inkscape (http://www.inkscape.org/) --> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <path style="fill:#80a5ba;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 0.79374997,0.63637699 c 1.76898013,-0.006197 0.91709523,0 2.64583343,0 V 3.5997107 H 0.79374997 Z" id="path65" /> <path style="fill:#787878;fill-opacity:1;stroke-width:1.22694;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" d="m 1.0583332,0.93243487 c 1.4151843,-0.004957 0.7336763,0 2.116667,0 V 3.303102 h -2.116667 z" id="path4404" /> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.0583334" height="0.24694447" x="1.5875001" y="1.3772104" /> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.0583334" height="0.24694447" x="1.5875001" y="1.8710994" /> <rect style="fill:#364750;fill-opacity:1;stroke-width:1.53367;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.0583334" height="0.24694447" x="1.5875001" y="2.3649883" /> </svg>`;
+                    ? `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433" /> </g> </svg>`
+                    : `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2" /> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65" /> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721" /> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361" /> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501" /> </svg>`;
 
                 const title = document.createElement('span');
                 title.className = 'title';
@@ -1052,12 +1099,15 @@
         //---- Editor Sync -----------------------------------------------------
         editorArea.addEventListener('input', () => {
             syncFile();
+            scheduleAutoSave();
         });
 
         editorArea.addEventListener('click', () => {
-            mode_insert = true;
-            editing = true;
-            render();
+            if (!readOnly) {
+                mode_insert = true;
+                editing = true;
+                render();
+            }
 
             // Close dialogs - this is for mobile envs
             closeDialogs();
@@ -1159,6 +1209,8 @@
                     break;
         
                 case 'Enter':
+                    if (finding) break;
+
                     e.preventDefault();
                     e.stopPropagation();
         
@@ -1174,8 +1226,11 @@
                     break;
             }
 
-            setAppHeight();
-            scrollToCursor();
+            if (!mode_insert) {
+                // Only adjust scrolling when *not* editing
+                setAppHeight();
+                scrollToCursor();
+            }
 
             if (e.key === 'Escape') {
                 e.preventDefault();
@@ -1270,7 +1325,8 @@
                 }
             }
 
-        
+
+            //---- These are the keys to be processed when in NORMAL mode ------
             switch (e.key) {
                 case "i": // Enter insert mode
                 case "a":
@@ -1343,10 +1399,52 @@
                     performed = true;
                     break;
 
-                case "W": // Backward word(s)
+                case "W":
+                    const area = document.getElementById('editorArea');
+                    if (!area) break;
+                
+                    const wtext = area.value;
+                    const pos = area.selectionStart;
+                
+                    // Find end of current line
+                    const newlineIdx = wtext.indexOf('\n', pos);
+                    const lineEnd = newlineIdx === -1 ? wtext.length : newlineIdx;
+                
+                    // Find next space within the same line
+                    let nextSpace = wtext.indexOf(' ', pos + 1);
+                    if (nextSpace === -1 || nextSpace > lineEnd) nextSpace = lineEnd;
+                
+                    // Skip consecutive spaces
+                    while (nextSpace < wtext.length && wtext[nextSpace] === ' ') nextSpace++;
+                
+                    area.setSelectionRange(nextSpace, nextSpace);
+                    e.preventDefault();
+                    break;
+
                 case "b": // Backward word(s)
                     for (let i = 0; i < mode_repeat; i++) moveWord(-1);
                     performed = true;
+                    break;
+
+                case "B":
+                    const barea = document.getElementById('editorArea');
+                    if (!barea) break;
+                
+                    const btext = barea.value;
+                    const bpos = barea.selectionStart;
+                
+                    // Find start of current line
+                    const lineStart = btext.lastIndexOf('\n', bpos - 1) + 1;
+                
+                    // Move backward until hitting space or start of line
+                    let prevSpace = btext.lastIndexOf(' ', bpos - 1);
+                    if (prevSpace < lineStart && lineStart > 0) prevSpace = lineStart;
+                
+                    // Skip consecutive spaces
+                    while (prevSpace > 0 && btext[prevSpace - 1] === ' ') prevSpace--;
+                
+                    barea.setSelectionRange(prevSpace, prevSpace);
+                    e.preventDefault();
                     break;
         
                 case "x": // Delete character(s) under cursor
@@ -1407,6 +1505,7 @@
                     scrollToCursor();
                     break;
             }
+            //------------------------------------------------------------------
         
             if (performed) {
                 keyPerformed();
@@ -2011,6 +2110,7 @@
             optShowInitHelp.checked = showInitHelp;
             optFileName.value = fileName;
             optModeVim.checked = mode_vim;
+            optPort.value = nodePort;
             optionsDialog.style.display = 'block';
             optionIndex = 0;
             optionFields[optionIndex].focus();
@@ -2022,6 +2122,7 @@
             showInitHelp = optShowInitHelp.checked;
             fileName = optFileName.value || fileName;
             mode_vim = optModeVim.checked;
+            nodePort = optPort.value;
             closeOptionsDialog();
         }
 
@@ -2129,7 +2230,6 @@
                     }
 
                     listEl.appendChild(a);
-                    listEl.appendChild(document.createElement('br'));
                 }
 
                 const links = listEl.querySelectorAll('a');
@@ -2178,8 +2278,6 @@
                     fileName = newFile;
                     document.title = newTitle;
                     closeDialog();
-                    historyStack = [];
-                    bookmarks = [];
                     saveAsHtml(newFile);
                 } else if (e.key === 'Escape') {
                     e.preventDefault();
@@ -2198,13 +2296,20 @@
         function renderHistoryList() {
             const listEl = document.getElementById('historyList');
             listEl.innerHTML = '';
-            const recent = historyStack.slice(-15).reverse(); // latest first
+            const recent = historyStack.slice(-historyStackMax).reverse(); // latest first
             recent.forEach((entry, i) => {
                 const div = document.createElement('div');
                 div.textContent = entry.title;
+                div.addEventListener('click', () => {
+                    selectedId = entry.id;
+                    expandToNode(entry.id);
+                    closeHistoryDialog();
+                    render();
+                });
                 if (i === historyIndex) {
                     div.classList.add('selected');
                     div.style.background = '#444'; // ensure visible
+                    requestAnimationFrame(() => div.scrollIntoView({ block: "nearest", behavior: "smooth" }));
                 }
                 listEl.appendChild(div);
             });
@@ -2241,6 +2346,10 @@
         //---- Finding and Replacing -------------------------------------------
         function openReplaceDialog() {
             finding = true;
+            findMatches = [];
+            currentFindIndex = -1;
+            const resultsEl = document.getElementById('findResults');
+            resultsEl.innerHTML = '';
             document.getElementById('searchText').value = '';
             document.getElementById('replaceText').value = '';
             document.getElementById('replaceDialog').style.display = 'block';
@@ -2248,49 +2357,102 @@
         }
 
         function closeReplaceDialog() {
-            finding = false;
             document.getElementById('replaceDialog').style.display = 'none';
+            finding = false;
         }
 
         function doFind() {
             const info = findNodeAndParentById(selectedId);
             if (!info) return;
 
-            const searchVal = document.getElementById('searchText').value;
-            const resultsEl = document.getElementById('replaceResults');
+            const searchVal = document.getElementById('searchText').value.trim();
+            const resultsEl = document.getElementById('findResults');
             const area = document.getElementById('editorArea');
+            const content = safeRestoreText(info.node.content) || '';
+
+            resultsEl.innerHTML = '';
+            findMatches = [];
+            currentFindIndex = -1;
 
             if (!searchVal) {
                 resultsEl.textContent = 'Enter something to search for.';
                 return;
             }
 
-            const content = safeRestoreText(info.node.content) || '';
-            // Escape user input for regex
             const regex = new RegExp(searchVal.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-
-            // Create a list of match start indexes
-            findMatches = [];
             let match;
+            const contextRadius = 20;
+            let resultHTML = '';
+
             while ((match = regex.exec(content)) !== null) {
-                findMatches.push({ start: match.index, end: match.index + match[0].length });
+                const start = Math.max(0, match.index - contextRadius);
+                const end = Math.min(content.length, match.index + match[0].length + contextRadius);
+                const context = content.substring(start, end)
+                    .replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                const highlighted = context.replace(new RegExp(searchVal, 'gi'), 
+                    m => `<span class="find-highlight">${m}</span>`);
+
+                findMatches.push({ index: match.index, length: match[0].length });
+                resultHTML += `<div class="find-item" data-idx="${findMatches.length - 1}" 
+                                style="cursor:pointer; padding:2px; overflow: auto; font-size: 60%;">
+                                ${highlighted}
+                               </div>`;
             }
 
             if (findMatches.length === 0) {
                 resultsEl.textContent = 'No matches found.';
-                return;
+            } else {
+                resultsEl.innerHTML = resultHTML;
             }
 
-            // Cycle to the next match
-            if (findIndex >= findMatches.length) findIndex = 0;
-            const current = findMatches[findIndex];
+            if (findMatches.length > 0) {
+                currentFindIndex = 0;
+                const first = resultsEl.querySelectorAll('.find-item')[0];
+                if (first) {
+                    first.style.background = '#333';
+                    first.scrollIntoView({ block: 'nearest' });
+                }
+            }
 
-            // Move the caret/selection to the match
+            // Click handler
+            resultsEl.querySelectorAll('.find-item').forEach(div => {
+                div.addEventListener('click', e => {
+                    const idx = parseInt(div.dataset.idx);
+                    selectFindMatch(idx);
+                    closeReplaceDialog();
+                });
+            });
+        }
+        function selectFindMatch(idx) {
+            if (idx < 0 || idx >= findMatches.length) return;
+
+            const area = document.getElementById('editorArea');
+            const match = findMatches[idx];
+            currentFindIndex = idx;
+
+            // Scroll and select
+            area.setSelectionRange(match.index, match.index + match.length);
+            setVimMode(false);
+            editing = true;
             area.focus();
-            area.setSelectionRange(current.start, current.end);
+        }
+        function navigateFindResults(dir) {
+            if (findMatches.length === 0) return;
+            if (currentFindIndex === -1) currentFindIndex = 0;
+            else currentFindIndex = (currentFindIndex + dir + findMatches.length) % findMatches.length;
 
-            resultsEl.textContent = `Match ${findIndex + 1} of ${findMatches.length}`;
-            findIndex++;
+            const resultDivs = document.querySelectorAll('#findResults .find-item');
+            resultDivs.forEach(div => div.style.background = '');
+            const active = resultDivs[currentFindIndex];
+            if (active) {
+                active.style.background = '#333';
+                active.scrollIntoView({ block: 'nearest' });
+            }
+            // Keep selection synced with highlighted result
+            const area = document.getElementById('editorArea');
+            const match = findMatches[currentFindIndex];
+            area.focus();
+            area.setSelectionRange(match.index, match.index + match.length);
         }
 
         function doReplaceAll() {
@@ -2312,6 +2474,7 @@
 
             if (matchCount > 0) {
                 content = content.replace(regex, replaceVal);
+                editorArea.value = content;
                 info.node.content = safeStoreText(content);
                 render();
                 resultsEl.textContent = `Replaced ${matchCount} occurrence(s).`;
@@ -2328,6 +2491,7 @@
         replaceInputEl.addEventListener('keydown', e => {
             if (e.key === 'Enter') {
                 e.preventDefault();
+                e.stopPropagation();
                 doReplaceAll(); // replaces all
                 closeReplaceDialog();
             }
@@ -2380,7 +2544,6 @@
             editorArea.value = undoValue;
             syncFile();
         }
-
 
 
         //---- Visual Mode Helpers ---------------------------------------------
@@ -2468,6 +2631,7 @@
                 editorArea.setRangeText("", lineStart, lineEnd, "start");
                 editorArea.selectionStart = editorArea.selectionEnd = lineStart;
             } else {
+                if (end === start) end += 1;
                 const deletedLength = end - start;
                 visual_end = visual_start;
                 editorArea.setRangeText("", start, end, "start");
@@ -2517,7 +2681,10 @@
             searchMatches.forEach((n, i) => {
                 const item = document.createElement('div');
                 item.textContent = n.title || '(untitled)';
-                if (i === searchIndex) item.classList.add('selected');
+                if (i === searchIndex) {
+                    item.classList.add('selected');
+                    requestAnimationFrame(() => item.scrollIntoView({ block: "nearest", behavior: "smooth" }));
+                }
                 item.addEventListener('click', () => {
                     if (searchMatches.length > 0) {
                         selectSearchResult(i);
@@ -2594,21 +2761,16 @@
             function matches(h, term) {
                 let t = term.trim().replace(/\s+/g, '').toLowerCase();
                 let key = h.key.replace(/\s+/g, '').toLowerCase();
-                let mode = "";
-                if (mode != "ReadOnly") {
-                    mode = mode.toLowerCase();
-                } else {
-                    mode = "";
-                }
+                let mode = h.mode ? h.mode.toLowerCase() : "";
                 let desc = h.description.toLowerCase();
             
                 // If the search starts with ":", search keys only
                 if (t.startsWith(':')) {
                     t = t.slice(1); // remove ':'
-                    mode = '';
-                    desc = '';
+                    return key.includes(t);
                 }
             
+                // Otherwise search all fields
                 return key.includes(t) || mode.includes(t) || desc.includes(t);
             }
         
@@ -2659,16 +2821,8 @@
 
 
         //---- Saving ----------------------------------------------------------
-        function saveAsHtml(currentFileName) {
-            let name = currentFileName;
-            let saveName = false;
-            if (name === "") {
-                name = prompt("Save as .html (enter name without extension):", "");
-                if (!name) return;
-                saveName = true;
-            }
-
-            const elemLimit = 20; // Number of elements per line
+        function getContents(name, saveName) {
+            const elemLimit = 50; // Number of elements per line
             const htmlDoc = document.documentElement.cloneNode(true);
 
             // Make sure the latest database is stored
@@ -2705,22 +2859,71 @@
               `let mode_vim = ${mode_vim};`
             );
 
+            // nodePort
+            htmlContent = htmlContent.replace(
+                /let\s+nodePort\s*=\s*\d+;/,
+                `let nodePort = ${nodePort};`
+            );
+
             htmlContent = htmlContent.replace(/let\s+treeData\s*=\s*\[[\s\S]*?\];/, `let treeData = ${formattedDatabase};`);
+
+            // Make sure the latest bookmarks and historyStack are stored
+            const latestBookmarks = JSON.parse(JSON.stringify(bookmarks));
+            const latestHistoryStack = JSON.parse(JSON.stringify(historyStack));
 
             htmlContent = htmlContent.replace(
                 /let\s+bookmarks\s*=\s*\[[\s\S]*?\];/,
-                "let bookmarks = " + JSON.stringify(bookmarks, null, 4) + ";"
+                "let bookmarks = " + JSON.stringify(latestBookmarks, null, 4) + ";"
             );
             htmlContent = htmlContent.replace(
                 /let\s+historyStack\s*=\s*\[[\s\S]*?\];/,
-                "let historyStack = " + JSON.stringify(historyStack, null, 4) + ";"
+                "let historyStack = " + JSON.stringify(latestHistoryStack, null, 4) + ";"
             );
+
+            return htmlContent;
+        }
+
+
+        function saveAsHtml(currentFileName) {
+            let name = currentFileName;
+            let saveName = false;
+            if (name === "") {
+                name = prompt("Save as .html (enter name without extension):", "");
+                if (!name) return;
+                saveName = true;
+            }
+
+            let htmlContent = getContents(name, saveName);
 
             let blob = new Blob([htmlContent], { type: "text/html" });
             let a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
             a.download = `${name}.html`;
             a.click();
+        }
+
+        async function saveViaNode() {
+            const content = getContents(fileName, false);
+
+            const res = await fetch("http://localhost:"+nodePort+"/save", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "text/plain",
+                    "X-Filename": fileName + ".html"
+                },
+                body: content
+            });
+
+            if (res.ok) {
+                showMessage("Saved successfully");
+            } else {
+                const errorText = await res.text();
+                if (errorText.includes("SAFETY ERROR")) {
+                    showMessage("!! " + errorText + " !!", 8000);
+                } else {
+                    showMessage("Save failed: " + errorText);
+                }
+            }
         }
 
         function exportNoteAsTxt() {
@@ -2786,9 +2989,24 @@
                     case 'Escape':
                         closeReplaceDialog();
                         break;
-
+                    case 'ArrowDown':
+                        navigateFindResults(1);
+                        e.preventDefault();
+                        break;
+                    case 'ArrowUp':
+                        navigateFindResults(-1);
+                        e.preventDefault();
+                        break;
                     case "Enter":
-                        doFind();
+                        if (document.getElementById('replaceText').value !== "") break;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (currentFindIndex !== -1) {
+                            selectFindMatch(currentFindIndex);
+                            closeReplaceDialog();
+                        } else {
+                            doFind();
+                        }
                         break;
                 }
 
@@ -2856,8 +3074,6 @@
                 case 'R': if (!readOnly) renameFolder(); break;
                 case 'j': if (!dialogOpen()) selectNextSibling(true); break;
                 case 'k': if (!dialogOpen()) selectPrevSibling(false); break;
-                case ',': selectNextSibling(true); break;
-                case '.': selectPrevSibling(true); break;
                 case 'l': moveRight(); break;
                 case 'h': moveLeft(true); break;
                 case 'u': moveLeft(false); break;
@@ -2874,6 +3090,7 @@
                 case 'D': deleteNode(); break;
                 case 's': saveAsHtml(fileName); break;
                 case 'S': openSaveAsDialog(); break;
+                case 'n': saveViaNode(); break;
                 case 'T': exportNoteAsTxt(); break;
                 case ']': resizeTree(30); break;
                 case '[': resizeTree(-30); break;
@@ -2953,6 +3170,8 @@
 
     let linksIndex = 0;
     let linksCount = 0;
+    let findMatches = [];
+    let currentFindIndex = -1;
 
     function openMissingLinksDialog() {
         if (readOnly) return;
@@ -3136,7 +3355,7 @@
     function handleHistoryKey(e) {
         if (!showingHistory) return;
         if (e.key === 'ArrowDown' || e.key === 'j') {
-            historyIndex = Math.min(historyIndex + 1, Math.min(14, historyStack.length - 1));
+            historyIndex = Math.min(historyIndex + 1, Math.min(historyStackMax, historyStack.length - 1));
             renderHistoryList();
             e.preventDefault();
         } else if (e.key === 'ArrowUp' || e.key === 'k') {
@@ -3217,6 +3436,28 @@
 
                     // Replace current in-memory treeData
                     treeData = importedTreeData;
+
+                    // Restore historyStack from imported file
+                    const historyMatch = content.match(/let\s+historyStack\s*=\s*(\[[\s\S]*?\]);/s);
+                    if (historyMatch) {
+                        try {
+                            historyStack = JSON.parse(historyMatch[1]);
+                        } catch (e) {
+                            console.warn('Failed to parse historyStack from import, using empty array');
+                            historyStack = [];
+                        }
+                    }
+                    
+                    // Restore bookmarks from imported file
+                    const bookmarksMatch = content.match(/let\s+bookmarks\s*=\s*(\[[\s\S]*?\]);/s);
+                    if (bookmarksMatch) {
+                        try {
+                            bookmarks = JSON.parse(bookmarksMatch[1]);
+                        } catch (e) {
+                            console.warn('Failed to parse bookmarks from import, using empty array');
+                            bookmarks = [];
+                        }
+                    }
 
                     selectedId = treeData[0]?.id || null;
 
@@ -3383,6 +3624,46 @@
 
     //---- Init ------------------------------------------------------------
     window.addEventListener('load', function() {
+        // Restore historyStack and bookmarks from saved HTML content
+        try {
+            const htmlContent = document.documentElement.outerHTML;
+            
+            // Extract and restore historyStack
+            const historyMatch = htmlContent.match(/let\s+historyStack\s*=\s*(\[[\s\S]*?\]);/s);
+            if (historyMatch) {
+                try {
+                    historyStack = JSON.parse(historyMatch[1]);
+                } catch (e) {
+                    console.warn('Failed to parse historyStack, using empty array');
+                    historyStack = [];
+                }
+            }
+            
+            // Extract and restore bookmarks
+            const bookmarksMatch = htmlContent.match(/let\s+bookmarks\s*=\s*(\[[\s\S]*?\]);/s);
+            if (bookmarksMatch) {
+                try {
+                    bookmarks = JSON.parse(bookmarksMatch[1]);
+                } catch (e) {
+                    console.warn('Failed to parse bookmarks, using empty array');
+                    bookmarks = [];
+                }
+            }
+            
+            // Extract and restore nodePort
+            const nodePortMatch = htmlContent.match(/let\s+nodePort\s*=\s*(\d+);/);
+            if (nodePortMatch) {
+                try {
+                    nodePort = parseInt(nodePortMatch[1]);
+                } catch (e) {
+                    console.warn('Failed to parse nodePort, using 0');
+                    nodePort = 0;
+                }
+            }
+        } catch (e) {
+            console.error('Failed to restore saved data:', e);
+        }
+
         if (showInitHelp) {
             if (readOnly) openHelpDialog('ReadOnly');
             else if (mode_vim) openHelpDialog('VimEnabled');
@@ -3392,7 +3673,24 @@
         selectedId = treeData[0]?.id || null;
         render();
     });
+
+
+    //---- Node AutoSaver ------------------------------------------------------
+    let autoSaveTimer = null;
+
+    function scheduleAutoSave() {
+        if (nodePort == 0) return;
+        if (!mode_insert) return;
+
+        clearTimeout(autoSaveTimer);
+        autoSaveTimer = setTimeout(() => {
+        saveViaNode();
+        }, 3000);                               // wait 3s after last change
+    }
 </script>
 
+
+
+<!-- Version 20251112 -->
 
 </body></html>

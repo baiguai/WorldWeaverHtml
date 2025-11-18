@@ -1,5 +1,10 @@
 {npc, name=Ticket Booth Woman, parent=vice_port_tickets
     {attrib, output=greeting, tags=topic }
+    {attrib, tags=invisible
+        output={@
+The woman doesn't seem to see you.
+        }
+    }
 
     {enter_message
         output={@
@@ -7,15 +12,13 @@ There is a woman inside the ticket booth.
 She has long silver hair and her eyes are solid mirrored chrome.
 Silver rings hover along the length of her neck.
 
-<?[player]((invisible)) = 'false'?>
 She smiles.
 "Can I help you?"
-<else>
-The woman says nothing.
-</?>
         }
 
         {set, logic=[self]((topic)), output=greeting }
+
+        {inject, logic=/items/xplt_cloak/cloak.inj }
     }
 
     {look
