@@ -1,4 +1,6 @@
 {room, key=shellspace_port, name=Port
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 There is an escalator going up
@@ -24,6 +26,12 @@ You look around.
 A bright green neon light runs around the ceiling of the large circular room.
 Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
+            }
+        }
+
+        {logic, name=Shellspace Port room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
             }
         }
     }
@@ -64,6 +72,16 @@ when Shellspace was originally coded.
         }
     }
 
+    {x_escalator
+        {message
+            output={@
+You examine the escalator. Its steps are clear glass. You can see the machinery
+below them as they move upward. The railings are also transparent.
+Other than its aesthetics you don't see anything odd about it.
+            }
+        }
+    }
+
 
 
     {inject, logic=/nav.inj }
@@ -75,6 +93,10 @@ when Shellspace was originally coded.
 
     {input, syntax=[tplt_syntax]((x_green_lights))
         {act, logic=x_lights, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_escalator))
+        {act, logic=x_escalator, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((go_up))

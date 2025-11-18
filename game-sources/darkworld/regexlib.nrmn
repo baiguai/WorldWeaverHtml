@@ -9,8 +9,9 @@
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
+        {attrib, tags=x_escalator|!_regex, output=^(examine|x)(?: the)? escalator$, logic=x escalator|examine the escalator }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
-        {attrib, tags=x_green_lights|!_regex, output=^(examine|x)(?: the)?(?: green)? lights$, logic=x the lights|x green lights|examine the green lights }
+        {attrib, tags=x_green_lights|!_regex, output=^(examine|x)(?: the)?(?: green)?(?: neon)? light$, logic=x the light|x green light|x neon light|examine the green light }
         {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers }
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
@@ -18,7 +19,7 @@
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
-        {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? screens$, logic=x the screens|x screens|examine the screens }
+        {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? (screens|walls)$, logic=x the screens|x screens|x walls|x the walls|examine the screens }
         {attrib, tags=x_shifty_char|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:shifty\s+)?character\b, logic=examine the character|examine character|examine shifty character|x the character|x character|x shifty character }
         {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
         {attrib, tags=x_sink|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(sink)\b, logic=examine the sink|x the sink|examine sink|x sink }

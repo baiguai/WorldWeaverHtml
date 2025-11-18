@@ -1,4 +1,5 @@
-{macro, key=usb, output=put usb into computer }
+{macro, key=usb, output=l|~|put usb into computer }
+{macro, key=hub, output=l|~|put usb into computer|~|x walls|~|l }
 
 {macro, key=char, output=put usb in computer|~|down|~|greet character }
 {macro, key=crs_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s }
