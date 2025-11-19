@@ -1,5 +1,5 @@
 {room, key=bedroom, name=Bedroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {enter_message
         output={@
@@ -18,12 +18,6 @@ screen saver.
 
 In the right side of the desk is your computer.
         }
-
-        {logic, name=Meatspace room tested, tags=!_test
-            logic={@
-                ?[self]((tested)) = 'true'
-            }
-        }
     }
 
     {look
@@ -37,6 +31,12 @@ Your desk sits to the left of the bed.
 
 Three monitors are arrayed on the desk.
 In the right side of the desk is your computer.
+            }
+        }
+
+        {logic, name=Meatspace room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
             }
         }
     }

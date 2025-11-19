@@ -1,4 +1,6 @@
 {room, key=monorail_port, name=Monorail
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 There is an escalator going down.
@@ -17,6 +19,12 @@ This is a problem, you don't have a ticket.
 You have a ticket and can give it to him using:
 give ticket
 </?>
+        }
+
+        {logic, name=Monorail room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
