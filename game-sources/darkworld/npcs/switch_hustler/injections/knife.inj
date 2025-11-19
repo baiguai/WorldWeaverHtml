@@ -26,6 +26,8 @@ Then he wanders off into the crowd.
 "Huh?"
         }
     }
+
+    {set, logic=[self]((step)), output=help }
 }
 
 
@@ -59,4 +61,5 @@ Is there anything I can help you with 'friend'?"
     {move, logic=[player], tags=knife_01 }
     {set, logic=[knife_01]tags, output=+inventory }
     {set, logic=[player]((credits)), output=-=5 }
+    {set, logic=[self]((step)), output=help }
 }

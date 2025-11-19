@@ -91,7 +91,7 @@ You exit the stranger's room.
     }
 
 
-    {input, syntax=[tplt_syntax]((x_monitor))
+    {input, syntax=[tplt_syntax]((x_computer))
         {act, logic=x_monitor, tags=!_type|room }
     }
 

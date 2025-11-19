@@ -1,5 +1,10 @@
 {npc, name=Ticket Booth Woman, parent=vice_port_tickets
     {attrib, output=greeting, tags=topic }
+    {attrib, tags=invisible
+        output={@
+The woman doesn't seem to see you.
+        }
+    }
 
     {enter_message
         output={@
@@ -12,6 +17,8 @@ She smiles.
         }
 
         {set, logic=[self]((topic)), output=greeting }
+
+        {inject, logic=/items/xplt_cloak/cloak.inj }
     }
 
     {look

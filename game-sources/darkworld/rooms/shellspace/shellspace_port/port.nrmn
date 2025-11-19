@@ -1,4 +1,13 @@
 {room, key=shellspace_port, name=Port
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+There is an escalator going up
+and a moving ramp going down.
+        }
+    }
+
     {enter_message
         output={@
 A bright green neon light runs around the ceiling of the large circular room.
@@ -6,6 +15,12 @@ Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
 
 You see an escalator and a moving ramp set into the wall.
+        }
+
+        {logic, name=Shellspace Port room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -47,24 +62,41 @@ to cost savings it has been built in the south end of the industrial district.
         }
     }
 
-    {navigation
+    {x_lights
         {message
             output={@
+You examine the green lights.
+They are mundane neon tubes, glowing green. They were very popular in the era
+when Shellspace was originally coded.
+            }
+        }
+    }
 
-
----
-There is an escalator going up
-and a moving ramp going down.
+    {x_escalator
+        {message
+            output={@
+You examine the escalator. Its steps are clear glass. You can see the machinery
+below them as they move upward. The railings are also transparent.
+Other than its aesthetics you don't see anything odd about it.
             }
         }
     }
 
 
 
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
     {input, syntax=[tplt_syntax]((x_screens))
         {act, logic=x_screens, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_green_lights))
+        {act, logic=x_lights, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_escalator))
+        {act, logic=x_escalator, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((go_up))
@@ -86,6 +118,15 @@ super-imposed in the top left corner of your vision.
 
 
             }
+        }
+    }
+
+
+
+    {dev_note, tags=Checkout
+        output={@
+Checkout:
+The Port has been checked out.
         }
     }
 }

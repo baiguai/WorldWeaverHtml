@@ -77,6 +77,14 @@ You have decided to test the NPC follows the player room.
             }
         }
     }
+    {input, syntax=(logic)
+        {move, logic=logic_room, tags=[player]
+            output={@
+You have decided to test logic.
+
+            }
+        }
+    }
     {input, syntax=(messages)
         {move, logic=messages_room, tags=[player]
             output={@

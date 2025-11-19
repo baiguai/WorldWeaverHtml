@@ -1,5 +1,5 @@
-{npc, name=Switchblade Hustler, parent=street_vice_port
-    {attrib, output=smalltalk, tags=topic }
+{npc, key=switch_hustler, name=Switchblade Hustler, parent=street_vice_port
+    {attrib, output=exploit, tags=topic }
     {attrib, output=initial, tags=step }
 
     {attrib, output=false, tags=streets_answered }
@@ -33,7 +33,8 @@ You see a shifty character.
             output={@
 
 HINT:
-* There is a conversation flow - first respond to his initial question - yes or no.
+* There is a conversation flow - after picking an exploit, respond to his next question - yes or no.
+
 
 
             }
@@ -47,6 +48,7 @@ HINT:
     }
 
     // Conversation
+    {inject, logic=./injections/exploit.inj }
     {inject, logic=./injections/greeting.inj }
     {inject, logic=./injections/knife.inj }
     {inject, logic=./injections/ticket.inj }
