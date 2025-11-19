@@ -16,6 +16,12 @@ There is no one else in the port at the moment.
 
 You see an escalator and a moving ramp set into the wall.
         }
+
+        {logic, name=Shellspace Port room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -26,12 +32,6 @@ You look around.
 A bright green neon light runs around the ceiling of the large circular room.
 Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
-            }
-        }
-
-        {logic, name=Shellspace Port room tested, tags=!_test
-            logic={@
-                ?[self]((tested)) = 'true'
             }
         }
     }

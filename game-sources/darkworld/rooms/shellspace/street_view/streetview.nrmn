@@ -1,4 +1,6 @@
 {room, key=street_vice_port, name=Vice Harbor
+    {attrib, output=false, tags=tested }
+
     {attrib, tags=navigation
         output={@
 Behind you is a moving ramp going up.
