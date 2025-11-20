@@ -1,5 +1,5 @@
 {room, key=street_vice_port, name=Vice Harbor
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -17,6 +17,12 @@ And one going southeast.
     {enter_message
         output={@
 You are next to a major street in the downtown district of a city called Vice Harbor.
+        }
+
+        {logic, name=Shellspace street view tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
