@@ -25,6 +25,16 @@ Cruise Tickets
                 ?[self]((tested)) = 'true'
             }
         }
+        {logic, name=Player has the cloak, tags=!_test
+            logic={@
+                ?[xplt_cloak]parent = [player]elementKey
+            }
+        }
+        {logic, name=Player has the tech-trace, tags=!_test
+            logic={@
+                ?[xplt_techtrace]parent = [player]elementKey
+            }
+        }
     }
 
     {look
