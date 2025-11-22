@@ -54,6 +54,7 @@ It appears you don't have enough credits to buy a ticket.
 
     {move, logic=[player], tags=cruise_ticket }
     {set, logic=[cruise_ticket]tags, output=+inventory }
+    {set, logic=[cruise_ticket]((purchased)), output=true }
     {set, logic=[player]((credits)), output=-=10 }
 }
 

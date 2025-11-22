@@ -1,8 +1,24 @@
 {room, key=vice_port_tickets, name=Ticket Booth
+    {attrib, output=false, tags=tested }
+
+    {enter_message
+        output={@
+
+The ticket booth consists of multiple hovering neon lights, glowing bright
+purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
+        }
+
+        {logic, name=Cruise ticket booth, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
     {look
         {message
             output={@
-You look around.
+You look around. The glowing neon ticket booth is just before you.
             }
         }
     }
