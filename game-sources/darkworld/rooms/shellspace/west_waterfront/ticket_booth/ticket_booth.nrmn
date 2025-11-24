@@ -1,5 +1,11 @@
 {room, key=vice_port_tickets, name=Ticket Booth
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+East of where you are takes you back to the waterfront.
+South of where you are is the ramp to the cruise ship.
+        }
+    }
 
     {enter_message
         output={@
@@ -23,21 +29,25 @@ You look around. The glowing neon ticket booth is just before you.
         }
     }
 
-
-    {navigation
+    {x_booth
         {message
             output={@
-
-
----
-East of where you are takes you back to the waterfront.
-South of where you are is the ramp to the cruise ship.
+The ticket booth consists of multiple hovering neon lights, glowing bright
+purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
             }
         }
     }
 
 
+
+
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((x_ticket_booth))
+        {act, logic=x_booth, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_east))
         {move, logic=waterfront_west, tags=[player]

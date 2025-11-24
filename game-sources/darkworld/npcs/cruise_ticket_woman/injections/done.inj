@@ -9,7 +9,7 @@ that will have tickets to sell you.
 }
 
 
-{input, syntax=[tplt_syntax]((need_cruise_ticket))
+{input, syntax=[tplt_syntax]((purchase_cruise_ticket))
     {act, logic=no_ticket, tags=!_type|room }
 
     {logic
