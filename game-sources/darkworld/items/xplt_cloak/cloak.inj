@@ -1,7 +1,5 @@
 {logic
     logic={@
-        ?[xplt_cloak]parent != [player]
-        or
         ?[xplt_cloak]((invisible)) = 'false'
     }
     output={@
