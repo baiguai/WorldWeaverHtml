@@ -83,8 +83,8 @@ You have nothing to give him.
 
     {dev_note, tags=TODO
         output={@
-    Define a travel agency, and move the: cruise_ticket Element to that location.
-    Or at least move it to the Player when they purchase it.
+Define a travel agency, and move the: cruise_ticket Element to that location.
+Or at least move it to the Player when they purchase it.
         }
     }
 }

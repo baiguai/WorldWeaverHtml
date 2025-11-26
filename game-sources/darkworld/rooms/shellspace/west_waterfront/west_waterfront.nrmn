@@ -1,6 +1,5 @@
 {room, key=waterfront_west, name=Waterfront
     {attrib, output=true, tags=tested }
-
     {attrib, tags=navigation
         output={@
 East of where you are is where the ramp dropped you off.

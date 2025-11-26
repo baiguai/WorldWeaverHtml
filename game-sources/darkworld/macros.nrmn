@@ -1,13 +1,16 @@
-{macro, key=hub, output=l|~|put usb into computer|~|x walls|~|l }
+{macro, key=hub, output=l|~|put usb into computer|~|x walls }
 {macro, key=mono, output=l|~|put usb into computer|~|x walls|~|l|~|up }
 {macro, key=char, output=l|~|put usb in computer|~|down|~|greet character }
 {macro, key=char_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak }
 {macro, key=wst_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w }
-{macro, key=crstix_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l }
+{macro, key=crstix_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes }
 
 {macro, key=, output= }
 
-{macro, key=crs_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s }
+{macro, key=crs_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s }
+
+{macro, key=, output= }
+
 {macro, key=man_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n }
 {macro, key=adult_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes }
 {macro, key=lower_clk, output=put usb in computer|~|down|~|x character|~|cloak|~|w|~|w|~|i need a ticket|~|yes|~|s|~|s|~|up|~|n|~|s|~|s|~|yes|~|w|~|take watch|~|e|~|s|~|n|~|down|~|down }
