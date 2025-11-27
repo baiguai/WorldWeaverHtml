@@ -1,5 +1,5 @@
 {room, key=cruise_ship, name=Cruise Ship
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, output=false, tags=greeted }
     {attrib, tags=navigation
         output={@
@@ -17,7 +17,7 @@ by purple neon glow.
 Synth music pulses through the air and the excitement of vacation
 is palpable.
 
-I virtual woman approaches you with a smile on her slightly
+A virtual woman approaches you with a smile on her slightly
 translucent face.
 "Welcome aboard! May I see your ticket?"
 
@@ -72,7 +72,7 @@ You must attend the muster drill on the top deck.
 
 
     {input, syntax=[tplt_syntax]((go_north))
-        {move, logic=vice_port_tickets, tags=[player]
+        {move, logic=vice_port_tickets_done, tags=[player]
             output={@
 You exit the cruise ship back to the ticket booth.
             }

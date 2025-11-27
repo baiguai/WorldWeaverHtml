@@ -65,5 +65,15 @@ You return to the street corner where the ramp left you.
 You approach the ticket booth.
             }
         }
+
+        {logic
+            logic={@
+                ?[vice_port_tickets]((done)) = 'false'
+            }
+            output={@
+The cruise ship ticket booth appears to be closed.
+No point in going there.
+            }
+        }
     }
 }

@@ -1,3 +1,7 @@
+{macro, key=tst_crs_leave, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|n }
+
+{macro, key=, output= }
+
 {macro, key=hub, output=l|~|put usb into computer|~|x walls }
 {macro, key=mono, output=l|~|put usb into computer|~|x walls|~|l|~|up }
 {macro, key=char, output=l|~|put usb in computer|~|down|~|greet character }

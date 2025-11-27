@@ -1,10 +1,8 @@
-{room, key=vice_port_tickets, name=Ticket Booth
-    {attrib, output=false, tags=done }
+{room, key=vice_port_tickets_done, name=Ticket Booth
     {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 East of where you are takes you back to the waterfront.
-South of where you are is the ramp to the cruise ship.
         }
     }
 
@@ -13,9 +11,11 @@ South of where you are is the ramp to the cruise ship.
 
 The ticket booth consists of multiple hovering neon lights, glowing bright
 purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
+
+The booth is empty.
         }
 
-        {logic, name=Cruise ticket booth, tags=!_test
+        {logic, name=Cruise ticket booth done, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -35,6 +35,8 @@ You look around. The glowing neon ticket booth is just before you.
             output={@
 The ticket booth consists of multiple hovering neon lights, glowing bright
 purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
+
+The booth is currently empty.
             }
         }
     }
@@ -55,37 +57,6 @@ purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
             output={@
 You return to the waterfront.
             }
-        }
-    }
-
-    {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=cruise_ship, tags=[player]
-            output={@
-You ascend the ramp.
-            }
-        }
-
-        {logic
-            logic={@
-                ?[cruise_ticket]parent = [player]
-            }
-            output={@
-A security guard approaches you.
-"Can I see your ticket?"
-You have nothing to give him.
-"I'm sorry, but you cannot board this ship."
-            }
-        }
-
-        {move, logic=limbo, tags=cruise_ticket }
-        {set, logic=[cruise_ticket]tags, output=-inventory }
-    }
-
-
-    {dev_note, tags=TODO
-        output={@
-Define a travel agency, and move the: cruise_ticket Element to that location.
-Or at least move it to the Player when they purchase it.
         }
     }
 }
