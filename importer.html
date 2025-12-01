@@ -136,6 +136,7 @@
             } catch(e) {
                 console.log(e);
             }
+            window.focus();
         }
 
         async function clearAll() {
@@ -169,6 +170,7 @@
             textArea.select();
             document.execCommand('copy');
             alert('Database text copied to clipboard!');
+            window.focus();
         }
 
         // Parsing Methods
@@ -682,6 +684,10 @@
                 copyDatabase();
             }
         });
+
+        window.onfocus = function() {
+            window.focus();
+        };
     </script>
 
 </body>

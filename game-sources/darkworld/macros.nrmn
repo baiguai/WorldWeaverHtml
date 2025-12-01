@@ -1,17 +1,5 @@
-{macro, key=tst_crs_leave, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|n }
-
-{macro, key=, output= }
-
-{macro, key=hub, output=l|~|put usb into computer|~|x walls }
-{macro, key=mono, output=l|~|put usb into computer|~|x walls|~|l|~|up }
-{macro, key=char, output=l|~|put usb in computer|~|down|~|greet character }
-{macro, key=char_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak }
-{macro, key=wst_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w }
-{macro, key=crstix_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes }
-
-{macro, key=, output= }
-
-{macro, key=crs_clk, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s }
+{macro, key=crs_pool, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l }
+{macro, key=crs_up, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up }
 
 {macro, key=, output= }
 
@@ -22,4 +10,12 @@
 
 {macro, key=, output= }
 
+{macro, key=cruise_central_area, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s }
+{macro, key=cruise_ship, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s }
+{macro, key=cruise_ship_tickets, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes }
+{macro, key=west_shoreline, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w }
+{macro, key=seedy_character_cloak, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak }
+{macro, key=seedy_character, output=l|~|put usb in computer|~|down|~|greet character }
+{macro, key=monorail_ticket_booth, output=l|~|put usb into computer|~|x walls|~|l|~|up }
+{macro, key=shellspace_hub, output=l|~|put usb into computer|~|x walls }
 {macro, key=isday, output=l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l }

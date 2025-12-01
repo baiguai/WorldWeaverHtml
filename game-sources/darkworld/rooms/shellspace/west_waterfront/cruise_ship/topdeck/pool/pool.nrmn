@@ -1,4 +1,6 @@
 {room, key=cruise_top_pool, name=Pool Area
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 South, top deck, railing.
@@ -15,6 +17,12 @@ screaming as they shoot down the twisting tubes.
 There are a couple of hot tubs in this area, filled with
 adults conversing with one another.
         }
+
+        {logic, name=Cruise ship pool area, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -26,11 +34,55 @@ and the various water slides overhead.
 Scattered throughout are a couple of hot tubs.
             }
         }
+
+        {logic, name=Player has the access chip, tags=!_test
+            logic={@
+                ?[invite_chip]parent = [player]
+            }
+        }
     }
+
+    {x_slides
+        {message
+            output={@
+The slides are surprisingly extreme. They are steep tubes with loops and sharp
+curves.
+            }
+        }
+    }
+
+    {x_pools
+        {message
+            output={@
+The pools are full of adults and children swimming and having fun.
+            }
+        }
+    }
+
+    {x_hottubs
+        {message
+            output={@
+The hot tubs are full of adults, relaxing and discussing various topics among
+themselves.
+            }
+        }
+    }
+
+
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+
+    {input, syntax=[tplt_syntax]((x_slides))
+        {act, logic=x_slides, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_pools))
+        {act, logic=x_pools, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_hottubs))
+        {act, logic=x_hottubs, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_south))
         {move, logic=cruise_top_deck, tags=[player]

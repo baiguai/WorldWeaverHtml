@@ -1,5 +1,15 @@
 {room, key=cruise_top_deck, name=Top Deck
     {attrib, output=muster, tags=activity }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North, the pool and hot tubs are situated here.
+East, is the bar.
+South, is the adults-only sunbathing area.
+Down, leads into the heart of the cruise ship.
+        }
+    }
 
     {enter_message
         output={@
@@ -14,6 +24,11 @@ Before you, the ocean extends on to the horizon.
         }
 
         {set, logic=[self]((activity)), output=general }
+        {logic, name=Cruise ship upper deck, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -30,22 +45,9 @@ Before you, the ocean extends on to the horizon.
         }
     }
 
-    {navigation
-        {message
-            output={@
 
 
-
----
-North, the pool and hot tubs are situated here.
-East, is the bar.
-South, is the adults-only sunbathing area.
-Down, leads into the heart of the cruise ship.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
