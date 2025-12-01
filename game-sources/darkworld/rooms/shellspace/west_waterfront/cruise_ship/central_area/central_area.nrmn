@@ -1,10 +1,28 @@
 {room, key=cruise_central_area, name=Cruise Ship Central Room
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+Up to the top deck.
+West to the entertainment area.
+East to the food and shops.
+North to return to the entrance of the cruise ship.
+Down to the lower decks.
+        }
+    }
+
     {enter_message
         output={@
 You are in the central area of the cruise ship.
 There is a staircase that leads up to the top deck.
 A door in the west that leads into a large entertainment area.
 And a staircase that leads down into the lower decks.
+        }
+
+        {logic, name=Cruise ship central area, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -19,24 +37,26 @@ And a staircase that leads down into the lower decks.
         }
     }
 
-
-    {navigation
+    {x_stairs
         {message
             output={@
-
-
----
-Up to the top deck.
-West to the entertainment area.
-East to the food and shops.
-North to return to the entrance of the cruise ship.
-Down to the lower decks.
+You examine the staircases.
+They are wide and each step is illuminated with a green fluorescent tube.
+One staircase leads up to the upper deck, the other leads into the lower decks.
             }
         }
     }
 
+
+
+
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+
+    {input, syntax=[tplt_syntax]((x_stairs))
+        {act, logic=x_stairs, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_north))
         {move, logic=cruise_ship, tags=[player]
