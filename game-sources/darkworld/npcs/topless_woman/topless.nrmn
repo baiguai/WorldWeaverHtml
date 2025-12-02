@@ -14,7 +14,7 @@ It stops just in front of you and says
         {message
             output={@
 
-There is a topless robot woman.
+There is a topless robot woman standing before you.
             }
         }
     }

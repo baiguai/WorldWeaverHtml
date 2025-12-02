@@ -1,5 +1,15 @@
 {room, key=toplessrobot_room, name=Robot's Room
     {attrib, output=false, tags=init }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North, there is an open sliding glass door.
+East is the kitchen
+South, exits the room, back toward the adult area.
+West, you see a door into what you assume is the bedroom.
+        }
+    }
 
     {enter_message
         output={@
@@ -21,6 +31,12 @@ You are in the robot's luxurious hotel room.
         }
 
         {set, logic=[room]((init)), output=true }
+
+        {logic, name=Cruise ship robot's room, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -33,23 +49,10 @@ The apartment is luxurious and modern.
     }
 
 
-    {navigation
-        {message
-            output={@
 
-
-
----
-North, there is an open sliding glass door.
-East is the kitchen
-South, exits the room, back toward the adult area.
-West, you see a door into what you assume is the bedroom.
-            }
-        }
-    }
-
-
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
 
 
     {input, syntax=[tplt_syntax]((go_south))
