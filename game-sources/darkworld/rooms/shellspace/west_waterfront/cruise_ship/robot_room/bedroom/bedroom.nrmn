@@ -1,4 +1,6 @@
 {room, key=toplessrobot_bedroom, name=Bedroom
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 East, Exit the bedroom.
@@ -14,6 +16,12 @@ Along the wall next to you is a minimalistic dresser. It has slender chrome
 handles on each of its drawers. An asymmetrical rectangular mirror hangs on
 the south wall to the left of a door that leads into the bathroom.
         }
+
+        {logic, name=Cruise ship robot's bedroom, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -25,6 +33,12 @@ There is a large bed in the center of the room.
 The entire north wall is a window.
 You see a dresser set against the wall next to you.
 In the south wall is a door that leads to the bathroom.
+            }
+        }
+
+        {logic, name=Watch taken, tags=!_test
+            logic={@
+                ?[lcd_watch]parent = [player]elementkey
             }
         }
     }
@@ -54,7 +68,8 @@ They are empty.
     {x_under_dresser
         {message
             output={@
-You look under the dresser...
+You look under the dresser.
+You don't see anything.
             }
         }
     }
@@ -62,7 +77,9 @@ You look under the dresser...
     {x_bed
         {message
             output={@
-You examine the bed...
+You examine the bed.
+It is neatly made and there is nothing sitting on it except for a couple of
+pillows.
             }
         }
     }
@@ -70,7 +87,27 @@ You examine the bed...
     {under_bed
         {message
             output={@
-You look under the bed...
+You look under the bed.
+There are a few random socks, but nothing of interest to you.
+            }
+        }
+    }
+
+    {x_window
+        {message
+            output={@
+The window fills the entire north wall.
+Outside the city lights and blinking neon tubes fill the night with a pulsing
+glow.
+            }
+        }
+    }
+
+    {x_mirror
+        {message
+            output={@
+The mirror is a fun asymmetrical design, however you don't see anything strange
+about it.
             }
         }
     }
@@ -97,6 +134,14 @@ You look under the bed...
 
     {input, syntax=[tplt_syntax]((x_under_bed))
         {act, logic=under_bed, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_window))
+        {act, logic=x_window, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_mirror))
+        {act, logic=x_mirror, tags=!_type|room }
     }
 
 
