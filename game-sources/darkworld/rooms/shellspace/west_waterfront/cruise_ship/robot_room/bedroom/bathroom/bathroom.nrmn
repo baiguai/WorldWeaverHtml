@@ -1,4 +1,6 @@
 {room, key=toplessrobot_bathroom, name=Bathroom
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 North, Exit the bathroom.
@@ -14,6 +16,12 @@ sink is framed by a purple neon light.
 The shower is large enough for four people to occupy it comfortably
 and the toilet is set inside a separate room.
         }
+
+        {logic, name=Cruise ship robot's bathroom, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -25,6 +33,14 @@ The bathroom is large.
 The massive mirror above the sink is framed by a purple neon light.
 The shower is large enough for four people to occupy it comfortably
 and the toilet is set inside a separate room.
+            }
+        }
+    }
+
+    {x_mirror
+        {message
+            output={@
+You examine the mirror. You don't see anything suspicious.
             }
         }
     }
@@ -95,6 +111,10 @@ the wall, with a fine mesh covering its surface.
     {inject, logic=/look.inj }
 
 
+
+    {input, syntax=[tplt_syntax]((x_mirror))
+        {act, logic=x_mirror, tags=!_type|room }
+    }
     {input, syntax=[tplt_syntax]((x_sink))
         {act, logic=x_sink, tags=!_type|room }
     }
