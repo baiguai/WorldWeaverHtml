@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html style="--app-height: 1058px;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>DarkWorld Plot</title>
@@ -23,8 +23,7 @@
         "header header"
         "tree editor";
         width: 100%;
-        height: 100vh;
-        min-height: 100vh;
+        height: var(--app-height);
     }
 
     a {
@@ -640,7 +639,7 @@
 
 <div id="marksDialog" style="display: none;">
     <h3>Bookmarks</h3>
-    <div id="marksList"><br><table><tbody><tr style="background:var(--sel-bg);"><td>Cocktails</td><td>/Recipes/Cocktails/Recipes</td></tr></tbody></table></div>
+    <div id="marksList"></div>
     <p>
         <br>
         Press Esc to close
@@ -770,7 +769,7 @@
             "\\);": "^^^func^^^"
         };
 
-        let nodePort = 3003;
+        let nodePort = 0;
 
         let currentEditorNodeId = null;
 
@@ -846,7 +845,7 @@
             { key: "gg", mode: "TREE", description: "Select first root tree node" },
             { key: "G", mode: "TREE", description: "Select last root tree node" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
-            { key: "m", mode: "TREE", description: "Bookmark current node" },
+{ key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
             { key: "%", mode: "TREE", description: "Import theme file" },
             { key: "!", mode: "TREE", description: "Display options dialog" },
@@ -856,7 +855,6 @@
             { key: "l", mode: "NORMAL", description: "Move right" },
             { key: "j", mode: "NORMAL", description: "Move down" },
             { key: "k", mode: "NORMAL", description: "Move up" },
-            { key: "M", mode: "NORMAL", description: "Bookmark current node - at the current line" },
             { key: "0", mode: "NORMAL", description: "Jump to the beginning of the line" },
             { key: "$", mode: "NORMAL", description: "Jump to the end of the line" },
             { key: "b", mode: "NORMAL", description: "Move backward one word" },
@@ -988,7 +986,6 @@
             { key: "gg", mode: "NORMAL", description: "Move to top of file" },
             { key: "G", mode: "NORMAL", description: "Move to bottom of file" },
             { key: "i", mode: "NORMAL", description: "Enter INSERT mode" },
-            { key: "M", mode: "NORMAL", description: "Bookmark current node - at the current line" },
             { key: "a", mode: "NORMAL", description: "Enter INSERT mode after cursor" },
             { key: "I", mode: "NORMAL", description: "Enter INSERT mode at line start" },
             { key: "A", mode: "NORMAL", description: "Enter INSERT mode at line end" },
@@ -1636,10 +1633,6 @@
                     performed = true;
                     scrollToCursor();
                     break;
-                case "M": // Bookmark current note and line
-                    setMark(e, getCurrentLineNumber());
-                    performed = true;
-                    break;
             }
             //------------------------------------------------------------------
         
@@ -2264,14 +2257,7 @@
 
             ta.setRangeText(finalRows.join("\n"), start, end, "select");
         }
-        function getCurrentLineNumber() {
-            const editorArea = document.getElementById("editorArea");
-            const text = editorArea.value;
-            const cursorPosition = editorArea.selectionStart;
-            return text.substring(0, cursorPosition).split('\n').length;
-        }
-
-        function setMark(e, line = null) {
+        function setMark(e) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -2280,16 +2266,12 @@
             let path = computePath(currentNode.id);
 
             if (currentNode) {
-                let bookmark = {
+                bookmarks.push({
                     id: currentNode.id,
                     caption: currentNode.title,
                     path: path
-                };
-                if (line !== null) {
-                    bookmark.line = line;
-                }
-                bookmarks.push(bookmark);
-                showMessage(`Bookmarked: ${currentNode.title}${line !== null ? ' (line ' + line + ')' : ''}`);
+                });
+                showMessage(`Bookmarked: ${currentNode.title}`);
             }
         }
 
@@ -2518,11 +2500,7 @@
             let html = "<br><table>";
             bookmarks.forEach((bm, i) => {
                 let sel = (i === marksIndex) ? "style='background:var(--sel-bg);'" : "";
-                let caption = bm.caption;
-                if (bm.line !== undefined && bm.line !== null) {
-                    caption += ` (Line ${bm.line})`;
-                }
-                html += `<tr ${sel}><td>${caption}</td><td>${bm.path}</td></tr>`;
+                html += `<tr ${sel}><td>${bm.caption}</td><td>${bm.path}</td></tr>`;
             });
             html += "</table>";
             marksList.innerHTML = html;
@@ -3513,9 +3491,19 @@
 
         marksIndex = 0;
     
+        function render() {
+            let html = "<br><table>";
+            bookmarks.forEach((bm, i) => {
+                let sel = (i === marksIndex) ? "style='background:var(--sel-bg);'" : "";
+                html += `<tr ${sel}><td>${bm.caption}</td><td>${bm.path}</td></tr>`;
+            });
+            html += "</table>";
+            marksList.innerHTML = html;
+        }
+    
         showingMarks = true;
         marksDialog.style.display = "block";
-        renderMarksList(); // Call the global renderMarksList
+        render();
     }
 
     function activateSelectedLink() {
@@ -3583,25 +3571,12 @@
             e.preventDefault();
         } else if (e.key === "Enter") {
             let bm = bookmarks[marksIndex];
+            // let node = findNode(bm.id);
             if (bm) {
                 expandToNode(bm.id);
                 selectedId = bm.id;
                 closeMarksDialog();
                 render();
-                if (bm.line !== undefined && bm.line !== null) {
-                    const editorArea = document.getElementById("editorArea");
-                    const text = editorArea.value;
-                    const lines = text.split('\n');
-                    let position = 0;
-                    for (let i = 0; i < Math.min(bm.line - 1, lines.length); i++) {
-                        position += lines[i].length + 1; // +1 for the newline character
-                    }
-                    editorArea.focus();
-                    editorArea.setSelectionRange(position, position);
-                    scrollToCursor();
-                    editing = true;
-                    setVimMode(false); // Set mode to NORMAL
-                }
             }
         } else if (e.key === "Escape") {
             closeMarksDialog();
