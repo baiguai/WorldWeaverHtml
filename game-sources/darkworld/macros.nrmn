@@ -1,4 +1,4 @@
-{macro, key=crs_rm, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|down|~|201 }
+{macro, key=crs_rm, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201 }
 
 {macro, key=, output= }
 
