@@ -640,7 +640,7 @@
 
 <div id="marksDialog" style="display: none;">
     <h3>Bookmarks</h3>
-    <div id="marksList"><br><table><tbody><tr style="background:var(--sel-bg);"><td>Cocktails</td><td>/Recipes/Cocktails/Recipes</td></tr></tbody></table></div>
+    <div id="marksList"></div>
     <p>
         <br>
         Press Esc to close
@@ -688,7 +688,7 @@
 <section class="editor">
     <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
         <span class="pill" id="mode" style="display: block;">TREE</span>
-        <span class="pill" id="kind">FILE</span>
+        <span class="pill" id="kind">NOTE</span>
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
@@ -707,7 +707,7 @@
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"fptq1wse","title":"Future Notes","content":"","children":[{"id":"bz5ib6va","title":"Cruise Ticket","content":"Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.","children":[],"expanded":false}],"expanded":false}
+  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR wo        rld.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"fptq1wse","title":"Future Notes","content":"","children":[{"id":"bz5ib6va","title":"Cruise Ticket","content":"Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.","children":[],"expanded":false}],"expanded":false}
 ];
         let bookmarks = [
     {
@@ -829,6 +829,8 @@
         let optionFields = [optShowInitHelp, optFileName, optModeVim];
         let optionIndex = 0;
 
+        // !@!
+        // Help Data
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
@@ -877,10 +879,6 @@
             { key: "y", mode: "VISUAL", description: "Virtual copy the selected text" },
             { key: "x", mode: "VISUAL", description: "Virtual cut the selected text" },
             { key: "d", mode: "VISUAL", description: "Delete selected text" },
-
-            { key: "Control+-", mode: "INSERT/NORMAL", description: "Insert horizontal line" },
-            { key: "Control+\\", mode: "INSERT/NORMAL", description: "Wrap selected text" },
-            { key: "Control+;", mode: "INSERT/NORMAL", description: "Converts the selected text to a table" },
 
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -965,18 +963,8 @@
             { key: "%", mode: "TREE", description: "Import theme file" },
             { key: "!", mode: "TREE", description: "Display options dialog" },
             { key: "?", mode: "TREE", description: "Show this help" },
-            { key: "Escape", mode: "TREE", description: "Return to TREE mode" },
-            { key: "Control+[", mode: "INSERT", description: "Exit to TREE mode" },
-            { key: "Escape", mode: "INSERT", description: "Exit to TREE mode" },
-            { key: "Control+S", mode: "INSERT", description: "Save file" },
-            { key: "Control+O", mode: "INSERT", description: "Open file" },
-            { key: "Control+Z", mode: "INSERT", description: "Undo" },
-            { key: "Control+Y", mode: "INSERT", description: "Redo" },
-            { key: "Control+F", mode: "INSERT", description: "Find" },
-            { key: "Control+H", mode: "INSERT", description: "Replace" },
-            { key: "Control+-", mode: "INSERT", description: "Insert horizontal rule" },
-            { key: "Control+;", mode: "INSERT", description: "Format markdown table" },
-            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
+
+            { key: "Escape", mode: "NORMAL", description: "Return to TREE mode" },
             { key: "h", mode: "NORMAL", description: "Move cursor left" },
             { key: "j", mode: "NORMAL", description: "Move cursor down" },
             { key: "k", mode: "NORMAL", description: "Move cursor up" },
@@ -999,11 +987,12 @@
             { key: "x", mode: "NORMAL", description: "Delete character" },
             { key: "p", mode: "NORMAL", description: "Paste after cursor" },
             { key: "P", mode: "NORMAL", description: "Paste before cursor" },
+            { key: "s", mode: "NORMAL", description: "Save as HTML" },
+            { key: "S", mode: "NORMAL", description: "Save as HTML with new name" },
             { key: "yy", mode: "NORMAL", description: "Copy current line" },
             { key: "v", mode: "NORMAL", description: "Enter VISUAL mode" },
             { key: "V", mode: "NORMAL", description: "Enter VISUAL LINE mode" },
-            { key: "Escape", mode: "NORMAL", description: "Return to NORMAL mode" },
-            { key: "Control+[", mode: "VISUAL", description: "Exit to NORMAL mode" },
+
             { key: "Escape", mode: "VISUAL", description: "Exit to NORMAL mode" },
             { key: "h", mode: "VISUAL", description: "Extend selection left" },
             { key: "j", mode: "VISUAL", description: "Extend selection down" },
@@ -1013,6 +1002,10 @@
             { key: "b", mode: "VISUAL", description: "Extend to previous word" },
             { key: "d", mode: "VISUAL", description: "Delete selection" },
             { key: "y", mode: "VISUAL", description: "Copy selection" },
+            { key: "Escape", mode: "INSERT", description: "Exit to NORMAL mode" },
+            { key: "Control+-", mode: "INSERT", description: "Insert horizontal rule" },
+            { key: "Control+;", mode: "INSERT", description: "Format markdown table" },
+            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
             { key: "Control+*", mode: "INSERT", description: "Convert selection to list" },
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -1185,7 +1178,7 @@
             const selInfo = findNodeAndParentById(selectedId);
             if (selInfo){
                 pathEl.textContent = computePath(selInfo.node.id);
-                kindEl.textContent = isFolder(selInfo.node) ? 'FOLDER' : 'FILE';
+                kindEl.textContent = isFolder(selInfo.node) ? 'FOLDER' : 'NOTE';
                 if (!editing) {
                     if (currentEditorNodeId !== selInfo.node.id) {
                         editorArea.value = safeRestoreText(selInfo.node.content) || '';
@@ -1460,6 +1453,9 @@
 
             //---- These are the keys to be processed when in NORMAL mode ------
             switch (e.key) {
+                case "s": saveAsHtml(fileName); break;
+                case "S": openSaveAsDialog(); break;
+
                 case "i": // Enter insert mode
                 case "a":
                     setVimMode(true);
@@ -3146,6 +3142,8 @@
             a.href = URL.createObjectURL(blob);
             a.download = `${name}.html`;
             a.click();
+
+            showMessage("Saved successfully");
         }
 
         async function saveViaNode() {

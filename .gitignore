@@ -2,3 +2,5 @@
 /node_modules/*
 /help_backups/
 /help_backups/*
+package-lock.json
+package.json
