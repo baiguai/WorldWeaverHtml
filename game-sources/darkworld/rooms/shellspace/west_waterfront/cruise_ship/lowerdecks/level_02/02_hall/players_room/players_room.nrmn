@@ -1,5 +1,5 @@
 {room, key=cruise_players_room, name=Your Cruise Ship Room
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -59,10 +59,40 @@ A TV is mounted on the wall above the desk.
         }
     }
 
+    {x_window
+        {message
+            output={@
+You examine the window.
+The neon lights of the city along the shore fills the night sky with
+various colors of light.
+            }
+        }
+    }
+
+    {x_bar
+        {message
+            output={@
+You examine the mini-bar. It is stocked with small travel bottles of liquor.
+These items are definitely overpriced. Best to not take any.
+            }
+        }
+    }
+
     {x_desk
         {message
             output={@
 You examine the desk.
+<?[cruise_health_chip]((moved)) = 'true'?>
+There is nothing on the desk but the monitors that are showing off the ship's amenities.
+</?>
+            }
+        }
+    }
+
+    {x_tv
+        {message
+            output={@
+You examine the tv. It is currently turned off.
             }
         }
     }
@@ -76,32 +106,33 @@ It is neatly made and you don't see anything strange about it.
         }
     }
 
-    {x_window
-        {message
-            output={@
-You examine the window.
-The neon lights of the city along the shore fills the night sky with
-various colors of light.
-            }
-        }
-    }
-
 
 
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
-    {input, syntax=[tplt_syntax]((x_desk))
-        {act, logic=x_desk, tags=!_type|room }
+
+
+
+    {input, syntax=[tplt_syntax]((x_window))
+        {act, logic=x_window, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_minibar))
+        {act, logic=x_bar, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_bed))
         {act, logic=x_bed, tags=!_type|room }
     }
 
-    {input, syntax=[tplt_syntax]((x_window))
-        {act, logic=x_window, tags=!_type|room }
+    {input, syntax=[tplt_syntax]((x_desk))
+        {act, logic=x_desk, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_tv))
+        {act, logic=x_tv, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((go_south))

@@ -1,4 +1,4 @@
-{macro, key=crs_rm, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201 }
+{macro, key=crs_btrm, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201|~|take chip|~|e }
 
 {macro, key=, output= }
 
@@ -9,6 +9,7 @@
 
 {macro, key=, output= }
 
+{macro, key=cruise_users_room, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201|~|take chip }
 {macro, key=cruise_robot_exit, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|e|~|s }
 {macro, key=cruise_robot_deck_refuse, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|no }
 {macro, key=cruise_robot_bathroom, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|s }

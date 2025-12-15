@@ -21,6 +21,7 @@
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
         {attrib, tags=x_men|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?men\b, logic=examine the men|examine men|x the men|x men }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
+        {attrib, tags=x_minibar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mini\s+)?bar\b, logic=examine the bar|examine bar|examine mini bar|x the mini bar|x the bar|x bar }
         {attrib, tags=x_mirror|!_regex, output=^(examine|x)(?: the)? mirror$, logic=x the mirror|x mirror|examine the mirror }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
@@ -36,6 +37,7 @@
         {attrib, tags=x_ticket_booth|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:ticket\s+)?booth\b, logic=examine the booth|examine booth|examine ticket booth|x the booth|x booth|x ticket booth }
         {attrib, tags=x_toilet|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(toilet)\b, logic=examine the toilet|x the toilet|examine toilet|x toilet }
         {attrib, tags=x_topless_women|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(topless\s+)?women\b, logic=examine the women|examine topless women|examine women|x the topless women }
+        {attrib, tags=x_tv|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(tv|television)\b, logic=examine the tv|examine television|x the tv|x tv }
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(bed)\b, logic=look under the bed|look under bed|examine under the bed|x under bed }
         {attrib, tags=x_under_dresser|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(dresser)\b, logic=look under the dresser|look under dresser|examine under the dresser|x under dresser }
         {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
