@@ -1,6 +1,13 @@
 {room, key=toplessrobot_deck, name=Deck
     {attrib, output=false, tags=init }
     {attrib, output=help, tags=topic }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+South, Go back into the hotel room.
+        }
+    }
 
     {enter_message
         output={@
@@ -30,6 +37,12 @@ looking out over the city.
         }
 
         {set, logic=[room]((init)), output=true }
+
+        {logic, name=Cruise ship robot's deck, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -37,18 +50,6 @@ looking out over the city.
             output={@
 You are sitting in a lounge chair, next to the robot, on
 the deck.
-            }
-        }
-    }
-
-    {navigation
-        {message
-            output={@
-
-
-
----
-South, Go back into the hotel room.
             }
         }
     }
@@ -63,15 +64,28 @@ South, Go back into the hotel room.
 If you were to take something from this room, and I know about it -
 they'll know about it."
 She nods slightly at you.
-"If you need to use the restroom, my bedroom is through the west door."
+"If you need to use the restroom, my bedroom is through the west door.
+There might be something worth taking there."
 
 She reclines again, looking out over the neon lights of the city.
+            }
+        }
+
+        {set, logic=[self]((topic)), output=agree }
+    }
+
+    {x_robot
+        {message
+            output={@
+You examine the robot, she is relaxing on one of the lounge chairs
+looking out over the lights of the city.
             }
         }
     }
 
 
 
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
@@ -122,6 +136,10 @@ lips and the world goes dark...
 She seems confused.
             }
         }
+    }
+
+    {input, syntax=[tplt_syntax]((x_robot))
+        {act, logic=x_robot, tags=!_type|room }
     }
 
 

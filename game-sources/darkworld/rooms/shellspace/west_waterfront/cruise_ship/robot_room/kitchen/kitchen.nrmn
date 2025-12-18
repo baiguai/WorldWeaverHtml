@@ -1,4 +1,12 @@
 {room, key=toplessrobot_kitchen, name=Kitchen
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+West, Exit the kitchen.
+        }
+    }
+
     {enter_message
         output={@
 The kitchen is spacious and sleek in its decor. The counters are brushed metal.
@@ -8,6 +16,12 @@ shapes and rocket ship-style details.
 
 Above the counters are cupboards with equally space-age style handles on them.
 
+        }
+
+        {logic, name=Cruise ship robot's kitchen, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -51,21 +65,20 @@ standing on the top shelf.
         }
     }
 
-
-    {navigation
+    {x_appliances
         {message
             output={@
-
-
-
----
-West, Exit the kitchen.
+The appliances that you can see are mostly unrecognizable. They ARE very
+stylish and sleek.
             }
         }
     }
 
 
+
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
 
 
     {input, syntax=[tplt_syntax]((go_west))
@@ -77,6 +90,15 @@ You exit the kitchen.
         }
     }
 
+
+
+    {input, syntax=[tplt_syntax]((x_appliances))
+        {act, logic=x_counters, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_counters))
+        {act, logic=x_counters, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((x_counters))
         {act, logic=x_counters, tags=!_type|room }

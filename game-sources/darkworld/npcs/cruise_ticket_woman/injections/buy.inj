@@ -54,9 +54,12 @@ It appears you don't have enough credits to buy a ticket.
 
     {move, logic=[player], tags=cruise_ticket }
     {set, logic=[cruise_ticket]tags, output=+inventory }
+    {set, logic=[cruise_ticket]((purchased)), output=true }
     {set, logic=[player]((credits)), output=-=10 }
+    {set, logic=[vice_port_tickets]((done)), output=true }
 }
 
 {input, syntax=[tplt_syntax]((no))
     {act, logic=refuse_ticket, tags=!_type|room }
+    {set, logic=[vice_port_tickets]((done)), output=true }
 }

@@ -1,27 +1,54 @@
 {room, key=vice_port_tickets, name=Ticket Booth
+    {attrib, output=false, tags=done }
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+East of where you are takes you back to the waterfront.
+South of where you are is the ramp to the cruise ship.
+        }
+    }
+
+    {enter_message
+        output={@
+
+The ticket booth consists of multiple hovering neon lights, glowing bright
+purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
+        }
+
+        {logic, name=Cruise ticket booth, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
     {look
         {message
             output={@
-You look around.
+You look around. The glowing neon ticket booth is just before you.
             }
         }
     }
 
-
-    {navigation
+    {x_booth
         {message
             output={@
-
-
----
-East of where you are takes you back to the waterfront.
-South of where you are is the ramp to the cruise ship.
+The ticket booth consists of multiple hovering neon lights, glowing bright
+purple. Overhead is a hovering neon sign that announces: Cruise Ship Tickets
             }
         }
     }
 
 
+
+
+    {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((x_ticket_booth))
+        {act, logic=x_booth, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_east))
         {move, logic=waterfront_west, tags=[player]
@@ -57,8 +84,8 @@ You have nothing to give him.
 
     {dev_note, tags=TODO
         output={@
-    Define a travel agency, and move the: cruise_ticket Element to that location.
-    Or at least move it to the Player when they purchase it.
+Define a travel agency, and move the: cruise_ticket Element to that location.
+Or at least move it to the Player when they purchase it.
         }
     }
 }

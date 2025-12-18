@@ -1,0 +1,49 @@
+{room, key=cruise_player_bathroom, name=Bathroom
+    {attrib, output=false, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+West, Back to the main room.
+        }
+    }
+
+    {enter_message
+        output={@
+Your room's bathroom is small. A single heat spotlight shines down on you.
+There is a small shower behind you, a large lit mirror in front of you.
+And next to you is a brushed metal toilet.
+        }
+
+        {logic, name=Player's bathroom, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+            }
+        }
+    }
+
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=cruise_players_room, tags=[player]
+            output={@
+You return to the room.
+            }
+        }
+    }
+}

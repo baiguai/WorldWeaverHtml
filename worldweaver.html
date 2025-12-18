@@ -2393,7 +2393,7 @@
             const brt = "<br />";
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
             for (const res of testResults) {
-                output.innerHTML += `Room: ${res.Room}, Test: ${res.Name}, Result: ${res.Result}${brt}${brt}${brt}${brt}`;
+                output.innerHTML += `Room: ${res.Room}, Test: ${res.Name}, Result: ${res.Result}${brt}`;
             }
             testResults.length = 0;
         }
@@ -2687,7 +2687,7 @@
             if (logicString === undefined || logicString.trim() === "") {
                 return true;
             }
-            if (!macroRunning && !macroTesting && tagsContain(childElement.Tags, testTag)) {
+            if ((!macroRunning || !macroTesting) && tagsContain(childElement.Tags, testTag)) {
                 return true;
             }
             let logicPassed = [];
