@@ -1,4 +1,4 @@
-<!DOCTYPE html><html style="--app-height: 1013px; --bg: #1a0033; --fg: #ff69b4; --muted: #ff1493; --accent: #00ffff; --danger: #ff00ff; --sel-bg: #2d0052; --btn-border: #ff69b4; --border: #ff69b4; --border-radius: 2px; --pill-radius: 1px;"><head>
+<!DOCTYPE html><html><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>DarkWorld Plot</title>
@@ -23,7 +23,8 @@
         "header header"
         "tree editor";
         width: 100%;
-        height: var(--app-height);
+        height: 100vh;
+        min-height: 100vh;
     }
 
     a {
@@ -237,7 +238,7 @@
         box-sizing: border-box;
     }
 
-.search-results {
+    .search-results {
         flex: 1;
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
@@ -549,7 +550,7 @@
     ::-webkit-scrollbar { width: 10px; height: 10px; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    </style>
+</style>
 </head>
 <body>
 <div class="app">
@@ -667,7 +668,7 @@
 <div id="historyDialog" style="display: none;">
     <h3>History</h3>
     <div class="history-content">
-        <div id="historyList"><div>High Level Plot</div><div class="selected" style="background: var(--sel-bg);">Cruise Central Area</div><div>Cruise Ship Ticket Booth</div><div>West Waterfront</div><div>Street View</div><div>Monorail</div><div>Shellspace Port</div><div>Cruise Ticket</div><div>Bedroom</div></div>
+        <div id="historyList"></div>
     </div>
 </div>
 
@@ -683,11 +684,11 @@
 </div>
 
 
-<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">High Level Plot</span></div></li><li><div class="node selected"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Groups Involved</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Exploits</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Future Notes</span></div></li></ul></aside>
+<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">High Level Plot</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Groups Involved</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Exploits</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Future Notes</span></div></li></ul></aside>
 <section class="editor">
     <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
         <span class="pill" id="mode" style="display: block;">TREE</span>
-        <span class="pill" id="kind">FOLDER</span>
+        <span class="pill" id="kind">NOTE</span>
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
@@ -706,7 +707,7 @@
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"fptq1wse","title":"Future Notes","content":"","children":[{"id":"bz5ib6va","title":"Cruise Ticket","content":"Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.","children":[],"expanded":false}],"expanded":false}
+  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR wo        rld.","children":[],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"fptq1wse","title":"Future Notes","content":"","children":[{"id":"bz5ib6va","title":"Cruise Ticket","content":"Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.","children":[],"expanded":false}],"expanded":false}
 ];
         let bookmarks = [
     {
@@ -787,23 +788,7 @@
         let showingLinks = false;
         let showingMarks = false;
         let showingHelp = false;
-        let currentTheme = {
-    "bg": "#1a0033",
-    "fg": "#ff69b4",
-    "muted": "#ff1493",
-    "accent": "#00ffff",
-    "danger": "#ff00ff",
-    "sel-bg": "#2d0052",
-    "btn-border": "#ff69b4",
-    "border": "#ff69b4",
-    "input-bg": "#330066",
-    "input-fg": "#ff69b4",
-    "btn-bg": "#2d0052",
-    "btn-fg": "#ff69b4",
-    "dim": "#ff1493",
-    "border-radius": "20px",
-    "pill-radius": "999px"
-};
+        let currentTheme = null;
         let marksIndex = 0;
         let finding = false;
         let mode_vim = true;
@@ -844,6 +829,8 @@
         let optionFields = [optShowInitHelp, optFileName, optModeVim];
         let optionIndex = 0;
 
+        // !@!
+        // Help Data
         const helpReadOnly = [
             { key: "j", mode: "TREE", description: "Select next tree node" },
             { key: "k", mode: "TREE", description: "Select the previous tree node" },
@@ -861,7 +848,7 @@
             { key: "gg", mode: "TREE", description: "Select first root tree node" },
             { key: "G", mode: "TREE", description: "Select last root tree node" },
             { key: "T", mode: "TREE", description: "Export current note as .txt" },
-{ key: "m", mode: "TREE", description: "Bookmark current node" },
+            { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
             { key: "%", mode: "TREE", description: "Import theme file" },
             { key: "!", mode: "TREE", description: "Display options dialog" },
@@ -871,6 +858,7 @@
             { key: "l", mode: "NORMAL", description: "Move right" },
             { key: "j", mode: "NORMAL", description: "Move down" },
             { key: "k", mode: "NORMAL", description: "Move up" },
+            { key: "M", mode: "NORMAL", description: "Bookmark current node - at the current line" },
             { key: "0", mode: "NORMAL", description: "Jump to the beginning of the line" },
             { key: "$", mode: "NORMAL", description: "Jump to the end of the line" },
             { key: "b", mode: "NORMAL", description: "Move backward one word" },
@@ -891,10 +879,6 @@
             { key: "y", mode: "VISUAL", description: "Virtual copy the selected text" },
             { key: "x", mode: "VISUAL", description: "Virtual cut the selected text" },
             { key: "d", mode: "VISUAL", description: "Delete selected text" },
-
-            { key: "Control+-", mode: "INSERT/NORMAL", description: "Insert horizontal line" },
-            { key: "Control+\\", mode: "INSERT/NORMAL", description: "Wrap selected text" },
-            { key: "Control+;", mode: "INSERT/NORMAL", description: "Converts the selected text to a table" },
 
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -979,18 +963,8 @@
             { key: "%", mode: "TREE", description: "Import theme file" },
             { key: "!", mode: "TREE", description: "Display options dialog" },
             { key: "?", mode: "TREE", description: "Show this help" },
-            { key: "Escape", mode: "TREE", description: "Return to TREE mode" },
-            { key: "Control+[", mode: "INSERT", description: "Exit to TREE mode" },
-            { key: "Escape", mode: "INSERT", description: "Exit to TREE mode" },
-            { key: "Control+S", mode: "INSERT", description: "Save file" },
-            { key: "Control+O", mode: "INSERT", description: "Open file" },
-            { key: "Control+Z", mode: "INSERT", description: "Undo" },
-            { key: "Control+Y", mode: "INSERT", description: "Redo" },
-            { key: "Control+F", mode: "INSERT", description: "Find" },
-            { key: "Control+H", mode: "INSERT", description: "Replace" },
-            { key: "Control+-", mode: "INSERT", description: "Insert horizontal rule" },
-            { key: "Control+;", mode: "INSERT", description: "Format markdown table" },
-            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
+
+            { key: "Escape", mode: "NORMAL", description: "Return to TREE mode" },
             { key: "h", mode: "NORMAL", description: "Move cursor left" },
             { key: "j", mode: "NORMAL", description: "Move cursor down" },
             { key: "k", mode: "NORMAL", description: "Move cursor up" },
@@ -1002,6 +976,7 @@
             { key: "gg", mode: "NORMAL", description: "Move to top of file" },
             { key: "G", mode: "NORMAL", description: "Move to bottom of file" },
             { key: "i", mode: "NORMAL", description: "Enter INSERT mode" },
+            { key: "M", mode: "NORMAL", description: "Bookmark current node - at the current line" },
             { key: "a", mode: "NORMAL", description: "Enter INSERT mode after cursor" },
             { key: "I", mode: "NORMAL", description: "Enter INSERT mode at line start" },
             { key: "A", mode: "NORMAL", description: "Enter INSERT mode at line end" },
@@ -1012,11 +987,12 @@
             { key: "x", mode: "NORMAL", description: "Delete character" },
             { key: "p", mode: "NORMAL", description: "Paste after cursor" },
             { key: "P", mode: "NORMAL", description: "Paste before cursor" },
+            { key: "s", mode: "NORMAL", description: "Save as HTML" },
+            { key: "S", mode: "NORMAL", description: "Save as HTML with new name" },
             { key: "yy", mode: "NORMAL", description: "Copy current line" },
             { key: "v", mode: "NORMAL", description: "Enter VISUAL mode" },
             { key: "V", mode: "NORMAL", description: "Enter VISUAL LINE mode" },
-            { key: "Escape", mode: "NORMAL", description: "Return to NORMAL mode" },
-            { key: "Control+[", mode: "VISUAL", description: "Exit to NORMAL mode" },
+
             { key: "Escape", mode: "VISUAL", description: "Exit to NORMAL mode" },
             { key: "h", mode: "VISUAL", description: "Extend selection left" },
             { key: "j", mode: "VISUAL", description: "Extend selection down" },
@@ -1026,6 +1002,10 @@
             { key: "b", mode: "VISUAL", description: "Extend to previous word" },
             { key: "d", mode: "VISUAL", description: "Delete selection" },
             { key: "y", mode: "VISUAL", description: "Copy selection" },
+            { key: "Escape", mode: "INSERT", description: "Exit to NORMAL mode" },
+            { key: "Control+-", mode: "INSERT", description: "Insert horizontal rule" },
+            { key: "Control+;", mode: "INSERT", description: "Format markdown table" },
+            { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
             { key: "Control+*", mode: "INSERT", description: "Convert selection to list" },
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." },
         ];
@@ -1198,7 +1178,7 @@
             const selInfo = findNodeAndParentById(selectedId);
             if (selInfo){
                 pathEl.textContent = computePath(selInfo.node.id);
-                kindEl.textContent = isFolder(selInfo.node) ? 'FOLDER' : 'FILE';
+                kindEl.textContent = isFolder(selInfo.node) ? 'FOLDER' : 'NOTE';
                 if (!editing) {
                     if (currentEditorNodeId !== selInfo.node.id) {
                         editorArea.value = safeRestoreText(selInfo.node.content) || '';
@@ -1370,9 +1350,11 @@
             }
 
             if (!mode_insert) {
-                // Only adjust scrolling when *not* editing
+                // Only adjust scrolling when *not* editing and cursor is out of view
                 setAppHeight();
-                scrollToCursor();
+                if (isCursorOutOfView()) {
+                    scrollToCursor();
+                }
             }
 
             if (e.key === 'Escape') {
@@ -1471,6 +1453,9 @@
 
             //---- These are the keys to be processed when in NORMAL mode ------
             switch (e.key) {
+                case "s": saveAsHtml(fileName); break;
+                case "S": openSaveAsDialog(); break;
+
                 case "i": // Enter insert mode
                 case "a":
                     setVimMode(true);
@@ -1646,6 +1631,10 @@
                     moveChar(bufEnd, false);
                     performed = true;
                     scrollToCursor();
+                    break;
+                case "M": // Bookmark current note and line
+                    setMark(e, getCurrentLineNumber());
+                    performed = true;
                     break;
             }
             //------------------------------------------------------------------
@@ -1886,13 +1875,65 @@
             }
         }
 
+        function isCursorOutOfView() {
+            const pos = editorArea.selectionStart;
+            const textBefore = editorArea.value.slice(0, pos);
+            const lineIndex = textBefore.split("\n").length - 1;
+            
+            // Get actual computed line height from CSS
+            const computedStyle = window.getComputedStyle(editorArea);
+            const fontSize = parseFloat(computedStyle.fontSize);
+            const lineHeight = computedStyle.lineHeight === 'normal' 
+                ? fontSize * 1.2 
+                : parseFloat(computedStyle.lineHeight);
+            
+            // Calculate cursor position
+            const cursorTop = lineIndex * lineHeight;
+            const cursorBottom = cursorTop + lineHeight;
+            
+            // Get visible area
+            const visibleTop = editorArea.scrollTop;
+            const visibleBottom = visibleTop + editorArea.clientHeight;
+            
+            // Add some padding (one line) to ensure cursor doesn't touch the edge
+            const padding = lineHeight;
+            
+            // Return true if cursor is outside visible area (with padding)
+            return cursorTop < visibleTop + padding || cursorBottom > visibleBottom - padding;
+        }
+
         function scrollToCursor() {
             const pos = editorArea.selectionStart;
             const textBefore = editorArea.value.slice(0, pos);
             const lineIndex = textBefore.split("\n").length - 1;
-            const lineHeight = 16; // adjust if your textarea font-size/line-height differs
-        
-            editorArea.scrollTop = lineIndex * lineHeight;
+            
+            // Get actual computed line height from CSS
+            const computedStyle = window.getComputedStyle(editorArea);
+            const fontSize = parseFloat(computedStyle.fontSize);
+            const lineHeight = computedStyle.lineHeight === 'normal' 
+                ? fontSize * 1.2 
+                : parseFloat(computedStyle.lineHeight);
+            
+            // Calculate cursor position
+            const cursorTop = lineIndex * lineHeight;
+            const cursorBottom = cursorTop + lineHeight;
+            
+            // Get visible area
+            const visibleTop = editorArea.scrollTop;
+            const visibleBottom = visibleTop + editorArea.clientHeight;
+            
+            // Add some padding (one line) to ensure cursor doesn't touch the edge
+            const padding = lineHeight;
+            
+            // Only scroll if cursor is outside visible area (with padding)
+            if (cursorTop < visibleTop + padding) {
+                // Cursor is above visible area - scroll up to show it with padding
+                editorArea.scrollTop = Math.max(0, cursorTop - padding);
+            } else if (cursorBottom > visibleBottom - padding) {
+                // Cursor is below visible area - scroll down to show it with padding
+                editorArea.scrollTop = cursorBottom - editorArea.clientHeight + padding;
+            }
+            // If cursor is already visible (with padding), don't scroll at all
         }
 
         function addRoot(){
@@ -2219,7 +2260,14 @@
 
             ta.setRangeText(finalRows.join("\n"), start, end, "select");
         }
-        function setMark(e) {
+        function getCurrentLineNumber() {
+            const editorArea = document.getElementById("editorArea");
+            const text = editorArea.value;
+            const cursorPosition = editorArea.selectionStart;
+            return text.substring(0, cursorPosition).split('\n').length;
+        }
+
+        function setMark(e, line = null) {
             e.preventDefault();
             e.stopPropagation();
 
@@ -2228,12 +2276,16 @@
             let path = computePath(currentNode.id);
 
             if (currentNode) {
-                bookmarks.push({
+                let bookmark = {
                     id: currentNode.id,
                     caption: currentNode.title,
                     path: path
-                });
-                showMessage(`Bookmarked: ${currentNode.title}`);
+                };
+                if (line !== null) {
+                    bookmark.line = line;
+                }
+                bookmarks.push(bookmark);
+                showMessage(`Bookmarked: ${currentNode.title}${line !== null ? ' (line ' + line + ')' : ''}`);
             }
         }
 
@@ -2462,7 +2514,11 @@
             let html = "<br><table>";
             bookmarks.forEach((bm, i) => {
                 let sel = (i === marksIndex) ? "style='background:var(--sel-bg);'" : "";
-                html += `<tr ${sel}><td>${bm.caption}</td><td>${bm.path}</td></tr>`;
+                let caption = bm.caption;
+                if (bm.line !== undefined && bm.line !== null) {
+                    caption += ` (Line ${bm.line})`;
+                }
+                html += `<tr ${sel}><td>${caption}</td><td>${bm.path}</td></tr>`;
             });
             html += "</table>";
             marksList.innerHTML = html;
@@ -2528,11 +2584,11 @@
             let resultHTML = '';
 
             while ((match = regex.exec(content)) !== null) {
-                const start = Math.max(0, match.index - contextRadius);
-                const end = Math.min(content.length, match.index + match[0].length + contextRadius);
-                const context = content.substring(start, end)
+                const lineStart = content.lastIndexOf('\n', match.index) + 1;
+                const lineEnd = content.indexOf('\n', match.index);
+                const line = content.substring(lineStart, lineEnd === -1 ? content.length : lineEnd)
                     .replace(/</g, "&lt;").replace(/>/g, "&gt;");
-                const highlighted = context.replace(new RegExp(searchVal, 'gi'), 
+                const highlighted = line.replace(new RegExp(searchVal, 'gi'), 
                     m => `<span class="find-highlight">${m}</span>`);
 
                 findMatches.push({ index: match.index, length: match[0].length });
@@ -2554,6 +2610,11 @@
                 if (first) {
                     first.style.background = 'var(--sel-bg)';
                     first.scrollIntoView({ block: 'nearest' });
+                    // Also select and highlight the first match in the editor
+                    navigateFindResults(1);
+                    navigateFindResults(-1);
+                    // Keep focus on the search input
+                    searchInput.focus();
                 }
             }
 
@@ -2577,7 +2638,7 @@
             area.setSelectionRange(match.index, match.index + match.length);
             setVimMode(false);
             editing = true;
-            area.focus();
+            // Don't focus the editor - keep focus on the search input
         }
         function navigateFindResults(dir) {
             if (findMatches.length === 0) return;
@@ -3081,6 +3142,8 @@
             a.href = URL.createObjectURL(blob);
             a.download = `${name}.html`;
             a.click();
+
+            showMessage("Saved successfully");
         }
 
         async function saveViaNode() {
@@ -3448,19 +3511,9 @@
 
         marksIndex = 0;
     
-        function render() {
-            let html = "<br><table>";
-            bookmarks.forEach((bm, i) => {
-                let sel = (i === marksIndex) ? "style='background:var(--sel-bg);'" : "";
-                html += `<tr ${sel}><td>${bm.caption}</td><td>${bm.path}</td></tr>`;
-            });
-            html += "</table>";
-            marksList.innerHTML = html;
-        }
-    
         showingMarks = true;
         marksDialog.style.display = "block";
-        render();
+        renderMarksList(); // Call the global renderMarksList
     }
 
     function activateSelectedLink() {
@@ -3528,12 +3581,25 @@
             e.preventDefault();
         } else if (e.key === "Enter") {
             let bm = bookmarks[marksIndex];
-            // let node = findNode(bm.id);
             if (bm) {
                 expandToNode(bm.id);
                 selectedId = bm.id;
                 closeMarksDialog();
                 render();
+                if (bm.line !== undefined && bm.line !== null) {
+                    const editorArea = document.getElementById("editorArea");
+                    const text = editorArea.value;
+                    const lines = text.split('\n');
+                    let position = 0;
+                    for (let i = 0; i < Math.min(bm.line - 1, lines.length); i++) {
+                        position += lines[i].length + 1; // +1 for the newline character
+                    }
+                    editorArea.focus();
+                    editorArea.setSelectionRange(position, position);
+                    scrollToCursor();
+                    editing = true;
+                    setVimMode(false); // Set mode to NORMAL
+                }
             }
         } else if (e.key === "Escape") {
             closeMarksDialog();
@@ -3609,6 +3675,7 @@
 
 
 
+    // Upgrade the selected HT file
     document.getElementById("filePicker").addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -3656,6 +3723,15 @@
                         } catch (e) {
                             console.warn('Failed to parse theme from import, using default');
                             currentTheme = null;
+                        }
+                    }
+
+                    // Replace theme_styles content from imported file
+                    const themeStylesMatch = content.match(/<style id="theme_styles">([\s\S]*?)<\/style>/);
+                    if (themeStylesMatch) {
+                        const themeStylesElement = document.getElementById("theme_styles");
+                        if (themeStylesElement) {
+                            themeStylesElement.textContent = themeStylesMatch[1];
                         }
                     }
 
@@ -3845,17 +3921,15 @@
         return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     }
     function setAppHeight() {
-        document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
+        // document.documentElement.style.setProperty('--app-height', `${window.innerHeight}px`);
     }
     setAppHeight();
     window.addEventListener('resize', setAppHeight);
 
     editorArea.addEventListener('focus', () => {
-        if (isMobile()) {
-            document.querySelector('.app').style.height = `60dvh`;
-            // document.querySelector('.app').style.height = `${window.innerHeight-400}px`;
-            // setTimeout(() => window.scrollTo(0, 0), 50);
-        }
+//        if (isMobile()) {
+//            document.querySelector('.app').style.height = `60dvh`;
+//        }
     });
     
     editorArea.addEventListener('blur', () => {
@@ -3952,7 +4026,5 @@
 
 
 <!-- Version 20251112 -->
-
-
 
 </body></html>
