@@ -5,7 +5,7 @@
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
         {attrib, tags=x_bartender|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bartender\b, logic=examine the bartender|examine bartender|x the bartender|x bartender|x woman }
         {attrib, tags=x_bed|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(bed)\b, logic=examine the bed|x the bed|examine bed|x bed }
-        {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip$, logic=x the chip|x chip|examine the chip|examine chip }
+        {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip(?:s)?$, logic=x the chip|x chip|x chips|examine the chip|examine the chips }
         {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
         {attrib, tags=x_couples|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?couples\b, logic=examine the couples|examine couples|x the couples|x couples }
         {attrib, tags=x_cupboards|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cupboards)\b, logic=examine the cupboards|x the cupboards|examine cupboards|x cupboards }
