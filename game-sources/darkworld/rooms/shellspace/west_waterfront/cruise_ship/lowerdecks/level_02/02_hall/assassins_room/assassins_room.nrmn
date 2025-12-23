@@ -1,4 +1,6 @@
 {room, key=assassins_room, name=Stranger's Room
+    {attrib, output=false, tags=tested }
+
     {attrib, tags=navigation
         output={@
 South, Go back into the hall.
@@ -19,6 +21,12 @@ Sitting on the bed is an open suitcase. It is filled with chips and a sleek
 chrome finished lazer gun. The chips and gun are strapped in place by glowing
 bands of light.
         }
+
+        {logic, name=Assassin's room, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
@@ -33,6 +41,15 @@ Set against the wall to your right (east) is a bed.
 
 Sitting on the bed is an open suitcase. It is filled with chips and a sleek
 chrome finished lazer gun.
+            }
+        }
+    }
+
+    {x_desk
+        {message
+            output={@
+You examine the desk.
+There is nothing on it except for the computer.
             }
         }
     }
@@ -77,6 +94,15 @@ Apparently the glowing band is holding them in place.
         }
     }
 
+    {x_bed
+        {message
+            output={@
+You look at the bed. It is neatly made up. You don't see anything odd
+about it.
+            }
+        }
+    }
+
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
@@ -91,8 +117,16 @@ You exit the stranger's room.
     }
 
 
+    {input, syntax=[tplt_syntax]((x_desk))
+        {act, logic=x_desk, tags=!_type|room }
+    }
+
     {input, syntax=[tplt_syntax]((x_computer))
         {act, logic=x_monitor, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_bed))
+        {act, logic=x_bed, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((gun_take))

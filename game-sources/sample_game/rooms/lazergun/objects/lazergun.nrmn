@@ -1,19 +1,17 @@
-{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room
-    {attrib, logic=[roll:(4)2d6], tags=!_damage }
-    {attrib, output=a spear, tags=!_title }
+{object, key=lazer_gun, name=Lazer Gun, parent=lazer_room
+    {attrib, logic=[roll:(4)2d8], tags=!_damage }
+    {attrib, output=a lazer gun, tags=!_title }
 
     {enter_message
         output={@
-You see a spear.
-
+You see a lazer gun.
         }
     }
 
     {look
         {message
             output={@
-You see a spear.
-
+You see a lazer gun.
             }
         }
 
@@ -21,19 +19,19 @@ You see a spear.
     }
 
 
-    {input, syntax=[tplt_syntax]((spear_take))
+    {input, syntax=[tplt_syntax]((lazergun_take))
         {move, logic=[player], tags=[self]
             output={@
-You take the spear.
+You take the lazer gun.
             }
         }
         {set, logic=[self]tags, output=+inventory }
     }
 
-    {input, syntax=[tplt_syntax]((spear_drop))
+    {input, syntax=[tplt_syntax]((lazergun_drop))
         {move, logic=[room], tags=[self]
             output={@
-You drop the spear.
+You drop the lazer gun.
             }
         }
         {set, logic=[self]tags, output=-inventory }
