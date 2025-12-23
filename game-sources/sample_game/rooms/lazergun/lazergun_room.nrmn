@@ -1,7 +1,7 @@
-{room, key=fight_room, name=Fight Room
+{room, name=Lazer Gun Room, key=lazer_room
     {enter_message
         output={@
-You step into the fighting arena!
+You are in the lazer gun room.
 
         }
     }
@@ -9,8 +9,8 @@ You step into the fighting arena!
     {look
         {message
             output={@
-You look around.
-You are in the fight test room.
+You look around...
+This is the lazer gun test room.
 
             }
         }
