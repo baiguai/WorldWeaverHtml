@@ -1,5 +1,5 @@
 {room, key=cruise_player_bathroom, name=Bathroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -24,7 +24,37 @@ And next to you is a brushed metal toilet.
     {look
         {message
             output={@
-You look around.
+Your room's bathroom is small. A single heat spotlight shines down on you.
+There is a small shower behind you, a large lit mirror in front of you.
+And next to you is a brushed metal toilet.
+            }
+        }
+    }
+
+    {x_shower
+        {message
+            output={@
+You examine the shower.
+It is a glass tube that goes from the floor to the ceiling. A single heat
+lamp is set into its center.
+            }
+        }
+    }
+
+    {x_toilet
+        {message
+            output={@
+You examine the toilet. It is sleek and slender but you don't see anything
+odd about it.
+            }
+        }
+    }
+
+    {x_mirror
+        {message
+            output={@
+You examine the mirror. It fills the entire wall and has small point lights
+along both of its sides.
             }
         }
     }
@@ -38,6 +68,18 @@ You look around.
 
 
 
+
+    {input, syntax=[tplt_syntax]((x_shower))
+        {act, logic=x_shower, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_toilet))
+        {act, logic=x_toilet, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_mirror))
+        {act, logic=x_mirror, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_west))
         {move, logic=cruise_players_room, tags=[player]

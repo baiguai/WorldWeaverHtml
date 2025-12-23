@@ -11,11 +11,13 @@
     Taking
         {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take the coin|take gold coin|take coin|pick up the gold coin|pick up coin }
         {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)?( gold)?(en)? key$, logic=take key|take the gold key|take the golden key|pick up the key|pick up key }
+        {attrib, tags=lazergun_take|!_regex, output=^(take|pick up)( the)?( lazer)? gun$, logic=take the gun|take lazer gun|pick up gun|take gun|pick up the lazer gun }
         {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)?( rolled)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }
         {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)?( metal)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear }
 
     Dropping
         {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment }
+        {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
         {attrib, tags=spear_drop|!_regex, output=(drop.*spear), logic=drop the spear|drop spear }
 
     Putting
