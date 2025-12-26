@@ -3,9 +3,11 @@
         {attrib, tags=look|!_regex, output=\bl(ook)?\b, logic=l|look around|I look around the room }
         {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? table(s)?$, logic=x the table|x tables|examine the tables }
         {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }
+        {attrib, tags=x_lazergun|!_regex, output=^(examine|x)( the)?( lazer)? gun$, logic=examine the gun|examine lazer gun|x the lazer gun|x gun }
 
     Identifying
         {attrib, tags=key_id|!_regex, output=.*key.*, logic=the key|your key|the golden key }
+        {attrib, tags=lazergun_id|!_regex, output=(lazer)?( )?(gun).*, logic=the gun|your lazer gun|the lazergun }
         {attrib, tags=spear_id|!_regex, output=(spear).*, logic=the spear|your spear|the ornate spear }
 
     Taking

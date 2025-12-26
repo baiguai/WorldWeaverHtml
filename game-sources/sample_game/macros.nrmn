@@ -1,2 +1,3 @@
+{macro, key=lazer, output=lazer|~|take gun|~|arm gun|~|home|~|fight|~|push button }
 {macro, key=tr01, output=l|~|coin|~|take coin|~|home|~|tests|~|home }
 {macro, key=ft, output=fight|~|push button }
