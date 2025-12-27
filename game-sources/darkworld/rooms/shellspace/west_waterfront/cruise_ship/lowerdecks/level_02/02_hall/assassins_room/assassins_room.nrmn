@@ -1,5 +1,5 @@
 {room, key=assassins_room, name=Stranger's Room
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -39,8 +39,13 @@ A computer monitor is on the desk.
 
 Set against the wall to your right (east) is a bed.
 
-Sitting on the bed is an open suitcase. It is filled with chips and a sleek
-chrome finished lazer gun.
+Sitting on the bed is an open suitcase.
+<?[lazer_gun]((moved)) = 'false'?>
+It is filled with chips and a sleek chrome finished lazer gun.
+<else>
+It is filled with chips.
+</?>
+
             }
         }
     }
@@ -76,15 +81,6 @@ days, perhaps weeks.
         {set, logic=[player]((knows_about_killing)), output=true }
     }
 
-    {take_gun
-        {message
-            output={@
-You attempt to take the lazer gun from the suitcase. It doesn't budge.
-Apparently the glowing band is holding it in place.
-            }
-        }
-    }
-
     {take_chip
         {message
             output={@
@@ -99,6 +95,19 @@ Apparently the glowing band is holding them in place.
             output={@
 You look at the bed. It is neatly made up. You don't see anything odd
 about it.
+            }
+        }
+    }
+
+    {x_suitcase
+        {message
+            output={@
+You examine the suitcase.
+<?[lazer_gun]((moved)) = 'false'?>
+It is filled with chips and a sleek chrome finished lazer gun.
+<else>
+It is filled with chips.
+</?>
             }
         }
     }
@@ -129,8 +138,8 @@ You exit the stranger's room.
         {act, logic=x_bed, tags=!_type|room }
     }
 
-    {input, syntax=[tplt_syntax]((gun_take))
-        {act, logic=take_gun, tags=!_type|room }
+    {input, syntax=[tplt_syntax]((x_suitcase))
+        {act, logic=x_suitcase, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((chips_take))

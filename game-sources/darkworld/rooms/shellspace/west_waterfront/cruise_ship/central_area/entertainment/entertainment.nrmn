@@ -1,0 +1,34 @@
+{room, key=cruise_entertainment, name=Entertainment Area
+    {attrib, tags=navigation
+        output={@
+East to the central area of the cruise ship.
+        }
+    }
+
+    {enter_message
+        output={@
+You enter the entertainment area.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the entertainment area...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You return to the central area of the cruise ship.
+            }
+        }
+    }
+}

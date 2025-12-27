@@ -1,6 +1,9 @@
-{object, key=lazer_gun, name=Lazer Gun, parent=lazer_room
+{object, key=lazer_gun, name=Lazer Gun, syntax=[tplt_syntax]((lazergun_id)), parent=lazer_room, tags=!_weapon
     {attrib, logic=[roll:(4)2d8], tags=!_damage }
     {attrib, output=a lazer gun, tags=!_title }
+    {attrib, output=5, tags=cur_ammo }
+    {attrib, output=5, tags=max_ammo }
+    {attrib, output=Your lazer gun needs to be recharged., tags=!_cantattack }
 
     {enter_message
         output={@
@@ -18,6 +21,46 @@ You see a lazer gun.
         {logic, logic=?[self]parent = [room] }
     }
 
+    {x_gun
+        {message
+            output={@
+You examine the lazer gun.
+It is sleek and made completely of polished chrome.
+            }
+        }
+    }
+
+
+
+    {ammo
+        {message
+            output={@
+You've used some ammo.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((cur_ammo)) > '0'
+            }
+        }
+        {set, logic=[self]((cur_ammo)), output=-- }
+        {act, logic=fix_min_ammo, tags=!_type|self }
+    }
+    {fix_min_ammo
+        {logic
+            logic={@
+                ?[self]((cur_ammo)) < '0'
+            }
+        }
+        {set, logic=[self]((cur_ammo)), output=0 }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_lazergun))
+        {act, logic=x_gun, tags=!_type|self }
+    }
 
     {input, syntax=[tplt_syntax]((lazergun_take))
         {move, logic=[player], tags=[self]
