@@ -42,6 +42,7 @@ The rat has attacked you, but missed.
     }
 
     {look
+        {attack, logic=[player] }
         {message
             output={@
 
