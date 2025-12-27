@@ -66,6 +66,14 @@ You return to the entrance area of the cruise ship.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=cruise_entertainment, tags=[player]
+            output={@
+You head towards the entertainment area of the cruise ship.
+            }
+        }
+    }
+
     {input, syntax=[tplt_syntax]((go_up))
         {move, logic=cruise_top_deck, tags=[player]
             output={@

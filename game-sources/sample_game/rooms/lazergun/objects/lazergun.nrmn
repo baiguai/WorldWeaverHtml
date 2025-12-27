@@ -43,12 +43,17 @@ You've used some ammo.
             logic={@
                 ?[self]((cur_ammo)) > '0'
             }
-            output={@
-Your lazer gun needs to be recharged.
+        }
+        {set, logic=[self]((cur_ammo)), output=-- }
+        {act, logic=fix_min_ammo, tags=!_type|self }
+    }
+    {fix_min_ammo
+        {logic
+            logic={@
+                ?[self]((cur_ammo)) < '0'
             }
         }
-
-        {set, logic=[self]((cur_ammo)), output=-- }
+        {set, logic=[self]((cur_ammo)), output=0 }
     }
 
 
