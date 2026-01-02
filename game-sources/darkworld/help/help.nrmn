@@ -14,6 +14,28 @@ Welcome to the DarkWorld help system.
         }
     }
 
+
+
+    {help_admin
+        {message
+            output={@
+#[#ffff00]**Cruise Ship Items**#
+* invite_chip - Join the secret society.
+* lcd_watch - ??
+* life_chip - +5 to life.
+* lazer_gun - rechargeable energy weapon.
+
+
+
+
+            }
+        }
+    }
+
+
+
+
+
     {help_commands
         {message
             output={@
@@ -68,5 +90,9 @@ This allows you to refer back to clues that you've found or other useful bits of
 
     {input, syntax=^\? notes$|^help notes$
         {act, logic=help_notes, tags=!_type|self }
+    }
+
+    {input, syntax=^\? admin$|^help notes$
+        {act, logic=help_admin, tags=!_type|self }
     }
 }

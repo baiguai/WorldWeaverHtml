@@ -2,7 +2,7 @@
     {message
         output={@
 
-Ok.
+"Ok.
 
 I see you just left the monorail station, I can tell you about how to
 get monorail tickets, if you need a monorail ticket.
@@ -14,7 +14,11 @@ where to go, just let me know.
 I know its secrets.
 
 I know where all the seedy stuff is too, if you're looking for something...
-shady - piracy?
+shady - piracy?"
+
+---
+
+"**You should see a man who is on the cruise ship, he has something for you. To get there -- go west.**"
 
         }
     }
