@@ -1,0 +1,30 @@
+    {help_admin
+        {message
+            output={@
+#[#ffff00]**Cruise Ship Items**#
+* invite_chip - Join the secret society.
+* lcd_watch - ??
+* life_chip - +5 to life.
+* lazer_gun - rechargeable energy weapon.
+
+#[#ffff00]**Entertainment Area**#
+* The Fan is here.
+
+
+
+
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+    {input, syntax=^\? admin$|^help admin$
+        {act, logic=help_admin, tags=!_type|self }
+    }
+}

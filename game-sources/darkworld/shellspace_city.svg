@@ -21,10 +21,10 @@
      inkscape:deskcolor="#505050"
      showgrid="false"
      inkscape:zoom="1.4142136"
-     inkscape:cx="721.24892"
-     inkscape:cy="563.91766"
+     inkscape:cx="686.24711"
+     inkscape:cy="293.80286"
      inkscape:window-width="1916"
-     inkscape:window-height="1068"
+     inkscape:window-height="1074"
      inkscape:window-x="0"
      inkscape:window-y="4"
      inkscape:window-maximized="1"
@@ -34316,11 +34316,27 @@
          x="477.51663"
          y="558.84827"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
-         id="tspan21470">* Message Jammer</tspan><tspan
+         id="tspan21470">* Lazor Gun</tspan><tspan
          sodipodi:role="line"
          x="477.51663"
          y="578.99719"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
-         id="tspan26412">* Life Chip</tspan></text>
+         id="tspan26412">* Life Chip</tspan><tspan
+         sodipodi:role="line"
+         x="477.51663"
+         y="599.14606"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan10209">* Access Chip</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus, Normal';fill:#46ffe5;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="572.97937"
+       y="181.95024"
+       id="text15161"><tspan
+         sodipodi:role="line"
+         x="572.97937"
+         y="181.95024"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan15159">* Holographic LTD</tspan></text>
   </g>
 </svg>

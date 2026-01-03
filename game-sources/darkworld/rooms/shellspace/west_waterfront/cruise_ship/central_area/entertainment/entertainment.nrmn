@@ -8,6 +8,11 @@ East to the central area of the cruise ship.
     {enter_message
         output={@
 You enter the entertainment area.
+The north, west, and south walls are completely composed of outward curving
+windows.
+The floor of the room is filled with small round tables and chairs arranged
+around them.
+Groups of patrons are quietly discussing among themselves.
         }
     }
 
@@ -15,6 +20,11 @@ You enter the entertainment area.
         {message
             output={@
 You look around the entertainment area...
+The north, west, and south walls are completely composed of outward curving
+windows.
+The floor of the room is filled with small round tables and chairs arranged
+around them.
+Groups of patrons are quietly discussing among themselves.
             }
         }
     }
