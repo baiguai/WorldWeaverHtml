@@ -1,0 +1,8 @@
+{room, key=op_club, name=OP Club
+    {enter_message
+        output={@
+
+You are in the OP club.
+        }
+    }
+}

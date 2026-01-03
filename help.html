@@ -623,7 +623,7 @@
 
 <div class="search-dialog" id="searchDialog" style="display: none;">
     <input id="searchInput" placeholder="Search..." type="text">
-    <div class="search-results" id="searchList"><div class="selected">Ammo</div><div>Can't Attack</div><div>Lazer Gun Example</div></div>
+    <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
 </div>
 
 <div class="search-dialog" id="helpDialogUnified" style="display:none;">
@@ -635,7 +635,7 @@
 
 <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
     <h3>Links in Note</h3>
-    <div id="linksList"><a href="#" data-node-id="ujzx8lmy" class="selected">Lazer Gun Example</a></div>
+    <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
 </div>
 
 <div id="marksDialog" style="display: none;">
@@ -668,7 +668,7 @@
 <div id="historyDialog" style="display: none;">
     <h3>History</h3>
     <div class="history-content">
-        <div id="historyList"><div>Lazer Gun Example</div><div class="selected" style="background: var(--sel-bg);">Ammo</div><div>Attack</div><div>Introduction</div><div>Action</div><div>Element Cheatsheet</div><div>Can't Attack</div><div>Getting the Player Ready</div><div>Bullet List</div><div>Container</div><div>Armed Weapon</div><div>Arm</div><div>Admin Pass</div><div>Special Tags Cheat Sheet</div><div>Logic</div><div>Logic Comparison Operators</div><div>Message</div><div>Input</div><div>Injection</div><div>Global</div><div>Game</div><div>Enter Message</div><div>Dev Note</div><div>Custom</div><div>Attribute</div><div>Quick Links</div><div>Set - Output</div><div>Set</div><div>Room</div><div>Player</div></div>
+        <div id="historyList"></div>
     </div>
 </div>
 
@@ -2407,6 +2407,7 @@
                 finalRows.length = 0;
                 finalRows.push(...padded);
             }
+            finalRows.push("");
 
             ta.setRangeText(finalRows.join("\n"), start, end, "select");
         }

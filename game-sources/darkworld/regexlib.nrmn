@@ -13,6 +13,7 @@
         {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_escalator|!_regex, output=^(examine|x)(?: the)? escalator$, logic=x escalator|examine the escalator }
+        {attrib, tags=x_fan|!_regex, output=\b(x|examin(?:e)?)\s+(your(\s+)|the(\s+))?fan\b, logic=examine the fan|examine fan|x your fan|x your fan }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
         {attrib, tags=x_groups|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?groups\b, logic=examine the groups|examine groups|x the groups|x groups }
         {attrib, tags=x_hottubs|!_regex, output=^(examine|x)(?: the)? (hottubs|hottub|hot tubs|hot tub)$, logic=x hottub|examine the hot tubs }

@@ -1,0 +1,142 @@
+{npc, key=the_fan, name=The Fan, parent=cruise_entertainment
+    {attrib, output=init, tags=convo }
+
+    {enter_message
+        output={@
+
+A man sitting at one of the small round tables notices you.
+"You're <<[player]name>>!"
+<?[self]((convo)) = 'init'?>
+Do you want to see something really cool?
+<else>
+It's about time you entered Shellspace!
+He raises his glass.
+
+Do you know the answer?
+</?>
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see your fan.
+<?[self]((convo)) = 'init'?>
+Do you want to see something really cool?
+<else>
+It's about time you entered Shellspace!
+He raises his glass.
+
+Do you know the answer?
+</?>
+            }
+        }
+    }
+
+    {x_fan
+        {message
+            output={@
+You examine the apparent fan of yours.
+He is wearing a chrome-looking bomber jacket that has a handful of green
+blinking lights on it.
+A brushed metal band covers his eyes.
+
+            }
+        }
+    }
+
+
+    {yes
+        {message
+            output={@
+He becomes serious and says:
+"What's the size of a pointer on a 64-bit system?"
+
+* 4 bytes
+* 8 bytes
+* 16 bytes
+* depends on the type
+            }
+        }
+
+        {set, logic=[self]((convo)), output=pointer }
+    }
+
+    {pointer
+        {message
+            output={@
+"That is correct!"
+
+"In C++, what does the 'volatile' keyword tell the compiler?"
+
+* variable can throw exceptions
+* don't optimize this variable
+* variable is encrypted
+* thread-safe access
+            }
+        }
+
+        {set, logic=[self]((convo)), output=vol }
+    }
+
+    {optimize
+        {message
+            output={@
+"That is correct!"
+
+"What's 0xF0 & 0x0F in hexadecimal?"
+
+* 0xFF
+* 0x00
+* 0xF0
+* 0x0F
+            }
+        }
+
+        {set, logic=[self]((convo)), output=ox }
+    }
+
+
+
+
+
+    {input, syntax=[tplt_syntax]((x_fan))
+        {act, logic=x_fan, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=yes, tags=!_type|self }
+    }
+
+    {input, syntax=^8 bytes$
+        {act, logic=pointer, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[self]((convo)) = 'pointer'
+            }
+            output={@
+Um... no.
+            }
+        }
+    }
+
+    {input, syntax=don'?t optimize
+        {act, logic=optimize, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[self]((convo)) = 'vol'
+            }
+        }
+    }
+
+    {input, syntax=^0x00$
+        {move, logic=op_club, tags=[player]
+            output={@
+"That is correct!"
+            }
+        }
+    }
+}
