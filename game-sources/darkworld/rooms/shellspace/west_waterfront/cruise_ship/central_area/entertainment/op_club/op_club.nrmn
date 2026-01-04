@@ -1,8 +1,31 @@
 {room, key=op_club, name=OP Club
+    {attrib, output=false, tags=tested }
+
     {enter_message
         output={@
 
 You are in the OP club.
         }
+
+        {logic, name=OP Club, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
+
+    {look
+        {message
+            output={@
+You look around.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
 }

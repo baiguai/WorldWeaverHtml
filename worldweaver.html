@@ -1582,7 +1582,23 @@
                         newValue = elseBlock;
                     }
 
-                    output = output.replace(replaceBlock, newValue);
+                    if (newValue.trim() === "")
+                    {
+                        let blockToReplace = replaceBlock;
+                        let nextCharPos = endPos;
+
+                        if (output.substring(nextCharPos, nextCharPos + 2) === '\r\n') {
+                            blockToReplace += '\r\n';
+                        } else if (output.substring(nextCharPos, nextCharPos + 1) === '\n') {
+                            blockToReplace += '\n';
+                        }
+                        
+                        output = output.replace(blockToReplace, "");
+                    }
+                    else
+                    {
+                        output = output.replace(replaceBlock, newValue);
+                    }
 
                     startPos = output.indexOf("<?");
                 }

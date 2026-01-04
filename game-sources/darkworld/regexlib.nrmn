@@ -5,6 +5,7 @@
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
         {attrib, tags=x_bartender|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bartender\b, logic=examine the bartender|examine bartender|x the bartender|x bartender|x woman }
         {attrib, tags=x_bed|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(bed)\b, logic=examine the bed|x the bed|examine bed|x bed }
+        {attrib, tags=x_chair|!_regex, output=^(examine|x)(?: the)? (chair|chairs)$, logic=x the chair|x chair|examine the chairs|x chairs }
         {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip(?:s)?$, logic=x the chip|x chip|x chips|examine the chip|examine the chips }
         {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
         {attrib, tags=x_couples|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?couples\b, logic=examine the couples|examine couples|x the couples|x couples }
@@ -37,6 +38,7 @@
         {attrib, tags=x_slides|!_regex, output=^(examine|x)(?: the)? (slide|slides)$, logic=x slides|examine the slide }
         {attrib, tags=x_stairs|!_regex, output=^(examine|x)(?: the)? (stairs|staircase|stair case)$, logic=x stairs|examine the staircase }
         {attrib, tags=x_suitcase|!_regex, output=^(examine|x)(?: the)? suitcase$, logic=x suitcase|examine the suitcase }
+        {attrib, tags=x_table|!_regex, output=^(examine|x)(?: the)? (table|tables)$, logic=x the table|x table|examine the tables|x tables }
         {attrib, tags=x_ticket_booth|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:ticket\s+)?booth\b, logic=examine the booth|examine booth|examine ticket booth|x the booth|x booth|x ticket booth }
         {attrib, tags=x_toilet|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(toilet)\b, logic=examine the toilet|x the toilet|examine toilet|x toilet }
         {attrib, tags=x_topless_women|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(topless\s+)?women\b, logic=examine the women|examine topless women|examine women|x the topless women }
@@ -47,7 +49,7 @@
         {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
         {attrib, tags=x_under_your_desk|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?desk$, logic=x under your desk|x under desk|examine under the desk }
-        {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? window$, logic=x the window|x window|examine the window }
+        {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? (window|windows)$, logic=x the window|x window|examine the window|x windows }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
         {attrib, tags=x_your_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
@@ -125,4 +127,14 @@
 
     System
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
+
+
+
+    Entertainment
+
+        // * 4 bytes
+        // * 16 bytes
+        // * depends on the type
+
+        {attrib, tags=entrtn_wrong|!_regex, output=^((4|16) bytes|depends on the type)$, logic=4 bytes|16 bytes|depends on the type }
 }
