@@ -1,6 +1,5 @@
 {room, key=cruise_central_area, name=Cruise Ship Central Room
     {attrib, output=true, tags=tested }
-
     {attrib, tags=navigation
         output={@
 Up to the top deck.

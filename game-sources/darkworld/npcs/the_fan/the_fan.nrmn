@@ -1,5 +1,6 @@
 {npc, key=the_fan, name=The Fan, parent=cruise_entertainment
     {attrib, output=init, tags=convo }
+    {attrib, output=true, tags=tested }
 
     {enter_message
         output={@
@@ -8,12 +9,13 @@ A man sitting at one of the small round tables notices you.
 "You're <<[player]name>>!"
 <?[self]((convo)) = 'init'?>
 Do you want to see something really cool?
-<else>
-It's about time you entered Shellspace!
-He raises his glass.
-
-Do you know the answer?
 </?>
+        }
+
+        {logic, name=Entertainment - Fan, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -24,11 +26,30 @@ Do you know the answer?
 You see your fan.
 <?[self]((convo)) = 'init'?>
 Do you want to see something really cool?
-<else>
-It's about time you entered Shellspace!
-He raises his glass.
-
-Do you know the answer?
+</?>
+<?[self]((convo)) = 'pointer'?>
+"What's the size of a pointer on a 64-bit system?"
+* 4 bytes
+* 8 bytes
+* 16 bytes
+* depends on the type
+</?>
+<?[self]((convo)) = 'vol'?>
+"In C++, what does the 'volatile' keyword tell the compiler?"
+* variable can throw exceptions
+* don't optimize this variable
+* variable is encrypted
+* thread-safe access
+</?>
+<?[self]((convo)) = 'ox'?>
+"What's 0xF0 & 0x0F in hexadecimal?"
+* 0xFF
+* 0x00
+* 0xF0
+* 0x0F
+</?>
+<?[self]((convo)) = 'sad'?>
+Your fan has turned his back to you and is ignoring you.
 </?>
             }
         }
@@ -97,6 +118,22 @@ He becomes serious and says:
         {set, logic=[self]((convo)), output=ox }
     }
 
+    {wrong
+        {message
+            output={@
+<?[self]((convo)) = 'sad'?>
+
+Teh fan sighs.
+"Man, I had such high hopes that maybe you would be the one to fix Shellspace."
+He shakes his head.
+<else>
+That is not correct.  :/
+</?>
+            }
+        }
+
+        {set, logic=[self]((convo)), output=sad }
+    }
 
 
 
@@ -115,9 +152,6 @@ He becomes serious and says:
         {logic
             logic={@
                 ?[self]((convo)) = 'pointer'
-            }
-            output={@
-Um... no.
             }
         }
     }
@@ -138,5 +172,18 @@ Um... no.
 "That is correct!"
             }
         }
+
+        {logic
+            logic={@
+                ?[self]((convo)) = 'ox'
+            }
+        }
+    }
+
+
+
+
+    {input, syntax=[tplt_syntax]((entrtn_wrong))
+        {act, logic=wrong, tags=!_type|self }
     }
 }
