@@ -1,4 +1,5 @@
 {room, key=cruise_entertainment, name=Entertainment Area
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 East to the central area of the cruise ship.
@@ -12,7 +13,13 @@ The north, west, and south walls are completely composed of outward curving
 windows.
 The floor of the room is filled with small round tables and chairs arranged
 around them.
-Groups of patrons are quietly discussing among themselves.
+Groups of patrons are quietly talking among themselves.
+        }
+
+        {logic, name=Cruise ship entertainment area, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
         }
     }
 
@@ -24,10 +31,38 @@ The north, west, and south walls are completely composed of outward curving
 windows.
 The floor of the room is filled with small round tables and chairs arranged
 around them.
-Groups of patrons are quietly discussing among themselves.
+Groups of patrons are quietly talking among themselves.
             }
         }
     }
+
+    {windows
+        {message
+            output={@
+The windows curve outward. Beyond them you see the neon lights and towering
+buildings of the city spread out before you.
+            }
+        }
+    }
+
+    {tables
+        {message
+            output={@
+The entire room is filled with small round tables and chairs are set around
+them. Groups of patrons are sitting in the chairs chatting among themselves.
+            }
+        }
+    }
+
+    {chairs
+        {message
+            output={@
+You examine the chairs. You don't see anything out of the ordinary.
+Just random patrons who are sitting in the chairs, chatting among themselves.
+            }
+        }
+    }
+
 
 
     {inject, logic=/nav.inj }
@@ -40,5 +75,17 @@ Groups of patrons are quietly discussing among themselves.
 You return to the central area of the cruise ship.
             }
         }
+    }
+
+    {input, syntax=[tplt_syntax]((x_window))
+        {act, logic=windows, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_table))
+        {act, logic=tables, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_chair))
+        {act, logic=chairs, tags=!_type|room }
     }
 }
