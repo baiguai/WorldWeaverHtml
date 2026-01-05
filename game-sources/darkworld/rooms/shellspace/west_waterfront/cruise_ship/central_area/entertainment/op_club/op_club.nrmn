@@ -3,8 +3,7 @@
 
     {enter_message
         output={@
-
-You are in the OP club.
+"Welcome to Club OP."
         }
 
         {logic, name=OP Club, tags=!_test
