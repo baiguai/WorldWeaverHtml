@@ -1,4 +1,4 @@
-{macro, key=food, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201|~|take chip|~|e|~|w|~|s|~|room 223|~|take gun|~|arm gun|~|s|~|up|~|w|~|yes|~|8 bytes|~|dont optimize this varialbe|~|0x00|~|life|~|e }
+{macro, key=food, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak|~|w|~|w|~|i need a ticket|~|yes|~|l|~|s|~|s|~|up|~|n|~|l|~|s|~|e|~|s|~|yes|~|e|~|w|~|n|~|yes|~|s|~|w|~|x drawers|~|take watch|~|l|~|e|~|s|~|n|~|down|~|down|~|201|~|take chip|~|e|~|w|~|s|~|room 223|~|take gun|~|arm gun|~|s|~|up|~|w|~|yes|~|8 bytes|~|dont optimize this varialbe|~|0x00|~|life|~|e|~|e }
 
 {macro, key=, output= }
 
