@@ -1,0 +1,44 @@
+{room, key=cruise_food, name=Food Court
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West to the cruise ship central area.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You are in the food court.
+        }
+
+        {logic, name=Cruise food court, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+You are in the food court.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You return to the cruise ship's central area.
+            }
+        }
+    }
+}

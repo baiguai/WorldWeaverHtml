@@ -43,6 +43,7 @@ You take the watch.
 		}
 		{set, logic=[self]tags, output=+inventory }
 		{set, logic=[self]((moved)), output=true }
+        {set, logic=[player]((quest)), output= }
 
 		{logic, logic=[self]parent != [player]
 			output={@

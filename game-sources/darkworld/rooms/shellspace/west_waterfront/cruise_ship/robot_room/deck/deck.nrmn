@@ -72,6 +72,7 @@ She reclines again, looking out over the neon lights of the city.
         }
 
         {set, logic=[self]((topic)), output=agree }
+        {set, logic=[player]((quest)), output=Find the item }
     }
 
     {x_robot

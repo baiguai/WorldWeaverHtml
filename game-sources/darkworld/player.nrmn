@@ -13,9 +13,9 @@
     {attrib, output=init_[player]((!_life)), tags=maxlife }
     {attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }
     {attrib, name=Hit Score, output=init_[self]((armor)), tags=!_hitscore }
-    {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }
-    {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }
-    {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }
+    {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats|strength }
+    {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats|intelligence }
+    {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats|cunning }
     {attrib, name=Credits, output=[roll:<<[self]((credits_dice))>>d8], tags=stats|credits }
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }

@@ -24,6 +24,7 @@ Before you, the ocean extends on to the horizon.
         }
 
         {set, logic=[self]((activity)), output=general }
+        {set, logic=[player]((quest)), output= }
         {logic, name=Cruise ship upper deck, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'

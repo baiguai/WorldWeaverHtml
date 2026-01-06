@@ -125,6 +125,14 @@
         {attrib, tags=use_cloak|!_regex, output=^(?:use\s+(?:the\s+)?)?cloak\b$, logic=use cloak|use the cloak }
         {attrib, tags=use_life_chip|!_regex, output=^(?:use\s+(?:the\s+)?)?life\s+chip\b$, logic=use life chip|life chip|use the life chip }
 
+    Actions
+        {attrib, tags=act_life|!_regex, output=^(?:examine |x )?life$, logic=examine life|x life|life }
+        {attrib, tags=act_armor|!_regex, output=^(?:examine |x )?armor$, logic=examine armor|x armor|armor }
+        {attrib, tags=act_credits|!_regex, output=^(?:examine |x )?credits$, logic=examine credits|x credits|credits }
+        {attrib, tags=act_cunning|!_regex, output=^(?:examine |x )?cunning$, logic=examine cunning|x cunning|cunning }
+        {attrib, tags=act_intelligence|!_regex, output=^(?:examine |x )?intelligence$, logic=examine intelligence|x intelligence|intelligence }
+        {attrib, tags=act_strength|!_regex, output=^(?:examine |x )?strength$, logic=examine strength|x strength|strength }
+
     System
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 
