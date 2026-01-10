@@ -1,5 +1,5 @@
 {room, key=cruise_food, name=Food Court
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 West to the cruise ship central area.
