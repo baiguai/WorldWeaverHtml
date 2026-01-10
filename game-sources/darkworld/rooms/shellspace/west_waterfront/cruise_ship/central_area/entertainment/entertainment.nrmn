@@ -47,6 +47,16 @@ buildings of the city spread out before you.
         }
     }
 
+    {pillars
+        {message
+            output={@
+You examine the pillars.
+They are large and comprised completely of chrome. You don't see anything
+strange about them.
+            }
+        }
+    }
+
     {tables
         {message
             output={@
@@ -81,6 +91,10 @@ You return to the central area of the cruise ship.
 
     {input, syntax=[tplt_syntax]((x_window))
         {act, logic=windows, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_pillars))
+        {act, logic=pillars, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_table))

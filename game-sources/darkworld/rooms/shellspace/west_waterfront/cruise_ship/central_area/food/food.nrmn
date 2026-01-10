@@ -9,7 +9,8 @@ West to the cruise ship central area.
 
     {enter_message
         output={@
-You are in the food court.
+A massive food court spreads out before you. It is a circle of restaurants
+with a few halls leading off to various tourist shops.
         }
 
         {logic, name=Cruise food court, tags=!_test
@@ -23,7 +24,27 @@ You are in the food court.
         {message
             output={@
 You look around.
-You are in the food court.
+You are in a food court that spreads out before you. It is a circle of restaurants
+with a few halls leading off to various tourist shops.
+            }
+        }
+    }
+
+    {x_restaurants
+        {message
+            output={@
+You examine the restaurants.
+It seems like a weird thing to have in a virtual world where eating is
+completely unnecessary.
+            }
+        }
+    }
+
+    {x_halls
+        {message
+            output={@
+You examine the halls.
+The shops you can see appear to be mundane, boring tourist stores.
             }
         }
     }
@@ -40,5 +61,17 @@ You are in the food court.
 You return to the cruise ship's central area.
             }
         }
+    }
+
+    {input, syntax=[tplt_syntax]((x_restaurants))
+        {act, logic=x_restaurants, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_halls))
+        {act, logic=x_halls, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_shops))
+        {act, logic=x_halls, tags=!_type|room }
     }
 }
