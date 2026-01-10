@@ -170,6 +170,21 @@ That is not correct.  :/
         {move, logic=op_club, tags=[player]
             output={@
 "That is correct!"
+He stands up, "Follow me."
+
+The fan leads you to one of the large chrome pillars. He walks into the
+corner of the room behind the pillar.
+You hesitate.
+"Come on." he urges.
+Once you join him he touches the pillar in some sort of pattern. It begins
+to slowly rotate revealing a doorway - set into the pillar.
+
+He steps inside and you follow. You are in an illuminated cylindrical room.
+An elevator.
+It begins to rapidly descend. When it stops the door opens and the two
+of you step out into a dimly lit room.
+
+
             }
         }
 

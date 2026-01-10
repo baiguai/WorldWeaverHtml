@@ -1,10 +1,27 @@
 {room, key=op_club, name=OP Club
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {enter_message
         output={@
+"Welcome to Club OP."
+You look around. The room is completely empty.
+The walls are lined with green neon bars that run from the floor to the ceiling.
+Pulsing, moody, electronic music fills the space.
+In the center of the room is a ring of terminals. Each one glowing a dim green.
+All of the wiring protruding from the back of the terminals intertwines together
+and runs up into the ceiling.
 
-You are in the OP club.
+"You can boost one of your stats by a random value here. However, so far we
+are only able to do this once per individual in Shellspace. Eventually our
+goal is complete over-power status for everyone."
+
+"Each terminal boosts its displayed stat, choose which one you want from:
+* life
+* armor
+* strength
+* intelligence
+* cunning
+* credits"
         }
 
         {logic, name=OP Club, tags=!_test
@@ -18,6 +35,101 @@ You are in the OP club.
         {message
             output={@
 You look around.
+The walls are lined with green neon bars that run from the floor to the ceiling.
+Pulsing, moody, electronic music fills the space.
+In the center of the room is a ring of terminals. Each one glowing a dim green.
+All of the wiring protruding from the back of the terminals intertwines together
+and runs up into the ceiling.
+
+In the center of the room is a ring of terminals.
+They each have a single word glowing on their dim green screens:
+
+* life
+* armor
+* strength
+* intelligence
+* cunning
+* credits
+            }
+        }
+    }
+
+
+    {life
+        {message
+            output={@
+"Congratulations! You've not only boosted your life, but also increased your
+life's capacity by 5."
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
+            }
+        }
+    }
+
+    {armor
+        {message
+            output={@
+"Congratulations! You've boosted your armor!"
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
+            }
+        }
+    }
+
+    {strength
+        {message
+            output={@
+"Congratulations! You've boosted your strength!"
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
+            }
+        }
+    }
+
+    {intelligence
+        {message
+            output={@
+"Congratulations! You've boosted your intelligence!"
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
+            }
+        }
+    }
+
+    {cunning
+        {message
+            output={@
+"Congratulations! You've boosted your cunning!"
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
+            }
+        }
+    }
+
+    {credits
+        {message
+            output={@
+"Congratulations! You've increased your credits!"
+
+He then leads you back into the entertainment lounge, then unexpectedly
+simply leaves.
+
+
             }
         }
     }
@@ -27,5 +139,52 @@ You look around.
     {inject, logic=/look.inj }
 
 
+    {input, syntax=[tplt_syntax]((act_life))
+        {act, logic=life, tags=!_type|self }
+        {set, logic=[player]((!_life)), output=+=5 }
+        {set, logic=[player]((maxlife)), output=+=5 }
 
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
+
+    {input, syntax=[tplt_syntax]((act_armor))
+        {act, logic=armor, tags=!_type|self }
+        {set, logic=[player]((armor)), output=+=5 }
+
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
+
+    {input, syntax=[tplt_syntax]((act_strength))
+        {act, logic=strength, tags=!_type|self }
+        {set, logic=[player]((strength)), output=+=5 }
+
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
+
+    {input, syntax=[tplt_syntax]((act_intelligence))
+        {act, logic=intelligence, tags=!_type|self }
+        {set, logic=[player]((intelligence)), output=+=5 }
+
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
+
+    {input, syntax=[tplt_syntax]((act_cunning))
+        {act, logic=cunning, tags=!_type|self }
+        {set, logic=[player]((cunning)), output=+=5 }
+
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
+
+    {input, syntax=[tplt_syntax]((act_credits))
+        {act, logic=credits, tags=!_type|self }
+        {set, logic=[player]((credits)), output=+=5 }
+
+        {move, logic=cruise_entertainment, tags=[player] }
+        {set, logic=[the_fan]parent, output=!_limbo }
+    }
 }

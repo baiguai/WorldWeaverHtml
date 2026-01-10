@@ -11,6 +11,7 @@ East to the central area of the cruise ship.
 You enter the entertainment area.
 The north, west, and south walls are completely composed of outward curving
 windows.
+In the east, on either side of the entrance, are to large chrome pillars.
 The floor of the room is filled with small round tables and chairs arranged
 around them.
 Groups of patrons are quietly talking among themselves.
@@ -29,6 +30,7 @@ Groups of patrons are quietly talking among themselves.
 You look around the entertainment area...
 The north, west, and south walls are completely composed of outward curving
 windows.
+In the east, on either side of the entrance, are to large chrome pillars.
 The floor of the room is filled with small round tables and chairs arranged
 around them.
 Groups of patrons are quietly talking among themselves.
@@ -41,6 +43,16 @@ Groups of patrons are quietly talking among themselves.
             output={@
 The windows curve outward. Beyond them you see the neon lights and towering
 buildings of the city spread out before you.
+            }
+        }
+    }
+
+    {pillars
+        {message
+            output={@
+You examine the pillars.
+They are large and comprised completely of chrome. You don't see anything
+strange about them.
             }
         }
     }
@@ -79,6 +91,10 @@ You return to the central area of the cruise ship.
 
     {input, syntax=[tplt_syntax]((x_window))
         {act, logic=windows, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_pillars))
+        {act, logic=pillars, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_table))

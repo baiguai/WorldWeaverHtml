@@ -89,6 +89,14 @@ You walk down the stairs.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=cruise_food, tags=[player]
+            output={@
+You enter the food court area.
+            }
+        }
+    }
+
 
     {dev_note, tags=Todo
         output={@
