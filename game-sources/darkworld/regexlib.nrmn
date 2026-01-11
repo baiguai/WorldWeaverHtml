@@ -95,7 +95,9 @@
         {attrib, tags=go_west_up|!_regex, output=^(?=.*\b(west|w|up)\b)(?=.*\b(go|stairs|up)?\b).*$, logic=up|up stairs|go up|go up stairs|w|west }
 
         {attrib, tags=go_north|!_regex, output=^(?:go north|north|n)$, logic=n|north|go north }
+        {attrib, tags=go_north_west|!_regex, output=^(go\s+)?(north\s*west|nw)$, logic=nw|northwest|go north west }
         {attrib, tags=go_south|!_regex, output=^(?:go south|south|s)$, logic=s|south|go south }
+        {attrib, tags=go_south_east|!_regex, output=^(go\s+)?(south\s*east|se)$, logic=se|southeast|go south east }
         {attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }
         {attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }
 

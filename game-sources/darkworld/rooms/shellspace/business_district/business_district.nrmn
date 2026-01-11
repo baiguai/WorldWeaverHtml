@@ -1,0 +1,42 @@
+{room, key=business_northwest, name=Business District
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Southeast of where you are is the port.
+        }
+    }
+
+    {enter_message
+        output={@
+You enter the business district.
+        }
+
+        {logic, name=Business District northwest tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+You are in the business district.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_south_east))
+        {move, logic=street_vice_port, tags=[player]
+            output={@
+You return to the street corner where the ramp left you.
+            }
+        }
+    }
+}
