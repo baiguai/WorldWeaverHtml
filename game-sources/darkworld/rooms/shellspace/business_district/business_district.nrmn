@@ -17,6 +17,10 @@ Secdyne.
         output={@
 You enter the business district.
 You are surrounded by towering sky scrapers.
+They are sleek and modern in style, with mirrored windows and thin
+colored lights glowing in vertical or horizontal bands over the
+surface of the buildings.
+
 One building has a glowing sign over its main entrance: Apex Group.
 Angling off of the main road, you see a narrow path that has a sign
 above it that reads: Virtual Reality Row.
@@ -37,6 +41,7 @@ And the tallest of all the buildings has a Secdyne sign glowing on it.
 You look around...
 You are in the business district.
 You are surrounded by towering sky scrapers.
+
 One building has a glowing sign over its main entrance: Apex Group.
 Angling off of the main road, you see a narrow path that has a sign
 above it that reads: Virtual Reality Row.
