@@ -1,0 +1,45 @@
+{npc, key=bus_robot, name=Robot, parent=business_northwest
+    {enter_message
+        output={@
+
+You see a robot.
+It is tall, over two meters. Its entire body is chrome and it has been built
+in the shape of a woman. There is a thin glowing band of purple light that
+comprises its eyes and two small antennae jut from its head where its ears
+would be.
+        }
+    }
+
+    {look
+        {message, repeat=none
+            {message
+                output={@
+
+The robot approaches you.
+                }
+            }
+            {message
+                output={@
+
+There is a robot standing next to you.
+                }
+            }
+        }
+    }
+
+    {x_robot
+        {message
+            output={@
+You examine the robot...
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_robot))
+        {act, logic=x_robot, tags=!_type|self }
+    }
+}
+
+// vice_port_tickets]((done))
