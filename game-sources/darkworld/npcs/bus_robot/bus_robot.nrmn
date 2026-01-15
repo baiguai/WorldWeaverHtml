@@ -16,12 +16,20 @@ would be.
                 output={@
 
 The robot approaches you.
+"Greetings friend. How are you doing on this fine evening?"
+<?[player]((knows_about_killing)) = 'false' ?>
+The robot leans in close to you.
+"They're killing people in meat space."
+</?>
                 }
             }
             {message
                 output={@
 
 There is a robot standing next to you.
+<?[player]((knows_about_killing)) = 'false' ?>
+"Like I said, they're killing people in meat space."
+</?>
                 }
             }
         }
