@@ -1,4 +1,6 @@
 {npc, key=bus_robot, name=Robot, parent=business_northwest
+    {attrib, output=greeting, tags=topic }
+
     {enter_message
         output={@
 
@@ -20,6 +22,13 @@ The robot approaches you.
 <?[player]((knows_about_killing)) = 'false' ?>
 The robot leans in close to you.
 "They're killing people in meat space."
+<else>
+"I know who you are! I assume you are here to take on..."
+The robot looks around... "the RMRF."
+</?>
+
+<?[lazer_gun]parent != [player]?>
+"This is a dangerous place. Here, have a lazer gun."
 </?>
                 }
             }
@@ -29,6 +38,8 @@ The robot leans in close to you.
 There is a robot standing next to you.
 <?[player]((knows_about_killing)) = 'false' ?>
 "Like I said, they're killing people in meat space."
+<else>
+"I assume you are here to take on the RMRF."
 </?>
                 }
             }
@@ -41,6 +52,14 @@ There is a robot standing next to you.
 You examine the robot...
             }
         }
+
+        {move, logic=[player], tags=[self]
+            output={@
+The robot gives you a lazer gun.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+        {set, logic=[self]((moved)), output=true }
     }
 
 
@@ -49,5 +68,3 @@ You examine the robot...
         {act, logic=x_robot, tags=!_type|self }
     }
 }
-
-// vice_port_tickets]((done))
