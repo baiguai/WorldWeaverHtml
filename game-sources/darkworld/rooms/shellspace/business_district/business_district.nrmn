@@ -1,0 +1,90 @@
+{room, key=business_northwest, name=Business District
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North leads to the park.
+Southeast of where you are is the port.
+East leads to the Art District.
+West of where your are is the slums.
+Apex Group.
+Virtual Reality Row.
+Travel Agency.
+Secdyne.
+        }
+    }
+
+    {enter_message
+        output={@
+You enter the business district.
+You are surrounded by towering sky scrapers.
+They are sleek and modern in style, with mirrored windows and thin
+colored lights glowing in vertical or horizontal bands over the
+surface of the buildings.
+
+One building has a glowing sign over its main entrance: Apex Group.
+Angling off of the main road, you see a narrow path that has a sign
+above it that reads: Virtual Reality Row.
+You also see a Travel Agency building.
+And the tallest of all the buildings has a Secdyne sign glowing on it.
+        }
+
+        {logic, name=Business District northwest tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+You are in the business district.
+You are surrounded by towering sky scrapers.
+
+One building has a glowing sign over its main entrance: Apex Group.
+Angling off of the main road, you see a narrow path that has a sign
+above it that reads: Virtual Reality Row.
+You also see a Travel Agency building.
+And the tallest of all the buildings has a Secdyne sign glowing on it.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=the_park, tags=[player]
+            output={@
+You walk north, into the park.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=slums, tags=[player]
+            output={@
+You walk west, into the slums.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=slums, tags=[player]
+            output={@
+You walk to the art district.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south_east))
+        {move, logic=street_vice_port, tags=[player]
+            output={@
+You return to the street corner where the ramp left you.
+            }
+        }
+    }
+}

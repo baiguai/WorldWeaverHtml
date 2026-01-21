@@ -1,0 +1,98 @@
+{npc, key=bus_robot, name=Robot, parent=business_northwest
+    {attrib, output=greeting, tags=topic }
+
+    {enter_message
+        output={@
+
+You see a robot.
+It is tall, over two meters. Its entire body is chrome and it has been built
+in the shape of a woman. There is a thin glowing band of purple light that
+comprises its eyes and two small antennae jut from its head where its ears
+would be.
+        }
+    }
+
+    {look
+        {message, repeat=none
+            {message
+                output={@
+
+The robot approaches you.
+"Greetings friend. How are you doing on this fine evening?"
+<?[player]((knows_about_killing)) = 'false' ?>
+The robot leans in close to you.
+"They're killing people in meat space."
+<else>
+"I know who you are! I assume you are here to take on..."
+The robot looks around... "the RMRF."
+</?>
+
+<?[lazer_gun]parent != [player]?>
+"This is a dangerous place. Here, have a lazer gun."
+</?>
+                }
+            }
+            {message
+                output={@
+
+There is a robot standing next to you.
+<?[player]((knows_about_killing)) = 'false' ?>
+"Like I said, they're killing people in meat space."
+<else>
+"I assume you are here to take on the RMRF."
+</?>
+                }
+            }
+        }
+    }
+
+    {x_robot
+        {message
+            output={@
+You examine the robot.
+Its body is a smooth chrome, and it stands over 2 meters tall.
+
+<?[lazer_gun]parent != [player] ?>
+I have a lazer gun, would you like it?
+</?>
+            }
+        }
+    }
+
+    {give_gun
+        {message
+            output={@
+GUN!!!!
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_robot))
+        {act, logic=x_robot, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=give_gun, tags=!_type|self }
+
+        {move, logic=[player], tags=lazer_gun
+            output={@
+The robot gives you a lazer gun.
+            }
+        }
+        {set, logic=[lazer_gun]tags, output=+inventory }
+        {set, logic=[lazer_gun]((moved)), output=true }
+
+        {logic
+            logic={@
+                ?[lazer_gun]parent != [player]
+            }
+            {message
+                output={@
+You are already carrying a lazer gun.
+                }
+            }
+        }
+    }
+}
