@@ -60,4 +60,14 @@ You go west.
 
         {set, logic=[switch_hustler]parent, tags=!_limbo }
     }
+
+    {input, syntax=[tplt_syntax]((go_north_west))
+        {move, logic=business_northwest, tags=[player]
+            output={@
+You go north west.
+            }
+        }
+
+        {set, logic=[switch_hustler]parent, tags=!_limbo }
+    }
 }

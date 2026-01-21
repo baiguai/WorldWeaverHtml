@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="10" nextobjectid="21">
+ <group id="4" name="NPCs">
+  <objectgroup id="9" name="Business District">
+   <object id="20" name="Robot" x="5536" y="1600" width="32" height="32">
+    <properties>
+     <property name="NPC" type="file" value="../npcs/bus_robot/bus_robot.nrmn"/>
+    </properties>
+   </object>
+  </objectgroup>
+  <objectgroup id="7" name="Waterfront">
+   <object id="15" name="Ticket Woman" x="4928" y="2624" width="32" height="32">
+    <properties>
+     <property name="NPC" type="file" value="../npcs/cruise_ticket_woman/woman.nrmn"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </group>
+ <group id="5" name="Rooms">
+  <objectgroup id="8" name="Business District">
+   <object id="18" name="Business District" x="5504" y="1568" width="128" height="128"/>
+  </objectgroup>
+  <objectgroup id="3" name="Waterfront">
+   <object id="12" name="Waterfront" x="5152" y="2592" width="128" height="128">
+    <properties>
+     <property name="Room" type="file" value="../rooms/shellspace/west_waterfront/west_waterfront.nrmn"/>
+    </properties>
+   </object>
+   <object id="13" name="Ticket Booth" x="4896" y="2592" width="128" height="128">
+    <properties>
+     <property name="Room" type="file" value="../rooms/shellspace/west_waterfront/ticket_booth/ticket_booth.nrmn"/>
+     <property name="Room - Done" type="file" value="../rooms/shellspace/west_waterfront/ticket_booth/ticket_booth_done.nrmn"/>
+    </properties>
+   </object>
+  </objectgroup>
+  <objectgroup id="2" name="Port">
+   <object id="4" name="Port" x="5536" y="2400" width="128" height="128">
+    <properties>
+     <property name="Room" type="file" value="../rooms/shellspace/shellspace_port/port.nrmn"/>
+    </properties>
+   </object>
+   <object id="6" name="Escalator" x="5376" y="2240" width="128" height="128">
+    <properties>
+     <property name="Room" type="file" value="../rooms/shellspace/monorail/monorail.nrmn"/>
+    </properties>
+   </object>
+   <object id="7" name="Street View" x="5920" y="2528" width="128" height="128">
+    <properties>
+     <property name="Room" type="file" value="../rooms/shellspace/street_view/streetview.nrmn"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </group>
+ <group id="6" name="Items"/>
+</map>

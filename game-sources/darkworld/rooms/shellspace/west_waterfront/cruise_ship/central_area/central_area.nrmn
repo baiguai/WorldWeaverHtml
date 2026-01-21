@@ -96,12 +96,4 @@ You enter the food court area.
             }
         }
     }
-
-
-    {dev_note, tags=Todo
-        output={@
-* Entertainment area.
-* Food and shops.
-        }
-    }
 }
