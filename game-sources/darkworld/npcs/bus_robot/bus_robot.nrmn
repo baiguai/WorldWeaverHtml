@@ -49,22 +49,50 @@ There is a robot standing next to you.
     {x_robot
         {message
             output={@
-You examine the robot...
-            }
-        }
+You examine the robot.
+Its body is a smooth chrome, and it stands over 2 meters tall.
 
-        {move, logic=[player], tags=[self]
-            output={@
-The robot gives you a lazer gun.
+<?[lazer_gun]parent != [player] ?>
+I have a lazer gun, would you like it?
+</?>
             }
         }
-        {set, logic=[self]tags, output=+inventory }
-        {set, logic=[self]((moved)), output=true }
+    }
+
+    {give_gun
+        {message
+            output={@
+GUN!!!!
+            }
+        }
     }
 
 
 
     {input, syntax=[tplt_syntax]((x_robot))
         {act, logic=x_robot, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=give_gun, tags=!_type|self }
+
+        {move, logic=[player], tags=lazer_gun
+            output={@
+The robot gives you a lazer gun.
+            }
+        }
+        {set, logic=[lazer_gun]tags, output=+inventory }
+        {set, logic=[lazer_gun]((moved)), output=true }
+
+        {logic
+            logic={@
+                ?[lazer_gun]parent != [player]
+            }
+            {message
+                output={@
+You are already carrying a lazer gun.
+                }
+            }
+        }
     }
 }
