@@ -1,0 +1,114 @@
+{room, key=toplessrobot_kitchen, name=Kitchen
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+West, Exit the kitchen.
+        }
+    }
+
+    {enter_message
+        output={@
+The kitchen is spacious and sleek in its decor. The counters are brushed metal.
+There is a robin's egg and chrome refrigerator at the far end. You don't
+recognize most of the other appliances but they have space age lines to their
+shapes and rocket ship-style details.
+
+Above the counters are cupboards with equally space-age style handles on them.
+
+        }
+
+        {logic, name=Cruise ship robot's kitchen, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around.
+Against the facing wall is a refrigerator and other unidentified appliances
+line the counters.
+And above the counters are cupboards.
+
+            }
+        }
+    }
+
+    {x_counters
+        {message
+            output={@
+You examine the counters.
+Apart from the stylish appliances you don't see anything of interest.
+            }
+        }
+    }
+
+    {x_cupboards
+        {message
+            output={@
+You examine the cupboards.
+They are filled with rotting food. The stench of it steals your breath.
+Piles of barely recognizable rot fill them.
+            }
+        }
+    }
+
+    {x_fridge
+        {message
+            output={@
+You open the refrigerator. It is completely empty except for a large mirror
+standing on the top shelf.
+            }
+        }
+    }
+
+    {x_appliances
+        {message
+            output={@
+The appliances that you can see are mostly unrecognizable. They ARE very
+stylish and sleek.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=toplessrobot_room, tags=[player]
+            output={@
+
+You exit the kitchen.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_appliances))
+        {act, logic=x_counters, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_counters))
+        {act, logic=x_counters, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_counters))
+        {act, logic=x_counters, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_cupboards))
+        {act, logic=x_cupboards, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_fridge))
+        {act, logic=x_fridge, tags=!_type|room }
+    }
+}

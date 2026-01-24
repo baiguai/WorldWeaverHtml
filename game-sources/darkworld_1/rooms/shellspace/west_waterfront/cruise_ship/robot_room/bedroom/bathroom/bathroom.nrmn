@@ -1,0 +1,145 @@
+{room, key=toplessrobot_bathroom, name=Bathroom
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North, Exit the bathroom.
+        }
+    }
+
+    {enter_message
+        output={@
+
+It is large and the entire room is smooth stone tiles.
+Bright spotlights shine overhead and the massive mirror above the
+sink is framed by a purple neon light.
+The shower is large enough for four people to occupy it comfortably
+and the toilet is set inside a separate room.
+        }
+
+        {logic, name=Cruise ship robot's bathroom, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+The bathroom is large.
+The massive mirror above the sink is framed by a purple neon light.
+The shower is large enough for four people to occupy it comfortably
+and the toilet is set inside a separate room.
+            }
+        }
+    }
+
+    {x_mirror
+        {message
+            output={@
+You examine the mirror. You don't see anything suspicious.
+            }
+        }
+    }
+
+    {x_sink
+        {message
+            output={@
+You examine the sink.
+The faucet is wide and designed to let the water pour out like a
+waterfall.
+            }
+        }
+    }
+
+    {x_under_sink
+        {message
+            output={@
+You look under the sink.
+A thick cable is plugged into the wall. There is a strange set of
+prongs at the end of it with a glowing power level display that
+currently reads: 'N/A'.
+            }
+        }
+    }
+
+    {x_shower
+        {message
+            output={@
+The shower is absolutely enormous. Multiple people could comfortably
+shower in it. There are two oversize shower heads, one at each end.
+It appears to be unused. The hotel-supplied soaps have been untouched.
+            }
+        }
+    }
+
+    {x_toilet
+        {message
+            output={@
+You peer inside the small room that houses the toilet. The roll of
+toilet paper hasn't been used, the end of the roll is still neatly
+folded into a triangle shape.
+            }
+        }
+    }
+
+    {x_under_toilet
+        {message
+            output={@
+You kneel down to look under the toilet.
+You don't see anything, however as you stand up you notice what appears to
+be a small microphone attached to the wall.
+            }
+        }
+    }
+
+    {x_microphone
+        {message
+            output={@
+You crawl as far as you can into the cramped space between the toilet and the
+wall. The microphone is nothing more than a small dot securely mounted to
+the wall, with a fine mesh covering its surface.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((x_mirror))
+        {act, logic=x_mirror, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_sink))
+        {act, logic=x_sink, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_under_sink))
+        {act, logic=x_under_sink, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_shower))
+        {act, logic=x_shower, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_toilet))
+        {act, logic=x_toilet, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_under_toilet))
+        {act, logic=x_under_toilet, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_microphone))
+        {act, logic=x_microphone, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=toplessrobot_bedroom, tags=[player]
+            output={@
+
+You return to the bedroom.
+            }
+        }
+    }
+}

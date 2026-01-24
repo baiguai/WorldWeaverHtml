@@ -1,0 +1,155 @@
+{room, key=toplessrobot_deck, name=Deck
+    {attrib, output=false, tags=init }
+    {attrib, output=help, tags=topic }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+South, Go back into the hotel room.
+        }
+    }
+
+    {enter_message
+        output={@
+You are on the deck.
+
+<?[room]((init)) = 'false'?>
+She hands you one of the drinks and reclines in one
+of the four lounge chairs.
+
+You sit next to her and ask,
+"Why are you helping me?"
+She looks out over the glowing city that unfolds before you.
+
+"I was working at Secdyne.
+I had heard about your hack of the **New World Bank**.
+
+Then I accidentally overheard an argument among a couple of
+developers regarding re-purposing the security protocols to
+kill people, not only here, but in *meat space*...
+
+I figured you were my only hope in stopping this.
+Will you help me?"
+<else>
+The robot woman is sitting on one of the lounge chairs,
+looking out over the city.
+</?>
+        }
+
+        {set, logic=[room]((init)), output=true }
+
+        {logic, name=Cruise ship robot's deck, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are sitting in a lounge chair, next to the robot, on
+the deck.
+            }
+        }
+    }
+
+
+
+    {agree
+        {message
+            output={@
+"Oh good!
+
+If you were to take something from this room, and I know about it -
+they'll know about it."
+She nods slightly at you.
+"If you need to use the restroom, my bedroom is through the west door.
+There might be something worth taking there."
+
+She reclines again, looking out over the neon lights of the city.
+            }
+        }
+
+        {set, logic=[self]((topic)), output=agree }
+        {set, logic=[player]((quest)), output=Find the item }
+    }
+
+    {x_robot
+        {message
+            output={@
+You examine the robot, she is relaxing on one of the lounge chairs
+looking out over the lights of the city.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=toplessrobot_room, tags=[player]
+            output={@
+You get up and step through the large sliding glass door,
+into the hotel room.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=agree, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'help'
+            }
+            output={@
+She seems confused.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
+        {move, logic=cruise_players_room, tags=[player]
+            output={@
+She shakes her head gravely.
+"I'm so sorry."
+She gets up and approaches you then wraps her arms around you
+and leans in close.
+After looking into your eyes for a moment she kisses you on the
+lips and the world goes dark...
+
+
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'help'
+            }
+            output={@
+She seems confused.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((x_robot))
+        {act, logic=x_robot, tags=!_type|room }
+    }
+
+
+
+    {dev_note, tags=Todo
+        output={@
+* Define the lazer gun - hidden in her bedroom.
+* Ensure that the player gets the Secdyne, multiplexer clue.
+* If the player refuses to help - restrict most of the game.
+        }
+    }
+}

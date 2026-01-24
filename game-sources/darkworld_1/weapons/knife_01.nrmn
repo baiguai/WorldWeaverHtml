@@ -1,0 +1,46 @@
+{object, name=Knife, key=knife_01, syntax=[tplt_syntax]((knife_01_id)), tags=!_weapon
+    {attrib, logic=[roll:(4)2d6], tags=!_damage }
+    {attrib, output=a knife, tags=!_title }
+
+    {enter_message
+        output={@
+You see a knife.
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a knife.
+
+            }
+        }
+
+        {logic, logic=?[self]parent = [room] }
+    }
+
+
+    {input, syntax=[tplt_syntax]((knife_take))
+        {move, logic=[player], tags=[self]
+            output={@
+You take the knife.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+    }
+
+    {input, syntax=[tplt_syntax]((knife_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+You drop the knife.
+            }
+        }
+        {set, logic=[self]tags, output=-inventory }
+        {logic, logic=?[self]parent = [player]
+            output={@
+You aren't carrying that item.
+            }
+        }
+    }
+}

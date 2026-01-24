@@ -1,0 +1,58 @@
+{npc, key=switch_hustler, name=Switchblade Hustler, parent=street_vice_port
+    {attrib, output=exploit, tags=topic }
+    {attrib, output=initial, tags=step }
+
+    {attrib, output=false, tags=streets_answered }
+    {attrib, output=false, tags=ticket_answered }
+    {attrib, output=false, tags=piracy_answered }
+    {attrib, output=false, tags=secrets_answered }
+
+    {enter_message
+        output={@
+
+You see a shifty looking character on the corner, south of where you are,
+trying to sell people switchblades.
+
+HINT:
+* An easy way to strike up conversations 'examine' the characters: x shifty character OR x character
+
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a shifty character.
+            }
+        }
+    }
+
+    {char_hint
+        {message
+            output={@
+
+HINT:
+* There is a conversation flow - after picking an exploit, respond to his next question - yes or no.
+
+
+
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((hint))
+        {act, logic=char_hint, tags=!_type|self }
+    }
+
+    // Conversation
+    {inject, logic=./injections/exploit.inj }
+    {inject, logic=./injections/greeting.inj }
+    {inject, logic=./injections/knife.inj }
+    {inject, logic=./injections/ticket.inj }
+    {inject, logic=./injections/streets.inj }
+    {inject, logic=./injections/piracy.inj }
+    {inject, logic=./injections/secrets.inj }
+}

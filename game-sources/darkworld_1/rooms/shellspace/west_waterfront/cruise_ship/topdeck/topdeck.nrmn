@@ -1,0 +1,86 @@
+{room, key=cruise_top_deck, name=Top Deck
+    {attrib, output=muster, tags=activity }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North, the pool and hot tubs are situated here.
+East, is the bar.
+South, is the adults-only sunbathing area.
+Down, leads into the heart of the cruise ship.
+        }
+    }
+
+    {enter_message
+        output={@
+<?[self]((activity)) = 'muster'?>
+You are attending the mandatory muster drill.
+Another virtual woman goes over the process of abandoning the ship should something go wrong.
+You are to report to section A.
+<else>
+You are on the top deck near the railing.
+Before you, the ocean extends on to the horizon.
+</?>
+        }
+
+        {set, logic=[self]((activity)), output=general }
+        {set, logic=[player]((quest)), output= }
+        {logic, name=Cruise ship upper deck, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+<?[self]((activity)) = 'muster'?>
+You are standing among the crowd, as the muster drill is underway.
+<else>
+You look around...
+You are on the top deck near the railing.
+Before you, the ocean extends on to the horizon.
+</?>
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_down))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You decend into the heart of the cruise ship.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=cruise_top_pool, tags=[player]
+            output={@
+You go north.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_adults, tags=[player]
+            output={@
+You go south.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=cruise_top_bar, tags=[player]
+            output={@
+You go east.
+            }
+        }
+    }
+}

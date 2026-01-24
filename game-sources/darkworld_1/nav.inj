@@ -1,0 +1,11 @@
+{navigation
+    {message
+        output={@
+
+
+
+---
+<<[room]((navigation))>>
+        }
+    }
+}
