@@ -1,0 +1,132 @@
+{room, key=shellspace_port, name=Port
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+There is an escalator going up
+and a moving ramp going down.
+        }
+    }
+
+    {enter_message
+        output={@
+A bright green neon light runs around the ceiling of the large circular room.
+Along the walls are instructional screens that flicker with information.
+There is no one else in the port at the moment.
+
+You see an escalator and a moving ramp set into the wall.
+        }
+
+        {logic, name=Shellspace Port room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+A bright green neon light runs around the ceiling of the large circular room.
+Along the walls are instructional screens that flicker with information.
+There is no one else in the port at the moment.
+            }
+        }
+    }
+
+    {x_screens
+        {message
+            output={@
+
+You examine the screens.
+Each one is typing out helpful instructions in a black and green terminal.
+
+One of the screens informs you that due to safety concerns monorail tickets
+may not be purchased in the port. They will have to be purchased at authorized
+locations throughout the city.
+
+Another screen lets you know that for their safety oracles are disguised. If
+you happen to identify one, you can ask them various questions about the city
+or get information on various topics of concern to you. There is often an
+oracle near the port.
+
+A third screen tells you that hacking, outside of heavily regulated and licensed
+organizations is strictly illegal. Immediate and permanent expulsion from
+Shellspace can result.
+
+Another screen says that the new spaceport will be operational shortly. Due
+to cost savings it has been built in the south end of the industrial district.
+            }
+        }
+    }
+
+    {x_lights
+        {message
+            output={@
+You examine the green lights.
+They are mundane neon tubes, glowing green. They were very popular in the era
+when Shellspace was originally coded.
+            }
+        }
+    }
+
+    {x_escalator
+        {message
+            output={@
+You examine the escalator. Its steps are clear glass. You can see the machinery
+below them as they move upward. The railings are also transparent.
+Other than its aesthetics you don't see anything odd about it.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((x_screens))
+        {act, logic=x_screens, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_green_lights))
+        {act, logic=x_lights, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_escalator))
+        {act, logic=x_escalator, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_up))
+        {move, logic=monorail_port, tags=[player]
+            output={@
+You ascend the escalator.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_down))
+        {move, logic=street_vice_port, tags=[player]
+            output={@
+You step onto the ramp and it descends into darkness.
+After a moment you emerge on the bright bustling streets of the city.
+
+As you step out into the neon light a ghostly compass appears
+super-imposed in the top left corner of your vision.
+
+
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Checkout
+        output={@
+Checkout:
+The Port has been checked out.
+        }
+    }
+}

@@ -1,0 +1,107 @@
+{room, key=cruise_entertainment, name=Entertainment Area
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+East to the central area of the cruise ship.
+        }
+    }
+
+    {enter_message
+        output={@
+You enter the entertainment area.
+The north, west, and south walls are completely composed of outward curving
+windows.
+In the east, on either side of the entrance, are to large chrome pillars.
+The floor of the room is filled with small round tables and chairs arranged
+around them.
+Groups of patrons are quietly talking among themselves.
+        }
+
+        {logic, name=Cruise ship entertainment area, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the entertainment area...
+The north, west, and south walls are completely composed of outward curving
+windows.
+In the east, on either side of the entrance, are to large chrome pillars.
+The floor of the room is filled with small round tables and chairs arranged
+around them.
+Groups of patrons are quietly talking among themselves.
+            }
+        }
+    }
+
+    {windows
+        {message
+            output={@
+The windows curve outward. Beyond them you see the neon lights and towering
+buildings of the city spread out before you.
+            }
+        }
+    }
+
+    {pillars
+        {message
+            output={@
+You examine the pillars.
+They are large and comprised completely of chrome. You don't see anything
+strange about them.
+            }
+        }
+    }
+
+    {tables
+        {message
+            output={@
+The entire room is filled with small round tables and chairs are set around
+them. Groups of patrons are sitting in the chairs chatting among themselves.
+            }
+        }
+    }
+
+    {chairs
+        {message
+            output={@
+You examine the chairs. You don't see anything out of the ordinary.
+Just random patrons who are sitting in the chairs, chatting among themselves.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=cruise_central_area, tags=[player]
+            output={@
+You return to the central area of the cruise ship.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((x_window))
+        {act, logic=windows, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_pillars))
+        {act, logic=pillars, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_table))
+        {act, logic=tables, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_chair))
+        {act, logic=chairs, tags=!_type|room }
+    }
+}
