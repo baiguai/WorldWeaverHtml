@@ -1,0 +1,85 @@
+{npc, name=Ticket Booth Woman, parent=vice_port_tickets
+    {attrib, output=greeting, tags=topic }
+    {attrib, tags=invisible
+        output={@
+The woman doesn't seem to see you.
+        }
+    }
+
+    {enter_message
+        output={@
+There is a woman inside the ticket booth.
+She has long silver hair and her eyes are solid mirrored chrome.
+Silver rings hover along the length of her neck.
+
+She smiles.
+"Can I help you?"
+        }
+
+        {set, logic=[self]((topic)), output=greeting }
+
+        {inject, logic=/items/xplt_cloak/cloak.inj }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a woman in the ticket booth.
+            }
+        }
+    }
+
+    {x_woman
+        {message
+            output={@
+
+
+You examine the woman.
+She has long silver hair and her eyes are solid mirrored chrome.
+Silver rings hover along the length of her neck.
+            }
+        }
+    }
+
+
+
+    {hint
+        {message
+            output={@
+Maybe you should tell her that you need a ticket.
+            }
+        }
+    }
+
+
+
+
+    // Conversation
+    {inject, logic=./injections/greeting.inj }
+    {inject, logic=./injections/buy.inj }
+    {inject, logic=./injections/done.inj }
+
+
+    {input, syntax=[tplt_syntax]((x_woman))
+        {act, logic=x_woman, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((hint))
+        {act, logic=hint, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'greeting'
+            }
+        }
+    }
+}
+
+
+{dev_note, tags=TODO
+    output={@
+Define a travel agency, and move the: cruise_ticket Element to that location.
+Or at least move it to the Player when they purchase it.
+    }
+}

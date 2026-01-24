@@ -1,0 +1,49 @@
+{npc, key=top_deck_lady, name=Lady, parent=cruise_top_bar
+    {attrib, output=greet, tags=topic }
+
+    {enter_message
+        output={@
+You see a lady sitting at the bar.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a lady at the bar.
+            }
+        }
+    }
+
+    {x_woman
+        {message
+            output={@
+She is crying. So you ask her what's wrong.
+After taking a large gulp of her drink she leans in close and barely whispers:
+"The security protocols... They just killed my husband."
+She looks around before adding,
+"Not just in here but in real life. He's dead."
+
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_woman))
+        {act, logic=x_woman, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[self]((topic)) = 'greet'
+            }
+            output={@
+The woman continues to sob over her drink.
+She seems to not be in the mood to talk to you anymore.
+
+            }
+        }
+
+        {set, logic=[self]((topic)), output=crying }
+    }
+}

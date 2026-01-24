@@ -1,0 +1,90 @@
+{room, key=monorail_port, name=Monorail
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+There is an escalator going down.
+        }
+    }
+
+    {enter_message
+        output={@
+You are on the monorail bay.
+Your path is blocked by a ticket booth.
+
+<?[player]((monorail_ticket)) = 'false' ?>
+You are stopped and asked for a ticket.
+This is a problem, you don't have a ticket.
+<else>
+You have a ticket and can give it to him using:
+give ticket
+</?>
+        }
+
+        {logic, name=Monorail room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+You are on the monorail bay.
+Your path is blocked by a ticket booth.
+
+<?[player]((monorail_ticket)) = 'false' ?>
+You are stopped and asked for an annual ticket.
+This is a problem, you don't have a ticket.
+<else>
+You have a ticket and can give it to him using:
+give ticket
+</?>
+            }
+        }
+    }
+
+    {x_booth
+        {message
+            output={@
+The ticket booth is made completely of thick glass, and it blocks the
+entirety of the passage towards the monorail. Focused spot lights shine down
+on the ticket agent's floating readout and tall stool.
+
+The ticket agent is a slender man in a black suit. He is sitting on the stool
+with his legs crossed and a bored expression painted on his face.
+He clearly wouldn't be there if Shellspace wasn't awarding him with in-world
+credits.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((x_ticket_booth))
+        {act, logic=x_booth, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_down))
+        {move, logic=shellspace_port, tags=[player]
+            output={@
+You descend the escalator into the port.
+            }
+        }
+    }
+
+
+    {dev_note, tags=Checkout
+        output={@
+Checkout:
+The monorail ticket booth has been checked out.
+        }
+    }
+}

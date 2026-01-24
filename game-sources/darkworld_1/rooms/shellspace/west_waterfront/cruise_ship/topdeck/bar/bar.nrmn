@@ -1,0 +1,78 @@
+{room, key=cruise_top_bar, name=The Bar
+    {attrib, output=chat, tags=topic }
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North, the pool and hot tubs are situated here.
+West, top deck, railing.
+South, is the adults-only sunbathing area.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You approach the bar.
+        }
+
+        {logic, name=Cruise ship upper bar, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the bar.
+            }
+        }
+    }
+
+    {x_bar
+        {message
+            output={@
+You examine the bar. It is a thin, curved, hovering pane of glass.
+The bartender periodically wipes down its surface, keeping it free of
+smudges and spilled liquid.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((x_bar))
+        {act, logic=x_bar, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=cruise_top_pool, tags=[player]
+            output={@
+You go north.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=cruise_top_deck, tags=[player]
+            output={@
+You go west.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=cruise_top_adults, tags=[player]
+            output={@
+You go south.
+            }
+        }
+    }
+}

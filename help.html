@@ -3173,11 +3173,47 @@
 
         function searchTree(query) {
             searchMatches = [];
-            const matchContent = !query.startsWith(':');
-            const q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
+            const searchTitleOnly = query.startsWith(':');
+            let q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
+
+            let parts = [];
+            let isWildcardSearch = false;
+
+            if (q.includes('*')) {
+                isWildcardSearch = true;
+                parts = q.split('*').filter(p => p.length > 0);
+            } else {
+                // If no wildcard, treat the whole query as a single part
+                parts.push(q);
+            }
+
             (function walk(nodes) {
                 for (const n of nodes) {
-                    if ((n.title && n.title.toLowerCase().includes(q)) || (matchContent && n.content && n.content.toLowerCase().includes(q))) {
+                    const nodeTitle = n.title ? n.title.toLowerCase() : '';
+                    const nodeContent = n.content ? n.content.toLowerCase() : ''; 
+
+                    let matches = false;
+
+                    let allPartsMatch = true;
+                    for (const part of parts) {
+                        let partFound = false;
+                        if (nodeTitle.includes(part)) {
+                            partFound = true;
+                        }
+                        if (!searchTitleOnly && nodeContent.includes(part)) { // Only search content if not title-only
+                            partFound = true;
+                        }
+                        if (!partFound) {
+                            allPartsMatch = false;
+                            break;
+                        }
+                    }
+                    if (allPartsMatch) {
+                        matches = true;
+                    }
+                    
+
+                    if (matches) {
                         searchMatches.push(n);
                     }
                     if (n.children && n.children.length) walk(n.children);
