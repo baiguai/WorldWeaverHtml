@@ -115,6 +115,8 @@
 
         {attrib, tags=deep_grid|!_regex, output=^deep grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deep grid|deep grid systems|deep grid system's|deep grid system's tower }
 
+        {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
+
     Conversation
         {attrib, tags=purchase_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }
         {attrib, tags=conv_bartender|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|talk\s+to)\s+(the\s+)?bartender\b, logic=talk to the bartender|talk to bartender|greet bartender|greet the bartender|yes }
@@ -143,6 +145,9 @@
 
     System
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
+
+    Specific
+        {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 
 

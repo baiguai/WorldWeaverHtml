@@ -1,33 +1,35 @@
-{room, key=the_park, name=The Park
+{room, key=secdyne, name=Secdyne Building
     {attrib, tags=navigation
         output={@
-South leads to the Business District.
+Exit leaves the building.
         }
     }
 
     {enter_message
         output={@
-You enter the park.
+A sprawling reception area unfolds before you.
         }
     }
 
     {look
         {message
             output={@
-You look around the park...
+You look around...
             }
         }
     }
+
 
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
 
-    {input, syntax=[tplt_syntax]((go_south))
+
+    {input, syntax=[tplt_syntax]((exit))
         {move, logic=business_northwest, tags=[player]
             output={@
-You go south to the business district.
+You exit the Secdyne building.
             }
         }
     }
