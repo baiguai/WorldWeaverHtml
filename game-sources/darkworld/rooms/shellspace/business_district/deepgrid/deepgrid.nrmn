@@ -1,0 +1,34 @@
+{room, key=deepgrid, name=Deepgrid Systems Tower 01
+    {attrib, tags=navigation
+        output={@
+Exit leaves the building.
+        }
+    }
+
+    {enter_message
+        output={@
+You step into the building...
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((exit))
+        {move, logic=business_northwest, tags=[player]
+            output={@
+You exit the Deepgrid tower.
+            }
+        }
+    }
+}

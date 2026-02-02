@@ -1,5 +1,5 @@
 {room, key=business_northwest, name=Business District
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 North leads to the park.
@@ -77,6 +77,22 @@ You walk west, into the slums.
         {move, logic=slums, tags=[player]
             output={@
 You walk to the art district.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deep_grid))
+        {move, logic=deepgrid, tags=[player]
+            output={@
+You enter the Deepgrid Tower.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((secdyne))
+        {move, logic=secdyne, tags=[player]
+            output={@
+You enter the Secdyne building.
             }
         }
     }
