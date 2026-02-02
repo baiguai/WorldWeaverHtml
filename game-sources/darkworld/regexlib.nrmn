@@ -113,8 +113,6 @@
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
 
-        {attrib, tags=deep_grid|!_regex, output=^deep grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deep grid|deep grid systems|deep grid system's|deep grid system's tower }
-
         {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
 
     Conversation
@@ -147,6 +145,7 @@
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 
     Specific
+        {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 

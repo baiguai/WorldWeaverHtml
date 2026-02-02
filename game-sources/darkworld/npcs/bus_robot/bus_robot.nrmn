@@ -40,7 +40,8 @@ The robot leans in close to you.
 "I know who you are! I assume you are here to take on..."
 The robot looks around... "the RMRF."
 
-"To infiltrate them, get into the inner circle of Secdyne."
+"To infiltrate them, track down the orb in the Deepgrid building, then go
+to Secdyne."
 </?>
 
 <?[lazer_gun]parent != [player]?>

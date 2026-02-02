@@ -81,6 +81,14 @@ You walk to the art district.
         }
     }
 
+    {input, syntax=[tplt_syntax]((deep_grid))
+        {move, logic=deepgrid, tags=[player]
+            output={@
+You enter the Deepgrid Tower.
+            }
+        }
+    }
+
     {input, syntax=[tplt_syntax]((secdyne))
         {move, logic=secdyne, tags=[player]
             output={@

@@ -1,4 +1,4 @@
-{room, key=secdyne, name=Secdyne Building
+{room, key=deepgrid, name=Deepgrid Systems Tower 01
     {attrib, tags=navigation
         output={@
 Exit leaves the building.
@@ -7,15 +7,7 @@ Exit leaves the building.
 
     {enter_message
         output={@
-A sprawling reception area unfolds before you.
-There is a curving wall of windows to your right.
-The ceiling is about 15 meters overhead and point lights hang low from it.
-A gray tinted glass desk runs along the length of the wall to your left.
-There is a woman at a terminal near the center.
-
-She greets you.
-"Hello! Are you here to see someone, or have you come to take a tour?"
-
+You step into the building...
         }
     }
 
@@ -28,16 +20,14 @@ You look around...
     }
 
 
-
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
-
 
 
     {input, syntax=[tplt_syntax]((exit))
         {move, logic=business_northwest, tags=[player]
             output={@
-You exit the Secdyne building.
+You exit the Deepgrid tower.
             }
         }
     }
