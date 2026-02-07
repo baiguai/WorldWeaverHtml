@@ -47,6 +47,8 @@ to Secdyne."
 <?[lazer_gun]parent != [player]?>
 <?[self]((asked_gun)) = 'false'?>
 I have a lazer gun, would you like it?
+<else>
+I see you have a gun. Good. You will need it.
 </?>
 </?>
                 }
@@ -104,4 +106,7 @@ You are already carrying a lazer gun.
     {input, syntax=[tplt_syntax]((no))
         {act, logic=no, tags=!_type|self }
     }
+
+
+    {inject, logic=./converse.inj }
 }

@@ -149,6 +149,10 @@
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 
+    Questions
+        {attrib, tags=where_to_go|!_regex, output=\bwhere\s+(?:do\s+i\s+go(?:\s+now)?|should\s+i\s+go)|but\s+where\b, logic=but where do i go?|where should I go|where do i go now? }
+
+
 
     Entertainment
 

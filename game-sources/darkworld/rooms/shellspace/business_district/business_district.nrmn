@@ -87,6 +87,8 @@ You walk to the art district.
 You enter the Deepgrid Tower.
             }
         }
+
+        {set, logic=[bus_robot]parent, output=!_limbo }
     }
 
     {input, syntax=[tplt_syntax]((secdyne))
