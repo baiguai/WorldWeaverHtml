@@ -2,12 +2,20 @@
     {attrib, tags=navigation
         output={@
 Exit leaves the building.
+East - elevators
         }
     }
 
     {enter_message
         output={@
-You step into the building...
+You step into the Deepgrid building.
+A deep red wooden service desk spans the left end of the lobby.
+There is no one standing behind the desk.
+
+You don't see anyone else within the lobby.
+
+East of where you are you see the elevators.
+
         }
     }
 
@@ -28,6 +36,14 @@ You look around...
         {move, logic=business_northwest, tags=[player]
             output={@
 You exit the Deepgrid tower.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=deepgrid_elevators, tags=[player]
+            output={@
+You approach the elevators.
             }
         }
     }
