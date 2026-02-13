@@ -1,0 +1,47 @@
+{room, key=deepgrid_floor_10, name=Floor 10
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Elevator enters the elevator.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You are on the 10th floor.
+        }
+
+        {logic, name=Deepgrid elevator tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {look
+        {message
+            output={@
+You are on the 10th floor.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press one of the elevator buttons. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
+}
