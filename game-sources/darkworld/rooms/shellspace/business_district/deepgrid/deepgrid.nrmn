@@ -1,4 +1,5 @@
 {room, key=deepgrid, name=Deepgrid Systems Tower 01
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Exit leaves the building.
@@ -17,12 +18,26 @@ You don't see anyone else within the lobby.
 East of where you are you see the elevators.
 
         }
+
+        {logic, name=Deepgrid tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
         {message
             output={@
 You look around...
+
+A deep red wooden service desk spans the left end of the lobby.
+There is no one standing behind the desk.
+
+You don't see anyone else within the lobby.
+
+East of where you are you see the elevators.
+
             }
         }
     }

@@ -1,0 +1,55 @@
+{room, key=deepgrid_elevators, name=Elevators
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Elevator - enter an elevator
+West - the lobby
+        }
+    }
+
+    {enter_message
+        output={@
+You are in the elevators area.
+        }
+
+        {logic, name=Deepgrid elevators tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+You are in the elevators area.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press one of the elevator buttons. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=deepgrid, tags=[player]
+            output={@
+You return to the lobby of the Deepgrid building.
+            }
+        }
+    }
+}
