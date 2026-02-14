@@ -2420,7 +2420,7 @@
             let description = "";
             const spc = " ";
 
-            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} (${parentElem.ElementKey}) -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
             indentString += spc.repeat(3);
 
             for (const attrib of getChildrenByType(parentElem, "attribute")) {
