@@ -1,4 +1,4 @@
-{room, key=deepgrid_floor_10, name=Hallway
+{room, key=deepgrid_gen_floor, name=Hallway
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@

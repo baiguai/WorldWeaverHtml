@@ -58,10 +58,18 @@ You exit the elevator.
         }
     }
 
-    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_10|))
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_gen_floor))
+        {move, logic=deepgrid_gen_floor, tags=[player]
+            output={@
+You select your floor.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_10))
         {move, logic=deepgrid_floor_10, tags=[player]
             output={@
-You press the button for floor 10.
+You select your floor.
             }
         }
     }
