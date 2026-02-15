@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="10" nextobjectid="21">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="10" nextobjectid="22">
  <group id="4" name="NPCs">
   <objectgroup id="9" name="Business District">
    <object id="20" name="Robot" x="5536" y="1600" width="32" height="32">
@@ -18,7 +18,8 @@
  </group>
  <group id="5" name="Rooms">
   <objectgroup id="8" name="Business District">
-   <object id="18" name="Business District" x="5504" y="1568" width="128" height="128"/>
+   <object id="18" name="Business District" x="5504" y="1504" width="256" height="192"/>
+   <object id="21" name="Secdyne" x="5632" y="1536" width="32" height="32"/>
   </objectgroup>
   <objectgroup id="3" name="Waterfront">
    <object id="12" name="Waterfront" x="5152" y="2592" width="128" height="128">

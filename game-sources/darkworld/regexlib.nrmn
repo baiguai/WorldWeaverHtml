@@ -109,11 +109,17 @@
         {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }
         {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
 
+        {attrib, tags=deepgrid_elevator_gen_floor|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*(?:[2-9]|1[1-9]|2[0-9]|3[0-24-9]|[4-6][0-9]|7[0-79])$, logic=press 1|floor 11|button 50|press 77|button 78|45|80 }
+        {attrib, tags=deepgrid_elevator_floor_10|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*10$, logic=floor 10|button 10|press 10|10|press 11 }
+        {attrib, tags=deepgrid_elevator_floor_1|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*1$, logic=floor 1|button 10|press 1|1|press 11 }
+        {attrib, tags=elevator|!_regex, output=\b(enter\s+(the\s+|an?\s+)?)?elevator\b, logic=enter the elevator|enter elevator|elevator }
+        {attrib, tags=enter_1023|!_regex, output=^enter\s*1023$, logic=enter 1023|enter 1011 }
+        {attrib, tags=enter_non_1023|!_regex, output=^enter\s*(?:100[1-9]|101[0-9]|102[0-24-5])$, logic=enter 1023|enter 1011 }
         {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
 
-        {attrib, tags=deep_grid|!_regex, output=^deep grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
 
     Conversation
         {attrib, tags=purchase_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }
@@ -143,6 +149,14 @@
 
     System
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
+
+    Specific
+        {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
+
+
+    Questions
+        {attrib, tags=where_to_go|!_regex, output=\bwhere\s+(?:do\s+i\s+go(?:\s+now)?|should\s+i\s+go)|but\s+where\b, logic=but where do i go?|where should I go|where do i go now? }
 
 
 

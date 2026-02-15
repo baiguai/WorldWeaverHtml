@@ -14,11 +14,24 @@ would be.
     }
 
     {look
+        {message
+            output={@
+
+You see a robot.
+It is looking at you.
+            }
+        }
+    }
+
+    {x_robot
         {message, repeat=none
             {message
                 output={@
+You examine the robot.
+Its body is a smooth chrome, and it stands over 2 meters tall.
 
-The robot approaches you.
+It is looking at you.
+
 "Greetings friend. How are you doing on this fine evening?"
 <?[player]((knows_about_killing)) = 'false' ?>
 The robot leans in close to you.
@@ -26,40 +39,26 @@ The robot leans in close to you.
 <else>
 "I know who you are! I assume you are here to take on..."
 The robot looks around... "the RMRF."
+
+"To infiltrate them, track down the orb in the Deepgrid building, then go
+to Secdyne."
 </?>
 
 <?[lazer_gun]parent != [player]?>
 <?[self]((asked_gun)) = 'false'?>
-"This is a dangerous place. Would you like a lazer gun?"
+I have a lazer gun, would you like it?
+<else>
+I see you have a gun. Good. You will need it.
 </?>
 </?>
                 }
             }
             {message
                 output={@
-
-There is a robot standing next to you.
-<?[player]((knows_about_killing)) = 'false' ?>
-"Like I said, they're killing people in meat space."
-<else>
-"I assume you are here to take on the RMRF."
-</?>
-                }
-            }
-        }
-    }
-
-    {x_robot
-        {message
-            output={@
 You examine the robot.
 Its body is a smooth chrome, and it stands over 2 meters tall.
-
-<?[lazer_gun]parent != [player]?>
-<?[self]((asked_gun)) = 'false'?>
-I have a lazer gun, would you like it?
-</?>
-</?>
+It is looking at you.
+                }
             }
         }
 
@@ -107,4 +106,7 @@ You are already carrying a lazer gun.
     {input, syntax=[tplt_syntax]((no))
         {act, logic=no, tags=!_type|self }
     }
+
+
+    {inject, logic=./converse.inj }
 }

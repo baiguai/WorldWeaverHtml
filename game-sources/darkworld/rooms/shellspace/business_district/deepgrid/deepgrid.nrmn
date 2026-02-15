@@ -1,0 +1,65 @@
+{room, key=deepgrid, name=Deepgrid Systems Tower 01
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Exit leaves the building.
+East - elevators
+        }
+    }
+
+    {enter_message
+        output={@
+You step into the Deepgrid building.
+A deep red wooden service desk spans the left end of the lobby.
+There is no one standing behind the desk.
+
+You don't see anyone else within the lobby.
+
+East of where you are you see the elevators.
+
+        }
+
+        {logic, name=Deepgrid tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+
+A deep red wooden service desk spans the left end of the lobby.
+There is no one standing behind the desk.
+
+You don't see anyone else within the lobby.
+
+East of where you are you see the elevators.
+
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((exit))
+        {move, logic=business_northwest, tags=[player]
+            output={@
+You exit the Deepgrid tower.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=deepgrid_elevators, tags=[player]
+            output={@
+You approach the elevators.
+            }
+        }
+    }
+}

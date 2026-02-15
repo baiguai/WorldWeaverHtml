@@ -1,8 +1,0 @@
-{logic
-    logic={@
-        ?[xplt_cloak]((invisible)) = 'false'
-    }
-    output={@
-<<[self]((invisible))output>>
-    }
-}

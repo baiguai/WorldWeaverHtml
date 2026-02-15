@@ -517,9 +517,9 @@
         window.onload = function() {
             gameInterface.style.display = "flex";
 
-            setupUi();
-
             output.style.color = "white";
+
+            setupUi();
 
             fixFolders();
             doOnStartInjection();
@@ -544,12 +544,14 @@
 
             if (bgColor !== undefined && bgColor !== null) {
                 document.body.style.backgroundColor = bgColor.Output;
+                output.style.backgroundColor = bgColor.Output;
                 document.getElementById("input-container").style.backgroundColor = bgColor.Output;
                 document.getElementById("input").style.backgroundColor = bgColor.Output;
             }
 
             if (fgColor !== undefined && fgColor !== null) {
                 document.body.style.color = fgColor.Output;
+                output.style.color = fgColor.Output;
                 document.getElementById("input-container").style.color = fgColor.Output;
                 document.getElementById("input").style.color = fgColor.Output;
             }
@@ -2418,7 +2420,7 @@
             let description = "";
             const spc = " ";
 
-            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
+            description = `${indentString}${parentElem.ElementType} -- ${parentElem.Name} (${parentElem.ElementKey}) -- Parent: ${parentElem.ParentKey} -- Tags: ${parentElem.Tags}${br}`;
             indentString += spc.repeat(3);
 
             for (const attrib of getChildrenByType(parentElem, "attribute")) {

@@ -4,7 +4,7 @@
     {attrib, output=xx, tags=!_adminpass }
     {attrib, output=darkworld, tags=!_filename }
     {attrib, output=#000, tags=!_ui_background }
-    {attrib, output=#fff, tags=!_ui_foreground }
+    {attrib, output=#00ff00, tags=!_ui_foreground }
     {attrib, tags=!_error
         output={@
 I don't understand what you are trying to do.

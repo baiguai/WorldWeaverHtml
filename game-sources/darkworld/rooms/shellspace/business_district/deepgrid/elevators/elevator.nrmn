@@ -1,0 +1,86 @@
+{room, key=deepgrid_elevator, name=Elevator
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Exit leaves the elevator.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You are in one of the Deepgrid building's elevators.
+The interior is dim, lit by a single spotlight overhead.
+You see a panel of buttons, allowing you to select your desired floor, from
+1 to 80.
+Floor 10 is the offices suite.
+Floor 33 is the mail room.
+Floor 78 is the communications center.
+Floor 80 is the lounge.
+        }
+
+        {logic, name=Deepgrid elevator tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {look
+        {message
+            output={@
+You are in one of the Deepgrid building's elevators.
+The interior is dim, lit by a single spotlight overhead.
+You see a panel of buttons, allowing you to select your desired floor, from
+1 to 80.
+Floor 10 is the offices suite.
+Floor 33 is the mail room.
+Floor 78 is the communications center.
+Floor 80 is the lounge.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((exit))
+        {move, logic=deepgrid_elevators, tags=[player]
+            output={@
+You press the first floor button.
+The elevator descends smoothly, then comes to a stop.
+You exit the elevator.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_gen_floor))
+        {move, logic=deepgrid_gen_floor, tags=[player]
+            output={@
+You select your floor.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_1))
+        {move, logic=deepgrid_elevators, tags=[player]
+            output={@
+You return to the first floor and exit the elevator.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_10))
+        {move, logic=deepgrid_floor_10, tags=[player]
+            output={@
+You select your floor.
+            }
+        }
+    }
+}

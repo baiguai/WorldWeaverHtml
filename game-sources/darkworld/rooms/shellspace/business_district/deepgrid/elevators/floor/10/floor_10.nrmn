@@ -1,0 +1,79 @@
+// The offices
+
+{room, key=deepgrid_floor_10, name=Hallway
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Elevator enters the elevator.
+        }
+    }
+
+
+    {enter_message
+        output={@
+A long hallway stretches out before you.
+Its walls are made of glass and lining each side of the hallway are doors
+marked 1001-1025
+
+You can attempt to enter the offices using 'enter' and the office
+door number.
+        }
+
+        {logic, name=Deepgrid elevator tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {look
+        {message
+            output={@
+A long hallway stretches out before you.
+Its walls are made of glass and lining each side of the hallway are doors
+marked 1001-1025
+
+You can attempt to enter the offices using 'enter' and the office
+door number.
+
+            }
+        }
+    }
+
+    {locked
+        {message
+            output={@
+The office is locked.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((enter_non_1023))
+        {act, logic=locked, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((enter_1023))
+        {move, logic=office_1023, tags=[player]
+            output={@
+You step into office 1023.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press the elevator button. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
+}

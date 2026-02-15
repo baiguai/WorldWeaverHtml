@@ -1,0 +1,27 @@
+{where
+    {message
+        output={@
+
+"I already told you where to go."
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((where_to_go))
+    {act, logic=where, tags=!_type|self }
+}
