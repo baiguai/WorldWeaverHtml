@@ -1,0 +1,42 @@
+{room, key=office_1023, name=Office 2023
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Exit leaves the office.
+        }
+    }
+
+    {enter_message
+        output={@
+You enter office 1023...
+        }
+
+        {logic, name=Deepgrid office 1023 tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((exit))
+        {move, logic=deepgrid_floor_10, tags=[player]
+            output={@
+You leave the office.
+            }
+        }
+    }
+}

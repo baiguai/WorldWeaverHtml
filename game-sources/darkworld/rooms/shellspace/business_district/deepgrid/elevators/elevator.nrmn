@@ -1,5 +1,5 @@
 {room, key=deepgrid_elevator, name=Elevator
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Exit leaves the elevator.
@@ -53,6 +53,8 @@ Floor 80 is the lounge.
     {input, syntax=[tplt_syntax]((exit))
         {move, logic=deepgrid_elevators, tags=[player]
             output={@
+You press the first floor button.
+The elevator descends smoothly, then comes to a stop.
 You exit the elevator.
             }
         }
@@ -62,6 +64,14 @@ You exit the elevator.
         {move, logic=deepgrid_gen_floor, tags=[player]
             output={@
 You select your floor.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_1))
+        {move, logic=deepgrid_elevators, tags=[player]
+            output={@
+You return to the first floor and exit the elevator.
             }
         }
     }
