@@ -10,6 +10,7 @@ Elevator enters the elevator.
     {enter_message
         output={@
 A long hallway stretches out before you.
+There are doors lining either side. You test a handful of them, but they are all locked.
         }
 
         {logic, name=Deepgrid elevator tested, tags=!_test
@@ -24,6 +25,7 @@ A long hallway stretches out before you.
         {message
             output={@
 A long hallway stretches out before you.
+There are doors lining either side. You test a handful of them, but they are all locked.
 
             }
         }
@@ -39,7 +41,7 @@ A long hallway stretches out before you.
     {input, syntax=[tplt_syntax]((elevator))
         {move, logic=deepgrid_elevator, tags=[player]
             output={@
-You press one of the elevator buttons. A moment later, one of the doors slide open.
+You press the elevator button. A moment later, one of the doors slide open.
 You step inside.
             }
         }

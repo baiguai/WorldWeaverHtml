@@ -39,7 +39,7 @@ You are in the elevators area.
     {input, syntax=[tplt_syntax]((elevator))
         {move, logic=deepgrid_elevator, tags=[player]
             output={@
-You press an elevator button. A moment later, one of the doors slides open.
+You press the elevator button. A moment later, one of the doors slides open.
 You step inside.
             }
         }
