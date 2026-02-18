@@ -10,7 +10,27 @@ Elevator enters the elevator.
     {enter_message
         output={@
 A long hallway stretches out before you.
-There are doors lining either side. You test a handful of them, but they are all locked.
+There are doors lining either side. You test a handful of them,
+but they are all locked.
+
+        }
+
+        {action, output=[room], tags=!_spawn, logic=rmrf_assassin
+            {attack, logic=[player]
+                output={@
+You see a shadowy man in a black suit.
+Where his eyes would be is a band of chrome with a red light
+slowly moving from side to side.
+
+He is staring at you. Then he pulls a lazer gun and shoots.
+                }
+            }
+
+            {logic
+                logic={@
+                    ?rdm_[roll:1d6] > '0'
+                }
+            }
         }
 
         {logic, name=Deepgrid elevator tested, tags=!_test
@@ -25,7 +45,8 @@ There are doors lining either side. You test a handful of them, but they are all
         {message
             output={@
 A long hallway stretches out before you.
-There are doors lining either side. You test a handful of them, but they are all locked.
+There are doors lining either side. You test a handful of them,
+but they are all locked.
 
             }
         }
