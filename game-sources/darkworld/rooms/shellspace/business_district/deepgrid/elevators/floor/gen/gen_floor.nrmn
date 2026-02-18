@@ -16,7 +16,7 @@ but they are all locked.
         }
 
         {action, output=[room], tags=!_spawn, logic=rmrf_assassin
-            {attack, logic=[player]
+            {attack, logic=((rmrf_assassin)), tags=player
                 output={@
 You see a shadowy man in a black suit.
 Where his eyes would be is a band of chrome with a red light
@@ -28,7 +28,7 @@ He is staring at you. Then he pulls a lazer gun and shoots.
 
             {logic
                 logic={@
-                    ?rdm_[roll:1d6] > '0'
+                    ?rdm_[roll:1d6] > '3'
                 }
             }
         }

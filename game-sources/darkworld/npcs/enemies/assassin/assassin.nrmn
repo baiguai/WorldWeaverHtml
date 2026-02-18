@@ -1,4 +1,4 @@
-{npc, key=rmrf_assassin, name=Assassin, tags=enemy
+{npc, key=rmrf_assassin, name=Assassin, tags=enemy|rmrf_assassin
 	{attrib, logic=spn_[rand:3|4], tags=stats_dice }
 	{attrib, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=life_roll }
 	{attrib, output=spn_[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }
