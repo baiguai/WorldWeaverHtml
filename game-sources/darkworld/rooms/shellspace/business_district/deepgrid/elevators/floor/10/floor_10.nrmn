@@ -13,7 +13,9 @@ Elevator enters the elevator.
         output={@
 A long hallway stretches out before you.
 Its walls are made of glass and lining each side of the hallway are doors
-marked 1001-1025
+marked 1001-1025.
+
+Only the last few offices look like they are actually used as offices.
 
 You can attempt to enter the offices using 'enter' and the office
 door number.
@@ -32,7 +34,9 @@ door number.
             output={@
 A long hallway stretches out before you.
 Its walls are made of glass and lining each side of the hallway are doors
-marked 1001-1025
+marked 1001-1025.
+
+Only the last few offices look like they are actually used as offices.
 
 You can attempt to enter the offices using 'enter' and the office
 door number.
@@ -44,7 +48,9 @@ door number.
     {locked
         {message
             output={@
-The office is locked.
+You attempt to open the door to the office, but it is locked tight.
+Furthermore when you tap the access panel the door lets out a warning beep.
+
             }
         }
     }
