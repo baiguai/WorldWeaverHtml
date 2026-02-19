@@ -1,7 +1,7 @@
 // The offices
 
 {room, key=deepgrid_floor_10, name=Hallway
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Elevator enters the elevator.
@@ -21,7 +21,7 @@ You can attempt to enter the offices using 'enter' and the office
 door number.
         }
 
-        {logic, name=Deepgrid elevator tested, tags=!_test
+        {logic, name=Deepgrid floor 10 tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -46,11 +46,38 @@ door number.
     }
 
     {locked
-        {message
-            output={@
+        {message, name=Offices, repeat=random
+            {message
+                output={@
 You attempt to open the door to the office, but it is locked tight.
 Furthermore when you tap the access panel the door lets out a warning beep.
 
+                }
+            }
+            {message
+                output={@
+You touch the office door's access panel, it beeps angrily at you but
+doesn't open.
+
+                }
+            }
+            {message
+                output={@
+You attempt to open the office door but it is locked.
+
+                }
+            }
+            {message
+                output={@
+The office door is locked and lets out a loud warning beep.
+
+                }
+            }
+            {message
+                output={@
+The office door does not open.
+
+                }
             }
         }
     }
