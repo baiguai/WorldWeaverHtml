@@ -15,6 +15,12 @@ Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
 
 You see an escalator and a moving ramp set into the wall.
+
+The place is immaculate, except for one detail. Tagged on one of the screens
+you see:
+
+RMRF
+
         }
 
         {logic, name=Shellspace Port room tested, tags=!_test
@@ -32,6 +38,12 @@ You look around.
 A bright green neon light runs around the ceiling of the large circular room.
 Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
+
+The place is immaculate, except for one detail. Tagged on one of the screens
+you see:
+
+RMRF
+
             }
         }
     }

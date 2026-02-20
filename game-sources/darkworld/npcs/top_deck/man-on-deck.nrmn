@@ -12,10 +12,13 @@ He approaches you.
 He gives you a microchip.
 "If you can read it, you can join."
 
-Then he strolls up to the edge of the deck's railing and jumps overboard.
-No one else seems to notice.
+Then he strolls up to the edge of the deck's railing.
 
+"Shellspace should be open source."
+
+With that he jumps overboard. No one else seems to notice.
 You rush to the railing, but he is gone.
+
         }
 
         {set, logic=[invite_chip]parent, output=[player] }
