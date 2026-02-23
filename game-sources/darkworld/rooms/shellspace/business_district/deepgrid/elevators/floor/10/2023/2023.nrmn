@@ -14,7 +14,6 @@ Exit leaves the office.
 
     {enter_message
         output={@
-You enter office 1023.
 It is breathtaking. Set into the facing wall is a large window, looking out
 over the city below. A thin neon light glows around its perimeter, providing
 the only light in the office.

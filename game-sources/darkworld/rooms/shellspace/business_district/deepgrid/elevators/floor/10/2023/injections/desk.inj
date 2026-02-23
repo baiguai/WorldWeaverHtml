@@ -20,6 +20,14 @@ tablet.
         }
     }
 }
+{x_under_desk
+    {message
+        output={@
+Under the desk, you don't see anything.
+
+        }
+    }
+}
 
 
 {x_computer
@@ -78,6 +86,9 @@ hplpkd5
 }
 {input, syntax=[tplt_syntax]((x_on_your_desk))
     {act, logic=x_on_desk, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_under_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
 }
 
 {input, syntax=[tplt_syntax]((x_computer))

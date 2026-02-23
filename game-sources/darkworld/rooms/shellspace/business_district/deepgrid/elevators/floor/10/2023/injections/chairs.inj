@@ -13,6 +13,14 @@ The crystal rocks glasses are etched and appear to be very expensive.
     }
 }
 
+{take_bottle
+    {message
+        output={@
+You consider taking one of the bottle, but there's no need in raising any
+suspicions. So you leave it.
+        }
+    }
+}
 {take_glass
     {message
         output={@
@@ -41,6 +49,9 @@ You consider taking the glasses, but what would you do with them?
     {act, logic=x_chairs, tags=!_type|room }
 }
 
+{input, syntax=[tplt_syntax]((bottle_take))
+    {act, logic=take_bottle, tags=!_type|room }
+}
 {input, syntax=[tplt_syntax]((glass_take))
     {act, logic=take_glass, tags=!_type|room }
 }

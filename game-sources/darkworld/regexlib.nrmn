@@ -60,8 +60,12 @@
 
         {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?server(s)?\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
 
+        {attrib, tags=x_on_servers|!_regex, output=^(?=.*\b(?:look|examine|x)\b)(?=.*\bservers?\b)(?=.*\b(?:top|on)\b).*, logic=look on top of the servers|look on the servers|examine on top of the servers|examine the top of the servers|examine on the servers|x top of servers|x servers top|x top servers|x on servers }
+
         {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(bed)\b, logic=look under the bed|look under bed|examine under the bed|x under bed }
+        {attrib, tags=x_under_desk|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(desk)\b, logic=look under the desk|look under desk|examine under the desk|x under desk }
         {attrib, tags=x_under_dresser|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(dresser)\b, logic=look under the dresser|look under dresser|examine under the dresser|x under dresser }
+        {attrib, tags=x_under_servers|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?server(s)?\b, logic=look under the servers|look under server|examine under the server rack|x under servers }
         {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
         {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
@@ -75,6 +79,7 @@
         {attrib, tags=tech_trace|!_regex, output=(tech trace).*, logic=the tech trace|tech trace }
 
     Taking
+        {attrib, tags=bottle_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?bottle\b, logic=take the bottle|take bottles|pick up the bottle }
         {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
         {attrib, tags=chips_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip(s)?\b, logic=take the chip|take chip|take the chips|take chips|pick up the chip|pick up the chips }
         {attrib, tags=glass_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?glass\b, logic=take the glass|take glasses|pick up the glass }

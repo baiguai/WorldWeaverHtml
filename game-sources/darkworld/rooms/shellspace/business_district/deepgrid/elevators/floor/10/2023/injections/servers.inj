@@ -20,6 +20,23 @@ of dust due to being in a virtual world.
         }
     }
 }
+{x_on_servers
+    {message
+        output={@
+You examine the top of the server rack. It is pretty tall so it's difficult to see.
+But you don't notice anything there.
+
+        }
+    }
+}
+{x_under_servers
+    {message
+        output={@
+You crouch down and look under the servers. You don't see anything. Not even dust.
+
+        }
+    }
+}
 
 
 
@@ -28,4 +45,10 @@ of dust due to being in a virtual world.
 }
 {input, syntax=[tplt_syntax]((x_behind_servers))
     {act, logic=x_behind_servers, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_on_servers))
+    {act, logic=x_on_servers, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_under_servers))
+    {act, logic=x_under_servers, tags=!_type|room }
 }
