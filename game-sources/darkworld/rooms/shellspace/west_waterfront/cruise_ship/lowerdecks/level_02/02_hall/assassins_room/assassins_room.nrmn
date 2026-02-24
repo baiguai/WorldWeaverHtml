@@ -20,6 +20,11 @@ Set against the wall to your right (east) is a bed.
 Sitting on the bed is an open suitcase. It is filled with chips and a sleek
 chrome finished lazer gun. The chips and gun are strapped in place by glowing
 bands of light.
+
+Pinned to the wall, you see two hand-written notes:
+- Investigate Retrograde
+- Meatspace killings??
+
         }
 
         {logic, name=Assassin's room, tags=!_test
@@ -45,6 +50,10 @@ It is filled with chips and a sleek chrome finished lazer gun.
 <else>
 It is filled with chips.
 </?>
+
+Pinned to the wall, you see two hand-written notes:
+- Investigate Retrograde
+- Meatspace killings??
 
             }
         }
@@ -113,6 +122,22 @@ It is filled with chips.
     }
 
 
+    {x_notes
+        {message
+            output={@
+You examine the notes pinned to the wall.
+Both of them are hand-written.
+
+One simply says: Retrograde
+
+And the other one says:
+Meatspace killings??
+
+            }
+        }
+    }
+
+
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
@@ -140,6 +165,10 @@ You exit the stranger's room.
 
     {input, syntax=[tplt_syntax]((x_suitcase))
         {act, logic=x_suitcase, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_note))
+        {act, logic=x_notes, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((chips_take))

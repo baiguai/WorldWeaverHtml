@@ -1,3 +1,15 @@
+/*
+    Conversation flow:
+
+    1. exploit
+    2. greeting
+        * streets
+        * ticket
+        * piracy
+        * secrets
+*/
+
+
 {npc, key=switch_hustler, name=Switchblade Hustler, parent=street_vice_port
     {attrib, output=exploit, tags=topic }
     {attrib, output=initial, tags=step }
