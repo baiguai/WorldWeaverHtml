@@ -1,5 +1,3 @@
-// The offices
-
 {room, key=deepgrid_floor_10, name=Hallway
     {attrib, output=true, tags=tested }
     {attrib, tags=navigation

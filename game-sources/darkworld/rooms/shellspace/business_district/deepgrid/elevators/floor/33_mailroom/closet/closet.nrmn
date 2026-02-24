@@ -1,0 +1,45 @@
+{room, key=mailroom_closet, name=Closet
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+South - return to the mail room.
+        }
+    }
+
+
+    {enter_message
+        output={@
+It is a small dark room.
+        }
+
+        {logic, name=Deepgrid mailroom closet tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+The closet is small and dark.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=deepgrid_floor_33, tags=[player]
+            output={@
+You return to the mail room.
+            }
+        }
+    }
+}
