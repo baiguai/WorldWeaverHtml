@@ -1,11 +1,5 @@
-// - desk, computer, password
-// - server stack ?
-// - what's on the computer
-// - tablet - what message ?
-
-
 {room, key=office_1023, name=Office 2023
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Exit leaves the office.

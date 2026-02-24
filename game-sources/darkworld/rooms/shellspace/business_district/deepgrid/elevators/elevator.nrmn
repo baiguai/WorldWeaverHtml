@@ -11,7 +11,7 @@ Exit leaves the elevator.
         output={@
 You are in one of the Deepgrid building's elevators.
 The interior is dim, lit by a single spotlight overhead.
-You see a panel of buttons, allowing you to select your desired floor, from
+You see a panel of buttons you can press, allowing you to select your desired floor, from
 1 to 80.
 Floor 10 is the offices suite.
 Floor 33 is the mail room.
@@ -32,7 +32,7 @@ Floor 80 is the lounge.
             output={@
 You are in one of the Deepgrid building's elevators.
 The interior is dim, lit by a single spotlight overhead.
-You see a panel of buttons, allowing you to select your desired floor, from
+You see a panel of buttons you can press, allowing you to select your desired floor, from
 1 to 80.
 Floor 10 is the offices suite.
 Floor 33 is the mail room.
