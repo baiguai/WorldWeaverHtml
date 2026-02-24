@@ -1,0 +1,150 @@
+{attrib, output=false, tags=note_found }
+
+{x_desk
+    {message
+        output={@
+The desk is very modern in style and has a computer monitor pane on it as well
+as a computer keyboard and tablet sitting on it.
+
+        }
+    }
+}
+
+{x_on_desk
+    {message
+        output={@
+You look on the desk.
+There is a computer monitor and keyboard sitting on it, as well as a thin
+tablet.
+
+        }
+    }
+}
+{x_under_desk
+    {message
+        output={@
+Under the desk, you don't see anything.
+
+        }
+    }
+}
+
+
+{x_computer
+    {message
+        output={@
+You examine what's on the computer monitor.
+Strangely the computer isn't locked. A terminal window fills the screen.
+The text it is populated with appears to be a message sent to whoever worked
+in that office.
+
+
+Week 18:
+The individuals you hired me to look into are more elusive than I had
+anticipated. I located two of the individuals. Mundane. If this was meatspace
+they would be boring. In Shellspace it's outright weird.
+I would note the places they frequent but they are just pedestrian locations.
+And the individuals didn't ever do anything out of the ordinary in said places.
+
+The only note of interest MAY be a tag near one of the entrance doors:
+
+'Retrograde'
+
+
+        }
+    }
+}
+
+{x_keyboard
+    {message
+        output={@
+You examine the computer keyboard...
+You notice something barely sticking out from under it.
+Could it be a note?
+
+        }
+    }
+}
+
+{x_tablet
+    {message
+        output={@
+You examine the tablet...
+
+A message app is loaded and the last few messages read:
+
+D@rla: You're right, I DID cheat on you with a sec-bot. I'm SO sorry.
+Exxa: I'm going to end you.
+D@rla: "I've already set a hack that will x_x you if you do."
+
+        }
+    }
+}
+
+{take_tablet
+    {message
+        output={@
+You consider taking the tablet but don't want to raise any suspicion.
+
+        }
+    }
+}
+
+{x_note
+    {message
+        output={@
+It IS a note!
+You examine what's written on it:
+
+hplpkd5
+
+
+(you can make note of this - enter:  ? notes)
+
+
+        }
+    }
+}
+
+
+
+
+{input, syntax=[tplt_syntax]((x_desk))
+    {act, logic=x_desk, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_on_your_desk))
+    {act, logic=x_on_desk, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_under_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_computer))
+    {act, logic=x_computer, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_keyboard))
+    {act, logic=x_keyboard, tags=!_type|room }
+    {set, logic=[self]((note_found)), output=true }
+}
+
+{input, syntax=[tplt_syntax]((x_tablet))
+    {act, logic=x_tablet, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((tablet_take))
+    {act, logic=take_tablet, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_note))
+    {act, logic=x_note, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[self]((note_found)) = 'true'
+        }
+        output={@
+I'm not sure what note you are referring to.
+        }
+    }
+}

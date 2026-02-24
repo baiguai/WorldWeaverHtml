@@ -28,7 +28,9 @@ He is staring at you. Then he pulls a lazer gun and shoots.
 
             {logic
                 logic={@
-                    ?rdm_[roll:1d6] > '3'
+                    ?rdm_[roll:1d6] > '4'
+                    and
+                    [xplt_cloak]((invisible)) != 'true'
                 }
             }
         }

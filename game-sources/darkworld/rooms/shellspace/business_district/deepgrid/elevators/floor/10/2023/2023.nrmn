@@ -1,5 +1,5 @@
 {room, key=office_1023, name=Office 2023
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Exit leaves the office.
@@ -8,7 +8,18 @@ Exit leaves the office.
 
     {enter_message
         output={@
-You enter office 1023...
+It is breathtaking. Set into the facing wall is a large window, looking out
+over the city below. A thin neon light glows around its perimeter, providing
+the only light in the office.
+
+Before the window is a sleek desk with a minimalist chair positioned at the
+desk. A computer monitor pane and keyboard sits on the desk as well as a thin
+tablet.
+
+Against one of the walls is a rack of server computers and against the
+opposing wall are two chairs with a small table between them. Sitting on this
+table is a bottle full of liquid and two crystal rocks glasses.
+
         }
 
         {logic, name=Deepgrid office 1023 tested, tags=!_test
@@ -21,7 +32,20 @@ You enter office 1023...
     {look
         {message
             output={@
-You look around...
+You look around.
+
+You enter office 1023.
+Set into the facing wall is a large window.
+A thin neon light glows around its perimeter.
+
+Before the window is a desk with a chair.
+A computer monitor and keyboard sits on the desk as well as a thin
+tablet.
+
+Against one of the walls is a rack of server computers and against the
+opposing wall are two chairs with a small table between them. Sitting on this
+table is a bottle and two glasses.
+
             }
         }
     }
@@ -39,4 +63,9 @@ You leave the office.
             }
         }
     }
+
+
+    {inject, logic=./injections/chairs.inj }
+    {inject, logic=./injections/desk.inj }
+    {inject, logic=./injections/servers.inj }
 }

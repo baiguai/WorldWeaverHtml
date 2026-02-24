@@ -1,0 +1,60 @@
+{x_chairs
+    {message
+        output={@
+You examine the chairs as well as the items on the table.
+The chairs appear to be stylish as well as comfortable. The table between them
+is a thin, hovering, glass square.
+
+The bottle sitting on the table is filled with an amber liquid. The chrome
+cork that seals the bottle is secured by a fingerprint lock.
+
+The crystal rocks glasses are etched and appear to be very expensive.
+        }
+    }
+}
+
+{take_bottle
+    {message
+        output={@
+You consider taking one of the bottle, but there's no need in raising any
+suspicions. So you leave it.
+        }
+    }
+}
+{take_glass
+    {message
+        output={@
+You consider taking one of the glasses, but why?
+        }
+    }
+}
+{take_glasses
+    {message
+        output={@
+You consider taking the glasses, but what would you do with them?
+        }
+    }
+}
+
+
+
+
+{input, syntax=[tplt_syntax]((x_chair))
+    {act, logic=x_chairs, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_table))
+    {act, logic=x_chairs, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((x_glass))
+    {act, logic=x_chairs, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((bottle_take))
+    {act, logic=take_bottle, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((glass_take))
+    {act, logic=take_glass, tags=!_type|room }
+}
+{input, syntax=[tplt_syntax]((glasses_take))
+    {act, logic=take_glasses, tags=!_type|room }
+}
