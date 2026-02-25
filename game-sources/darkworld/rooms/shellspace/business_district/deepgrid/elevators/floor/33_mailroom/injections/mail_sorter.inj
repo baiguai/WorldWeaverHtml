@@ -1,0 +1,17 @@
+{x_mailsorter
+    {message
+        output={@
+You examine the mail sorter...
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_mail_sorter))
+    {act, logic=x_mailsorter, tags=!_type|room }
+}

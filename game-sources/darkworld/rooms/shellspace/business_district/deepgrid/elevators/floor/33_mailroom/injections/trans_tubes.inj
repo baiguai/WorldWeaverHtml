@@ -1,0 +1,17 @@
+{x_trans_tube
+    {message
+        output={@
+You examine the transport tubes...
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_trans_tube))
+    {act, logic=x_trans_tube, tags=!_type|room }
+}

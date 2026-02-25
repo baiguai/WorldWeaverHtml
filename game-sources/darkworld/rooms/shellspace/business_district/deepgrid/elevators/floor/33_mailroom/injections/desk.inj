@@ -1,0 +1,59 @@
+{x_desk
+    {message
+        output={@
+You examine the desk...
+        }
+    }
+}
+
+{x_on_desk
+    {message
+        output={@
+You look on the desk...
+        }
+    }
+}
+
+{x_under_desk
+    {message
+        output={@
+You look under the desk...
+        }
+    }
+}
+
+{x_behind_desk
+    {message
+        output={@
+You look behind the desk...
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_desk))
+    {act, logic=x_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_desk))
+    {act, logic=x_on_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_desk))
+    {act, logic=x_behind_desk, tags=!_type|room }
+}
