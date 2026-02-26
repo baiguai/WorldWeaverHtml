@@ -1,7 +1,10 @@
 {x_mailsorter
     {message
         output={@
-You examine the mail sorter...
+You examine the mail sorter.
+It is comprised of virtual slots, into which the incoming and outgoing mail
+is sorted. This is done manually and via macros.
+
         }
     }
 }

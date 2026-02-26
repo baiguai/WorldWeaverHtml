@@ -12,6 +12,8 @@
         --sel-bg: #2d0052;
         --btn-border: #ff69b4;
         --border: #ff69b4;
+        --vim-cursor: #00d1b2;
+        --insert-cursor: #00ff88;
     }
 </style>
 <style>
@@ -198,6 +200,19 @@
         line-height: 1.5;
         tab-size: 4;
         overflow: auto;
+    }
+    
+    /* Cursor styles for different modes */
+    textarea#editorArea.insert-mode {
+        caret-color: var(--insert-cursor);
+    }
+    
+    textarea#editorArea.normal-mode {
+        caret-color: var(--vim-cursor);
+    }
+    
+    textarea#editorArea.visual-mode {
+        caret-color: var(--vim-cursor);
     }
     .footer { border-top: 1px solid var(--border); padding: 6px 10px; color: var(--muted); }
 
@@ -692,7 +707,7 @@
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
-    <textarea id="editorArea" spellcheck="false" readonly="readonly"></textarea>
+    <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
 </section>
 </div>
 
@@ -707,7 +722,147 @@
 
         /** @type {NodeT[]} */
         let treeData = [
-  {"id":"t3i1xrfc","title":"High Level Plot","content":"High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.\n\n--------------------------------------------------------------------------------\n\nYou end up furthering the plan to end meat space, thinking you're fighting the\nplot.\n\n--------------------------------------------------------------------------------\n\nMake the player think that RMRF is the group they want to join.\n\nAt the end, they find out it's them who is killing in meatspace NOT Retrograde.","children":[],"expanded":false},{"id":"wlr5eap6","title":"General Notes","content":"","children":[{"id":"mj13xjcw","title":"When Defining Enemies","content":"When Defining Enemies\n\n\n* Ensure the cloak isn't activated\n[xplt_cloak]((invisible)) != 'true'","children":[],"expanded":false}],"expanded":false},{"id":"fxe19j7e","title":"Groups Involved","content":"","children":[{"id":"rubtb7yt","title":"Retrograde","content":"Retrograde\n\n\nRetrograde disagrees with RMRF's tactics. However they also want Shellspace to\nbecome open source.","children":[],"expanded":false},{"id":"q8xyurso","title":"RMRF","content":"RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThey are the ones killing people in meatspace.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.","children":[],"expanded":false},{"id":"ce8bse0h","title":"Secdyne","content":"Secdyne\n\nOwns Shellspace.","children":[],"expanded":false}],"expanded":false},{"id":"pny1aztf","title":"Items","content":"","children":[{"id":"d8yoammr","title":"Lazer Gun","content":"Lazer Gun\n\n\nInitial Location:\n* assassin's room\n\n\nWeapon that has limited ammo and requires that the player collects lazer gun\nbatteries later on.","children":[],"expanded":false}],"expanded":false},{"id":"6fnrdm92","title":"Clues","content":"","children":[{"id":"cwsp8lg1","title":"Piracy","content":"Piracy\n\n\nTo gain insights into piracy, the player needs to go to the slums.","children":[],"expanded":false},{"id":"5h4e02k3","title":"Retrograde","content":"Retrograde\n\n\nRetrograde is the VR's secret society.","children":[],"expanded":false}],"expanded":false},{"id":"w9a64boy","title":"Exploits","content":"","children":[{"id":"ia57x890","title":"Tech Trace","content":"","children":[{"id":"bg7nt5cu","title":"Tech Trace Details","content":"Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.","children":[],"expanded":false}],"expanded":false},{"id":"670x4fkv","title":"The Cloak","content":"","children":[{"id":"wlq6ko6c","title":"Cloak Details","content":"Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.","children":[],"expanded":false}],"expanded":false}],"expanded":false},{"id":"fptq1wse","title":"Future Notes","content":"","children":[{"id":"bz5ib6va","title":"Cruise Ticket","content":"Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.","children":[],"expanded":false}],"expanded":false}
+  {
+    "id": "t3i1xrfc",
+    "title": "High Level Plot",
+    "content": "High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.\n\n--------------------------------------------------------------------------------\n\nYou end up furthering the plan to end meat space, thinking you're fighting the\nplot.\n\n--------------------------------------------------------------------------------\n\nMake the player think that RMRF is the group they want to join.\n\nAt the end, they find out it's them who is killing in meatspace NOT Retrograde.",
+    "children": [],
+    "expanded": false
+  },
+  {
+    "id": "wlr5eap6",
+    "title": "General Notes",
+    "content": "",
+    "children": [
+      {
+        "id": "mj13xjcw",
+        "title": "When Defining Enemies",
+        "content": "When Defining Enemies\n\n\n* Ensure the cloak isn't activated\n[xplt_cloak]((invisible)) != 'true'",
+        "children": [],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  },
+  {
+    "id": "fxe19j7e",
+    "title": "Groups Involved",
+    "content": "",
+    "children": [
+      {
+        "id": "rubtb7yt",
+        "title": "Retrograde",
+        "content": "Retrograde\n\n\nRetrograde disagrees with RMRF's tactics. However they also want Shellspace to\nbecome open source.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "q8xyurso",
+        "title": "RMRF",
+        "content": "RMRF\n\n\nThe RMRF is a group of hackers whose goal is to render the VR world useless\nand/or unprofitable to the companies that are currently funding it.\n\nThey are the ones killing people in meatspace.\n\nThe idea is that they will put it up for sale, and RMRF will ensure that an\nopen source group buys it up. And then they will flood the project with their\nown operatives.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "ce8bse0h",
+        "title": "Secdyne",
+        "content": "Secdyne\n\nOwns Shellspace.",
+        "children": [],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  },
+  {
+    "id": "pny1aztf",
+    "title": "Items",
+    "content": "",
+    "children": [
+      {
+        "id": "d8yoammr",
+        "title": "Lazer Gun",
+        "content": "Lazer Gun\n\n\nInitial Location:\n* assassin's room\n\n\nWeapon that has limited ammo and requires that the player collects lazer gun\nbatteries later on.",
+        "children": [],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  },
+  {
+    "id": "6fnrdm92",
+    "title": "Clues",
+    "content": "",
+    "children": [
+      {
+        "id": "cwsp8lg1",
+        "title": "Piracy",
+        "content": "Piracy\n\n\nTo gain insights into piracy, the player needs to go to the slums.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "5h4e02k3",
+        "title": "Retrograde",
+        "content": "Retrograde\n\n\nRetrograde is the VR's secret society.",
+        "children": [],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  },
+  {
+    "id": "w9a64boy",
+    "title": "Exploits",
+    "content": "",
+    "children": [
+      {
+        "id": "ia57x890",
+        "title": "Tech Trace",
+        "content": "",
+        "children": [
+          {
+            "id": "bg7nt5cu",
+            "title": "Tech Trace Details",
+            "content": "Tech Trace Details\n\n\nWhen using this exploit, additional details about the tech in question is\noutputted.",
+            "children": [],
+            "expanded": false
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "670x4fkv",
+        "title": "The Cloak",
+        "content": "",
+        "children": [
+          {
+            "id": "wlq6ko6c",
+            "title": "Cloak Details",
+            "content": "Cloak Details\n\n\nWhen activated, this exploit lasts three rounds. During those rounds the player\nis 'invisible'. So hostile NPCs don't see the player.\n\nThis means that enemies don't attack the player IF they don't see them.",
+            "children": [],
+            "expanded": false
+          }
+        ],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  },
+  {
+    "id": "fptq1wse",
+    "title": "Future Notes",
+    "content": "",
+    "children": [
+      {
+        "id": "bz5ib6va",
+        "title": "Cruise Ticket",
+        "content": "Cruise Ticket\n\n\nIf the player doesn't purchase the ticket at the booth, be sure to make it\navailable somewhere else.\n\nBe sure to check its 'purchased' Attribute.",
+        "children": [],
+        "expanded": false
+      }
+    ],
+    "expanded": false
+  }
 ];
         let bookmarks = [
     {
@@ -1007,6 +1162,8 @@
             { key: "d", mode: "VISUAL", description: "Delete selection" },
             { key: "x", mode: "VISUAL", description: "Cut selection" },
             { key: "y", mode: "VISUAL", description: "Copy selection" },
+            { key: "U", mode: "VISUAL", description: "Convert to uppercase" },
+            { key: "u", mode: "VISUAL", description: "Convert to lowercase" },
             { key: "Control+;", mode: "VISUAL", description: "Create/Update table" },
             { key: "Escape", mode: "INSERT", description: "Exit to NORMAL mode" },
             { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." }
@@ -1114,6 +1271,9 @@
         const pathEl = document.getElementById('path');
         const msgEl = document.getElementById('msg');
         let msgTimeout;
+        
+        // Initialize cursor style - start in normal mode
+        editorArea.classList.add('normal-mode');
 
         function render(){
             // Render tree
@@ -1204,15 +1364,23 @@
             }
 
             if (editing) {
+                // Remove all cursor mode classes first
+                editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
+                
                 if (mode_insert) {
                     modeEl.textContent = 'INSERT';
+                    editorArea.classList.add('insert-mode');
                 } else if (mode_visual) {
                     modeEl.textContent = mode_visual_line ? 'VISUAL LINE' : 'VISUAL';
+                    editorArea.classList.add('visual-mode');
                 } else {
                     modeEl.textContent = 'NORMAL';
+                    editorArea.classList.add('normal-mode');
                 }
             } else {
                 modeEl.textContent = 'TREE';
+                // In TREE mode, remove all cursor mode classes
+                editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
             }
 
             if (selectedId) recordHistory(selectedId);
@@ -1233,7 +1401,7 @@
 
         editorArea.addEventListener('click', () => {
             if (!readOnly) {
-                mode_insert = true;
+                setVimMode(true); // This will set the correct cursor style
                 editing = true;
                 render();
             }
@@ -2042,6 +2210,12 @@
                 case "d": // Delete selection
                     doVisualDelete(e);
                     return true;
+                case "U":
+                    doVisualUpperCase(e, true);
+                    return true;
+                case "u":
+                    doVisualUpperCase(e, false);
+                    return true;
                 case "x": // Cut selection
                     vim_clipboard = getVisualSelection();
                     if (vim_clipboard) {
@@ -2066,6 +2240,7 @@
 
             return false;
         }
+
         // ---------------------------------------------------------------------
 
 
@@ -2089,15 +2264,20 @@
         }
 
         function setVimMode(insertMode) {
+            // Remove all cursor mode classes first
+            editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
+            
             if (insertMode) {
                 mode_insert = true;
                 modeEl.textContent = 'INSERT';
+                editorArea.classList.add('insert-mode');
             } else {
                 mode_insert = false;
                 if (mode_visual) {
                     exitVisualMode();
                 }
                 modeEl.textContent = 'NORMAL';
+                editorArea.classList.add('normal-mode');
             }
         }
 
@@ -2198,7 +2378,7 @@
             ensureSelection();
             let selectedNode = findNodeAndParentById(selectedId).node;
             if (isFolder(selectedNode)) {
-                let newName = prompt('Enter new folder name:', selectedNode.name);
+                let newName = prompt('Enter new folder name:', selectedNode.title);
                 if (!newName) { return; }
                 selectedNode.title = newName;
                 render();
@@ -2272,6 +2452,9 @@
             const info = findNodeAndParentById(selectedId); if (!info) return;
             if (info.node.expanded && doCollapse) {
                 info.node.expanded = false;
+                if (!info.node.children.length) {
+                    if (info.parent) selectedId = info.parent.id;
+                }
             } else {
                 if (info.parent) selectedId = info.parent.id;
             }
@@ -3005,15 +3188,22 @@
         }
 
         function enterVisualMode(lineMode = false) {
+            // Remove all cursor mode classes first
+            editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
+            
             mode_visual = true;
             mode_visual_line = lineMode;
             visual_start = editorArea.selectionStart;
             visual_end = editorArea.selectionStart;
-            modeEl.textContent = 'VISUAL';
+            modeEl.textContent = mode_visual_line ? 'VISUAL LINE' : 'VISUAL';
+            editorArea.classList.add('visual-mode');
             updateVisualSelection();
         }
         
         function exitVisualMode(positionCursor = true) {
+            // Remove all cursor mode classes first
+            editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
+            
             mode_visual = false;
             mode_visual_line = false;
 
@@ -3024,13 +3214,14 @@
                 if (visual_end < visual_start) {
                     cursorPos = Math.min(visual_start, visual_end);
                 }
-
+                
                 editorArea.selectionStart = editorArea.selectionEnd = cursorPos;
             }
 
             visual_start = 0;
             visual_end = 0;
             modeEl.textContent = 'NORMAL';
+            editorArea.classList.add('normal-mode');
         }
         
         function updateVisualSelection() {
@@ -3105,6 +3296,29 @@
             exitVisualMode(false);
         }
 
+        function doVisualUpperCase(e, toUpperCase) {
+            recordUndoState();
+            let start = Math.min(visual_start, visual_end);
+            let end = Math.max(visual_start, visual_end);
+
+            if (mode_visual_line) {
+                const text = editorArea.value;
+                start = text.lastIndexOf('\n', start - 1) + 1;
+                end = text.indexOf('\n', end);
+                end = end === -1 ? text.length : end + 1;
+            }
+
+            let selectedText = editorArea.value.substring(start, end);
+            
+            let convertedText = toUpperCase ? selectedText.toUpperCase() : selectedText.toLowerCase();
+
+            editorArea.setRangeText(convertedText, start, end, "end");
+            editorArea.selectionStart = start;
+            editorArea.selectionEnd = start + convertedText.length;
+            syncFile();
+            exitVisualMode();
+        }
+
 
 
         //---- Search ----------------------------------------------------------
@@ -3125,7 +3339,7 @@
 
         function searchTree(query) {
             searchMatches = [];
-            const matchContent = !query.startsWith(':');
+            const searchTitleOnly = query.startsWith(':');
             let q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
 
             let parts = [];
@@ -3134,41 +3348,36 @@
             if (q.includes('*')) {
                 isWildcardSearch = true;
                 parts = q.split('*').filter(p => p.length > 0);
+            } else {
+                // If no wildcard, treat the whole query as a single part
+                parts.push(q);
             }
 
             (function walk(nodes) {
                 for (const n of nodes) {
                     const nodeTitle = n.title ? n.title.toLowerCase() : '';
-                    const nodeContent = (matchContent && n.content) ? n.content.toLowerCase() : '';
+                    const nodeContent = n.content ? n.content.toLowerCase() : ''; 
 
                     let matches = false;
 
-                    if (isWildcardSearch) {
-                        if (parts.length === 1) {
-                            // Wildcard at beginning or end (e.g., "*foo" or "foo*")
-                            if (nodeTitle.includes(parts[0]) || nodeContent.includes(parts[0])) {
-                                matches = true;
-                            }
-                        } else if (parts.length === 2) {
-                            // Wildcard in middle (e.g., "foo*bar")
-                            const part1 = parts[0];
-                            const part2 = parts[1];
-
-                            const inTitle1 = nodeTitle.includes(part1);
-                            const inTitle2 = nodeTitle.includes(part2);
-                            const inContent1 = nodeContent.includes(part1);
-                            const inContent2 = nodeContent.includes(part2);
-
-                            if ((inTitle1 && inTitle2) || (inContent1 && inContent2) || (inTitle1 && inContent2) || (inContent1 && inTitle2)) {
-                                matches = true;
-                            }
+                    let allPartsMatch = true;
+                    for (const part of parts) {
+                        let partFound = false;
+                        if (nodeTitle.includes(part)) {
+                            partFound = true;
                         }
-                    } else {
-                        // Standard search
-                        if (nodeTitle.includes(q) || nodeContent.includes(q)) {
-                            matches = true;
+                        if (!searchTitleOnly && nodeContent.includes(part)) { // Only search content if not title-only
+                            partFound = true;
+                        }
+                        if (!partFound) {
+                            allPartsMatch = false;
+                            break;
                         }
                     }
+                    if (allPartsMatch) {
+                        matches = true;
+                    }
+                    
 
                     if (matches) {
                         searchMatches.push(n);
@@ -3369,7 +3578,7 @@
                 `let nodePort = ${nodePort};`
             );
 
-            htmlContent = htmlContent.replace(/let\s+treeData\s*=\s*\[[\s\S]*?\];/, `let treeData = ${formattedDatabase};`);
+            htmlContent = htmlContent.replace(/let\s+treeData\s*=\s*\[[\s\S]*?\];/, `let treeData = ${JSON.stringify(treeData, null, 2)};`);
 
             // Make sure the latest bookmarks and historyStack are stored
             const latestBookmarks = JSON.parse(JSON.stringify(bookmarks));
@@ -3418,6 +3627,8 @@
         --sel-bg: ${currentColors['sel-bg'] || '#111827'};
         --btn-border: ${currentColors['btn-border'] || '#555'};
         --border: ${currentColors.border || '#222'};
+        --vim-cursor: ${currentColors['vim-cursor'] || '#00d1b2'};
+        --insert-cursor: ${currentColors['insert-cursor'] || '#00ff88'};
     }`;
             
             htmlContent = htmlContent.replace(rootCssRegex, newRootCss);
@@ -4098,6 +4309,8 @@
         if (colors.border) root.style.setProperty('--border', colors.border);
         if (colors['border-radius']) root.style.setProperty('--border-radius', colors['border-radius']);
         if (colors['pill-radius']) root.style.setProperty('--pill-radius', colors['pill-radius']);
+        if (colors['vim-cursor']) root.style.setProperty('--vim-cursor', colors['vim-cursor']);
+        if (colors['insert-cursor']) root.style.setProperty('--insert-cursor', colors['insert-cursor']);
     }
 
 
