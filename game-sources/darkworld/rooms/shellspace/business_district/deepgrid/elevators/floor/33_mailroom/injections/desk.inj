@@ -1,7 +1,15 @@
 {x_desk
     {message
         output={@
-You examine the desk...
+The mailroom desk is cluttered with envelopes and papers. Pens are strewn
+about and various office supplies such as paperclips are thrown over its
+surface. But it looks somewhat fake. It's as though it was an attempt
+to look like an old timey mailroom.
+
+On a yellowed piece of paper, something catches your eye.
+
+The word 'orb'.
+
         }
     }
 }
@@ -9,7 +17,14 @@ You examine the desk...
 {x_on_desk
     {message
         output={@
-You look on the desk...
+The top of the mailroom desk is cluttered with envelopes and papers.
+Pens are strewn about and various office supplies such as paperclips are
+thrown over its surface. But it looks somewhat fake. It's as though it was an
+attempt to look like an old timey mailroom.
+
+On a yellowed piece of paper, something catches your eye.
+
+The word 'orb'.
         }
     }
 }
@@ -17,7 +32,11 @@ You look on the desk...
 {x_under_desk
     {message
         output={@
-You look under the desk...
+You look under the desk. There are more piles of papers. Absolute
+clutter everywhere.
+
+However you don't see anything suspicious.
+
         }
     }
 }
@@ -25,7 +44,23 @@ You look under the desk...
 {x_behind_desk
     {message
         output={@
-You look behind the desk...
+Behind the desk is a small chair. Even that has papers and envelopes piled
+all over it.
+
+        }
+    }
+}
+
+{x_paper
+    {message
+        output={@
+It is a contract between someone called XLF.
+They requested an object - the orb - be built.
+
+"It is the key.
+
+- Retrograde."
+
         }
     }
 }
@@ -56,4 +91,8 @@ You look behind the desk...
 
 {input, syntax=[tplt_syntax]((x_behind_desk))
     {act, logic=x_behind_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_paper))
+    {act, logic=x_paper, tags=!_type|room }
 }

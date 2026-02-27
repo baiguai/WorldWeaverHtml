@@ -10,7 +10,7 @@ North - enter a door marked 'closet'.
 
     {enter_message
         output={@
-You find yourself in the mailroom.
+You find yourself in what appears to be an old-time mailroom.
 The room is cluttered with papers and stacks of mail.
 In front of you is a desk.
 Set into the north wall is a door with a sign on it that says
