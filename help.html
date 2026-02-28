@@ -641,6 +641,11 @@
     <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
 </div>
 
+<div class="search-dialog" id="linkSearchDialog" style="display: none;">
+    <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
+    <div class="search-results" id="linkSearchList"></div>
+</div>
+
 <div class="search-dialog" id="helpDialogUnified" style="display:none;">
   <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only)...">
   <div id="helpResults" class="search-results"></div>
@@ -2745,6 +2750,9 @@
         const marksList = document.getElementById('marksList');
         const searchInput = document.getElementById('searchInput');
         const searchList = document.getElementById('searchList');
+        const linkSearchDialog = document.getElementById('linkSearchDialog');
+        const linkSearchInput = document.getElementById('linkSearchInput');
+        const linkSearchList = document.getElementById('linkSearchList');
         const optShowInitHelp = document.getElementById('optShowInitHelp');
         const optFileName = document.getElementById('optFileName');
         const optModeVim = document.getElementById('optModeVim');
@@ -2850,6 +2858,7 @@
             { key: "Control+-", mode: "INSERT", description: "Insert horizontal line" },
             { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
             { key: "Control+;", mode: "INSERT", description: "Create/Update table" },
+            { key: "Control+'", mode: "INSERT", description: "Insert Link" },
         ];
         
         let helpVimEnabled = [
@@ -5187,6 +5196,99 @@
             }
         });
 
+        function openLinkSearch() {
+            searchActive = true;
+            linkSearchDialog.style.display = 'flex';
+            linkSearchInput.value = '';
+            linkSearchInput.focus();
+            searchMatches = [];
+            searchIndex = 0;
+            renderLinkSearchList();
+        }
+
+        function closeLinkSearch() {
+            searchActive = false;
+            linkSearchDialog.style.display = 'none';
+            editorArea.focus();
+        }
+
+        function linkSearchTree(query) {
+            searchMatches = [];
+            const searchTitleOnly = query.startsWith(':');
+            const q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
+
+            (function walk(nodes) {
+                for (const n of nodes) {
+                    if ((n.title && n.title.toLowerCase().includes(q)) || (!searchTitleOnly && n.content && n.content.toLowerCase().includes(q))) {
+                        searchMatches.push(n);
+                    }
+                    if (n.children && n.children.length) walk(n.children);
+                }
+            })(treeData);
+            searchIndex = 0;
+            renderLinkSearchList();
+        }
+
+        function renderLinkSearchList() {
+            linkSearchList.innerHTML = '';
+            searchMatches.forEach((n, i) => {
+                const item = document.createElement('div');
+                item.textContent = n.title || '(untitled)';
+                if (i === searchIndex) {
+                    item.classList.add('selected');
+                    requestAnimationFrame(() => item.scrollIntoView({ block: "nearest", behavior: "smooth" }));
+                }
+                item.addEventListener('click', () => {
+                    if (searchMatches.length > 0) {
+                        selectLinkSearchResult(i);
+                        closeLinkSearch();
+                    }
+                });
+                linkSearchList.appendChild(item);
+            });
+            if (searchMatches.length === 0) {
+                const empty = document.createElement('div');
+                empty.textContent = '(no matching nodes)';
+                empty.style.color = 'var(--dim)';
+                linkSearchList.appendChild(empty);
+            }
+        }
+
+        function selectLinkSearchResult(i) {
+            if (i < 0 || i >= searchMatches.length) return;
+            searchIndex = i;
+            const node = searchMatches[i];
+            const linkText = `_${node.title}_`;
+            const start = editorArea.selectionStart;
+            const end = editorArea.selectionEnd;
+            editorArea.setRangeText(linkText, start, end, "end");
+            syncFile();
+        }
+
+        linkSearchInput.addEventListener('input', e => {
+            linkSearchTree(e.target.value);
+        });
+
+        linkSearchInput.addEventListener('keydown', e => {
+            if (e.key === 'ArrowDown') {
+                searchIndex = Math.min(searchIndex + 1, searchMatches.length - 1);
+                renderLinkSearchList();
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                searchIndex = Math.max(searchIndex - 1, 0);
+                renderLinkSearchList();
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                e.preventDefault(); // Prevent default Enter key behavior
+                if (searchMatches.length > 0) {
+                    selectLinkSearchResult(searchIndex);
+                    closeLinkSearch();
+                }
+            } else if (e.key === 'Escape') {
+                closeLinkSearch();
+            }
+        });
+
 
 
 
@@ -5449,6 +5551,12 @@
         function handleGlobalKey(e){
             if (editing) {
                 // Check if Ctrl (or Command on Mac) is held and the "-" key is pressed
+                if ((e.ctrlKey || e.metaKey) && e.key === "'") {
+                    e.preventDefault();
+                    openLinkSearch();
+                    return;
+                }
+
                 if ((e.ctrlKey || e.metaKey) && (e.key === "-" || e.code === "Minus")) {
                     e.preventDefault(); // optional: prevents browser zoom-out
                     insertHr();

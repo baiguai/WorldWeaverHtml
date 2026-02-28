@@ -1,5 +1,5 @@
 {room, key=deepgrid_floor_33, name=Mailroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Elevator enters the elevator.
@@ -15,7 +15,10 @@ The room is cluttered with papers and stacks of mail.
 In front of you is a desk.
 Set into the north wall is a door with a sign on it that says
 'closet'.
-In the south wall are columns of transit tubes.
+In the south wall are columns of transport tubes.
+
+Next to the transport tubes you see mail sorting slots
+built into the wall.
         }
 
         {logic, name=Deepgrid floor 33 tested, tags=!_test
@@ -33,7 +36,10 @@ The room is cluttered with papers and stacks of mail.
 In front of you is a desk.
 Set into the north wall is a door with a sign on it that says
 'closet'.
-In the south wall are columns of transit tubes.
+In the south wall are columns of transport tubes.
+
+Next to the transport tubes you see mail sorting slots
+built into the wall.
             }
         }
     }

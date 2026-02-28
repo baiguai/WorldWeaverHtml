@@ -25,7 +25,7 @@
         {attrib, tags=x_keyboard|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer\s+)?(keyboard)\b, logic=x the keyboard|x computer keyboard|examine the computer keyboard|x keyboard|x computer }
         {attrib, tags=x_lazergun|!_regex, output=^(examine|x)( the)?( lazer)? gun$, logic=examine the gun|examine lazer gun|x the lazer gun|x gun }
         {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
-        {attrib, tags=x_mail_sorter|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mail\s+)?sorter\b, logic=examine the sorter|examine mail sorter|examine sorter|x the mail sorter }
+        {attrib, tags=x_mail_sorter|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mail\s+)?(sorter|sorting)\b, logic=examine the sorter|examine mail sorter|examine sorting|x the mail sorter }
         {attrib, tags=x_men|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?men\b, logic=examine the men|examine men|x the men|x men }
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
         {attrib, tags=x_minibar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mini\s+)?bar\b, logic=examine the bar|examine bar|examine mini bar|x the mini bar|x the bar|x bar }
