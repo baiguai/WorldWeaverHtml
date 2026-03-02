@@ -638,7 +638,7 @@
 
 <div class="search-dialog" id="searchDialog" style="display: none;">
     <input id="searchInput" placeholder="Search..." type="text">
-    <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
+    <div class="search-results" id="searchList"><div class="selected">Elements</div><div>SciFi Regex Library</div><div>Creating a REGEX Library</div><div>Element Cheatsheet</div><div>Action</div><div>Custom</div><div>Global</div><div>Input</div><div>NPC</div><div>Object</div><div>Player</div><div>Logic</div><div>Introduction to Output</div><div>Syntax</div><div>List Tag</div><div>Spawn</div><div>Relative Syntax</div><div>Introduction to Relative Syntax</div><div>Relative Reference Syntax</div><div>User Input Reference</div><div>Introduction to Special Output Values</div><div>Where Random Values Can Be Used</div><div>RolePlaying Dice Rolls</div><div>Complex Random Values</div><div>Relative Reference Example</div><div>Special Ralative Reference Introduction</div><div>User Input Reference</div><div>Logic - Logic</div><div>Message - Output</div><div>Inline Logic</div><div>Dynamic Values</div><div>Set - Output</div><div>Introduction to Regular Expressions</div><div>Moving NPCs / Objects</div><div>Syntax Conflicts</div><div>Defining the Weapon</div><div>Stats Command</div><div>Inventory Command</div><div>Arming Weapons</div><div>Slowly Healing</div><div>Slowly Healing Continued</div><div>Global Element Piece</div><div>Home Injection</div><div>Look Injection</div><div>Navigation Injection</div><div>Creating the Regular Expressions Element</div><div>Adding the Regular Expressions</div><div>Creating a Help System</div><div>Home Room</div><div>Creating the Spear</div><div>Defining Damage</div><div>Giving the Spear a Friendly Name</div><div>Adding Messages</div><div>Taking the Spear</div><div>Dropping the Spear</div><div>Lazer Gun Example</div><div>Defining an Opponent</div><div>Attacking the Player</div><div>Room Template</div></div>
 </div>
 
 <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -682,13 +682,15 @@
         </div>
     </div>
     <div id="replaceResults">Replaced 1 occurrence(s).</div>
-    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"></div>
+    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"><div class="find-item" data-idx="0" style="cursor: pointer; padding: 2px; overflow: auto; font-size: 60%; background: var(--sel-bg);">
+                                * <span class="find-highlight">dev_note</span>
+                               </div></div>
 </div>
 
 <div id="historyDialog" style="display: none;">
     <h3>History</h3>
     <div class="history-content">
-        <div id="historyList"></div>
+        <div id="historyList"><div class="selected" style="background: var(--sel-bg);">NPC</div><div>Dev Note</div><div>Introduction</div><div>Logic Comparison Operators</div><div>Checking Attributes</div><div>Repeating Messages</div><div>Repeat</div><div>Tests Gotchas</div><div>Quick Links</div><div>Logic</div><div>SciFi Regex Library</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>Custom</div><div>Injection</div><div>Visualizing Your Game</div><div>Message - Output</div><div>Message</div><div>Bug Fixes</div><div>Attack</div><div>Attacking the Player</div><div>Action</div><div>Defining an Opponent</div><div>Arming the Player</div><div>Getting the Player Ready</div><div>Preparing the Player for Fighting</div><div>Introduction to Fighting in WorldWeaver</div><div>Spawn</div><div>Introduction to Relative Syntax</div><div>Relative Reference Syntax</div></div>
     </div>
 </div>
 
@@ -712,7 +714,7 @@
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
-    <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
+    <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
 </section>
 </div>
 
@@ -1923,7 +1925,7 @@
       {
         "id": "8iegiaa9",
         "title": "Syntax Conflicts",
-        "content": "Syntax Conflicts\n--------------------------------------------------------------------------------\n\nThere are times where you may run into a conflict in syntax. While\n_Regular Expressions_ are extremely powerful, it is sometimes difficult to\navoid having more than one match when you don't intend that.\n\nI personally encountered this when defining a dresser's actions.\nI had a REGEX for examining the dresser, and one for looking inside it.\nOriginally I wanted the player to be able to enter something like:\n\nx inside dresser\n\nBut that was making it impossible to match the examine dresser action. When the\nplayer entered:\n\nx dresser\n\nIt was matching the x inside dresser syntax. In this case I updated the game\nso that they had to use input like:\n\nlook inside dresser\n\n\nSo be mindful of the REGEXs that are within the same room. If needed you can\ngive your user hints on what to enter to perform certain tasks.",
+        "content": "Syntax Conflicts\n--------------------------------------------------------------------------------\n\nThere are times where you may run into a conflict in syntax. While\n_Regular Expressions_ are extremely powerful, it is sometimes difficult to\navoid having more than one match when you don't intend that.\n\nI personally encountered this when defining a dresser's actions.\nI had a REGEX for examining the dresser, and one for looking inside it.\nOriginally I wanted the player to be able to enter something like:\n\nx inside dresser\n\nBut that was making it impossible to match the examine dresser action. When the\nplayer entered:\n\nx dresser\n\nIt was matching the x inside dresser syntax. In this case I updated the game\nso that they had to use input like:\n\nlook inside dresser\n\n\nSo be mindful of the REGEXs that are within the same room. You want to put your\nmost restrictive REGEXs first in the file, followed by increasingly 'loose'\nREGEXs.\n\nIf needed you can give your user hints on what to enter to perform certain tasks.",
         "children": [],
         "expanded": false
       },
@@ -2563,26 +2565,6 @@
 ];
         let historyStack = [
     {
-        "id": "f9vwkn0u",
-        "title": "Start Element"
-    },
-    {
-        "id": "unskmixi",
-        "title": "Relative Reference Syntax"
-    },
-    {
-        "id": "42ohhfa6",
-        "title": "Introduction to Relative Syntax"
-    },
-    {
-        "id": "65kg50j9",
-        "title": "NPC"
-    },
-    {
-        "id": "zqq08xb9",
-        "title": "Spawn"
-    },
-    {
         "id": "77txkgjr",
         "title": "Introduction to Fighting in WorldWeaver"
     },
@@ -2655,10 +2637,6 @@
         "title": "Logic"
     },
     {
-        "id": "gd3l7b09",
-        "title": "Quick Links"
-    },
-    {
         "id": "6kjv2pvy",
         "title": "Tests Gotchas"
     },
@@ -2677,6 +2655,30 @@
     {
         "id": "4vlrf9wp",
         "title": "Logic Comparison Operators"
+    },
+    {
+        "id": "65kg50j9",
+        "title": "NPC"
+    },
+    {
+        "id": "eibm5vc2",
+        "title": "Dev Note"
+    },
+    {
+        "id": "gd3l7b09",
+        "title": "Quick Links"
+    },
+    {
+        "id": "w9q5p7ir",
+        "title": "Object vs Custom Element Messages"
+    },
+    {
+        "id": "j2pmtnp5",
+        "title": "Moving NPCs / Objects"
+    },
+    {
+        "id": "8iegiaa9",
+        "title": "Syntax Conflicts"
     },
     {
         "id": "7t1zfwoc",

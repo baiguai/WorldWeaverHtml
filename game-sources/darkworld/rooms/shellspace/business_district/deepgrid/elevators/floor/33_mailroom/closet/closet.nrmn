@@ -10,6 +10,12 @@ South - return to the mail room.
     {enter_message
         output={@
 It is a small dark room.
+
+You see shelves of cleaning supplies lining the walls.
+There doesn't seem to be anything odd about the closet.
+That's when you notice it...
+
+There is an odd looking panel set into the wall to your right.
         }
 
         {logic, name=Deepgrid mailroom closet tested, tags=!_test
@@ -24,6 +30,12 @@ It is a small dark room.
             output={@
 The closet is small and dark.
 
+You see shelves of cleaning supplies lining the walls.
+There doesn't seem to be anything odd about the closet.
+That's when you notice it...
+
+There is an odd looking panel set into the wall to your right.
+
             }
         }
     }
@@ -32,6 +44,9 @@ The closet is small and dark.
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+    {inject, logic=./injections/cleaning_supp.inj }
+    {inject, logic=./injections/weird_panel.inj }
 
 
 
