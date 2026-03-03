@@ -21,7 +21,7 @@ Next to the transport tubes you see mail sorting slots
 built into the wall.
         }
 
-        {logic, name=Deepgrid floor 33 tested, tags=!_test
+        {logic, name=Deepgrid floor 33 mailroom tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
