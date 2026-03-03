@@ -1,5 +1,3 @@
-// The offices
-
 {room, key=deepgrid_floor_10, name=Hallway
     {attrib, output=true, tags=tested }
     {attrib, tags=navigation
@@ -21,7 +19,7 @@ You can attempt to enter the offices using 'enter' and the office
 door number.
         }
 
-        {logic, name=Deepgrid floor 10 tested, tags=!_test
+        {logic, name=Deepgrid floor 10 offices tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }

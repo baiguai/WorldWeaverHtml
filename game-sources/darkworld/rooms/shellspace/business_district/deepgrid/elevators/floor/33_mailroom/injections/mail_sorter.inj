@@ -1,0 +1,50 @@
+{x_mailsorter
+    {message
+        output={@
+You examine the mail sorter.
+It is comprised of virtual slots, into which the incoming and outgoing mail
+is sorted. This is done manually and via macros.
+
+        }
+    }
+}
+
+{x_mailsorter_slot
+    {message
+        output={@
+You examine the mail sorter slots...
+Each one is protected by a virtual bio-scanner.
+Hacking into the slots would require an expert hacker.
+If you could find one, you may be able to access other Shellspace users'
+mail items.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_mail_sorter_slot))
+    {act, logic=x_mailsorter_slot, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_mail_sorter))
+    {act, logic=x_mailsorter, tags=!_type|room }
+}
+
+
+
+
+
+
+{dev_note, tags=TODO
+	output={@
+If you find an expert hacker - you can have them teach you to hack other
+people's mail.
+
+	}
+}

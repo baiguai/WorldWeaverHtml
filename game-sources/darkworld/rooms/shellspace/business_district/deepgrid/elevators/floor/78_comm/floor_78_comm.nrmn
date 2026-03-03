@@ -1,0 +1,35 @@
+{room, key=deepgrid_floor_78, name=Comm Room
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Elevator enters the elevator.
+        }
+    }
+
+    {enter_message
+        output={@
+The elevator opens on a long narrow communications room.
+It is lit only by computer screens, security monitors and blinking computer
+status lights.
+--------------------------------------------------------------------------------
+        }
+
+        {logic, name=Deepgrid floor 78 commroom tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+}

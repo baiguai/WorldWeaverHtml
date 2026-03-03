@@ -1,0 +1,76 @@
+{room, key=deepgrid_floor_33, name=Mailroom
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+Elevator enters the elevator.
+North - enter a door marked 'closet'.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You find yourself in what appears to be an old-time mailroom.
+The room is cluttered with papers and stacks of mail.
+In front of you is a desk.
+Set into the north wall is a door with a sign on it that says
+'closet'.
+In the south wall are columns of transport tubes.
+
+Next to the transport tubes you see mail sorting slots
+built into the wall.
+        }
+
+        {logic, name=Deepgrid floor 33 mailroom tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the mailroom.
+The room is cluttered with papers and stacks of mail.
+In front of you is a desk.
+Set into the north wall is a door with a sign on it that says
+'closet'.
+In the south wall are columns of transport tubes.
+
+Next to the transport tubes you see mail sorting slots
+built into the wall.
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {inject, logic=./injections/desk.inj }
+    {inject, logic=./injections/mail_sorter.inj }
+    {inject, logic=./injections/trans_tubes.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press the elevator button. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=mailroom_closet, tags=[player]
+            output={@
+You open the door marked 'closet' and step inside.
+            }
+        }
+    }
+}
