@@ -11,7 +11,9 @@ Elevator enters the elevator.
 The elevator opens on a long narrow communications room.
 It is lit only by computer screens, security monitors and blinking computer
 status lights.
---------------------------------------------------------------------------------
+
+On the far wall is a large, central, glowing monitor. Before it, on a sleek
+black glass desk sits a keyboard.
         }
 
         {logic, name=Deepgrid floor 78 commroom tested, tags=!_test
@@ -24,6 +26,15 @@ status lights.
     {look
         {message
             output={@
+You look around...
+
+The elevator opens on a long narrow communications room.
+It is lit only by computer screens, security monitors and blinking computer
+status lights.
+
+On the far wall is a large, central, glowing monitor. Before it, on a sleek
+black glass desk sits a keyboard.
+
             }
         }
     }
