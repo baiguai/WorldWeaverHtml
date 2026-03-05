@@ -1,0 +1,27 @@
+{x_computers
+    {message
+        output={@
+You examine the computers. They are all networked together. When you trace
+the wires attached to them you see that all of the networking cables disappear
+into the wall to your left. The display wires all lead into the various
+security monitors.
+
+Surveillance.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_computers))
+    {act, logic=x_computers, tags=!_type|room }
+}

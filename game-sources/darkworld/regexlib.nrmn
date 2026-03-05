@@ -32,8 +32,10 @@
         {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
         {attrib, tags=x_minibar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mini\s+)?bar\b, logic=examine the bar|examine bar|examine mini bar|x the mini bar|x the bar|x bar }
         {attrib, tags=x_mirror|!_regex, output=^(examine|x)(?: the)? mirror$, logic=x the mirror|x mirror|examine the mirror }
+        {attrib, tags=x_monitors|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(\w+\s+)?(?:monitors)?\b, logic=x the monitors|x security monitors|examine the monitors|x monitors }
         {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
+        {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
         {attrib, tags=x_paper|!_regex, output=^(examine|x)(?: the)? paper$, logic=x the papers|x paper|examine the paper }
@@ -41,6 +43,7 @@
         {attrib, tags=x_pools|!_regex, output=^(examine|x)(?: the)? (pool|pools)$, logic=x pools|examine the pool }
         {attrib, tags=x_restaurants|!_regex, output=^(examine|x)(?: the)? (restaurant|restaurants)$, logic=x restaurants|examine the restaurant }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
+        {attrib, tags=x_screen|!_regex, output=^(examine|x)(?: the)? (screen)$, logic=x the screen|x screen|examine the screen }
         {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? (screens|walls)$, logic=x the screens|x screens|x walls|x the walls|examine the screens }
         {attrib, tags=x_servers|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?servers?\b, logic=examine the servers|x the server rack|examine servers|x servers }
         {attrib, tags=x_shifty_char|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:shifty\s+)?(character|man)\b, logic=examine the character|examine man|examine the man|examine the shifty man|examine character|examine shifty character|x the character|x character|x shifty character }
@@ -143,6 +146,8 @@
         {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
+        {attrib, tags=type_comm_pwd|!_regex, output=^type hplpkd5$, logic=type hplpkd5|type hmmm }
+        {attrib, tags=type_comm_badpwd|!_regex, output=^type (?!hplpkd5$).+, logic=type hplpkd5|type hmmm }
 
         {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
 

@@ -1,0 +1,43 @@
+{x_monitors
+    {message, repeat=random
+        {message
+            output={@
+You examine the security monitors. They slowly cycle through various camera
+feeds, moving up through the floors of the building. When the 80th floor
+is displayed you see movement.
+
+There is a glitching mass of tentacles in the middle of what appears to
+be a cocktail lounge!
+
+The occupants of that floor don't seem to notice it.
+
+            }
+        }
+        {message
+            output={@
+You examine the monitors. They slowly cycle through various camera
+feeds. When the 80th floor is displayed you see movement.
+
+There is a glitching mass of tentacles in the moving through what appears to
+be a cocktail lounge!
+
+The occupants of that floor don't seem to notice it.
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_monitors))
+    {act, logic=x_monitors, tags=!_type|room }
+}
