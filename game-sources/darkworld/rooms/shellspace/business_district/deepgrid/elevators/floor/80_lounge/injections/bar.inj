@@ -1,0 +1,26 @@
+{x_bar
+    {message
+        output={@
+You examine the bar...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bar))
+    {act, logic=x_bar, tags=!_type|room }
+}

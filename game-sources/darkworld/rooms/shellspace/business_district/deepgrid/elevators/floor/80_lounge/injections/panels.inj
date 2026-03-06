@@ -1,0 +1,26 @@
+{x_panels
+    {message
+        output={@
+You examine the panels...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_panel))
+    {act, logic=x_panels, tags=!_type|room }
+}

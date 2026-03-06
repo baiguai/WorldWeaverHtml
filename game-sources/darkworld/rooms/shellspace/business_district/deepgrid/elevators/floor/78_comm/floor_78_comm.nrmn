@@ -1,5 +1,5 @@
 {room, key=deepgrid_floor_78, name=Comm Room
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Elevator enters the elevator.

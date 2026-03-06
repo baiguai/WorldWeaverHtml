@@ -1,0 +1,26 @@
+{x_vidgames
+    {message
+        output={@
+You examine the bank of video games...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_vidgame))
+    {act, logic=x_vidgames, tags=!_type|room }
+}

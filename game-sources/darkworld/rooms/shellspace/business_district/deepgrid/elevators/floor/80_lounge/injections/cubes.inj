@@ -1,0 +1,26 @@
+{x_cube
+    {message
+        output={@
+You examine the cubes...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_cube))
+    {act, logic=x_cube, tags=!_type|room }
+}
