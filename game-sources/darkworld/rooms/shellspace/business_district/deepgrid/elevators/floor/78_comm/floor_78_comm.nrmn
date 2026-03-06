@@ -1,5 +1,5 @@
 {room, key=deepgrid_floor_78, name=Comm Room
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 Elevator enters the elevator.
@@ -9,9 +9,11 @@ Elevator enters the elevator.
     {enter_message
         output={@
 The elevator opens on a long narrow communications room.
-It is lit only by computer screens, security monitors and blinking computer
+It is lit only by security monitors and blinking computer
 status lights.
---------------------------------------------------------------------------------
+
+On the far wall is a large, central, glowing screen. Before it, on a sleek
+black glass desk sits a keyboard.
         }
 
         {logic, name=Deepgrid floor 78 commroom tested, tags=!_test
@@ -24,6 +26,15 @@ status lights.
     {look
         {message
             output={@
+You look around...
+
+The elevator opens on a long narrow communications room.
+It is lit only by security monitors and blinking computer
+status lights.
+
+On the far wall is a large, central, glowing screen. Before it, on a sleek
+black glass desk sits a keyboard.
+
             }
         }
     }
@@ -32,4 +43,21 @@ status lights.
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    {inject, logic=./injections/screen.inj }
+    {inject, logic=./injections/keyboard.inj }
+    {inject, logic=./injections/computers.inj }
+    {inject, logic=./injections/monitors.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press the elevator button. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
 }

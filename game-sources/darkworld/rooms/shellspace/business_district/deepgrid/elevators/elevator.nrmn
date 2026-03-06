@@ -91,4 +91,20 @@ You select your floor.
             }
         }
     }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_78))
+        {move, logic=deepgrid_floor_78, tags=[player]
+            output={@
+You select your floor.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((deepgrid_elevator_floor_80))
+        {move, logic=deepgrid_floor_80, tags=[player]
+            output={@
+You select your floor.
+            }
+        }
+    }
 }

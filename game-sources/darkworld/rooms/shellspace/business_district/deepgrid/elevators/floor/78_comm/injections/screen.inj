@@ -1,0 +1,32 @@
+{x_screen
+    {message
+        output={@
+<?[room]((pwd_entered)) = 'false'?>
+The screen nearly fills the entire facing wall.
+There is a cryptic symbol floating in the center, slowly rotating.
+At the bottom of the screen is a blinking cursor.
+
+<else>
+Filling the screen is a blueprint for the 80th floor.
+There is a red blinking indicator within a square labeled:
+
+Video Game Cabinet.
+
+</?>
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_screen))
+    {act, logic=x_screen, tags=!_type|room }
+}

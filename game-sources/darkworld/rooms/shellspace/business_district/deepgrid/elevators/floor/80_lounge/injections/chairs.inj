@@ -1,0 +1,26 @@
+{x_chair
+    {message
+        output={@
+You examine the chairs...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_chair))
+    {act, logic=x_chair, tags=!_type|room }
+}
