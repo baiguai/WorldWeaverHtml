@@ -1,7 +1,9 @@
 {x_chair
     {message
         output={@
-You examine the chairs...
+You see numerous large, outward-facing chairs.
+Some of them are populated with people sipping on drinks and talking among
+themselves.
 
         }
     }
