@@ -1,5 +1,6 @@
 {room, key=deepgrid_floor_80, name=The Lounge
     {attrib, output=false, tags=tested }
+    {attrib, output=false, tags=orb_found }
     {attrib, tags=navigation
         output={@
 Elevator enters the elevator.

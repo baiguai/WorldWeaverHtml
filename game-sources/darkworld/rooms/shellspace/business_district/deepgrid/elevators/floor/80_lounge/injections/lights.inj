@@ -1,7 +1,8 @@
 {x_lights
     {message
         output={@
-You examine the lights...
+You examine the lights.
+They form a grid overhead and give off a purple light.
 
         }
     }

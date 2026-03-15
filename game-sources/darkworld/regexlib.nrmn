@@ -37,9 +37,11 @@
         {attrib, tags=x_mirror|!_regex, output=^(examine|x)(?: the)? mirror$, logic=x the mirror|x mirror|examine the mirror }
         {attrib, tags=x_monitors|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(\w+\s+)?(?:monitors)?\b, logic=x the monitors|x security monitors|examine the monitors|x monitors }
         {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
+        {attrib, tags=x_orb|!_regex, output=^(examine|x)(?: the)? orb$, logic=x the orb|x orb|examine the orb }
         {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|examine the panel }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
+        {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
         {attrib, tags=x_paper|!_regex, output=^(examine|x)(?: the)? paper$, logic=x the papers|x paper|examine the paper }
@@ -55,6 +57,7 @@
         {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
         {attrib, tags=x_sink|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(sink)\b, logic=examine the sink|x the sink|examine sink|x sink }
         {attrib, tags=x_slides|!_regex, output=^(examine|x)(?: the)? (slide|slides)$, logic=x slides|examine the slide }
+        {attrib, tags=x_spheros|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?spheros(?:\s+game)?\b, logic=x spheros|examine the spheros game }
         {attrib, tags=x_stairs|!_regex, output=^(examine|x)(?: the)? (stairs|staircase|stair case)$, logic=x stairs|examine the staircase }
         {attrib, tags=x_suitcase|!_regex, output=^(examine|x)(?: the)? suitcase$, logic=x suitcase|examine the suitcase }
         {attrib, tags=x_table|!_regex, output=^(examine|x)(?: the)? (table|tables)$, logic=x the table|x table|examine the tables|x tables }
@@ -105,6 +108,7 @@
         {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
         {attrib, tags=lazergun_take|!_regex, output=^(take|pick up)( the)?( lazer)? gun$, logic=take the gun|take lazer gun|pick up gun|take gun|pick up the lazer gun }
         {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
+        {attrib, tags=orb_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?orb\b, logic=take the orb|take orb|pick up the orb }
         {attrib, tags=tablet_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?tablet\b, logic=take the tablet|take tab|pick up the tablet }
 
     Dropping
@@ -112,6 +116,7 @@
         {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
         {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
         {attrib, tags=lcd_watch_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=drop the watch|drop watch|drop lcd watch|put down the watch|put down watch|put down lcd watch }
+        {attrib, tags=orb_drop|!_regex, output=(drop.*orb), logic=drop the orb|drop orb }
 
     Putting
 

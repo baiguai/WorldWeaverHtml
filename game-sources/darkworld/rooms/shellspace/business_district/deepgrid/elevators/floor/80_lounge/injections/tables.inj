@@ -1,7 +1,9 @@
 {x_tables
     {message
         output={@
-You examine the tables...
+You examine the tables.
+They are arrayed throughout the lounge and most of them are occupied by
+patrons of the place. You don't see anything out of the ordinary.
 
         }
     }

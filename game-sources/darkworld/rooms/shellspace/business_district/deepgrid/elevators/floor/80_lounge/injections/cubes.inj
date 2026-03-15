@@ -1,18 +1,17 @@
 {x_cube
     {message
         output={@
-You examine the cubes...
+Throughout the lounge are glowing cubes. As you examine them more closely
+you realize that within their glowing light is a piece of source code:
+
+ExtendStrands(14);
+
+You aren't sure exactly what it means or where it can be called, but you
+take note of it.
 
         }
     }
 }
-
-
-
-
-
-
-
 
 
 
