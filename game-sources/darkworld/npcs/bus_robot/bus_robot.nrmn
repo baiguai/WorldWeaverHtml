@@ -80,6 +80,7 @@ It is looking at you.
 
     {input, syntax=[tplt_syntax]((x_robot))
         {act, logic=x_robot, tags=!_type|self }
+        {set, logic=[player]((quest)), output=Find the orb }
     }
 
     {input, syntax=[tplt_syntax]((yes))

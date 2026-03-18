@@ -31,7 +31,7 @@ Inside the cabinet you see a faintly glowing translucent orb.
     {message
         output={@
 You look at the Metroid game. You vaguely remember hearing about this game.
-But it has been so long you just know it is some kind of Sci Fi game.
+But it has been so long you just know it is some kind of Sci-Fi game.
 You don't see anything odd about it.
 
         }
