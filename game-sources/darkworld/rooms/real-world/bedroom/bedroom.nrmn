@@ -17,6 +17,9 @@ Three monitors are arrayed on the desk, each one showing a slow, geometric
 screen saver.
 
 In the right side of the desk is your computer.
+
+(at any time you can view your current objective using:   stats)
+
         }
     }
 
@@ -178,6 +181,7 @@ You are in a port.
 
             }
         }
+        {set, logic=[player]((quest)), output= }
     }
 
     {input, syntax=[tplt_syntax]((x_envelope))

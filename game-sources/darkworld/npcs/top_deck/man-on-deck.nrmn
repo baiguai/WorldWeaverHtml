@@ -24,5 +24,6 @@ You rush to the railing, but he is gone.
         {set, logic=[invite_chip]parent, output=[player] }
         {set, logic=[invite_chip]tags, output=+inventory }
         {set, logic=[self]parent, output=limbo }
+        {set, logic=[player]((quest)), output= }
     }
 }

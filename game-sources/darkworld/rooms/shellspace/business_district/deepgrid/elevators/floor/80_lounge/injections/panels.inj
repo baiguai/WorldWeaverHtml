@@ -1,7 +1,9 @@
 {x_panels
     {message
         output={@
-You examine the panels...
+The lounge is surrounded by translucent panels. They display abstract shapes
+that morph and pulse with the music that is playing throughout the lounge.
+
 
         }
     }
