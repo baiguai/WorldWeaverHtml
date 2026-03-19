@@ -1,0 +1,28 @@
+{x_tables
+    {message
+        output={@
+You examine the tables.
+They are arrayed throughout the lounge and most of them are occupied by
+patrons of the place. You don't see anything out of the ordinary.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_table))
+    {act, logic=x_tables, tags=!_type|room }
+}

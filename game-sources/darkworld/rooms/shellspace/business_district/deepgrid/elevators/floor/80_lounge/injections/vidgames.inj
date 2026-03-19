@@ -1,0 +1,67 @@
+{x_vidgames
+    {message
+        output={@
+You inspect the video games.
+Most of them are relics of bygone eras, perfectly reproduced. You recognize
+one of them: Asteroids. WELL before your time.
+
+Two of the games have signs posted on them, indicating that they are
+Out of Order.
+
+- Spheros
+- Metroid
+
+        }
+    }
+}
+
+{x_spheros
+    {message
+        output={@
+You examine the Spheros arcade game.
+It looks ordinary enough, but then you notice an odd looking panel set into
+the back of the cabinet. You crouch down and remove the metal plate.
+Inside the cabinet you see a faintly glowing translucent orb.
+
+        }
+    }
+}
+
+{x_metroid
+    {message
+        output={@
+You look at the Metroid game. You vaguely remember hearing about this game.
+But it has been so long you just know it is some kind of Sci-Fi game.
+You don't see anything odd about it.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_vidgame))
+    {act, logic=x_vidgames, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_spheros))
+    {act, logic=x_spheros, tags=!_type|room }
+
+    {set, logic=[room]((orb_found)), output=true }
+}
+
+{input, syntax=[tplt_syntax]((x_metroid))
+    {act, logic=x_metroid, tags=!_type|room }
+}

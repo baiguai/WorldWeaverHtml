@@ -1,0 +1,21 @@
+{x_trans_tube
+    {message
+        output={@
+You examine the transport tubes.
+These are throw-backs to a bygone era. A time when physical documents were
+passed from one location to another via a vacuum tube.
+You aren't sure how or IF these are even being used.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_trans_tube))
+    {act, logic=x_trans_tube, tags=!_type|room }
+}

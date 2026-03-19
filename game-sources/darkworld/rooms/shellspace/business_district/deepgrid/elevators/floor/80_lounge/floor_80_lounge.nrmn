@@ -1,0 +1,83 @@
+{room, key=deepgrid_floor_80, name=The Lounge
+    {attrib, output=false, tags=tested }
+    {attrib, output=false, tags=orb_found }
+    {attrib, tags=navigation
+        output={@
+Elevator enters the elevator.
+        }
+    }
+
+
+    {enter_message
+        output={@
+The elevator opens to a large rooftop lounge.
+Overhead is a mesh of dotted purple lights. Along the edges of the roof,
+translucent panels reach up far overhead to meet the mesh of lights.
+Abstract geometric shapes pulse over the surfaces of the panels, in time
+with the atmospheric synthesizer music that fills the place.
+
+Large glowing cubes sit in random positions throughout the lounge.
+
+At the far end is a large bar.
+There's a bank of video games to the right of the bar.
+
+Small tables dot the floor and a few large, outward facing, circular chairs
+fill the center of the place. There are some comfortable-looking couches
+along the edges of the lounge and directly before you is a wide bar with
+two augmented bartenders mixing drinks behind it.
+
+        }
+
+        {logic, name=Deepgrid floor 80 lounge tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+
+Large glowing cubes sit in random positions throughout the lounge.
+
+At the far end is a large bar.
+There's a bank of video games to the right of the bar.
+
+Small tables dot the floor and a few large, outward facing, circular chairs
+fill the center of the place. There are some comfortable-looking couches
+along the edges of the lounge and directly before you is a wide bar with
+two augmented bartenders mixing drinks behind it.
+
+            }
+        }
+    }
+
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {inject, logic=./injections/bar.inj }
+    {inject, logic=./injections/chairs.inj }
+    {inject, logic=./injections/couches.inj }
+    {inject, logic=./injections/cubes.inj }
+    {inject, logic=./injections/lights.inj }
+    {inject, logic=./injections/panels.inj }
+    {inject, logic=./injections/tables.inj }
+    {inject, logic=./injections/vidgames.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((elevator))
+        {move, logic=deepgrid_elevator, tags=[player]
+            output={@
+You press the elevator button. A moment later, one of the doors slide open.
+You step inside.
+            }
+        }
+    }
+}

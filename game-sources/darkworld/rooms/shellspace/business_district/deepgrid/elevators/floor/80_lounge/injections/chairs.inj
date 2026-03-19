@@ -1,0 +1,28 @@
+{x_chair
+    {message
+        output={@
+You see numerous large, outward-facing chairs.
+Some of them are populated with people sipping on drinks and talking among
+themselves.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_chair))
+    {act, logic=x_chair, tags=!_type|room }
+}

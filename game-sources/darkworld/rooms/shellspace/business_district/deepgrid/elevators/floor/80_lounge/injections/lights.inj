@@ -1,0 +1,27 @@
+{x_lights
+    {message
+        output={@
+You examine the lights.
+They form a grid overhead and give off a purple light.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_lights))
+    {act, logic=x_lights, tags=!_type|room }
+}

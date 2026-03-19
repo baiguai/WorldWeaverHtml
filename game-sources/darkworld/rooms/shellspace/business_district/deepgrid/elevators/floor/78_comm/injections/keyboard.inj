@@ -1,0 +1,71 @@
+{attrib, output=false, tags=pwd_entered }
+
+{x_keyboard
+    {message
+        output={@
+The keyboard is a thin glass plate with keys etched into it.
+You can type using:
+type
+followed by the text you want to enter.
+
+        }
+    }
+}
+
+{bad_pass
+    {message
+        output={@
+After you type your input into the keyboard...
+Nothing happens.
+
+        }
+    }
+}
+
+{good_pass
+    {message
+        output={@
+<?[room]((pwd_entered)) = 'false'?>
+You type 'hplpkd5' into the keyboard and hit Enter.
+A list of files fills the large screen before you.
+They are all encrypted except for one. When you select it using the keyboard's
+arrow keys and hit Enter a blueprint of the building unfolds before you.
+It rapidly moves your perspective up through the floors until it arrives
+at the 80th floor. There is a red blinking indicator within a square labeled:
+
+Video Game Cabinet.
+
+<else>
+On the screen before you is a blueprint for the 80th floor.
+There is a red blinking indicator within a square labeled:
+
+Video Game Cabinet.
+
+</?>
+        }
+    }
+
+    {set, logic=[room]((pwd_entered)), output=true }
+}
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_keyboard))
+    {act, logic=x_keyboard, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((type_comm_badpwd))
+    {act, logic=bad_pass, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((type_comm_pwd))
+    {act, logic=good_pass, tags=!_type|room }
+}

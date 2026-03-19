@@ -44,12 +44,10 @@ The robot looks around... "the RMRF."
 to Secdyne."
 </?>
 
-<?[lazer_gun]parent != [player]?>
-<?[self]((asked_gun)) = 'false'?>
+<?[lazer_gun]parent != [player] and [self]((asked_gun)) = 'false'?>
 I have a lazer gun, would you like it?
 <else>
 I see you have a gun. Good. You will need it.
-</?>
 </?>
                 }
             }
@@ -80,6 +78,7 @@ It is looking at you.
 
     {input, syntax=[tplt_syntax]((x_robot))
         {act, logic=x_robot, tags=!_type|self }
+        {set, logic=[player]((quest)), output=Find the orb }
     }
 
     {input, syntax=[tplt_syntax]((yes))

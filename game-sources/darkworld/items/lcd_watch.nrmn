@@ -25,7 +25,9 @@ You see an LCD watch.
     {x_lcd_watch
         {message
             output={@
-You examine the LCD watch...
+You examine the LCD watch.
+It has a dark screen with the time showing on it in bright green light.
+
             }
         }
     }

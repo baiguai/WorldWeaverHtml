@@ -1,0 +1,57 @@
+{x_bar
+    {message
+        output={@
+The bar is a large, curving, glass circuit board.
+There are a number of augmented programs behind it making drinks for various waiting customers.
+
+        }
+    }
+}
+
+{x_under_bar
+    {message
+        output={@
+You look under the bar.
+There is nothing there.
+
+        }
+    }
+}
+
+{x_bartender
+    {message
+        output={@
+The bartenders are programs so they are translucent and lack identifiable
+features.
+Thin threads of light move through their bodies as they busily make cocktails
+for waiting customers.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bar))
+    {act, logic=x_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_bar))
+    {act, logic=x_under_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_bartender))
+    {act, logic=x_bartender, tags=!_type|room }
+}

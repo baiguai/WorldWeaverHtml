@@ -1,0 +1,40 @@
+{x_couch
+    {message
+        output={@
+The couches line the edges of the lounge. They look comfortable and most of
+them are completely occupied by patrons of the lounge.
+
+        }
+    }
+}
+
+{x_under_couch
+    {message
+        output={@
+The couches are resting on the floor. There is no space under them.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_couch))
+    {act, logic=x_couch, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_couch))
+    {act, logic=x_under_couch, tags=!_type|room }
+}

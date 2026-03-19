@@ -1,0 +1,26 @@
+{x_cleaning_supp
+    {message
+        output={@
+You examine the cleaning supplies...
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_cleaning_supp))
+    {act, logic=x_cleaning_supp, tags=!_type|room }
+}

@@ -37,10 +37,10 @@ Then simply open your notes .html file - to save use the key binding: n
 // Path to the HTML file you want to save
 const FILE_PATH = "./help.html";
 const NODE_IP = "localhost";  // or your LAN IP
-const PORT = 3005;
+const PORT = 3001;
 
 // Backup behavior
-const BACKUP_DIR = "./help_backups";   // where backups go
+const BACKUP_DIR = "./backups";   // where backups go
 const MAX_BACKUPS = 200;          // how many to keep (-1 = disabled, 0 = unlimited)
 const MAX_DAYS = 0;               // delete backups older than N days (0 = keep forever)
 
@@ -53,10 +53,10 @@ const MAX_DAYS = 0;               // delete backups older than N days (0 = keep 
 //  (you generally don’t need to edit below this line)
 // ---------------------------------------------------------------------------
 
-import express from "express";
-import fs from "fs";
-import path from "path";
-import bodyParser from "body-parser";
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 app.use(bodyParser.text({ limit: "50mb" }));

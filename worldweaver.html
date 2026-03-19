@@ -1573,7 +1573,15 @@
                             "!! SOMETHING WENT WRONG IN THE COMPARISON LOGIC !!"
                         );
                     }
-                    const compareBlock = arr[0].trim();
+                    let compareBlock = arr[0].trim();
+                    if (/\b(and|or)\b/i.test(compareBlock)) {
+                        compareBlock = compareBlock.replace(/ (and|or) /g, '\n"$1"\n');
+                        compareBlock = compareBlock
+                          .split('\n')
+                          .map(line => (/^"(and|or)"$/).test(line) ? line : `?${line}`)
+                          .join('\n');
+                        compareBlock = compareBlock.replace(/^\?/, '');
+                    }
                     let contentBlock = arr[1];
                     let elseBlock = "";
 

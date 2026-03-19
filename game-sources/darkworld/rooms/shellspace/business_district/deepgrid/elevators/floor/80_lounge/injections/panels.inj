@@ -1,0 +1,28 @@
+{x_panels
+    {message
+        output={@
+The lounge is surrounded by translucent panels. They display abstract shapes
+that morph and pulse with the music that is playing throughout the lounge.
+
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_panel))
+    {act, logic=x_panels, tags=!_type|room }
+}

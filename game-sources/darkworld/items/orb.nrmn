@@ -1,0 +1,84 @@
+{object, key=orb, name=The Orb, parent=deepgrid_floor_80
+    {attrib, tags=moved, output=false }
+
+    {look
+        {message
+            output={@
+You see a translucent, glowing orb.
+            }
+        }
+
+        {logic
+            logic={@
+                [self]parent = [room] 
+                and
+                [self]moved = 'true'
+            }
+        }
+    }
+
+    {x_orb
+        {message
+            output={@
+You examine the orb.
+It is translucent and glows with a subtly pulsing light.
+            }
+        }
+    }
+
+
+
+
+
+    {input, syntax=[tplt_syntax]((x_orb))
+        {act, logic=x_orb, tags=!_type|self }
+
+        {logic
+            logic={@
+                [room]((orb_found)) = 'true'
+                or
+                [self]moved = 'true'
+            }
+        }
+    }
+
+	{input, syntax=[tplt_syntax]((orb_take))
+		{move, logic=[player], tags=[self]
+			output={@
+You take the orb.
+
+Now you can infiltrate the RMRF. They are headquartered in the Secdyne building.
+
+			}
+		}
+		{set, logic=[self]tags, output=+inventory }
+		{set, logic=[self]((moved)), output=true }
+        {set, logic=[player]((quest)), output=Infiltrate the RMRF at Secdyne }
+
+        {logic, logic=[room]((orb_found)) = 'true'
+			output={@
+What are you trying to pick up?
+			}
+		}
+
+		{logic, logic=[self]parent != [player]
+			output={@
+You already have the orb.
+			}
+		}
+	}
+
+	{input, syntax=[tplt_syntax]((orb_drop))
+		{move, logic=[room], tags=[self]
+			output={@
+You drop the orb.
+			}
+		}
+		{set, logic=[self]tags, output=-inventory }
+		{logic, logic=[self]parent = [player]
+			output={@
+You aren't carrying an orb.
+			}
+		}
+	}
+}

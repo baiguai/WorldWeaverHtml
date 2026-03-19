@@ -19,6 +19,8 @@ Welcome to the DarkWorld help system.
             output={@
 Interactive Fiction follows some common conventions. The commands below are some of these:
 
+#[#ffff00]**stats**# : View your player's stats.
+#[#ffff00]**inv**# : View your current inventory.
 #[#ffff00]**look or l**# : To look around.
 #[#ffff00]**?hint**# : To display possible hints.
 #[#ffff00]**look behind (object) or behind (object)**# : To look behind the specified object.
