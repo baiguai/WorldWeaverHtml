@@ -44,12 +44,10 @@ The robot looks around... "the RMRF."
 to Secdyne."
 </?>
 
-<?[lazer_gun]parent != [player]?>
-<?[self]((asked_gun)) = 'false'?>
+<?[lazer_gun]parent != [player] and [self]((asked_gun)) = 'false'?>
 I have a lazer gun, would you like it?
 <else>
 I see you have a gun. Good. You will need it.
-</?>
 </?>
                 }
             }

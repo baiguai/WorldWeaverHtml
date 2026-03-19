@@ -46,11 +46,14 @@ It is translucent and glows with a subtly pulsing light.
 		{move, logic=[player], tags=[self]
 			output={@
 You take the orb.
+
+Now you can infiltrate the RMRF. They are headquartered in the Secdyne building.
+
 			}
 		}
 		{set, logic=[self]tags, output=+inventory }
 		{set, logic=[self]((moved)), output=true }
-        {set, logic=[player]((quest)), output= }
+        {set, logic=[player]((quest)), output=Infiltrate the RMRF at Secdyne }
 
         {logic, logic=[room]((orb_found)) = 'true'
 			output={@

@@ -20,7 +20,7 @@
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
 
-    {attrib, name=Quest, output=, tags=stats|quest }
+    {attrib, name=Objective, output=Jack into Shellspace, tags=stats|quest }
     {attrib, output=false, tags=regected_mission }
     {attrib, name=Experience, key=experience, output=0, tags=experience|stats }
 
