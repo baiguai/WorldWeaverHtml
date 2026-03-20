@@ -10,9 +10,9 @@ You see a translucent, glowing orb.
 
         {logic
             logic={@
-                [self]parent = [room] 
+                ?[self]parent = [room] 
                 and
-                [self]moved = 'true'
+                ?[self]((moved)) = 'true'
             }
         }
     }

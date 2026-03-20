@@ -29,4 +29,5 @@ Video Game Cabinet.
 
 {input, syntax=[tplt_syntax]((x_screen))
     {act, logic=x_screen, tags=!_type|room }
+    {set, logic=[lounge_monster]parent, output=deepgrid_floor_80 }
 }
