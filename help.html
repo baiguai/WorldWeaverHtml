@@ -2,6 +2,19 @@
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>WorldWeaver Help</title>
+<script>
+    function closeDialogs() {
+        closeSearch();
+        closeHelp();
+        closeOptions();
+        closeSaveAs();
+        closeReplace();
+        closeLinksDialog();
+        closeMarksDialog();
+        closeHistoryDialog();
+        closeVersionDialog();
+    }
+</script>
 <style id="theme_styles">
     :root {
         --bg: #000000;
@@ -474,6 +487,17 @@
         font-family: monospace;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
+    .replace-dialog-in-tree {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        z-index: 1001; /* Higher than tree, lower than other dialogs */
+    }
     #replaceDialog h3 {
         margin-top: 0;
     }
@@ -632,18 +656,19 @@
     <label><input type="checkbox" id="optShowInitHelp"> Show Init Help</label><br><br>
     <label>File Name: <input type="text" id="optFileName" style="background:var(--sel-bg);color:var(--fg);border:1px solid var(--btn-border);"></label><br><br>
     <label><input type="checkbox" id="optModeVim"> Enable Vim Mode</label><br><br>
-    <label>Node Port: <input type="text" id="optPort" style="background:var(--input-bg);color:var(--input-fg);border:1px solid var(--border);"></label>
+    <label>Node Port: <input type="text" id="optPort" style="background:var(--input-bg);color:var(--input-fg);border:1px solid var(--border);"></label><br><br>
+    <label>Header Template: <input type="text" id="optHeaderTemplate" style="background:var(--sel-bg);color:var(--fg);border:1px solid var(--btn-border);"></label>
     <p>Press Enter to save, Esc to cancel.</p>
 </div>
 
 <div class="search-dialog" id="searchDialog" style="display: none;">
     <input id="searchInput" placeholder="Search..." type="text">
-    <div class="search-results" id="searchList"><div>Introduction to Output</div><div>Logic - Logic</div><div>Message - Output</div><div class="selected">Inline Logic</div><div>Setting Dice Rolls</div></div>
+    <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
 </div>
 
 <div class="search-dialog" id="linkSearchDialog" style="display: none;">
     <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-    <div class="search-results" id="linkSearchList"></div>
+    <div class="search-results" id="linkSearchList"><div>Quick Links</div><div class="selected">Introduction to Fighting in WorldWeaver</div></div>
 </div>
 
 <div class="search-dialog" id="helpDialogUnified" style="display: none;">
@@ -655,7 +680,7 @@
 
 <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
     <h3>Links in Note</h3>
-    <div id="linksList"><a href="#" data-node-id="c1z6i7rp" class="">History</a><a href="#" data-node-id="5mtavf66" class="selected">Developers</a></div>
+    <div id="linksList"><a href="#" data-node-id="c1z6i7rp" class="">History</a><a href="#" data-node-id="5mtavf66" class="">Developers</a><a href="#" data-node-id="gwx1dk23" class="selected">Using This Help System</a></div>
 </div>
 
 <div id="marksDialog" style="display: none;">
@@ -670,27 +695,25 @@
 </div>
 
 <div id="replaceDialog" style="display: none;">
-    <h3>Find &amp; Replace</h3>
-    <label for="searchText">Find</label>
+    <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
+    <label id="lblFind" for="searchText">Find</label>
     <input id="searchText" type="text">
     <div id="replaceTools" style="display: block;">
-        <label for="replaceText">Replace With</label>
+        <label id="lblReplace" for="replaceText">Replace With</label>
         <input id="replaceText" type="text">
         <div style="display: none;">
             <button onclick="doFind()">Find</button>
-            <button onclick="doReplaceAll()">Replace All</button>
+            <button id="btnFndReplace" onclick="doReplaceAll()">Replace All</button>
         </div>
     </div>
     <div id="replaceResults">Replaced 1 occurrence(s).</div>
-    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"><div class="find-item" data-idx="0" style="cursor: pointer; padding: 2px; overflow: auto; font-size: 60%; background: var(--sel-bg);">
-                                * <span class="find-highlight">dev_note</span>
-                               </div></div>
+    <div id="findResults" style="margin-top:10px; max-height:200px; overflow:auto; font-family:monospace; white-space:pre-wrap;"></div>
 </div>
 
 <div id="historyDialog" style="display: none;">
     <h3>History</h3>
     <div class="history-content">
-        <div id="historyList"><div class="selected" style="background: var(--sel-bg);">Introduction</div><div>Quick Links</div><div>Tracking Game Development</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div><div>Introduction to Tests</div><div>Macro - Run Tests</div><div>Use Macros!</div><div>Developer Notes</div><div>Importing the Database</div><div>Downloading WorldWeaver</div><div>Dev Note</div><div>NPC</div><div>Logic Comparison Operators</div><div>Checking Attributes</div><div>Repeating Messages</div><div>Repeat</div><div>Tests Gotchas</div><div>Logic</div><div>SciFi Regex Library</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>Custom</div><div>Injection</div><div>Visualizing Your Game</div><div>Message - Output</div><div>Message</div><div>Bug Fixes</div><div>Attack</div></div>
+        <div id="historyList"><div>Getting Started Quick Links</div><div class="selected" style="background: var(--sel-bg);">Introduction to Fighting in WorldWeaver</div><div>Reference Quick Links</div><div>Why Use a REGEX Library</div><div>Saving Games</div><div>Importing the Database</div><div>Downloading WorldWeaver</div><div>Introduction to Norman Script</div><div>worldweaver.html</div><div>Using This Help System</div><div>Quick Links</div><div>Introduction</div><div>How WorldWeaver Came To Be</div><div>Inline Logic</div><div>Tracking Game Development</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div><div>Introduction to Tests</div><div>Macro - Run Tests</div><div>Use Macros!</div><div>Developer Notes</div><div>Dev Note</div><div>NPC</div><div>Logic Comparison Operators</div><div>Checking Attributes</div><div>Repeating Messages</div><div>Repeat</div><div>Tests Gotchas</div><div>Logic</div></div>
     </div>
 </div>
 
@@ -705,12 +728,17 @@
     <p style="color:var(--dim); font-size:0.9em;">Press Enter to save, Esc to cancel.</p>
 </div>
 
+<div id="versionDialog" class="search-dialog" style="display: none; width: 300px; max-width: 90vw;">
+    <h3>Version</h3>
+    <p>Current Version: <span id="versionNumber">1.0.1</span></p>
+</div>
 
-<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">Quick Links</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Getting Started</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Reference</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Fighting in WorldWeaver</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Tutorials</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Templates</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Developers</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">History</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Upcoming</span></div></li></ul></aside>
+
+<aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">Quick Links</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333334 4.2333334" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <path style="fill:none;fill-opacity:1;stroke:#a5a5a5;stroke-width:0.258464;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers" d="m 0.79069024,0.63332294 c 1.68462256,-0.00621 0.87336156,0 2.51966116,0 V 3.6027704 H 0.79069024 Z" id="path65"></path> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5117" width="1.3229166" height="0.24694447" x="1.3890625" y="1.3934721"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5737" width="1.3229166" height="0.24694447" x="1.3890625" y="1.887361"></rect> <rect style="fill:#757575;fill-opacity:1;stroke-width:1.7147;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers" id="rect5739" width="1.3229166" height="0.24694447" x="1.3890625" y="2.3812501"></rect> </svg></span><span class="title">Using This Help System</span></div></li><li><div class="node selected"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Getting Started</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Reference</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Fighting in WorldWeaver</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Tutorials</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Templates</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Developers</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">History</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="16" height="16" viewBox="0 0 4.2333332 4.2333333" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2"></defs> <g id="layer1"> <path style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:0.264583;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="M 0.26458332,0.52916666 H 1.8520833 l 0.79375,0.52916664 1.3229167,1e-7 v 2.6458333 l -3.70416668,-10e-8 V 0.52916666" id="path2433"></path> </g> </svg></span><span class="title">Upcoming</span></div></li></ul></aside>
 <section class="editor">
     <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
         <span class="pill" id="mode" style="display: block;">TREE</span>
-        <span class="pill" id="kind">NOTE</span>
+        <span class="pill" id="kind">FOLDER</span>
         <span class="dim" id="path">/</span>
         <span class="pill" id="msg"></span>
     </div>
@@ -732,7 +760,7 @@
   {
     "id": "7t1zfwoc",
     "title": "Introduction",
-    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit:\n\n_History_\n_Developers_",
+    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit:\n\n_History_\n_Developers_\n\n\n(be sure to read the: _Using This Help System_ topic)",
     "children": [],
     "expanded": false
   },
@@ -744,10 +772,24 @@
     "expanded": false
   },
   {
+    "id": "gwx1dk23",
+    "title": "Using This Help System",
+    "content": "Using This Help System\n--------------------------------------------------------------------------------\n\nThis help system was created in a stand-alone notes tool called Httree.\nIt utilizes Vim-like key bindings, however you can also click around the tree\nview to expand and collapse nodes or to view topics.\n\nTo see the help system for Httree use (when in TREE mode):   ?\n\nWhere you see text surrounded by single underscores, like:\n\n_Introduction_\n\nThese are links to other topics in the help system. To navigate to them,\nuse (when in TREE mode):  #\n\nTo toggle the toolbar (and disable VIM mode) double click the\ninformation bar at the top.",
+    "children": [],
+    "expanded": true
+  },
+  {
     "id": "zed8qmc0",
     "title": "Getting Started",
     "content": "",
     "children": [
+      {
+        "id": "562gx263",
+        "title": "Getting Started Quick Links",
+        "content": "Getting Started Quick Links\n--------------------------------------------------------------------------------\n\n_Importing the Database_\n_Saving Games_\n_Introduction to Norman Script_\n_Why Use a REGEX Library_\n\n_Reference_",
+        "children": [],
+        "expanded": false
+      },
       {
         "id": "orfg1ilt",
         "title": "Downloading WorldWeaver",
@@ -2565,46 +2607,6 @@
 ];
         let historyStack = [
     {
-        "id": "r6f1c00p",
-        "title": "Bug Fixes"
-    },
-    {
-        "id": "w9iuka36",
-        "title": "Message"
-    },
-    {
-        "id": "ucohh3n7",
-        "title": "Message - Output"
-    },
-    {
-        "id": "223bagmq",
-        "title": "Visualizing Your Game"
-    },
-    {
-        "id": "62gcgwmb",
-        "title": "Injection"
-    },
-    {
-        "id": "trbj9g40",
-        "title": "Custom"
-    },
-    {
-        "id": "ma0ujb0g",
-        "title": "Creating a REGEX Library"
-    },
-    {
-        "id": "drhbwlz1",
-        "title": "Why Use a REGEX Library"
-    },
-    {
-        "id": "kg6l7ku7",
-        "title": "SciFi Regex Library"
-    },
-    {
-        "id": "9h9byll0",
-        "title": "Logic"
-    },
-    {
         "id": "6kjv2pvy",
         "title": "Tests Gotchas"
     },
@@ -2631,14 +2633,6 @@
     {
         "id": "eibm5vc2",
         "title": "Dev Note"
-    },
-    {
-        "id": "orfg1ilt",
-        "title": "Downloading WorldWeaver"
-    },
-    {
-        "id": "j2xmxbr6",
-        "title": "Importing the Database"
     },
     {
         "id": "3fdoxqry",
@@ -2673,16 +2667,64 @@
         "title": "Tracking Game Development"
     },
     {
-        "id": "gd3l7b09",
-        "title": "Quick Links"
-    },
-    {
         "id": "sf11evb7",
         "title": "Inline Logic"
     },
     {
+        "id": "d581fi8l",
+        "title": "How WorldWeaver Came To Be"
+    },
+    {
+        "id": "gnrdfdy3",
+        "title": "worldweaver.html"
+    },
+    {
+        "id": "532jkuyh",
+        "title": "Introduction to Norman Script"
+    },
+    {
+        "id": "orfg1ilt",
+        "title": "Downloading WorldWeaver"
+    },
+    {
+        "id": "j2xmxbr6",
+        "title": "Importing the Database"
+    },
+    {
+        "id": "kyzadr5w",
+        "title": "Saving Games"
+    },
+    {
+        "id": "drhbwlz1",
+        "title": "Why Use a REGEX Library"
+    },
+    {
+        "id": "1hdtoqna",
+        "title": "Reference Quick Links"
+    },
+    {
+        "id": "77txkgjr",
+        "title": "Introduction to Fighting in WorldWeaver"
+    },
+    {
+        "id": "q6w8v238",
+        "title": "Preparing the Player for Fighting"
+    },
+    {
         "id": "7t1zfwoc",
         "title": "Introduction"
+    },
+    {
+        "id": "gd3l7b09",
+        "title": "Quick Links"
+    },
+    {
+        "id": "gwx1dk23",
+        "title": "Using This Help System"
+    },
+    {
+        "id": "562gx263",
+        "title": "Getting Started Quick Links"
     }
 ];
 
@@ -2709,7 +2751,9 @@
         let importedFileName = null;
 
         let fileName = "help";
+        let curVersion = "1.0.1"
         let showInitHelp = false;
+        let headerTemplate = "__| ^*^ |__";
         let selectedId = null;
         let editing = false;
         let showingLinks = false;
@@ -2749,6 +2793,7 @@
         const linksDialog = document.getElementById('linksDialog');
         const marksDialog = document.getElementById('marksDialog');
         const historyDialog = document.getElementById('historyDialog');
+        const versionDialog = document.getElementById('versionDialog');
         const marksList = document.getElementById('marksList');
         const searchInput = document.getElementById('searchInput');
         const searchList = document.getElementById('searchList');
@@ -2759,8 +2804,18 @@
         const optFileName = document.getElementById('optFileName');
         const optModeVim = document.getElementById('optModeVim');
         const optPort = document.getElementById('optPort');
-        let optionFields = [optShowInitHelp, optFileName, optModeVim];
+        const optHeaderTemplate = document.getElementById('optHeaderTemplate');
+        let optionFields = [optShowInitHelp, optFileName, optModeVim, optHeaderTemplate];
         let optionIndex = 0;
+
+        function openVersionDialog() {
+            document.getElementById('versionNumber').textContent = curVersion;
+            versionDialog.style.display = 'block';
+        }
+
+        function closeVersionDialog() {
+            versionDialog.style.display = 'none';
+        }
 
         // !@!
         // Help Data
@@ -2774,13 +2829,14 @@
             { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
             { key: "]", mode: "TREE", description: "Expand the treeview panel" },
             { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
-            { key: "/", mode: "TREE", description: "Search (begin with : to search labels)" },
+            { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
             { key: "f", mode: "TREE", description: "Find text in the current note " },
             { key: "#", mode: "TREE", description: "Show note links dialog" },
             { key: "<", mode: "TREE", description: "Show the history dialog" },
             { key: "gg", mode: "TREE", description: "Select first root tree node" },
             { key: "G", mode: "TREE", description: "Select last root tree node" },
-            { key: "T", mode: "TREE", description: "Export current note as .txt" },
+            { key: "t", mode: "TREE", description: "Export current note as .txt" },
+            { key: "T", mode: "TREE", description: "Export current tree branch as .txt" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
             { key: "%", mode: "TREE", description: "Import theme file" },
@@ -2792,6 +2848,7 @@
             { key: "j", mode: "NORMAL", description: "Move down" },
             { key: "k", mode: "NORMAL", description: "Move up" },
             { key: "M", mode: "NORMAL", description: "Bookmark current node - at the current line" },
+            { key: "H", mode: "NORMAL", description: "Replace current line with header template (from options)" },
             { key: "0", mode: "NORMAL", description: "Jump to the beginning of the line" },
             { key: "$", mode: "NORMAL", description: "Jump to the end of the line" },
             { key: "b", mode: "NORMAL", description: "Move backward one word" },
@@ -2842,7 +2899,7 @@
             { key: "D", mode: "TREE", description: "Delete the current node" },
             { key: "i", mode: "TREE", description: "Edit current note" },
             { key: "I", mode: "TREE", description: "Edit current note" },
-            { key: "/", mode: "TREE", description: "Search (begin with : to search labels)" },
+            { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
             { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
             { key: "#", mode: "TREE", description: "Show note links dialog" },
             { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -2850,12 +2907,14 @@
             { key: "s", mode: "TREE", description: "Save the current file" },
             { key: "S", mode: "TREE", description: "Save as" },
             { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
-            { key: "T", mode: "TREE", description: "Export current note as .txt" },
+            { key: "t", mode: "TREE", description: "Export current note as .txt" },
+            { key: "T", mode: "TREE", description: "Export current tree branch as .txt (#noexp to bypass)" },
             { key: "U", mode: "TREE", description: "Upgrade (import existing data)" },
             { key: "m", mode: "TREE", description: "Bookmark current node" },
             { key: "`", mode: "TREE", description: "Show bookmarks" },
             { key: "%", mode: "TREE", description: "Import theme file" },
             { key: "!", mode: "TREE", description: "Display options dialog" },
+            { key: "v", mode: "TREE", description: "Display version dialog" },
 
             { key: "Control+-", mode: "INSERT", description: "Insert horizontal line" },
             { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
@@ -2867,6 +2926,7 @@
             { key: "?", mode: "TREE", description: "Show this help" },
             { key: "Escape", mode: "NORMAL", description: "Return to TREE mode" },
             { key: "h", mode: "NORMAL", description: "Move cursor left" },
+            { key: "H", mode: "NORMAL", description: "Insert Header, See Options ^*^ is the row's text" },
             { key: "j", mode: "NORMAL", description: "Move cursor down" },
             { key: "k", mode: "NORMAL", description: "Move cursor up" },
             { key: "l", mode: "NORMAL", description: "Move cursor right" },
@@ -3638,6 +3698,30 @@
                     setMark(e, getCurrentLineNumber());
                     performed = true;
                     break;
+                case "H": // Replace current line with header template
+                    recordUndoState();
+                    const textH = editorArea.value;
+                    const posH = editorArea.selectionStart;
+                    const lineStartH = textH.lastIndexOf("\n", posH - 1) + 1;
+                    let lineEndH = textH.indexOf("\n", posH);
+                    if (lineEndH === -1) lineEndH = textH.length;
+                    const currentLineText = textH.substring(lineStartH, lineEndH);
+                    const parts = headerTemplate.split('^*^');
+                    const newText = parts.join(currentLineText);
+
+                    if (currentLineText === "") {
+                        let delimiterIndex = headerTemplate.indexOf('^*^');
+                        editorArea.setRangeText(newText, lineStartH, lineEndH, "end");
+                        editorArea.setSelectionRange(delimiterIndex, delimiterIndex);
+                        editorArea.selectionStart = editorArea.selectionEnd = lineStartH + delimiterIndex;
+                    }
+                    else {
+                        editorArea.setRangeText(newText, lineStartH, lineEndH, "end");
+                        editorArea.selectionStart = editorArea.selectionEnd = lineStartH + newText.length;
+                    }
+                    syncFile();
+                    performed = true;
+                    break;
                 case 'n':
                     saveViaNode();
                     performed = true;
@@ -4008,6 +4092,11 @@
         }
 
         function setVimMode(insertMode) {
+            if (readOnly) {
+                modeEl.textContent = 'TREE';
+                return;
+            }
+
             // Remove all cursor mode classes first
             editorArea.classList.remove('insert-mode', 'normal-mode', 'visual-mode');
             
@@ -4460,6 +4549,7 @@
             optFileName.value = fileName;
             optModeVim.checked = mode_vim;
             optPort.value = nodePort;
+            optHeaderTemplate.value = headerTemplate;
             optionsDialog.style.display = 'block';
             optionIndex = 0;
             optionFields[optionIndex].focus();
@@ -4472,6 +4562,7 @@
             fileName = optFileName.value || fileName;
             mode_vim = optModeVim.checked;
             nodePort = optPort.value;
+            headerTemplate = optHeaderTemplate.value || headerTemplate;
             closeOptionsDialog();
         }
 
@@ -4706,12 +4797,57 @@
             resultsEl.innerHTML = '';
             document.getElementById('searchText').value = '';
             document.getElementById('replaceText').value = '';
-            document.getElementById('replaceDialog').style.display = 'block';
+            const replaceDialog = document.getElementById('replaceDialog');
+            const treeEl = document.getElementById('tree');
+
+            if (modeEl.textContent === 'TREE') {
+                const treeRect = treeEl.getBoundingClientRect();
+                treeEl.style.display = 'none';
+
+                replaceDialog.style.position = 'absolute';
+                replaceDialog.style.top = `${treeRect.top}px`;
+                replaceDialog.style.left = `${treeRect.left}px`;
+                replaceDialog.style.width = `${treeRect.width}px`;
+                replaceDialog.style.height = `${treeRect.height}px`;
+                replaceDialog.classList.add('replace-dialog-in-tree');
+                document.body.appendChild(replaceDialog);
+            }
+            
+            replaceDialog.style.display = 'block';
+
+            if (readOnly) {
+                let btnRplc = document.getElementById('btnFndReplace');
+                let txtRplc = document.getElementById('replaceText');
+                let ttlRplc = document.getElementById('ttlReplace');
+                let resRplc = document.getElementById('replaceResults');
+                let lblRplc = document.getElementById('lblReplace');
+                let lblFnd = document.getElementById('lblFind');
+                btnRplc.style.display = 'none';
+                txtRplc.style.display = 'none';
+                ttlRplc.style.display = 'none';
+                resRplc.style.display = 'none';
+                lblRplc.style.display = 'none';
+                lblFnd.style.display = 'none';
+            }
+
             document.getElementById('searchText').focus();
         }
 
         function closeReplaceDialog() {
-            document.getElementById('replaceDialog').style.display = 'none';
+            const replaceDialog = document.getElementById('replaceDialog');
+            const treeEl = document.getElementById('tree');
+            
+            if (replaceDialog.classList.contains('replace-dialog-in-tree')) {
+                treeEl.style.display = 'block';
+                replaceDialog.classList.remove('replace-dialog-in-tree');
+                replaceDialog.style.position = '';
+                replaceDialog.style.top = '';
+                replaceDialog.style.left = '';
+                replaceDialog.style.width = '';
+                replaceDialog.style.height = '';
+            }
+
+            replaceDialog.style.display = 'none';
             finding = false;
         }
 
@@ -5083,6 +5219,15 @@
 
         function searchTree(query) {
             searchMatches = [];
+            if (query.startsWith("#:")) {
+                searchTreeRegex(query.substring(2));
+                return;
+            }
+            if (query.startsWith("+:")) {
+                searchTreeWords(query.substring(2));
+                return;
+            }
+
             const searchTitleOnly = query.startsWith(':');
             let q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
 
@@ -5133,6 +5278,47 @@
             renderSearchList();
         }
 
+        function searchTreeWords(query) {
+            searchMatches = [];
+            if (!query) {
+                renderSearchList();
+                return;
+            }
+
+            const words = query.toLowerCase().split(',').map(w => w.trim()).filter(w => w);
+            if (words.length === 0) {
+                renderSearchList();
+                return;
+            }
+
+            (function walk(nodes) {
+                for (const n of nodes) {
+                    const nodeTitle = n.title ? n.title.toLowerCase() : '';
+                    const nodeContent = n.content ? n.content.toLowerCase() : '';
+                    const combinedText = nodeTitle + " " + nodeContent;
+
+                    let allWordsFound = true;
+                    for (const word of words) {
+                        if (!combinedText.includes(word)) {
+                            allWordsFound = false;
+                            break;
+                        }
+                    }
+
+                    if (allWordsFound) {
+                        searchMatches.push(n);
+                    }
+
+                    if (n.children && n.children.length) {
+                        walk(n.children);
+                    }
+                }
+            })(treeData);
+
+            searchIndex = 0;
+            renderSearchList();
+        }
+
         function renderSearchList() {
             searchList.innerHTML = '';
             searchMatches.forEach((n, i) => {
@@ -5146,6 +5332,19 @@
                     if (searchMatches.length > 0) {
                         selectSearchResult(i);
                         closeSearch();
+                        const selInfo = findNodeAndParentById(selectedId);
+                        if (selInfo && !isFolder(selInfo.node)) {
+                            editing = true;
+                            mode_insert = false;
+                            render();
+                            setTimeout(() => {
+                                editorArea.focus();
+                                // Force re-style
+                                editorArea.classList.remove('normal-mode');
+                                void editorArea.offsetWidth; // force reflow
+                                editorArea.classList.add('normal-mode');
+                            }, 0);
+                        }
                     }
                 });
                 searchList.appendChild(item);
@@ -5192,6 +5391,20 @@
                 if (searchMatches.length > 0) {
                     selectSearchResult(searchIndex);
                     closeSearch();
+                    const selInfo = findNodeAndParentById(selectedId);
+                    if (selInfo && !isFolder(selInfo.node)) {
+                        editing = true;
+                        mode_insert = false;
+                        mode_visual = true;
+                        render();
+                        setTimeout(() => {
+                            editorArea.focus();
+                            // Force re-style
+                            editorArea.classList.remove('normal-mode');
+                            void editorArea.offsetWidth; // force reflow
+                            editorArea.classList.add('visual-mode');
+                        }, 0);
+                    }
                 }
             } else if (e.key === 'Escape') {
                 closeSearch();
@@ -5388,12 +5601,12 @@
             // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
             if (saveName) {
-                htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "help";`);
+                htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "${name}";`);
             } else {
                 // fileName
                 htmlContent = htmlContent.replace(
                   /let\s+fileName\s*=\s*"([^"]*)";/,
-                  `let fileName = "help";`
+                  `let fileName = "${fileName}";`
                 );
             }
 
@@ -5413,6 +5626,12 @@
             htmlContent = htmlContent.replace(
                 /let\s+nodePort\s*=\s*\d+;/,
                 `let nodePort = ${nodePort};`
+            );
+
+            // headerTemplate
+            htmlContent = htmlContent.replace(
+                /let\s+headerTemplate\s*=\s*"([^"]*)";/,
+                `let headerTemplate = "${headerTemplate}";`
             );
 
             htmlContent = htmlContent.replace(/let\s+treeData\s*=\s*\[[\s\S]*?\];/, `let treeData = ${JSON.stringify(treeData, null, 2)};`);
@@ -5548,6 +5767,52 @@
             URL.revokeObjectURL(url);
         }
 
+        function exportTreeAsTxt() {
+            const nodeInfo = findNodeAndParentById(selectedId);
+            if (!nodeInfo) return;
+
+            let fullContent = "";
+
+            function getNodeText(node, depth) {
+                let content = "";
+                const indent = ""; // "  ".repeat(depth);
+
+                // Add content
+                if (node.content && node.content.trim() !== "" && !node.content.includes("#noexp")) {
+                    const contentLines = node.content.split('\n').map(line => indent + line);
+                    content += contentLines.join('\n') + "\n\n";
+                }
+
+                // Process children
+                if (node.children && node.children.length > 0) {
+                    node.children.forEach(child => {
+                        content += getNodeText(child, depth + 1);
+                    });
+                }
+
+                return content;
+            }
+
+            fullContent = getNodeText(nodeInfo.node, 0);
+
+            // Ask for filename (no extension needed)
+            const name = prompt("Save tree as .txt (enter name without extension):", "");
+            if (!name) return;
+
+            const fileName = name + ".txt";
+
+            // Create and trigger download
+            const blob = new Blob([fullContent], { type: "text/plain;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
 
         //---- Key Handling ----------------------------------------------------
         function handleGlobalKey(e){
@@ -5602,6 +5867,9 @@
                         if (currentFindIndex !== -1) {
                             selectFindMatch(currentFindIndex);
                             closeReplaceDialog();
+                            const area = document.getElementById('editorArea');
+                            area.focus();
+                            setVimMode(false);
                         } else {
                             doFind();
                         }
@@ -5689,7 +5957,8 @@
                 case 's': saveAsHtml(fileName); break;
                 case 'S': openSaveAsDialog(); break;
                 case 'n': saveViaNode(); break;
-                case 'T': exportNoteAsTxt(); break;
+                case 't': exportNoteAsTxt(); break;
+                case 'T': exportTreeAsTxt(); break;
                 case ']': resizeTree(30); break;
                 case '[': resizeTree(-30); break;
                 case '#': openLinksDialog(); break;
@@ -5722,6 +5991,15 @@
                 else openHelpDialog('VimDisabled');
                 return;
             }
+
+            if (versionDialog.style.display === 'block') {
+                if (e.key === 'Enter' || e.key === 'Escape') {
+                    e.preventDefault();
+                    closeVersionDialog();
+                }
+                return;
+            }
+
             if (optionsDialog.style.display === 'block') {
                 if (e.key === 'Enter') {
                     e.preventDefault();
@@ -5747,6 +6025,9 @@
             } else if (e.key === '!' && !editing && !readOnly && !dialogOpen()) {
                 e.preventDefault();
                 openOptionsDialog();
+            } else if (e.key === 'v' && !editing && !dialogOpen()) {
+                e.preventDefault();
+                openVersionDialog();
             }
             if (e.key === 'U' && !editing && !dialogOpen()) {
                 document.getElementById('filePicker').click()
