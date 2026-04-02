@@ -1,7 +1,19 @@
 {x_panel
     {message
         output={@
-You examine the weird panel...
+You examine the panel, it is held in place by four screws.
+Since you have a screwdriver, you can remove the panel with:
+open panel
+        }
+    }
+
+    {logic
+        logic={@
+            ?[screwdriver]parent = [player]
+        }
+        output={@
+You examine the weird panel. It is held in place by screws.
+If you had a screwdriver you could remove the panel.
         }
     }
 }
@@ -21,6 +33,6 @@ You examine the weird panel...
 
 
 
-{input, syntax=[tplt_syntax]((x_weird_panel))
+{input, syntax=[tplt_syntax]((x_panel))
     {act, logic=x_panel, tags=!_type|room }
 }

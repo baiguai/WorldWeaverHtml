@@ -2760,7 +2760,7 @@
             "\\);": "^^^func^^^"
         };
 
-        let nodePort = 3001;
+        let nodePort = 3002;
 
         let currentEditorNodeId = null;
 
@@ -5700,12 +5700,12 @@
             // Ensure correct replacement of the old database
             let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
             if (saveName) {
-                htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "${name}";`);
+                htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "help";`);
             } else {
                 // fileName
                 htmlContent = htmlContent.replace(
                   /let\s+fileName\s*=\s*"([^"]*)";/,
-                  `let fileName = "${fileName}";`
+                  `let fileName = "help";`
                 );
             }
 
