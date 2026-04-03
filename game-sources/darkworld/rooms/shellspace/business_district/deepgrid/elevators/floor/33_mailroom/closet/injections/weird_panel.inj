@@ -2,8 +2,14 @@
     {message
         output={@
 You examine the panel, it is held in place by four screws.
+<?[room]((panel_removed)) = 'true'?>
+
+It has been removed, you can enter it using: enter panel
+<else>
+
 Since you have a screwdriver, you can remove the panel with:
-open panel
+remove panel
+</?>
         }
     }
 
@@ -14,6 +20,22 @@ open panel
         output={@
 You examine the weird panel. It is held in place by screws.
 If you had a screwdriver you could remove the panel.
+        }
+    }
+}
+
+{remove_panel
+    {message
+        output={@
+You remove the panel.
+        }
+    }
+}
+
+{enter_panel
+    {message
+        output={@
+You enter the panel.
         }
     }
 }
@@ -35,4 +57,24 @@ If you had a screwdriver you could remove the panel.
 
 {input, syntax=[tplt_syntax]((x_panel))
     {act, logic=x_panel, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((remove_panel))
+    {act, logic=remove_panel, tags=!_type|room }
+    {set, logic=[room]((panel_removed)), output=true }
+}
+
+{input, syntax=[tplt_syntax]((enter_panel))
+    {act, logic=enter_panel, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[room]((panel_removed)) = 'true'
+        }
+
+        output={@
+
+Where are you trying to go?
+        }
+    }
 }

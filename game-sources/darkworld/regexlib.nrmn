@@ -1,5 +1,5 @@
 {object, key=tplt_syntax
-    Look
+    Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
@@ -129,6 +129,8 @@
     Fighting
 
     Moving
+        {attrib, tags=enter_panel|!_regex, output=^(enter)(?: the)? (panel|panels)$, logic=enter panels|enter panel }
+
         {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }
         {attrib, tags=go_south_door|!_regex, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=s|south|go s|go south|enter the south door|enter south|south door|s door }
         {attrib, tags=go_east_door|!_regex, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|east|go e|go east|step through the east door }
@@ -198,6 +200,7 @@
 
     Specific
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 

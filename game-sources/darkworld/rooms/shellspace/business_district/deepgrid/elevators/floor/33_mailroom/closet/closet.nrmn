@@ -1,5 +1,6 @@
 {room, key=mailroom_closet, name=Closet
     {attrib, output=false, tags=tested }
+    {attrib, output=false, tags=panel_removed }
     {attrib, tags=navigation
         output={@
 South - return to the mail room.
@@ -16,6 +17,10 @@ There doesn't seem to be anything odd about the closet.
 That's when you notice it...
 
 There is an odd looking panel set into the wall to your right.
+<?[room]((panel_removed)) = 'true'?>
+
+It has been removed, you can enter it using: enter panel
+</?>
         }
 
         {logic, name=Deepgrid mailroom closet tested, tags=!_test
@@ -35,6 +40,10 @@ There doesn't seem to be anything odd about the closet.
 That's when you notice it...
 
 There is an odd looking panel set into the wall to your right.
+<?[room]((panel_removed)) = 'true'?>
+
+It has been removed, you can enter it using: enter panel
+</?>
 
             }
         }
