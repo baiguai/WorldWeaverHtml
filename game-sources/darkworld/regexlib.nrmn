@@ -1,5 +1,5 @@
 {object, key=tplt_syntax
-    Look
+    Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
@@ -38,7 +38,7 @@
         {attrib, tags=x_monitors|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(\w+\s+)?(?:monitors)?\b, logic=x the monitors|x security monitors|examine the monitors|x monitors }
         {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
         {attrib, tags=x_orb|!_regex, output=^(examine|x)(?: the)? orb$, logic=x the orb|x orb|examine the orb }
-        {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|examine the panel }
+        {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|x panel|examine the panel }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
         {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
@@ -51,6 +51,7 @@
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
         {attrib, tags=x_screen|!_regex, output=^(examine|x)(?: the)? (screen)$, logic=x the screen|x screen|examine the screen }
         {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? (screens|walls)$, logic=x the screens|x screens|x walls|x the walls|examine the screens }
+        {attrib, tags=x_screwdriver|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?screwdriver\b, logic=examine the screwdriver|x screwdriver }
         {attrib, tags=x_servers|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?servers?\b, logic=examine the servers|x the server rack|examine servers|x servers }
         {attrib, tags=x_shifty_char|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:shifty\s+)?(character|man)\b, logic=examine the character|examine man|examine the man|examine the shifty man|examine character|examine shifty character|x the character|x character|x shifty character }
         {attrib, tags=x_shops|!_regex, output=^(examine|x)(?: the)? (shop|shops)$, logic=x shops|examine the  }
@@ -109,6 +110,7 @@
         {attrib, tags=lazergun_take|!_regex, output=^(take|pick up)( the)?( lazer)? gun$, logic=take the gun|take lazer gun|pick up gun|take gun|pick up the lazer gun }
         {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
         {attrib, tags=orb_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?orb\b, logic=take the orb|take orb|pick up the orb }
+        {attrib, tags=screwdriver_take|!_regex, output=^(take|pick up)( the)? screwdriver$, logic=take the screwdriver|take screwdriver|pick up screwdriver|pick up the screwdriver }
         {attrib, tags=tablet_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?tablet\b, logic=take the tablet|take tab|pick up the tablet }
 
     Dropping
@@ -117,6 +119,7 @@
         {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
         {attrib, tags=lcd_watch_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=drop the watch|drop watch|drop lcd watch|put down the watch|put down watch|put down lcd watch }
         {attrib, tags=orb_drop|!_regex, output=(drop.*orb), logic=drop the orb|drop orb }
+        {attrib, tags=screwdriver_drop|!_regex, output=^(drop|put down)( the)? screwdriver$, logic=drop the screwdriver|put down screwdriver|drop screwdriver|put down the screwdriver }
 
     Putting
 
@@ -126,6 +129,8 @@
     Fighting
 
     Moving
+        {attrib, tags=enter_panel|!_regex, output=^(enter)(?: the)? (panel|panels)$, logic=enter panels|enter panel }
+
         {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }
         {attrib, tags=go_south_door|!_regex, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=s|south|go s|go south|enter the south door|enter south|south door|s door }
         {attrib, tags=go_east_door|!_regex, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|east|go e|go east|step through the east door }
@@ -156,6 +161,7 @@
         {attrib, tags=elevator|!_regex, output=\b(enter\s+(the\s+|an?\s+)?)?elevator\b, logic=enter the elevator|enter elevator|elevator }
         {attrib, tags=enter_1023|!_regex, output=^enter\s*1023$, logic=enter 1023|enter 1011 }
         {attrib, tags=enter_non_1023|!_regex, output=^enter\s*(?:100[1-9]|101[0-9]|102[0-24-5])$, logic=enter 1023|enter 1011 }
+        {attrib, tags=hall|!_regex, output=\b(enter\s+(the\s+)?)?hall\b, logic=enter the hall|enter hall|hall }
         {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
@@ -195,6 +201,7 @@
 
     Specific
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 

@@ -19,7 +19,13 @@ You see an LCD watch.
             }
         }
 
-        {logic, logic=[self]parent = [room] }
+        {logic
+            logic={@
+                ?[self]parent = [room]
+                and
+                ?[self]((moved)) = 'true'
+            }
+        }
     }
 
     {x_lcd_watch
