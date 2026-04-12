@@ -32,14 +32,6 @@ You remove the panel.
     }
 }
 
-{enter_panel
-    {message
-        output={@
-You enter the panel.
-        }
-    }
-}
-
 
 
 
@@ -65,7 +57,12 @@ You enter the panel.
 }
 
 {input, syntax=[tplt_syntax]((enter_panel))
-    {act, logic=enter_panel, tags=!_type|room }
+    {move, logic=cult_temple, tags=[player]
+        output={@
+You step into the cramped passage that lay beyond the panel opening.
+
+        }
+    }
 
     {logic
         logic={@

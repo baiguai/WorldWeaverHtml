@@ -1,0 +1,36 @@
+{room, key=cult_temple, name=Temple
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+hall - leave the temple.
+        }
+    }
+
+
+    {enter_message
+        output={@
+        }
+    }
+
+    {look
+        {message
+            output={@
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((hall))
+        {move, logic=mailroom_closet, tags=[player]
+            output={@
+You return to the back of the temple where the narrow hall was and enter.
+
+            }
+        }
+    }
+}

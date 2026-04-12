@@ -161,6 +161,7 @@
         {attrib, tags=elevator|!_regex, output=\b(enter\s+(the\s+|an?\s+)?)?elevator\b, logic=enter the elevator|enter elevator|elevator }
         {attrib, tags=enter_1023|!_regex, output=^enter\s*1023$, logic=enter 1023|enter 1011 }
         {attrib, tags=enter_non_1023|!_regex, output=^enter\s*(?:100[1-9]|101[0-9]|102[0-24-5])$, logic=enter 1023|enter 1011 }
+        {attrib, tags=hall|!_regex, output=\b(enter\s+(the\s+)?)?hall\b, logic=enter the hall|enter hall|hall }
         {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
