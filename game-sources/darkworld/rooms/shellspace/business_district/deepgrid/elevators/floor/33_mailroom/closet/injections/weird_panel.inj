@@ -1,7 +1,33 @@
 {x_panel
     {message
         output={@
-You examine the weird panel...
+You examine the panel, it is held in place by four screws.
+<?[room]((panel_removed)) = 'true'?>
+
+It has been removed, you can enter it using: enter panel
+<else>
+
+Since you have a screwdriver, you can remove the panel with:
+remove panel
+</?>
+        }
+    }
+
+    {logic
+        logic={@
+            ?[screwdriver]parent = [player]
+        }
+        output={@
+You examine the weird panel. It is held in place by screws.
+If you had a screwdriver you could remove the panel.
+        }
+    }
+}
+
+{remove_panel
+    {message
+        output={@
+You remove the panel.
         }
     }
 }
@@ -21,6 +47,32 @@ You examine the weird panel...
 
 
 
-{input, syntax=[tplt_syntax]((x_weird_panel))
+{input, syntax=[tplt_syntax]((x_panel))
     {act, logic=x_panel, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((remove_panel))
+    {act, logic=remove_panel, tags=!_type|room }
+    {set, logic=[room]((panel_removed)), output=true }
+}
+
+{input, syntax=[tplt_syntax]((enter_panel))
+    {move, logic=cult_temple, tags=[player]
+        output={@
+You step into the cramped passage that lay beyond the panel opening.
+The passage soon becomes a narrow hall, then it opens up into a large room.
+
+        }
+    }
+
+    {logic
+        logic={@
+            ?[room]((panel_removed)) = 'true'
+        }
+
+        output={@
+
+Where are you trying to go?
+        }
+    }
 }

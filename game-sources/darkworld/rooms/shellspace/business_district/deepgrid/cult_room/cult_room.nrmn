@@ -1,0 +1,32 @@
+{room, key=cult_room, name=Cult Room
+    {enter_message
+        output={@
+You are in a dark corridor...
+        }
+
+        {logic, name=Deepgrid mailroom closet tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+The closet is small and dark.
+
+You see shelves of cleaning supplies lining the walls.
+There doesn't seem to be anything odd about the closet.
+That's when you notice it...
+
+There is an odd looking panel set into the wall to your right.
+<?[room]((panel_removed)) = 'true'?>
+
+It has been removed, you can enter it using: enter panel
+</?>
+
+            }
+        }
+    }
+}

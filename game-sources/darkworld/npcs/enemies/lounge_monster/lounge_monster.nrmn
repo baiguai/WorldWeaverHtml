@@ -1,0 +1,65 @@
+{npc, key=lounge_monster, name=Monster, tags=enemy|lounge_monster
+	{attrib, logic=spn_[rand:3|4], tags=stats_dice }
+	{attrib, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=life_roll }
+	{attrib, output=spn_[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }
+	{attrib, name=Life, output=spn_[roll:<<[self]((life_roll))>>d6], tags=stats|!_life }
+	{attrib, output=spn_[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|armor }
+	{attrib, output=<<[self]((armor))>>, tags=!_hitscore }
+	{attrib, output=0, tags=!_damageadj }
+
+	{attrib, output=lng_monst_tent, tags=!_armed|name }
+	{attrib, tags=!_hitmsg
+		output={@
+You have hit the monster.
+
+		}
+	}
+	{attrib, tags=!_missmsg
+		output={@
+You have attacked the monster, but missed.
+
+		}
+	}
+	{attrib, tags=!_killmsg
+		output={@
+You have killed the monster.
+
+		}
+	}
+
+	{attrib, tags=!_hitplayermsg
+		output={@
+The monster has attacked you!
+
+		}
+	}
+
+	{attrib, tags=!_missplayermsg
+		output={@
+The monster has attacked you, but missed.
+
+		}
+	}
+
+	{look
+		{message
+			output={@
+
+You see a shadowy monster comprised of writhing tentacles.
+
+			}
+		}
+	}
+
+	{input, syntax=(attack.*monster|!.*monster)
+		{attack, logic=[self] }
+	}
+
+
+	{object, key=lng_monst_tent, tags=!_weapon
+		{attrib, logic=rdm_[roll:(2)1d6], tags=!_damage }
+		{attrib, output=tentacle, tags=title }
+	}
+}
+}
+

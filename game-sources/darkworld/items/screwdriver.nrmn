@@ -1,0 +1,77 @@
+{object, key=screwdriver, name=Screwdriver, parent=deepgrid_floor_80
+    {attrib, tags=moved, output=false }
+
+    {x_under_bar
+        {message
+            output={@
+You see a screwdriver.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'false'
+            }
+        }
+    }
+
+    {x_screwdriver
+        {message
+            output={@
+You examine the screwdriver...
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You see a screwdriver.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [room]
+                and
+                ?[self]((moved)) = 'true'
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_screwdriver))
+        {act, logic=x_screwdriver, tags=!_type|self }
+    }
+
+	{input, syntax=[tplt_syntax]((screwdriver_take))
+		{move, logic=[player], tags=[self]
+			output={@
+You take the screwdriver.
+			}
+		}
+		{set, logic=[self]tags, output=+inventory }
+		{set, logic=[self]((moved)), output=true }
+
+		{logic, logic=[self]parent != [player]
+			output={@
+You already have the screwdriver.
+			}
+		}
+	}
+
+	{input, syntax=[tplt_syntax]((screwdriver_drop))
+		{move, logic=[room], tags=[self]
+			output={@
+You drop the screwdriver.
+			}
+		}
+		{set, logic=[self]tags, output=-inventory }
+		{logic, logic=[self]parent = [player]
+			output={@
+You aren't carrying a screwdriver.
+			}
+		}
+	}
+}

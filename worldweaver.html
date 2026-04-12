@@ -247,8 +247,11 @@
         </div>
 
         <div style="display: flex; justify-content: center; gap: 20px; margin-top: 20px;">
-            <button onclick="attackEnemy()">Attack</button>
-            <button onclick="exitFight()">Flee</button>
+            <div>
+                <span onclick="attackEnemy()">! = Attack</span>
+                &nbsp;
+                <span onclick="exitFight()">F = Flee</span>
+            </div>
         </div>
     </div>
 
@@ -367,6 +370,7 @@
             const failString = ' <span style="color: red;">Failed</span>';
             const passString = ' <span style="color: green;">Passed</span>';
 
+            let isFighting = false;
             let fightRoundsMax = 3;
             let currentFightRound = 0;
             let enemyArmorAdjust = 0;
@@ -3663,5 +3667,22 @@
                     break;
             }
         }
+
+        document.addEventListener('keydown', function (e) {
+            if (!isFighting) {
+                return;
+            }
+
+            if (e.key === '!') {
+                e.preventDefault();
+                e.stopPropagation();
+                attackEnemy()
+            }
+            if (e.key === 'F') {
+                e.preventDefault();
+                e.stopPropagation();
+                exitFight();
+            }
+        });
     </script>
 </body></html>
