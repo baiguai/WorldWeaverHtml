@@ -60,6 +60,7 @@ You remove the panel.
     {move, logic=cult_temple, tags=[player]
         output={@
 You step into the cramped passage that lay beyond the panel opening.
+The passage soon becomes a narrow hall, then it opens up into a large room.
 
         }
     }

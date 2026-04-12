@@ -9,12 +9,29 @@ hall - leave the temple.
 
     {enter_message
         output={@
+You find yourself in what appears to be a vast temple.
+Chairs line the left and right walls of the temple, with
+a path leading forward to an alter.
+Just behind the alter, hovering in air, is a large, purple, neon circle lighting
+up the entire space.
+
+Bowing before the circle you see hooded figures.
+
         }
     }
 
     {look
         {message
             output={@
+You look around...
+
+Chairs line the left and right walls of the temple.
+There is an alter.
+Just behind the alter, hovering in air, is a large, purple, neon circle lighting
+up the entire space.
+
+Bowing before the circle you see hooded figures.
+
             }
         }
     }
