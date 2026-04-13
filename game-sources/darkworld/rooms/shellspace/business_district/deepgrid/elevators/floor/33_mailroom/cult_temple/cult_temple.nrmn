@@ -18,6 +18,12 @@ up the entire space.
 Bowing before the circle you see hooded figures.
 
         }
+
+        {logic, name=Deepgrid cult temple tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
     {look
