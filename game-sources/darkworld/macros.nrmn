@@ -43,5 +43,5 @@
 {macro, key=seedy_character_cloak, output=l|~|put usb in computer|~|down|~|greet character|~|the cloak }
 {macro, key=seedy_character, output=l|~|put usb in computer|~|down|~|greet character }
 {macro, key=monorail_ticket_booth, output=l|~|put usb into computer|~|x walls|~|l|~|up }
-{macro, key=shellspace_hub, output=l|~|put usb into computer|~|x walls }
+{macro, key=hub, output=l|~|put usb into computer|~|x walls }
 {macro, key=isday, output=l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l }

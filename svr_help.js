@@ -37,7 +37,7 @@ Then simply open your notes .html file - to save use the key binding: n
 // Path to the HTML file you want to save
 const FILE_PATH = "./help.html";
 const NODE_IP = "localhost";  // or your LAN IP
-const PORT = 3002;
+const PORT = 3003;
 
 // Backup behavior
 const BACKUP_DIR = "./backups";   // where backups go

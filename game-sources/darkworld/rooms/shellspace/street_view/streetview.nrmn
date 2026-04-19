@@ -5,18 +5,23 @@
         output={@
 Behind you is a moving ramp going up.
 6 streets extend off into the distance.
-One going west.
-One going northwest.
-One going north.
-One going northeast.
-One going east.
-And one going southeast.
+One going west toward the waterfront.
+One going northwest toward the Business District.
+One going north toward the park.
+One going northeast toward the Art District.
+One going east toward the industrial area.
+And one going southeast along the water.
         }
     }
 
     {enter_message
         output={@
 You are next to a major street in the downtown district of a city called Vice Harbor.
+<?[invite_chip]parent = [player]?>
+
+A young woman is standing nearby. She nods at you and says:
+There's a great cafe in the park north of here. Best coffee.
+</?>
         }
 
         {logic, name=Shellspace street view tested, tags=!_test
@@ -32,6 +37,11 @@ You are next to a major street in the downtown district of a city called Vice Ha
 
 You look around.
 You are next to a major street in the downtown district of a city called Vice Harbor.
+<?[invite_chip]parent = [player]?>
+
+A young woman is standing nearby. She nods at you and says:
+There's a great cafe in the park north of here. Best coffee.
+</?>
             }
         }
     }
@@ -69,5 +79,16 @@ You go north west.
         }
 
         {set, logic=[switch_hustler]parent, tags=!_limbo }
+    }
+
+
+
+    {dev_note, tags=Clue
+        output={@
+If the player has the invite chip - from the cruise...
+
+The robot tells the player the access password:
+fidelis
+        }
     }
 }

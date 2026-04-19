@@ -20,13 +20,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#505050"
      showgrid="false"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="686.24711"
-     inkscape:cy="293.80286"
+     inkscape:zoom="0.71583333"
+     inkscape:cx="361.81606"
+     inkscape:cy="583.23632"
      inkscape:window-width="1916"
-     inkscape:window-height="1074"
+     inkscape:window-height="1068"
      inkscape:window-x="0"
-     inkscape:window-y="4"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <g
@@ -34338,5 +34338,32 @@
          y="181.95024"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
          id="tspan15159">* Holographic LTD</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:25.7498px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus, Normal';fill:#46ffe5;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="1021.8656"
+       y="930.56165"
+       id="text10096"><tspan
+         sodipodi:role="line"
+         id="tspan10094"
+         x="1021.8656"
+         y="930.56165"
+         style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1">Spaceport</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-family:'ITC Bauhaus';-inkscape-font-specification:'ITC Bauhaus, Normal';fill:#46ffe5;stroke:#ffffff;stroke-width:5;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       x="1019.8623"
+       y="975.66614"
+       id="text15154"><tspan
+         sodipodi:role="line"
+         x="1019.8623"
+         y="975.66614"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan15152">* Accessed by the Monorail</tspan><tspan
+         sodipodi:role="line"
+         x="1019.8623"
+         y="995.81506"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:5;stroke-dasharray:none;stroke-opacity:1"
+         id="tspan15165">* Space adventure level</tspan></text>
   </g>
 </svg>

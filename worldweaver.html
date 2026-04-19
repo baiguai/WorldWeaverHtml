@@ -1323,10 +1323,10 @@
                     return false;
                 }
                 if (!tags.includes("|")) {
-                    return tags == tagString;
+                    return tags.toLowerCase() == tagString.toLowerCase();
                 }
-                const taglist = tags.split("|");
-                return taglist.includes(tagString);
+                const taglist = tags.toLowerCase().split("|");
+                return taglist.includes(tagString.toLowerCase());
             }
             function addTag(currentElement, tagString)
             {
@@ -2156,8 +2156,8 @@
                 case command.startsWith("_devnotes") && adminMode:
                     if (doAdminDevNotes(command.replace("_devnotes", ""))) {
                         gameOutput.MatchMade = true;
-                        return;
                     }
+                    return;
 
                 case command.startsWith("_macror") && adminMode:
                     doAdminMacroRecord(command.replace("_macror", ""))
@@ -2283,15 +2283,25 @@
         function doAdminDevNotes(command) {
             let devOutput = `${br}${br}${br}Dev Notes:`;
             let dNotes = null;
-            
+            let srchTags = false;
+
             if (command.trim() === "") {
                 dNotes = database.filter(item => item.ElementType === "dev_note");
             } else {
-                dNotes = database.filter(item => item.ElementType === "dev_note" && item.Output.includes(command.trim()));
+                if (command.trim().startsWith(":")) {
+                    srchTags = true;
+                }
+                if (srchTags === true) {
+                    dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim().replace(":", "")));
+                } else {
+                    dNotes = database.filter(item => item.ElementType === "dev_note" && item.Output.toLowerCase().includes(command.toLowerCase().trim()));
+
+                    if (dNotes.length < 1) {
+                        dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim()));
+                    }
+                }
             }
-            if (dNotes.length < 1) {
-                dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim()));
-            }
+
             if (dNotes.length < 1) {
                 return false;
             }
