@@ -42,10 +42,39 @@ Bowing before the circle you see hooded figures.
         }
     }
 
+    {look_nochip
+        {message
+            output={@
+You don't have the chip!
+
+            }
+        }
+    }
+
 
     {inject, logic=/nav.inj }
-    {inject, logic=/look.inj }
 
+
+
+    {input, syntax=[tplt_syntax]((look))
+        {act, logic=look, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[invite_chip]parent = [player]
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((look))
+        {act, logic=look_nochip, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[invite_chip]parent != [player]
+            }
+        }
+    }
 
 
     {input, syntax=[tplt_syntax]((hall))
