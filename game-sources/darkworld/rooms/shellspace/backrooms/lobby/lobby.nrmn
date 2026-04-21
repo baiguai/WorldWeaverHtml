@@ -1,0 +1,45 @@
+{room, key=backrooms_lobby, name=Lobby
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West - enter the dim hallway.
+        }
+    }
+
+    {enter_message
+        output={@
+You find yourself in an eerily empty room. The walls, floor, and ceiling
+are a pale yellow color. Overhead squares of light illuminate the space.
+
+Along the north and south walls are minimal yellow benches.
+
+In the west wall is a dim narrow hall.
+
+        }
+
+        {logic, name=Backrooms lobby tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in an eerily empty room. The walls, floor, and ceiling
+are a pale yellow color. Overhead squares of light illuminate the space.
+
+Along the north and south walls are minimal yellow benches.
+
+In the west wall is a dim narrow hall.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+}
