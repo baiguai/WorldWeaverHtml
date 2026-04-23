@@ -50,7 +50,7 @@
 
                 @media (max-width: 768px) {
                     .app {
-                        grid-template-columns: 1fr;
+                        grid-template-columns: 1fr !important;
                         grid-template-areas:
                         "header"
                         "editor";
@@ -63,8 +63,7 @@
                         top: 48px;               /* adjust to your header height */
                         left: 0;
                         bottom: 0;
-                        width: 75%;
-                        max-width: 300px;
+                        width: 320px;             /* default width - not affected by desktop resizing */
                         background: var(--bg);
                         border-right: 1px solid var(--border);
                         transform: translateX(-100%); /* hidden off-screen */
@@ -743,7 +742,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
+                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
             </div>
 
@@ -772,7 +771,7 @@
     "title": "Using This Help System",
     "content": "Using This Help System\n--------------------------------------------------------------------------------\n\nThis help system was created using Scribboleth.\n\n[Scribboleth]\nhttps://github.com/baiguai/scribboleth\n\nIt is a keyboard-driven notes application, written as a stand alone .html file.\nBut - you can use it on mobile devices or tablets as well.\n\nIf you do not want to learn the key bindings (hit ?) you can simply double-click\nthe section directly above this topic. That will display the toolbar and\nturn off 'Vim Mode'. You can also double click the tree to the left. That will\ndisplay the tree menu.\n\nTo return to the keyboard-driven mode, you can - again - double click the\nsection above, and hit ! to view the settings. Click the 'Enable Vim Mode'\ncheckbox, and save the file.",
     "children": [],
-    "expanded": true
+    "expanded": false
   },
   {
     "id": "gd3l7b09",
@@ -2633,10 +2632,6 @@
 ];
             let historyStack = [
     {
-        "id": "eibm5vc2",
-        "title": "Dev Note"
-    },
-    {
         "id": "orfg1ilt",
         "title": "Downloading WorldWeaver"
     },
@@ -2733,10 +2728,6 @@
         "title": "Admin Tools Introduction"
     },
     {
-        "id": "3j0575hc",
-        "title": "Developers Quick Links"
-    },
-    {
         "id": "psnju7nz",
         "title": "Syntax With Logic"
     },
@@ -2747,6 +2738,14 @@
     {
         "id": "jtfzv3lb",
         "title": "Using This Help System"
+    },
+    {
+        "id": "3j0575hc",
+        "title": "Developers Quick Links"
+    },
+    {
+        "id": "223bagmq",
+        "title": "Visualizing Your Game"
     },
     {
         "id": "7t1zfwoc",
@@ -2777,7 +2776,7 @@
             let importedFileName = null;
 
             let fileName = "help";
-            let curVersion = "1.0.2"
+            let curVersion = "1.0.3"
             let showInitHelp = false;
             let headerTemplate = "__| ^*^ |__";
             let selectedId = null;
@@ -2962,6 +2961,7 @@
                     { key: "u", mode: "TREE", description: "Go up a tree node level" },
                     { key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
                     { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
+                    { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
@@ -3016,6 +3016,7 @@
                     { key: "k", mode: "TREE", description: "Select the previous tree node" },
                     { key: "l", mode: "TREE", description: "Expand the current tree node" },
                     { key: "h", mode: "TREE", description: "Collapse the current tree node" },
+                    { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "u", mode: "TREE", description: "go up a tree node level" },
                     { key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
                     { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
@@ -4447,6 +4448,24 @@
                         if (links.length === 0) return;
                         activateSelectedLink();
                         e.preventDefault();
+                    } else if (e.key === 'y') {
+                        if (links.length === 0) return;
+                        const link = links[linksIndex];
+                        let textToCopy = '';
+                        if (link.dataset.nodeId) {
+                            const node = findNodeById(link.dataset.nodeId);
+                            if (node) textToCopy = '_' + node.title + '_';
+                        } else if (link.href && link.href !== '#') {
+                            textToCopy = link.href;
+                        }
+                        if (textToCopy) {
+                            navigator.clipboard.writeText(textToCopy).then(() => {
+                                showMessage('Copied: ' + textToCopy);
+                            }).catch(() => {
+                                showMessage('Failed to copy');
+                            });
+                        }
+                        e.preventDefault();
                     } else if (e.key === 'Escape') {
                         closeLinksDialog();
                         e.preventDefault();
@@ -4807,7 +4826,11 @@
                 ctx.siblings.splice(ctx.index, 1);
                 selectedId = goTo ? (goTo.id || goTo) : null;
             }
+            let savedTreeWidth = 320;
+            let treePanelVisible = true;
             function resizeTree(adjustment){
+                if (window.innerWidth <= 768) return;  // mobile: tree resizing not supported
+
                 const app = document.querySelector('.app');
                 if (!app) return;
 
@@ -4825,8 +4848,37 @@
                     treeWidth = 240;
                 }
 
+                savedTreeWidth = treeWidth;
+
                 // Update the grid-template-columns
                 app.style.gridTemplateColumns = `${treeWidth}px 1fr`;
+            }
+            function toggleTreePanel(){
+                const treeEl = document.getElementById('tree');
+                const app = document.querySelector('.app');
+                if (!treeEl || !app) return;
+
+                const isMobile = window.innerWidth <= 768;
+
+                if (isMobile) {
+                    treePanelVisible = !treePanelVisible;
+                    if (treePanelVisible) {
+                        treeEl.classList.add('show');
+                        treeEl.style.display = '';
+                    } else {
+                        treeEl.classList.remove('show');
+                        treeEl.style.display = 'none';
+                    }
+                } else {
+                    treePanelVisible = !treePanelVisible;
+                    if (treePanelVisible) {
+                        app.style.gridTemplateColumns = `${savedTreeWidth}px 1fr`;
+                        treeEl.style.display = '';
+                    } else {
+                        app.style.gridTemplateColumns = `0px 1fr`;
+                        treeEl.style.display = 'none';
+                    }
+                }
             }
             function insertHr() {
                 const insertText = "--------------------------------------------------------------------------------";
@@ -5209,7 +5261,7 @@
                 document.body.style.backgroundImage = 'none';
             }
 
-function renderThemeList() {
+            function renderThemeList() {
                 const list = document.getElementById('themeList');
                 list.innerHTML = '';
                 themes.forEach((theme, index) => {
@@ -6145,7 +6197,7 @@ function renderThemeList() {
                     if (!term) return renderList(data);
                     renderList(data.filter(h => matches(h, term)));
                 };
-                }
+            }
 
             function closeHelp() {
                 closeHelpDialog();
@@ -6159,7 +6211,7 @@ function renderThemeList() {
 
 
 
-                //---- Saving ----------------------------------------------------------
+            //---- Saving ----------------------------------------------------------
                 function getContents(name, saveName) {
                     const elemLimit = 50; // Number of elements per line
                     const htmlDoc = document.documentElement.cloneNode(true);
@@ -6532,6 +6584,7 @@ function renderThemeList() {
                     case 's': saveAsHtml(fileName); break;
                     case 'S': openSaveAsDialog(); break;
                     case 'n': saveViaNode(); break;
+                    case 'N': toggleTreePanel(); break;
                     case 't': exportNoteAsTxt(); break;
                     case 'T': exportTreeAsTxt(); break;
                     case ']': resizeTree(30); break;
