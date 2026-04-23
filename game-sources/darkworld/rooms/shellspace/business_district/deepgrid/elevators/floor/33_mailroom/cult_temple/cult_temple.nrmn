@@ -1,21 +1,22 @@
 {room, key=cult_temple, name=Temple
     {attrib, output=false, tags=tested }
-    {attrib, tags=navigation
-        output={@
-hall - leave the temple.
-        }
-    }
 
 
     {enter_message
         output={@
 You find yourself in what appears to be a vast temple.
 Chairs line the left and right walls of the temple, with
-a path leading forward to an alter.
-Just behind the alter, hovering in air, is a large, purple, neon circle lighting
+a path leading forward to an altar.
+Just behind the altar, hovering in air, is a large, purple, neon circle lighting
 up the entire space.
 
 Bowing before the circle you see hooded figures.
+
+A tall individual emerges from behind the altar. It is wearing a red hooded cloak
+and a deer skull mask with glowing neon antlers.
+It floats up to you and stops, standing motionless for a long moment.
+
+"What, my friend, is the password?"
 
         }
 
@@ -32,26 +33,65 @@ Bowing before the circle you see hooded figures.
 You look around...
 
 Chairs line the left and right walls of the temple.
-There is an alter.
-Just behind the alter, hovering in air, is a large, purple, neon circle lighting
+There is an altar.
+Just behind the altar, hovering in air, is a large, purple, neon circle lighting
 up the entire space.
 
 Bowing before the circle you see hooded figures.
+
+The tall figure still stands before you.
+
+"I must insist, my friend, what is the password?"
+
+            }
+        }
+    }
+
+    {look_nochip
+        {message
+            output={@
+You don't have the chip!
 
             }
         }
     }
 
 
-    {inject, logic=/nav.inj }
-    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((look))
+        {act, logic=look, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[invite_chip]parent = [player]
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((look))
+        {act, logic=look_nochip, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[invite_chip]parent != [player]
+            }
+        }
+    }
 
 
-
-    {input, syntax=[tplt_syntax]((hall))
-        {move, logic=mailroom_closet, tags=[player]
+    {input, syntax=[tplt_syntax]((fidelis))
+        {move, logic=cult_inner_sanctum, tags=[player]
             output={@
-You return to the back of the temple where the narrow hall was and enter.
+You are taken into the inner sanctum.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((nonfidelis))
+        {move, logic=deepspace, tags=[player]
+            output={@
+Everything goes dark...
 
             }
         }

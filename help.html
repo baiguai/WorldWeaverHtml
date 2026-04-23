@@ -50,7 +50,7 @@
 
                 @media (max-width: 768px) {
                     .app {
-                        grid-template-columns: 1fr;
+                        grid-template-columns: 1fr !important;
                         grid-template-areas:
                         "header"
                         "editor";
@@ -63,8 +63,7 @@
                         top: 48px;               /* adjust to your header height */
                         left: 0;
                         bottom: 0;
-                        width: 75%;
-                        max-width: 300px;
+                        width: 320px;             /* default width - not affected by desktop resizing */
                         background: var(--bg);
                         border-right: 1px solid var(--border);
                         transform: translateX(-100%); /* hidden off-screen */
@@ -735,7 +734,7 @@
             </div>
 
 
-            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Quick Links</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Getting Started</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Reference</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Fighting in WorldWeaver</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Tutorials</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Templates</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Developers</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">History</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Upcoming</span></div></li></ul></aside>
+            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Using This Help System</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Quick Links</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Getting Started</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Reference</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Developers</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">History</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Upcoming</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
                     <span class="pill" id="mode" style="display: block;">TREE</span>
@@ -764,6 +763,13 @@
     "id": "7t1zfwoc",
     "title": "Introduction",
     "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit:\n\n_History_\n_Developers_",
+    "children": [],
+    "expanded": false
+  },
+  {
+    "id": "jtfzv3lb",
+    "title": "Using This Help System",
+    "content": "Using This Help System\n--------------------------------------------------------------------------------\n\nThis help system was created using Scribboleth.\n\n[Scribboleth]\nhttps://github.com/baiguai/scribboleth\n\nIt is a keyboard-driven notes application, written as a stand alone .html file.\nBut - you can use it on mobile devices or tablets as well.\n\nIf you do not want to learn the key bindings (hit ?) you can simply double-click\nthe section directly above this topic. That will display the toolbar and\nturn off 'Vim Mode'. You can also double click the tree to the left. That will\ndisplay the tree menu.\n\nTo return to the keyboard-driven mode, you can - again - double click the\nsection above, and hit ! to view the settings. Click the 'Enable Vim Mode'\ncheckbox, and save the file.",
     "children": [],
     "expanded": false
   },
@@ -1160,7 +1166,7 @@
           {
             "id": "vhtliib5",
             "title": "Repeat",
-            "content": "Repeat\n--------------------------------------------------------------------------------\n\n{look\n\t{message, name=Random Mode, repeat=random\n\t    {message\n    \t\toutput={@\nThis is the message group.\nIt's random messages should show below:\n\n    \t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nOh! This message is so random.\n\n\t\t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nYet another random message!\n\n\t\t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nOh man, another random message!\n\n\t\t\t}\n\t\t}\n\t}\n}\n\n\n-- Description --\nThe repeat field let's you define how multiple messages are shown to the player.\nThe acceptable values for this field are:\n\n* random\n* repeat\n* none\n\n",
+            "content": "Repeat\n--------------------------------------------------------------------------------\n\n{look\n\t{message, name=Random Mode, repeat=random\n\t    {message\n    \t\toutput={@\nThis is the message group.\nIt's random messages should show below:\n\n    \t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nOh! This message is so random.\n\n\t\t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nYet another random message!\n\n\t\t\t}\n\t\t}\n\t\t{message\n\t\t\toutput={@\nOh man, another random message!\n\n\t\t\t}\n\t\t}\n\t}\n}\n\n\n-- Description --\nThe repeat field let's you define how multiple messages are shown to the player.\nThe acceptable values for this field are:\n\n* random\n* repeat\n* none\n\n\nNote:\nCurrently there is an issue with repeating messages!\nSee:  _Repeating Messages_\n\n\n\n\n\n\n\n\n",
             "children": [],
             "expanded": false
           },
@@ -1742,559 +1748,17 @@
     "expanded": false
   },
   {
-    "id": "byvmbpyq",
-    "title": "Fighting in WorldWeaver",
-    "content": "",
-    "children": [
-      {
-        "id": "77txkgjr",
-        "title": "Introduction to Fighting in WorldWeaver",
-        "content": "Introduction to Fighting in WorldWeaver\n--------------------------------------------------------------------------------\n\nIf you are interested in making a game that allows the player to fight opponents\nor monsters etc. There are some things that need to be in place within your\ngame. In this tutorial we'll go over that preparation and define a room with an\nopponent in it that your player can fight.",
-        "children": [],
-        "expanded": false
-      },
-      {
-        "id": "q6w8v238",
-        "title": "Preparing the Player for Fighting",
-        "content": "Preparing the Player for Fighting\n--------------------------------------------------------------------------------\n\nThere are two Attributes that both the Player Element and the opponent Element\nmust have. We'll create those now.\n\nThe required Attributes are:\n\n* Life\n* Hit Score\n\nTo create these Attributes you will give them a numeric Output and identify them\nwith the following special Tags:\n\n* !_life see _!_life_\n* !_hitscore see _!_hitscore_\n\nHere is the Player Element from the Sample Game Tutorial. You will want to make\nyour Player Element similar to that.\n\nFor more information on fighting, see:\n_Fighting_",
-        "children": [],
-        "expanded": false
-      }
-    ],
-    "expanded": false
-  },
-  {
-    "id": "yzm0pymj",
-    "title": "Tutorials",
-    "content": "",
-    "children": [
-      {
-        "id": "bfhdzh84",
-        "title": "Building the Sample Game",
-        "content": "",
-        "children": [
-          {
-            "id": "cw7biu3c",
-            "title": "Sample Game",
-            "content": "Sample Game\n--------------------------------------------------------------------------------\n\nThe Sample Game was built to test various features of WW.\nWhen I add new functionality, I generally add a new room to this game to test\nthat.\n\nSo if you look through the NS there OR rebuild it yourself, you will have an\nexample of each of the pieces of functionality available in WW!",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "nmsxz8hm",
-            "title": "Introduction to the Sample Game",
-            "content": "Introduction to the Sample Game\n--------------------------------------------------------------------------------\n\nIn this tutorial we'll recreate the Sample Game that ships with WW. There is\nsome functionality that is only available when building games in script - versus\nusing the graphical builder tool (builder.html). These limitations will be\ncalled out when we encounter them.\n\nBefore we begin be sure to make a copy of the worldweaver.html file. Locate the\ndatabase object:\n\nlet database =[...^^^array^^^\n\nIn that copy, remove the data that is in the database object by default. It\nshould now look like this:\n\nlet database = [^^^array^^^\n\n\n** Note **\nSome of the formatting of the code in this tutorial's script files might differ\nfrom the scripts that ship with WW, but the functionality is unchanged.\n\n\n-- Saving --\nAfter each of the following steps you may want to save your progress. To do so:\n\nOpen the importer.html. Click the Browse (or hit 'b') button and select the root\ndirectory for your game (where all your game scripts are). Click the Copy\nbutton (or hit 'c').\n\nThen open the copy of worldweaver.html you made and replace:\n\nlet database = [^^^array^^^\n\nwith what is now in your clipboard.",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "u5s8vs5s",
-            "title": "Core Game Files",
-            "content": "",
-            "children": [
-              {
-                "id": "t2z67udp",
-                "title": "The Game File",
-                "content": "",
-                "children": [
-                  {
-                    "id": "mb9gxetl",
-                    "title": "Creating the Game File",
-                    "content": "Creating the Game File\n--------------------------------------------------------------------------------\n\n** Note **\nEvery WorldWeaver (WW) game MUST contain a Game Element - only one.\n\n\nYou will need to create a root folder\nfor your game. So create:\n\n~/sample_game/\n\n\nI personally create the core game files within this root directory - but you can\ncreate them wherever you want like:\n\n~/sample_game/\n  |__ core/\n\t    |__ game.nrmn\n\n\nCreate a file called game.nrmn (Or something similar). Within this file, let's\ncreate the game Element:\n\n{game, name=Sample Game\n}\n\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "1emxvbnj",
-                    "title": "Admin Password",
-                    "content": "Admin Password\n--------------------------------------------------------------------------------\n\nNow we can add an admin password. This will later give us access to powerful\ngame author tools like Macros, Tests, DevNotes and more.\n\nAdd the following Attribute Elements to your game.nrmn:\n\n{attrib, output=admin, tags=!_adminpass }\n{attrib, output=sample_game, tags=!_filename }\n\nSo your game.nrmn file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\n}\n\n** Notes **\nThe Output of this Element is the password you want to use as the admin\npassword. The !_adminpass Tag tells WorldWeaver (WW) how to process this\nAttribute Element.\n\nThe _!_filename_ tells WW what to name the file when you or the player uses the\nsave command.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "t9l13vge",
-                    "title": "Error Message",
-                    "content": "Error Message\n--------------------------------------------------------------------------------\n\nNow we are going to define a message that will be shown if the player inputs\nsomething that the game is unable to process successfully.\n\nAdd the following to your game.nrmn script:\n\n{attrib, tags=!_error\n\toutput={@\nI don't understand what you are trying to do.\n\t}\n}\n\nSo your script file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\t\t\n}\n\nYou will notice that something is odd about the Output Field of this Attribute\nElement. What's going on?\n\nOutput is NOT a multiline value by default (Unless you manually put\nline breaks in there). To make the Output multiline and auto insert line breaks\nwhere you add them in the Output value - add @ after the opening bracket.\n\nYou will see this all over the place.\n\n\n** Note **\nThe !_error tells WorldWeaver (WW) how to process this Attribute Element. If\nplayer input results in an empty response, this Output will be shown to\nthe player.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "mtd5i8za",
-                    "title": "Default Error Action",
-                    "content": "Default Error Action\n--------------------------------------------------------------------------------\n\nLet's define a custom 'User Input' that should be considered default by your\ngame. For example when the player fights an enemy and defeats them, after the\nfight screen closes, this input is issued as though the Player entered it.\n\nAdd the following to your game.nrmn script:\n\n{attrib, output=look, tags=!_defact }\n\nSo your script file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n}\n\n\n** Notes **\nThe _!_defact_ Tag lets WorldWeaver (WW) know how to process this Attribute\nElement.\n\n\n** Note **\nThe Output is imitating player input - so this should be something you would\nenter as the player.\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "gqkwtaex",
-                    "title": "Fight Easing",
-                    "content": "Fight Easing\n--------------------------------------------------------------------------------\n\nIf you are building a game in which the player can fight monsters, robots, or\nenemies of any kind, you can define how intense Fight Easing should be in your\ngame. So let's do that now.\n\nAdd the following to your game.nrmn script:\n\n{attrib, output=4, tags=!_easingrounds }\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\t\n}\n\n\n** Notes **\nThe Tag !_easingrounds tells WorldWeaver (WW) how to process this Attribute\nElement.\n\n\n** Note **\nIf you want to effectively disable easing - you can simply set the Output to a\nlarge number like 500.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "ws1x6i5c",
-                    "title": "You've Died Message",
-                    "content": "You've Died Message\n--------------------------------------------------------------------------------\n\nLet's define what your game tells the player when their Player Element has\n'died' (If you are building a game where this is possible).\n\n\n** Note **\nWe'll go over adding the Elements that make dying possible when we get to the\nPlayer Element.\n\nAdd the following to your game.nrmn script:\n\n{message, tags=!_die\n\toutput={@\nYou have died.\n\t}\n}\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\n\t\n\t{message, tags=!_die\n\t\toutput={@\nYou have died.\n\t\t}\n\t}\n}\n\n\n** Notes **\nThe !_die Tag lets WorldWeaver (WW) know how to process this Message Element.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "jz3rxcuy",
-                    "title": "Splash Screen",
-                    "content": "Splash Screen\n--------------------------------------------------------------------------------\n\nLet's give our game a splash screen - something that will be shown when the\nplayer launches your game for the first time.\n\nAdd the following to your game.nrmn script:\n\n{message, tags=!_start\n\toutput={@\nWelcome to the SAMPLE GAME!\n\n\n\n\t}\n}\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\n\t\n\t{message, tags=!_die\n\t\toutput={@\nYou have died.\n\t\t}\n\t}\n\t\n\t{message, tags=!_start\n\t\toutput={@\n\tWelcome to the SAMPLE GAME!\n\n\n\n\t\t}\n\t}\n}\n\n\n** Notes **\nThe _!_start_ Tag tells WorldWeaver (WW) how to process this Message Element.\n\n\n** Note **\nYou may notice all the extra line breaks in the Output, this is strictly for\nmaking the output look nicer for the player.\n\n\n** Note **\nI personally like to use ASCII art for start screens. For example the Sample\nGame that ships with WW uses the following for its splash screen.\n\n\n{message, tags=!_start\n\toutput={@\n\n███████╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗     ██████╗  █████╗ ███╗   ███╗███████╗\n██╔════╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n███████╗███████║██╔████╔██║██████╔╝██║     █████╗      ██║  ███╗███████║██╔████╔██║█████╗  \n╚════██║██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n███████║██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n                                                                                           \n\n\n\n\t}\n}\n\n\n** Note **\nDue to the need to compact the database object - Output Field values are\ntrimmed. Until this is resolved, if you have ASCII art that has rows of text\nthat begin with a space, you will need to replace just the first space with the\nHTML code for space:  &nbsp;",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "50bcao5k",
-                "title": "The Player File",
-                "content": "",
-                "children": [
-                  {
-                    "id": "rkn9276k",
-                    "title": "Creating the Player File",
-                    "content": "Creating the Player File\n--------------------------------------------------------------------------------\n\n** Note **\nEvery WorldWeaver (WW) game MUST contain a Player Element - only one.\n\n\nLet's create a script file to define the Player in. You can actually put this\nwherever you want or name the file whatever you want. However for this tutorial\nwe'll create a player.nrmn file in the root directory. In this file you will\nadd the following:\n\n{player, key=player, name=, parent=home\n}\n\n\n** Notes **\nYou will notice that the name Field is blank, this will be filled in by a prompt\nto name the Player the first time the player starts your game. IF you add a\nvalue to this Field the game will use that instead of prompting the player.\n\n\nThe parent Field is the Element Key for the Room that your Player will start\nout in.\n\n\n** Note **\nYou CAN use a Key other than player, then reference the Player with that or the\nspecial Relative Value of [player], however I like to just go with player.\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "g4cvl0pu",
-                    "title": "Allow the Player to Fight",
-                    "content": "Allow the Player to Fight\n--------------------------------------------------------------------------------\n\nNow that we have a Player Element, IF we want to allow our players to fight and\npotentially die in our game we can define some stats. For fighting there are\ntwo required stats:\n\n* Life\n* Armor Rating\n\n\nThe others can be whatever you want them to be, and use can use the tools in WW\nLogic, other Attributes, Set Elements, etc - to define how they affect the\nPlayer during the game.\n\nWe want our player's stats to be quite different from game to game, so we will\nuse multiple levels of randomness to define their values.\n\n\n** Note **\nThese values will be set when the game is first played.\n\nLet's start by defining a couple of ranges for the number of dice that we will\nbe rolling.\n\nAdd the following to your player script file:\n\n{attrib, output=[rand:3|5], tags=stats_dice }\n{attrib, output=[rand:4|6], tags=money_dice }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n}\n\n\n** Notes **\nWe are going to use the Tags to identify these two Attributes - using special\nRelative Values.\n\nTo define a random value that is set at the game's start you begin with square\nbrackets to that WW knows it is a special value. Then you enter rand: so it\nknows you want a random value within a range. This range is defined like this:\n(Smallest number)|(Largest number)\n\n\n\n\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "e0322gte",
-                    "title": "Setting Dice Rolls",
-                    "content": "Setting Dice Rolls\n--------------------------------------------------------------------------------\n\nNext we will use the random values we just specified to set the number of dice\nwe are rolling - and how many sides the dice will have for each stat.\n\n\n** Note **\nWhen WorldWeaver (WW) is setting the random values at the very start of the\ngame, it processes the ranged random values first, then the dice random values -\nthis is important to bear in mind if you are using one random value to generate\nanother random value.\n\n\nAdd the following to your player script file (We'll go over these later in\nthis topic):\n\n{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n}\n\n\n** Notes **\nYou will notice that in the Output there are double angle brackets. These are\nused to either dynamically insert values into an Output OR define Inline Logic\nthere. In this case we are inserting the random values that the stats_dice and\nmoney_dice came up with.\n\n\nThe\n\n[self]((stats_dice))\n\ntext is what is called a Relative Reference. It essentially states - for this\n'self' Element (The Player Element in this case), get the default field of its\nchild Element that has the stats_dice Tag. You will see more of these in the\ncoming topics. - If you are curious about [self] refer to this topic.\n\nWe are performing another rand: in these Attributes, the dice Attributes define\nthe low end of the range, and we have specified the upper end of the\nrange manually.\n\n\n** Note **\nBecause these attributes are lower in the order / script - their random values\nwill be processed after the stats and money dice ones.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "v2a7l5pt",
-                    "title": "Defining Stats",
-                    "content": "Defining Stats\n--------------------------------------------------------------------------------\n\nNow let's define the actual stats themselves. These are the Attributes that we\nwill be referencing in our game.\n\nAdd the following to your player script file:\n\n{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n{attrib, output=init_[player]((life)), tags=maxlife }\n{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n}\n\n\n** Notes **\nThere are a lot of new concepts in these Attributes, so let's dig in!\n\nHere you are introduced to the roll: command. This tells WorldWeaver (WW) that\nwe're going to obtain our random value by 'rolling' any number of specific sided\ndice to get the values we want. roll: is very complicated. For more information\nsee this topic.\n\nIn these Attributes we're using one of the advanced features of roll: - the best\nof notation. Let me explain...\n\nLet's say that life_dice came up with a random value of 4. So that Attribute's\nOutput actually looks like this:\n\n[roll:(8)4d6]\n\nThe (8) means that we're going to roll 8 dice total. However 4d6 means we are\nonly going to keep 4 of those rolls - and the dice we're rolling have 6 sides.\nSo WW will keep the highest 4 of the 8 rolls.\n\nThis is the first time you are seeing more than one Tag in the Tags Field also.\nTags are separated by pipes: |.\nWe'll discuss the stats Tag when we build the Global Element.\n\nThe other Tags are used for identification - except for:\n\n    !_life\n    !_hitscore\n\nThose two tags are special and are used when fighting enemies.\nThere is a 'gold' Tag so we can use that when the player purchases items in\nthe game.\n\nAlso you will notice that the maxlife Attribute is a bit different. Its Output\nutilizes the special init_ prefix. This lets WW know that when the game first\nstarts, we want to set that value to another Element's Output (In this case)\nbut not after that. So if the Player loses some life - this value doesn't change\nas it would if we used a Relative Code. Maxlife is used for healing the Player,\nensuring their life doesn't exceed what it was at the start. We can later\nincrease this using a Set Element type if we want to.\n\nAnd lastly - what is the Attribute with the !_damageadj tag? That allows you\nto adjust the damage that an enemy's weapon does to the Player. Perhaps at the\ntime the player is using some kind of rage spell on themselves and it decreases\nthe damage that weapons do to the Player. When the spell is cast you can adjust\nthe !_damageadj Attribute's Output to be say: -2. So any damage inflicted on the\nPlayer would be reduced by 2.\n\n\n\n\n\n\n\n\n\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "4y10ju59",
-                    "title": "Arming the Player",
-                    "content": "Arming the Player\n--------------------------------------------------------------------------------\n\nLet's arm our player with a weapon (We'll define the weapon in just a moment).\nIn Script\n\nAdd the following to your player script file:\n\n{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n}\n\nIn Builder\n\n    Select the Player Node.\n    Enter the command: add Armed Weapon\n    Element Type: attribute\n    Tags: !_armed|stats|name\n    Output: long-sword_01\n\nNotes\n\nAnything in the game that can fight - Player, NPCs - must have an armed weapon\nto fight with.\n\nYou will notice we have the same stats Tag, that we'll utilize in a Global\nElement later, however there is also an !_armed AND a name Tag.\n\nThe !_armed Tag tells WorldWeaver (WW) that the Output is the Element Key for\nthe weapon that the Player is currently armed with. The name Tag tells WW that\nwhen displaying what the Player is armed with to the player, we should use the\nname Field as the output value.\n\n\n\n\n\n\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "rhotyerx",
-                    "title": "Defining the Weapon",
-                    "content": "Defining the Weapon\n--------------------------------------------------------------------------------\n\nNow that we have armed the Player with a Weapon, let's now define that Weapon:\n\nAdd the following to your player script file:\n\n{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon, parent=player\n\t{attribute, name=Damage, logic=[rand:4|12], tags=!_damage }\n\t{attribute, output=a Long Sword, tags=title }\n}\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((!_life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=init_[self]((armor)), tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\t\n\t{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon\n\t\t{attribute, name=Damage, logic=rdm_[rand:4|12], tags=!_damage }\n\t\t{attribute, output=a Long Sword, tags=title }\n\t}\n}\n\n\nNotes\n\nHere we see the inventory Tag for the first time. Later on we will use it to list out what the Player is carrying.\nThe !_weapon Tag lets WorldWeaver (WW) know that this Object is actually a weapon that can be used in fighting.\n\nThere is an Element Key that makes this easier to identify, however its Key must be unique within the game.\n\nThe syntax Field is used to help identify this Weapon when the player wishes to arm themselves with it. The value here is what is called a Regular Expression (regex). See this topic on building regex's.\n\nThe Attribute with the Tag of: !_damage lets WW know how to deal with the damage the Player inflicts when they succeed attacking enemies with this Weapon. That\n\nThe Attribute with the title Tag is used for describing this Weapon to the player.\n\nYou will notice the rdm_ prefix. This means that every time WW processes the !_damage Attribute, the Output should be re-randomized.\n",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "029wex98",
-                "title": "The Global File",
-                "content": "",
-                "children": [
-                  {
-                    "id": "b8lvfwtj",
-                    "title": "Creating a Global File",
-                    "content": "Creating a Global File\n--------------------------------------------------------------------------------\n\nNow we're going to create a Global Element. This allows us to define Elements\nthat can be processed regardless of the Room the Player is in. Every 'turn'\nthese Elements will be parsed through.\n\nCreate a file somewhere within your game's root directory. You can call it\nwhatever you want, I'll go with global.nrmn.\n\nAdd the following to this new script file:\n\n{global, key=global01, parent=root\n}\n\n** Notes **\nYou don't really need to add an Element Key for the Sample Game, we won't be\nreferencing its Elements via other Elements. But if you DO need to do so -\nhaving a key (Much like with Room Elements) will make that possible.\n\nAlso in Script - you can just leave the parent field out if you like.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "k9rlcd4m",
-                    "title": "Stats Command",
-                    "content": "Stats Command\n--------------------------------------------------------------------------------\n\nWe want our player to be able to view the stats that we defined in our Player\nElement. This can be done within a Global Element, so let's do that now.\n\nAdd the following to your global script file:\n\n{input, syntax=(stats)\n\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "dhb086t2",
-                    "title": "Inventory Command",
-                    "content": "Inventory Command\n--------------------------------------------------------------------------------\n\nLet's create another list that our player can view. We want them to be able to\nsee the items in their inventory. Here is where the inventory tag we added to\nthe Player's default weapon comes into play.\n\n** Note **\nWhen we later define Objects the player can pick up - we'll need to be sure to\nadd the inventory Tag when they do pick up the item, AND remove it when they\ndrop it.\n\nAdd the following to your global script file:\n\n{input, syntax=(inventory|inv)\n\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "dw6l2qoh",
-                    "title": "Arming Weapons",
-                    "content": "Arming Weapons\n--------------------------------------------------------------------------------\n\nSince the Sample Game does allow the player to fight opponents, we will want to\nlet them swap out the weapon they are armed with.\n\nSince the philosophy of WorldWeaver (WW) is to allow the game author to have\ncomplete control over their games, this is not built in. So we will define this\nfunctionality in our Global Element.\n\nAdd the following to your global script file:\n\n{input, syntax=(arm .*)\n\t{set, logic=player_armed, tags=!_arm }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n\t{input, syntax=(arm .*)\n\t\t{set, tags=!_arm }\n\t}\n}\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "a3uljnay",
-                    "title": "Slowly Healing",
-                    "content": "Slowly Healing\n--------------------------------------------------------------------------------\n\nSince our player can fight oponents it is very likely they will lose some of\ntheir life points. You can design your game so that they need to find, pick up,\nand use healing potions or healing pills etc. OR you can design your game so\nthat the player slowly heals over time. That's what we're going to do for our\nSample Game.\n\nFirst we're going to add a couple of Attributes to our Player Element.\nIn Script\n\nAdd the following to your player script file - right below the armed weapon\nAttribute:\n\n{attrib, output=5, tags=heal_rounds }\n{attrib, output=0, tags=cur_heal_round }\n\nSo your player file should now look like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\t\n\t{attrib, output=5, tags=heal_rounds }\n\t{attrib, output=0, tags=cur_heal_round }\n\t\n\t{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon\n\t\t{attribute, name=Damage, logic=rdm_[rand:4|12], tags=!_damage }\n\t\t{attribute, output=a Long Sword, tags=title }\n\t}\n}\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "k0nredy7",
-                    "title": "Slowly Healing Continued",
-                    "content": "Slowly Healing Continued\n--------------------------------------------------------------------------------\n\nNow in our Global Element we'll use the two Attributes we've just added to our\nPlayer Element to slowly heal the Player over time.\n\nAdd the following to your global script file:\n\n{act\n\t{set, logic=[player]((cur_heal_round)), output=++ }\n}\n\n{act\n\t{logic\n\t\tlogic={@\n\t\t\t?[player]((cur_heal_round)) >= [player]((heal_rounds))\n\t\t\tand\n\t\t\t?[player]((life)) < [player]((maxlife))\n\t\t}\n\t}\n\t{set, logic=[player]((life)), output=++ }\n\t{set, logic=[player]((cur_heal_round)), output=0 }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n\t{input, syntax=(arm .*)\n\t\t{set, tags=!_arm }\n\t}\n\t\n\t{act\n\t\t{set, logic=[player]((cur_heal_round)), output=++ }\n\t}\n\n\t{act\n\t\t{logic\n\t\t\tlogic={@\n\t\t\t\t?[player]((cur_heal_round)) >= [player]((heal_rounds))\n\t\t\t\tand\n\t\t\t\t?[player]((life)) < [player]((maxlife))\n\t\t\t}\n\t\t}\n\t\t{set, logic=[player]((life)), output=++ }\n\t\t{set, logic=[player]((cur_heal_round)), output=0 }\n\t}\n}\n",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "3orw9y2s",
-                "title": "Handling Time",
-                "content": "",
-                "children": [
-                  {
-                    "id": "hdcla1gx",
-                    "title": "Introduction",
-                    "content": "Introduction\n--------------------------------------------------------------------------------\n\nYou may want to keep track of whether it is day or night in your game. This may\nbe simply for descriptions or perhaps enemies are tougher when it is night or\nmaybe certain puzzles can only be solved during the day etc. The topics below\nshow you an example of how I've personally handled time, days, day and night.\nThis logic is handled in both the Game Element and within a Global Element.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "bv79am30",
-                    "title": "Game Element Piece",
-                    "content": "Game Element Piece\n--------------------------------------------------------------------------------\n\nIn the Game Element we'll define some Attributes and Custom Elements:\n\n{game\n\t...\n    {attrib, output=15, tags=currenthour }\n    {attrib, output=0, tags=currentminute|!_isminutes }\n    {time\n        {message\n            output={@\n                Current Time:\n                <<[game]((currenthour))>>:<<[game]((currentminute))>>\n            }\n        }\n    }\n    {attrib, output=20, tags=nighthour }\n    {attrib, output=6, tags=dayhour }\n    {attrib, output=0, tags=totaldays }\n    {days\n        {message\n            output={@\n                Days in Shellspace:\n                <<[game]((totaldays))>>\n            }\n        }\n    }\n    {attrib, output=0, tags=missiondays }\n    {attrib, output=true, tags=isday }\n    {day\n        {message\n            output={@\n                <?[game]((isday)) = 'true'?>\nIt is day time.\n                <else>\nIt is night time.\n                </?>\n            }\n        }\n    }\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "tp0sm871",
-                    "title": "Global Element Piece",
-                    "content": "Global Element Piece\n--------------------------------------------------------------------------------\n\nIn a Global Element we'll define some Inputs that will utilize the Custom\nElements we've added to the Game Element as well as some Action Elements that\nwill update the Attributes we've added to the Game Element.\n\n{global, key=global01, parent=root\n\t...\n\n    {input, syntax=(time)\n        {act, logic=time, tags=!_type|game }\n    }\n    {input, syntax=(days)\n        {act, logic=days, tags=!_type|game }\n    }\n    {input, syntax=(is day)\n        {act, logic=day, tags=!_type|game }\n    }\n\n    {act\n        {set, logic=[game]((currentminute)), output=+=15 }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currentminute)) > '59'\n            }\n        }\n\n        {set, logic=[game]((currenthour)), output=++ }\n        {set, logic=[game]((currentminute)), output=0 }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) > '23'\n            }\n        }\n\n        {set, logic=[game]((currenthour)), output=0 }\n        {set, logic=[game]((totaldays)), output=++ }\n        {set, logic=[game]((missiondays)), output=++ }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) >= [game]((nighthour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=false }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) < [game]((dayhour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=false }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) >= [game]((dayhour))\n                and\n                ?[game]((currenthour)) < [game]((nighthour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=true }\n    }\n}",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "bpfyfmco",
-                "title": "Injections",
-                "content": "",
-                "children": [
-                  {
-                    "id": "nuqaxq1l",
-                    "title": "Introduction",
-                    "content": "Introduction\n--------------------------------------------------------------------------------\n\nHere's where the real power of defining games in script versus using the\ngraphical builder.html comes into play.\n\n** Note **\nThe graphical builder tool is by no means a finished solution. However if you\nwould like to further develop it - injections are something to bear in mind.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "0tqf28my",
-                    "title": "Home Injection",
-                    "content": "Home Injection\n--------------------------------------------------------------------------------\n\nSomewhere in your game directory create a new script file, something like\nhome.inj. You can call it whatever you want however it must have the .inj\nextension.\n\nIn that file add the following:\n\n{input, syntax=(home)\n\t{move, logic=home, tags=[player], output=You return to the testing home room. }\n}\n\n** Notes **\nAs you can see this is simply an Input Element and a Move Element, exactly as\nyou would write it in a .nrmn script. We will later use an Injection Element to\ninject this code into our .nrmn script files - where we've defined the Injection\nElement that points to the .inj file.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "4jjck1q4",
-                    "title": "Look Injection",
-                    "content": "Look Injection\n--------------------------------------------------------------------------------\n\nJust like you did for the home.inj script, let's create a file that will allow\nthe player to look around.\n\nCreate a new .inj file - like look.inj.\n\nIn that file add the following:\n\n{input, syntax=[tplt_syntax]((look))\n\t{act, logic=look, tags=!_type|room }\n}\n\n** Notes **\nYou will notice that the Syntax Field value looks like a Relative Reference. It\nis! The tplt_syntax is an Object Element that we will create shortly. It will\ncontain only Attribute Elements that have regular expressions in their Output\nFields. It is our regex library! And as our game grows, so will this library.\nAND you can reuse it in future games that you create!",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "wfvg9lfw",
-                    "title": "Navigation Injection",
-                    "content": "Navigation Injection\n--------------------------------------------------------------------------------\n\nWe're now going to create Navigation Element injection. This will remind the\nplayer of how they can travel into the various test rooms that we will be\ncreating. Even though this is only used in the Home Room and therefore not a\ngreat candidate for injection, it IS a good way to keep the Navigation separated\nfrom whatever we do in the future in the Home Room code.\n\nCreate a navigation .inj file - like nav.inj.\n\nIn that file add the following:\n\n{navigation\n\t{message\n\t\toutput={@\n\nNavigation:\nHome\nArming\nCoin\nDiscover\nFight\nFollows\nHealing\nInjection\nMessages\nPath\nPutting\nTests\nValues  (Special message values test)\n\n\t\t}\n\t}\n}\n\n** Notes **\nThese are all of the rooms that we will be building. And to move into them, the\nplayer simply has to enter the names given in this Navigation Element Message.\n\nFor example, if the player wants to test healing they would enter the following:\n\nhealing\n\nThen they can return to the Home Room using:\n\nhome\n\nOf course this navigation list doesn't define the syntax used to travel, it just\ndisplays it to the player.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "g6rzmh7i",
-                    "title": "Non-Home Navigation Injection",
-                    "content": "Non-Home Navigation Injection\n--------------------------------------------------------------------------------\n\nNow let's create a reusable injection for when the Player is in Rooms other than\nthe Home Room.\n\nCreate an .inj for this.\n\nIn that file, add the following:\n\n{navigation\n\t{message\n\t\toutput={@\n\nNavigation:\nHome\n\n\t\t}\n\t}\n}\n\n",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "871jv9of",
-                "title": "Creating a Regular Expressions Library",
-                "content": "",
-                "children": [
-                  {
-                    "id": "iwcg8qmj",
-                    "title": "Introduction to Creating Regular Expressions Libraries",
-                    "content": "Introduction to Creating Regular Expressions Libraries\n--------------------------------------------------------------------------------\n\nRegular Expressions are used to match things like the player's input to the\ngame, as well as a means for you - the game author - to identify Elements that\nthe player intended to reference.\n\nYou will want to review the following before proceeding:\n_Introduction to Regular Expressions_",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "8q5i1o4x",
-                    "title": "Creating the Regular Expressions Element",
-                    "content": "Creating the Regular Expressions Element\n--------------------------------------------------------------------------------\n\nTo create our Regular Expression (regex) library, let's create a file called\nsomething like: regexlib.nrmn.\n\nIn that file, add the following:\n\n{object, key=tplt_syntax\n}\n\n** Note **\nWe've given this Element the Key value of tplt_syntax. This allows us to\nreference it from anywhere in the game using its key.",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "knpmrxql",
-                    "title": "Adding the Regular Expressions",
-                    "content": "Adding the Regular Expressions\n--------------------------------------------------------------------------------\n\nNow let's add all of the Regular Expressions (regex) I have added to it so far.\nThese will simply be Attribute Elements and the regex strings will be their\noutput.\n\n** Note **\nNotice the special !_regex tag AND the logic values. These are used with the\n_regex admin command to test ALL of these regex's.\n\n\nAdd the following to your regexlib script file:\n\n{object, key=tplt_syntax\n\tTraveling\n\t\t{attrib, tags=go_north|!_regex, output=^(?:go north|north|n)$, logic=n|north|go north }\n\t\t{attrib, tags=go_south|!_regex, output=^(?:go south|south|s)$, logic=s|south|go south }\n\t\t{attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }\n\t\t{attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }\n\n    Look\n        {attrib, tags=look|!_regex, output=^l(ook( around)?)?$, logic=l|look around|you look around the room }\n        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x the table|x tables|examine the tables }\n        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }\n\n    Identifying\n        {attrib, tags=key_id|!_regex, output=.*key.*, logic=the key|your key|the golden key }\n        {attrib, tags=spear_id|!_regex, output=(spear).*, logic=the spear|your spear|the ornate spear }\n\n    Taking\n        {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take the coin|take gold coin|take coin|pick up the gold coin|pick up coin }\n        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)? key$, logic=take key|take the gold key|pick up the key|pick up key }\n        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }\n        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear you see }\n\n    Dropping\n        {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment }\n        {attrib, tags=spear_drop|!_regex, output=(drop.*spear), logic=drop the spear|drop spear }\n\n    Putting\n        {attrib, tags=box_put|!_regex, output=put.*in.*box, logic=put the thing in the box|put things in box|put key in box|put the necklace in the box }\n\n    Interacting\n        {attrib, tags=box_examine|!_regex, output=examine.*box|x.*box, logic=x box|x the box|examine the box|examine the ornate box }\n        {attrib, tags=greenbutton_push|!_regex, output=^(push|press)( the)?( green)? button$, logic=push green button|push button|press the green button }\n        {attrib, tags=redbutton_push|!_regex, output=^(push|press)( the)?( red)? button$, logic=push red button|push button|press the red button }\n\n    Fighting\n        {attrib, tags=rat_attack|!_regex, output=(attack.*rat|!.*rat), logic=attack the rat|attack rat|! rat|!rat }\n}\n\n** Note **\nYou may notice the headings for the different sections. These are unsafe\ncomments They are OK to use for simple things like this, however if you are\nadding text that could be interpreted as game definitions etc - you will want\nto use proper comments.",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              },
-              {
-                "id": "9d9mvu36",
-                "title": "Creating a Help System",
-                "content": "Creating a Help System\n--------------------------------------------------------------------------------\n\nYou can add a help system to your game using Global Elements. Below is an\nexample of using a single Global Element as your help system.\nIf you expect your game to have a large help system you can split it into\nmultiple Global Elements.\n\nTo create a help system add a new file - something like help.nrmn and in that\nscript file add the following:\n\n{global, key=help_main\n\t{help_home\n\t\t{message\n\t\t\toutput={@\nThis is the help home.\n\t\t\t}\n\t\t}\n\t}\n\n\t{help_commands\n\t\t{message\n\t\t\toutput={@\nThis is the commands help.\n\t\t\t}\n\t\t}\n\t}\n\n\n\n\t{input, syntax=^\\?$|^help$\n\t\t{act, logic=help_home, tags=!_type|self }\n\t}\n\n\t{input, syntax=^\\? commands$|^help commands$\n\t\t{act, logic=help_commands, tags=!_type|self }\n\t}\n}\n\n",
-                "children": [],
-                "expanded": false
-              }
-            ],
-            "expanded": false
-          },
-          {
-            "id": "ujhrkuw2",
-            "title": "Creating the Rooms",
-            "content": "",
-            "children": [
-              {
-                "id": "6mmgvtns",
-                "title": "Home Room",
-                "content": "Home Room\n--------------------------------------------------------------------------------\n\nYou may recall that the Player Element has a Parent Property. And we gave this\nProperty the value of home. This means that the Player begins the game in a Room\nwith the Key of home so let's create that Room.\n\nWe'll begin with an empty Room Element:\n\n\n{room, key=home, name=Home Room\n}\n\n\nLet's add an Enter Message, and an Injection Element to a look injection (we've\ncreated this in the Injections section of this tutorial):\n\n\n{room, key=home, name=Home Room\n\t{enter_message\n\t\toutput={@\nYou are in an empty room.\nThere is a door in the north wall.\n\t\t}\t\n\t}\n\t\n\t{inject, logic=/look.inj }\n}\n\n\nNext let's create a connector (or door) to a room we will build next.\n\n\n{room, key=home, name=Home Room\n\t{enter_message\n\t\toutput={@\nYou are in an empty room.\nThere is a door in the north wall.\n\t\t}\t\n\t}\n\t\n\t{inject, logic=/look.inj }\n\t\n\t{input, syntax=[tplt_syntax]((go_north))\n\t\t{move, logic=arming_room, tags=[player]\n\t\t\toutput={@\nYou go north.\n\t\t\t}\n\t\t}\n\t}\n}\n\n\nIn the Testing Arming topics we'll look more closely at building Rooms.",
-                "children": [],
-                "expanded": false
-              },
-              {
-                "id": "1pvj43bo",
-                "title": "Testing Arming",
-                "content": "",
-                "children": [
-                  {
-                    "id": "mf1g4tld",
-                    "title": "Creating the Room",
-                    "content": "Creating the Room\n--------------------------------------------------------------------------------\n\nLet's create the arming Room.\n\nI personally like to create a rooms folder, and a folder for each room. I also\nlike to use subfolders if there are other Rooms within the structure I'm\nbuilding etc. So let's create a rooms folder in the game's root directory.\nLet's create a folder in the rooms folder, called arming. And in that folder,\ncreate a file called something like arming.nrmn.\n\nIn the arming script file, add the following:\n\n\n{room, name=Arming Room, key=arming_room\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "ztjx9giz",
-                    "title": "Adding a Welcome Message",
-                    "content": "Adding a Welcome Message\n--------------------------------------------------------------------------------\n\nWe can now add a message that will be shown whenever the Player enters the Room\nwe've just created.\n\nAdd the following to your arming script:\n\n\n{enter_message\n\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t}\n}\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "qkqv9xu1",
-                    "title": "Creating a Look Event",
-                    "content": "Creating a Look Event\n--------------------------------------------------------------------------------\n\nWe want our player to be able to 'look around' so we'll create a Custom Element\nfor that.\n\nAdd the following to your arming script file:\n\n\n{look\n\t{message\n\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n}\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n\t\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t\t}\n\t\t}\n\t}\t\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "l8l96uf5",
-                    "title": "Doing the Injections",
-                    "content": "Doing the Injections\n--------------------------------------------------------------------------------\n\nNow we can utilize the injections we've created.\n\nAdd the following to your arming script file:\n\n\n{inject, logic=/nav_home.inj }\n{inject, logic=/home.inj }\n{inject, logic=/look.inj }\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n\t\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t\t}\n\t\t}\n\t}\t\n\t\n\t\n\t{inject, logic=/nav_home.inj }\n\t{inject, logic=/home.inj }\n\t{inject, logic=/look.inj }\t\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "2po3t6pg",
-                    "title": "Creating the Spear",
-                    "content": "Creating the Spear\n--------------------------------------------------------------------------------\n\nLet's create a weapon that the player can pick up, so that they have two weapons\ncan can arm one or the other.\n\nI like to create an objects folder within my room's directory for any objects\nthat might be in that Room. In the objects folder, create a file called\nsomething like spear.nrmn.\n\nIn the spear script file, add the following:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n}\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "c3xqsb18",
-                    "title": "Defining Damage",
-                    "content": "Defining Damage\n--------------------------------------------------------------------------------\n\nWe need to specify what kind of damage this new weapon can do to opponents when\nthe player is fighting. To do this we will add a special Attribute Element.\n\nIn your spear script file, add the following:\n\n\n{attrib, logic=[roll:(4)2d8], tags=!damage }\n\n\nSo your script file now looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n}\n\n\n** Note **\nThe !_damage Tag lets WorldWeaver (WW) know that this Attribute Element is\nactually the damage Attribute for the Object.\n\nSee: _Special Tags_",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "a1gzzmzc",
-                    "title": "Giving the Spear a Friendly Name",
-                    "content": "Giving the Spear a Friendly Name\n--------------------------------------------------------------------------------\n\nLet's give our spear a friendly name. This is done with an Attribute Element\nthat has a special Tag.\n\nAdd the following to your spear script:\n\n{attrib, output=a spear, tags=!_title }\n\nNow your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n}\n",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "4zofhbh4",
-                    "title": "Adding Messages",
-                    "content": "Adding Messages\n--------------------------------------------------------------------------------\n\nLet's add the Enter Message and Look Elements.\nIn Script\n\nAdd the following to your spear script file:\n\n\n{enter_message\n\toutput={@\nYou see a spear.\n\n\t}\n}\n\n{look\n\t{message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{logic, logic=?[self]parent = [room] }\n}\n\n\nSo now your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=?[self]parent = [room] }\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "izc6tz67",
-                    "title": "Taking the Spear",
-                    "content": "Taking the Spear\n--------------------------------------------------------------------------------\n\nLet's allow our player to pick up the spear. To do this we'll utilize Set and\nMove Elements. We will also update the spear's Tags, so that it shows up in the\nPlayer's inventory.\n\nHere we get to use our Regexlib to make our lives easier!\n\nAdd the following to your spear script file:\n\n\n{input, syntax=[tplt_syntax]((spear_take))\n\t{move, logic=[player], tags=[self]\n\t\toutput={@\nYou take the spear.\n\t\t}\n\t}\n\t{set, logic=[self]tags, output=+inventory }\n}\n\n\nSo now your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=[self]parent = [room] }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_take))\n\t\t{move, logic=[player], tags=[self]\n\t\t\toutput={@\nYou take the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=+inventory }\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "8gxxgoas",
-                    "title": "Dropping the Spear",
-                    "content": "Dropping the Spear\n--------------------------------------------------------------------------------\n\nMaybe the player no longer likes the spear. We should allow them to drop it.\n\nAdd the following to your spear script file:\n\n\n{input, syntax=[tplt_syntax]((spear_drop))\n\t{move, logic=[room], tags=[self]\n\t\toutput={@\nYou drop the spear.\n\t\t}\n\t}\n\t{set, logic=[self]tags, output=-inventory }\n\t{logic, logic=[self]parent = [player]elementkey\n\t\toutput={@\nYou aren't carrying that item.\n\t\t}\n\t}\n}\n\n\nSo your script file now looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=[self]parent = [room] }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_take))\n\t\t{move, logic=[player], tags=[self]\n\t\t\toutput={@\nYou take the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=+inventory }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_drop))\n\t\t{move, logic=[room], tags=[self]\n\t\t\toutput={@\nYou drop the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=-inventory }\n\t\t{logic, logic=[self]parent = [player]\n\t\t\toutput={@\nYou aren't carrying that item.\n\t\t\t}\n\t\t}\n\t}\n}",
-                    "children": [],
-                    "expanded": false
-                  },
-                  {
-                    "id": "0f7hkpcj",
-                    "title": "Arming Weapons",
-                    "content": "Arming Weapons\n--------------------------------------------------------------------------------\n\nNow that the Player can carry two weapons (the spear and the long sword) we can\nlet them arm one or the other weapon. You may recall that we added an arm input\nand Tags update, using the !_arm special value. This was in the Global File.\n\nBecause we did that, arming should now just work.\n\nSo if the player picks up the spear and enters:\n\narm spear\n\nWhen they look at their stats, using:\n\nstats\n\nThey will see that spear is now the armed weapon.",
-                    "children": [],
-                    "expanded": false
-                  }
-                ],
-                "expanded": false
-              }
-            ],
-            "expanded": false
-          },
-          {
-            "id": "umrobu5u",
-            "title": "Where to Go From Here",
-            "content": "Where to Go From Here\n--------------------------------------------------------------------------------\n\nSo we've now created a new game from scratch in Norman Script.\n\nYou've now seen what what it looks like and how various Elements are created.\n\nIf you get stuck, go through the _Reference_ topics, also be sure to check out\nthe _Admin Tools_ topics.\n--------------------------------------------------------------------------------",
-            "children": [],
-            "expanded": false
-          }
-        ],
-        "expanded": false
-      },
-      {
-        "id": "3a9yr5gh",
-        "title": "Fighting",
-        "content": "",
-        "children": [
-          {
-            "id": "s9w4gyml",
-            "title": "Defining a Complex Weapon",
-            "content": "",
-            "children": [
-              {
-                "id": "ujzx8lmy",
-                "title": "Lazer Gun Example",
-                "content": "Lazer Gun Example\n--------------------------------------------------------------------------------\n\n{object, key=lazer_gun, name=Lazer Gun, syntax=[tplt_syntax]((lazergun_id)), parent=lazer_room, tags=!_weapon\n    {attrib, logic=[roll:(4)2d8], tags=!_damage }\n    {attrib, output=a lazer gun, tags=!_title }\n    {attrib, output=5, tags=cur_ammo }\n    {attrib, output=5, tags=max_ammo }\n    {attrib, output=Your lazer gun needs to be recharged., tags=!_cantattack }\n\n    {enter_message\n        output={@\nYou see a lazer gun.\n        }\n    }\n\n    {look\n        {message\n            output={@\nYou see a lazer gun.\n            }\n        }\n\n        {logic, logic=?[self]parent = [room] }\n    }\n\n    {x_gun\n        {message\n            output={@\nYou examine the lazer gun.\nIt is sleek and made completely of polished chrome.\n            }\n        }\n    }\n\n\n\n    {ammo\n        {message\n            output={@\nYou've used some ammo.\n            }\n        }\n\n        {logic\n            logic={@\n                ?[self]((cur_ammo)) > '0'\n            }\n        }\n        {set, logic=[self]((cur_ammo)), output=-- }\n        {act, logic=fix_min_ammo, tags=!_type|self }\n    }\n    {fix_min_ammo\n        {logic\n            logic={@\n                ?[self]((cur_ammo)) < '0'\n            }\n        }\n        {set, logic=[self]((cur_ammo)), output=0 }\n    }\n\n\n\n    {input, syntax=[tplt_syntax]((x_lazergun))\n        {act, logic=x_gun, tags=!_type|self }\n    }\n\n    {input, syntax=[tplt_syntax]((lazergun_take))\n        {move, logic=[player], tags=[self]\n            output={@\nYou take the lazer gun.\n            }\n        }\n        {set, logic=[self]tags, output=+inventory }\n    }\n\n    {input, syntax=[tplt_syntax]((lazergun_drop))\n        {move, logic=[room], tags=[self]\n            output={@\nYou drop the lazer gun.\n            }\n        }\n        {set, logic=[self]tags, output=-inventory }\n        {logic, logic=?[self]parent = [player]\n            output={@\nYou aren't carrying that item.\n            }\n        }\n    }\n}\n",
-                "children": [],
-                "expanded": false
-              }
-            ],
-            "expanded": false
-          },
-          {
-            "id": "owvvoqmw",
-            "title": "Getting the Player Ready",
-            "content": "Getting the Player Ready\n--------------------------------------------------------------------------------\n\nSee this article:\n_Preparing the Player for Fighting_",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "hkzluy4x",
-            "title": "Arming the Player",
-            "content": "Arming the Player\n--------------------------------------------------------------------------------\n\nYou will also want to give your player a weapon they can use. If you don't\nWorldWeaver (WW) will assume they are just fighting with their fists - which\ndon't inflict much damage.\n\nCurrently fighting in WW is a bit limited. Armor rating is the value that an\nattack 'roll' must beat in order to successfully hit and a weapon's _!_damage_\nAttribute determines the harm the attack causes. In time this will be improved\nso that the game author can define Attributes like speed, size, agility, magic\nprotections etc. For now you can have certain things adjust the armor rating\nand or damage amount.\n\nIn the Sample Game tutorial there is an example of a default weapon for\nthe Player.\n\n_Building the Sample Game_",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "sy4hxj5i",
-            "title": "Defining an Opponent",
-            "content": "Defining an Opponent\n--------------------------------------------------------------------------------\n\nIn the Sample Game that ships with WorldWeaver (WW) there is a Fighting Room. In\nthat room you push a button to spawn a rat that the player can fight. For this\ntutorial we can simply add that rat to the room your player starts in. Create a\nnew script file (Or if you're using the builder tool, add the nodes that are in\nthe script below - To get familiar with how to do that, see the\n_Building the Sample Game_).\n\nIn the script file, add the following - adding a parent Property with a value\nequal to the Room's Key that the Player is in:\n\n\n{npc, key=npc_rat, tags=enemy\n\t{attrib, logic=spn_[rand:3|4], tags=stats_dice }\n\t{attrib, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=life_roll }\n\t{attrib, output=spn_[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }\n\t{attrib, name=Life, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=stats|!_life }\n\t{attrib, output=spn_[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|armor }\n\t{attrib, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, output=0, tags=!_damageadj }\n\n\n\t{attrib, output=rat_claws_01, tags=!_armed|name }\n\t{attrib, tags=!_hitmsg\n\t\toutput={@\nYou have hit the rat.\n\n\t\t}\n\t}\n\t{attrib, tags=!_missmsg\n\t\toutput={@\nYou have attacked the rat, but missed.\n\n\t\t}\n\t}\n\t{attrib, tags=!_killmsg\n\t\toutput={@\nYou have killed the rat.\n\n\t\t}\n\t}\n\n\t{attrib, tags=!_hitplayermsg\n\t\toutput={@\nThe rat has attacked you!\n\n\t\t}\n\t}\n\n\t{attrib, tags=!_missplayermsg\n\t\toutput={@\nThe rat has attacked you, but missed.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\n\nYou see a rat.\n\n\t\t\t}\n\t\t}\n\t}\n\n\t{input, syntax=(attack.*rat|!.*rat)\n\t\t{attack, logic=[self] }\n\t}\n\n\n\t{object, key=rat_claws_01, tags=!_weapon\n\t\t{attrib, logic=rdm_[rand:4|9], tags=!_damage }\n\t\t{attrib, output=rat claws, tags=title }\n\t}\n}\n\n--------------------------------------------------------------------------------\n\n\nNow to attack the rat, the player just uses the following command:\n\n!rat",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "855fo70s",
-            "title": "Attacking the Player",
-            "content": "Attacking the Player\n--------------------------------------------------------------------------------\n\nIn a situation where an enemy attacks the player before there is a chance to\ninitiate the fight, you can set the _Attack_ Element's tags to player.\n\n\n{room, key=deepgrid_gen_floor, name=Hallway\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\nElevator enters the elevator.\n        }\n    }\n\n\n    {enter_message\n        output={@\nA long hallway stretches out before you.\nThere are doors lining either side. You test a handful of them,\nbut they are all locked.\n\n        }\n\n        {action, output=[room], tags=!_spawn, logic=rmrf_assassin\n            {attack, logic=((rmrf_assassin)), tags=player\n                output={@\nYou see a shadowy man in a black suit.\nWhere his eyes would be is a band of chrome with a red light\nslowly moving from side to side.\n\nHe is staring at you. Then he pulls a lazer gun and shoots.\n                }\n            }\n\n            {logic\n                logic={@\n                    ?rdm_[roll:1d6] > '4'\n                }\n            }\n        }\n\n        {logic, name=Deepgrid elevator tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {look\n        {message\n            output={@\nA long hallway stretches out before you.\nThere are doors lining either side. You test a handful of them,\nbut they are all locked.\n\n            }\n        }\n    }\n\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n\n\n\n    {input, syntax=[tplt_syntax]((elevator))\n        {move, logic=deepgrid_elevator, tags=[player]\n            output={@\nYou press the elevator button. A moment later, one of the doors slide open.\nYou step inside.\n            }\n        }\n    }\n}",
-            "children": [],
-            "expanded": false
-          }
-        ],
-        "expanded": false
-      },
-      {
-        "id": "4z6b9omh",
-        "title": "Tests",
-        "content": "",
-        "children": [
-          {
-            "id": "1c8iaj2u",
-            "title": "Introduction to Tests",
-            "content": "Introduction to Tests\n--------------------------------------------------------------------------------\n\nYou can turn any Logic Element into a test that will be evaluated any time\na macro in test-mode (_macrots) encounters it.\n\nTo do this all you need to do is add the following tag to your Logic Element:\n\n!_test\n\n\nThe Sample Game contains a test example room.",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "6kjv2pvy",
-            "title": "Tests Gotchas",
-            "content": "Tests Gotchas\n--------------------------------------------------------------------------------\n\n** Enter Messages **\nYou can put your test Logic Element in the Enter Message Element, **However**\nthe initial Room is one exception. The Logic in that Enter Message will not\nfire. If you need a test there, you can place it in a custom look action.",
-            "children": [],
-            "expanded": false
-          },
-          {
-            "id": "ynn5dohw",
-            "title": "Test Room",
-            "content": "Test Room\n--------------------------------------------------------------------------------\n\n{room, key=test_room, name=Test Room\n    {enter_message\n        output={@\nTo use this room, enter admin mode, create a macro.\nStore the macro in this game, then run it in test mode.\nEnsure that your macro passes through this room and the tests below will run\nwhen they are encountered.\n        }\n\n\n        {logic, name=player_armed_spear, tags=!_test\n            logic={@\n?[player]((!_armed)) = 'spear_01'\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\nTo use this room, enter admin mode, create a macro.\nStore the macro in this game, then run it in test mode.\nEnsure that your macro passes through this room and the tests below will run\nwhen they are encountered.\n            }\n        }\n    }\n\n\n    {inject, logic=/nav_home.inj }\n    {inject, logic=/home.inj }\n    {inject, logic=/look.inj }\n}",
-            "children": [],
-            "expanded": false
-          }
-        ],
-        "expanded": false
-      }
-    ],
-    "expanded": false
-  },
-  {
-    "id": "fqfyajov",
-    "title": "Templates",
-    "content": "",
-    "children": [
-      {
-        "id": "wo66853g",
-        "title": "Out of the Box Templates",
-        "content": "",
-        "children": [
-          {
-            "id": "9o6kddje",
-            "title": "Room Template",
-            "content": "Room Template\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {enter_message\n        output={@\n...\n        }\n    }\n\n    {look\n        {message\n            output={@\n...\n            }\n        }\n    }\n\n\n    {navigation\n        {message\n            output={@\n\n\n\n---\n...\n            }\n        }\n    }\n\n\n\n\n    {input, syntax=YOURLOOKSYNTAX\n        {act, logic=look, tags=!_type|room }\n    }\n\n    {input, syntax=YOURSYNTAX\n        {move, logic=TARGETROOMKEY, tags=[player]\n            output={@\n\nTRAVELMESSAGE\n            }\n        }\n    }\n}",
-            "children": [],
-            "expanded": false
-          }
-        ],
-        "expanded": false
-      },
-      {
-        "id": "jbm9394q",
-        "title": "Introduction to the Templates",
-        "content": "Introduction to the Templates\n--------------------------------------------------------------------------------\n\nThese templates assume you are using something similar to the _Sample Game_.\nIf you aren't using _Injections_, you can use the _Out of the Box Templates_.",
-        "children": [],
-        "expanded": false
-      },
-      {
-        "id": "jk1ijfmn",
-        "title": "Room Template",
-        "content": "Room Template\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        output={@\n\n...\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n}",
-        "children": [],
-        "expanded": false
-      }
-    ],
-    "expanded": false
-  },
-  {
     "id": "5mtavf66",
     "title": "Developers",
     "content": "",
     "children": [
+      {
+        "id": "3j0575hc",
+        "title": "Developers Quick Links",
+        "content": "Developers Quick Links\n--------------------------------------------------------------------------------\n\n_Admin Tools Introduction_\n_Scenario Examples_",
+        "children": [],
+        "expanded": false
+      },
       {
         "id": "h47dv9im",
         "title": "Admin Tools",
@@ -2510,6 +1974,533 @@
         "expanded": false
       },
       {
+        "id": "byvmbpyq",
+        "title": "Fighting in WorldWeaver",
+        "content": "",
+        "children": [
+          {
+            "id": "77txkgjr",
+            "title": "Introduction to Fighting in WorldWeaver",
+            "content": "Introduction to Fighting in WorldWeaver\n--------------------------------------------------------------------------------\n\nIf you are interested in making a game that allows the player to fight opponents\nor monsters etc. There are some things that need to be in place within your\ngame. In this tutorial we'll go over that preparation and define a room with an\nopponent in it that your player can fight.",
+            "children": [],
+            "expanded": false
+          },
+          {
+            "id": "q6w8v238",
+            "title": "Preparing the Player for Fighting",
+            "content": "Preparing the Player for Fighting\n--------------------------------------------------------------------------------\n\nThere are two Attributes that both the Player Element and the opponent Element\nmust have. We'll create those now.\n\nThe required Attributes are:\n\n* Life\n* Hit Score\n\nTo create these Attributes you will give them a numeric Output and identify them\nwith the following special Tags:\n\n* !_life see _!_life_\n* !_hitscore see _!_hitscore_\n\nHere is the Player Element from the Sample Game Tutorial. You will want to make\nyour Player Element similar to that.\n\nFor more information on fighting, see:\n_Fighting_",
+            "children": [],
+            "expanded": false
+          }
+        ],
+        "expanded": false
+      },
+      {
+        "id": "yzm0pymj",
+        "title": "Tutorials",
+        "content": "",
+        "children": [
+          {
+            "id": "bfhdzh84",
+            "title": "Building the Sample Game",
+            "content": "",
+            "children": [
+              {
+                "id": "cw7biu3c",
+                "title": "Sample Game",
+                "content": "Sample Game\n--------------------------------------------------------------------------------\n\nThe Sample Game was built to test various features of WW.\nWhen I add new functionality, I generally add a new room to this game to test\nthat.\n\nSo if you look through the NS there OR rebuild it yourself, you will have an\nexample of each of the pieces of functionality available in WW!",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "nmsxz8hm",
+                "title": "Introduction to the Sample Game",
+                "content": "Introduction to the Sample Game\n--------------------------------------------------------------------------------\n\nIn this tutorial we'll recreate the Sample Game that ships with WW. There is\nsome functionality that is only available when building games in script - versus\nusing the graphical builder tool (builder.html). These limitations will be\ncalled out when we encounter them.\n\nBefore we begin be sure to make a copy of the worldweaver.html file. Locate the\ndatabase object:\n\nlet database =[...^^^array^^^\n\nIn that copy, remove the data that is in the database object by default. It\nshould now look like this:\n\nlet database = [^^^array^^^\n\n\n** Note **\nSome of the formatting of the code in this tutorial's script files might differ\nfrom the scripts that ship with WW, but the functionality is unchanged.\n\n\n-- Saving --\nAfter each of the following steps you may want to save your progress. To do so:\n\nOpen the importer.html. Click the Browse (or hit 'b') button and select the root\ndirectory for your game (where all your game scripts are). Click the Copy\nbutton (or hit 'c').\n\nThen open the copy of worldweaver.html you made and replace:\n\nlet database = [^^^array^^^\n\nwith what is now in your clipboard.",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "u5s8vs5s",
+                "title": "Core Game Files",
+                "content": "",
+                "children": [
+                  {
+                    "id": "t2z67udp",
+                    "title": "The Game File",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "mb9gxetl",
+                        "title": "Creating the Game File",
+                        "content": "Creating the Game File\n--------------------------------------------------------------------------------\n\n** Note **\nEvery WorldWeaver (WW) game MUST contain a Game Element - only one.\n\n\nYou will need to create a root folder\nfor your game. So create:\n\n~/sample_game/\n\n\nI personally create the core game files within this root directory - but you can\ncreate them wherever you want like:\n\n~/sample_game/\n  |__ core/\n\t    |__ game.nrmn\n\n\nCreate a file called game.nrmn (Or something similar). Within this file, let's\ncreate the game Element:\n\n{game, name=Sample Game\n}\n\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "1emxvbnj",
+                        "title": "Admin Password",
+                        "content": "Admin Password\n--------------------------------------------------------------------------------\n\nNow we can add an admin password. This will later give us access to powerful\ngame author tools like Macros, Tests, DevNotes and more.\n\nAdd the following Attribute Elements to your game.nrmn:\n\n{attrib, output=admin, tags=!_adminpass }\n{attrib, output=sample_game, tags=!_filename }\n\nSo your game.nrmn file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\n}\n\n** Notes **\nThe Output of this Element is the password you want to use as the admin\npassword. The !_adminpass Tag tells WorldWeaver (WW) how to process this\nAttribute Element.\n\nThe _!_filename_ tells WW what to name the file when you or the player uses the\nsave command.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "t9l13vge",
+                        "title": "Error Message",
+                        "content": "Error Message\n--------------------------------------------------------------------------------\n\nNow we are going to define a message that will be shown if the player inputs\nsomething that the game is unable to process successfully.\n\nAdd the following to your game.nrmn script:\n\n{attrib, tags=!_error\n\toutput={@\nI don't understand what you are trying to do.\n\t}\n}\n\nSo your script file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\t\t\n}\n\nYou will notice that something is odd about the Output Field of this Attribute\nElement. What's going on?\n\nOutput is NOT a multiline value by default (Unless you manually put\nline breaks in there). To make the Output multiline and auto insert line breaks\nwhere you add them in the Output value - add @ after the opening bracket.\n\nYou will see this all over the place.\n\n\n** Note **\nThe !_error tells WorldWeaver (WW) how to process this Attribute Element. If\nplayer input results in an empty response, this Output will be shown to\nthe player.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "mtd5i8za",
+                        "title": "Default Error Action",
+                        "content": "Default Error Action\n--------------------------------------------------------------------------------\n\nLet's define a custom 'User Input' that should be considered default by your\ngame. For example when the player fights an enemy and defeats them, after the\nfight screen closes, this input is issued as though the Player entered it.\n\nAdd the following to your game.nrmn script:\n\n{attrib, output=look, tags=!_defact }\n\nSo your script file now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n}\n\n\n** Notes **\nThe _!_defact_ Tag lets WorldWeaver (WW) know how to process this Attribute\nElement.\n\n\n** Note **\nThe Output is imitating player input - so this should be something you would\nenter as the player.\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "gqkwtaex",
+                        "title": "Fight Easing",
+                        "content": "Fight Easing\n--------------------------------------------------------------------------------\n\nIf you are building a game in which the player can fight monsters, robots, or\nenemies of any kind, you can define how intense Fight Easing should be in your\ngame. So let's do that now.\n\nAdd the following to your game.nrmn script:\n\n{attrib, output=4, tags=!_easingrounds }\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\t\n}\n\n\n** Notes **\nThe Tag !_easingrounds tells WorldWeaver (WW) how to process this Attribute\nElement.\n\n\n** Note **\nIf you want to effectively disable easing - you can simply set the Output to a\nlarge number like 500.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "ws1x6i5c",
+                        "title": "You've Died Message",
+                        "content": "You've Died Message\n--------------------------------------------------------------------------------\n\nLet's define what your game tells the player when their Player Element has\n'died' (If you are building a game where this is possible).\n\n\n** Note **\nWe'll go over adding the Elements that make dying possible when we get to the\nPlayer Element.\n\nAdd the following to your game.nrmn script:\n\n{message, tags=!_die\n\toutput={@\nYou have died.\n\t}\n}\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\n\t\n\t{message, tags=!_die\n\t\toutput={@\nYou have died.\n\t\t}\n\t}\n}\n\n\n** Notes **\nThe !_die Tag lets WorldWeaver (WW) know how to process this Message Element.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "jz3rxcuy",
+                        "title": "Splash Screen",
+                        "content": "Splash Screen\n--------------------------------------------------------------------------------\n\nLet's give our game a splash screen - something that will be shown when the\nplayer launches your game for the first time.\n\nAdd the following to your game.nrmn script:\n\n{message, tags=!_start\n\toutput={@\nWelcome to the SAMPLE GAME!\n\n\n\n\t}\n}\n\nSo your script now looks like this:\n\n{game, name=Sample Game\n\t{attrib, output=admin, tags=!_adminpass }\n\t{attrib, output=sample_game, tags=!_filename }\t\n\t\t\n\t{attrib, tags=!_error\n\t\toutput={@\nI don't understand what you are trying to do.\n\t\t}\n\t}\n\t\n\t{attrib, output=look, tags=!_defact }\t\n\t{attrib, output=4, tags=!_easingrounds }\n\t\n\t{message, tags=!_die\n\t\toutput={@\nYou have died.\n\t\t}\n\t}\n\t\n\t{message, tags=!_start\n\t\toutput={@\n\tWelcome to the SAMPLE GAME!\n\n\n\n\t\t}\n\t}\n}\n\n\n** Notes **\nThe _!_start_ Tag tells WorldWeaver (WW) how to process this Message Element.\n\n\n** Note **\nYou may notice all the extra line breaks in the Output, this is strictly for\nmaking the output look nicer for the player.\n\n\n** Note **\nI personally like to use ASCII art for start screens. For example the Sample\nGame that ships with WW uses the following for its splash screen.\n\n\n{message, tags=!_start\n\toutput={@\n\n███████╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗     ██████╗  █████╗ ███╗   ███╗███████╗\n██╔════╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n███████╗███████║██╔████╔██║██████╔╝██║     █████╗      ██║  ███╗███████║██╔████╔██║█████╗  \n╚════██║██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n███████║██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n                                                                                           \n\n\n\n\t}\n}\n\n\n** Note **\nDue to the need to compact the database object - Output Field values are\ntrimmed. Until this is resolved, if you have ASCII art that has rows of text\nthat begin with a space, you will need to replace just the first space with the\nHTML code for space:  &nbsp;",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "50bcao5k",
+                    "title": "The Player File",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "rkn9276k",
+                        "title": "Creating the Player File",
+                        "content": "Creating the Player File\n--------------------------------------------------------------------------------\n\n** Note **\nEvery WorldWeaver (WW) game MUST contain a Player Element - only one.\n\n\nLet's create a script file to define the Player in. You can actually put this\nwherever you want or name the file whatever you want. However for this tutorial\nwe'll create a player.nrmn file in the root directory. In this file you will\nadd the following:\n\n{player, key=player, name=, parent=home\n}\n\n\n** Notes **\nYou will notice that the name Field is blank, this will be filled in by a prompt\nto name the Player the first time the player starts your game. IF you add a\nvalue to this Field the game will use that instead of prompting the player.\n\n\nThe parent Field is the Element Key for the Room that your Player will start\nout in.\n\n\n** Note **\nYou CAN use a Key other than player, then reference the Player with that or the\nspecial Relative Value of [player], however I like to just go with player.\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "g4cvl0pu",
+                        "title": "Allow the Player to Fight",
+                        "content": "Allow the Player to Fight\n--------------------------------------------------------------------------------\n\nNow that we have a Player Element, IF we want to allow our players to fight and\npotentially die in our game we can define some stats. For fighting there are\ntwo required stats:\n\n* Life\n* Armor Rating\n\n\nThe others can be whatever you want them to be, and use can use the tools in WW\nLogic, other Attributes, Set Elements, etc - to define how they affect the\nPlayer during the game.\n\nWe want our player's stats to be quite different from game to game, so we will\nuse multiple levels of randomness to define their values.\n\n\n** Note **\nThese values will be set when the game is first played.\n\nLet's start by defining a couple of ranges for the number of dice that we will\nbe rolling.\n\nAdd the following to your player script file:\n\n{attrib, output=[rand:3|5], tags=stats_dice }\n{attrib, output=[rand:4|6], tags=money_dice }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n}\n\n\n** Notes **\nWe are going to use the Tags to identify these two Attributes - using special\nRelative Values.\n\nTo define a random value that is set at the game's start you begin with square\nbrackets to that WW knows it is a special value. Then you enter rand: so it\nknows you want a random value within a range. This range is defined like this:\n(Smallest number)|(Largest number)\n\n\n\n\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "e0322gte",
+                        "title": "Setting Dice Rolls",
+                        "content": "Setting Dice Rolls\n--------------------------------------------------------------------------------\n\nNext we will use the random values we just specified to set the number of dice\nwe are rolling - and how many sides the dice will have for each stat.\n\n\n** Note **\nWhen WorldWeaver (WW) is setting the random values at the very start of the\ngame, it processes the ranged random values first, then the dice random values -\nthis is important to bear in mind if you are using one random value to generate\nanother random value.\n\n\nAdd the following to your player script file (We'll go over these later in\nthis topic):\n\n{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n}\n\n\n** Notes **\nYou will notice that in the Output there are double angle brackets. These are\nused to either dynamically insert values into an Output OR define Inline Logic\nthere. In this case we are inserting the random values that the stats_dice and\nmoney_dice came up with.\n\n\nThe\n\n[self]((stats_dice))\n\ntext is what is called a Relative Reference. It essentially states - for this\n'self' Element (The Player Element in this case), get the default field of its\nchild Element that has the stats_dice Tag. You will see more of these in the\ncoming topics. - If you are curious about [self] refer to this topic.\n\nWe are performing another rand: in these Attributes, the dice Attributes define\nthe low end of the range, and we have specified the upper end of the\nrange manually.\n\n\n** Note **\nBecause these attributes are lower in the order / script - their random values\nwill be processed after the stats and money dice ones.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "v2a7l5pt",
+                        "title": "Defining Stats",
+                        "content": "Defining Stats\n--------------------------------------------------------------------------------\n\nNow let's define the actual stats themselves. These are the Attributes that we\nwill be referencing in our game.\n\nAdd the following to your player script file:\n\n{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n{attrib, output=init_[player]((life)), tags=maxlife }\n{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n}\n\n\n** Notes **\nThere are a lot of new concepts in these Attributes, so let's dig in!\n\nHere you are introduced to the roll: command. This tells WorldWeaver (WW) that\nwe're going to obtain our random value by 'rolling' any number of specific sided\ndice to get the values we want. roll: is very complicated. For more information\nsee this topic.\n\nIn these Attributes we're using one of the advanced features of roll: - the best\nof notation. Let me explain...\n\nLet's say that life_dice came up with a random value of 4. So that Attribute's\nOutput actually looks like this:\n\n[roll:(8)4d6]\n\nThe (8) means that we're going to roll 8 dice total. However 4d6 means we are\nonly going to keep 4 of those rolls - and the dice we're rolling have 6 sides.\nSo WW will keep the highest 4 of the 8 rolls.\n\nThis is the first time you are seeing more than one Tag in the Tags Field also.\nTags are separated by pipes: |.\nWe'll discuss the stats Tag when we build the Global Element.\n\nThe other Tags are used for identification - except for:\n\n    !_life\n    !_hitscore\n\nThose two tags are special and are used when fighting enemies.\nThere is a 'gold' Tag so we can use that when the player purchases items in\nthe game.\n\nAlso you will notice that the maxlife Attribute is a bit different. Its Output\nutilizes the special init_ prefix. This lets WW know that when the game first\nstarts, we want to set that value to another Element's Output (In this case)\nbut not after that. So if the Player loses some life - this value doesn't change\nas it would if we used a Relative Code. Maxlife is used for healing the Player,\nensuring their life doesn't exceed what it was at the start. We can later\nincrease this using a Set Element type if we want to.\n\nAnd lastly - what is the Attribute with the !_damageadj tag? That allows you\nto adjust the damage that an enemy's weapon does to the Player. Perhaps at the\ntime the player is using some kind of rage spell on themselves and it decreases\nthe damage that weapons do to the Player. When the spell is cast you can adjust\nthe !_damageadj Attribute's Output to be say: -2. So any damage inflicted on the\nPlayer would be reduced by 2.\n\n\n\n\n\n\n\n\n\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "4y10ju59",
+                        "title": "Arming the Player",
+                        "content": "Arming the Player\n--------------------------------------------------------------------------------\n\nLet's arm our player with a weapon (We'll define the weapon in just a moment).\nIn Script\n\nAdd the following to your player script file:\n\n{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n}\n\nIn Builder\n\n    Select the Player Node.\n    Enter the command: add Armed Weapon\n    Element Type: attribute\n    Tags: !_armed|stats|name\n    Output: long-sword_01\n\nNotes\n\nAnything in the game that can fight - Player, NPCs - must have an armed weapon\nto fight with.\n\nYou will notice we have the same stats Tag, that we'll utilize in a Global\nElement later, however there is also an !_armed AND a name Tag.\n\nThe !_armed Tag tells WorldWeaver (WW) that the Output is the Element Key for\nthe weapon that the Player is currently armed with. The name Tag tells WW that\nwhen displaying what the Player is armed with to the player, we should use the\nname Field as the output value.\n\n\n\n\n\n\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "rhotyerx",
+                        "title": "Defining the Weapon",
+                        "content": "Defining the Weapon\n--------------------------------------------------------------------------------\n\nNow that we have armed the Player with a Weapon, let's now define that Weapon:\n\nAdd the following to your player script file:\n\n{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon, parent=player\n\t{attribute, name=Damage, logic=[rand:4|12], tags=!_damage }\n\t{attribute, output=a Long Sword, tags=title }\n}\n\nSo your script file now looks like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((!_life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=init_[self]((armor)), tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\t\n\t{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon\n\t\t{attribute, name=Damage, logic=rdm_[rand:4|12], tags=!_damage }\n\t\t{attribute, output=a Long Sword, tags=title }\n\t}\n}\n\n\nNotes\n\nHere we see the inventory Tag for the first time. Later on we will use it to list out what the Player is carrying.\nThe !_weapon Tag lets WorldWeaver (WW) know that this Object is actually a weapon that can be used in fighting.\n\nThere is an Element Key that makes this easier to identify, however its Key must be unique within the game.\n\nThe syntax Field is used to help identify this Weapon when the player wishes to arm themselves with it. The value here is what is called a Regular Expression (regex). See this topic on building regex's.\n\nThe Attribute with the Tag of: !_damage lets WW know how to deal with the damage the Player inflicts when they succeed attacking enemies with this Weapon. That\n\nThe Attribute with the title Tag is used for describing this Weapon to the player.\n\nYou will notice the rdm_ prefix. This means that every time WW processes the !_damage Attribute, the Output should be re-randomized.\n",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "029wex98",
+                    "title": "The Global File",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "b8lvfwtj",
+                        "title": "Creating a Global File",
+                        "content": "Creating a Global File\n--------------------------------------------------------------------------------\n\nNow we're going to create a Global Element. This allows us to define Elements\nthat can be processed regardless of the Room the Player is in. Every 'turn'\nthese Elements will be parsed through.\n\nCreate a file somewhere within your game's root directory. You can call it\nwhatever you want, I'll go with global.nrmn.\n\nAdd the following to this new script file:\n\n{global, key=global01, parent=root\n}\n\n** Notes **\nYou don't really need to add an Element Key for the Sample Game, we won't be\nreferencing its Elements via other Elements. But if you DO need to do so -\nhaving a key (Much like with Room Elements) will make that possible.\n\nAlso in Script - you can just leave the parent field out if you like.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "k9rlcd4m",
+                        "title": "Stats Command",
+                        "content": "Stats Command\n--------------------------------------------------------------------------------\n\nWe want our player to be able to view the stats that we defined in our Player\nElement. This can be done within a Global Element, so let's do that now.\n\nAdd the following to your global script file:\n\n{input, syntax=(stats)\n\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "dhb086t2",
+                        "title": "Inventory Command",
+                        "content": "Inventory Command\n--------------------------------------------------------------------------------\n\nLet's create another list that our player can view. We want them to be able to\nsee the items in their inventory. Here is where the inventory tag we added to\nthe Player's default weapon comes into play.\n\n** Note **\nWhen we later define Objects the player can pick up - we'll need to be sure to\nadd the inventory Tag when they do pick up the item, AND remove it when they\ndrop it.\n\nAdd the following to your global script file:\n\n{input, syntax=(inventory|inv)\n\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "dw6l2qoh",
+                        "title": "Arming Weapons",
+                        "content": "Arming Weapons\n--------------------------------------------------------------------------------\n\nSince the Sample Game does allow the player to fight opponents, we will want to\nlet them swap out the weapon they are armed with.\n\nSince the philosophy of WorldWeaver (WW) is to allow the game author to have\ncomplete control over their games, this is not built in. So we will define this\nfunctionality in our Global Element.\n\nAdd the following to your global script file:\n\n{input, syntax=(arm .*)\n\t{set, logic=player_armed, tags=!_arm }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n\t{input, syntax=(arm .*)\n\t\t{set, tags=!_arm }\n\t}\n}\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "a3uljnay",
+                        "title": "Slowly Healing",
+                        "content": "Slowly Healing\n--------------------------------------------------------------------------------\n\nSince our player can fight oponents it is very likely they will lose some of\ntheir life points. You can design your game so that they need to find, pick up,\nand use healing potions or healing pills etc. OR you can design your game so\nthat the player slowly heals over time. That's what we're going to do for our\nSample Game.\n\nFirst we're going to add a couple of Attributes to our Player Element.\nIn Script\n\nAdd the following to your player script file - right below the armed weapon\nAttribute:\n\n{attrib, output=5, tags=heal_rounds }\n{attrib, output=0, tags=cur_heal_round }\n\nSo your player file should now look like this:\n\n{player, key=player, name=, parent=home\n\t{attrib, output=[rand:3|5], tags=stats_dice }\n\t{attrib, output=[rand:4|6], tags=money_dice }\n\t\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=life_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }\n\t{attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }\n\t{attrib, output=[rand:<<[self]((money_dice))>>|9], tags=gold_dice }\n\t\n\t{attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }\n\t{attrib, output=init_[player]((life)), tags=maxlife }\n\t{attrib, name=Armor Rating, output=[roll:(6)<<[self]((armor_dice))>>d6+3], tags=stats|armor }\n\t{attrib, name=Hit Score, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats }\n\t{attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats }\n\t{attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats }\n\t{attrib, name=Gold, output=[roll:<<[self]((gold_dice))>>d8], tags=stats|gold }\n\t{attrib, name=Experience, key=experience, output=0, tags=experience|stats }\n\t{attrib, output=0, tags=!_damageadj }\t\n\t\n\t{attrib, name=Armed Weapon, output=long-sword_01, tags=!_armed|stats|name }\n\t\n\t{attrib, output=5, tags=heal_rounds }\n\t{attrib, output=0, tags=cur_heal_round }\n\t\n\t{object, key=long-sword_01, name=Long Sword, syntax=\\b(?:your\\s+)?long\\s+sword\\b, tags=inventory|!_weapon\n\t\t{attribute, name=Damage, logic=rdm_[rand:4|12], tags=!_damage }\n\t\t{attribute, output=a Long Sword, tags=title }\n\t}\n}\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "k0nredy7",
+                        "title": "Slowly Healing Continued",
+                        "content": "Slowly Healing Continued\n--------------------------------------------------------------------------------\n\nNow in our Global Element we'll use the two Attributes we've just added to our\nPlayer Element to slowly heal the Player over time.\n\nAdd the following to your global script file:\n\n{act\n\t{set, logic=[player]((cur_heal_round)), output=++ }\n}\n\n{act\n\t{logic\n\t\tlogic={@\n\t\t\t?[player]((cur_heal_round)) >= [player]((heal_rounds))\n\t\t\tand\n\t\t\t?[player]((life)) < [player]((maxlife))\n\t\t}\n\t}\n\t{set, logic=[player]((life)), output=++ }\n\t{set, logic=[player]((cur_heal_round)), output=0 }\n}\n\nSo your global file now looks like this:\n\n{global, key=global01, parent=root\n\t{input, syntax=(stats)\n\t\t{act, logic=[player]((stats)), tags=!_list, output=Stats: }\n\t}\n\t{input, syntax=(inventory|inv)\n\t\t{act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }\n\t}\n\t{input, syntax=(arm .*)\n\t\t{set, tags=!_arm }\n\t}\n\t\n\t{act\n\t\t{set, logic=[player]((cur_heal_round)), output=++ }\n\t}\n\n\t{act\n\t\t{logic\n\t\t\tlogic={@\n\t\t\t\t?[player]((cur_heal_round)) >= [player]((heal_rounds))\n\t\t\t\tand\n\t\t\t\t?[player]((life)) < [player]((maxlife))\n\t\t\t}\n\t\t}\n\t\t{set, logic=[player]((life)), output=++ }\n\t\t{set, logic=[player]((cur_heal_round)), output=0 }\n\t}\n}\n",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "3orw9y2s",
+                    "title": "Handling Time",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "hdcla1gx",
+                        "title": "Introduction",
+                        "content": "Introduction\n--------------------------------------------------------------------------------\n\nYou may want to keep track of whether it is day or night in your game. This may\nbe simply for descriptions or perhaps enemies are tougher when it is night or\nmaybe certain puzzles can only be solved during the day etc. The topics below\nshow you an example of how I've personally handled time, days, day and night.\nThis logic is handled in both the Game Element and within a Global Element.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "bv79am30",
+                        "title": "Game Element Piece",
+                        "content": "Game Element Piece\n--------------------------------------------------------------------------------\n\nIn the Game Element we'll define some Attributes and Custom Elements:\n\n{game\n\t...\n    {attrib, output=15, tags=currenthour }\n    {attrib, output=0, tags=currentminute|!_isminutes }\n    {time\n        {message\n            output={@\n                Current Time:\n                <<[game]((currenthour))>>:<<[game]((currentminute))>>\n            }\n        }\n    }\n    {attrib, output=20, tags=nighthour }\n    {attrib, output=6, tags=dayhour }\n    {attrib, output=0, tags=totaldays }\n    {days\n        {message\n            output={@\n                Days in Shellspace:\n                <<[game]((totaldays))>>\n            }\n        }\n    }\n    {attrib, output=0, tags=missiondays }\n    {attrib, output=true, tags=isday }\n    {day\n        {message\n            output={@\n                <?[game]((isday)) = 'true'?>\nIt is day time.\n                <else>\nIt is night time.\n                </?>\n            }\n        }\n    }\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "tp0sm871",
+                        "title": "Global Element Piece",
+                        "content": "Global Element Piece\n--------------------------------------------------------------------------------\n\nIn a Global Element we'll define some Inputs that will utilize the Custom\nElements we've added to the Game Element as well as some Action Elements that\nwill update the Attributes we've added to the Game Element.\n\n{global, key=global01, parent=root\n\t...\n\n    {input, syntax=(time)\n        {act, logic=time, tags=!_type|game }\n    }\n    {input, syntax=(days)\n        {act, logic=days, tags=!_type|game }\n    }\n    {input, syntax=(is day)\n        {act, logic=day, tags=!_type|game }\n    }\n\n    {act\n        {set, logic=[game]((currentminute)), output=+=15 }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currentminute)) > '59'\n            }\n        }\n\n        {set, logic=[game]((currenthour)), output=++ }\n        {set, logic=[game]((currentminute)), output=0 }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) > '23'\n            }\n        }\n\n        {set, logic=[game]((currenthour)), output=0 }\n        {set, logic=[game]((totaldays)), output=++ }\n        {set, logic=[game]((missiondays)), output=++ }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) >= [game]((nighthour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=false }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) < [game]((dayhour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=false }\n    }\n\n    {act\n        {logic\n            logic={@\n                ?[game]((currenthour)) >= [game]((dayhour))\n                and\n                ?[game]((currenthour)) < [game]((nighthour))\n            }\n        }\n\n        {set, logic=[game]((isday)), output=true }\n    }\n}",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "bpfyfmco",
+                    "title": "Injections",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "nuqaxq1l",
+                        "title": "Introduction",
+                        "content": "Introduction\n--------------------------------------------------------------------------------\n\nHere's where the real power of defining games in script versus using the\ngraphical builder.html comes into play.\n\n** Note **\nThe graphical builder tool is by no means a finished solution. However if you\nwould like to further develop it - injections are something to bear in mind.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "0tqf28my",
+                        "title": "Home Injection",
+                        "content": "Home Injection\n--------------------------------------------------------------------------------\n\nSomewhere in your game directory create a new script file, something like\nhome.inj. You can call it whatever you want however it must have the .inj\nextension.\n\nIn that file add the following:\n\n{input, syntax=(home)\n\t{move, logic=home, tags=[player], output=You return to the testing home room. }\n}\n\n** Notes **\nAs you can see this is simply an Input Element and a Move Element, exactly as\nyou would write it in a .nrmn script. We will later use an Injection Element to\ninject this code into our .nrmn script files - where we've defined the Injection\nElement that points to the .inj file.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "4jjck1q4",
+                        "title": "Look Injection",
+                        "content": "Look Injection\n--------------------------------------------------------------------------------\n\nJust like you did for the home.inj script, let's create a file that will allow\nthe player to look around.\n\nCreate a new .inj file - like look.inj.\n\nIn that file add the following:\n\n{input, syntax=[tplt_syntax]((look))\n\t{act, logic=look, tags=!_type|room }\n}\n\n** Notes **\nYou will notice that the Syntax Field value looks like a Relative Reference. It\nis! The tplt_syntax is an Object Element that we will create shortly. It will\ncontain only Attribute Elements that have regular expressions in their Output\nFields. It is our regex library! And as our game grows, so will this library.\nAND you can reuse it in future games that you create!",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "wfvg9lfw",
+                        "title": "Navigation Injection",
+                        "content": "Navigation Injection\n--------------------------------------------------------------------------------\n\nWe're now going to create Navigation Element injection. This will remind the\nplayer of how they can travel into the various test rooms that we will be\ncreating. Even though this is only used in the Home Room and therefore not a\ngreat candidate for injection, it IS a good way to keep the Navigation separated\nfrom whatever we do in the future in the Home Room code.\n\nCreate a navigation .inj file - like nav.inj.\n\nIn that file add the following:\n\n{navigation\n\t{message\n\t\toutput={@\n\nNavigation:\nHome\nArming\nCoin\nDiscover\nFight\nFollows\nHealing\nInjection\nMessages\nPath\nPutting\nTests\nValues  (Special message values test)\n\n\t\t}\n\t}\n}\n\n** Notes **\nThese are all of the rooms that we will be building. And to move into them, the\nplayer simply has to enter the names given in this Navigation Element Message.\n\nFor example, if the player wants to test healing they would enter the following:\n\nhealing\n\nThen they can return to the Home Room using:\n\nhome\n\nOf course this navigation list doesn't define the syntax used to travel, it just\ndisplays it to the player.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "g6rzmh7i",
+                        "title": "Non-Home Navigation Injection",
+                        "content": "Non-Home Navigation Injection\n--------------------------------------------------------------------------------\n\nNow let's create a reusable injection for when the Player is in Rooms other than\nthe Home Room.\n\nCreate an .inj for this.\n\nIn that file, add the following:\n\n{navigation\n\t{message\n\t\toutput={@\n\nNavigation:\nHome\n\n\t\t}\n\t}\n}\n\n",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "871jv9of",
+                    "title": "Creating a Regular Expressions Library",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "iwcg8qmj",
+                        "title": "Introduction to Creating Regular Expressions Libraries",
+                        "content": "Introduction to Creating Regular Expressions Libraries\n--------------------------------------------------------------------------------\n\nRegular Expressions are used to match things like the player's input to the\ngame, as well as a means for you - the game author - to identify Elements that\nthe player intended to reference.\n\nYou will want to review the following before proceeding:\n_Introduction to Regular Expressions_",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "8q5i1o4x",
+                        "title": "Creating the Regular Expressions Element",
+                        "content": "Creating the Regular Expressions Element\n--------------------------------------------------------------------------------\n\nTo create our Regular Expression (regex) library, let's create a file called\nsomething like: regexlib.nrmn.\n\nIn that file, add the following:\n\n{object, key=tplt_syntax\n}\n\n** Note **\nWe've given this Element the Key value of tplt_syntax. This allows us to\nreference it from anywhere in the game using its key.",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "knpmrxql",
+                        "title": "Adding the Regular Expressions",
+                        "content": "Adding the Regular Expressions\n--------------------------------------------------------------------------------\n\nNow let's add all of the Regular Expressions (regex) I have added to it so far.\nThese will simply be Attribute Elements and the regex strings will be their\noutput.\n\n** Note **\nNotice the special !_regex tag AND the logic values. These are used with the\n_regex admin command to test ALL of these regex's.\n\n\nAdd the following to your regexlib script file:\n\n{object, key=tplt_syntax\n\tTraveling\n\t\t{attrib, tags=go_north|!_regex, output=^(?:go north|north|n)$, logic=n|north|go north }\n\t\t{attrib, tags=go_south|!_regex, output=^(?:go south|south|s)$, logic=s|south|go south }\n\t\t{attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }\n\t\t{attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }\n\n    Look\n        {attrib, tags=look|!_regex, output=^l(ook( around)?)?$, logic=l|look around|you look around the room }\n        {attrib, tags=x_tables|!_regex, output=^(examine|x)(?: the)? tables$, logic=x the table|x tables|examine the tables }\n        {attrib, tags=x_parchment|!_regex, output=^(examine|x)(?: the)? parchment$, logic=examine the parchment|examine parchment|x the parchment }\n\n    Identifying\n        {attrib, tags=key_id|!_regex, output=.*key.*, logic=the key|your key|the golden key }\n        {attrib, tags=spear_id|!_regex, output=(spear).*, logic=the spear|your spear|the ornate spear }\n\n    Taking\n        {attrib, tags=coin_take|!_regex, output=^(take|pick up)( the)?( gold)? coin, logic=take the coin|take gold coin|take coin|pick up the gold coin|pick up coin }\n        {attrib, tags=key_take|!_regex, output=^(take|pick up)( the)? key$, logic=take key|take the gold key|pick up the key|pick up key }\n        {attrib, tags=parchment_take|!_regex, output=^(take|pick up)( the)? parchment$, logic=take the parchment|take parchment|pick up the rolled parchment|pick up parchment }\n        {attrib, tags=spear_take|!_regex, output=^(take|pick up)( the)? spear$, logic=take the spear|take spear|pick up spear|take the metal spear|pick up the spear you see }\n\n    Dropping\n        {attrib, tags=parchment_drop|!_regex, output=(drop.*parchment), logic=drop the parchment|drop parchment }\n        {attrib, tags=spear_drop|!_regex, output=(drop.*spear), logic=drop the spear|drop spear }\n\n    Putting\n        {attrib, tags=box_put|!_regex, output=put.*in.*box, logic=put the thing in the box|put things in box|put key in box|put the necklace in the box }\n\n    Interacting\n        {attrib, tags=box_examine|!_regex, output=examine.*box|x.*box, logic=x box|x the box|examine the box|examine the ornate box }\n        {attrib, tags=greenbutton_push|!_regex, output=^(push|press)( the)?( green)? button$, logic=push green button|push button|press the green button }\n        {attrib, tags=redbutton_push|!_regex, output=^(push|press)( the)?( red)? button$, logic=push red button|push button|press the red button }\n\n    Fighting\n        {attrib, tags=rat_attack|!_regex, output=(attack.*rat|!.*rat), logic=attack the rat|attack rat|! rat|!rat }\n}\n\n** Note **\nYou may notice the headings for the different sections. These are unsafe\ncomments They are OK to use for simple things like this, however if you are\nadding text that could be interpreted as game definitions etc - you will want\nto use proper comments.",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  },
+                  {
+                    "id": "9d9mvu36",
+                    "title": "Creating a Help System",
+                    "content": "Creating a Help System\n--------------------------------------------------------------------------------\n\nYou can add a help system to your game using Global Elements. Below is an\nexample of using a single Global Element as your help system.\nIf you expect your game to have a large help system you can split it into\nmultiple Global Elements.\n\nTo create a help system add a new file - something like help.nrmn and in that\nscript file add the following:\n\n{global, key=help_main\n\t{help_home\n\t\t{message\n\t\t\toutput={@\nThis is the help home.\n\t\t\t}\n\t\t}\n\t}\n\n\t{help_commands\n\t\t{message\n\t\t\toutput={@\nThis is the commands help.\n\t\t\t}\n\t\t}\n\t}\n\n\n\n\t{input, syntax=^\\?$|^help$\n\t\t{act, logic=help_home, tags=!_type|self }\n\t}\n\n\t{input, syntax=^\\? commands$|^help commands$\n\t\t{act, logic=help_commands, tags=!_type|self }\n\t}\n}\n\n",
+                    "children": [],
+                    "expanded": false
+                  }
+                ],
+                "expanded": false
+              },
+              {
+                "id": "ujhrkuw2",
+                "title": "Creating the Rooms",
+                "content": "",
+                "children": [
+                  {
+                    "id": "6mmgvtns",
+                    "title": "Home Room",
+                    "content": "Home Room\n--------------------------------------------------------------------------------\n\nYou may recall that the Player Element has a Parent Property. And we gave this\nProperty the value of home. This means that the Player begins the game in a Room\nwith the Key of home so let's create that Room.\n\nWe'll begin with an empty Room Element:\n\n\n{room, key=home, name=Home Room\n}\n\n\nLet's add an Enter Message, and an Injection Element to a look injection (we've\ncreated this in the Injections section of this tutorial):\n\n\n{room, key=home, name=Home Room\n\t{enter_message\n\t\toutput={@\nYou are in an empty room.\nThere is a door in the north wall.\n\t\t}\t\n\t}\n\t\n\t{inject, logic=/look.inj }\n}\n\n\nNext let's create a connector (or door) to a room we will build next.\n\n\n{room, key=home, name=Home Room\n\t{enter_message\n\t\toutput={@\nYou are in an empty room.\nThere is a door in the north wall.\n\t\t}\t\n\t}\n\t\n\t{inject, logic=/look.inj }\n\t\n\t{input, syntax=[tplt_syntax]((go_north))\n\t\t{move, logic=arming_room, tags=[player]\n\t\t\toutput={@\nYou go north.\n\t\t\t}\n\t\t}\n\t}\n}\n\n\nIn the Testing Arming topics we'll look more closely at building Rooms.",
+                    "children": [],
+                    "expanded": false
+                  },
+                  {
+                    "id": "1pvj43bo",
+                    "title": "Testing Arming",
+                    "content": "",
+                    "children": [
+                      {
+                        "id": "mf1g4tld",
+                        "title": "Creating the Room",
+                        "content": "Creating the Room\n--------------------------------------------------------------------------------\n\nLet's create the arming Room.\n\nI personally like to create a rooms folder, and a folder for each room. I also\nlike to use subfolders if there are other Rooms within the structure I'm\nbuilding etc. So let's create a rooms folder in the game's root directory.\nLet's create a folder in the rooms folder, called arming. And in that folder,\ncreate a file called something like arming.nrmn.\n\nIn the arming script file, add the following:\n\n\n{room, name=Arming Room, key=arming_room\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "ztjx9giz",
+                        "title": "Adding a Welcome Message",
+                        "content": "Adding a Welcome Message\n--------------------------------------------------------------------------------\n\nWe can now add a message that will be shown whenever the Player enters the Room\nwe've just created.\n\nAdd the following to your arming script:\n\n\n{enter_message\n\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t}\n}\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "qkqv9xu1",
+                        "title": "Creating a Look Event",
+                        "content": "Creating a Look Event\n--------------------------------------------------------------------------------\n\nWe want our player to be able to 'look around' so we'll create a Custom Element\nfor that.\n\nAdd the following to your arming script file:\n\n\n{look\n\t{message\n\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n}\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n\t\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t\t}\n\t\t}\n\t}\t\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "l8l96uf5",
+                        "title": "Doing the Injections",
+                        "content": "Doing the Injections\n--------------------------------------------------------------------------------\n\nNow we can utilize the injections we've created.\n\nAdd the following to your arming script file:\n\n\n{inject, logic=/nav_home.inj }\n{inject, logic=/home.inj }\n{inject, logic=/look.inj }\n\n\nSo now your script file looks like this:\n\n\n{room, name=Arming Room, key=arming_room\n\t{enter_message\n\t\toutput={@\nWelcome to the weapon arming room.\nThis is a place where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t}\n\t}\n\t\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou look around...\nYou are in a room where you can pick up a weapon.\nOnce you have picked it up you can use:\n\narm [weapon]\n\nIf you drop that armed weapon, you should automatically be armed\nwith any other weapon you are carrying.\nIf you have no weapons, you will deal a very low, empty hand\namount of damage in fights.\n\n\t\t\t}\n\t\t}\n\t}\t\n\t\n\t\n\t{inject, logic=/nav_home.inj }\n\t{inject, logic=/home.inj }\n\t{inject, logic=/look.inj }\t\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "2po3t6pg",
+                        "title": "Creating the Spear",
+                        "content": "Creating the Spear\n--------------------------------------------------------------------------------\n\nLet's create a weapon that the player can pick up, so that they have two weapons\ncan can arm one or the other.\n\nI like to create an objects folder within my room's directory for any objects\nthat might be in that Room. In the objects folder, create a file called\nsomething like spear.nrmn.\n\nIn the spear script file, add the following:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n}\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "c3xqsb18",
+                        "title": "Defining Damage",
+                        "content": "Defining Damage\n--------------------------------------------------------------------------------\n\nWe need to specify what kind of damage this new weapon can do to opponents when\nthe player is fighting. To do this we will add a special Attribute Element.\n\nIn your spear script file, add the following:\n\n\n{attrib, logic=[roll:(4)2d8], tags=!damage }\n\n\nSo your script file now looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n}\n\n\n** Note **\nThe !_damage Tag lets WorldWeaver (WW) know that this Attribute Element is\nactually the damage Attribute for the Object.\n\nSee: _Special Tags_",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "a1gzzmzc",
+                        "title": "Giving the Spear a Friendly Name",
+                        "content": "Giving the Spear a Friendly Name\n--------------------------------------------------------------------------------\n\nLet's give our spear a friendly name. This is done with an Attribute Element\nthat has a special Tag.\n\nAdd the following to your spear script:\n\n{attrib, output=a spear, tags=!_title }\n\nNow your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n}\n",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "4zofhbh4",
+                        "title": "Adding Messages",
+                        "content": "Adding Messages\n--------------------------------------------------------------------------------\n\nLet's add the Enter Message and Look Elements.\nIn Script\n\nAdd the following to your spear script file:\n\n\n{enter_message\n\toutput={@\nYou see a spear.\n\n\t}\n}\n\n{look\n\t{message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{logic, logic=?[self]parent = [room] }\n}\n\n\nSo now your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=?[self]parent = [room] }\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "izc6tz67",
+                        "title": "Taking the Spear",
+                        "content": "Taking the Spear\n--------------------------------------------------------------------------------\n\nLet's allow our player to pick up the spear. To do this we'll utilize Set and\nMove Elements. We will also update the spear's Tags, so that it shows up in the\nPlayer's inventory.\n\nHere we get to use our Regexlib to make our lives easier!\n\nAdd the following to your spear script file:\n\n\n{input, syntax=[tplt_syntax]((spear_take))\n\t{move, logic=[player], tags=[self]\n\t\toutput={@\nYou take the spear.\n\t\t}\n\t}\n\t{set, logic=[self]tags, output=+inventory }\n}\n\n\nSo now your script file looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=[self]parent = [room] }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_take))\n\t\t{move, logic=[player], tags=[self]\n\t\t\toutput={@\nYou take the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=+inventory }\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "8gxxgoas",
+                        "title": "Dropping the Spear",
+                        "content": "Dropping the Spear\n--------------------------------------------------------------------------------\n\nMaybe the player no longer likes the spear. We should allow them to drop it.\n\nAdd the following to your spear script file:\n\n\n{input, syntax=[tplt_syntax]((spear_drop))\n\t{move, logic=[room], tags=[self]\n\t\toutput={@\nYou drop the spear.\n\t\t}\n\t}\n\t{set, logic=[self]tags, output=-inventory }\n\t{logic, logic=[self]parent = [player]elementkey\n\t\toutput={@\nYou aren't carrying that item.\n\t\t}\n\t}\n}\n\n\nSo your script file now looks like this:\n\n\n{object, name=Spear, key=spear_01, syntax=[tplt_syntax]((spear_id)), tags=!_weapon, parent=arming_room\n\t{attrib, logic=[roll:(4)2d8], tags=!_damage }\n\t{attrib, output=a spear, tags=!_title }\n\n\t{enter_message\n\t\toutput={@\nYou see a spear.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\nYou see a spear.\n\n\t\t\t}\n\t\t}\n\n\t\t{logic, logic=[self]parent = [room] }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_take))\n\t\t{move, logic=[player], tags=[self]\n\t\t\toutput={@\nYou take the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=+inventory }\n\t}\n\t\n\t{input, syntax=[tplt_syntax]((spear_drop))\n\t\t{move, logic=[room], tags=[self]\n\t\t\toutput={@\nYou drop the spear.\n\t\t\t}\n\t\t}\n\t\t{set, logic=[self]tags, output=-inventory }\n\t\t{logic, logic=[self]parent = [player]\n\t\t\toutput={@\nYou aren't carrying that item.\n\t\t\t}\n\t\t}\n\t}\n}",
+                        "children": [],
+                        "expanded": false
+                      },
+                      {
+                        "id": "0f7hkpcj",
+                        "title": "Arming Weapons",
+                        "content": "Arming Weapons\n--------------------------------------------------------------------------------\n\nNow that the Player can carry two weapons (the spear and the long sword) we can\nlet them arm one or the other weapon. You may recall that we added an arm input\nand Tags update, using the !_arm special value. This was in the Global File.\n\nBecause we did that, arming should now just work.\n\nSo if the player picks up the spear and enters:\n\narm spear\n\nWhen they look at their stats, using:\n\nstats\n\nThey will see that spear is now the armed weapon.",
+                        "children": [],
+                        "expanded": false
+                      }
+                    ],
+                    "expanded": false
+                  }
+                ],
+                "expanded": false
+              },
+              {
+                "id": "umrobu5u",
+                "title": "Where to Go From Here",
+                "content": "Where to Go From Here\n--------------------------------------------------------------------------------\n\nSo we've now created a new game from scratch in Norman Script.\n\nYou've now seen what what it looks like and how various Elements are created.\n\nIf you get stuck, go through the _Reference_ topics, also be sure to check out\nthe _Admin Tools_ topics.\n--------------------------------------------------------------------------------",
+                "children": [],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          },
+          {
+            "id": "3a9yr5gh",
+            "title": "Fighting",
+            "content": "",
+            "children": [
+              {
+                "id": "s9w4gyml",
+                "title": "Defining a Complex Weapon",
+                "content": "",
+                "children": [
+                  {
+                    "id": "ujzx8lmy",
+                    "title": "Lazer Gun Example",
+                    "content": "Lazer Gun Example\n--------------------------------------------------------------------------------\n\n{object, key=lazer_gun, name=Lazer Gun, syntax=[tplt_syntax]((lazergun_id)), parent=lazer_room, tags=!_weapon\n    {attrib, logic=[roll:(4)2d8], tags=!_damage }\n    {attrib, output=a lazer gun, tags=!_title }\n    {attrib, output=5, tags=cur_ammo }\n    {attrib, output=5, tags=max_ammo }\n    {attrib, output=Your lazer gun needs to be recharged., tags=!_cantattack }\n\n    {enter_message\n        output={@\nYou see a lazer gun.\n        }\n    }\n\n    {look\n        {message\n            output={@\nYou see a lazer gun.\n            }\n        }\n\n        {logic, logic=?[self]parent = [room] }\n    }\n\n    {x_gun\n        {message\n            output={@\nYou examine the lazer gun.\nIt is sleek and made completely of polished chrome.\n            }\n        }\n    }\n\n\n\n    {ammo\n        {message\n            output={@\nYou've used some ammo.\n            }\n        }\n\n        {logic\n            logic={@\n                ?[self]((cur_ammo)) > '0'\n            }\n        }\n        {set, logic=[self]((cur_ammo)), output=-- }\n        {act, logic=fix_min_ammo, tags=!_type|self }\n    }\n    {fix_min_ammo\n        {logic\n            logic={@\n                ?[self]((cur_ammo)) < '0'\n            }\n        }\n        {set, logic=[self]((cur_ammo)), output=0 }\n    }\n\n\n\n    {input, syntax=[tplt_syntax]((x_lazergun))\n        {act, logic=x_gun, tags=!_type|self }\n    }\n\n    {input, syntax=[tplt_syntax]((lazergun_take))\n        {move, logic=[player], tags=[self]\n            output={@\nYou take the lazer gun.\n            }\n        }\n        {set, logic=[self]tags, output=+inventory }\n    }\n\n    {input, syntax=[tplt_syntax]((lazergun_drop))\n        {move, logic=[room], tags=[self]\n            output={@\nYou drop the lazer gun.\n            }\n        }\n        {set, logic=[self]tags, output=-inventory }\n        {logic, logic=?[self]parent = [player]\n            output={@\nYou aren't carrying that item.\n            }\n        }\n    }\n}\n",
+                    "children": [],
+                    "expanded": false
+                  }
+                ],
+                "expanded": false
+              },
+              {
+                "id": "owvvoqmw",
+                "title": "Getting the Player Ready",
+                "content": "Getting the Player Ready\n--------------------------------------------------------------------------------\n\nSee this article:\n_Preparing the Player for Fighting_",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "hkzluy4x",
+                "title": "Arming the Player",
+                "content": "Arming the Player\n--------------------------------------------------------------------------------\n\nYou will also want to give your player a weapon they can use. If you don't\nWorldWeaver (WW) will assume they are just fighting with their fists - which\ndon't inflict much damage.\n\nCurrently fighting in WW is a bit limited. Armor rating is the value that an\nattack 'roll' must beat in order to successfully hit and a weapon's _!_damage_\nAttribute determines the harm the attack causes. In time this will be improved\nso that the game author can define Attributes like speed, size, agility, magic\nprotections etc. For now you can have certain things adjust the armor rating\nand or damage amount.\n\nIn the Sample Game tutorial there is an example of a default weapon for\nthe Player.\n\n_Building the Sample Game_",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "sy4hxj5i",
+                "title": "Defining an Opponent",
+                "content": "Defining an Opponent\n--------------------------------------------------------------------------------\n\nIn the Sample Game that ships with WorldWeaver (WW) there is a Fighting Room. In\nthat room you push a button to spawn a rat that the player can fight. For this\ntutorial we can simply add that rat to the room your player starts in. Create a\nnew script file (Or if you're using the builder tool, add the nodes that are in\nthe script below - To get familiar with how to do that, see the\n_Building the Sample Game_).\n\nIn the script file, add the following - adding a parent Property with a value\nequal to the Room's Key that the Player is in:\n\n\n{npc, key=npc_rat, tags=enemy\n\t{attrib, logic=spn_[rand:3|4], tags=stats_dice }\n\t{attrib, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=life_roll }\n\t{attrib, output=spn_[rand:<<[self]((stats_dice))>>|5], tags=armor_roll }\n\t{attrib, name=Life, output=spn_[rand:<<[self]((stats_dice))>>|4], tags=stats|!_life }\n\t{attrib, output=spn_[roll:(6)<<[self]((armor_roll))>>d4+3], tags=stats|armor }\n\t{attrib, output=<<[self]((armor))>>, tags=!_hitscore }\n\t{attrib, output=0, tags=!_damageadj }\n\n\n\t{attrib, output=rat_claws_01, tags=!_armed|name }\n\t{attrib, tags=!_hitmsg\n\t\toutput={@\nYou have hit the rat.\n\n\t\t}\n\t}\n\t{attrib, tags=!_missmsg\n\t\toutput={@\nYou have attacked the rat, but missed.\n\n\t\t}\n\t}\n\t{attrib, tags=!_killmsg\n\t\toutput={@\nYou have killed the rat.\n\n\t\t}\n\t}\n\n\t{attrib, tags=!_hitplayermsg\n\t\toutput={@\nThe rat has attacked you!\n\n\t\t}\n\t}\n\n\t{attrib, tags=!_missplayermsg\n\t\toutput={@\nThe rat has attacked you, but missed.\n\n\t\t}\n\t}\n\n\t{look\n\t\t{message\n\t\t\toutput={@\n\nYou see a rat.\n\n\t\t\t}\n\t\t}\n\t}\n\n\t{input, syntax=(attack.*rat|!.*rat)\n\t\t{attack, logic=[self] }\n\t}\n\n\n\t{object, key=rat_claws_01, tags=!_weapon\n\t\t{attrib, logic=rdm_[rand:4|9], tags=!_damage }\n\t\t{attrib, output=rat claws, tags=title }\n\t}\n}\n\n--------------------------------------------------------------------------------\n\n\nNow to attack the rat, the player just uses the following command:\n\n!rat",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "855fo70s",
+                "title": "Attacking the Player",
+                "content": "Attacking the Player\n--------------------------------------------------------------------------------\n\nIn a situation where an enemy attacks the player before there is a chance to\ninitiate the fight, you can set the _Attack_ Element's tags to player.\n\n\n{room, key=deepgrid_gen_floor, name=Hallway\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\nElevator enters the elevator.\n        }\n    }\n\n\n    {enter_message\n        output={@\nA long hallway stretches out before you.\nThere are doors lining either side. You test a handful of them,\nbut they are all locked.\n\n        }\n\n        {action, output=[room], tags=!_spawn, logic=rmrf_assassin\n            {attack, logic=((rmrf_assassin)), tags=player\n                output={@\nYou see a shadowy man in a black suit.\nWhere his eyes would be is a band of chrome with a red light\nslowly moving from side to side.\n\nHe is staring at you. Then he pulls a lazer gun and shoots.\n                }\n            }\n\n            {logic\n                logic={@\n                    ?rdm_[roll:1d6] > '4'\n                }\n            }\n        }\n\n        {logic, name=Deepgrid elevator tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {look\n        {message\n            output={@\nA long hallway stretches out before you.\nThere are doors lining either side. You test a handful of them,\nbut they are all locked.\n\n            }\n        }\n    }\n\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n\n\n\n    {input, syntax=[tplt_syntax]((elevator))\n        {move, logic=deepgrid_elevator, tags=[player]\n            output={@\nYou press the elevator button. A moment later, one of the doors slide open.\nYou step inside.\n            }\n        }\n    }\n}",
+                "children": [],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          },
+          {
+            "id": "5vfyquoa",
+            "title": "Scenario Examples",
+            "content": "",
+            "children": [
+              {
+                "id": "psnju7nz",
+                "title": "Syntax With Logic",
+                "content": "Syntax With Logic\n--------------------------------------------------------------------------------\n\nYou can combine Syntax Elements with Logic Elements to route the game in\ndifferent directions.\n\nLet's say you are building a SciFi game like DarkWorld.\nIf the player is in a room and if they have an 'invite' chip, and they look\naround - they should simply see the room they are in. HOWEVER, if they don't\nhave the chip, when they look around, they should be taken to a different room.\n\nYou can define two 'look' Syntax Elements, each with their own Logic Elements:\n\n\n{input, syntax=[tplt_syntax]((look))\n    {act, logic=look, tags=!_type|room }\n\n    {logic\n        logic={@\n            ?[invite_chip]parent = [player]\n        }\n    }\n}\n\n{input, syntax=[tplt_syntax]((look))\n    {move, logic=city_street, tags=[player]\n        output={@\nYou are escorted out of the building, back onto the street.\n\n        }\n    }\n\n    {logic\n        logic={@\n            ?[invite_chip]parent != [player]\n        }\n    }\n}\n\n\n\nSee Also:\n_Input_\n_Syntax_\n_Logic_\n_Move_\n",
+                "children": [],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          },
+          {
+            "id": "4z6b9omh",
+            "title": "Tests",
+            "content": "",
+            "children": [
+              {
+                "id": "1c8iaj2u",
+                "title": "Introduction to Tests",
+                "content": "Introduction to Tests\n--------------------------------------------------------------------------------\n\nYou can turn any Logic Element into a test that will be evaluated any time\na macro in test-mode (_macrots) encounters it.\n\nTo do this all you need to do is add the following tag to your Logic Element:\n\n!_test\n\n\nThe Sample Game contains a test example room.",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "6kjv2pvy",
+                "title": "Tests Gotchas",
+                "content": "Tests Gotchas\n--------------------------------------------------------------------------------\n\n** Enter Messages **\nYou can put your test Logic Element in the Enter Message Element, **However**\nthe initial Room is one exception. The Logic in that Enter Message will not\nfire. If you need a test there, you can place it in a custom look action.",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "ynn5dohw",
+                "title": "Test Room",
+                "content": "Test Room\n--------------------------------------------------------------------------------\n\n{room, key=test_room, name=Test Room\n    {enter_message\n        output={@\nTo use this room, enter admin mode, create a macro.\nStore the macro in this game, then run it in test mode.\nEnsure that your macro passes through this room and the tests below will run\nwhen they are encountered.\n        }\n\n\n        {logic, name=player_armed_spear, tags=!_test\n            logic={@\n?[player]((!_armed)) = 'spear_01'\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\nTo use this room, enter admin mode, create a macro.\nStore the macro in this game, then run it in test mode.\nEnsure that your macro passes through this room and the tests below will run\nwhen they are encountered.\n            }\n        }\n    }\n\n\n    {inject, logic=/nav_home.inj }\n    {inject, logic=/home.inj }\n    {inject, logic=/look.inj }\n}",
+                "children": [],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          }
+        ],
+        "expanded": false
+      },
+      {
         "id": "0uhabk07",
         "title": "Gotchas",
         "content": "",
@@ -2536,6 +2527,51 @@
         "title": "Tools",
         "content": "",
         "children": [
+          {
+            "id": "fqfyajov",
+            "title": "Templates",
+            "content": "",
+            "children": [
+              {
+                "id": "jbm9394q",
+                "title": "Introduction to the Templates",
+                "content": "Introduction to the Templates\n--------------------------------------------------------------------------------\n\nThese templates assume you are using something similar to the _Sample Game_.\nIf you aren't using _Injections_, you can use the _Out of the Box Templates_.",
+                "children": [],
+                "expanded": false
+              },
+              {
+                "id": "wo66853g",
+                "title": "Out of the Box Templates",
+                "content": "",
+                "children": [
+                  {
+                    "id": "9o6kddje",
+                    "title": "Room Template",
+                    "content": "Room Template\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {enter_message\n        output={@\n...\n        }\n    }\n\n    {look\n        {message\n            output={@\n...\n            }\n        }\n    }\n\n\n    {navigation\n        {message\n            output={@\n\n\n\n---\n...\n            }\n        }\n    }\n\n\n\n\n    {input, syntax=YOURLOOKSYNTAX\n        {act, logic=look, tags=!_type|room }\n    }\n\n    {input, syntax=YOURSYNTAX\n        {move, logic=TARGETROOMKEY, tags=[player]\n            output={@\n\nTRAVELMESSAGE\n            }\n        }\n    }\n}",
+                    "children": [],
+                    "expanded": false
+                  }
+                ],
+                "expanded": false
+              },
+              {
+                "id": "jkuwpk0j",
+                "title": "Templates With Injections",
+                "content": "",
+                "children": [
+                  {
+                    "id": "jk1ijfmn",
+                    "title": "Room Template",
+                    "content": "Room Template\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        output={@\n\n...\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n}",
+                    "children": [],
+                    "expanded": false
+                  }
+                ],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          },
           {
             "id": "223bagmq",
             "title": "Visualizing Your Game",
@@ -2596,78 +2632,6 @@
 ];
             let historyStack = [
     {
-        "id": "eqgtuj8w",
-        "title": "Attack"
-    },
-    {
-        "id": "r6f1c00p",
-        "title": "Bug Fixes"
-    },
-    {
-        "id": "w9iuka36",
-        "title": "Message"
-    },
-    {
-        "id": "ucohh3n7",
-        "title": "Message - Output"
-    },
-    {
-        "id": "223bagmq",
-        "title": "Visualizing Your Game"
-    },
-    {
-        "id": "62gcgwmb",
-        "title": "Injection"
-    },
-    {
-        "id": "trbj9g40",
-        "title": "Custom"
-    },
-    {
-        "id": "ma0ujb0g",
-        "title": "Creating a REGEX Library"
-    },
-    {
-        "id": "drhbwlz1",
-        "title": "Why Use a REGEX Library"
-    },
-    {
-        "id": "kg6l7ku7",
-        "title": "SciFi Regex Library"
-    },
-    {
-        "id": "9h9byll0",
-        "title": "Logic"
-    },
-    {
-        "id": "6kjv2pvy",
-        "title": "Tests Gotchas"
-    },
-    {
-        "id": "vhtliib5",
-        "title": "Repeat"
-    },
-    {
-        "id": "q01g2ngh",
-        "title": "Repeating Messages"
-    },
-    {
-        "id": "562mpihw",
-        "title": "Checking Attributes"
-    },
-    {
-        "id": "4vlrf9wp",
-        "title": "Logic Comparison Operators"
-    },
-    {
-        "id": "65kg50j9",
-        "title": "NPC"
-    },
-    {
-        "id": "eibm5vc2",
-        "title": "Dev Note"
-    },
-    {
         "id": "orfg1ilt",
         "title": "Downloading WorldWeaver"
     },
@@ -2708,8 +2672,80 @@
         "title": "Tracking Game Development"
     },
     {
+        "id": "nzpxh111",
+        "title": "Markdown Formatting"
+    },
+    {
+        "id": "ujzx8lmy",
+        "title": "Lazer Gun Example"
+    },
+    {
+        "id": "gyf2qxo4",
+        "title": "Syntax"
+    },
+    {
+        "id": "9h9byll0",
+        "title": "Logic"
+    },
+    {
+        "id": "sinjgjs9",
+        "title": "Move"
+    },
+    {
+        "id": "jbm9394q",
+        "title": "Introduction to the Templates"
+    },
+    {
+        "id": "9o6kddje",
+        "title": "Room Template"
+    },
+    {
+        "id": "jk1ijfmn",
+        "title": "Room Template"
+    },
+    {
+        "id": "lyhipxxo",
+        "title": "CSS Colors"
+    },
+    {
+        "id": "d581fi8l",
+        "title": "How WorldWeaver Came To Be"
+    },
+    {
+        "id": "r6f1c00p",
+        "title": "Bug Fixes"
+    },
+    {
+        "id": "q01g2ngh",
+        "title": "Repeating Messages"
+    },
+    {
+        "id": "vhtliib5",
+        "title": "Repeat"
+    },
+    {
+        "id": "rj0r9iem",
+        "title": "Admin Tools Introduction"
+    },
+    {
+        "id": "psnju7nz",
+        "title": "Syntax With Logic"
+    },
+    {
         "id": "gd3l7b09",
         "title": "Quick Links"
+    },
+    {
+        "id": "jtfzv3lb",
+        "title": "Using This Help System"
+    },
+    {
+        "id": "3j0575hc",
+        "title": "Developers Quick Links"
+    },
+    {
+        "id": "223bagmq",
+        "title": "Visualizing Your Game"
     },
     {
         "id": "7t1zfwoc",
@@ -2740,7 +2776,7 @@
             let importedFileName = null;
 
             let fileName = "help";
-            let curVersion = "1.0.2"
+            let curVersion = "1.0.3"
             let showInitHelp = false;
             let headerTemplate = "__| ^*^ |__";
             let selectedId = null;
@@ -2925,6 +2961,7 @@
                     { key: "u", mode: "TREE", description: "Go up a tree node level" },
                     { key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
                     { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
+                    { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
@@ -2979,6 +3016,7 @@
                     { key: "k", mode: "TREE", description: "Select the previous tree node" },
                     { key: "l", mode: "TREE", description: "Expand the current tree node" },
                     { key: "h", mode: "TREE", description: "Collapse the current tree node" },
+                    { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "u", mode: "TREE", description: "go up a tree node level" },
                     { key: "C", mode: "TREE", description: "Collapse all the tree nodes" },
                     { key: "E", mode: "TREE", description: "Expand all the tree nodes" },
@@ -3800,7 +3838,9 @@
                     }
                     
                     editorArea.selectionStart = editorArea.selectionEnd = newCursorPos;
-                
+
+                    mode_deleting = false;
+               
                     syncFile();
                     performed = true;
                 } else {
@@ -4408,6 +4448,24 @@
                         if (links.length === 0) return;
                         activateSelectedLink();
                         e.preventDefault();
+                    } else if (e.key === 'y') {
+                        if (links.length === 0) return;
+                        const link = links[linksIndex];
+                        let textToCopy = '';
+                        if (link.dataset.nodeId) {
+                            const node = findNodeById(link.dataset.nodeId);
+                            if (node) textToCopy = '_' + node.title + '_';
+                        } else if (link.href && link.href !== '#') {
+                            textToCopy = link.href;
+                        }
+                        if (textToCopy) {
+                            navigator.clipboard.writeText(textToCopy).then(() => {
+                                showMessage('Copied: ' + textToCopy);
+                            }).catch(() => {
+                                showMessage('Failed to copy');
+                            });
+                        }
+                        e.preventDefault();
                     } else if (e.key === 'Escape') {
                         closeLinksDialog();
                         e.preventDefault();
@@ -4768,7 +4826,11 @@
                 ctx.siblings.splice(ctx.index, 1);
                 selectedId = goTo ? (goTo.id || goTo) : null;
             }
+            let savedTreeWidth = 320;
+            let treePanelVisible = true;
             function resizeTree(adjustment){
+                if (window.innerWidth <= 768) return;  // mobile: tree resizing not supported
+
                 const app = document.querySelector('.app');
                 if (!app) return;
 
@@ -4786,8 +4848,37 @@
                     treeWidth = 240;
                 }
 
+                savedTreeWidth = treeWidth;
+
                 // Update the grid-template-columns
                 app.style.gridTemplateColumns = `${treeWidth}px 1fr`;
+            }
+            function toggleTreePanel(){
+                const treeEl = document.getElementById('tree');
+                const app = document.querySelector('.app');
+                if (!treeEl || !app) return;
+
+                const isMobile = window.innerWidth <= 768;
+
+                if (isMobile) {
+                    treePanelVisible = !treePanelVisible;
+                    if (treePanelVisible) {
+                        treeEl.classList.add('show');
+                        treeEl.style.display = '';
+                    } else {
+                        treeEl.classList.remove('show');
+                        treeEl.style.display = 'none';
+                    }
+                } else {
+                    treePanelVisible = !treePanelVisible;
+                    if (treePanelVisible) {
+                        app.style.gridTemplateColumns = `${savedTreeWidth}px 1fr`;
+                        treeEl.style.display = '';
+                    } else {
+                        app.style.gridTemplateColumns = `0px 1fr`;
+                        treeEl.style.display = 'none';
+                    }
+                }
             }
             function insertHr() {
                 const insertText = "--------------------------------------------------------------------------------";
@@ -5170,7 +5261,7 @@
                 document.body.style.backgroundImage = 'none';
             }
 
-function renderThemeList() {
+            function renderThemeList() {
                 const list = document.getElementById('themeList');
                 list.innerHTML = '';
                 themes.forEach((theme, index) => {
@@ -6106,7 +6197,7 @@ function renderThemeList() {
                     if (!term) return renderList(data);
                     renderList(data.filter(h => matches(h, term)));
                 };
-                }
+            }
 
             function closeHelp() {
                 closeHelpDialog();
@@ -6120,7 +6211,7 @@ function renderThemeList() {
 
 
 
-                //---- Saving ----------------------------------------------------------
+            //---- Saving ----------------------------------------------------------
                 function getContents(name, saveName) {
                     const elemLimit = 50; // Number of elements per line
                     const htmlDoc = document.documentElement.cloneNode(true);
@@ -6138,12 +6229,12 @@ function renderThemeList() {
                     // Ensure correct replacement of the old database
                     let htmlContent = "<!DOCTYPE html>" + htmlDoc.outerHTML;
                     if (saveName) {
-                        htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "help";`);
+                        htmlContent = htmlContent.replace(/let\s+fileName\s*=\s*"([^"]*)";/, `let fileName = "${name}";`);
                     } else {
                         // fileName
                         htmlContent = htmlContent.replace(
                         /let\s+fileName\s*=\s*"([^"]*)";/,
-                        `let fileName = "help";`
+                        `let fileName = "${fileName}";`
                         );
                     }
 
@@ -6493,6 +6584,7 @@ function renderThemeList() {
                     case 's': saveAsHtml(fileName); break;
                     case 'S': openSaveAsDialog(); break;
                     case 'n': saveViaNode(); break;
+                    case 'N': toggleTreePanel(); break;
                     case 't': exportNoteAsTxt(); break;
                     case 'T': exportTreeAsTxt(); break;
                     case ']': resizeTree(30); break;

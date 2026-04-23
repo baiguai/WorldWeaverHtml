@@ -1,0 +1,27 @@
+{room, key=deepspace, name=Space Ship
+    {attrib, output=false, tags=tested }
+
+    {enter_message
+        output={@
+You are in a space ship.
+        }
+
+        {logic, name=Deepgrid deep space tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in a space ship
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+}

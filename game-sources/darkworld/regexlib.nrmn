@@ -77,7 +77,7 @@
         {attrib, tags=x_your_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
 
         {attrib, tags=x_behind_desk|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?desk?\b, logic=look behind the desk|look behind desk|examine behind the messy desk|x behind desk in front of you }
-        {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?screen?\b, logic=x behind the screen|look behind screen|examine behind the screen }
+        {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen?\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
         {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?servers?\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
 
         {attrib, tags=x_on_servers|!_regex, output=^(?=.*\b(?:look|examine|x)\b)(?=.*\bservers?\b)(?=.*\b(?:top|on)\b).*, logic=look on top of the servers|look on the servers|examine on top of the servers|examine the top of the servers|examine on the servers|x top of servers|x servers top|x top servers|x on servers }
@@ -202,6 +202,8 @@
 
     Specific
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=fidelis|!_regex, output=^fidelis$, logic=fidelis|fedelis }
+        {attrib, tags=nonfidelis|!_regex, output=^(?!fidelis$).+, logic=fidelis|fedelis|i don't know }
         {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 

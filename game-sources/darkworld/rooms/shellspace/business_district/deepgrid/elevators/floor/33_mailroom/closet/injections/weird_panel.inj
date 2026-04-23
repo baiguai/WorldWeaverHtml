@@ -75,4 +75,53 @@ The passage soon becomes a narrow hall, then it opens up into a large room.
 Where are you trying to go?
         }
     }
+
+    {logic
+        logic={@
+            ?[invite_chip]parent = [player]
+        }
+    }
+}
+
+{input, syntax=[tplt_syntax]((enter_panel))
+    {move, logic=backrooms_lobby, tags=[player]
+        output={@
+You step into the cramped passage that lay beyond the panel opening.
+The passage soon becomes a narrow hall, then it opens up into a large room.
+
+You find yourself in what appears to be a vast temple.
+Chairs line the left and right walls of the temple, with
+a path leading forward to an alter.
+Just behind the altar, hovering in air, is a large, purple, neon circle lighting
+up the entire space.
+
+Bowing before the circle you see hooded figures.
+
+A tall individual emerges from behind the altar. It is wearing a red hooded cloak
+and a deer skull mask with glowing neon antlers.
+It floats up to you and forcefully grabs your arm, dragging you into a narrow
+door in the left wall. It shoves you into the room and closes the door as it
+exits.
+
+There is no handle handle on the door. It is impossible to open it.
+
+        }
+    }
+
+    {logic
+        logic={@
+            ?[room]((panel_removed)) = 'true'
+        }
+
+        output={@
+
+Where are you trying to go?
+        }
+    }
+
+    {logic
+        logic={@
+            ?[invite_chip]parent != [player]
+        }
+    }
 }
