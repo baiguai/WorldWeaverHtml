@@ -1,0 +1,27 @@
+{room, key=cult_inner_sanctum, name=Inner Sanctum
+    {attrib, output=false, tags=tested }
+
+    {enter_message
+        output={@
+You are now in the inner sanctum.
+        }
+
+        {logic, name=Deepgrid cult inner sanctum tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in the inner sanctum.
+            }
+        }
+    }
+
+
+    {inject, logic=/look.inj }
+
+}
