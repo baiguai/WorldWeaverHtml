@@ -3,7 +3,15 @@
 
     {enter_message
         output={@
-You are now in the inner sanctum.
+Red dots of light glow in a grid pattern over the single curved wall that
+surrounds you. In the center of the room, hovering just below the ceiling,
+is a large chrome ring. Every now and then it flickers a dim red.
+
+Along the wall are high-back chairs. Five of them are occupied by hooded
+figures sitting motionless.
+
+The figure with the neon antlers turns to face you. Then stands motionless.
+
         }
 
         {logic, name=Deepgrid cult inner sanctum tested, tags=!_test
@@ -16,7 +24,17 @@ You are now in the inner sanctum.
     {look
         {message
             output={@
-You are in the inner sanctum.
+You are in what appears to be in inner sanctum.
+
+Red dots of light glow in a grid pattern over the single curved wall that
+surrounds you. In the center of the room, hovering just below the ceiling,
+is a large chrome ring. Every now and then it flickers a dim red.
+
+Along the wall are high-back chairs. Five of them are occupied by hooded
+figures sitting motionless.
+
+The figure with the neon antlers is standing there facing you.
+
             }
         }
     }

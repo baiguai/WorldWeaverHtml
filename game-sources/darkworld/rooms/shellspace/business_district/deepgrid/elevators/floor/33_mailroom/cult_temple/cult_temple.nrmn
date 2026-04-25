@@ -82,7 +82,14 @@ You don't have the chip!
     {input, syntax=[tplt_syntax]((fidelis))
         {move, logic=cult_inner_sanctum, tags=[player]
             output={@
-You are taken into the inner sanctum.
+The masked figure nods slightly and turns. It walks slowly toward the altar.
+You are confused for a moment, then follow.
+In the right corner of the room is a narrow door with glowing neon symbols
+over its surface. As the figure approaches it begins to slowly open.
+
+Beyond the door is darkness.
+
+You step through into a dim circular room.
 
             }
         }
