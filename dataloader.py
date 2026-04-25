@@ -5,9 +5,41 @@ import sys
 import shutil
 import os
 import re
+import platform
+
+def get_clipboard():
+    system = platform.system()
+    
+    if system == 'Linux':
+        try:
+            result = subprocess.run(['xclip', '-selection', 'clipboard', '-o'], capture_output=True, text=True, timeout=10)
+            return result.stdout
+        except FileNotFoundError:
+            print("Error: xclip not installed (Linux)")
+            sys.exit(1)
+    
+    elif system == 'Windows':
+        try:
+            result = subprocess.run(['powershell', '-command', 'Get-Clipboard'], capture_output=True, text=True, timeout=10)
+            return result.stdout
+        except FileNotFoundError:
+            print("Error: PowerShell not available (Windows)")
+            sys.exit(1)
+    
+    elif system == 'Darwin':
+        try:
+            result = subprocess.run(['pbpaste'], capture_output=True, text=True, timeout=10)
+            return result.stdout
+        except FileNotFoundError:
+            print("Error: pbpaste not available (macOS)")
+            sys.exit(1)
+    
+    else:
+        print(f"Error: Unsupported platform: {system}")
+        sys.exit(1)
 
 if len(sys.argv) != 2:
-    print("Usage: replace_database.py <path-to-html-file>")
+    print("Usage: dataloader.py <path-to-html-file>")
     sys.exit(1)
 
 html_file = sys.argv[1]
@@ -16,17 +48,7 @@ if not os.path.exists(html_file):
     print(f"Error: File '{html_file}' not found")
     sys.exit(1)
 
-try:
-    result = subprocess.run(['xclip', '-selection', 'clipboard', '-o'], capture_output=True, text=True, timeout=10)
-    clip_content = result.stdout
-except FileNotFoundError:
-    print("Error: xclip is not installed")
-    sys.exit(1)
-except subprocess.TimeoutExpired:
-    print("Error: xclip timed out")
-    sys.exit(1)
-
-clip_content = clip_content.strip()
+clip_content = get_clipboard().strip()
 
 if not clip_content:
     print("Error: Clipboard is empty")
