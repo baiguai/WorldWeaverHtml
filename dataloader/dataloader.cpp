@@ -5,7 +5,6 @@
 #include <wx/textfile.h>
 #include <wx/timer.h>
 #include <wx/filename.h>
-#include <regex>
 #include <string>
 #include <fstream>
 
@@ -32,6 +31,7 @@ private:
     void SetupAccelerators();
     void OnOpen(wxCommandEvent& event);
     void OnSelectDB(wxCommandEvent& event);
+    void SelectDatabase();
     void OnSave(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
     void OnTimer(wxTimerEvent& event);
@@ -129,9 +129,16 @@ void DataLoaderFrame::OnOpen(wxCommandEvent& event) {
     wxString content = wxString::FromUTF8(contentStr.c_str(), contentStr.length());
     textCtrl->SetValue(content);
     SetTitle("DataLoader - " + currentFile);
+    
+    // Automatically select the database after opening
+    SelectDatabase();
 }
 
 void DataLoaderFrame::OnSelectDB(wxCommandEvent& event) {
+    SelectDatabase();
+}
+
+void DataLoaderFrame::SelectDatabase() {
     wxString content = textCtrl->GetValue();
     wxString lowerContent = content.Lower();
     
