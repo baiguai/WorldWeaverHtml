@@ -2,10 +2,10 @@
 #include <wx/textctrl.h>
 #include <wx/filedlg.h>
 #include <wx/msgdlg.h>
+#include <wx/textfile.h>
 #include <regex>
+#include <string>
 #include <fstream>
-#include <sstream>
-#include <cctype>
 
 class DataLoaderFrame : public wxFrame {
 public:
@@ -56,7 +56,7 @@ private:
 
         textCtrl = new wxTextCtrl(panel, wxID_ANY, "", 
                                    wxDefaultPosition, wxDefaultSize,
-                                   wxTE_MULTILINE);
+                                   wxTE_MULTILINE | wxTE_RICH2);
         textCtrl->SetFont(wxFont(10, wxFONTFAMILY_TELETYPE, 
                                  wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
         textCtrl->SetBackgroundColour(wxColour(0, 0, 0));
@@ -96,67 +96,99 @@ private:
         if (dialog.ShowModal() == wxID_CANCEL) return;
 
         currentFile = dialog.GetPath();
-        std::ifstream file(currentFile.ToStdString());
+        
+        // Read file using standard C++ to preserve whitespace
+        std::ifstream file(currentFile.ToStdString(), std::ios::binary);
         if (!file.is_open()) {
             wxMessageBox("Failed to open file", "Error", wxOK | wxICON_ERROR);
             return;
         }
-
-        std::stringstream buffer;
-        buffer << file.rdbuf();
-        textCtrl->SetValue(buffer.str());
+        
+        // Read entire file into string
+        std::string contentStr;
+        file.seekg(0, std::ios::end);
+        contentStr.reserve(file.tellg());
+        file.seekg(0, std::ios::beg);
+        contentStr.assign((std::istreambuf_iterator<char>(file)),
+                         std::istreambuf_iterator<char>());
         file.close();
-
+        
+        // Convert to wxString - FromUTF8 handles null bytes properly
+        wxString content = wxString::FromUTF8(contentStr.c_str(), contentStr.length());
+        
+        textCtrl->SetValue(content);
+        textCtrl->SetInsertionPoint(0);
+        
         SetTitle("DataLoader - " + currentFile);
     }
 
     void OnSelectDB(wxCommandEvent& event) {
         wxString content = textCtrl->GetValue();
-        std::string stdContent(content.ToStdString());
-
-        std::regex startRegex(R"((let\s+database\s*=\s*\[))", std::regex::icase);
-        std::smatch match;
-
-        if (!std::regex_search(stdContent, match, startRegex)) {
-            wxMessageBox("Could not find 'let database = [' in the file.", 
+        
+        // Find "let database" (case insensitive)
+        wxString lowerContent = content.Lower();
+        wxString searchStr = "let database";
+        int dbPos = lowerContent.Find(searchStr);
+        
+        if (dbPos == wxNOT_FOUND) {
+            wxMessageBox("Could not find 'let database' in the file.", 
                         "Not Found", wxOK | wxICON_WARNING);
             return;
         }
-
-        size_t startPos = match.position(1);
-        size_t openBracketPos = startPos + match.str(1).rfind('[');
-
+        
+        // Find start of line (including indentation)
+        int startPos = dbPos;
+        while (startPos > 0) {
+            wxChar ch = content[startPos - 1];
+            if (ch == '\n' || ch == '\r') {
+                break;
+            }
+            startPos--;
+        }
+        
+        // Find the opening '[' after "let database"
+        int bracketPos = content.Find('[', dbPos);
+        if (bracketPos == wxNOT_FOUND) {
+            wxMessageBox("Could not find the database array.", 
+                        "Not Found", wxOK | wxICON_WARNING);
+            return;
+        }
+        
+        // Find matching closing ']'
         int bracketCount = 1;
-        size_t endPos = openBracketPos + 1;
-        while (endPos < stdContent.length()) {
-            char ch = stdContent[endPos];
+        int endPos = bracketPos + 1;
+        while (endPos < (int)content.Length()) {
+            wxChar ch = content[endPos];
             if (ch == '[') bracketCount++;
             else if (ch == ']') {
                 bracketCount--;
                 if (bracketCount == 0) {
-                    endPos++;
+                    endPos++; // Include the ']'
                     break;
                 }
             }
             endPos++;
         }
-
+        
         if (bracketCount != 0) {
             wxMessageBox("Could not find the end of the database array.", 
                         "Not Found", wxOK | wxICON_WARNING);
             return;
         }
-
-        size_t semiPos = endPos;
-        while (semiPos < stdContent.length()) {
-            if (stdContent[semiPos] == ';') {
-                endPos = semiPos + 1;
+        
+        // Find semicolon after closing ']'
+        int semiPos = endPos;
+        while (semiPos < (int)content.Length()) {
+            wxChar ch = content[semiPos];
+            if (ch == ';') {
+                endPos = semiPos + 1; // Include the ';'
                 break;
             }
-            if (!isspace(stdContent[semiPos])) break;
+            if (!isspace(ch)) break;
             semiPos++;
         }
-
+        
+        // Select from start of line to end (including semicolon)
         textCtrl->SetSelection(startPos, endPos);
         textCtrl->ShowPosition(startPos);
         textCtrl->SetFocus();
@@ -168,14 +200,21 @@ private:
             return;
         }
 
-        std::ofstream file(currentFile.ToStdString());
-        if (!file.is_open()) {
+        wxString content = textCtrl->GetValue();
+        
+        // Write using wxFile for better handling of large content
+        wxFile file;
+        if (!file.Create(currentFile, true) && !file.Open(currentFile, wxFile::write)) {
             wxMessageBox("Failed to save file", "Error", wxOK | wxICON_ERROR);
             return;
         }
-
-        file << textCtrl->GetValue().ToStdString();
-        file.close();
+        
+        if (file.Write(content) == wxInvalidOffset) {
+            wxMessageBox("Failed to write file", "Error", wxOK | wxICON_ERROR);
+            return;
+        }
+        
+        file.Close();
 
         wxMessageBox("File saved successfully:\n" + currentFile, 
                      "Saved", wxOK | wxICON_INFORMATION);
