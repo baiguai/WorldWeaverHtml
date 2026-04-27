@@ -56,7 +56,7 @@ private:
 
         textCtrl = new wxTextCtrl(panel, wxID_ANY, "", 
                                    wxDefaultPosition, wxDefaultSize,
-                                   wxTE_MULTILINE | wxTE_RICH2);
+                                   wxTE_MULTILINE | wxTE_RICH2 | wxTE_DONTWRAP);
         textCtrl->SetFont(wxFont(10, wxFONTFAMILY_TELETYPE, 
                                  wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
         textCtrl->SetBackgroundColour(wxColour(0, 0, 0));
@@ -124,20 +124,39 @@ private:
 
     void OnSelectDB(wxCommandEvent& event) {
         wxString content = textCtrl->GetValue();
-        
-        // Find "let database" (case insensitive)
         wxString lowerContent = content.Lower();
-        wxString searchStr = "let database";
-        int dbPos = lowerContent.Find(searchStr);
         
-        if (dbPos == wxNOT_FOUND) {
+        // Find "let database" manually (case insensitive)
+        long dbPos = -1;
+        wxString searchStr = "let database";
+        int searchLen = searchStr.Length();
+        
+        for (long i = 0; i <= (long)(lowerContent.Length() - searchLen); i++) {
+            bool match = true;
+            for (int j = 0; j < searchLen; j++) {
+                if (lowerContent[i + j] != searchStr[j]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                // Check if it's at start of content or after whitespace
+                if (i == 0 || content[i - 1] == ' ' || content[i - 1] == '\t' || 
+                    content[i - 1] == '\n' || content[i - 1] == '\r') {
+                    dbPos = i;
+                    break;
+                }
+            }
+        }
+        
+        if (dbPos == -1) {
             wxMessageBox("Could not find 'let database' in the file.", 
                         "Not Found", wxOK | wxICON_WARNING);
             return;
         }
         
         // Find start of line (including indentation)
-        int startPos = dbPos;
+        long startPos = dbPos;
         while (startPos > 0) {
             wxChar ch = content[startPos - 1];
             if (ch == '\n' || ch == '\r') {
@@ -147,8 +166,15 @@ private:
         }
         
         // Find the opening '[' after "let database"
-        int bracketPos = content.Find('[', dbPos);
-        if (bracketPos == wxNOT_FOUND) {
+        long bracketPos = -1;
+        for (long i = dbPos; i < (long)content.Length(); i++) {
+            if (content[i] == '[') {
+                bracketPos = i;
+                break;
+            }
+        }
+        
+        if (bracketPos == -1) {
             wxMessageBox("Could not find the database array.", 
                         "Not Found", wxOK | wxICON_WARNING);
             return;
@@ -156,41 +182,46 @@ private:
         
         // Find matching closing ']'
         int bracketCount = 1;
-        int endPos = bracketPos + 1;
-        while (endPos < (int)content.Length()) {
-            wxChar ch = content[endPos];
+        long closeBracketPos = -1;
+        for (long i = bracketPos + 1; i < (long)content.Length(); i++) {
+            wxChar ch = content[i];
             if (ch == '[') bracketCount++;
             else if (ch == ']') {
                 bracketCount--;
                 if (bracketCount == 0) {
-                    endPos++; // Include the ']'
+                    closeBracketPos = i;
                     break;
                 }
             }
-            endPos++;
         }
         
-        if (bracketCount != 0) {
+        if (closeBracketPos == -1) {
             wxMessageBox("Could not find the end of the database array.", 
                         "Not Found", wxOK | wxICON_WARNING);
             return;
         }
         
-        // Find semicolon after closing ']'
-        int semiPos = endPos;
-        while (semiPos < (int)content.Length()) {
-            wxChar ch = content[semiPos];
+        // Selection ends right after ']'
+        long endPos = closeBracketPos + 1;
+        
+        // Look for ';' immediately after ']' (ignoring whitespace)
+        for (long i = closeBracketPos + 1; i < (long)content.Length(); i++) {
+            wxChar ch = content[i];
             if (ch == ';') {
-                endPos = semiPos + 1; // Include the ';'
+                endPos = i + 1; // Include the ';'
                 break;
             }
-            if (!isspace(ch)) break;
-            semiPos++;
+            if (ch != ' ' && ch != '\t' && ch != '\n' && ch != '\r') {
+                break;
+            }
         }
         
-        // Select from start of line to end (including semicolon)
+        // Scroll to top first
+        textCtrl->SetInsertionPoint(0);
+        textCtrl->ShowPosition(0);
+        
+        // Then select the database (this must be last to maintain selection)
         textCtrl->SetSelection(startPos, endPos);
-        textCtrl->ShowPosition(startPos);
         textCtrl->SetFocus();
     }
 
