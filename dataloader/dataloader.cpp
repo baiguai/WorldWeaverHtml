@@ -216,12 +216,15 @@ private:
             }
         }
         
-        // Scroll to top first
-        textCtrl->SetInsertionPoint(0);
-        textCtrl->ShowPosition(0);
-        
-        // Then select the database (this must be last to maintain selection)
+        // Set the selection
         textCtrl->SetSelection(startPos, endPos);
+        
+        // Scroll to make startPos visible at top
+        // First scroll to absolute top
+        textCtrl->ScrollLines(-textCtrl->GetNumberOfLines());
+        // Then show the start position
+        textCtrl->ShowPosition(endPos);
+        
         textCtrl->SetFocus();
     }
 
