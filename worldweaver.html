@@ -351,6 +351,7 @@
             const output = document.getElementById("output");
             const input = document.getElementById("input");
             const gameInterface = document.getElementById("game-interface");
+            const fightInterface = document.getElementById("fight-interface");
             const elementTypes = [
                 "action", "attack", "attribute", "dev_note", "enter_message", "global", "injection",
                 "input", "logic", "message", "move", "navigation", "nothing", "npc", "object",
@@ -401,6 +402,13 @@
             updatedHtml = updatedHtml.replace(
                 /let\s+adminMode\s*=\s*(true|false)\s*;/,
                 "let adminMode = false;"
+            );
+
+            // Save playerNotes to the saved file
+            const notesString = JSON.stringify(playerNotes, null, 2);
+            updatedHtml = updatedHtml.replace(
+                /let\s+playerNotes\s*=\s*\[[\s\S]*?\];/,
+                `let playerNotes = ${notesString};`
             );
 
             // Save the updated HTML to disk
@@ -850,11 +858,11 @@
 
             msg.innerHTML = "";
             gameInterface.style.display = "none";
-            document.getElementById("fight-interface").style.display = "flex";
+            fightInterface.style.display = "flex";
         }
 
         function exitFight() {
-            document.getElementById("fight-interface").style.display = "none";
+            fightInterface.style.display = "none";
             gameInterface.style.display = "flex";
             doDefaultRoomAction();
             input.focus();
@@ -3678,8 +3686,8 @@
             }
         }
 
-        document.addEventListener('keydown', function (e) {
-            if (!isFighting) {
+        window.addEventListener('keydown', function (e) {
+            if (fightInterface.style.display === "none") {
                 return;
             }
 
