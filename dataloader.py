@@ -1,103 +1,163 @@
 #!/usr/bin/env python3
-import json
-import subprocess
-import sys
-import shutil
-import os
+import tkinter as tk
+from tkinter import filedialog, messagebox, scrolledtext, Menu
 import re
-import platform
 
-def get_clipboard():
-    system = platform.system()
-    
-    if system == 'Linux':
+class DataLoader:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("WorldWeaver DataLoader")
+        self.root.geometry("1200x800")
+        self.root.config(bg='black')
+        self.current_file = None
+        self.setup_ui()
+
+    def setup_ui(self):
+        btn_frame = tk.Frame(self.root, bg='black')
+        btn_frame.pack(fill=tk.X, padx=5, pady=5)
+
+        tk.Button(btn_frame, text="Open (Ctrl+O)", command=self.open_file, width=15,
+                  bg='#333', fg='white', activebackground='#555').pack(side=tk.LEFT, padx=2)
+        tk.Button(btn_frame, text="Select DB (Ctrl+D)", command=self.select_database, width=15,
+                  bg='#333', fg='white', activebackground='#555').pack(side=tk.LEFT, padx=2)
+        tk.Button(btn_frame, text="Save (Ctrl+S)", command=self.save_file, width=15,
+                  bg='#333', fg='white', activebackground='#555').pack(side=tk.LEFT, padx=2)
+        tk.Button(btn_frame, text="Exit (Ctrl+Q)", command=self.root.destroy, width=15,
+                  bg='#333', fg='white', activebackground='#555').pack(side=tk.LEFT, padx=2)
+
+        self.text = scrolledtext.ScrolledText(self.root, wrap=tk.NONE, font=("Consolas", 10))
+        self.text.config(bg='black', fg='white', insertbackground='white',
+                        selectbackground='#555', selectforeground='white')
+        self.text.pack(fill=tk.BOTH, expand=True, padx=5, pady=(0,5))
+
+        self.root.bind('<Control-o>', lambda e: self.open_file())
+        self.root.bind('<Control-d>', lambda e: self.select_database())
+        self.root.bind('<Control-s>', lambda e: self.save_file())
+        self.root.bind('<Control-q>', lambda e: self.root.destroy())
+        self.root.bind('<Control-v>', self.manual_paste)
+        self.root.bind('<Control-V>', self.manual_paste)
+
+        # Right-click menu for paste
+        self.context_menu = Menu(self.root, tearoff=0, bg='#333', fg='white',
+                                 activebackground='#555', activeforeground='white')
+        self.context_menu.add_command(label="Paste", command=self.manual_paste)
+
+        def show_menu(event):
+            self.context_menu.post(event.x_root, event.y_root)
+        self.text.bind('<Button-3>', show_menu)
+
+    def manual_paste(self, event=None):
         try:
-            result = subprocess.run(['xclip', '-selection', 'clipboard', '-o'], capture_output=True, text=True, timeout=10)
-            return result.stdout
-        except FileNotFoundError:
-            print("Error: xclip not installed (Linux)")
-            sys.exit(1)
-    
-    elif system == 'Windows':
+            text = self.root.clipboard_get()
+            if text:
+                self.text.insert(tk.INSERT, text)
+                return 'break'
+        except tk.TclError:
+            pass
+
+        # Fallback for Linux: try xclip or xsel for large clipboard content
+        import subprocess
+        for cmd in [['xclip', '-selection', 'clipboard', '-o'],
+                    ['xsel', '--clipboard', '--output']]:
+            try:
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+                if result.returncode == 0 and result.stdout:
+                    self.text.insert(tk.INSERT, result.stdout)
+                    return 'break'
+            except:
+                continue
+        return 'break'
+
+    def open_file(self):
+        file = filedialog.askopenfilename(
+            title="Select HTML file",
+            filetypes=[("HTML files", "*.html"), ("All files", "*.*")]
+        )
+        if file:
+            self.current_file = file
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                self.text.delete(1.0, tk.END)
+                self.text.insert(1.0, content)
+                self.root.title(f"DataLoader - {file}")
+            except Exception as e:
+                messagebox.showerror("Error", f"Failed to open file: {e}")
+
+    def select_database(self):
+        content = self.text.get(1.0, tk.END)
+
+        # Find start of database (including 'let database = [')
+        start_match = re.search(r'(let\s+database\s*=\s*\[)', content, re.IGNORECASE)
+        if not start_match:
+            messagebox.showwarning("Not Found", "Could not find 'let database = [' in the file.")
+            return
+
+        start_pos = start_match.start(1)
+
+        # Find the opening '[' position
+        open_bracket_pos = start_match.start(1) + start_match.group(1).rfind('[')
+
+        # Find matching closing ']'
+        bracket_count = 1
+        end_pos = open_bracket_pos + 1
+        while end_pos < len(content):
+            char = content[end_pos]
+            if char == '[':
+                bracket_count += 1
+            elif char == ']':
+                bracket_count -= 1
+                if bracket_count == 0:
+                    end_pos += 1  # Include the closing ']'
+                    break
+            end_pos += 1
+
+        if bracket_count != 0:
+            messagebox.showwarning("Not Found", "Could not find the end of the database array.")
+            return
+
+        # Now find the semicolon after the closing ']'
+        semi_pos = end_pos
+        while semi_pos < len(content):
+            if content[semi_pos] == ';':
+                end_pos = semi_pos + 1  # Include the semicolon
+                break
+            if not content[semi_pos].isspace():
+                break
+            semi_pos += 1
+
+        # Convert character positions to text widget indices
+        def offset_to_index(offset):
+            lines = content.split('\n')
+            current = 0
+            for i, line in enumerate(lines):
+                if offset <= current + len(line):
+                    return f"{i + 1}.{offset - current}"
+                current += len(line) + 1
+            return f"{len(lines)}.end"
+
+        start_index = offset_to_index(start_pos)
+        end_index = offset_to_index(end_pos)
+
+        # Select the database in the text widget
+        self.text.tag_remove(tk.SEL, 1.0, tk.END)
+        self.text.tag_add(tk.SEL, start_index, end_index)
+        self.text.see(start_index)
+        self.text.focus()
+
+    def save_file(self):
+        if not self.current_file:
+            messagebox.showwarning("No File", "No file is open.")
+            return
         try:
-            result = subprocess.run(['powershell', '-command', 'Get-Clipboard'], capture_output=True, text=True, timeout=10)
-            return result.stdout
-        except FileNotFoundError:
-            print("Error: PowerShell not available (Windows)")
-            sys.exit(1)
-    
-    elif system == 'Darwin':
-        try:
-            result = subprocess.run(['pbpaste'], capture_output=True, text=True, timeout=10)
-            return result.stdout
-        except FileNotFoundError:
-            print("Error: pbpaste not available (macOS)")
-            sys.exit(1)
-    
-    else:
-        print(f"Error: Unsupported platform: {system}")
-        sys.exit(1)
+            content = self.text.get(1.0, tk.END)
+            with open(self.current_file, 'w', encoding='utf-8') as f:
+                f.write(content)
+            messagebox.showinfo("Saved", f"File saved successfully:\n{self.current_file}")
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to save file: {e}")
 
-if len(sys.argv) != 2:
-    print("Usage: dataloader.py <path-to-html-file>")
-    sys.exit(1)
-
-html_file = sys.argv[1]
-
-if not os.path.exists(html_file):
-    print(f"Error: File '{html_file}' not found")
-    sys.exit(1)
-
-clip_content = get_clipboard().strip()
-
-if not clip_content:
-    print("Error: Clipboard is empty")
-    sys.exit(1)
-
-if not clip_content.startswith('let database'):
-    print("Error: Clipboard content does not start with 'let database'")
-    print(f"Content starts with: {clip_content[:50]}...")
-    sys.exit(1)
-
-if not clip_content.endswith('];'):
-    print("Error: Clipboard content does not end with '];'")
-    print(f"Content ends with: ...{clip_content[-50:]}")
-    sys.exit(1)
-
-array_match = re.search(r'let database = \[(.+)\];', clip_content, re.DOTALL)
-if not array_match:
-    print("Error: Could not parse database array from clipboard")
-    sys.exit(1)
-
-array_str = '[' + array_match.group(1) + ']'
-
-try:
-    test_parse = json.loads(array_str)
-    print(f"✓ Clipboard contains valid database ({len(test_parse)} elements)")
-except json.JSONDecodeError as e:
-    print(f"Error: Clipboard content is not valid JSON: {e}")
-    sys.exit(1)
-
-shutil.copy(html_file, html_file + '.bak')
-
-with open(html_file, 'r') as f:
-    lines = f.readlines()
-
-new_lines = []
-in_database = False
-
-for i, line in enumerate(lines):
-    if 'let database = [' in line and not in_database:
-        in_database = True
-        new_lines.append(clip_content + '\n')
-    elif in_database:
-        if line.strip() == '];':
-            in_database = False
-            continue
-    else:
-        new_lines.append(line)
-
-with open(html_file, 'w') as f:
-    f.writelines(new_lines)
-
-print(f"✓ Database replaced in {html_file}")
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = DataLoader(root)
+    root.mainloop()

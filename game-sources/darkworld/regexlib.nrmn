@@ -1,5 +1,5 @@
 {object, key=tplt_syntax
-    Examining
+    // Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
@@ -18,6 +18,8 @@
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_escalator|!_regex, output=^(examine|x)(?: the)? escalator$, logic=x escalator|examine the escalator }
         {attrib, tags=x_fan|!_regex, output=\b(x|examin(?:e)?)\s+(your(\s+)|the(\s+))?fan\b, logic=examine the fan|examine fan|x your fan|x your fan }
+        {attrib, tags=x_figure_hooded|!_regex, output=^(examine|x)( the)?( hooded) figure(s)?$, logic=examine the hooded figure|examine figures|x the hooded figures|x hooded figure|x masked figure }
+        {attrib, tags=x_figure_masked|!_regex, output=^(examine|x)( the)?( masked) figure(s)?$, logic=examine the masked figure|examine figure|x the masked figures|x masked figure|x hooded figure }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
         {attrib, tags=x_glass|!_regex, output=^(examine|x)(?: the)? (glass|glasses)$, logic=x the glass|x glass|examine the glasses|x glasses }
         {attrib, tags=x_groups|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?groups\b, logic=examine the groups|examine groups|x the groups|x groups }
@@ -93,14 +95,14 @@
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
         {attrib, tags=x_under_your_desk|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?desk$, logic=x under your desk|x under desk|examine under the desk }
 
-    Identifying
+    // Identifying
         {attrib, tags=knife_01_id|!_regex, output=(knife).*, logic=the knife|your knife|the knife }
         {attrib, tags=cloak|!_regex, output=(cloak).*, logic=the cloak|cloak }
         {attrib, tags=heal|!_regex, output=(heal).*, logic=the heal|heal }
         {attrib, tags=lazergun_id|!_regex, output=(lazer)?( )?(gun).*, logic=the gun|your lazer gun|the lazergun }
         {attrib, tags=tech_trace|!_regex, output=(tech trace).*, logic=the tech trace|tech trace }
 
-    Taking
+    // Taking
         {attrib, tags=bottle_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?bottle\b, logic=take the bottle|take bottles|pick up the bottle }
         {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
         {attrib, tags=chips_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chips?\b, logic=take the chip|take chip|take the chips|take chips|pick up the chip|pick up the chips }
@@ -114,7 +116,7 @@
         {attrib, tags=screwdriver_take|!_regex, output=^(take|pick up)( the)? screwdriver$, logic=take the screwdriver|take screwdriver|pick up screwdriver|pick up the screwdriver }
         {attrib, tags=tablet_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?tablet\b, logic=take the tablet|take tab|pick up the tablet }
 
-    Dropping
+    // Dropping
         {attrib, tags=chip_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?chip\b, logic=drop the chip|drop chip|put down the chip|put down chip }
         {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
         {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
@@ -122,14 +124,16 @@
         {attrib, tags=orb_drop|!_regex, output=(drop.*orb), logic=drop the orb|drop orb }
         {attrib, tags=screwdriver_drop|!_regex, output=^(drop|put down)( the)? screwdriver$, logic=drop the screwdriver|put down screwdriver|drop screwdriver|put down the screwdriver }
 
-    Putting
+    // Putting
 
-    Interacting
+    // Interacting
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
 
-    Fighting
+    // Fighting
+        {attrib, tags=attack_figure_masked|!_regex, output=(attack|!)(\s)?(the )?masked figures?.*, logic=attack the masked figure|! figures|!the masked figures|attack masked figure|! hooded figure|! masked figure }
+        {attrib, tags=attack_figure_hooded|!_regex, output=(attack|!)(\s)?(the )?hooded figures?.*, logic=attack the hooded figure|! figures|!the hooded figures|attack hooded figure|! masked figure|! hooded figure }
 
-    Moving
+    // Moving
         {attrib, tags=enter_panel|!_regex, output=^(enter)(?: the)? (panel|panels)$, logic=enter panels|enter panel }
 
         {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }
@@ -171,7 +175,7 @@
 
         {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
 
-    Conversation
+    // Conversation
         {attrib, tags=purchase_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }
         {attrib, tags=conv_bartender|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|talk\s+to)\s+(the\s+)?bartender(?:s)?\b, logic=talk to the bartender|talk to bartenders|greet bartender|greet the bartender|yes }
         {attrib, tags=conv_shifty_char|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
@@ -181,15 +185,15 @@
         {attrib, tags=conv_streets|!_regex, output=\b(?:the\s+)?streets\b, logic=what about the streets?|yes tell me about the streets|the streets|streets }
         {attrib, tags=conv_drink|!_regex, output=(can\s+i\s+(order|buy)\s+a\s+)?(i\s+need\s+a\s+)?(i\s+would\s+like\s+a\s+)?(a\s+)?(drink|cocktail)(\s+please)?\??, logic=Can I order a drink?|Can I buy a drink?|I need a drink?|A drink please|I would like a drink|Can I order a cocktail?|Can I buy a cocktail?|I need a cocktail|a cocktail please|I would like a cocktail|drink|cocktail|drink|cocktail }
 
-    Responding
+    // Responding
         {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
         {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=no|nope|no I would not|um no }
 
-    Using
+    // Using
         {attrib, tags=use_cloak|!_regex, output=^(?:use\s+(?:the\s+)?)?cloak\b$, logic=use cloak|use the cloak }
         {attrib, tags=use_life_chip|!_regex, output=^(?:use\s+(?:the\s+)?)?life\s+chip\b$, logic=use life chip|life chip|use the life chip }
 
-    Actions
+    // Actions
         {attrib, tags=act_life|!_regex, output=^(?:examine |x )?life$, logic=examine life|x life|life }
         {attrib, tags=act_armor|!_regex, output=^(?:examine |x )?armor$, logic=examine armor|x armor|armor }
         {attrib, tags=act_credits|!_regex, output=^(?:examine |x )?credits$, logic=examine credits|x credits|credits }
@@ -197,10 +201,10 @@
         {attrib, tags=act_intelligence|!_regex, output=^(?:examine |x )?intelligence$, logic=examine intelligence|x intelligence|intelligence }
         {attrib, tags=act_strength|!_regex, output=^(?:examine |x )?strength$, logic=examine strength|x strength|strength }
 
-    System
+    // System
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 
-    Specific
+    // Specific
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
         {attrib, tags=fidelis|!_regex, output=^fidelis$, logic=fidelis|fedelis }
         {attrib, tags=nonfidelis|!_regex, output=^(?!fidelis$).+, logic=fidelis|fedelis|i don't know }
@@ -208,12 +212,12 @@
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
 
 
-    Questions
+    // Questions
         {attrib, tags=where_to_go|!_regex, output=\bwhere\s+(?:do\s+i\s+go(?:\s+now)?|should\s+i\s+go)|but\s+where\b, logic=but where do i go?|where should I go|where do i go now? }
 
 
 
-    Entertainment
+    // Entertainment
 
         // * 4 bytes
         // * 16 bytes

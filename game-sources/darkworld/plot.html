@@ -1,7 +1,7 @@
 <!DOCTYPE html><html style="--bg: #0a0018; --fg: #f0d8f8; --muted: #5050a0; --accent: #ff68d8; --danger: #f04080; --sel-bg: #1a0a28; --btn-border: #302848; --border: #201838; --border-radius: 4px; --pill-radius: 4px; --vim-cursor: #f0d8f8; --insert-cursor: #ff68d8; --input-bg: #180828; --input-fg: #f0d8f8; --btn-bg: #180828; --btn-fg: #f0d8f8; --dim: #5050a0; --grid-color: #230f3a;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
-<title>DarkWorld Plot</title>
+<title>Scribboleth</title>
 
 <!--
 
@@ -241,7 +241,7 @@
                     left: 50%;
                     transform: translateX(-50%);
                     width: 90%;                /* take almost full width on mobile */
-                    max-width: 600px;          /* cap at desktop size */
+                    max-width: 800px;          /* cap at desktop size */
                     max-height: 70%;
                     overflow: hidden;
                     background: var(--bg);
@@ -656,7 +656,7 @@
             </div>
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
-                <input id="searchInput" placeholder="Search..." type="text">
+                <input id="searchInput" placeholder="Search... (# for tags, #: regex, +: words)" type="text">
                 <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
@@ -711,7 +711,7 @@
                 </div>
             </div>
 
-            <div id="saveAsDialog" style="display: none;">
+            <div id="saveAsDialog" style="display:none;">
                 <h3>Save As</h3>
                 <label>Title<br>
                     <input id="saveAsTitle" type="text" style="width:100%; background:var(--input-bg); color:var(--input-fg); border:1px solid var(--border); margin-bottom:10px;">
@@ -1051,7 +1051,7 @@
             let importedFileName = null;
 
             let fileName = "plot";
-            let curVersion = "1.0.4"
+            let curVersion = "1.0.5"
             let showInitHelp = false;
             let headerTemplate = "__| ^*^ |__";
             let selectedId = null;
@@ -1260,7 +1260,7 @@
                     { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
-                    { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
+                    { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
                     { key: "f", mode: "TREE", description: "Find text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -1331,7 +1331,7 @@
                     { key: "D", mode: "TREE", description: "Delete the current node" },
                     { key: "i", mode: "TREE", description: "Edit current note" },
                     { key: "I", mode: "TREE", description: "Edit current note" },
-                    { key: "/", mode: "TREE", description: "Search (begin with : labels, +: all words comma sep)" },
+                    { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
                     { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -2801,12 +2801,14 @@
                         links[linksIndex].classList.remove('selected');
                         linksIndex = (linksIndex + 1) % links.length;
                         links[linksIndex].classList.add('selected');
+                        links[linksIndex].scrollIntoView({ block: "nearest" });
                         e.preventDefault();
                     } else if (e.key === 'ArrowUp' || e.key === 'k') {
                         if (links.length === 0) return;
                         links[linksIndex].classList.remove('selected');
                         linksIndex = (linksIndex - 1 + links.length) % links.length;
                         links[linksIndex].classList.add('selected');
+                        links[linksIndex].scrollIntoView({ block: "nearest" });
                         e.preventDefault();
                     } else if (e.key === 'Enter') {
                         if (links.length === 0) return;
@@ -3567,6 +3569,7 @@
                     linksIndex = 0;
                     if (links.length > 0) {
                         links[linksIndex].classList.add('selected');
+                        links[linksIndex].scrollIntoView({ block: "nearest" });
                     }
                 }
 
@@ -4216,6 +4219,10 @@
                     searchTreeWords(query.substring(2));
                     return;
                 }
+                if (query.startsWith("#") && !query.startsWith("#:")) {
+                    searchTreeTags(query.substring(1));
+                    return;
+                }
 
                 const searchTitleOnly = query.startsWith(':');
                 let q = query.startsWith(':') ? query.slice(1).toLowerCase() : query.toLowerCase();
@@ -4298,6 +4305,32 @@
                             searchMatches.push(n);
                         }
 
+                        if (n.children && n.children.length) {
+                            walk(n.children);
+                        }
+                    }
+                })(treeData);
+
+                searchIndex = 0;
+                renderSearchList();
+            }
+
+            function searchTreeTags(tag) {
+                searchMatches = [];
+                if (!tag) {
+                    renderSearchList();
+                    return;
+                }
+
+                const tagLower = tag.toLowerCase();
+                const tagPattern = new RegExp('#' + tagLower.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:\\s|$)', 'i');
+
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const nodeContent = n.content || '';
+                        if (tagPattern.test(nodeContent)) {
+                            searchMatches.push(n);
+                        }
                         if (n.children && n.children.length) {
                             walk(n.children);
                         }
@@ -5130,6 +5163,18 @@
                             const nodePortMatch = content.match(/let\s+nodePort\s*=\s*(\d+);/);
                             if (nodePortMatch) {
                                 nodePort = parseInt(nodePortMatch[1]);
+                            }
+
+                            // Restore fileName from imported file
+                            const importFileNameMatch = content.match(/let\s+fileName\s*=\s*"([^"]*)";/);
+                            if (importFileNameMatch) {
+                                fileName = importFileNameMatch[1];
+                            }
+
+                            // Restore headerTemplate from imported file
+                            const headerTemplateMatch = content.match(/let\s+headerTemplate\s*=\s*"([^"]*)";/);
+                            if (headerTemplateMatch) {
+                                headerTemplate = headerTemplateMatch[1];
                             }
 
                             // Replace theme_styles content from imported file

@@ -1,5 +1,5 @@
 {room, key=cult_temple, name=Temple
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
 
     {enter_message
@@ -39,7 +39,7 @@ up the entire space.
 
 Bowing before the circle you see hooded figures.
 
-The tall figure still stands before you.
+The tall masked figure still stands before you.
 
 "I must insist, my friend, what is the password?"
 
@@ -74,6 +74,16 @@ You don't have the chip!
         {logic
             logic={@
                 ?[invite_chip]parent != [player]
+            }
+        }
+    }
+
+
+    {input, syntax=[tplt_syntax]((attack_figure_masked))
+        {move, logic=deepspace, tags=[player]
+            output={@
+Everything goes dark...
+
             }
         }
     }

@@ -33,6 +33,8 @@ Interactive Fiction follows some common conventions. The commands below are some
 #[#ffff00]**arm (object)**# : To arm the player with the specified weapon.
 #[#ffff00]**put (object) in (another object)**# : To put the specified object into another specified object.
 
+#[#ffff00]**save**# : Save your game.
+
 In this game, if you want to attack an opponent, use the following:
 #[#ffff00] **! (opponent to attack)**# : Attack the opponent.
 
