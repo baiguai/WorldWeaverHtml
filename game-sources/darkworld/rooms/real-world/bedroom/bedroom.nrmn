@@ -6,17 +6,17 @@
 
 Your bedroom spreads out before you.
 
-Your bed is set against the far wall. Above it are two large windows.
+Your **bed** is set against the far wall. Above it are two large windows.
 You have installed light strips under the bed so purple light emanates from
 under it.
 
-Your desk sits to the left of the bed. Cords and networking cables are strewn
+Your **desk** sits to the left of the bed. Cords and networking cables are strewn
 over it. And a mess of wires are piled up beneath it.
 
 Three monitors are arrayed on the desk, each one showing a slow, geometric
 screen saver.
 
-In the right side of the desk is your computer.
+In the right side of the desk is your **computer**.
 
 (at any time you can view your current objective using:   stats)
 
@@ -28,12 +28,12 @@ In the right side of the desk is your computer.
             output={@
 You look around.
 
-Your bed is set against the far wall.
+Your **bed** is set against the far wall.
 
-Your desk sits to the left of the bed. 
+Your **desk** sits to the left of the bed. 
 
 Three monitors are arrayed on the desk.
-In the right side of the desk is your computer.
+In the right side of the desk is your **computer**.
             }
         }
 
@@ -77,7 +77,7 @@ You examine your desk.
 Three monitors are arrayed on the desk.
 In the right side of the desk is your computer.
 
-Among the mess you notice an envelope.
+Among the mess you notice an **envelope**.
             }
         }
     }
@@ -88,9 +88,9 @@ Among the mess you notice an envelope.
 You examine what's on your desk.
 
 Three monitors are arrayed on the desk.
-In the right side of the desk is your computer.
+In the right side of the desk is your **computer**.
 
-Among the mess you notice an envelope.
+Among the mess you notice an **envelope**.
             }
         }
     }
