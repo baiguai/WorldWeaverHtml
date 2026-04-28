@@ -897,7 +897,11 @@
             let enemyLifeEl = document.getElementById("enemy-life");
             let currentLife = parseInt(enemyLifeEl.textContent);
             const playerWeapon = getArmedWeapon(getPlayer());
-            const cantAttackMsg = getChildByTag(playerWeapon, cantAttackTag).Output ?? "You are unable to attack your enemy.";
+            const canAttackElem = getChildByTag(playerWeapon, cantAttackTag);
+            let cantAttackMsg = "You are unable to attack your enemy.";
+            if (canAttackElem !== null) {
+                canAttackMsg = canAttackElem.Output;
+            }
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
             const enemyHitScore = getHitScore(currentEnemy) + enemyArmorAdjust;
 
