@@ -1,6 +1,6 @@
 #!/bin/bash
 # Valgrind suppression file for system libraries
-cat > /tmp/wx_suppressions.supp << 'ENDSUPPRESS'
+cat > /tmp/wx_suppressions.supp << 'END_OF_SUPPRESSIONS'
 # Suppress libAppProtection.so uninitialized memory errors
 {
    wx-AppProtection-sendto
@@ -40,7 +40,7 @@ cat > /tmp/wx_suppressions.supp << 'ENDSUPPRESS'
    fun:g_utf8_collate_key*
 }
 
-# Suppress all leaks from system libraries
+# Suppress all leaks from system libraries (still reachable is normal for GUI apps)
 {
    wx-fontconfig-leak
    Memcheck:Leak
@@ -153,7 +153,7 @@ cat > /tmp/wx_suppressions.supp << 'ENDSUPPRESS'
    match-leak-kinds: all
    obj:/usr/lib/x86_64-linux-gnu/libwx_*
 }
-ENDSUPPRESS
+END_OF_SUPPRESSIONS
 
 LOG_FILE="$(dirname "$0")/valgrind.log"
 > "$LOG_FILE"
