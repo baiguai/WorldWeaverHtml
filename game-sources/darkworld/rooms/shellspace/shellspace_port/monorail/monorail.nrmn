@@ -34,7 +34,7 @@ give ticket
 
 You look around.
 You are on the monorail bay.
-Your path is blocked by a ticket booth.
+Your path is blocked by a **ticket booth**.
 
 <?[player]((monorail_ticket)) = 'false' ?>
 You are stopped and asked for an annual ticket.

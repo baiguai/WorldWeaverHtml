@@ -68,7 +68,10 @@ You forget what you were just contemplating.
     {x_masked
         {message
             output={@
-You examine the masked figure with the antlers...
+You examine the masked figure with the antlers.
+It raises its arms out into the air and says in an eerie deep voice,
+"Friend, do you agree to be buried alive?"
+
             }
         }
     }
@@ -92,6 +95,25 @@ You examine the masked figure with the antlers...
     }
 
     {input, syntax=[tplt_syntax]((attack_figure_masked))
+        {move, logic=deepspace, tags=[player]
+            output={@
+Everything goes dark...
+
+            }
+        }
+    }
+
+
+    {input, syntax=[tplt_syntax]((yes))
+        {move, logic=multiplexer_home, tags=[player]
+            output={@
+The figure buries you alive...
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
         {move, logic=deepspace, tags=[player]
             output={@
 Everything goes dark...

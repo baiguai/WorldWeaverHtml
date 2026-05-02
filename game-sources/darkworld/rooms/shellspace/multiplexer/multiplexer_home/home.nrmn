@@ -1,0 +1,36 @@
+{room, key=multiplexer_home, name=Multiplexer
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+...
+        }
+    }
+
+    {enter_message
+        output={@
+
+You are in the Multiplexer.
+        }
+        
+        {logic, name=Multiplexer Home tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around...
+You are in the Multiplexer.
+
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+}
