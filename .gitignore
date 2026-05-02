@@ -3,5 +3,8 @@
 /help_backups/
 /help_backups/*
 /backups/*
+dataloader/build-windows/
+dataloader/build/
+dataloader/*.log
 package-lock.json
 package.json

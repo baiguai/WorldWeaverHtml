@@ -351,6 +351,7 @@
             const output = document.getElementById("output");
             const input = document.getElementById("input");
             const gameInterface = document.getElementById("game-interface");
+            const fightInterface = document.getElementById("fight-interface");
             const elementTypes = [
                 "action", "attack", "attribute", "dev_note", "enter_message", "global", "injection",
                 "input", "logic", "message", "move", "navigation", "nothing", "npc", "object",
@@ -401,6 +402,13 @@
             updatedHtml = updatedHtml.replace(
                 /let\s+adminMode\s*=\s*(true|false)\s*;/,
                 "let adminMode = false;"
+            );
+
+            // Save playerNotes to the saved file
+            const notesString = JSON.stringify(playerNotes, null, 2);
+            updatedHtml = updatedHtml.replace(
+                /let\s+playerNotes\s*=\s*\[[\s\S]*?\];/,
+                `let playerNotes = ${notesString};`
             );
 
             // Save the updated HTML to disk
@@ -850,11 +858,11 @@
 
             msg.innerHTML = "";
             gameInterface.style.display = "none";
-            document.getElementById("fight-interface").style.display = "flex";
+            fightInterface.style.display = "flex";
         }
 
         function exitFight() {
-            document.getElementById("fight-interface").style.display = "none";
+            fightInterface.style.display = "none";
             gameInterface.style.display = "flex";
             doDefaultRoomAction();
             input.focus();
@@ -889,7 +897,11 @@
             let enemyLifeEl = document.getElementById("enemy-life");
             let currentLife = parseInt(enemyLifeEl.textContent);
             const playerWeapon = getArmedWeapon(getPlayer());
-            const cantAttackMsg = getChildByTag(playerWeapon, cantAttackTag).Output ?? "You are unable to attack your enemy.";
+            const canAttackElem = getChildByTag(playerWeapon, cantAttackTag);
+            let cantAttackMsg = "You are unable to attack your enemy.";
+            if (canAttackElem !== null) {
+                canAttackMsg = canAttackElem.Output;
+            }
             const attackRoll = getRollDiceValue(getPlayer(), "[roll:1d20]");
             const enemyHitScore = getHitScore(currentEnemy) + enemyArmorAdjust;
 
@@ -1323,10 +1335,10 @@
                     return false;
                 }
                 if (!tags.includes("|")) {
-                    return tags == tagString;
+                    return tags.toLowerCase() == tagString.toLowerCase();
                 }
-                const taglist = tags.split("|");
-                return taglist.includes(tagString);
+                const taglist = tags.toLowerCase().split("|");
+                return taglist.includes(tagString.toLowerCase());
             }
             function addTag(currentElement, tagString)
             {
@@ -2156,8 +2168,8 @@
                 case command.startsWith("_devnotes") && adminMode:
                     if (doAdminDevNotes(command.replace("_devnotes", ""))) {
                         gameOutput.MatchMade = true;
-                        return;
                     }
+                    return;
 
                 case command.startsWith("_macror") && adminMode:
                     doAdminMacroRecord(command.replace("_macror", ""))
@@ -2283,15 +2295,25 @@
         function doAdminDevNotes(command) {
             let devOutput = `${br}${br}${br}Dev Notes:`;
             let dNotes = null;
-            
+            let srchTags = false;
+
             if (command.trim() === "") {
                 dNotes = database.filter(item => item.ElementType === "dev_note");
             } else {
-                dNotes = database.filter(item => item.ElementType === "dev_note" && item.Output.includes(command.trim()));
+                if (command.trim().startsWith(":")) {
+                    srchTags = true;
+                }
+                if (srchTags === true) {
+                    dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim().replace(":", "")));
+                } else {
+                    dNotes = database.filter(item => item.ElementType === "dev_note" && item.Output.toLowerCase().includes(command.toLowerCase().trim()));
+
+                    if (dNotes.length < 1) {
+                        dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim()));
+                    }
+                }
             }
-            if (dNotes.length < 1) {
-                dNotes = database.filter(item => item.ElementType === "dev_note" && tagsContain(item.Tags, command.trim()));
-            }
+
             if (dNotes.length < 1) {
                 return false;
             }
@@ -3668,8 +3690,8 @@
             }
         }
 
-        document.addEventListener('keydown', function (e) {
-            if (!isFighting) {
+        window.addEventListener('keydown', function (e) {
+            if (fightInterface.style.display === "none") {
                 return;
             }
 

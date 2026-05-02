@@ -1,0 +1,124 @@
+{room, key=cult_inner_sanctum, name=Inner Sanctum
+    {attrib, output=false, tags=tested }
+
+    {enter_message
+        output={@
+Red dots of light glow in a grid pattern over the single curved wall that
+surrounds you. In the center of the room, hovering just below the ceiling,
+is a large chrome ring. Every now and then it flickers a dim red.
+
+Along the wall are high-back chairs. Five of them are occupied by **hooded figures**
+sitting motionless.
+
+The **masked figure** with the neon antlers turns to face you. Then stands motionless.
+
+        }
+
+        {logic, name=Deepgrid cult inner sanctum tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in what appears to be in inner sanctum.
+
+Red dots of light glow in a grid pattern over the single curved wall that
+surrounds you. In the center of the room, hovering just below the ceiling,
+is a large chrome ring. Every now and then it flickers a dim red.
+
+Along the wall are high-back chairs. Five of them are occupied by **hooded figures**
+sitting motionless.
+
+The **masked figure** with the neon antlers is standing there facing you.
+
+            }
+        }
+    }
+
+    {x_hooded
+        {message
+            output={@
+You look at the hooded figures. Their faces are shrouded in shadow however
+when the overhead ring flickers red circuitry patterns glitch deep within
+their dark hoods.
+They sit motionless.
+
+            }
+        }
+    }
+
+    {attack_hooded
+        {message
+            output={@
+You contemplate attacking the hooded figures. But before you are able to fully
+formulate your decision the figure with the antlers raises its left hand.
+
+"Not wise, my friend."
+
+You forget what you were just contemplating.
+
+            }
+        }
+    }
+
+    {x_masked
+        {message
+            output={@
+You examine the masked figure with the antlers.
+It raises its arms out into the air and says in an eerie deep voice,
+"Friend, do you agree to be buried alive?"
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((x_figure_hooded))
+        {act, logic=x_hooded, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((attack_figure_hooded))
+        {act, logic=attack_hooded, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_figure_masked))
+        {act, logic=x_masked, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((attack_figure_masked))
+        {move, logic=deepspace, tags=[player]
+            output={@
+Everything goes dark...
+
+            }
+        }
+    }
+
+
+    {input, syntax=[tplt_syntax]((yes))
+        {move, logic=multiplexer_home, tags=[player]
+            output={@
+The figure buries you alive...
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
+        {move, logic=deepspace, tags=[player]
+            output={@
+Everything goes dark...
+
+            }
+        }
+    }
+}

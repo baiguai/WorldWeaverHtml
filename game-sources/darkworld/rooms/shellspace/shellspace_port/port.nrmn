@@ -16,10 +16,7 @@ There is no one else in the port at the moment.
 
 You see an escalator and a moving ramp set into the wall.
 
-The place is immaculate, except for one detail. Tagged on one of the screens
-you see:
-
-RMRF
+The place is immaculate.
 
         }
 
@@ -39,10 +36,7 @@ A bright green neon light runs around the ceiling of the large circular room.
 Along the walls are instructional screens that flicker with information.
 There is no one else in the port at the moment.
 
-The place is immaculate, except for one detail. Tagged on one of the screens
-you see:
-
-RMRF
+The place is immaculate.
 
             }
         }
@@ -67,9 +61,23 @@ oracle near the port.
 A third screen tells you that hacking, outside of heavily regulated and licensed
 organizations is strictly illegal. Immediate and permanent expulsion from
 Shellspace can result.
+This screen looks a bit crooked and it stands out from the wall a bit more
+than the others. (hint: remember that you can look behind items in the game)
 
 Another screen says that the new spaceport will be operational shortly. Due
 to cost savings it has been built in the south end of the industrial district.
+            }
+        }
+    }
+
+    {x_behind_screen
+        {message
+            output={@
+You pull on the crooked screen. It is loose enough to see behind it.
+Tagged on the portion of the wall it cover is:
+
+#[#ffaa00]**RMRF**#
+
             }
         }
     }
@@ -101,6 +109,10 @@ Other than its aesthetics you don't see anything odd about it.
 
     {input, syntax=[tplt_syntax]((x_screens))
         {act, logic=x_screens, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_behind_screen))
+        {act, logic=x_behind_screen, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((x_green_lights))

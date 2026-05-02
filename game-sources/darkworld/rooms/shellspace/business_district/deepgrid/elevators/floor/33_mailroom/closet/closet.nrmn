@@ -1,5 +1,5 @@
 {room, key=mailroom_closet, name=Closet
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, output=false, tags=panel_removed }
     {attrib, tags=navigation
         output={@
