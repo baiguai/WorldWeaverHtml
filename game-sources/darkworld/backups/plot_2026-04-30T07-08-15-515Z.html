@@ -668,7 +668,7 @@
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
               <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only)...">
               <div id="helpResults" class="search-results"></div>
-              <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
+              <p><a href="https://hcjsuite.infinityfreeapp.com/scribboleth_help.html" target="_blank">Full Help System</a></p>
               <p style="margin-top:6px;">Press ESC to close.</p>
             </div>
 
@@ -740,7 +740,7 @@
                     <span class="pill" id="mode" style="display: block;">TREE</span>
                     <span class="pill" id="kind">NOTE</span>
                     <span class="dim" id="path">/</span>
-                    <span class="pill visible" id="msg"></span>
+                    <span class="pill" id="msg"></span>
                 </div>
                 <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
@@ -2389,17 +2389,12 @@
                         case "S": openSaveAsDialog(); break;
 
                         case "i": // Enter insert mode
+                        case "a":
                             if (mode_visual) {
                                 mode_select_in = true;
                                 e.preventDefault();
                                 return;
                             }
-                            setVimMode(true);
-                            mode_insert = true;
-                            performed = true;
-                            modeEl.textContent = 'INSERT';
-                            break;
-                        case "a":
                             setVimMode(true);
                             mode_insert = true;
                             performed = true;
@@ -5378,12 +5373,6 @@
 
                             // Re-render with new data
                             render();
-
-                            // If the imported file has auto-save enabled, update the imported file directly
-                            if (nodePort != 0) {
-                                fileName = importedFileName;
-                                saveViaNode();
-                            }
                         } catch (err) {
                             console.error("Failed to parse treeData:", err);
                             alert("Error parsing treeData.");
