@@ -41,6 +41,11 @@
         {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
         {attrib, tags=x_orb|!_regex, output=^(examine|x)(?: the)? orb$, logic=x the orb|x orb|examine the orb }
         {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|x panel|examine the panel }
+        {attrib, tags=x_portal_01|!_regex, output=\b(x|examin(?:e)?)\s+(portal\s+)?1\b, logic=examine portal 1|x 1|x portal 1|1 }
+        {attrib, tags=x_portal_02|!_regex, output=\b(x|examin(?:e)?)\s+(portal\s+)?2\b, logic=examine portal 2|x 2|x portal 2|2 }
+        {attrib, tags=x_portal_03|!_regex, output=\b(x|examin(?:e)?)\s+(portal\s+)?3\b, logic=examine portal 3|x 3|x portal 3|3 }
+        {attrib, tags=x_portal_04|!_regex, output=\b(x|examin(?:e)?)\s+(portal\s+)?4\b, logic=examine portal 4|x 4|x portal 4|4 }
+        {attrib, tags=x_portal_05|!_regex, output=\b(x|examin(?:e)?)\s+(portal\s+)?5\b, logic=examine portal 5|x 5|x portal 5|5 }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
         {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
