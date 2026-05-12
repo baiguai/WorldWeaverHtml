@@ -70,7 +70,7 @@ You forget what you were just contemplating.
             output={@
 You examine the masked figure with the antlers.
 It raises its arms out into the air and says in an eerie deep voice,
-"Friend, do you agree to be buried alive?"
+"Friend, do you agree to die?"
 
             }
         }
@@ -107,7 +107,32 @@ Everything goes dark...
     {input, syntax=[tplt_syntax]((yes))
         {move, logic=multiplexer_home, tags=[player]
             output={@
-The figure buries you alive...
+You hear a growing rumble that fills the room.
+A rectangular block just beneath the ring, in the center of the room, sinks
+lower than the floor.
+The masked figure motions toward it.
+
+You cautiously step forward and glance down into the darkness.
+Without warning the figure pushes you in. You land on a soft surface, it smells
+like fresh soil. The hooded figures appear above you, around the edges of the
+rectangular opening.
+
+They begin heaping shovels of dirt on top of you.
+
+You are buried alive.
+
+
+...
+
+
+
+You are trapped, unable to move. Virtual Reality or not - it is difficult to
+'breathe'. You don't know how much oxygen you have left.
+Panic run rampant through your mind.
+
+Then there is a blinking red light.
+
+Moments later the soil entombing you disintegrates away.
 
             }
         }
