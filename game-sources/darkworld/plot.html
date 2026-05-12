@@ -657,7 +657,7 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, #: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
+                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching nodes)</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -707,7 +707,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"></div>
+                    <div id="historyList"><div class="selected" style="background: var(--sel-bg);">The Invite Chip</div><div>LCD Watch</div><div>Lazer Gun</div><div>The Orb</div><div>Secdyne</div><div>RMRF</div><div>Retrograde</div><div>XLF</div><div>When Defining Enemies</div><div>High Level Plot</div><div>Hack People's Mail</div><div>[hmm]http://test.com</div><div>Cruise Ticket</div><div>Retrograde</div><div>Piracy</div><div>Tech Trace Details</div><div>Upper Deck</div><div>Cruise Central Area</div><div>Cruise Ship Ticket Booth</div><div>West Waterfront</div><div>Street View</div><div>Monorail</div><div>Shellspace Port</div><div>Bedroom</div></div>
                 </div>
             </div>
 
@@ -742,7 +742,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
+                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
             </section>
             </div>
 
@@ -802,6 +802,13 @@
     "content": "",
     "children": [
       {
+        "id": "lbhogijy",
+        "title": "Holographic Ltd",
+        "content": "Holographic Ltd\n\n\n? Who are they ?",
+        "children": [],
+        "expanded": false
+      },
+      {
         "id": "rubtb7yt",
         "title": "Retrograde",
         "content": "Retrograde\n\n\nRetrograde disagrees with RMRF's tactics. However they also want Shellspace to\nbecome open source.\n\nThey are secretly the ones killing people in meatspace.",
@@ -821,6 +828,13 @@
         "content": "Secdyne\n\nOwns Shellspace.",
         "children": [],
         "expanded": false
+      },
+      {
+        "id": "lpc1zxgq",
+        "title": "Wendigo Cult",
+        "content": "Wendigo Cult\n\n\nIf the player has the password, and the invite chip,\nthey are taken to the Multiplexer.",
+        "children": [],
+        "expanded": false
       }
     ],
     "expanded": false
@@ -831,9 +845,30 @@
     "content": "",
     "children": [
       {
+        "id": "5nz290zh",
+        "title": "Battery",
+        "content": "Battery\n\n\nInitial Location:\n* West waterfront\n\n\n? Where will this be used ?",
+        "children": [],
+        "expanded": false
+      },
+      {
         "id": "d8yoammr",
         "title": "Lazer Gun",
         "content": "Lazer Gun\n\n\nInitial Location:\n* assassin's room\n\n\nWeapon that has limited ammo and requires that the player collects lazer gun\nbatteries later on.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "t71sdu4e",
+        "title": "LCD Watch",
+        "content": "LCD Watch\n\n\nInitial Location:\n* Naked robot's apartment\n\n\n? How will this factor in later ?",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "xd2bw4bf",
+        "title": "The Invite Chip",
+        "content": "The Invite Chip\n\n\nInitial Location:\n* The man on the top deck of the cruise ship\n\n\nIf the player has this and goes to the cafe in the park, they get the cult's password.",
         "children": [],
         "expanded": false
       },
@@ -971,56 +1006,80 @@
         "title": "Upper Deck"
     },
     {
-        "id": "bg7nt5cu",
-        "title": "Tech Trace Details"
-    },
-    {
-        "id": "cwsp8lg1",
-        "title": "Piracy"
-    },
-    {
-        "id": "5h4e02k3",
-        "title": "Retrograde"
-    },
-    {
-        "id": "ce8bse0h",
-        "title": "Secdyne"
-    },
-    {
-        "id": "rubtb7yt",
-        "title": "Retrograde"
-    },
-    {
-        "id": "q8xyurso",
-        "title": "RMRF"
-    },
-    {
-        "id": "d8yoammr",
-        "title": "Lazer Gun"
-    },
-    {
-        "id": "kky3nk2s",
-        "title": "The Orb"
-    },
-    {
-        "id": "iuaje9fq",
-        "title": "XLF"
+        "id": "19awb2lv",
+        "title": "[hmm]http://test.com"
     },
     {
         "id": "mj13xjcw",
         "title": "When Defining Enemies"
     },
     {
+        "id": "iuaje9fq",
+        "title": "XLF"
+    },
+    {
+        "id": "kky3nk2s",
+        "title": "The Orb"
+    },
+    {
+        "id": "xd2bw4bf",
+        "title": "The Invite Chip"
+    },
+    {
+        "id": "t71sdu4e",
+        "title": "LCD Watch"
+    },
+    {
+        "id": "d8yoammr",
+        "title": "Lazer Gun"
+    },
+    {
+        "id": "5nz290zh",
+        "title": "Battery"
+    },
+    {
+        "id": "wlq6ko6c",
+        "title": "Cloak Details"
+    },
+    {
+        "id": "bg7nt5cu",
+        "title": "Tech Trace Details"
+    },
+    {
         "id": "bz5ib6va",
         "title": "Cruise Ticket"
     },
     {
-        "id": "19awb2lv",
-        "title": "[hmm]http://test.com"
-    },
-    {
         "id": "lel0ps8y",
         "title": "Hack People's Mail"
+    },
+    {
+        "id": "lpc1zxgq",
+        "title": "Wendigo Cult"
+    },
+    {
+        "id": "ce8bse0h",
+        "title": "Secdyne"
+    },
+    {
+        "id": "q8xyurso",
+        "title": "RMRF"
+    },
+    {
+        "id": "5h4e02k3",
+        "title": "Retrograde"
+    },
+    {
+        "id": "cwsp8lg1",
+        "title": "Piracy"
+    },
+    {
+        "id": "rubtb7yt",
+        "title": "Retrograde"
+    },
+    {
+        "id": "lbhogijy",
+        "title": "Holographic Ltd"
     },
     {
         "id": "t3i1xrfc",

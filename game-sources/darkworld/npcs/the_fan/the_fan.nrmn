@@ -6,9 +6,16 @@
         output={@
 
 A man sitting at one of the small round tables notices you.
-"You're <<[player]name>>!"
+"You're <<[player]name>>!
+
+Have you ever heard of Holographic Ltd?"
+
+You shrug.
+
+"No matter...
+
 <?[self]((convo)) = 'init'?>
-Do you want to see something really cool?
+Do you want to see something really cool?"
 </?>
         }
 
