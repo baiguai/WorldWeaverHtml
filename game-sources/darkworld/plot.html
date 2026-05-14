@@ -271,6 +271,7 @@
                     flex: 1;
                     border-top: 1px solid var(--border);
                     border-bottom: 1px solid var(--border);
+                    overflow-y: auto;
                 }
 
                 .search-results div {
@@ -657,7 +658,7 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, #: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching nodes)</div></div>
+                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching tags)</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -679,7 +680,7 @@
 
             <div id="marksDialog" style="display: none;">
                 <h3>Bookmarks</h3>
-                <div id="marksList"><br><table><tbody><tr style="background:var(--sel-bg);"><td>High Level Plot</td><td>/</td></tr></tbody></table></div>
+                <div id="marksList"></div>
                 <p>
                     <br>
                     Press Esc to close
@@ -707,7 +708,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div class="selected" style="background: var(--sel-bg);">The Invite Chip</div><div>LCD Watch</div><div>Lazer Gun</div><div>The Orb</div><div>Secdyne</div><div>RMRF</div><div>Retrograde</div><div>XLF</div><div>When Defining Enemies</div><div>High Level Plot</div><div>Hack People's Mail</div><div>[hmm]http://test.com</div><div>Cruise Ticket</div><div>Retrograde</div><div>Piracy</div><div>Tech Trace Details</div><div>Upper Deck</div><div>Cruise Central Area</div><div>Cruise Ship Ticket Booth</div><div>West Waterfront</div><div>Street View</div><div>Monorail</div><div>Shellspace Port</div><div>Bedroom</div></div>
+                    <div id="historyList"></div>
                 </div>
             </div>
 
@@ -742,7 +743,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
+                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
             </div>
 
@@ -1266,6 +1267,8 @@
             let searchIndex = 0;
             let tagSearchPhase = 'tags';
             let matchingTags = [];
+            let peekActive = false;
+            let peekSavedId = null;
             const helpDialog = document.getElementById('helpDialog');
             const helpDialogVimEdit = document.getElementById('helpDialogVimEdit');
             const helpDialogVimDisabled = document.getElementById('helpDialogVimDisabled');
@@ -1322,6 +1325,7 @@
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -1393,6 +1397,7 @@
                     { key: "i", mode: "TREE", description: "Edit current note" },
                     { key: "I", mode: "TREE", description: "Edit current note" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -3897,6 +3902,11 @@
                 closeMarksDialog();
                 closeHistoryDialog();
                 closeVersionDialog();
+                if (peekActive) {
+                    selectedId = peekSavedId;
+                    closePeekSearch();
+                    render();
+                }
             }
 
         //---- Finding and Replacing -------------------------------------------
@@ -4350,6 +4360,32 @@
                 searchDialog.style.display = 'none';
             }
 
+            function openPeekSearch() {
+                peekActive = true;
+                peekSavedId = selectedId;
+                const treeEl = document.getElementById('tree');
+                const treeRect = treeEl.getBoundingClientRect();
+                searchDialog.style.top = treeRect.top + 'px';
+                searchDialog.style.left = treeRect.left + 'px';
+                searchDialog.style.width = treeRect.width + 'px';
+                searchDialog.style.height = treeRect.height + 'px';
+                searchDialog.style.maxHeight = treeRect.height + 'px';
+                searchDialog.style.transform = 'none';
+                searchDialog.style.maxWidth = 'none';
+                openSearch();
+            }
+
+            function closePeekSearch() {
+                peekActive = false;
+                searchDialog.style.top = '';
+                searchDialog.style.left = '';
+                searchDialog.style.width = '';
+                searchDialog.style.height = '';
+                searchDialog.style.maxHeight = '';
+                searchDialog.style.transform = '';
+                searchDialog.style.maxWidth = '';
+            }
+
             function searchTree(query) {
                 searchMatches = [];
                 if (query.startsWith("#:")) {
@@ -4553,6 +4589,7 @@
                         if (searchMatches.length > 0) {
                             selectSearchResult(i);
                             closeSearch();
+                            if (peekActive) closePeekSearch();
                             const selInfo = findNodeAndParentById(selectedId);
                             if (selInfo && !isFolder(selInfo.node)) {
                                 editing = true;
@@ -4604,10 +4641,18 @@
                     const max = tagSearchPhase === 'tags' ? matchingTags.length - 1 : searchMatches.length - 1;
                     searchIndex = Math.min(searchIndex + 1, max);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'ArrowUp') {
                     searchIndex = Math.max(searchIndex - 1, 0);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'Backspace' && tagSearchPhase === 'notes') {
                     const query = searchInput.value;
@@ -4643,6 +4688,7 @@
                     } else if (searchMatches.length > 0) {
                         selectSearchResult(searchIndex);
                         closeSearch();
+                        if (peekActive) closePeekSearch();
                         const selInfo = findNodeAndParentById(selectedId);
                         if (selInfo && !isFolder(selInfo.node)) {
                             if (!readOnly) {
@@ -4661,7 +4707,14 @@
                         }
                     }
                 } else if (e.key === 'Escape') {
-                    closeSearch();
+                    if (peekActive) {
+                        selectedId = peekSavedId;
+                        render();
+                        closeSearch();
+                        closePeekSearch();
+                    } else {
+                        closeSearch();
+                    }
                 }
             });
 
@@ -5147,6 +5200,12 @@
 
                 if (e.key === '/' && !editing && !dialogOpen()) {
                     openSearch();
+                    e.preventDefault();
+                    return;
+                }
+
+                if (e.key === '\\' && !editing && !dialogOpen()) {
+                    openPeekSearch();
                     e.preventDefault();
                     return;
                 }

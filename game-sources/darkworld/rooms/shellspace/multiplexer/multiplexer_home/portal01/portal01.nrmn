@@ -1,0 +1,49 @@
+{room, key=portal_01, name=Portal 1
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+You find yourself in a narrow world. It is impossible to move to either side.
+It is a bright place. Blue sky unfolds above you and there are small fluffy
+clouds dotting it. Everything looks very pixelated.
+
+You seem to be in an 8bit side scroller!
+
+Ahead of you is a brick wall with a ladder ascending upward.
+
+        }
+        
+        {logic, name=Multiplexer portal 01 tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+You are in a narrow world. It is impossible to move to either side.
+
+Ahead of you is a brick wall with a ladder ascending upward.
+
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+}
