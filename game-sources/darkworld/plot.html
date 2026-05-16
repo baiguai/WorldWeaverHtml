@@ -658,7 +658,7 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, #: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching tags)</div></div>
+                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -5542,7 +5542,7 @@
             function toggleMobileMenu() {
                 if (mobileMenu.style.display === "none") {
                     mobileMenu.style.display = "block";
-                    mode_vim = false;
+                    // mode_vim = false;
                 } else {
                     mobileMenu.style.display = "none";
                 }

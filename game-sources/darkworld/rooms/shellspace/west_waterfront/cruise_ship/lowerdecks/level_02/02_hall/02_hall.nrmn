@@ -11,6 +11,9 @@ Up, Return to the cruise ship's central area.
 You are on the lower deck 02.
 A hall of doors stretches out before you they are numbered
 from 200 to 230.
+
+At the end of the hall is a narrow employees only door.
+
         }
     }
 
@@ -22,6 +25,9 @@ You look around...
 You are on lower deck number 02.
 A hall of doors stretches out before you they are numbered
 from 200 to 230.
+
+At the end of the hall is a narrow employees only door.
+
             }
         }
     }
@@ -61,10 +67,23 @@ You cannot enter, the door is locked.
         }
     }
 
+    {x_emp_door
+        {message
+            output={@
+You examine the employees only door...
+
+            }
+        }
+    }
+
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+
+    {input, syntax=[tplt_syntax]((x_emp_door))
+        {act, logic=x_emp_door, tags=!_type|room }
+    }
 
     {input, syntax=[tplt_syntax]((go_up))
         {move, logic=cruise_central_area, tags=[player]

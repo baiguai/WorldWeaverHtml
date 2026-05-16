@@ -16,6 +16,7 @@
         {attrib, tags=x_cupboards|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cupboards)\b, logic=examine the cupboards|x the cupboards|examine cupboards|x cupboards }
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
+        {attrib, tags=x_emp_door|!_regex, output=^(examine|x)(?: the)? employee(s)? door$, logic=x employees door|examine the employee door|examine employee door }
         {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
         {attrib, tags=x_escalator|!_regex, output=^(examine|x)(?: the)? escalator$, logic=x escalator|examine the escalator }
         {attrib, tags=x_fan|!_regex, output=\b(x|examin(?:e)?)\s+(your(\s+)|the(\s+))?fan\b, logic=examine the fan|examine fan|x your fan|x your fan }
