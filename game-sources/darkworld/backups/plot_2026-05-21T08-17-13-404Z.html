@@ -4388,7 +4388,7 @@
 
             function searchTree(query) {
                 searchMatches = [];
-                if (query.startsWith("r:")) {
+                if (query.startsWith("#:")) {
                     searchTreeRegex(query.substring(2));
                     return;
                 }
@@ -4396,7 +4396,7 @@
                     searchTreeWords(query.substring(2));
                     return;
                 }
-                if (query.startsWith("#")) {
+                if (query.startsWith("#") && !query.startsWith("#:")) {
                     searchTreeTags(query.substring(1));
                     return;
                 }
@@ -4489,38 +4489,6 @@
                     }
                 })(treeData);
 
-                searchIndex = 0;
-                renderSearchList();
-            }
-
-            function searchTreeRegex(query) {
-                const rxPattern = new RegExp(query, 'i');
-                let res = [];
-
-                (function walk(nodes) {
-                    for (const n of nodes) {
-                        const nodeTitle = n.title ? n.title : '';
-                        const nodeContent = n.content ? n.content : ''; 
-
-                        let matches = false;
-
-                        let allPartsMatch = true;
-
-                        res = nodeTitle.match(rxPattern);
-                        if (!matches && res && res.length > 0) {
-                            matches = true;
-                        }
-                        res = nodeContent.match(rxPattern);
-                        if (!matches && res && res.length > 0) {
-                            matches = true;
-                        }
-
-                        if (matches) {
-                            searchMatches.push(n);
-                        }
-                        if (n.children && n.children.length) walk(n.children);
-                    }
-                })(treeData);
                 searchIndex = 0;
                 renderSearchList();
             }

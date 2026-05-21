@@ -70,8 +70,24 @@ You cannot enter, the door is locked.
     {x_emp_door
         {message
             output={@
-You examine the employees only door...
+You examine the employees only door.
+It is narrow and made of a rough metal.
+There is a plaque mounted on the door, with four letter slots set into it.
+Only the first letter is present though.
+Lying on the floor is a pile of letter tiles.
 
+The first letter is '**R**'.
+To attach the other three letters simply enter the three letters you
+would like to try.
+
+            }
+        }
+    }
+
+    {mrf
+        {message
+            output={@
+YAY! Take the user to the sub.
             }
         }
     }
@@ -83,6 +99,10 @@ You examine the employees only door...
 
     {input, syntax=[tplt_syntax]((x_emp_door))
         {act, logic=x_emp_door, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((mrf))
+        {act, logic=mrf, tags=!_type|room }
     }
 
     {input, syntax=[tplt_syntax]((go_up))
