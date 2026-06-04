@@ -1,0 +1,42 @@
+{room, key=pt01_001006, name=Portal 1
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+
+You are on a green plane.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+You are on a green plane.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_backward))
+        {move, logic=pt01_001005, tags=[player]
+            output={@
+
+You jump off of the short cliff.
+            }
+        }
+    }
+}

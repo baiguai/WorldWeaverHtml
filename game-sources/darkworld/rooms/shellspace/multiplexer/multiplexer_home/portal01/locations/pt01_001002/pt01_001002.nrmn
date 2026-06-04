@@ -1,0 +1,53 @@
+{room, key=pt01_001002, name=Portal 1
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+
+You are at the top of the ladder.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+You are at the top of the ladder.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_forward))
+        {move, logic=pt01_001003, tags=[player]
+            output={@
+
+You step forward.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_backward))
+        {move, logic=multiplexer_home, tags=[player]
+            output={@
+
+You descend the ladder.
+Everything blurs as you exit the portal.
+
+            }
+        }
+    }
+}

@@ -1,5 +1,6 @@
 {room, key=portal_01, name=Portal 1
     {attrib, output=false, tags=tested }
+    {attrib, output=false, tags=entered }
     {attrib, tags=navigation
         output={@
 f - forward
@@ -16,6 +17,15 @@ It is a bright place. Blue sky unfolds above you and there are small fluffy
 clouds dotting it. Everything looks very pixelated.
 
 You seem to be in an 8bit side scroller!
+
+
+<?[room]((entered)) = 'false'?>
+A blocky wizard approaches you.
+"Hello traveler!
+In this world, you can go forward (f), backward (b), jump (j), crouch (c).
+Good luck!"
+Then the wizard goes up in a poof of pixelated smoke.
+</?>
 
 Ahead of you is a brick wall with a ladder ascending upward.
 
@@ -45,5 +55,12 @@ Ahead of you is a brick wall with a ladder ascending upward.
 
 
 
+    {input, syntax=[tplt_syntax]((go_forward))
+        {move, logic=pt01_001002, tags=[player]
+            output={@
 
+You step forward and climb up the ladder.
+            }
+        }
+    }
 }

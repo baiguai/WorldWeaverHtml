@@ -1,0 +1,64 @@
+{room, key=pt01_001005, name=Portal 1
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+
+You are standing near a short cliff.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+You are standing near a short cliff.
+            }
+        }
+    }
+
+    {forward
+        {message
+            output={@
+
+You try to walk forward, but the short cliff blocks your way.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_forward))
+        {act, logic=forward, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((jump))
+        {move, logic=pt01_001006, tags=[player]
+            output={@
+
+You jump up, onto the short cliff...
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_backward))
+        {move, logic=pt01_001004, tags=[player]
+            output={@
+
+You go backward.
+            }
+        }
+    }
+}
