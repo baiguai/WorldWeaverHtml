@@ -1,5 +1,5 @@
 {room, key=cult_inner_sanctum, name=Inner Sanctum
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {enter_message
         output={@
@@ -128,7 +128,7 @@ You are buried alive.
 
 You are trapped, unable to move. Virtual Reality or not - it is difficult to
 'breathe'. You don't know how much oxygen you have left.
-Panic run rampant through your mind.
+Panic runs rampant through your mind.
 
 Then there is a blinking red light.
 

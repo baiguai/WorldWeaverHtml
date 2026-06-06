@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="264.71564mm"
+   height="94.391907mm"
+   viewBox="0 0 264.71563 94.391907"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486, 2022-12-01)"
+   sodipodi:docname="8bit_map.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.8520739"
+     inkscape:cx="500.25002"
+     inkscape:cy="178.44861"
+     inkscape:window-width="1916"
+     inkscape:window-height="1074"
+     inkscape:window-x="0"
+     inkscape:window-y="4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid9"
+       originx="0.13229149"
+       originy="-105.83334" />
+    <sodipodi:guide
+       position="0.13229149,200.22525"
+       orientation="0,3779.5276"
+       id="guide11"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="1000.1323,200.22525"
+       orientation="755.90551,0"
+       id="guide13"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="-0.6614585,0.20024872"
+       orientation="0,-3779.5276"
+       id="guide15"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="0.13229149,0.22524872"
+       orientation="-755.90551,0"
+       id="guide17"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="bg"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.1322915,-105.83334)"
+     sodipodi:insensitive="true">
+    <rect
+       style="fill:#00daff;fill-opacity:1;stroke:none;stroke-width:0.0930146"
+       id="rect164"
+       width="264.58334"
+       height="93.927086"
+       x="0"
+       y="105.83334" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="arch"
+     transform="translate(0.1322915,-105.83334)">
+    <rect
+       style="fill:#ff2a00;fill-opacity:1;stroke:none;stroke-width:0.0461686;stroke-opacity:1"
+       id="rect10527"
+       width="2.6458333"
+       height="6.2838645"
+       x="111.125"
+       y="163.54556"
+       inkscape:label="PLAYER" />
+    <rect
+       style="fill:#916f00;fill-opacity:1;stroke:none;stroke-width:0.75406"
+       id="rect2147"
+       width="263.26044"
+       height="5.2916765"
+       x="1.3229166"
+       y="194.46875" />
+    <rect
+       style="fill:#8f8f8f;fill-opacity:1;stroke:none;stroke-width:0.0763785"
+       id="rect7923"
+       width="2.6458333"
+       height="17.197916"
+       x="35.71875"
+       y="160.73438" />
+    <rect
+       style="fill:#8f8f8f;fill-opacity:1;stroke:none;stroke-width:0.0366909"
+       id="rect8538"
+       width="7.937501"
+       height="1.3229158"
+       x="62.17709"
+       y="176.60938" />
+    <rect
+       style="fill:#f8ff00;fill-opacity:1;stroke:none;stroke-width:0.0198154"
+       id="rect9313"
+       width="1.3229154"
+       height="2.3150985"
+       x="48.947918"
+       y="169.33333" />
+    <rect
+       style="fill:#644200;fill-opacity:1;stroke:none;stroke-width:0.035129"
+       id="rect8732"
+       width="1.3229154"
+       height="7.276041"
+       x="48.947918"
+       y="170.65625" />
+    <rect
+       style="fill:#916f00;fill-opacity:1;stroke:none;stroke-width:0.503751"
+       id="rect4571"
+       width="115.09377"
+       height="17.197916"
+       x="34.395832"
+       y="177.27083" />
+    <path
+       sodipodi:type="star"
+       style="fill:#8f8f8f;fill-opacity:1;stroke:#ff00ff;stroke-width:0.264583;stroke-dasharray:0.264583, 0.264583;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="path10215"
+       inkscape:flatsided="false"
+       sodipodi:sides="3"
+       sodipodi:cx="88.635414"
+       sodipodi:cy="157.42708"
+       sodipodi:r1="6.614583"
+       sodipodi:r2="3.3072915"
+       sodipodi:arg1="-1.5707963"
+       sodipodi:arg2="-0.52359875"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 88.635414,150.8125 2.864199,4.96093 2.864198,4.96094 -5.728397,0 -5.728397,0 2.864199,-4.96094 z"
+       inkscape:transform-center-y="-0.29173654"
+       transform="matrix(0.46187389,0,0,0.46187389,41.08245,93.771408)" />
+    <rect
+       style="fill:#ff2a00;fill-opacity:1;stroke:none;stroke-width:0.0461686;stroke-opacity:1"
+       id="rect11793"
+       width="2.6458333"
+       height="6.2838645"
+       x="129.64583"
+       y="163.54556"
+       inkscape:label="PLAYER" />
+    <rect
+       style="fill:#916f00;fill-opacity:1;stroke:none;stroke-width:0.250648"
+       id="rect10473"
+       width="52.916668"
+       height="9.2604189"
+       x="96.572914"
+       y="169.33333" />
+    <rect
+       style="fill:#0054ff;fill-opacity:1;stroke:none;stroke-width:0.503751"
+       id="rect12084"
+       width="115.09377"
+       height="17.197916"
+       x="149.48958"
+       y="177.27083" />
+    <rect
+       style="fill:#8f8f8f;fill-opacity:1;stroke:none;stroke-width:0.0635505"
+       id="rect12688"
+       width="7.937501"
+       height="3.968744"
+       x="174.625"
+       y="190.5" />
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="174.84818"
+       y="187.94214"
+       id="text12057-3"><tspan
+         sodipodi:role="line"
+         id="tspan12055-6"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="174.84818"
+         y="187.94214">Chest</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.439732px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0366443;stroke-dasharray:0.0360974, 0.108292;stroke-dashoffset:0;stroke-opacity:1"
+       x="174.8277"
+       y="188.82523"
+       id="text12061-7"><tspan
+         sodipodi:role="line"
+         id="tspan12059-5"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0366443"
+         x="174.8277"
+         y="188.82523">Jump in the water teleports - Assembly Punks</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="obj"
+     transform="translate(0.1322915,-105.83334)" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="rooms"
+     style="fill:none;stroke:#ff00ff;stroke-opacity:1"
+     transform="translate(0.1322915,-105.83334)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.264583;stroke-dasharray:0.264583, 0.264583;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect4605"
+       width="30.427082"
+       height="47.889584"
+       x="0"
+       y="152.13542"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="1.4612259"
+       y="154.63472"
+       id="text6186"><tspan
+         sodipodi:role="line"
+         id="tspan6184"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="1.4612259"
+         y="154.63472">portal_01</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.264583;stroke-dasharray:0.264583, 0.264583;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect6687"
+       width="30.427082"
+       height="47.889584"
+       x="30.565393"
+       y="152.13542"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="32.026619"
+       y="154.63472"
+       id="text6691"><tspan
+         sodipodi:role="line"
+         id="tspan6689"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="32.026619"
+         y="154.63472">pt01_001002</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="31.416395"
+       y="183.7088"
+       id="text7845"><tspan
+         sodipodi:role="line"
+         id="tspan7843"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="31.416395"
+         y="183.7088">ladder</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="39.618477"
+       y="163.33588"
+       id="text8457"><tspan
+         sodipodi:role="line"
+         id="tspan8455"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="39.618477"
+         y="163.33588">stone gate</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="63.859768"
+       y="173.90096"
+       id="text8570"><tspan
+         sodipodi:role="line"
+         id="tspan8568"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="63.859768"
+         y="173.90096">stone glyph</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.439732px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0366443;stroke-dasharray:0.0360974, 0.108292;stroke-dashoffset:0;stroke-opacity:1"
+       x="63.839287"
+       y="174.78404"
+       id="text8634"><tspan
+         sodipodi:role="line"
+         id="tspan8632"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0366443"
+         x="63.839287"
+         y="174.78404">jump, or back to the start</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="51.553593"
+       y="171.78429"
+       id="text9831"><tspan
+         sodipodi:role="line"
+         id="tspan9829"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="51.553593"
+         y="171.78429">torches</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.181963;stroke-dasharray:0.181963, 0.181963;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect9999"
+       width="14.366566"
+       height="47.972202"
+       x="60.948704"
+       y="152.09412"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="62.451237"
+       y="154.63472"
+       id="text10003"><tspan
+         sodipodi:role="line"
+         id="tspan10001"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="62.451237"
+         y="154.63472">pt01_001003</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.181963;stroke-dasharray:0.181963, 0.181963;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect10257"
+       width="14.366566"
+       height="47.972202"
+       x="75.432335"
+       y="152.09412"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="76.934868"
+       y="154.63472"
+       id="text10261"><tspan
+         sodipodi:role="line"
+         id="tspan10259"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="76.934868"
+         y="154.63472">pt01_001004</tspan></text>
+    <rect
+       style="fill:#fb00ff;fill-opacity:0.44839;stroke:none;stroke-width:0.0461686"
+       id="rect10958"
+       width="2.6458333"
+       height="6.2838645"
+       x="91.28125"
+       y="170.98697"
+       inkscape:label="PLAYER" />
+    <text
+       xml:space="preserve"
+       style="font-size:0.812015px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0676679;stroke-dasharray:0.066658, 0.199974;stroke-dashoffset:0;stroke-opacity:1"
+       x="79.734764"
+       y="169.4213"
+       id="text12057"><tspan
+         sodipodi:role="line"
+         id="tspan12055"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0676679"
+         x="79.734764"
+         y="169.4213">stone pyramid</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:0.439732px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.0366443;stroke-dasharray:0.0360974, 0.108292;stroke-dashoffset:0;stroke-opacity:1"
+       x="79.714279"
+       y="170.30438"
+       id="text12061"><tspan
+         sodipodi:role="line"
+         id="tspan12059"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0366443"
+         x="79.714279"
+         y="170.30438">The great pyramid clue</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.181963;stroke-dasharray:0.181963, 0.181963;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect10367"
+       width="14.366566"
+       height="47.972202"
+       x="89.788704"
+       y="152.09412"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="91.149681"
+       y="154.63472"
+       id="text10420"><tspan
+         sodipodi:role="line"
+         id="tspan10418"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="91.149681"
+         y="154.63472">pt01_001005</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.19976;stroke-dasharray:0.19976, 0.19976;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect11849"
+       width="17.320602"
+       height="47.954407"
+       x="104.28785"
+       y="152.10301"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="105.63992"
+       y="154.63472"
+       id="text11853"><tspan
+         sodipodi:role="line"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="105.63992"
+         y="154.63472"
+         id="tspan12020">pt01_001006</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.19976;stroke-dasharray:0.19976, 0.19976;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect11912"
+       width="17.320602"
+       height="47.954407"
+       x="121.58565"
+       y="152.10301"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="122.93772"
+       y="154.63472"
+       id="text11916"><tspan
+         sodipodi:role="line"
+         id="tspan11914"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="122.93772"
+         y="154.63472">pt01_001007</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.33566;stroke-dasharray:0.33566, 0.33566;stroke-dashoffset:0;stroke-opacity:0.347782"
+       id="rect12957"
+       width="48.904156"
+       height="47.954407"
+       x="138.95001"
+       y="152.10301"
+       inkscape:label="portal_01" />
+    <text
+       xml:space="preserve"
+       style="font-size:1.54787px;fill:none;fill-opacity:1;stroke:#ff00ff;stroke-width:0.128989;stroke-dasharray:0.127064, 0.381192;stroke-dashoffset:0;stroke-opacity:1"
+       x="140.30208"
+       y="154.63472"
+       id="text12961"><tspan
+         sodipodi:role="line"
+         id="tspan12959"
+         style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.128989"
+         x="140.30208"
+         y="154.63472">pt01_001008</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="lbls"
+     sodipodi:insensitive="true"
+     transform="translate(0.1322915,-105.83334)" />
+</svg>
