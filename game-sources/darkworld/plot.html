@@ -271,6 +271,7 @@
                     flex: 1;
                     border-top: 1px solid var(--border);
                     border-bottom: 1px solid var(--border);
+                    overflow-y: auto;
                 }
 
                 .search-results div {
@@ -727,9 +728,9 @@
                 <p>Current Version: <span id="versionNumber"></span></p>
             </div>
 
-            <div id="themePickerDialog" class="search-dialog" style="display: none; width: 350px; max-width: 90vw;">
+            <div id="themePickerDialog" class="search-dialog" style="display:none;width:350px;max-width:90vw;">
                 <h3>Select Theme</h3>
-                <div id="themeList" class="search-results"><div>default-theme</div><div>default-with-grid</div><div>monokai-theme</div><div>monokai-pro-theme</div><div>dracula-theme</div><div>nord-theme</div><div>nord-light-theme</div><div>solarized-dark-theme</div><div>solarized-light-theme</div><div>one-dark-theme</div><div>vscode-dark-theme</div><div>github-dark-theme</div><div>github-light-theme</div><div>gruvbox-theme</div><div>gruvbox-dark-hard-theme</div><div>synthwave-theme</div><div class="selected">synthwave-with-grid</div><div>cyberpunk-theme</div><div>neon-theme</div><div>neon-nights-theme</div><div>matrix-theme</div><div>matrix-code-theme</div><div>terminal-green-theme</div><div>hacker-theme</div><div>hacker-terminal-theme</div><div>retro-arcade-theme</div><div>8-bit-theme</div><div>hard-square-theme</div><div>light-theme</div><div>minimalist-theme</div><div>deep-purple-theme</div><div>deep-blue-report-theme</div><div>deep-space-theme</div><div>deep-water-theme</div><div>deep-red-velvet-theme</div><div>charcoal-grey-theme</div><div>cool-grey-theme</div><div>dark-cyan-theme</div><div>dark-office-theme</div><div>dark-notepad-theme</div><div>dark-mode-simple-theme</div><div>digital-theme</div><div>desert-night-theme</div><div>cosmic-night-theme</div><div>cybernetic-stream-theme</div><div>quantum-realm-theme</div><div>stardust-dream-theme</div><div>stellar-void-theme</div><div>void-main-void</div><div>oceanic-next-theme</div><div>ocean-sunset-theme</div><div>blueprint-theme</div><div>forest-theme</div><div>forest-nymph-theme</div><div>evergreen-theme</div><div>steampunk-theme</div><div>indigo-ink-theme</div><div>inkwell-shadow-theme</div><div>inferno-theme</div><div>magic-midnight-theme</div><div>midnight-elegance-theme</div><div>haunted-manor-theme</div><div>misty-rose-theme</div><div>rose-pine-theme</div><div>abyss-notes-theme</div><div>amber-glow-theme</div><div>golden-hour-theme</div><div>sunset-ember-theme</div><div>vintage-theme</div><div>aged-paper-theme</div><div>coffee-stain-theme</div><div>kraft-paper-theme</div><div>legal-pad-theme</div><div>parchment-noir-theme</div><div>pink-bliss-theme</div><div>sakura-theme</div><div>sharp-theme</div><div>sharp-b&amp;w---barely-visible-borders-theme</div><div>sharp-b&amp;w---no-borders-theme</div><div>sharp-b&amp;w---normal-borders-theme</div><div>sophisticated-obsidian-theme</div><div>teal-dusk-theme</div><div>tomorrow-night-theme</div><div>typewriter-night-theme</div><div>vaporwave-theme</div><div>volcanic-ash-theme</div><div>warm-grey-theme</div><div>zombie-flesh-theme</div><div>the_darkness</div><div>corporate-slate-theme</div><div>lime-zest-theme</div><div>macchiato-theme</div><div>purple-haze-theme</div><div>visual-studio-theme</div><div>dragon's-breath-theme</div><div>enchanted-forest-theme</div><div>vampire's-kiss-theme</div><div>github-copilot-theme</div><div>hacker-theme</div></div>
+                <div id="themeList" class="search-results"></div>
                 <p style="color:var(--dim); font-size:0.9em;">↑↓ Navigate • Enter Apply • Esc Cancel</p>
             </div>
 
@@ -740,7 +741,7 @@
                     <span class="pill" id="mode" style="display: block;">TREE</span>
                     <span class="pill" id="kind">NOTE</span>
                     <span class="dim" id="path">/</span>
-                    <span class="pill visible" id="msg"></span>
+                    <span class="pill" id="msg"></span>
                 </div>
                 <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
@@ -802,6 +803,13 @@
     "content": "",
     "children": [
       {
+        "id": "lbhogijy",
+        "title": "Holographic Ltd",
+        "content": "Holographic Ltd\n\n\n? Who are they ?",
+        "children": [],
+        "expanded": false
+      },
+      {
         "id": "rubtb7yt",
         "title": "Retrograde",
         "content": "Retrograde\n\n\nRetrograde disagrees with RMRF's tactics. However they also want Shellspace to\nbecome open source.\n\nThey are secretly the ones killing people in meatspace.",
@@ -821,6 +829,13 @@
         "content": "Secdyne\n\nOwns Shellspace.",
         "children": [],
         "expanded": false
+      },
+      {
+        "id": "lpc1zxgq",
+        "title": "Wendigo Cult",
+        "content": "Wendigo Cult\n\n\nIf the player has the password, and the invite chip,\nthey are taken to the Multiplexer.",
+        "children": [],
+        "expanded": false
       }
     ],
     "expanded": false
@@ -831,9 +846,30 @@
     "content": "",
     "children": [
       {
+        "id": "5nz290zh",
+        "title": "Battery",
+        "content": "Battery\n\n\nInitial Location:\n* West waterfront\n\n\n? Where will this be used ?",
+        "children": [],
+        "expanded": false
+      },
+      {
         "id": "d8yoammr",
         "title": "Lazer Gun",
         "content": "Lazer Gun\n\n\nInitial Location:\n* assassin's room\n\n\nWeapon that has limited ammo and requires that the player collects lazer gun\nbatteries later on.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "t71sdu4e",
+        "title": "LCD Watch",
+        "content": "LCD Watch\n\n\nInitial Location:\n* Naked robot's apartment\n\n\n? How will this factor in later ?",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "xd2bw4bf",
+        "title": "The Invite Chip",
+        "content": "The Invite Chip\n\n\nInitial Location:\n* The man on the top deck of the cruise ship\n\n\nIf the player has this and goes to the cafe in the park, they get the cult's password.",
         "children": [],
         "expanded": false
       },
@@ -932,9 +968,9 @@
 ];
             let bookmarks = [
     {
-        "id": "6a9hwi85",
-        "caption": "Street View",
-        "path": "/Checkouts/Shell Space"
+        "id": "t3i1xrfc",
+        "caption": "High Level Plot",
+        "path": "/"
     }
 ];
             let historyStack = [
@@ -971,56 +1007,80 @@
         "title": "Upper Deck"
     },
     {
-        "id": "bg7nt5cu",
-        "title": "Tech Trace Details"
-    },
-    {
-        "id": "cwsp8lg1",
-        "title": "Piracy"
-    },
-    {
-        "id": "5h4e02k3",
-        "title": "Retrograde"
-    },
-    {
-        "id": "ce8bse0h",
-        "title": "Secdyne"
-    },
-    {
-        "id": "rubtb7yt",
-        "title": "Retrograde"
-    },
-    {
-        "id": "q8xyurso",
-        "title": "RMRF"
-    },
-    {
-        "id": "d8yoammr",
-        "title": "Lazer Gun"
-    },
-    {
-        "id": "kky3nk2s",
-        "title": "The Orb"
-    },
-    {
-        "id": "iuaje9fq",
-        "title": "XLF"
+        "id": "19awb2lv",
+        "title": "[hmm]http://test.com"
     },
     {
         "id": "mj13xjcw",
         "title": "When Defining Enemies"
     },
     {
+        "id": "iuaje9fq",
+        "title": "XLF"
+    },
+    {
+        "id": "kky3nk2s",
+        "title": "The Orb"
+    },
+    {
+        "id": "xd2bw4bf",
+        "title": "The Invite Chip"
+    },
+    {
+        "id": "t71sdu4e",
+        "title": "LCD Watch"
+    },
+    {
+        "id": "d8yoammr",
+        "title": "Lazer Gun"
+    },
+    {
+        "id": "5nz290zh",
+        "title": "Battery"
+    },
+    {
+        "id": "wlq6ko6c",
+        "title": "Cloak Details"
+    },
+    {
+        "id": "bg7nt5cu",
+        "title": "Tech Trace Details"
+    },
+    {
         "id": "bz5ib6va",
         "title": "Cruise Ticket"
     },
     {
-        "id": "19awb2lv",
-        "title": "[hmm]http://test.com"
-    },
-    {
         "id": "lel0ps8y",
         "title": "Hack People's Mail"
+    },
+    {
+        "id": "lpc1zxgq",
+        "title": "Wendigo Cult"
+    },
+    {
+        "id": "ce8bse0h",
+        "title": "Secdyne"
+    },
+    {
+        "id": "q8xyurso",
+        "title": "RMRF"
+    },
+    {
+        "id": "5h4e02k3",
+        "title": "Retrograde"
+    },
+    {
+        "id": "cwsp8lg1",
+        "title": "Piracy"
+    },
+    {
+        "id": "rubtb7yt",
+        "title": "Retrograde"
+    },
+    {
+        "id": "lbhogijy",
+        "title": "Holographic Ltd"
     },
     {
         "id": "t3i1xrfc",
@@ -1207,6 +1267,8 @@
             let searchIndex = 0;
             let tagSearchPhase = 'tags';
             let matchingTags = [];
+            let peekActive = false;
+            let peekSavedId = null;
             const helpDialog = document.getElementById('helpDialog');
             const helpDialogVimEdit = document.getElementById('helpDialogVimEdit');
             const helpDialogVimDisabled = document.getElementById('helpDialogVimDisabled');
@@ -1263,6 +1325,7 @@
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -1334,6 +1397,7 @@
                     { key: "i", mode: "TREE", description: "Edit current note" },
                     { key: "I", mode: "TREE", description: "Edit current note" },
                     { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -3838,6 +3902,11 @@
                 closeMarksDialog();
                 closeHistoryDialog();
                 closeVersionDialog();
+                if (peekActive) {
+                    selectedId = peekSavedId;
+                    closePeekSearch();
+                    render();
+                }
             }
 
         //---- Finding and Replacing -------------------------------------------
@@ -4291,9 +4360,35 @@
                 searchDialog.style.display = 'none';
             }
 
+            function openPeekSearch() {
+                peekActive = true;
+                peekSavedId = selectedId;
+                const treeEl = document.getElementById('tree');
+                const treeRect = treeEl.getBoundingClientRect();
+                searchDialog.style.top = treeRect.top + 'px';
+                searchDialog.style.left = treeRect.left + 'px';
+                searchDialog.style.width = treeRect.width + 'px';
+                searchDialog.style.height = treeRect.height + 'px';
+                searchDialog.style.maxHeight = treeRect.height + 'px';
+                searchDialog.style.transform = 'none';
+                searchDialog.style.maxWidth = 'none';
+                openSearch();
+            }
+
+            function closePeekSearch() {
+                peekActive = false;
+                searchDialog.style.top = '';
+                searchDialog.style.left = '';
+                searchDialog.style.width = '';
+                searchDialog.style.height = '';
+                searchDialog.style.maxHeight = '';
+                searchDialog.style.transform = '';
+                searchDialog.style.maxWidth = '';
+            }
+
             function searchTree(query) {
                 searchMatches = [];
-                if (query.startsWith("#:")) {
+                if (query.startsWith("r:")) {
                     searchTreeRegex(query.substring(2));
                     return;
                 }
@@ -4301,7 +4396,7 @@
                     searchTreeWords(query.substring(2));
                     return;
                 }
-                if (query.startsWith("#") && !query.startsWith("#:")) {
+                if (query.startsWith("#")) {
                     searchTreeTags(query.substring(1));
                     return;
                 }
@@ -4394,6 +4489,38 @@
                     }
                 })(treeData);
 
+                searchIndex = 0;
+                renderSearchList();
+            }
+
+            function searchTreeRegex(query) {
+                const rxPattern = new RegExp(query, 'i');
+                let res = [];
+
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const nodeTitle = n.title ? n.title : '';
+                        const nodeContent = n.content ? n.content : ''; 
+
+                        let matches = false;
+
+                        let allPartsMatch = true;
+
+                        res = nodeTitle.match(rxPattern);
+                        if (!matches && res && res.length > 0) {
+                            matches = true;
+                        }
+                        res = nodeContent.match(rxPattern);
+                        if (!matches && res && res.length > 0) {
+                            matches = true;
+                        }
+
+                        if (matches) {
+                            searchMatches.push(n);
+                        }
+                        if (n.children && n.children.length) walk(n.children);
+                    }
+                })(treeData);
                 searchIndex = 0;
                 renderSearchList();
             }
@@ -4494,6 +4621,7 @@
                         if (searchMatches.length > 0) {
                             selectSearchResult(i);
                             closeSearch();
+                            if (peekActive) closePeekSearch();
                             const selInfo = findNodeAndParentById(selectedId);
                             if (selInfo && !isFolder(selInfo.node)) {
                                 editing = true;
@@ -4545,10 +4673,18 @@
                     const max = tagSearchPhase === 'tags' ? matchingTags.length - 1 : searchMatches.length - 1;
                     searchIndex = Math.min(searchIndex + 1, max);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'ArrowUp') {
                     searchIndex = Math.max(searchIndex - 1, 0);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'Backspace' && tagSearchPhase === 'notes') {
                     const query = searchInput.value;
@@ -4584,6 +4720,7 @@
                     } else if (searchMatches.length > 0) {
                         selectSearchResult(searchIndex);
                         closeSearch();
+                        if (peekActive) closePeekSearch();
                         const selInfo = findNodeAndParentById(selectedId);
                         if (selInfo && !isFolder(selInfo.node)) {
                             if (!readOnly) {
@@ -4602,7 +4739,14 @@
                         }
                     }
                 } else if (e.key === 'Escape') {
-                    closeSearch();
+                    if (peekActive) {
+                        selectedId = peekSavedId;
+                        render();
+                        closeSearch();
+                        closePeekSearch();
+                    } else {
+                        closeSearch();
+                    }
                 }
             });
 
@@ -5092,6 +5236,12 @@
                     return;
                 }
 
+                if (e.key === '\\' && !editing && !dialogOpen()) {
+                    openPeekSearch();
+                    e.preventDefault();
+                    return;
+                }
+
                 if (searchActive || showingHelp) return;
 
                 const k = e.key; // compare exact letter; do not rely on shift state
@@ -5330,11 +5480,11 @@
                             }
 
                             // Restore theme from imported file
-                            const themeMatch = content.match(/let\s+currentTheme\s*=\s*(\[[\s\S]*?\]);/s);
+                            const themeMatch = content.match(/let\s+currentTheme\s*=\s*(\{[\s\S]*?\});/s);
                             if (themeMatch) {
                                 try {
                                     currentTheme = JSON.parse(themeMatch[1]);
-                                    applyTheme(currentTheme);
+                                    applyThemeColors(currentTheme);
                                 } catch (e) {
                                     console.warn('Failed to parse theme from import, using default');
                                     currentTheme = null;
@@ -5424,7 +5574,7 @@
             function toggleMobileMenu() {
                 if (mobileMenu.style.display === "none") {
                     mobileMenu.style.display = "block";
-                    mode_vim = false;
+                    // mode_vim = false;
                 } else {
                     mobileMenu.style.display = "none";
                 }
@@ -5569,12 +5719,12 @@
                     }
                     
                     // Extract and restore current theme
-                    const themeMatch = htmlContent.match(/let\s+currentTheme\s*=\s*(null|\[[\s\S]*?\]);/);
+                    const themeMatch = htmlContent.match(/let\s+currentTheme\s*=\s*(null|\{[\s\S]*?\});/);
                     if (themeMatch) {
                         try {
                             currentTheme = JSON.parse(themeMatch[1]);
                             if (currentTheme) {
-                                applyTheme(currentTheme);
+                                applyThemeColors(currentTheme);
                             }
                         } catch (e) {
                             console.warn('Failed to parse currentTheme, using default');

@@ -271,6 +271,7 @@
                     flex: 1;
                     border-top: 1px solid var(--border);
                     border-bottom: 1px solid var(--border);
+                    overflow-y: auto;
                 }
 
                 .search-results div {
@@ -662,7 +663,7 @@
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"></div>
+                <div class="search-results" id="linkSearchList"><div>Special Tags Cheat Sheet</div><div>Armed Weapon Tag</div><div class="selected">Weapon Tag</div><div>Arming the Player</div><div>Defining the Weapon</div><div>Arming Weapons</div><div>Creating the Spear</div><div>Arming the Player</div></div>
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
@@ -674,7 +675,7 @@
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
+                <div id="linksList"><a href="#" data-node-id="c1z6i7rp" class="selected">History</a><a href="#" data-node-id="5mtavf66">Developers</a><a href="#" data-node-id="y36ctr5i">Reference</a></div>
             </div>
 
             <div id="marksDialog" style="display: none;">
@@ -688,7 +689,7 @@
                 </p>
             </div>
 
-            <div id="replaceDialog" style="display: none;">
+            <div id="replaceDialog" style="display: none; top: 15%; left: 5px; width: 230px;">
                 <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
@@ -707,7 +708,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"></div>
+                    <div id="historyList"><div>Can't Attack Tag</div><div class="selected" style="background: var(--sel-bg);">Special Tags Cheat Sheet</div><div>Admin Pass Tag</div><div>Element Cheat Sheet</div><div>Developer's Cheat Sheet</div><div>Quick Links</div><div>Using This Help System</div><div>Introduction</div><div>Icon Tag</div><div>Hit Score Tag</div><div>Hit Player Message Tag</div><div>Hit Message Tag</div><div>File Name Tag</div><div>Error Tag</div><div>Enter Tag</div><div>Easing Rounds Tag</div><div>Die Tag</div><div>Defacto Output Tag</div><div>Damage Adjustment Tag</div><div>Damage Tag</div><div>Cover Tag</div><div>Container Tag</div><div>Bullet List Tag</div><div>Armed Weapon Tag</div><div>Arm Tag</div><div>Element Fields Cheat Sheet</div><div>Action Element</div><div>Ammo Element</div><div>Attack Element</div><div>Attribute Element</div></div>
                 </div>
             </div>
 
@@ -742,7 +743,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
+                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
             </section>
             </div>
 
@@ -762,7 +763,7 @@
   {
     "id": "7t1zfwoc",
     "title": "Introduction",
-    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit:\n\n_History_\n_Developers_",
+    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit:\n\n_History_\n_Developers_\n    _Reference_",
     "children": [],
     "expanded": false
   },
@@ -936,7 +937,7 @@
               {
                 "id": "3es6spd6",
                 "title": "Element Cheat Sheet",
-                "content": "Element Cheat Sheet\n--------------------------------------------------------------------------------\n\n+---------------+------------------+------------------------------------------------------------------------------+\n| Element       | Link             | Description                                                                  |\n+---------------+------------------+------------------------------------------------------------------------------+\n| action        |                  | Fires off another Element                                                    |\n| attack        | _Attack Element_ | Attack something                                                             |\n| attribute     |                  | Set properties that can be used in powerful ways                             |\n| custom        |                  | Elements that have custom types, used by actions etc                         |\n| dev_note      |                  | Developer notes that are only visible in admin mode                          |\n| enter_message |                  | Special type of message, only shown when entering a room                     |\n| game          |                  | Set properties of your game                                                  |\n| global        |                  | Elements that are called every round of game play                            |\n| injection     |                  | Insert script from another file                                              |\n| input         |                  | Fires when the syntax matches the player's input                             |\n| logic         |                  | Conditional Element that determines if its parent fires or not               |\n| message       |                  | Outputs text to the player                                                   |\n| move          |                  | Moves the player, npcs, or objects from one Element to another               |\n| navigation    |                  | Special message that can remind the player of directions they can travel etc |\n| npc           |                  | An animate 'thing' within the game                                           |\n| object        |                  | An inanimate 'thing' within the game                                         |\n| player        |                  | Defines the Player                                                           |\n| room          |                  | A location that the player and other Elements can be 'in'                    |\n| set           |                  | Change something within the game                                             |\n| travel        |                  | Defines NPC movement                                                         |\n+---------------+------------------+------------------------------------------------------------------------------+\n",
+                "content": "Element Cheat Sheet\n--------------------------------------------------------------------------------\n\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| Element       | Link                    | Description                                                                  |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| action        | _Action Element_        | Fires off another Element                                                    |\n| attack        | _Attack Element_        | Attack something                                                             |\n| attribute     | _Attribute Element_     | Set properties that can be used in powerful ways                             |\n| custom        | _Custom Element_        | Elements that have custom types, used by actions etc                         |\n| dev_note      | _Dev Note Element_      | Developer notes that are only visible in admin mode                          |\n| enter_message | _Enter Message Element_ | Special type of message, only shown when entering a room                     |\n| game          | _Game Element_          | Set properties of your game                                                  |\n| global        | _Global Element_        | Elements that are called every round of game play                            |\n| injection     | _Injection Element_     | Insert script from another file                                              |\n| input         | _Input Element_         | Fires when the syntax matches the player's input                             |\n| logic         | _Logic Element_         | Conditional Element that determines if its parent fires or not               |\n| message       | _Message Element_       | Outputs text to the player                                                   |\n| move          | _Move Element_          | Moves the player, npcs, or objects from one Element to another               |\n| navigation    | _Navigation Element_    | Special message that can remind the player of directions they can travel etc |\n| npc           | _NPC Element_           | An animate 'thing' within the game                                           |\n| object        | _Object Element_        | An inanimate 'thing' within the game                                         |\n| player        | _Player Element_        | Defines the Player                                                           |\n| room          | _Room Element_          | A location that the player and other Elements can be 'in'                    |\n| set           | _Set Element_           | Change something within the game                                             |\n| travel        | _Travel Element_        | Defines NPC movement                                                         |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n",
                 "children": [],
                 "expanded": false
               },
@@ -991,8 +992,8 @@
               },
               {
                 "id": "qqpugp3q",
-                "title": "Game Element Element",
-                "content": "Game Element Element\n--------------------------------------------------------------------------------\n\n{game, name=The Endless Dungeon\n\t...\n}\n\n\n-- Description --\nThe Game Element is a special Element type - and it must appear in your game,\nand only once. If you define more than one your game may behave strangely or\nbreak altogether. The Game Element defines certain properties of your game and\nallows you to create a splash screen for your game, as well as a means of\naccessing what is called Admin Mode (See Game Author Tools).\n\n-- Special Behaviors --\nThe Game Element is where you will do all of your game's configuration. See the\ntopics below for a full list of what you can set up.\n* Output File Name\n\n-- Allowed Children --\n    message\n    action\n    room\n    input\n\n-- Examples --\n\n--------------------------------------------------------------------------------\n\n{game\n    name=Sample Game\n\n    {attrib, output=admin, tags=!_adminpass }\n    {attrib, output=#000, tags=!_ui_background }\n    {attrib, output=#fff, tags=!_ui_foreground }\n    {attrib, tags=!_error\n        output={@\nI don't understand what you are trying to do.\n        }\n    }\n    {attrib, output=look, tags=!_defact }\n\n\n    {message, tags=!_die\n        output={@\nYou have died.\n        }\n    }\n\n    {message, tags=!_start\n        output={@\n\n███████╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗     ██████╗  █████╗ ███╗   ███╗███████╗\n██╔════╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n███████╗███████║██╔████╔██║██████╔╝██║     █████╗      ██║  ███╗███████║██╔████╔██║█████╗  \n╚════██║██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n███████║██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n                                                                                           \n\n\n\n        }\n    }\n}\n\n\n--------------------------------------------------------------------------------\n#element",
+                "title": "Game Element",
+                "content": "Game Element\n--------------------------------------------------------------------------------\n\n{game, name=The Endless Dungeon\n\t...\n}\n\n\n-- Description --\nThe Game Element is a special Element type - and it must appear in your game,\nand only once. If you define more than one your game may behave strangely or\nbreak altogether. The Game Element defines certain properties of your game and\nallows you to create a splash screen for your game, as well as a means of\naccessing what is called Admin Mode (See Game Author Tools).\n\n-- Special Behaviors --\nThe Game Element is where you will do all of your game's configuration. See the\ntopics below for a full list of what you can set up.\n* Output File Name\n\n-- Allowed Children --\n    message\n    action\n    room\n    input\n\n-- Examples --\n\n--------------------------------------------------------------------------------\n\n{game\n    name=Sample Game\n\n    {attrib, output=admin, tags=!_adminpass }\n    {attrib, output=#000, tags=!_ui_background }\n    {attrib, output=#fff, tags=!_ui_foreground }\n    {attrib, tags=!_error\n        output={@\nI don't understand what you are trying to do.\n        }\n    }\n    {attrib, output=look, tags=!_defact }\n\n\n    {message, tags=!_die\n        output={@\nYou have died.\n        }\n    }\n\n    {message, tags=!_start\n        output={@\n\n███████╗ █████╗ ███╗   ███╗██████╗ ██╗     ███████╗     ██████╗  █████╗ ███╗   ███╗███████╗\n██╔════╝██╔══██╗████╗ ████║██╔══██╗██║     ██╔════╝    ██╔════╝ ██╔══██╗████╗ ████║██╔════╝\n███████╗███████║██╔████╔██║██████╔╝██║     █████╗      ██║  ███╗███████║██╔████╔██║█████╗  \n╚════██║██╔══██║██║╚██╔╝██║██╔═══╝ ██║     ██╔══╝      ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  \n███████║██║  ██║██║ ╚═╝ ██║██║     ███████╗███████╗    ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗\n╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚══════╝╚══════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝\n                                                                                           \n\n\n\n        }\n    }\n}\n\n\n--------------------------------------------------------------------------------\n#element",
                 "children": [
                   {
                     "id": "lecybw9t",
@@ -1114,7 +1115,7 @@
               {
                 "id": "9xbjszqy",
                 "title": "Element Fields Cheat Sheet",
-                "content": "Element Fields Cheat Sheet\n--------------------------------------------------------------------------------",
+                "content": "Element Fields Cheat Sheet\n--------------------------------------------------------------------------------\n\n+--------+---------------------+--------------------------------------------------------------------------+\n| Field  | Link                | Description                                                              |\n+--------+---------------------+--------------------------------------------------------------------------+\n| key    | _Element Key Field_ | An ID that is unique within the game                                     |\n| logic  | _Logic Field_       | Defines the logic used to determine if this Element is fired             |\n| name   | _Name Field_        | User friendly name for the Element                                       |\n| output | _Output Field_      | Defines what is shown to the player                                      |\n| parent | _Parent Field_      | Specifies the Element that the current Element is within                 |\n| repeat | _Repeat Field_      | Specifies the repeat method the Message applies                          |\n| sort   | _Sort Field_        | Lets the game author sort the Elements in a definition file              |\n| syntax | _Syntax Field_      | A regular expression used to match player input                          |\n| tags   | _Tags Field_        | Tags allow the game author to extend the functionality of their Elements |\n| type   | _Type Field_        | Specifies the Element type                                               |\n+--------+---------------------+--------------------------------------------------------------------------+\n",
                 "children": [],
                 "expanded": false
               },
@@ -1236,7 +1237,7 @@
               {
                 "id": "fhr5448h",
                 "title": "Special Tags Cheat Sheet",
-                "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------------------------------------------+\n| Tag             | Description                                                   |\n| !_adminpass     | Lets you set an admin mode password                           |\n| !_arm           | Lets a Set Element arm the player                             |\n| !_armed         | Lets WW know what weapon the player is armed with             |\n| !_bullet        | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | Lets WW know the Element is a container                       |\n| !_cover         | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | The current Element inflicts damage                           |\n| !_damageadj     | Allows you to adjust damage values                            |\n| !_defact        | Default output value                                          |\n| !_die           | The Element to process when the player dies                   |\n| !_easingrounds  | Make difficult enemies a bit easier to hit                    |\n| !_enter         | An Element to process when entering a Room                    |\n| !_error         | The Element's Output should show when an error occurs         |\n| !_filename      | Specify the file name to use when saving the game             |\n| !_hitmsg        | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | Message to show when the player is hit                        |\n| !_hitscore      | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | Message to show when the player kills an enemy                |\n| !_leave         | An Element to process when leaving a Room                     |\n| !_life          | The Element is showing the Player's life                      |\n| !_limbo         | A 'place' to move Elements when they should disappear         |\n| !_list          | Show a list of matching Attributes                            |\n| !_missmsg       | Message to show when an attack misses                         |\n| !_missplayermsg | When an attack on the player fails, show this                 |\n| !_platform      | Lets WW know the Element is a platform, things can be on it   |\n| !_put           | Lets WW know that the Element can be put into another Element |\n| !_regex         | The Attribute Element is a REGEX                              |\n| !_spawn         | The Action Element should spawn another Element               |\n| !_start         | An Element to fire when the game first starts                 |\n| !_test          | The Element is a test Element                                 |\n| !_type          | The scope Element type                                        |\n| !_ui_background | Set the game's UI background color                            |\n| !_ui_foreground | Set the game's UI foreground color                            |\n| !_weapon        | The current Object Element is a weapon                        |\n+-----------------+---------------------------------------------------------------+\n",
+                "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------+---------------------------------------------------------------+\n| Tag             | Link                      | Description                                                   |\n+-----------------+---------------------------+---------------------------------------------------------------+\n| !_adminpass     | _Admin Pass Tag_          | Lets you set an admin mode password                           |\n| !_arm           | _Arm Tag_                 | Lets a Set Element arm the player                             |\n| !_armed         | _Armed Weapon Tag_        | Lets WW know what weapon the player is armed with             |\n| !_bullet        | _Bullet List Tag_         | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | _Can't Attack Tag_        | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | _Container Tag_           | Lets WW know the Element is a container                       |\n| !_cover         | _Cover Tag_               | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | _Damage Tag_              | The current Element inflicts damage                           |\n| !_damageadj     | _Damage Adjustment Tag_   | Allows you to adjust damage values                            |\n| !_defact        | _Defacto Output Tag_      | Default output value                                          |\n| !_die           | _Die Tag_                 | The Element to process when the player dies                   |\n| !_easingrounds  | _Easing Rounds Tag_       | Make difficult enemies a bit easier to hit                    |\n| !_enter         | _Enter Tag_               | An Element to process when entering a Room                    |\n| !_error         | _Error Tag_               | The Element's Output should show when an error occurs         |\n| !_filename      | _File Name Tag_           | Specify the file name to use when saving the game             |\n| !_hitmsg        | _Hit Message Tag_         | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | _Hit Player Message Tag_  | Message to show when the player is hit                        |\n| !_hitscore      | _Hit Score Tag_           | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | _Kill Message Tag_        | Message to show when the player kills an enemy                |\n| !_leave         | _Leave Tag_               | An Element to process when leaving a Room                     |\n| !_life          | _Life Tag_                | The Element is showing the Player's life                      |\n| !_limbo         | _Limbo Tag_               | A 'place' to move Elements when they should disappear         |\n| !_list          | _List Tag_                | Show a list of matching Attributes                            |\n| !_missmsg       | _Miss Message Tag_        | Message to show when an attack misses                         |\n| !_missplayermsg | _Miss Player Message Tag_ | When an attack on the player fails, show this                 |\n| !_platform      | _Platform Tag_            | Lets WW know the Element is a platform, things can be on it   |\n| !_put           | _Put Tag_                 | Lets WW know that the Element can be put into another Element |\n| !_regex         | _REGEX Tag_               | The Attribute Element is a REGEX                              |\n| !_spawn         | _Spawn Tag_               | The Action Element should spawn another Element               |\n| !_start         | _Start Element Tag_       | An Element to fire when the game first starts                 |\n| !_test          | _Test Tag_                | The Element is a test Element                                 |\n| !_type          | _Type Tag_                | The scope Element type                                        |\n| !_ui_background | _UI Background Tag_       | Set the game's UI background color                            |\n| !_ui_foreground | _UI Foreground Tag_       | Set the game's UI foreground color                            |\n| !_weapon        | _Weapon Tag_              | The current Object Element is a weapon                        |\n+-----------------+---------------------------+---------------------------------------------------------------+\n",
                 "children": [],
                 "expanded": false
               },
@@ -2646,6 +2647,34 @@
 ];
             let historyStack = [
     {
+        "id": "2z7245ps",
+        "title": "Action Element"
+    },
+    {
+        "id": "yv4driaf",
+        "title": "Admin Pass Tag"
+    },
+    {
+        "id": "56krobm4",
+        "title": "Arm Tag"
+    },
+    {
+        "id": "nkfi4ecz",
+        "title": "Armed Weapon Tag"
+    },
+    {
+        "id": "1hfmevze",
+        "title": "Bullet List Tag"
+    },
+    {
+        "id": "rn2o3ed4",
+        "title": "Can't Attack Tag"
+    },
+    {
+        "id": "g5cdjhut",
+        "title": "Container Tag"
+    },
+    {
         "id": "b9al9exs",
         "title": "Cover Tag"
     },
@@ -2690,76 +2719,48 @@
         "title": "Hit Player Message Tag"
     },
     {
-        "id": "q87b0aaq",
-        "title": "Hit Score Tag"
+        "id": "87qweyfx",
+        "title": "Icon Tag"
     },
     {
         "id": "30r35phi",
         "title": "Kill Message Tag"
     },
     {
-        "id": "7bhq9y3d",
-        "title": "Leave Tag"
+        "id": "q87b0aaq",
+        "title": "Hit Score Tag"
     },
     {
-        "id": "z14sis1j",
-        "title": "Life Tag"
+        "id": "jtfzv3lb",
+        "title": "Using This Help System"
     },
     {
-        "id": "1tq6plpe",
-        "title": "Limbo Tag"
+        "id": "gd3l7b09",
+        "title": "Quick Links"
     },
     {
-        "id": "elcfgqtj",
-        "title": "Miss Message Tag"
+        "id": "3cccheaq",
+        "title": "Developer's Cheat Sheet"
     },
     {
-        "id": "ivnvc8sv",
-        "title": "Miss Player Message Tag"
+        "id": "9s2fmaqf",
+        "title": "Introduction to Relative References"
     },
     {
-        "id": "bg1rn446",
-        "title": "Platform Tag"
+        "id": "3es6spd6",
+        "title": "Element Cheat Sheet"
     },
     {
-        "id": "l6p9ii8d",
-        "title": "Put Tag"
+        "id": "9xbjszqy",
+        "title": "Element Fields Cheat Sheet"
     },
     {
-        "id": "dyt0p04u",
-        "title": "REGEX Tag"
+        "id": "fhr5448h",
+        "title": "Special Tags Cheat Sheet"
     },
     {
-        "id": "zqq08xb9",
-        "title": "Spawn Tag"
-    },
-    {
-        "id": "f9vwkn0u",
-        "title": "Start Element Tag"
-    },
-    {
-        "id": "lz66af9l",
-        "title": "Test Tag"
-    },
-    {
-        "id": "plbe99vp",
-        "title": "Type Tag"
-    },
-    {
-        "id": "jpyoiwsm",
-        "title": "UI Background Tag"
-    },
-    {
-        "id": "czqladpe",
-        "title": "UI Foreground Tag"
-    },
-    {
-        "id": "50vpz6hq",
-        "title": "Weapon Tag"
-    },
-    {
-        "id": "nqrxd1yf",
-        "title": "List Tag"
+        "id": "42ohhfa6",
+        "title": "Introduction to Relative Syntax"
     },
     {
         "id": "7t1zfwoc",
@@ -2790,7 +2791,7 @@
             let importedFileName = null;
 
             let fileName = "help";
-            let curVersion = "1.0.6"
+            let curVersion = "1.0.7"
             let showInitHelp = false;
             let headerTemplate = "__| ^*^ |__";
             let selectedId = null;
@@ -2925,6 +2926,8 @@
             let searchIndex = 0;
             let tagSearchPhase = 'tags';
             let matchingTags = [];
+            let peekActive = false;
+            let peekSavedId = null;
             const helpDialog = document.getElementById('helpDialog');
             const helpDialogVimEdit = document.getElementById('helpDialogVimEdit');
             const helpDialogVimDisabled = document.getElementById('helpDialogVimDisabled');
@@ -2980,7 +2983,8 @@
                     { key: "N", mode: "TREE", description: "Toggle tree visibility" },
                     { key: "]", mode: "TREE", description: "Expand the treeview panel" },
                     { key: "[", mode: "TREE", description: "Shrink the treeview panel" },
-                    { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "/", mode: "TREE", description: "Search (begin with : labels, r: regex, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -3051,7 +3055,8 @@
                     { key: "D", mode: "TREE", description: "Delete the current node" },
                     { key: "i", mode: "TREE", description: "Edit current note" },
                     { key: "I", mode: "TREE", description: "Edit current note" },
-                    { key: "/", mode: "TREE", description: "Search (begin with : labels, # tags, +: all words comma sep)" },
+                    { key: "/", mode: "TREE", description: "Search (begin with : labels, r: regex, # tags, +: all words comma sep)" },
+                    { key: "\\", mode: "TREE", description: "Peek search (search results replace treeview)" },
                     { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
@@ -5556,6 +5561,11 @@
                 closeMarksDialog();
                 closeHistoryDialog();
                 closeVersionDialog();
+                if (peekActive) {
+                    selectedId = peekSavedId;
+                    closePeekSearch();
+                    render();
+                }
             }
 
         //---- Finding and Replacing -------------------------------------------
@@ -6009,9 +6019,35 @@
                 searchDialog.style.display = 'none';
             }
 
+            function openPeekSearch() {
+                peekActive = true;
+                peekSavedId = selectedId;
+                const treeEl = document.getElementById('tree');
+                const treeRect = treeEl.getBoundingClientRect();
+                searchDialog.style.top = treeRect.top + 'px';
+                searchDialog.style.left = treeRect.left + 'px';
+                searchDialog.style.width = treeRect.width + 'px';
+                searchDialog.style.height = treeRect.height + 'px';
+                searchDialog.style.maxHeight = treeRect.height + 'px';
+                searchDialog.style.transform = 'none';
+                searchDialog.style.maxWidth = 'none';
+                openSearch();
+            }
+
+            function closePeekSearch() {
+                peekActive = false;
+                searchDialog.style.top = '';
+                searchDialog.style.left = '';
+                searchDialog.style.width = '';
+                searchDialog.style.height = '';
+                searchDialog.style.maxHeight = '';
+                searchDialog.style.transform = '';
+                searchDialog.style.maxWidth = '';
+            }
+
             function searchTree(query) {
                 searchMatches = [];
-                if (query.startsWith("#:")) {
+                if (query.startsWith("r:")) {
                     searchTreeRegex(query.substring(2));
                     return;
                 }
@@ -6019,7 +6055,7 @@
                     searchTreeWords(query.substring(2));
                     return;
                 }
-                if (query.startsWith("#") && !query.startsWith("#:")) {
+                if (query.startsWith("#")) {
                     searchTreeTags(query.substring(1));
                     return;
                 }
@@ -6112,6 +6148,38 @@
                     }
                 })(treeData);
 
+                searchIndex = 0;
+                renderSearchList();
+            }
+
+            function searchTreeRegex(query) {
+                const rxPattern = new RegExp(query, 'ims');
+                let res = [];
+
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const nodeTitle = n.title ? n.title : '';
+                        const nodeContent = n.content ? n.content : ''; 
+
+                        let matches = false;
+
+                        let allPartsMatch = true;
+
+                        res = nodeTitle.match(rxPattern);
+                        if (!matches && res && res.length > 0) {
+                            matches = true;
+                        }
+                        res = nodeContent.match(rxPattern);
+                        if (!matches && res && res.length > 0) {
+                            matches = true;
+                        }
+
+                        if (matches) {
+                            searchMatches.push(n);
+                        }
+                        if (n.children && n.children.length) walk(n.children);
+                    }
+                })(treeData);
                 searchIndex = 0;
                 renderSearchList();
             }
@@ -6212,6 +6280,7 @@
                         if (searchMatches.length > 0) {
                             selectSearchResult(i);
                             closeSearch();
+                            if (peekActive) closePeekSearch();
                             const selInfo = findNodeAndParentById(selectedId);
                             if (selInfo && !isFolder(selInfo.node)) {
                                 editing = true;
@@ -6263,10 +6332,18 @@
                     const max = tagSearchPhase === 'tags' ? matchingTags.length - 1 : searchMatches.length - 1;
                     searchIndex = Math.min(searchIndex + 1, max);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'ArrowUp') {
                     searchIndex = Math.max(searchIndex - 1, 0);
                     renderSearchList();
+                    if (peekActive && tagSearchPhase !== 'tags' && searchMatches.length > 0) {
+                        const n = searchMatches[searchIndex];
+                        if (n) { selectedId = n.id; expandToNode(n.id); render(); }
+                    }
                     e.preventDefault();
                 } else if (e.key === 'Backspace' && tagSearchPhase === 'notes') {
                     const query = searchInput.value;
@@ -6302,6 +6379,7 @@
                     } else if (searchMatches.length > 0) {
                         selectSearchResult(searchIndex);
                         closeSearch();
+                        if (peekActive) closePeekSearch();
                         const selInfo = findNodeAndParentById(selectedId);
                         if (selInfo && !isFolder(selInfo.node)) {
                             if (!readOnly) {
@@ -6320,7 +6398,14 @@
                         }
                     }
                 } else if (e.key === 'Escape') {
-                    closeSearch();
+                    if (peekActive) {
+                        selectedId = peekSavedId;
+                        render();
+                        closeSearch();
+                        closePeekSearch();
+                    } else {
+                        closeSearch();
+                    }
                 }
             });
 
@@ -6810,6 +6895,12 @@
                     return;
                 }
 
+                if (e.key === '\\' && !editing && !dialogOpen()) {
+                    openPeekSearch();
+                    e.preventDefault();
+                    return;
+                }
+
                 if (searchActive || showingHelp) return;
 
                 const k = e.key; // compare exact letter; do not rely on shift state
@@ -7048,11 +7139,11 @@
                             }
 
                             // Restore theme from imported file
-                            const themeMatch = content.match(/let\s+currentTheme\s*=\s*(\[[\s\S]*?\]);/s);
+                            const themeMatch = content.match(/let\s+currentTheme\s*=\s*(\{[\s\S]*?\});/s);
                             if (themeMatch) {
                                 try {
                                     currentTheme = JSON.parse(themeMatch[1]);
-                                    applyTheme(currentTheme);
+                                    applyThemeColors(currentTheme);
                                 } catch (e) {
                                     console.warn('Failed to parse theme from import, using default');
                                     currentTheme = null;
@@ -7142,7 +7233,7 @@
             function toggleMobileMenu() {
                 if (mobileMenu.style.display === "none") {
                     mobileMenu.style.display = "block";
-                    mode_vim = false;
+                    // mode_vim = false;
                 } else {
                     mobileMenu.style.display = "none";
                 }
@@ -7287,12 +7378,12 @@
                     }
                     
                     // Extract and restore current theme
-                    const themeMatch = htmlContent.match(/let\s+currentTheme\s*=\s*(null|\[[\s\S]*?\]);/);
+                    const themeMatch = htmlContent.match(/let\s+currentTheme\s*=\s*(null|\{[\s\S]*?\});/);
                     if (themeMatch) {
                         try {
                             currentTheme = JSON.parse(themeMatch[1]);
                             if (currentTheme) {
-                                applyTheme(currentTheme);
+                                applyThemeColors(currentTheme);
                             }
                         } catch (e) {
                             console.warn('Failed to parse currentTheme, using default');

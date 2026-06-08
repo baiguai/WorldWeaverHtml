@@ -1,0 +1,28 @@
+{room, key=portal_04, name=Portal 4
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+        }
+    }
+
+    {enter_message
+        output={@
+You are in the fourth portal.
+
+        }
+        
+        {logic, name=Multiplexer portal 04 tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+}

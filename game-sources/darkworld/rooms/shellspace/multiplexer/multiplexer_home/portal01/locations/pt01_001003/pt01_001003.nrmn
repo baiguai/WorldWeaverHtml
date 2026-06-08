@@ -1,0 +1,61 @@
+{room, key=pt01_001003, name=Portal 1
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+
+There is a stone symbol on the ground in front of you.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+There is a stone symbol on the ground in front of you.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_forward))
+        {move, logic=portal_01, tags=[player]
+            output={@
+
+You move forward, stepping on the creepy stone symbol. Everything glitches...
+
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((jump))
+        {move, logic=pt01_001004, tags=[player]
+            output={@
+
+You jump over the creepy looking stone symbol.
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_backward))
+        {move, logic=pt01_001002, tags=[player]
+            output={@
+
+You return to the top of the ladder.
+            }
+        }
+    }
+}

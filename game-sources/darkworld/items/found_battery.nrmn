@@ -1,0 +1,69 @@
+{object, key=found_battery, name=Battery, parent=waterfront_west
+    {attrib, output=false, tags=moved }
+    {attrib, output=false, tags=found }
+
+    {look
+        {message
+            output={@
+You see a battery.
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [room]
+            }
+        }
+    }
+
+    {x_battery
+        {message
+            output={@
+The battery is small, flat black, and cylindrical.
+There is a small glowing LCD on its side, indicating that it is fully charged.
+
+            }
+        }
+    }
+
+
+
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((x_battery))
+        {act, logic=x_battery, tags=!_type|self }
+    }
+
+    {input, syntax=[tplt_syntax]((battery_take))
+        {move, logic=[player], tags=[self]
+            output={@
+You take the battery.
+            }
+        }
+        {set, logic=[self]tags, output=+inventory }
+        {set, logic=[self]((moved)), output=true }
+
+		{logic, logic=[self]parent != [player]
+			output={@
+You already have the battery.
+			}
+		}
+    }
+
+    {input, syntax=[tplt_syntax]((battery_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+You drop the battery.
+            }
+        }
+        {set, logic=[self]tags, output=-inventory }
+        {logic, logic=?[self]parent = [player]
+            output={@
+You aren't carrying that item.
+            }
+        }
+    }
+}

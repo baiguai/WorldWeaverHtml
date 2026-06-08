@@ -2,14 +2,32 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+enter portal 1
+enter portal 2
+enter portal 3
+enter portal 4
+enter portal 5
         }
     }
 
     {enter_message
         output={@
 
-You are in the Multiplexer.
+You are in a room that is arrayed with square portals along the walls.
+You actually know where you are!
+
+The Multiplexer.
+
+Each portal dives into lower level code within Shellspace. It is impossible
+to know what exactly awaits beyond each portal. You've read forum threads
+about this place. Hobbyists build out their own spaces here. Beyond the
+view of those who own Shellspace. It is the darkweb's darkweb.
+
+
+There are 5 portals.
+
+You can examine them by number.
+
         }
         
         {logic, name=Multiplexer Home tested, tags=!_test
@@ -24,13 +42,142 @@ You are in the Multiplexer.
             output={@
 
 You look around...
-You are in the Multiplexer.
+You are in a room that is arrayed with square portals along the walls.
+
+The Multiplexer.
+
+Each portal dives into lower level code within Shellspace. It is impossible
+to know what exactly awaits beyond each portal. It is the darkweb's darkweb.
+
+
+There are 5 portals.
+
+You can examine them by number.
 
             }
         }
     }
 
 
+
+    // 8 bit
+    {x_01
+        {message
+            output={@
+The first portal glows with bright primary colors. It flickers and glitches
+a bit.
+
+            }
+        }
+    }
+    // IntFiction
+    {x_02
+        {message
+            output={@
+The second portal is dark.
+White text flows up across its surface. You are unable to read what it says
+though. It is passing by too quickly.
+
+            }
+        }
+    }
+    // Anomaly
+    {x_03
+        {message
+            output={@
+The third portal seems cloudy. The hint of a face flickers in and out of view
+every now and then something seems to be... off however.
+
+            }
+        }
+    }
+    // Labyrinth
+    {x_04
+        {message
+            output={@
+The fourth portal seems to be looking in on an endless passage.
+The walls are rough stone.
+
+            }
+        }
+    }
+    // Console
+    {x_05
+        {message
+            output={@
+The fifth portal is solid black. In the top left area, a small white
+line is flickering on and off.
+
+            }
+        }
+    }
+
+
+
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((x_portal_01))
+        {act, logic=x_01, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_portal_02))
+        {act, logic=x_02, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_portal_03))
+        {act, logic=x_03, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_portal_04))
+        {act, logic=x_04, tags=!_type|room }
+    }
+    {input, syntax=[tplt_syntax]((x_portal_05))
+        {act, logic=x_05, tags=!_type|room }
+    }
+
+
+    {input, syntax=[tplt_syntax]((go_portal_01))
+        {move, logic=portal_01, tags=[player]
+            output={@
+You enter the first portal...
+
+
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_portal_02))
+        {move, logic=portal_02, tags=[player]
+            output={@
+You enter the second portal...
+
+
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_portal_03))
+        {move, logic=portal_03, tags=[player]
+            output={@
+You enter the third portal...
+
+
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_portal_04))
+        {move, logic=portal_04, tags=[player]
+            output={@
+You enter the fourth portal...
+
+
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_portal_05))
+        {move, logic=portal_05, tags=[player]
+            output={@
+You enter the fifth portal...
+
+
+            }
+        }
+    }
 }

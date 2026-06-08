@@ -1,0 +1,75 @@
+{room, key=pt01_001004, name=Portal 1
+    {attrib, tags=navigation
+        output={@
+f - forward
+b - backward
+j - jump
+c - crouch
+        }
+    }
+
+    {enter_message
+        output={@
+
+Floating before you is a small stone pyramid.
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around.
+There is a small stone pyramid floating in the air.
+            }
+        }
+    }
+
+    {jump
+        {message
+            output={@
+
+You jump, punching the pyramid.
+It explodes into pixel cubes.
+
+Ghostly text appears, floating in the air:
+
+
+"Go to the Great Pyramid, west of the slums."
+
+
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_backward))
+        {move, logic=portal_01, tags=[player]
+            output={@
+
+You move backward, stepping on the creepy stone symbol. Everything glitches...
+
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((jump))
+        {act, logic=jump, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((go_forward))
+        {move, logic=pt01_001005, tags=[player]
+            output={@
+
+You step forward. There is a short cliff in front of you.
+
+            }
+        }
+    }
+}
