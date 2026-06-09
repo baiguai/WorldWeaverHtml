@@ -31,6 +31,7 @@ private:
     void SetupAccelerators();
     void OnOpen(wxCommandEvent& event);
     void OnSelectDB(wxCommandEvent& event);
+    void OnUpdateDB(wxCommandEvent& event);
     void SelectDatabase();
     void OnSave(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
@@ -48,21 +49,26 @@ void DataLoaderFrame::SetupUI() {
 
     wxButton* openBtn = new wxButton(btnPanel, wxID_ANY, "Open (Ctrl+O)");
     wxButton* selectBtn = new wxButton(btnPanel, wxID_ANY, "Select DB (Ctrl+D)");
+    wxButton* updateBtn = new wxButton(btnPanel, wxID_ANY, "Reload File and Select DB (Ctrl+U)");
     wxButton* saveBtn = new wxButton(btnPanel, wxID_ANY, "Save (Ctrl+S)");
     wxButton* exitBtn = new wxButton(btnPanel, wxID_ANY, "Exit (Ctrl+Q)");
 
     StyleButton(openBtn);
     StyleButton(selectBtn);
+    StyleButton(updateBtn);
+    updateBtn->SetMinSize(wxSize(230, 30));
     StyleButton(saveBtn);
     StyleButton(exitBtn);
 
     openBtn->Bind(wxEVT_BUTTON, &DataLoaderFrame::OnOpen, this);
     selectBtn->Bind(wxEVT_BUTTON, &DataLoaderFrame::OnSelectDB, this);
+    updateBtn->Bind(wxEVT_BUTTON, &DataLoaderFrame::OnUpdateDB, this);
     saveBtn->Bind(wxEVT_BUTTON, &DataLoaderFrame::OnSave, this);
     exitBtn->Bind(wxEVT_BUTTON, &DataLoaderFrame::OnExit, this);
 
     btnSizer->Add(openBtn, 0, wxALL, 2);
     btnSizer->Add(selectBtn, 0, wxALL, 2);
+    btnSizer->Add(updateBtn, 0, wxALL, 4);
     btnSizer->Add(saveBtn, 0, wxALL, 2);
     btnSizer->Add(exitBtn, 0, wxALL, 2);
     
@@ -93,18 +99,20 @@ void DataLoaderFrame::StyleButton(wxButton* btn) {
 }
 
 void DataLoaderFrame::SetupAccelerators() {
-    wxAcceleratorEntry entries[4];
+    wxAcceleratorEntry entries[5];
     entries[0].Set(wxACCEL_CTRL, 'O', 1001);
     entries[1].Set(wxACCEL_CTRL, 'D', 1002);
     entries[2].Set(wxACCEL_CTRL, 'S', 1003);
     entries[3].Set(wxACCEL_CTRL, 'Q', 1004);
-    wxAcceleratorTable accel(4, entries);
+    entries[4].Set(wxACCEL_CTRL, 'U', 1005);
+    wxAcceleratorTable accel(5, entries);
     SetAcceleratorTable(accel);
 
     Bind(wxEVT_MENU, &DataLoaderFrame::OnOpen, this, 1001);
     Bind(wxEVT_MENU, &DataLoaderFrame::OnSelectDB, this, 1002);
     Bind(wxEVT_MENU, &DataLoaderFrame::OnSave, this, 1003);
     Bind(wxEVT_MENU, &DataLoaderFrame::OnExit, this, 1004);
+    Bind(wxEVT_MENU, &DataLoaderFrame::OnUpdateDB, this, 1005);
 }
 
 void DataLoaderFrame::OnOpen(wxCommandEvent& event) {
@@ -137,6 +145,36 @@ void DataLoaderFrame::OnOpen(wxCommandEvent& event) {
 void DataLoaderFrame::OnSelectDB(wxCommandEvent& event) {
     SelectDatabase();
 }
+
+void DataLoaderFrame::OnUpdateDB(wxCommandEvent& event) {
+    if (currentFile.IsEmpty()) {
+        wxFileDialog dialog(this, "Select HTML file to update database for", "", "",
+                           "HTML files (*.html)|*.html|All files (*.*)|*.*",
+                           wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+        if (dialog.ShowModal() == wxID_CANCEL) return;
+        currentFile = dialog.GetPath();
+    }
+
+    std::ifstream file(currentFile.ToStdString(), std::ios::binary);
+    if (!file.is_open()) {
+        wxMessageBox("Failed to open file", "Error", wxOK | wxICON_ERROR);
+        if (currentFile.IsEmpty()) currentFile.Clear();
+        return;
+    }
+    std::string contentStr;
+    file.seekg(0, std::ios::end);
+    contentStr.reserve(file.tellg());
+    file.seekg(0, std::ios::beg);
+    contentStr.assign((std::istreambuf_iterator<char>(file)),
+                     std::istreambuf_iterator<char>());
+    file.close();
+    wxString content = wxString::FromUTF8(contentStr.c_str(), contentStr.length());
+    textCtrl->SetValue(content);
+    SetTitle("DataLoader - " + currentFile);
+
+    SelectDatabase();
+}
+
 
 void DataLoaderFrame::SelectDatabase() {
     wxString content = textCtrl->GetValue();
