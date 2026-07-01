@@ -657,17 +657,17 @@
             </div>
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
-                <input id="searchInput" placeholder="Search... (# for tags, #: regex, +: words)" type="text">
+                <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
                 <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"><div>Special Tags Cheat Sheet</div><div>Armed Weapon Tag</div><div class="selected">Weapon Tag</div><div>Arming the Player</div><div>Defining the Weapon</div><div>Arming Weapons</div><div>Creating the Spear</div><div>Arming the Player</div></div>
+                <div class="search-results" id="linkSearchList"></div>
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
-              <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only)...">
+              <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
               <div id="helpResults" class="search-results"></div>
               <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
               <p style="margin-top:6px;">Press ESC to close.</p>
@@ -675,7 +675,7 @@
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="c1z6i7rp" class="selected">History</a><a href="#" data-node-id="5mtavf66">Developers</a><a href="#" data-node-id="y36ctr5i">Reference</a></div>
+                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
             </div>
 
             <div id="marksDialog" style="display: none;">
@@ -689,7 +689,7 @@
                 </p>
             </div>
 
-            <div id="replaceDialog" style="display: none; top: 15%; left: 5px; width: 230px;">
+            <div id="replaceDialog" style="display: none;">
                 <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
@@ -708,7 +708,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Can't Attack Tag</div><div class="selected" style="background: var(--sel-bg);">Special Tags Cheat Sheet</div><div>Admin Pass Tag</div><div>Element Cheat Sheet</div><div>Developer's Cheat Sheet</div><div>Quick Links</div><div>Using This Help System</div><div>Introduction</div><div>Icon Tag</div><div>Hit Score Tag</div><div>Hit Player Message Tag</div><div>Hit Message Tag</div><div>File Name Tag</div><div>Error Tag</div><div>Enter Tag</div><div>Easing Rounds Tag</div><div>Die Tag</div><div>Defacto Output Tag</div><div>Damage Adjustment Tag</div><div>Damage Tag</div><div>Cover Tag</div><div>Container Tag</div><div>Bullet List Tag</div><div>Armed Weapon Tag</div><div>Arm Tag</div><div>Element Fields Cheat Sheet</div><div>Action Element</div><div>Ammo Element</div><div>Attack Element</div><div>Attribute Element</div></div>
+                    <div id="historyList"></div>
                 </div>
             </div>
 
@@ -743,7 +743,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
+                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
             </div>
 
@@ -3133,6 +3133,23 @@
                     { key: "Control+;", mode: "VISUAL", description: "Create/Update table" },
                     { key: "Escape", mode: "INSERT", description: "Exit to NORMAL mode" },
                     { key: "<number>", mode: "NORMAL", description: "If you enter a number first, some commands will repeat that many times." }
+                ];
+
+                let helpRegexLib = [
+                    { key: "^hello", mode: "", description: "Lines starting with 'hello'" },
+                    { key: "hello$", mode: "", description: "Lines ending with 'hello'" },
+                    { key: "^hello$", mode: "", description: "Lines containing exactly 'hello'" },
+                    { key: "[Hh]ello)", mode: "", description: "Lines containing 'hello' or 'Hello'" },
+                    { key: "\bhello\b", mode: "", description: "Matches only 'hello' as a whole word" },
+                    { key: "hello.*world", mode: "", description: "Matches 'hello' then 'world'" },
+                    { key: "hello|world", mode: "", description: "Matches 'hello' or 'world'" },
+                    { key: "?=.*hello)(?=.*world)", mode: "", description: "Matches 'hello' and 'world'" },
+                    { key: "^(?=.*hello)(?=.*world).*$", mode: "", description: "Matches 'hello' and 'world' in any order" },
+                    { key: "^.{100,}$", mode: "", description: "Matches lines with 100+ characters" },
+                    { key: "^.{0,10}$", mode: "", description: "Matches lines with 10 or fewer characters" },
+                    { key: "\d+", mode: "", description: "Matches lines containing only digits" },
+                    { key: "\w+@\w+\.\w+", mode: "", description: "Matches lines containing email-like patterns" },
+                    { key: "http\S+", mode: "", description: "Matches lines containing URLs" },
                 ];
 
                 function ensureSelection(){
@@ -6514,6 +6531,7 @@
                 if (mode === 'ReadOnly') data = helpReadOnly;
                 else if (mode === 'VimEnabled') data = helpVimEnabled;
                 else data = helpVimDisabled;
+                let rgxData = helpRegexLib;
 
                 // --- Normalize comparison function ---
                 function matches(h, term) {
@@ -6540,7 +6558,7 @@
                     }
                     results.innerHTML = list
                     .map(h => {
-                        const modeSuffix = h.mode && h.mode.trim() !== "" ? ` <span class="dim">(${escapeHtml(h.mode)}) - </span>` : "";
+                        const modeSuffix = h.mode && h.mode.trim() !== "" ? ` <span class="dim">(${escapeHtml(h.mode)}) - </span>` : "&nbsp;&nbsp;";
                         return `<div><b>${escapeHtml(h.key)}</b>${modeSuffix}${escapeHtml(h.description)}</div>`;
                     })
                     .join('');
@@ -6566,6 +6584,12 @@
                 input.oninput = () => {
                     const term = input.value.trim();
                     if (!term) return renderList(data);
+
+                    if (term === "!r") {
+                        renderList(rgxData);
+                        return;
+                    }
+
                     renderList(data.filter(h => matches(h, term)));
                 };
             }
@@ -6785,7 +6809,7 @@
                     // Add content
                     if (node.content && node.content.trim() !== "" && !node.content.includes("#noexp")) {
                         const contentLines = node.content.split('\n').map(line => indent + line);
-                        content += contentLines.join('\n') + "\n\n";
+                        content += contentLines.join('\n') + "\n\n\n\n";
                     }
 
                     // Process children
