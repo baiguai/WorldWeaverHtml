@@ -13,6 +13,7 @@
 {npc, key=switch_hustler, name=Switchblade Hustler, parent=street_vice_port
     {attrib, output=exploit, tags=topic }
     {attrib, output=initial, tags=step }
+    {attrib, output=false, tags=talked_to }
 
     {attrib, output=false, tags=streets_answered }
     {attrib, output=false, tags=ticket_answered }

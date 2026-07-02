@@ -47,7 +47,25 @@ There's a great cafe in the park north of here. Best coffee.
     }
 
 
-    {inject, logic=/nav.inj }
+    {navigation
+        {message
+            output={@
+
+
+
+---
+<<[room]((navigation))>>
+            }
+        }
+
+        {logic
+            logic={@
+                ?[switch_hustler]((talked_to)) = 'true'
+            }
+        }
+    }
+
+
     {inject, logic=/look.inj }
 
 
