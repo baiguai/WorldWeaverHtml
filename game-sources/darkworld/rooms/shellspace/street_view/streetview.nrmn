@@ -79,6 +79,17 @@ You go north west.
         }
 
         {set, logic=[switch_hustler]parent, tags=!_limbo }
+
+        {logic
+            logic={@
+                ?[invite_chip]parent = [player]
+            }
+            output={@
+
+You should go west, along the waterfront. That's what the man you met suggested.
+
+            }
+        }
     }
 
 
