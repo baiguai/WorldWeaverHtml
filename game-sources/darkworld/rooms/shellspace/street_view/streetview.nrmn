@@ -20,7 +20,7 @@ You are next to a major street in the downtown district of a city called Vice Ha
 <?[invite_chip]parent = [player]?>
 
 A young woman is standing nearby. She nods at you and says:
-There's a great cafe in the park north of here. Best coffee.
+There's a great cafe in the park north of the Business District. Best coffee ever.
 </?>
         }
 
@@ -40,7 +40,7 @@ You are next to a major street in the downtown district of a city called Vice Ha
 <?[invite_chip]parent = [player]?>
 
 A young woman is standing nearby. She nods at you and says:
-There's a great cafe in the park north of here. Best coffee.
+There's a great cafe in the park north of the Business District. Best coffee ever.
 </?>
             }
         }

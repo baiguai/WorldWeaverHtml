@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html style="--bg: #0a0018; --fg: #f0d8f8; --muted: #5050a0; --accent: #ff68d8; --danger: #f04080; --sel-bg: #1a0a28; --btn-border: #302848; --border: #201838; --border-radius: 4px; --pill-radius: 4px; --vim-cursor: #f0d8f8; --insert-cursor: #ff68d8; --input-bg: #180828; --input-fg: #f0d8f8; --btn-bg: #180828; --btn-fg: #f0d8f8; --dim: #5050a0; --grid-color: #230f3a;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>DarkWorld Plot</title>
@@ -18,21 +18,19 @@
 
 <!-- Styles -->
             <style id="theme_styles">
-                :root {
-                    --bg: #000;
-                    --fg: #f5f5f5;
-                    --muted: #555;
-                    --accent: #00d1b2;
-                    --danger: #ff5577;
-                    --sel-bg: #111827;
-                    --btn-border: #555;
-                    --border: #222;
-                    --border-radius: 8px;
-                    --pill-radius: 1px;
-                    --vim-cursor: #00d1b2;
-                    --insert-cursor: #00ff88;
-                }
-            </style>
+    :root {
+                        --bg: #0a0018;
+                        --fg: #f0d8f8;
+                        --muted: #5050a0;
+                        --accent: #ff68d8;
+                        --danger: #f04080;
+                        --sel-bg: #1a0a28;
+                        --btn-border: #302848;
+                        --border: #201838;
+                        --vim-cursor: #00d1b2;
+                        --insert-cursor: #00ff88;
+                    }
+</style>
             <style>
                 .app {
                     display: grid;
@@ -457,83 +455,6 @@
                     }
                 }
 
-                #undoDialog {
-                    display: none;
-                    position: fixed;
-                    top: 10%;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 700px;
-                    max-width: 90vw;
-                    max-height: 70vh;
-                    background: var(--bg);
-                    color: var(--fg);
-                    border: 2px solid var(--border);
-                    border-radius: var(--border-radius);
-                    padding: 0;
-                    z-index: 9999;
-                    font-family: monospace;
-                    box-shadow: rgba(0, 0, 0, 0.8) 0 0 20px;
-                    display: flex;
-                    flex-direction: column;
-                    overflow: hidden;
-                }
-
-                #undoDialog > h3 {
-                    margin: 0;
-                    padding: 15px 16px 8px 16px;
-                    border-bottom: 1px solid var(--border);
-                    flex-shrink: 0;
-                }
-
-                #undoPreview {
-                    flex: 0 0 auto;
-                    max-height: 30vh;
-                    overflow: auto;
-                    padding: 10px 16px;
-                    font-size: 0.85em;
-                    line-height: 1.4;
-                    white-space: pre-wrap;
-                    font-family: monospace;
-                    background: var(--sel-bg);
-                    border-bottom: 1px solid var(--border);
-                    min-height: 0;
-                }
-
-                #undoPreview .diff-line {
-                    background: rgba(255, 85, 119, 0.2);
-                }
-
-                #undoPreview .diff-first {
-                    background: rgba(255, 85, 119, 0.35);
-                }
-
-                #undoDialog .undo-content {
-                    flex: 1 1 auto;
-                    display: flex;
-                    flex-direction: column;
-                    overflow: hidden;
-                    min-height: 0;
-                }
-
-                #undoList {
-                    flex: 1 1 auto;
-                    overflow-y: auto;
-                    padding: 8px 16px;
-                    min-height: 0;
-                }
-
-                #undoList div {
-                    padding: 4px 8px;
-                    cursor: pointer;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                #undoList div.selected {
-                    background: var(--sel-bg);
-                }
                 /* Save As Dialog */
                 #saveAsDialog {
                     position:fixed;
@@ -664,18 +585,18 @@
             </style>
 <!-- End Styles -->
 </head>
-<body>
+<body style="background-image: repeating-linear-gradient(0deg, rgb(35, 15, 58), rgb(35, 15, 58) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(90deg, rgb(35, 15, 58), rgb(35, 15, 58) 1px, transparent 1px, transparent 20px);">
 <!-- GUI -->
             <div class="app">
             <header id="mobileMenu" style="display: none;">
                 <button id="hamburger" class="hamburger" style="display:none;">☰</button>
-                <button id="mblSearch" style="border: none;" onclick="closeDialogs(); activateTree(); openSearch();"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg fill="#000000" width="20" height="20" viewBox="0 0 12.8 12.8" version="1.1" id="svg69" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"> <defs id="defs73" /> <sodipodi:namedview id="namedview71" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="17.748839" inkscape:cx="0.76061313" inkscape:cy="10.000654" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="svg69" /> <title id="title65">search</title> <path d="M 11.105177,12.060916 8.2526636,9.2084027 q -1.235109,0.9410353 -2.7936989,0.9410353 -1.2645164,0 -2.3525887,-0.6175543 Q 2.0183038,8.8849216 1.4007493,7.7968494 0.75378744,6.7087772 0.75378744,5.4442609 q 0,-1.2645164 0.64696186,-2.3525886 Q 2.0183038,2.0036 3.106376,1.3860455 4.1944483,0.73908369 5.4589647,0.73908369 q 1.2645163,0 2.3525885,0.64696181 1.0880725,0.6175545 1.7350341,1.7056268 0.6175547,1.0880722 0.6175547,2.3525886 0,1.5879973 -0.9704432,2.823106 L 12.046213,11.119881 Z M 5.4295573,8.7672925 q 1.3821458,0 2.3525886,-0.9704431 0.9410353,-0.9704427 0.9410353,-2.3231812 0,-1.3821458 -0.9410353,-2.3231812 -0.9704428,-0.9704428 -2.3525886,-0.9704428 -1.3527384,0 -2.3231813,0.9704428 -0.9704428,0.9410354 -0.9704428,2.3231812 0,1.3527385 0.9704428,2.3231812 0.9704429,0.9704431 2.3231813,0.9704431 z" id="path67" style="fill:currentColor;fill-opacity:1;stroke-width:0.0294074" /> <metadata id="metadata1636"> <rdf:RDF> <cc:Work rdf:about=""> <dc:title>search</dc:title> </cc:Work> </rdf:RDF> </metadata> </svg></button>
-                <button id="mblLinks" style="border: none;" onclick="closeDialogs(); activateTree(); openLinksDialog();"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg fill="#000000" version="1.1" id="Capa_1" width="20" height="20" viewBox="0 0 11.05615 11.05615" xml:space="preserve" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1691" /><sodipodi:namedview id="namedview1689" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="25.923538" inkscape:cx="10.010208" inkscape:cy="10.048783" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Capa_1" /> <g id="g1686" style="fill:currentColor;fill-opacity:1" transform="matrix(0.0216909,0,0,0.0216909,0.73171554,0.73170181)"> <g id="g1684" style="fill:currentColor;fill-opacity:1"> <path d="m 409.657,32.474 c -43.146,-43.146 -113.832,-43.146 -156.978,0 l -84.763,84.762 c 29.07,-8.262 60.589,-6.12 88.129,6.732 l 44.063,-44.064 c 17.136,-17.136 44.982,-17.136 62.118,0 17.136,17.136 17.136,44.982 0,62.118 l -55.386,55.386 -36.414,36.414 c -17.136,17.136 -44.982,17.136 -62.119,0 l -47.43,47.43 c 11.016,11.017 23.868,19.278 37.332,24.48 36.415,14.382 78.643,8.874 110.467,-16.219 3.06,-2.447 6.426,-5.201 9.18,-8.262 l 57.222,-57.222 34.578,-34.578 c 43.453,-43.145 43.453,-113.525 10e-4,-156.977 z" id="path1680" style="fill:currentColor;fill-opacity:1" /> <path d="m 184.135,320.114 -42.228,42.228 c -17.136,17.137 -44.982,17.137 -62.118,0 -17.136,-17.136 -17.136,-44.981 0,-62.118 l 91.8,-91.799 c 17.136,-17.136 44.982,-17.136 62.119,0 l 47.43,-47.43 c -11.016,-11.016 -23.868,-19.278 -37.332,-24.48 -38.25,-15.3 -83.232,-8.262 -115.362,20.502 -1.53,1.224 -3.06,2.754 -4.284,3.978 l -91.8,91.799 c -43.146,43.146 -43.146,113.832 0,156.979 43.146,43.146 113.832,43.146 156.978,0 l 82.927,-83.845 c -42.23,9.791 -52.022,8.568 -88.13,-5.814 z" id="path1682" style="fill:currentColor;fill-opacity:1" /> </g> </g> </svg></button>
-                <button id="mblHistory" style="border: none;" onclick="closeDialogs(); activateTree(); openHistoryDialog();"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="131 -131 20 20" xml:space="preserve" sodipodi:docname="temp.svg" width="20" height="20" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs4320" /><sodipodi:namedview id="namedview4318" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="35.582519" inkscape:cx="10.018965" inkscape:cy="10.047068" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Layer_1" /> <g id="XMLID_5_" style="fill:currentColor;fill-opacity:1" transform="matrix(0.03235501,0,0,0.03235501,128.47861,-125.04437)"> <path id="XMLID_9_" d="M 423.7,-93.5 C 302.8,-93.5 204.4,4.9 204.4,125.8 H 131 l 94.2,94.2 1.7,3.3 L 327,125 h -73.4 c 0,-94.2 75.9,-170.1 170.1,-170.1 94.2,0 170.1,75.9 170.1,170.1 0,94.2 -75.9,170.1 -170.1,170.1 -46.7,0 -89.2,-19.2 -120.1,-50 l -34.2,34.2 c 40,40 94.2,64.2 155.1,64.2 C 545.4,343.5 643,245.1 643,124.2 643,4.1 544.6,-93.5 423.7,-93.5 Z M 399.5,27.4 v 121.7 l 104.2,61.7 17.5,-29.2 -85.1,-50.9 V 27.4 Z" style="fill:currentColor;fill-opacity:1" /> </g> </svg></button>
-                <button id="mblExport" style="border: none;" onclick="closeDialogs(); exportNoteAsTxt();"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg fill="#000000" height="20" width="20" version="1.1" id="Capa_1" viewBox="0 0 12.338125 12.338125" xml:space="preserve" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2217" /><sodipodi:namedview id="namedview2215" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="28.278008" inkscape:cx="10.025459" inkscape:cy="10.060822" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Capa_1" /> <g id="XMLID_30_" style="fill:currentColor;fill-opacity:1" transform="matrix(0.02193514,0,0,0.02193514,0.75629126,0.75627966)"> <path id="XMLID_32_" d="M 430.557,79.556 H 218.44 c 21.622,12.688 40.255,29.729 54.859,49.906 h 157.258 c 7.196,0 13.063,5.863 13.063,13.06 v 238.662 c 0,7.199 -5.866,13.064 -13.063,13.064 H 191.894 c -7.198,0 -13.062,-5.865 -13.062,-13.064 V 222.173 c -6.027,-3.1 -12.33,-5.715 -18.845,-7.732 -3.818,11.764 -12.105,21.787 -23.508,27.781 -2.39,1.252 -4.987,2.014 -7.554,2.844 v 136.119 c 0,34.717 28.25,62.971 62.968,62.971 h 238.663 c 34.718,0 62.969,-28.254 62.969,-62.971 V 142.522 c 0,-34.716 -28.25,-62.966 -62.968,-62.966 z" style="fill:currentColor;fill-opacity:1" /> <path id="XMLID_31_" d="m 129.037,175.989 c 51.419,1.234 96.388,28.283 122.25,68.865 2.371,3.705 6.434,5.848 10.657,5.848 1.152,0 2.322,-0.162 3.46,-0.486 5.377,-1.545 9.114,-6.418 9.179,-12.006 0,-0.504 0,-1.01 0,-1.51 0,-81.148 -64.853,-147.023 -145.527,-148.957 V 64.155 c 0,-5.492 -3.038,-10.512 -7.879,-13.078 -2.16,-1.139 -4.533,-1.707 -6.889,-1.707 -2.94,0 -5.848,0.88 -8.35,2.584 L 5.751,120.526 C 2.162,122.98 0.018,127.041 0,131.394 c -0.017,4.338 2.113,8.418 5.687,10.902 l 100.17,69.451 c 2.518,1.753 5.459,2.631 8.414,2.631 2.355,0 4.696,-0.553 6.857,-1.676 4.855,-2.549 7.909,-7.6 7.909,-13.092 z" style="fill:currentColor;fill-opacity:1" /> </g> </svg></button>
-                <button id="mblSave" style="border: none;" onclick="closeDialogs(); saveAsHtml('');"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3265" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3269" /> <sodipodi:namedview id="namedview3267" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="24.074045" inkscape:cx="10.031551" inkscape:cy="10.031551" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="g3753" /> <g id="g3753" transform="matrix(0.02662214,0,0,0.02662214,-0.03277494,-0.0328002)"> <path d="M 5.75,3 C 4.23122,3 3,4.23122 3,5.75 v 12.5 C 3,19.7688 4.23122,21 5.75,21 H 9.99852 C 9.99129,20.8075 10.011,20.6088 10.0613,20.4075 L 10.2882,19.5 H 7.5 v -5.25 c 0,-0.4142 0.33579,-0.75 0.75,-0.75 h 6.6031 l 1.4352,-1.4352 C 16.1158,12.0225 15.9355,12 15.75,12 H 8.25 C 7.00736,12 6,13.0074 6,14.25 V 19.5 H 5.75 C 5.05964,19.5 4.5,18.9404 4.5,18.25 V 5.75 C 4.5,5.05964 5.05964,4.5 5.75,4.5 H 7 V 7.25 C 7,8.49264 8.00736,9.5 9.25,9.5 h 4.5 C 14.9926,9.5 16,8.49264 16,7.25 V 4.52344 c 0.3582,0.05925 0.6918,0.22902 0.9519,0.48912 L 18.9874,7.0481 C 19.3156,7.37629 19.5,7.8214 19.5,8.28553 V 10.007 C 19.5709,10.0024 19.642,10 19.713,10 h 0.0021 c 0.437,2e-4 0.8749,0.0874 1.2849,0.2615 V 8.28553 C 21,7.42358 20.6576,6.59693 20.0481,5.98744 L 18.0126,3.9519 C 17.4031,3.34241 16.5764,3 15.7145,3 Z M 8.5,7.25 V 4.5 h 6 V 7.25 C 14.5,7.66421 14.1642,8 13.75,8 H 9.25 C 8.83579,8 8.5,7.66421 8.5,7.25 Z" fill="#212121" id="path3261" style="fill:currentColor;fill-opacity:1" /> <path d="m 19.7152,11 h -0.0021 c -0.5846,3e-4 -1.1692,0.2234 -1.6152,0.6695 l -5.9024,5.9024 c -0.3442,0.3441 -0.5883,0.7753 -0.7063,1.2475 l -0.4577,1.8307 c -0.199,0.7961 0.5221,1.5173 1.3182,1.3182 l 1.8307,-0.4577 c 0.4722,-0.118 0.9034,-0.3621 1.2475,-0.7063 l 5.9024,-5.9024 c 0.8927,-0.8926 0.8927,-2.3398 0,-3.2324 C 20.8843,11.2234 20.2998,11.0003 19.7152,11 Z" fill="#212121" id="path3263" style="fill:currentColor;fill-opacity:1" /> </g> </svg></button>
-                <button id="mblSaveAs" style="border: none;" onclick="closeDialogs(); saveAsHtml(fileName);"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg fill="#000000" width="20" height="20" viewBox="0 0 0.6 0.6" data-name="Layer 1" version="1.1" id="svg2738" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2742" /> <sodipodi:namedview id="namedview2740" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="29.391603" inkscape:cx="10.019869" inkscape:cy="10.053892" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="svg2738" /> <path d="M 0.54425579,0.22400297 0.37599669,0.05574388 a 0.02804318,0.02804318 0 0 0 -0.008974,-0.0058891 0.03056707,0.03056707 0 0 0 -0.0109368,-0.0022435 H 0.13174058 A 0.08412955,0.08412955 0 0 0 0.04761104,0.1317409 V 0.4682591 A 0.08412955,0.08412955 0 0 0 0.13174058,0.5523886 H 0.46825876 A 0.08412955,0.08412955 0 0 0 0.55238831,0.4682591 V 0.24391363 a 0.02804318,0.02804318 0 0 0 -0.008133,-0.0199107 z M 0.21587013,0.10369772 h 0.11217273 v 0.0560864 H 0.21587013 Z M 0.38412922,0.49630228 H 0.21587013 v -0.0841295 a 0.02804318,0.02804318 0 0 1 0.0280432,-0.0280432 h 0.11217272 a 0.02804318,0.02804318 0 0 1 0.0280432,0.0280432 z m 0.11217273,-0.0280432 a 0.02804318,0.02804318 0 0 1 -0.0280432,0.0280432 H 0.44021558 V 0.41217273 A 0.08412955,0.08412955 0 0 0 0.35608604,0.32804318 H 0.24391331 a 0.08412955,0.08412955 0 0 0 -0.0841295,0.0841295 v 0.0841295 H 0.13174058 A 0.02804318,0.02804318 0 0 1 0.1036974,0.4682591 V 0.1317409 A 0.02804318,0.02804318 0 0 1 0.1317406,0.1036977 H 0.1597838 V 0.1878272 A 0.02804318,0.02804318 0 0 0 0.187827,0.2158704 H 0.35608609 A 0.02804318,0.02804318 0 0 0 0.38412929,0.1878272 V 0.1432386 l 0.11217272,0.11217273 z" id="path2736" style="fill:currentColor;fill-opacity:1;stroke-width:0.0280432" /> </svg></button>
-                <button id="mblHelp" style="border: none;" onclick="closeDialogs(); openHelpDialog('VimDisabled');"><?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3794" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3798" /> <sodipodi:namedview id="namedview3796" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="19.716907" inkscape:cx="10.016784" inkscape:cy="10.016784" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Warning / Help" /> <g id="Warning / Help" style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1" transform="matrix(0.032969,0,0,0.032969,-0.09884509,-0.11376456)"> <path id="Vector" d="M 8.19531,8.76498 C 8.42304,8.06326 8.84053,7.43829 9.40137,6.95899 9.96221,6.47968 10.6444,6.16501 11.373,6.0494 c 0.7287,-0.1156 1.4756,-0.02738 2.1573,0.2548 0.6816,0.28217 1.2713,0.74746 1.7051,1.34424 0.4337,0.59677 0.6941,1.30164 0.7521,2.0371 0.058,0.73546 -0.089,1.47256 -0.4239,2.12986 -0.3349,0.6574 -0.8444,1.2097 -1.4735,1.5952 -0.629,0.3855 -1.3524,0.5896 -2.0901,0.5896 v 0.9996 M 12.0498,19 v 0.1 l -0.0996,2e-4 V 19 Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-opacity:1" /> </g> </svg></button>
+                <button id="mblSearch" style="border: none;" onclick="closeDialogs(); activateTree(); openSearch();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" width="20" height="20" viewBox="0 0 12.8 12.8" version="1.1" id="svg69" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"> <defs id="defs73"></defs> <sodipodi:namedview id="namedview71" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="17.748839" inkscape:cx="0.76061313" inkscape:cy="10.000654" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="svg69"></sodipodi:namedview> <title id="title65">search</title> <path d="M 11.105177,12.060916 8.2526636,9.2084027 q -1.235109,0.9410353 -2.7936989,0.9410353 -1.2645164,0 -2.3525887,-0.6175543 Q 2.0183038,8.8849216 1.4007493,7.7968494 0.75378744,6.7087772 0.75378744,5.4442609 q 0,-1.2645164 0.64696186,-2.3525886 Q 2.0183038,2.0036 3.106376,1.3860455 4.1944483,0.73908369 5.4589647,0.73908369 q 1.2645163,0 2.3525885,0.64696181 1.0880725,0.6175545 1.7350341,1.7056268 0.6175547,1.0880722 0.6175547,2.3525886 0,1.5879973 -0.9704432,2.823106 L 12.046213,11.119881 Z M 5.4295573,8.7672925 q 1.3821458,0 2.3525886,-0.9704431 0.9410353,-0.9704427 0.9410353,-2.3231812 0,-1.3821458 -0.9410353,-2.3231812 -0.9704428,-0.9704428 -2.3525886,-0.9704428 -1.3527384,0 -2.3231813,0.9704428 -0.9704428,0.9410354 -0.9704428,2.3231812 0,1.3527385 0.9704428,2.3231812 0.9704429,0.9704431 2.3231813,0.9704431 z" id="path67" style="fill:currentColor;fill-opacity:1;stroke-width:0.0294074"></path> <metadata id="metadata1636"> <rdf:rdf> <cc:work rdf:about=""> <dc:title>search</dc:title> </cc:work> </rdf:rdf> </metadata> </svg></button>
+                <button id="mblLinks" style="border: none;" onclick="closeDialogs(); activateTree(); openLinksDialog();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" version="1.1" id="Capa_1" width="20" height="20" viewBox="0 0 11.05615 11.05615" xml:space="preserve" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs1691"></defs><sodipodi:namedview id="namedview1689" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="25.923538" inkscape:cx="10.010208" inkscape:cy="10.048783" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Capa_1"></sodipodi:namedview> <g id="g1686" style="fill:currentColor;fill-opacity:1" transform="matrix(0.0216909,0,0,0.0216909,0.73171554,0.73170181)"> <g id="g1684" style="fill:currentColor;fill-opacity:1"> <path d="m 409.657,32.474 c -43.146,-43.146 -113.832,-43.146 -156.978,0 l -84.763,84.762 c 29.07,-8.262 60.589,-6.12 88.129,6.732 l 44.063,-44.064 c 17.136,-17.136 44.982,-17.136 62.118,0 17.136,17.136 17.136,44.982 0,62.118 l -55.386,55.386 -36.414,36.414 c -17.136,17.136 -44.982,17.136 -62.119,0 l -47.43,47.43 c 11.016,11.017 23.868,19.278 37.332,24.48 36.415,14.382 78.643,8.874 110.467,-16.219 3.06,-2.447 6.426,-5.201 9.18,-8.262 l 57.222,-57.222 34.578,-34.578 c 43.453,-43.145 43.453,-113.525 10e-4,-156.977 z" id="path1680" style="fill:currentColor;fill-opacity:1"></path> <path d="m 184.135,320.114 -42.228,42.228 c -17.136,17.137 -44.982,17.137 -62.118,0 -17.136,-17.136 -17.136,-44.981 0,-62.118 l 91.8,-91.799 c 17.136,-17.136 44.982,-17.136 62.119,0 l 47.43,-47.43 c -11.016,-11.016 -23.868,-19.278 -37.332,-24.48 -38.25,-15.3 -83.232,-8.262 -115.362,20.502 -1.53,1.224 -3.06,2.754 -4.284,3.978 l -91.8,91.799 c -43.146,43.146 -43.146,113.832 0,156.979 43.146,43.146 113.832,43.146 156.978,0 l 82.927,-83.845 c -42.23,9.791 -52.022,8.568 -88.13,-5.814 z" id="path1682" style="fill:currentColor;fill-opacity:1"></path> </g> </g> </svg></button>
+                <button id="mblHistory" style="border: none;" onclick="closeDialogs(); activateTree(); openHistoryDialog();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="131 -131 20 20" xml:space="preserve" sodipodi:docname="temp.svg" width="20" height="20" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs4320"></defs><sodipodi:namedview id="namedview4318" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="35.582519" inkscape:cx="10.018965" inkscape:cy="10.047068" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Layer_1"></sodipodi:namedview> <g id="XMLID_5_" style="fill:currentColor;fill-opacity:1" transform="matrix(0.03235501,0,0,0.03235501,128.47861,-125.04437)"> <path id="XMLID_9_" d="M 423.7,-93.5 C 302.8,-93.5 204.4,4.9 204.4,125.8 H 131 l 94.2,94.2 1.7,3.3 L 327,125 h -73.4 c 0,-94.2 75.9,-170.1 170.1,-170.1 94.2,0 170.1,75.9 170.1,170.1 0,94.2 -75.9,170.1 -170.1,170.1 -46.7,0 -89.2,-19.2 -120.1,-50 l -34.2,34.2 c 40,40 94.2,64.2 155.1,64.2 C 545.4,343.5 643,245.1 643,124.2 643,4.1 544.6,-93.5 423.7,-93.5 Z M 399.5,27.4 v 121.7 l 104.2,61.7 17.5,-29.2 -85.1,-50.9 V 27.4 Z" style="fill:currentColor;fill-opacity:1"></path> </g> </svg></button>
+                <button id="mblExport" style="border: none;" onclick="closeDialogs(); exportNoteAsTxt();"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" height="20" width="20" version="1.1" id="Capa_1" viewBox="0 0 12.338125 12.338125" xml:space="preserve" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><defs id="defs2217"></defs><sodipodi:namedview id="namedview2215" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="28.278008" inkscape:cx="10.025459" inkscape:cy="10.060822" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Capa_1"></sodipodi:namedview> <g id="XMLID_30_" style="fill:currentColor;fill-opacity:1" transform="matrix(0.02193514,0,0,0.02193514,0.75629126,0.75627966)"> <path id="XMLID_32_" d="M 430.557,79.556 H 218.44 c 21.622,12.688 40.255,29.729 54.859,49.906 h 157.258 c 7.196,0 13.063,5.863 13.063,13.06 v 238.662 c 0,7.199 -5.866,13.064 -13.063,13.064 H 191.894 c -7.198,0 -13.062,-5.865 -13.062,-13.064 V 222.173 c -6.027,-3.1 -12.33,-5.715 -18.845,-7.732 -3.818,11.764 -12.105,21.787 -23.508,27.781 -2.39,1.252 -4.987,2.014 -7.554,2.844 v 136.119 c 0,34.717 28.25,62.971 62.968,62.971 h 238.663 c 34.718,0 62.969,-28.254 62.969,-62.971 V 142.522 c 0,-34.716 -28.25,-62.966 -62.968,-62.966 z" style="fill:currentColor;fill-opacity:1"></path> <path id="XMLID_31_" d="m 129.037,175.989 c 51.419,1.234 96.388,28.283 122.25,68.865 2.371,3.705 6.434,5.848 10.657,5.848 1.152,0 2.322,-0.162 3.46,-0.486 5.377,-1.545 9.114,-6.418 9.179,-12.006 0,-0.504 0,-1.01 0,-1.51 0,-81.148 -64.853,-147.023 -145.527,-148.957 V 64.155 c 0,-5.492 -3.038,-10.512 -7.879,-13.078 -2.16,-1.139 -4.533,-1.707 -6.889,-1.707 -2.94,0 -5.848,0.88 -8.35,2.584 L 5.751,120.526 C 2.162,122.98 0.018,127.041 0,131.394 c -0.017,4.338 2.113,8.418 5.687,10.902 l 100.17,69.451 c 2.518,1.753 5.459,2.631 8.414,2.631 2.355,0 4.696,-0.553 6.857,-1.676 4.855,-2.549 7.909,-7.6 7.909,-13.092 z" style="fill:currentColor;fill-opacity:1"></path> </g> </svg></button>
+                <button id="mblSave" style="border: none;" onclick="closeDialogs(); saveAsHtml('');"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3265" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3269"></defs> <sodipodi:namedview id="namedview3267" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="24.074045" inkscape:cx="10.031551" inkscape:cy="10.031551" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="g3753"></sodipodi:namedview> <g id="g3753" transform="matrix(0.02662214,0,0,0.02662214,-0.03277494,-0.0328002)"> <path d="M 5.75,3 C 4.23122,3 3,4.23122 3,5.75 v 12.5 C 3,19.7688 4.23122,21 5.75,21 H 9.99852 C 9.99129,20.8075 10.011,20.6088 10.0613,20.4075 L 10.2882,19.5 H 7.5 v -5.25 c 0,-0.4142 0.33579,-0.75 0.75,-0.75 h 6.6031 l 1.4352,-1.4352 C 16.1158,12.0225 15.9355,12 15.75,12 H 8.25 C 7.00736,12 6,13.0074 6,14.25 V 19.5 H 5.75 C 5.05964,19.5 4.5,18.9404 4.5,18.25 V 5.75 C 4.5,5.05964 5.05964,4.5 5.75,4.5 H 7 V 7.25 C 7,8.49264 8.00736,9.5 9.25,9.5 h 4.5 C 14.9926,9.5 16,8.49264 16,7.25 V 4.52344 c 0.3582,0.05925 0.6918,0.22902 0.9519,0.48912 L 18.9874,7.0481 C 19.3156,7.37629 19.5,7.8214 19.5,8.28553 V 10.007 C 19.5709,10.0024 19.642,10 19.713,10 h 0.0021 c 0.437,2e-4 0.8749,0.0874 1.2849,0.2615 V 8.28553 C 21,7.42358 20.6576,6.59693 20.0481,5.98744 L 18.0126,3.9519 C 17.4031,3.34241 16.5764,3 15.7145,3 Z M 8.5,7.25 V 4.5 h 6 V 7.25 C 14.5,7.66421 14.1642,8 13.75,8 H 9.25 C 8.83579,8 8.5,7.66421 8.5,7.25 Z" fill="#212121" id="path3261" style="fill:currentColor;fill-opacity:1"></path> <path d="m 19.7152,11 h -0.0021 c -0.5846,3e-4 -1.1692,0.2234 -1.6152,0.6695 l -5.9024,5.9024 c -0.3442,0.3441 -0.5883,0.7753 -0.7063,1.2475 l -0.4577,1.8307 c -0.199,0.7961 0.5221,1.5173 1.3182,1.3182 l 1.8307,-0.4577 c 0.4722,-0.118 0.9034,-0.3621 1.2475,-0.7063 l 5.9024,-5.9024 c 0.8927,-0.8926 0.8927,-2.3398 0,-3.2324 C 20.8843,11.2234 20.2998,11.0003 19.7152,11 Z" fill="#212121" id="path3263" style="fill:currentColor;fill-opacity:1"></path> </g> </svg></button>
+                <button id="mblSaveAs" style="border: none;" onclick="closeDialogs(); saveAsHtml(fileName);"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg fill="#000000" width="20" height="20" viewBox="0 0 0.6 0.6" data-name="Layer 1" version="1.1" id="svg2738" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs2742"></defs> <sodipodi:namedview id="namedview2740" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="29.391603" inkscape:cx="10.019869" inkscape:cy="10.053892" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="svg2738"></sodipodi:namedview> <path d="M 0.54425579,0.22400297 0.37599669,0.05574388 a 0.02804318,0.02804318 0 0 0 -0.008974,-0.0058891 0.03056707,0.03056707 0 0 0 -0.0109368,-0.0022435 H 0.13174058 A 0.08412955,0.08412955 0 0 0 0.04761104,0.1317409 V 0.4682591 A 0.08412955,0.08412955 0 0 0 0.13174058,0.5523886 H 0.46825876 A 0.08412955,0.08412955 0 0 0 0.55238831,0.4682591 V 0.24391363 a 0.02804318,0.02804318 0 0 0 -0.008133,-0.0199107 z M 0.21587013,0.10369772 h 0.11217273 v 0.0560864 H 0.21587013 Z M 0.38412922,0.49630228 H 0.21587013 v -0.0841295 a 0.02804318,0.02804318 0 0 1 0.0280432,-0.0280432 h 0.11217272 a 0.02804318,0.02804318 0 0 1 0.0280432,0.0280432 z m 0.11217273,-0.0280432 a 0.02804318,0.02804318 0 0 1 -0.0280432,0.0280432 H 0.44021558 V 0.41217273 A 0.08412955,0.08412955 0 0 0 0.35608604,0.32804318 H 0.24391331 a 0.08412955,0.08412955 0 0 0 -0.0841295,0.0841295 v 0.0841295 H 0.13174058 A 0.02804318,0.02804318 0 0 1 0.1036974,0.4682591 V 0.1317409 A 0.02804318,0.02804318 0 0 1 0.1317406,0.1036977 H 0.1597838 V 0.1878272 A 0.02804318,0.02804318 0 0 0 0.187827,0.2158704 H 0.35608609 A 0.02804318,0.02804318 0 0 0 0.38412929,0.1878272 V 0.1432386 l 0.11217272,0.11217273 z" id="path2736" style="fill:currentColor;fill-opacity:1;stroke-width:0.0280432"></path> </svg></button>
+                <button id="mblHelp" style="border: none;" onclick="closeDialogs(); openHelpDialog('VimDisabled');"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?--> <svg width="20" height="20" viewBox="0 0 0.6 0.6" fill="none" version="1.1" id="svg3794" sodipodi:docname="temp.svg" inkscape:version="1.2.2 (b0a8486, 2022-12-01)" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <defs id="defs3798"></defs> <sodipodi:namedview id="namedview3796" pagecolor="#505050" bordercolor="#eeeeee" borderopacity="1" inkscape:showpageshadow="0" inkscape:pageopacity="0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#505050" showgrid="false" inkscape:zoom="19.716907" inkscape:cx="10.016784" inkscape:cy="10.016784" inkscape:window-width="1916" inkscape:window-height="1068" inkscape:window-x="0" inkscape:window-y="4" inkscape:window-maximized="1" inkscape:current-layer="Warning / Help"></sodipodi:namedview> <g id="Warning / Help" style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-opacity:1" transform="matrix(0.032969,0,0,0.032969,-0.09884509,-0.11376456)"> <path id="Vector" d="M 8.19531,8.76498 C 8.42304,8.06326 8.84053,7.43829 9.40137,6.95899 9.96221,6.47968 10.6444,6.16501 11.373,6.0494 c 0.7287,-0.1156 1.4756,-0.02738 2.1573,0.2548 0.6816,0.28217 1.2713,0.74746 1.7051,1.34424 0.4337,0.59677 0.6941,1.30164 0.7521,2.0371 0.058,0.73546 -0.089,1.47256 -0.4239,2.12986 -0.3349,0.6574 -0.8444,1.2097 -1.4735,1.5952 -0.629,0.3855 -1.3524,0.5896 -2.0901,0.5896 v 0.9996 M 12.0498,19 v 0.1 l -0.0996,2e-4 V 19 Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;fill-opacity:1;stroke:currentColor;stroke-opacity:1"></path> </g> </svg></button>
             </header>
 
             <div id="treeDialog" class="tree-dialog">
@@ -769,7 +690,7 @@
             </div>
 
             <div id="replaceDialog" style="display: none;">
-                <h3>Find<span id="ttlReplace"> &amp; Replace<span></h3>
+                <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
                 <div id="replaceTools" style="display: block;">
@@ -788,14 +709,6 @@
                 <h3>History</h3>
                 <div class="history-content">
                     <div id="historyList"></div>
-                </div>
-            </div>
-
-            <div id="undoDialog" style="display: none;">
-                <h3>Undo History</h3>
-                <div id="undoPreview" class="undo-preview"></div>
-                <div class="undo-content">
-                    <div id="undoList"></div>
                 </div>
             </div>
 
@@ -822,15 +735,15 @@
             </div>
 
 
-            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul></ul></aside>
+            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">High Level Plot</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">General Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Individuals</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Groups Involved</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Items</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Clues</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Exploits</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Future Notes</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
                     <span class="pill" id="mode" style="display: block;">TREE</span>
-                    <span class="pill" id="kind">—</span>
+                    <span class="pill" id="kind">NOTE</span>
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" readonly="readonly"></textarea>
+                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
             </div>
 
@@ -850,7 +763,7 @@
   {
     "id": "t3i1xrfc",
     "title": "High Level Plot",
-    "content": "High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.\n\n--------------------------------------------------------------------------------\n\nYou end up furthering the plan to end meat space, thinking you're fighting the\nplot.\n\n--------------------------------------------------------------------------------\n\nMake the player think that RMRF is the group they want to join.\n\nAt the end, they find out it's them who is killing in meatspace NOT Retrograde.\n\n\ndddd\ndddd",
+    "content": "High Level Plot\n\n\nYou are a hacker who stumbled upon a chip that will get you into a VR dark\nweb. Once you are in there, you start to notice some bad things.\n\nPeople in real life are dying while they are in the VR world.\n\n--------------------------------------------------------------------------------\n\nYou end up furthering the plan to end meat space, thinking you're fighting the\nplot.\n\n--------------------------------------------------------------------------------\n\nMake the player think that RMRF is the group they want to join.\n\nAt the end, they find out it's them who is killing in meatspace NOT Retrograde.",
     "children": [],
     "expanded": false
   },
@@ -1194,14 +1107,11 @@
             let historyIndex = 0;
             const historyStackMax = 30;
 
-            let showingUndo = false;
-            let undoIndex = 0;
-
             let copiedNoteId = null;
             let importedFileName = null;
 
             let fileName = "plot";
-            let curVersion = "1.0.11"
+            let curVersion = "1.0.8"
             let showInitHelp = false;
             let headerTemplate = "__| ^*^ |__";
             let selectedId = null;
@@ -1377,7 +1287,6 @@
             const linksDialog = document.getElementById('linksDialog');
             const marksDialog = document.getElementById('marksDialog');
             const historyDialog = document.getElementById('historyDialog');
-            const undoDialog = document.getElementById('undoDialog');
             const versionDialog = document.getElementById('versionDialog');
             const marksList = document.getElementById('marksList');
             const searchInput = document.getElementById('searchInput');
@@ -1560,8 +1469,6 @@
                     { key: "yy", mode: "NORMAL", description: "Copy current line" },
                     { key: "v", mode: "NORMAL", description: "Enter VISUAL mode" },
                     { key: "V", mode: "NORMAL", description: "Enter VISUAL LINE mode" },
-                    { key: "v,i,w", mode: "NORMAL", description: "Select the word at cursor" },
-                    { key: "d,i,w", mode: "NORMAL", description: "Delete the word at cursor" },
                     { key: "Escape", mode: "VISUAL", description: "Exit to NORMAL mode" },
                     { key: "h", mode: "VISUAL", description: "Extend selection left" },
                     { key: "j", mode: "VISUAL", description: "Extend selection down" },
@@ -1888,138 +1795,19 @@
                         showMessage("Already at oldest change");
                         return;
                     }
-                    openUndoDialog();
-                }
 
-                function applyUndo(index) {
-                    const stackIndex = undoStack.length - 1 - index;
-                    if (stackIndex < 0 || stackIndex >= undoStack.length) return;
                     const currentState = {
                         content: editorArea.value,
                         selectionStart: editorArea.selectionStart,
                         selectionEnd: editorArea.selectionEnd,
                     };
                     redoStack.push(currentState);
-                    for (let i = undoStack.length - 1; i > stackIndex; i--) {
-                        redoStack.push(undoStack[i]);
-                    }
-                    const target = undoStack[stackIndex];
-                    editorArea.value = target.content;
-                    editorArea.selectionStart = target.selectionStart;
-                    editorArea.selectionEnd = target.selectionEnd;
-                    undoStack.splice(stackIndex);
-                    closeUndoDialog();
+
+                    const prevState = undoStack.pop();
+                    editorArea.value = prevState.content;
+                    editorArea.selectionStart = prevState.selectionStart;
+                    editorArea.selectionEnd = prevState.selectionEnd;
                     syncFile();
-                    showMessage("Undo applied");
-                }
-
-                function openUndoDialog() {
-                    showingUndo = true;
-                    undoIndex = 0;
-                    renderUndoList();
-                    undoDialog.style.display = 'flex';
-                }
-
-                function closeUndoDialog() {
-                    showingUndo = false;
-                    undoDialog.style.display = 'none';
-                    editorArea.focus();
-                }
-
-                function renderUndoList() {
-                    const list = document.getElementById('undoList');
-                    const preview = document.getElementById('undoPreview');
-                    const currentText = editorArea.value;
-                    const currentLines = currentText.split('\n');
-
-                    list.innerHTML = '';
-                    for (let i = undoStack.length - 1; i >= 0; i--) {
-                        const item = document.createElement('div');
-                        const state = undoStack[i];
-                        const lines = state.content.split('\n');
-                        const previewLine = lines.length > 0 ? lines[0].substring(0, 60) : '(empty)';
-                        const idx = undoStack.length - 1 - i;
-                        item.textContent = (idx + 1) + '. ' + previewLine;
-                        if (idx === undoIndex) {
-                            item.classList.add('selected');
-                        }
-                        item.addEventListener('click', () => {
-                            undoIndex = idx;
-                            renderUndoList();
-                        });
-                        item.addEventListener('dblclick', () => {
-                            undoIndex = idx;
-                            applyUndo(undoIndex);
-                        });
-                        list.appendChild(item);
-                    }
-
-                    // Render preview with diff highlighting
-                    const selIndex = undoStack.length - 1 - undoIndex;
-                    const selState = undoStack[selIndex];
-                    if (selState) {
-                        const selLines = selState.content.split('\n');
-                        const maxLen = Math.max(selLines.length, currentLines.length);
-                        let firstDiffFound = false;
-                        let html = '';
-                        for (let i = 0; i < maxLen; i++) {
-                            const selLine = i < selLines.length ? selLines[i] : '';
-                            const curLine = i < currentLines.length ? currentLines[i] : '';
-                            let cls = '';
-                            if (selLine !== curLine) {
-                                cls = firstDiffFound ? 'diff-line' : 'diff-first';
-                                firstDiffFound = true;
-                            }
-                            const escaped = selLine.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                            html += '<div class="' + cls + '">' + (escaped || '\u00A0') + '</div>';
-                        }
-                        preview.innerHTML = html;
-                        // Scroll to first diff
-                        const firstDiff = preview.querySelector('.diff-first');
-                        if (firstDiff) {
-                            firstDiff.scrollIntoView({ block: 'nearest' });
-                        }
-                    } else {
-                        preview.innerHTML = '';
-                    }
-
-                    // Scroll selected item into view
-                    const selected = list.querySelector('.selected');
-                    if (selected) {
-                        selected.scrollIntoView({ block: 'nearest' });
-                    }
-
-                    if (undoStack.length === 0) {
-                        const empty = document.createElement('div');
-                        empty.textContent = '(no undo history)';
-                        empty.style.color = 'var(--dim)';
-                        list.appendChild(empty);
-                    }
-                }
-
-                function handleUndoKey(e) {
-                    if (!showingUndo) return;
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (e.key === 'ArrowDown' || e.key === 'j') {
-                        undoIndex = Math.min(undoIndex + 1, undoStack.length - 1);
-                        renderUndoList();
-                    } else if (e.key === 'ArrowUp' || e.key === 'k') {
-                        undoIndex = Math.max(undoIndex - 1, 0);
-                        renderUndoList();
-                    } else if (e.key === 'g') {
-                        undoIndex = 0;
-                        renderUndoList();
-                    } else if (e.key === 'G') {
-                        undoIndex = Math.max(undoStack.length - 1, 0);
-                        renderUndoList();
-                    } else if (e.key === 'Enter') {
-                        if (undoStack.length > 0) {
-                            applyUndo(undoIndex);
-                        }
-                    } else if (e.key === 'Escape') {
-                        closeUndoDialog();
-                    }
                 }
 
                 function doRedo() {
@@ -2179,9 +1967,6 @@
                     openDialog = true;
                 }
                 if (historyDialog.style.display === "block") {
-                    openDialog = true;
-                }
-                if (undoDialog.style.display === "flex") {
                     openDialog = true;
                 }
                 if (saveAsDialog.style.display === "block") {
@@ -2687,9 +2472,8 @@
                     if (e.key !== 'g') {
                         mode_going = false;
                     }
-                    if (e.key !== 'd' && e.key !== 'w' && e.key !== 'W' && e.key !== 'b' && e.key !== 'B' && e.key !== 'i') {
+                    if (e.key !== 'd' && e.key !== 'w' && e.key !== 'W' && e.key !== 'b' && e.key !== 'B') {
                         mode_deleting = false;
-                        mode_select_in = false;
                     }
                     if (mode_counting && isNaN(parseInt(e.key, 10))) {
                         mode_counting = false;
@@ -2729,12 +2513,7 @@
                         case "s": saveAsHtml(fileName); break;
                         case "S": openSaveAsDialog(); break;
 
-                        case "i": // Enter insert mode (or inner-text-object when deleting)
-                            if (mode_deleting) {
-                                mode_select_in = true;
-                                e.preventDefault();
-                                return;
-                            }
+                        case "i": // Enter insert mode
                             if (mode_visual) {
                                 mode_select_in = true;
                                 e.preventDefault();
@@ -2806,36 +2585,6 @@
                             performed = true;
                             break;
                         case "w": // Forward word(s)
-                            if (mode_deleting && mode_select_in) {
-                                recordUndoState();
-                                const text = editorArea.value;
-                                let cursorPos = editorArea.selectionStart;
-                                if (cursorPos < text.length) {
-                                    const charClass = (char) => {
-                                        if (!char || /\s/.test(char)) return 'space';
-                                        if (/\w/.test(char)) return 'word';
-                                        return 'other';
-                                    };
-                                    let startPos = cursorPos;
-                                    let curClass = charClass(text[cursorPos]);
-                                    if (curClass === 'space') {
-                                        while (startPos < text.length && charClass(text[startPos]) === 'space') startPos++;
-                                        if (startPos < text.length) curClass = charClass(text[startPos]);
-                                    } else {
-                                        while (startPos > 0 && charClass(text[startPos - 1]) === curClass) startPos--;
-                                    }
-                                    let endPos = startPos;
-                                    let wordClass = charClass(text[startPos]);
-                                    while (endPos < text.length && charClass(text[endPos]) === wordClass) endPos++;
-                                    editorArea.setRangeText("", startPos, endPos, "start");
-                                    editorArea.selectionStart = editorArea.selectionEnd = startPos;
-                                    syncFile();
-                                }
-                                mode_deleting = false;
-                                mode_select_in = false;
-                                performed = true;
-                                break;
-                            }
                             if (mode_deleting) {
                                 recordUndoState();
                                 const getNextWordPos = (currentPos) => {
@@ -3363,7 +3112,6 @@
                 mode_counting = false;
                 mode_going = false;
                 mode_deleting = false;
-                mode_select_in = false;
             }
 
             function activateTree() {
@@ -4302,7 +4050,6 @@
                 closeLinksDialog();
                 closeMarksDialog();
                 closeHistoryDialog();
-                closeUndoDialog();
                 closeVersionDialog();
                 if (peekActive) {
                     selectedId = peekSavedId;
@@ -6084,7 +5831,6 @@
             window.addEventListener('keydown', handleHistoryKey, { capture: true });
             window.addEventListener('keydown', handleLinksKey, { capture: true });
             window.addEventListener('keydown', handleMarksKey, { capture: true });
-            window.addEventListener('keydown', handleUndoKey, { capture: true });
 
         //---- Init ------------------------------------------------------------
             window.addEventListener('load', function() {
@@ -6172,5 +5918,6 @@
                 }, 3000);                               // wait 3s after last change
             }
 </script>
+
 
 </body></html>

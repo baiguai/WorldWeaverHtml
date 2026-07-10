@@ -187,4 +187,23 @@ You are in a port.
     {input, syntax=[tplt_syntax]((x_envelope))
         {act, logic=x_envelope, tags=!_type|room }
     }
+
+
+
+
+
+    {dev_note, tags=Current
+        output={@
+> Park
+    ^^ Define the park room
+    Add the cafe
+
+> Portals
+    ^^ Finish all the portals
+
+> Spaceship
+
+> Backrooms
+        }
+    }
 }
