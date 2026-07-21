@@ -661,14 +661,6 @@
                 ::-webkit-scrollbar-track { background: var(--bg); }
 
                 /* Grid backgrounds */
-
-                /* Theme Editor rows */
-                .te-row { display:flex; align-items:center; gap:8px; padding:3px 12px; cursor:pointer; user-select:none; }
-                .te-row:hover { background: var(--sel-bg); }
-                .te-row.te-selected { background: var(--sel-bg); outline: 1px dashed var(--border); }
-                .te-row.te-active .te-name { color: var(--accent); }
-                .te-row .te-active-dot { display:none; width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
-                .te-row.te-active .te-active-dot { display:inline-block; }
             </style>
 <!-- End Styles -->
 </head>
@@ -754,9 +746,10 @@
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
-                <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
-                <div id="helpResults" class="search-results"></div>
-                <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
+              <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
+              <div id="helpResults" class="search-results"></div>
+              <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
+              <p style="margin-top:6px;">Press ESC to close.</p>
             </div>
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
@@ -767,6 +760,12 @@
             <div id="marksDialog" style="display: none;">
                 <h3>Bookmarks</h3>
                 <div id="marksList"></div>
+                <p>
+                    <br>
+                    Press Esc to close
+                    <br>
+                    Press d to delete a bookmark
+                </p>
             </div>
 
             <div id="replaceDialog" style="display: none;">
@@ -822,39 +821,6 @@
                 <p style="color:var(--dim); font-size:0.9em;">↑↓ Navigate • Enter Apply • Esc Cancel</p>
             </div>
 
-            <div id="themeEditorDialog" style="display:none;position:fixed;top:5%;left:50%;transform:translateX(-50%);width:580px;max-width:95vw;max-height:85vh;background:var(--bg);color:var(--fg);border:2px solid var(--border);border-radius:var(--border-radius);z-index:9999;font-family:monospace;box-shadow:0 0 20px rgba(0,0,0,0.8);flex-direction:column;overflow:hidden;">
-                <div id="themeEditorListView" style="display:flex;flex-direction:column;overflow:hidden;min-height:0;">
-                    <h3 style="margin:0;padding:12px 16px 8px;border-bottom:1px solid var(--border);flex-shrink:0;">Theme Editor</h3>
-                    <div id="themeEditorList" style="flex:1 1 auto;overflow-y:auto;min-height:0;padding:4px 0;"></div>
-                    <div style="flex-shrink:0;padding:8px 16px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;">
-                        <button id="themeEditorAddBtn">+ Add Theme</button>
-                        <button id="themeEditorImportBtn">Import JSON</button>
-                        <button id="themeEditorExportBtn">Export JSON</button>
-                        <span style="flex:1;"></span>
-                        <button id="themeEditorCloseBtn">Close</button>
-                    </div>
-                    <div style="flex-shrink:0;padding:4px 16px 8px;color:var(--dim);font-size:0.85em;">e Edit • d Delete • a Add • Enter Preview</div>
-                </div>
-                <div id="themeEditorEditView" style="display:none;flex-direction:column;overflow:hidden;min-height:0;">
-                    <h3 id="themeEditorEditTitle" style="margin:0;padding:12px 16px 8px;border-bottom:1px solid var(--border);flex-shrink:0;">Edit Theme</h3>
-                    <div style="flex:1 1 auto;overflow-y:auto;min-height:0;padding:12px 16px;">
-                        <label style="display:block;margin-bottom:8px;">Name: <input id="teName" type="text" style="background:var(--sel-bg);color:var(--fg);border:1px solid var(--btn-border);font-family:inherit;width:260px;padding:4px;"></label>
-                        <div id="themeEditorColorGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;"></div>
-                        <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
-                            <label>Border Radius: <input id="te_border-radius" type="text" style="background:var(--sel-bg);color:var(--fg);border:1px solid var(--btn-border);font-family:inherit;width:80px;padding:4px;"></label>
-                            <label>Pill Radius: <input id="te_pill-radius" type="text" style="background:var(--sel-bg);color:var(--fg);border:1px solid var(--btn-border);font-family:inherit;width:80px;padding:4px;"></label>
-                        </div>
-                        <label style="display:block;margin-top:8px;"><input type="checkbox" id="te_grid"> Enable Grid Background</label>
-                        <label style="display:block;margin-top:4px;">Grid Color: <input id="te_grid-color" type="color" style="vertical-align:middle;width:40px;height:24px;border:none;background:none;"></label>
-                        <div style="margin-top:4px;"><span style="font-size:0.85em;color:var(--dim);">Preview:</span> <button id="themeEditorPreviewBtn" style="padding:2px 8px;">Apply to App</button></div>
-                    </div>
-                    <div style="flex-shrink:0;padding:8px 16px;border-top:1px solid var(--border);display:flex;gap:8px;">
-                        <button id="themeEditorSaveBtn">Save Theme</button>
-                        <button id="themeEditorCancelBtn">Cancel</button>
-                    </div>
-                </div>
-            </div>
-            <input type="file" id="themeEditorFilePicker" accept=".json" style="display:none;">
 
             <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul></ul></aside>
             <section class="editor">
@@ -1268,7 +1234,7 @@
             let themes = [
                 { name: "default-theme", bg: "#000000", fg: "#f5f5f5", muted: "#555555", accent: "#00d1b2", danger: "#ff5577", "sel-bg": "#111827", "btn-border": "#555555", border: "#222222", "input-bg": "#111827", "input-fg": "#f5f5f5", "btn-bg": "#111827", "btn-fg": "#f5f5f5", dim: "#555555", "border-radius": "8px", "pill-radius": "999px", "vim-cursor": "#00b894", "insert-cursor": "#00d1b2" },
                 { name: "default-with-grid", bg: "#000000", fg: "#c0c0c0", muted: "#404040", accent: "#00d1b2", danger: "#ff5577", "sel-bg": "#1a1a1a", "btn-border": "#333333", border: "#222222", "input-bg": "#111111", "input-fg": "#c0c0c0", "btn-bg": "#111111", "btn-fg": "#c0c0c0", dim: "#404040", "border-radius": "8px", "pill-radius": "999px", "vim-cursor": "#00b894", "insert-cursor": "#00d1b2", grid: true, "grid-color": "#111111" },
-                { name: "blued", bg: "#000000", fg: "#d5e5ff", muted: "#555555", accent: "#00d1b2", danger: "#ff5577", "sel-bg": "#111827", "btn-border": "#555555", border: "#222222", "input-bg": "#111827", "input-fg": "#d5e5ff", "btn-bg": "#111827", "btn-fg": "#d5e5ff", dim: "#555555", "border-radius": "4px", "pill-radius": "0px", "vim-cursor": "#1f4676", "insert-cursor": "#b8e3ff" },
+                { name: "blued", bg: "#000000", fg: "#d5e5ff", muted: "#555555", accent: "#00d1b2", danger: "#ff5577", "sel-bg": "#111827", "btn-border": "#555555", border: "#222222", "input-bg": "#111827", "input-fg": "#d5e5ff", "btn-bg": "#111827", "btn-fg": "#d5e5ff", dim: "#555555", "border-radius": "8px", "pill-radius": "999px", "vim-cursor": "#1f4676", "insert-cursor": "#b8e3ff" },
                 { name: "dim-console", bg: "#000000", fg: "#888888", muted: "#444444", accent: "#888888", danger: "#888888", "sel-bg": "#000000", "btn-border": "#333333", border: "#111111", "input-bg": "#000000", "input-fg": "#888888", "btn-bg": "#111111", "btn-fg": "#888888", dim: "#444444", "border-radius": "0px", "pill-radius": "0px", "vim-cursor": "#333333", "insert-cursor": "#888888" },
                 { name: "monokai-theme", bg: "#0f0f0f", fg: "#f0f0f0", muted: "#888888", accent: "#00bfff", danger: "#ff4444", "sel-bg": "#1a1a1a", "btn-border": "#666666", border: "#2a2a2a", "input-bg": "#1a1a1a", "input-fg": "#f0f0f0", "btn-bg": "#1a1a1a", "btn-fg": "#f0f0f0", dim: "#888888", "border-radius": "4px", "pill-radius": "4px", "vim-cursor": "#d0d0d0", "insert-cursor": "#00bfff" },
                 { name: "monokai-pro-theme", bg: "#2d2d2d", fg: "#f2f2e0", muted: "#727272", accent: "#ffa044", danger: "#ff6b6b", "sel-bg": "#3d3d3d", "btn-border": "#555555", border: "#494949", "input-bg": "#3d3d3d", "input-fg": "#f2f2e0", "btn-bg": "#3d3d3d", "btn-fg": "#f2f2e0", dim: "#727272", "border-radius": "4px", "pill-radius": "4px", "vim-cursor": "#f2f2e0", "insert-cursor": "#ffa044" },
@@ -1433,11 +1399,6 @@
             let linksCount = 0;
             let themeIndex = 0;
             let previewTheme = null;
-            let themeEditorIndex = 0;
-            let themeEditorMode = 'list';
-            let themeEditorOriginalIndex = -1;
-            let themeEditorIsNew = false;
-            let themeEditorKeyHandler = null;
             let findMatches = [];
             let currentFindIndex = -1;
 
@@ -1475,6 +1436,7 @@
                     { key: "T", mode: "TREE", description: "Export current tree branch as .txt" },
                     { key: "m", mode: "TREE", description: "Bookmark current node" },
                     { key: "`", mode: "TREE", description: "Show bookmarks" },
+                    { key: "%", mode: "TREE", description: "Import theme file" },
                     { key: "!", mode: "TREE", description: "Display options dialog" },
 
                     { key: "a", mode: "NORMAL", description: "Enter insert mode, where you can write text normally" },
@@ -1500,6 +1462,7 @@
                     { key: "x", mode: "NORMAL", description: "Delete the character under the cursor" },
                     { key: "r", mode: "NORMAL", description: "Replace the character under the cursor" },
                     { key: "u", mode: "NORMAL", description: "Undo last change" },
+                    { key: "Ctrl+r", mode: "NORMAL", description: "Redo last undone change" },
 
                     { key: "y", mode: "VISUAL", description: "Copy the selected text" },
                     { key: "x", mode: "VISUAL", description: "Cut the selected text" },
@@ -1549,7 +1512,6 @@
                     { key: "m", mode: "TREE", description: "Bookmark current node" },
                     { key: "`", mode: "TREE", description: "Show bookmarks" },
                     { key: "%", mode: "TREE", description: "Import theme file" },
-                    { key: "5", mode: "TREE", description: "Edit themes" },
                     { key: "!", mode: "TREE", description: "Display options dialog" },
                     { key: "v", mode: "TREE", description: "Display version dialog" },
 
@@ -1590,6 +1552,7 @@
                     { key: "P", mode: "NORMAL", description: "Paste before cursor" },
                     { key: "u", mode: "NORMAL", description: "Undo last change" },
                     { key: "r", mode: "NORMAL", description: "Replace character under cursor" },
+                    { key: "Ctrl+r", mode: "NORMAL", description: "Redo last undone change" },
                     { key: "q", mode: "NORMAL", description: "Record macro (follow with a letter to store)" },
                     { key: "q", mode: "NORMAL", description: "Stop recording macro (when already recording)" },
                     { key: "@", mode: "NORMAL", description: "Play back macro (follow with the macro letter)" },
@@ -2061,6 +2024,26 @@
                     }
                 }
 
+                function doRedo() {
+                    if (redoStack.length === 0) {
+                        showMessage("Already at newest change");
+                        return;
+                    }
+
+                    const currentState = {
+                        content: editorArea.value,
+                        selectionStart: editorArea.selectionStart,
+                        selectionEnd: editorArea.selectionEnd,
+                    };
+                    undoStack.push(currentState);
+
+                    const nextState = redoStack.pop();
+                    editorArea.value = nextState.content;
+                    editorArea.selectionStart = nextState.selectionStart;
+                    editorArea.selectionEnd = nextState.selectionEnd;
+                    syncFile();
+                }
+
                 function safeStoreText(text) {
                     if (!text) return "";
                     for (const [raw, safe] of Object.entries(SAFE_MAP)) {
@@ -2207,9 +2190,6 @@
                     openDialog = true;
                 }
                 if (document.getElementById('themePickerDialog').style.display === "flex") {
-                    openDialog = true;
-                }
-                if (document.getElementById('themeEditorDialog').style.display === "flex") {
                     openDialog = true;
                 }
 
@@ -2628,6 +2608,12 @@
         //---- Key Bindings ----------------------------------------------------
             // ---- VIM Keys -------------------------------------------------------
                 function vimKeys(e) {
+                    if (e.ctrlKey && e.key === 'r') {
+                        e.preventDefault();
+                        doRedo();
+                        return;
+                    }
+
                     if (macro_waiting_letter) {
                         e.preventDefault();
                         const letter = e.key;
@@ -2742,10 +2728,10 @@
 
                     //---- These are the keys to be processed when in NORMAL mode ------
                     switch (e.key) {
-                        case 's': saveAsHtml(fileName); break;
-                        case 'S': openSaveAsDialog(); break;
+                        case "s": saveAsHtml(fileName); break;
+                        case "S": openSaveAsDialog(); break;
 
-                        case 'i': // Enter insert mode (or inner-text-object when deleting)
+                        case "i": // Enter insert mode (or inner-text-object when deleting)
                             if (mode_deleting) {
                                 mode_select_in = true;
                                 e.preventDefault();
@@ -2761,67 +2747,67 @@
                             performed = true;
                             modeEl.textContent = 'INSERT';
                             break;
-                        case 'a':
+                        case "a":
                             setVimMode(true);
                             mode_insert = true;
                             performed = true;
                             modeEl.textContent = 'INSERT';
                             break;
-                        case 'h': // Move left
+                        case "h": // Move left
                             let newPosBack = Math.max(0, editorArea.selectionStart - mode_repeat);
                             moveChar(newPosBack, true);
                             performed = true;
                             break;
-                        case 'l': // Move right
+                        case "l": // Move right
                             let newPosFwd = Math.min(editorArea.value.length, editorArea.selectionStart + mode_repeat);
                             moveChar(newPosFwd, false);
                             performed = true;
                             break;
-                        case 'j': // Move down lines
+                        case "j": // Move down lines
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(1);
                             performed = true;
                             break;
-                        case 'k': // Move up lines
+                        case "k": // Move up lines
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(-1);
                             performed = true;
                             break;
-                        case 'K': // Move current line up
+                        case "K": // Move current line up
                             moveLineUp();
                             performed = true;
                             break;
-                        case 'J': // Move current line down
+                        case "J": // Move current line down
                             moveLineDown();
                             performed = true;
                             break;
-                        case '0': // Jump to beginning of line
+                        case "0": // Jump to beginning of line
                             const before0 = editorArea.value.lastIndexOf("\n", editorArea.selectionStart - 1);
                             let moveStart = editorArea.selectionEnd = (before0 === -1 ? 0 : before0 + 1);
                             moveChar(moveStart, false);
                             performed = true;
                             break;
-                        case '$': // Jump to end of line
+                        case "$": // Jump to end of line
                             const after$ = editorArea.value.indexOf("\n", editorArea.selectionStart);
                             let moveEnd = editorArea.selectionEnd = (after$ === -1 ? editorArea.value.length : after$);
                             moveChar(moveEnd, false);
                             performed = true;
                             break;
-                        case 'u':
+                        case "u":
                             doUndo();
                             performed = true;
                             break;
-                        case 'r':
+                        case "r":
                             mode_replacing = true;
                             // Does not set performed to true, waits for next key
                             break;
-                        case 'v': // Enter visual mode
+                        case "v": // Enter visual mode
                             enterVisualMode(false);
                             performed = true;
                             break;
-                        case 'V': // Enter visual line mode
+                        case "V": // Enter visual line mode
                             enterVisualMode(true);
                             performed = true;
                             break;
-                        case 'w': // Forward word(s)
+                        case "w": // Forward word(s)
                             if (mode_deleting && mode_select_in) {
                                 recordUndoState();
                                 const text = editorArea.value;
@@ -2902,10 +2888,10 @@
                                 performed = true;
                             }
                             break;
-                        case 'b': // Backward word(s)
+                        case "b": // Backward word(s)
                             moveToWordStart();
                             break;
-                        case 'x': // Delete character(s) under cursor
+                        case "x": // Delete character(s) under cursor
                             recordUndoState();
                             const start = editorArea.selectionStart;
                             if (start < editorArea.value.length) {
@@ -2914,7 +2900,7 @@
                             }
                             performed = true;
                             break;
-                        case 'g': // Possible gg
+                        case "g": // Possible gg
                             if (mode_going) {
                                 if (mode_repeat > 1) {
                                     // Go to line N
@@ -2937,7 +2923,7 @@
                                 mode_going = true;
                             }
                             break;
-                        case 'D': // Delete to end of line(s)
+                        case "D": // Delete to end of line(s)
                             recordUndoState();
                             const text = editorArea.value;
                             let startDelEnd = editorArea.selectionStart;
@@ -2952,20 +2938,20 @@
                             syncFile();
                             performed = true;
                             break;
-                        case 'd': // Possible dd
+                        case "d": // Possible dd
                             doDelete();
                             break;
-                        case 'G': // End of buffer, or Nth line
+                        case "G": // End of buffer, or Nth line
                             const bufEnd = editorArea.selectionEnd = editorArea.value.length;
                             moveChar(bufEnd, false);
                             performed = true;
                             scrollToCursor();
                             break;
-                        case 'M': // Bookmark current note and line
+                        case "M": // Bookmark current note and line
                             setMark(e, getCurrentLineNumber());
                             performed = true;
                             break;
-                        case 'H': // Replace current line with header template
+                        case "H": // Replace current line with header template
                             recordUndoState();
                             const textH = editorArea.value;
                             const posH = editorArea.selectionStart;
@@ -3055,45 +3041,45 @@
                     }
                     
                     switch (e.key) {
-                        case 'Escape':
+                        case "Escape":
                             exitVisualMode();
                             return true;
-                        case 'h': // Move left and extend selection
+                        case "h": // Move left and extend selection
                             visual_end = Math.max(0, visual_end - mode_repeat);
                             updateVisualSelection();
                             keyPerformed();
                             return true;
-                        case 'l': // Move right and extend selection  
+                        case "l": // Move right and extend selection  
                             visual_end = Math.min(editorArea.value.length, visual_end + mode_repeat);
                             updateVisualSelection();
                             keyPerformed();
                             return true;
-                        case 'j': // Move down
+                        case "j": // Move down
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(1);
                             keyPerformed();
                             return true;
-                        case 'k': // Move up
+                        case "k": // Move up
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(-1);
                             keyPerformed();
                             return true;
-                        case 'w':
+                        case "w":
                             for (let i = 0; i < mode_repeat; i++) moveWord(1);
                             keyPerformed();
                             return true;
-                        case 'b':
+                        case "b":
                             for (let i = 0; i < mode_repeat; i++) moveWord(-1);
                             keyPerformed();
                             return true;
-                        case 'd': // Delete selection
+                        case "d": // Delete selection
                             doVisualDelete(e);
                             return true;
-                        case 'U':
+                        case "U":
                             doVisualUpperCase(e, true);
                             return true;
-                        case 'u':
+                        case "u":
                             doVisualUpperCase(e, false);
                             return true;
-                        case 'x': // Cut selection
+                        case "x": // Cut selection
                             vim_clipboard = getVisualSelection();
                             if (vim_clipboard) {
                                 navigator.clipboard.writeText(vim_clipboard).catch(err => {
@@ -3102,7 +3088,7 @@
                             }
                             doVisualDelete(e);
                             return true;
-                        case 'y': // Yank (copy)
+                        case "y": // Yank (copy)
                             vim_clipboard = getVisualSelection();
                             if (vim_clipboard) {
                                 navigator.clipboard.writeText(vim_clipboard).catch(err => {
@@ -3301,15 +3287,15 @@
                 function handleMarksKey(e) {
                     if (!showingMarks) return;
 
-                    if (e.key === 'ArrowDown' || e.key === 'j') {
+                    if (e.key === "ArrowDown" || e.key === 'j') {
                         marksIndex = (marksIndex + 1) % bookmarks.length;
                         renderMarksList();
                         e.preventDefault();
-                    } else if (e.key === 'ArrowUp' || e.key === 'k') {
+                    } else if (e.key === "ArrowUp" || e.key === 'k') {
                         marksIndex = (marksIndex - 1 + bookmarks.length) % bookmarks.length;
                         renderMarksList();
                         e.preventDefault();
-                    } else if (e.key === 'd') {
+                    } else if (e.key === "d") {
                         // Delete selected bookmark
                         bookmarks.splice(marksIndex, 1);
                         if (marksIndex >= bookmarks.length) marksIndex = bookmarks.length - 1;
@@ -3319,7 +3305,7 @@
                             renderMarksList();
                         }
                         e.preventDefault();
-                    } else if (e.key === 'Enter') {
+                    } else if (e.key === "Enter") {
                         let bm = bookmarks[marksIndex];
                         if (bm) {
                             expandToNode(bm.id);
@@ -3341,7 +3327,7 @@
                                 setVimMode(false); // Set mode to NORMAL
                             }
                         }
-                    } else if (e.key === 'Escape') {
+                    } else if (e.key === "Escape") {
                         closeMarksDialog();
                     }
                 }
@@ -4222,287 +4208,6 @@
                 closeThemePickerDialog();
             }
 
-        //---- Theme Editor -----------------------------------------------------
-            const TE_COLOR_FIELDS = [
-                ['bg','Background'],['fg','Foreground'],['muted','Muted'],['dim','Dim'],
-                ['accent','Accent'],['danger','Danger'],['sel-bg','Selection BG'],
-                ['border','Border'],['btn-bg','Button BG'],['btn-fg','Button FG'],
-                ['btn-border','Button Border'],['input-bg','Input BG'],['input-fg','Input FG'],
-                ['vim-cursor','Vim Cursor'],['insert-cursor','Insert Cursor']
-            ];
-
-            function buildThemeEditorColorGrid() {
-                const grid = document.getElementById('themeEditorColorGrid');
-                grid.innerHTML = '';
-                TE_COLOR_FIELDS.forEach(([key, label]) => {
-                    const lbl = document.createElement('label');
-                    lbl.style.cssText = 'display:flex;align-items:center;gap:4px;font-size:0.9em;';
-                    lbl.textContent = label + ': ';
-                    const inp = document.createElement('input');
-                    inp.type = 'color';
-                    inp.id = 'te_' + key;
-                    inp.style.cssText = 'vertical-align:middle;width:36px;height:22px;border:none;background:none;cursor:pointer;';
-                    lbl.appendChild(inp);
-                    grid.appendChild(lbl);
-                });
-            }
-
-            function openThemeEditorDialog() {
-                themeEditorIndex = 0;
-                themeEditorMode = 'list';
-                themeEditorOriginalIndex = -1;
-                themeEditorIsNew = false;
-                document.getElementById('themeEditorListView').style.display = 'flex';
-                document.getElementById('themeEditorEditView').style.display = 'none';
-                const dlg = document.getElementById('themeEditorDialog');
-                dlg.style.display = 'flex';
-                buildThemeEditorColorGrid();
-                renderThemeEditorList();
-                setupThemeEditorKeys();
-            }
-
-            function closeThemeEditorDialog() {
-                document.getElementById('themeEditorDialog').style.display = 'none';
-                if (themeEditorKeyHandler) {
-                    document.removeEventListener('keydown', themeEditorKeyHandler);
-                    themeEditorKeyHandler = null;
-                }
-            }
-
-            function setupThemeEditorKeys() {
-                if (themeEditorKeyHandler) {
-                    document.removeEventListener('keydown', themeEditorKeyHandler);
-                }
-                themeEditorKeyHandler = function(e) {
-                    const dlg = document.getElementById('themeEditorDialog');
-                    if (dlg.style.display !== 'flex') return;
-
-                    if (e.key === 'Escape') {
-                        e.preventDefault();
-                        if (themeEditorMode === 'edit') {
-                            cancelThemeEditorEdit();
-                        } else {
-                            closeThemeEditorDialog();
-                        }
-                        return;
-                    }
-
-                    if (themeEditorMode === 'list') {
-                        if (e.key === 'ArrowDown' || e.key === 'j') {
-                            e.preventDefault();
-                            if (themeEditorIndex < themes.length - 1) {
-                                themeEditorIndex++;
-                                renderThemeEditorList();
-                            }
-                        } else if (e.key === 'ArrowUp' || e.key === 'k') {
-                            e.preventDefault();
-                            if (themeEditorIndex > 0) {
-                                themeEditorIndex--;
-                                renderThemeEditorList();
-                            }
-                        } else if (e.key === 'Enter' || e.key === 'e') {
-                            e.preventDefault();
-                            openThemeEditorEdit(themeEditorIndex);
-                        } else if (e.key === 'd') {
-                            e.preventDefault();
-                            deleteThemeFromEditor(themeEditorIndex);
-                        } else if (e.key === 'a') {
-                            e.preventDefault();
-                            addThemeToEditor();
-                        }
-                    } else if (themeEditorMode === 'edit') {
-                        if (e.key === 'Enter' && e.ctrlKey) {
-                            e.preventDefault();
-                            saveThemeEditor();
-                        }
-                    }
-                };
-                document.addEventListener('keydown', themeEditorKeyHandler);
-            }
-
-            function renderThemeEditorList() {
-                const list = document.getElementById('themeEditorList');
-                list.innerHTML = '';
-                const activeName = currentTheme ? currentTheme.name : null;
-                themes.forEach((theme, index) => {
-                    const row = document.createElement('div');
-                    row.className = 'te-row';
-                    if (index === themeEditorIndex) row.classList.add('te-selected');
-                    if (activeName && theme.name === activeName) row.classList.add('te-active');
-
-                    const swatch = document.createElement('span');
-                    swatch.style.cssText = 'display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid var(--btn-border);flex-shrink:0;';
-                    swatch.style.background = theme.bg || '#000';
-                    const inner = document.createElement('span');
-                    inner.style.cssText = 'display:block;width:6px;height:6px;margin:3px;border-radius:1px;';
-                    inner.style.background = theme.accent || '#888';
-                    swatch.appendChild(inner);
-
-                    const activeDot = document.createElement('span');
-                    activeDot.className = 'te-active-dot';
-
-                    const name = document.createElement('span');
-                    name.className = 'te-name';
-                    name.textContent = theme.name;
-                    name.style.cssText = 'flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.9em;';
-
-                    const editBtn = document.createElement('button');
-                    editBtn.textContent = 'Edit';
-                    editBtn.style.cssText = 'padding:1px 6px;font-size:0.8em;flex-shrink:0;';
-                    editBtn.onclick = (e) => { e.stopPropagation(); openThemeEditorEdit(index); };
-
-                    const delBtn = document.createElement('button');
-                    delBtn.textContent = 'Del';
-                    delBtn.style.cssText = 'padding:1px 6px;font-size:0.8em;flex-shrink:0;color:var(--danger);';
-                    delBtn.onclick = (e) => { e.stopPropagation(); deleteThemeFromEditor(index); };
-
-                    row.appendChild(swatch);
-                    row.appendChild(activeDot);
-                    row.appendChild(name);
-                    row.appendChild(editBtn);
-                    row.appendChild(delBtn);
-                    row.addEventListener('click', () => { themeEditorIndex = index; renderThemeEditorList(); });
-                    list.appendChild(row);
-                });
-                setTimeout(() => {
-                    const sel = list.querySelector('.te-selected');
-                    if (sel) sel.scrollIntoView({ block: 'nearest' });
-                }, 0);
-            }
-
-            function openThemeEditorEdit(index) {
-                themeEditorOriginalIndex = index;
-                themeEditorIsNew = false;
-                themeEditorMode = 'edit';
-                document.getElementById('themeEditorListView').style.display = 'none';
-                document.getElementById('themeEditorEditView').style.display = 'flex';
-                document.getElementById('themeEditorEditTitle').textContent = 'Edit Theme';
-                populateThemeEditorForm(themes[index]);
-            }
-
-            function addThemeToEditor() {
-                themeEditorOriginalIndex = -1;
-                themeEditorIsNew = true;
-                themeEditorMode = 'edit';
-                document.getElementById('themeEditorListView').style.display = 'none';
-                document.getElementById('themeEditorEditView').style.display = 'flex';
-                document.getElementById('themeEditorEditTitle').textContent = 'New Theme';
-                populateThemeEditorForm({
-                    name: 'my-new-theme', bg: '#000000', fg: '#f5f5f5', muted: '#555555',
-                    dim: '#555555', accent: '#00d1b2', danger: '#ff5577', 'sel-bg': '#111827',
-                    border: '#222222', 'btn-bg': '#111827', 'btn-fg': '#f5f5f5',
-                    'btn-border': '#555555', 'input-bg': '#111827', 'input-fg': '#f5f5f5',
-                    'border-radius': '4px', 'pill-radius': '4px',
-                    'vim-cursor': '#00b894', 'insert-cursor': '#00d1b2'
-                });
-                document.getElementById('teName').focus();
-                document.getElementById('teName').select();
-            }
-
-            function deleteThemeFromEditor(index) {
-                if (themes.length <= 1) { showMessage("Can't delete last theme"); return; }
-                if (!confirm('Delete theme "' + themes[index].name + '"?')) return;
-                themes.splice(index, 1);
-                if (themeEditorIndex >= themes.length) themeEditorIndex = themes.length - 1;
-                renderThemeEditorList();
-            }
-
-            function populateThemeEditorForm(theme) {
-                document.getElementById('teName').value = theme.name || '';
-                TE_COLOR_FIELDS.forEach(([key]) => {
-                    const inp = document.getElementById('te_' + key);
-                    if (inp) inp.value = theme[key] || '#000000';
-                });
-                document.getElementById('te_border-radius').value = theme['border-radius'] || '4px';
-                document.getElementById('te_pill-radius').value = theme['pill-radius'] || '4px';
-                document.getElementById('te_grid').checked = !!theme.grid;
-                document.getElementById('te_grid-color').value = theme['grid-color'] || '#111111';
-            }
-
-            function collectThemeEditorForm() {
-                const theme = { name: document.getElementById('teName').value.trim() || 'unnamed-theme' };
-                TE_COLOR_FIELDS.forEach(([key]) => {
-                    theme[key] = document.getElementById('te_' + key).value;
-                });
-                theme['border-radius'] = document.getElementById('te_border-radius').value;
-                theme['pill-radius'] = document.getElementById('te_pill-radius').value;
-                if (document.getElementById('te_grid').checked) {
-                    theme.grid = true;
-                    theme['grid-color'] = document.getElementById('te_grid-color').value;
-                }
-                return theme;
-            }
-
-            function saveThemeEditor() {
-                const theme = collectThemeEditorForm();
-                if (themeEditorIsNew) {
-                    themes.push(theme);
-                    themeEditorIndex = themes.length - 1;
-                } else {
-                    themes[themeEditorOriginalIndex] = theme;
-                    themeEditorIndex = themeEditorOriginalIndex;
-                }
-                themeEditorMode = 'list';
-                document.getElementById('themeEditorListView').style.display = 'flex';
-                document.getElementById('themeEditorEditView').style.display = 'none';
-                renderThemeEditorList();
-                showMessage("Theme saved: " + theme.name);
-            }
-
-            function cancelThemeEditorEdit() {
-                themeEditorMode = 'list';
-                document.getElementById('themeEditorListView').style.display = 'flex';
-                document.getElementById('themeEditorEditView').style.display = 'none';
-                renderThemeEditorList();
-            }
-
-            function themeEditorPreview() {
-                const theme = collectThemeEditorForm();
-                applyThemeColors(theme);
-                currentTheme = theme;
-            }
-
-            document.getElementById('themeEditorAddBtn').addEventListener('click', addThemeToEditor);
-            document.getElementById('themeEditorCloseBtn').addEventListener('click', closeThemeEditorDialog);
-            document.getElementById('themeEditorSaveBtn').addEventListener('click', saveThemeEditor);
-            document.getElementById('themeEditorCancelBtn').addEventListener('click', cancelThemeEditorEdit);
-            document.getElementById('themeEditorPreviewBtn').addEventListener('click', themeEditorPreview);
-            document.getElementById('themeEditorExportBtn').addEventListener('click', () => {
-                const blob = new Blob([JSON.stringify(themes, null, 2)], { type: 'application/json' });
-                const a = document.createElement('a');
-                a.href = URL.createObjectURL(blob);
-                a.download = 'scribboleth-themes.json';
-                a.click();
-                URL.revokeObjectURL(a.href);
-                showMessage("Themes exported");
-            });
-            document.getElementById('themeEditorImportBtn').addEventListener('click', () => {
-                document.getElementById('themeEditorFilePicker').click();
-            });
-            document.getElementById('themeEditorFilePicker').addEventListener('change', (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-                file.text().then(text => {
-                    try {
-                        const imported = JSON.parse(text);
-                        if (!Array.isArray(imported)) throw new Error("Expected JSON array of themes");
-                        imported.forEach(t => {
-                            if (!t.name) throw new Error("Each theme must have a name");
-                        });
-                        if (confirm('Replace all ' + themes.length + ' themes with ' + imported.length + ' imported themes?')) {
-                            themes.length = 0;
-                            themes.push(...imported);
-                            themeEditorIndex = 0;
-                            renderThemeEditorList();
-                            showMessage("Imported " + imported.length + " themes");
-                        }
-                    } catch (err) {
-                        alert("Import failed: " + err.message);
-                    }
-                });
-                e.target.value = '';
-            });
-
             let saveAsKeyHandler = null;
 
             function openSaveAsDialog(defaultTitle = document.title, defaultFile = fileName) {
@@ -4601,7 +4306,6 @@
                 closeHistoryDialog();
                 closeUndoDialog();
                 closeVersionDialog();
-                closeThemeEditorDialog();
                 if (peekActive) {
                     selectedId = peekSavedId;
                     closePeekSearch();
@@ -5705,15 +5409,8 @@
                     // Save current theme
                     const latestTheme = currentTheme ? JSON.stringify(currentTheme, null, 4) : "null";
                     htmlContent = htmlContent.replace(
-                        /let\s+currentTheme\s*=\s*(null|\{[\s\S]*?\});/,
+                        /let\s+currentTheme\s*=\s*(null|\[[\s\S]*?\]);/,
                         "let currentTheme = " + latestTheme + ";"
-                    );
-
-                    // Save themes list
-                    const themesJson = themes.map(t => "                " + JSON.stringify(t)).join(",\n");
-                    htmlContent = htmlContent.replace(
-                        /let\s+themes\s*=\s*\[[\s\S]*?\];/,
-                        "let themes = [\n" + themesJson + "\n            ];"
                     );
 
                     // Update CSS variables with current theme
@@ -6050,13 +5747,6 @@
                         openHistoryDialog();
                         e.preventDefault();
                         return;
-                    case '5':
-                        if (!editing && !dialogOpen()) {
-                            openThemeEditorDialog();
-                            e.preventDefault();
-                            return;
-                        }
-                        break;
                     default: did = false; break;
                 }
                 if (did) { e.preventDefault(); render(); }
@@ -6455,19 +6145,6 @@
                         } catch (e) {
                             console.warn('Failed to parse currentTheme, using default');
                             currentTheme = null;
-                        }
-                    }
-
-                    // Extract and restore themes list
-                    const themesMatch = htmlContent.match(/let\s+themes\s*=\s*(\[[\s\S]*?\]);/s);
-                    if (themesMatch) {
-                        try {
-                            const parsed = JSON.parse(themesMatch[1]);
-                            if (Array.isArray(parsed) && parsed.length > 0) {
-                                themes = parsed;
-                            }
-                        } catch (e) {
-                            console.warn('Failed to parse themes, using defaults');
                         }
                     }
                 } catch (e) {

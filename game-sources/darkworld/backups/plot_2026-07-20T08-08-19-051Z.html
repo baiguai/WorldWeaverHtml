@@ -754,9 +754,9 @@
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
-                <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
-                <div id="helpResults" class="search-results"></div>
-                <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
+              <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
+              <div id="helpResults" class="search-results"></div>
+              <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
             </div>
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
@@ -1475,6 +1475,7 @@
                     { key: "T", mode: "TREE", description: "Export current tree branch as .txt" },
                     { key: "m", mode: "TREE", description: "Bookmark current node" },
                     { key: "`", mode: "TREE", description: "Show bookmarks" },
+                    { key: "%", mode: "TREE", description: "Import theme file" },
                     { key: "!", mode: "TREE", description: "Display options dialog" },
 
                     { key: "a", mode: "NORMAL", description: "Enter insert mode, where you can write text normally" },
@@ -1500,6 +1501,7 @@
                     { key: "x", mode: "NORMAL", description: "Delete the character under the cursor" },
                     { key: "r", mode: "NORMAL", description: "Replace the character under the cursor" },
                     { key: "u", mode: "NORMAL", description: "Undo last change" },
+                    { key: "Ctrl+r", mode: "NORMAL", description: "Redo last undone change" },
 
                     { key: "y", mode: "VISUAL", description: "Copy the selected text" },
                     { key: "x", mode: "VISUAL", description: "Cut the selected text" },
@@ -1549,7 +1551,6 @@
                     { key: "m", mode: "TREE", description: "Bookmark current node" },
                     { key: "`", mode: "TREE", description: "Show bookmarks" },
                     { key: "%", mode: "TREE", description: "Import theme file" },
-                    { key: "5", mode: "TREE", description: "Edit themes" },
                     { key: "!", mode: "TREE", description: "Display options dialog" },
                     { key: "v", mode: "TREE", description: "Display version dialog" },
 
@@ -1590,6 +1591,7 @@
                     { key: "P", mode: "NORMAL", description: "Paste before cursor" },
                     { key: "u", mode: "NORMAL", description: "Undo last change" },
                     { key: "r", mode: "NORMAL", description: "Replace character under cursor" },
+                    { key: "Ctrl+r", mode: "NORMAL", description: "Redo last undone change" },
                     { key: "q", mode: "NORMAL", description: "Record macro (follow with a letter to store)" },
                     { key: "q", mode: "NORMAL", description: "Stop recording macro (when already recording)" },
                     { key: "@", mode: "NORMAL", description: "Play back macro (follow with the macro letter)" },
@@ -2059,6 +2061,26 @@
                     } else if (e.key === 'Escape') {
                         closeUndoDialog();
                     }
+                }
+
+                function doRedo() {
+                    if (redoStack.length === 0) {
+                        showMessage("Already at newest change");
+                        return;
+                    }
+
+                    const currentState = {
+                        content: editorArea.value,
+                        selectionStart: editorArea.selectionStart,
+                        selectionEnd: editorArea.selectionEnd,
+                    };
+                    undoStack.push(currentState);
+
+                    const nextState = redoStack.pop();
+                    editorArea.value = nextState.content;
+                    editorArea.selectionStart = nextState.selectionStart;
+                    editorArea.selectionEnd = nextState.selectionEnd;
+                    syncFile();
                 }
 
                 function safeStoreText(text) {
@@ -2628,6 +2650,12 @@
         //---- Key Bindings ----------------------------------------------------
             // ---- VIM Keys -------------------------------------------------------
                 function vimKeys(e) {
+                    if (e.ctrlKey && e.key === 'r') {
+                        e.preventDefault();
+                        doRedo();
+                        return;
+                    }
+
                     if (macro_waiting_letter) {
                         e.preventDefault();
                         const letter = e.key;
@@ -2742,10 +2770,10 @@
 
                     //---- These are the keys to be processed when in NORMAL mode ------
                     switch (e.key) {
-                        case 's': saveAsHtml(fileName); break;
-                        case 'S': openSaveAsDialog(); break;
+                        case "s": saveAsHtml(fileName); break;
+                        case "S": openSaveAsDialog(); break;
 
-                        case 'i': // Enter insert mode (or inner-text-object when deleting)
+                        case "i": // Enter insert mode (or inner-text-object when deleting)
                             if (mode_deleting) {
                                 mode_select_in = true;
                                 e.preventDefault();
@@ -2761,67 +2789,67 @@
                             performed = true;
                             modeEl.textContent = 'INSERT';
                             break;
-                        case 'a':
+                        case "a":
                             setVimMode(true);
                             mode_insert = true;
                             performed = true;
                             modeEl.textContent = 'INSERT';
                             break;
-                        case 'h': // Move left
+                        case "h": // Move left
                             let newPosBack = Math.max(0, editorArea.selectionStart - mode_repeat);
                             moveChar(newPosBack, true);
                             performed = true;
                             break;
-                        case 'l': // Move right
+                        case "l": // Move right
                             let newPosFwd = Math.min(editorArea.value.length, editorArea.selectionStart + mode_repeat);
                             moveChar(newPosFwd, false);
                             performed = true;
                             break;
-                        case 'j': // Move down lines
+                        case "j": // Move down lines
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(1);
                             performed = true;
                             break;
-                        case 'k': // Move up lines
+                        case "k": // Move up lines
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(-1);
                             performed = true;
                             break;
-                        case 'K': // Move current line up
+                        case "K": // Move current line up
                             moveLineUp();
                             performed = true;
                             break;
-                        case 'J': // Move current line down
+                        case "J": // Move current line down
                             moveLineDown();
                             performed = true;
                             break;
-                        case '0': // Jump to beginning of line
+                        case "0": // Jump to beginning of line
                             const before0 = editorArea.value.lastIndexOf("\n", editorArea.selectionStart - 1);
                             let moveStart = editorArea.selectionEnd = (before0 === -1 ? 0 : before0 + 1);
                             moveChar(moveStart, false);
                             performed = true;
                             break;
-                        case '$': // Jump to end of line
+                        case "$": // Jump to end of line
                             const after$ = editorArea.value.indexOf("\n", editorArea.selectionStart);
                             let moveEnd = editorArea.selectionEnd = (after$ === -1 ? editorArea.value.length : after$);
                             moveChar(moveEnd, false);
                             performed = true;
                             break;
-                        case 'u':
+                        case "u":
                             doUndo();
                             performed = true;
                             break;
-                        case 'r':
+                        case "r":
                             mode_replacing = true;
                             // Does not set performed to true, waits for next key
                             break;
-                        case 'v': // Enter visual mode
+                        case "v": // Enter visual mode
                             enterVisualMode(false);
                             performed = true;
                             break;
-                        case 'V': // Enter visual line mode
+                        case "V": // Enter visual line mode
                             enterVisualMode(true);
                             performed = true;
                             break;
-                        case 'w': // Forward word(s)
+                        case "w": // Forward word(s)
                             if (mode_deleting && mode_select_in) {
                                 recordUndoState();
                                 const text = editorArea.value;
@@ -2902,10 +2930,10 @@
                                 performed = true;
                             }
                             break;
-                        case 'b': // Backward word(s)
+                        case "b": // Backward word(s)
                             moveToWordStart();
                             break;
-                        case 'x': // Delete character(s) under cursor
+                        case "x": // Delete character(s) under cursor
                             recordUndoState();
                             const start = editorArea.selectionStart;
                             if (start < editorArea.value.length) {
@@ -2914,7 +2942,7 @@
                             }
                             performed = true;
                             break;
-                        case 'g': // Possible gg
+                        case "g": // Possible gg
                             if (mode_going) {
                                 if (mode_repeat > 1) {
                                     // Go to line N
@@ -2937,7 +2965,7 @@
                                 mode_going = true;
                             }
                             break;
-                        case 'D': // Delete to end of line(s)
+                        case "D": // Delete to end of line(s)
                             recordUndoState();
                             const text = editorArea.value;
                             let startDelEnd = editorArea.selectionStart;
@@ -2952,20 +2980,20 @@
                             syncFile();
                             performed = true;
                             break;
-                        case 'd': // Possible dd
+                        case "d": // Possible dd
                             doDelete();
                             break;
-                        case 'G': // End of buffer, or Nth line
+                        case "G": // End of buffer, or Nth line
                             const bufEnd = editorArea.selectionEnd = editorArea.value.length;
                             moveChar(bufEnd, false);
                             performed = true;
                             scrollToCursor();
                             break;
-                        case 'M': // Bookmark current note and line
+                        case "M": // Bookmark current note and line
                             setMark(e, getCurrentLineNumber());
                             performed = true;
                             break;
-                        case 'H': // Replace current line with header template
+                        case "H": // Replace current line with header template
                             recordUndoState();
                             const textH = editorArea.value;
                             const posH = editorArea.selectionStart;
@@ -3055,45 +3083,45 @@
                     }
                     
                     switch (e.key) {
-                        case 'Escape':
+                        case "Escape":
                             exitVisualMode();
                             return true;
-                        case 'h': // Move left and extend selection
+                        case "h": // Move left and extend selection
                             visual_end = Math.max(0, visual_end - mode_repeat);
                             updateVisualSelection();
                             keyPerformed();
                             return true;
-                        case 'l': // Move right and extend selection  
+                        case "l": // Move right and extend selection  
                             visual_end = Math.min(editorArea.value.length, visual_end + mode_repeat);
                             updateVisualSelection();
                             keyPerformed();
                             return true;
-                        case 'j': // Move down
+                        case "j": // Move down
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(1);
                             keyPerformed();
                             return true;
-                        case 'k': // Move up
+                        case "k": // Move up
                             for (let i = 0; i < mode_repeat; i++) moveCursorVertical(-1);
                             keyPerformed();
                             return true;
-                        case 'w':
+                        case "w":
                             for (let i = 0; i < mode_repeat; i++) moveWord(1);
                             keyPerformed();
                             return true;
-                        case 'b':
+                        case "b":
                             for (let i = 0; i < mode_repeat; i++) moveWord(-1);
                             keyPerformed();
                             return true;
-                        case 'd': // Delete selection
+                        case "d": // Delete selection
                             doVisualDelete(e);
                             return true;
-                        case 'U':
+                        case "U":
                             doVisualUpperCase(e, true);
                             return true;
-                        case 'u':
+                        case "u":
                             doVisualUpperCase(e, false);
                             return true;
-                        case 'x': // Cut selection
+                        case "x": // Cut selection
                             vim_clipboard = getVisualSelection();
                             if (vim_clipboard) {
                                 navigator.clipboard.writeText(vim_clipboard).catch(err => {
@@ -3102,7 +3130,7 @@
                             }
                             doVisualDelete(e);
                             return true;
-                        case 'y': // Yank (copy)
+                        case "y": // Yank (copy)
                             vim_clipboard = getVisualSelection();
                             if (vim_clipboard) {
                                 navigator.clipboard.writeText(vim_clipboard).catch(err => {
@@ -3301,15 +3329,15 @@
                 function handleMarksKey(e) {
                     if (!showingMarks) return;
 
-                    if (e.key === 'ArrowDown' || e.key === 'j') {
+                    if (e.key === "ArrowDown" || e.key === 'j') {
                         marksIndex = (marksIndex + 1) % bookmarks.length;
                         renderMarksList();
                         e.preventDefault();
-                    } else if (e.key === 'ArrowUp' || e.key === 'k') {
+                    } else if (e.key === "ArrowUp" || e.key === 'k') {
                         marksIndex = (marksIndex - 1 + bookmarks.length) % bookmarks.length;
                         renderMarksList();
                         e.preventDefault();
-                    } else if (e.key === 'd') {
+                    } else if (e.key === "d") {
                         // Delete selected bookmark
                         bookmarks.splice(marksIndex, 1);
                         if (marksIndex >= bookmarks.length) marksIndex = bookmarks.length - 1;
@@ -3319,7 +3347,7 @@
                             renderMarksList();
                         }
                         e.preventDefault();
-                    } else if (e.key === 'Enter') {
+                    } else if (e.key === "Enter") {
                         let bm = bookmarks[marksIndex];
                         if (bm) {
                             expandToNode(bm.id);
@@ -3341,7 +3369,7 @@
                                 setVimMode(false); // Set mode to NORMAL
                             }
                         }
-                    } else if (e.key === 'Escape') {
+                    } else if (e.key === "Escape") {
                         closeMarksDialog();
                     }
                 }
