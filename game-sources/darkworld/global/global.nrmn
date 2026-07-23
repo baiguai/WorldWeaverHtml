@@ -1,0 +1,128 @@
+{global, key=global01, parent=root
+    {input, syntax=(stats)
+        {act, logic=[player]((stats)), tags=!_list, output=Stats: }
+    }
+    {input, syntax=(inventory|inv)
+        {act, logic=[player]((inventory)), tags=!_list|!_bullet, output=Inventory: }
+    }
+
+    {input, syntax=(arm .*)
+        {set, tags=!_arm }
+    }
+
+    // Player Healing Logic
+    // -------------------------------------------------------------------------
+    {act
+        {set, logic=[player]((cur_heal_round)), output=++ }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[player]((cur_heal_round)) >= [player]((heal_rounds))
+                and
+                ?[player]((life)) < [player]((maxlife))
+            }
+        }
+        {set, logic=[player]((life)), output=++ }
+        {set, logic=[player]((cur_heal_round)), output=0 }
+    }
+    // -------------------------------------------------------------------------
+
+
+    // Drunk Logic
+    // -------------------------------------------------------------------------
+    {act
+        {logic
+            logic={@
+                ?[player]((drink_count)) >= [player]((drunk_count))
+            }
+        }
+        {set, logic=[player]((drunk_round)), output=++ }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[player]((drunk_round)) >= [player]((drunk_rounds))
+            }
+        }
+
+        {set, logic=[player]((drink_count)), output=0 }
+        {set, logic=[player]((drunk_round)), output=0 }
+    }
+    // -------------------------------------------------------------------------
+
+
+    // Time Passage
+    // -------------------------------------------------------------------------
+    {input, syntax=(time)
+        {act, logic=time, tags=!_type|game }
+    }
+    {input, syntax=(days)
+        {act, logic=days, tags=!_type|game }
+    }
+    {input, syntax=(is day)
+        {act, logic=day, tags=!_type|game }
+    }
+
+    {act
+        {set, logic=[game]((currentminute)), output=+=15 }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currentminute)) > '59'
+            }
+        }
+
+        {set, logic=[game]((currenthour)), output=++ }
+        {set, logic=[game]((currentminute)), output=0 }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currenthour)) > '23'
+            }
+        }
+
+        {set, logic=[game]((currenthour)), output=0 }
+        {set, logic=[game]((totaldays)), output=++ }
+        {set, logic=[game]((missiondays)), output=++ }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currenthour)) >= [game]((nighthour))
+            }
+        }
+
+        {set, logic=[game]((isday)), output=false }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currenthour)) < [game]((dayhour))
+            }
+        }
+
+        {set, logic=[game]((isday)), output=false }
+    }
+
+    {act
+        {logic
+            logic={@
+                ?[game]((currenthour)) >= [game]((dayhour))
+                and
+                ?[game]((currenthour)) < [game]((nighthour))
+            }
+        }
+
+        {set, logic=[game]((isday)), output=true }
+    }
+    // -------------------------------------------------------------------------
+}
