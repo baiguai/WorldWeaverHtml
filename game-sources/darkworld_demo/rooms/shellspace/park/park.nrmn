@@ -1,0 +1,53 @@
+{room, key=the_park, name=The Park
+    {attrib, tags=has_entered, output=false }
+    {attrib, tags=navigation
+        output={@
+North leads to the glass-domed cafe.
+South leads to the Business District.
+        }
+    }
+
+    {enter_message
+        output={@
+<?[room]((has_entered)) = 'false'?>
+The park is a large circle of textured green colored fuzz.
+Crowds of avatars in futuristic clothing are wandering about, conversing
+among themselves.
+In the north end of the park is a small glass-domed cafe.
+<else>
+The park is a large circle of textured green colored fuzz.
+In the north end of the park is a small glass-domed cafe.
+</?>
+        }
+
+        {set, logic=[room]((has_entered)), output=true }
+    }
+
+    {look
+        {message
+            output={@
+You look around the park...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=park_north, tags=[player]
+            output={@
+You approach the cafe.
+            }
+        }
+    }
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=business_northwest, tags=[player]
+            output={@
+You go south to the business district.
+            }
+        }
+    }
+}
