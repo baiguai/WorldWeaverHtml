@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="20">
+ <objectgroup id="2" name="Layout">
+  <object id="16" x="-960" y="-416" width="448" height="768"/>
+  <object id="17" x="-902.859" y="-352.5" width="146.719" height="23">
+   <text wrap="1">Entertainment</text>
+  </object>
+  <object id="18" x="-832" y="-192" width="192" height="288"/>
+  <object id="19" x="-815.36" y="-99.5" width="226.719" height="23">
+   <text wrap="1">TV: Subliminal clues</text>
+  </object>
+ </objectgroup>
+</map>

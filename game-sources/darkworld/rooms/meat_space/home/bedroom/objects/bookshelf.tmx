@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="22">
+ <objectgroup id="2" name="Layout">
+  <object id="16" x="-960" y="-416" width="1440" height="320"/>
+  <object id="17" x="-902.859" y="-352.5" width="87.7188" height="23">
+   <text wrap="1">Bookshelf</text>
+  </object>
+  <object id="20" x="-311.859" y="-350.5" width="260.719" height="23">
+   <text wrap="1">Books on hacking, cyberspace</text>
+  </object>
+  <object id="21" x="-665.36" y="-246.5" width="260.719" height="23">
+   <text wrap="1">Robot finger, thumb that snaps</text>
+  </object>
+ </objectgroup>
+</map>
