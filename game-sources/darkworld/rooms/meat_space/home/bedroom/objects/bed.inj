@@ -14,7 +14,7 @@ Sheets and blankets are thrown and piled over the mattress. A lone oversize pill
     {message
         output={@
 
-You look under your bed...
+You look under your bed.
         }
     }
 }

@@ -36,6 +36,7 @@ In the north wall is the window.
 
 
     {inject, logic=./objects/bed.inj }
+    {inject, logic=./objects/cdplayer.inj }
     {inject, logic=./objects/bookshelf.inj }
     {inject, logic=./objects/desk.inj }
     {inject, logic=./objects/entertainment.inj }
