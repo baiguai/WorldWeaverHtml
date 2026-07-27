@@ -1,0 +1,250 @@
+{object, key=tplt_syntax
+    // Examining
+        {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
+        {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
+        {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
+        {attrib, tags=x_bartender|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bartender(?:s)?\b, logic=examine the bartender|examine bartenders|x the bartender|x bartenders|x woman }
+        {attrib, tags=x_battery|!_regex, output=^(examine|x)(?: the)? battery$, logic=x battery|examine the battery }
+        {attrib, tags=x_bed|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(bed)\b, logic=examine the bed|x the bed|examine bed|x bed }
+        {attrib, tags=x_chair|!_regex, output=^(examine|x)(?: the)? (chair|chairs)$, logic=x the chair|x chair|examine the chairs|x chairs }
+        {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip(?:s)?$, logic=x the chip|x chip|x chips|examine the chip|examine the chips }
+        {attrib, tags=x_cleaning_supp|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cleaning)(\s+)?(supplies)?\b, logic=examine the cleaning supplies|examine cleaning|x the cleaning supplies|x cleaning supplies }
+        {attrib, tags=x_couch|!_regex, output=^(examine|x)(?: the)? (couch|couches)$, logic=x the couch|x couches|examine the couches|x couch }
+        {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
+        {attrib, tags=x_couples|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?couples\b, logic=examine the couples|examine couples|x the couples|x couples }
+        {attrib, tags=x_cube|!_regex, output=^(examine|x)(?: the)? (cube|cubes)$, logic=x the cube|x cubes|examine the cubes|x cube }
+        {attrib, tags=x_cupboards|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cupboards)\b, logic=examine the cupboards|x the cupboards|examine cupboards|x cupboards }
+        {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)? desk$, logic=x your desk|x desk|examine the desk }
+        {attrib, tags=x_dresser|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(dresser)\b, logic=examine the dresser|x the dresser|examine dresser|x dresser }
+        {attrib, tags=x_emp_door|!_regex, output=^(examine|x)(?: the)? employee(s)? door$, logic=x employees door|examine the employee door|examine employee door }
+        {attrib, tags=x_envelope|!_regex, output=^(examine|x)(?: the)? envelope$, logic=x envelope|examine the envelope }
+        {attrib, tags=x_escalator|!_regex, output=^(examine|x)(?: the)? escalator$, logic=x escalator|examine the escalator }
+        {attrib, tags=x_fan|!_regex, output=\b(x|examin(?:e)?)\s+(your(\s+)|the(\s+))?fan\b, logic=examine the fan|examine fan|x your fan|x your fan }
+        {attrib, tags=x_figure_hooded|!_regex, output=^(examine|x)( the)?( hooded) figure(s)?$, logic=examine the hooded figure|examine figures|x the hooded figures|x hooded figure|x masked figure }
+        {attrib, tags=x_figure_masked|!_regex, output=^(examine|x)( the)?( masked) figure(s)?$, logic=examine the masked figure|examine figure|x the masked figures|x masked figure|x hooded figure }
+        {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
+        {attrib, tags=x_glass|!_regex, output=^(examine|x)(?: the)? (glass|glasses)$, logic=x the glass|x glass|examine the glasses|x glasses }
+        {attrib, tags=x_groups|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?groups\b, logic=examine the groups|examine groups|x the groups|x groups }
+        {attrib, tags=x_hottubs|!_regex, output=^(examine|x)(?: the)? (hottubs|hottub|hot tubs|hot tub)$, logic=x hottub|examine the hot tubs }
+        {attrib, tags=x_green_lights|!_regex, output=^(examine|x)(?: the)?(?: green)?(?: neon)? light$, logic=x the light|x green light|x neon light|examine the green light }
+        {attrib, tags=x_halls|!_regex, output=^(examine|x)(?: the)? (hall|halls)$, logic=x hall|examine the halls }
+        {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open|examine|x)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers|x drawers|x the drawers }
+        {attrib, tags=x_keyboard|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer\s+)?(keyboard)\b, logic=x the keyboard|x computer keyboard|examine the computer keyboard|x keyboard|x computer }
+        {attrib, tags=x_ladder|!_regex, output=^(examine|x)(?: the)? ladder$, logic=x ladder|examine the ladder }
+        {attrib, tags=x_lazergun|!_regex, output=^(examine|x)( the)?( lazer)? gun$, logic=examine the gun|examine lazer gun|x the lazer gun|x gun }
+        {attrib, tags=x_lcd_watch|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=examine the watch|examine watch|examine lcd watch|x the watch|x watch|x lcd watch }
+        {attrib, tags=x_lights|!_regex, output=^(examine|x)(?: the)?\s+(light|lights)$, logic=x the light|x lights|x light|examine the lights }
+        {attrib, tags=x_mail_sorter|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mail\s+)?(sorter|sorting)\b, logic=examine the sorter|examine mail sorter|examine sorting|x the mail sorter }
+        {attrib, tags=x_mail_sorter_slot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mail\s+)?(\w+\s+)*(slot|slots)\b, logic=examine the sorter slot|examine mail sorter slots|x mail sorter|examine sorting slot|x the mail slot }
+        {attrib, tags=x_men|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?men\b, logic=examine the men|examine men|x the men|x men }
+        {attrib, tags=x_microphone|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mic|microphone)\b, logic=examine the microphone|examine mic|examine microphone|x the mic|x mic|x microphone }
+        {attrib, tags=x_minibar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(mini\s+)?bar\b, logic=examine the bar|examine bar|examine mini bar|x the mini bar|x the bar|x bar }
+        {attrib, tags=x_mirror|!_regex, output=^(examine|x)(?: the)? mirror$, logic=x the mirror|x mirror|examine the mirror }
+        {attrib, tags=x_monitors|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(\w+\s+)?(?:monitors)?\b, logic=x the monitors|x security monitors|examine the monitors|x monitors }
+        {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
+        {attrib, tags=x_orb|!_regex, output=^(examine|x)(?: the)? orb$, logic=x the orb|x orb|examine the orb }
+        {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|x panel|examine the panel }
+        {attrib, tags=x_portal_01|!_regex, output=\b(x|examine)\s+(portal\s+)?1\b, logic=examine portal 1|x 1|x portal 1|1 }
+        {attrib, tags=x_portal_02|!_regex, output=\b(x|examine)\s+(portal\s+)?2\b, logic=examine portal 2|x 2|x portal 2|2 }
+        {attrib, tags=x_portal_03|!_regex, output=\b(x|examine)\s+(portal\s+)?3\b, logic=examine portal 3|x 3|x portal 3|3 }
+        {attrib, tags=x_portal_04|!_regex, output=\b(x|examine)\s+(portal\s+)?4\b, logic=examine portal 4|x 4|x portal 4|4 }
+        {attrib, tags=x_portal_05|!_regex, output=\b(x|examine)\s+(portal\s+)?5\b, logic=examine portal 5|x 5|x portal 5|5 }
+        {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
+        {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
+        {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
+        {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
+        {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
+        {attrib, tags=x_paper|!_regex, output=^(examine|x)(?: the)? paper$, logic=x the papers|x paper|examine the paper }
+        {attrib, tags=x_pillars|!_regex, output=^(examine|x)(?: the)? (pillar|pillars)$, logic=x the pillars|x pillar|examine the pillars|x pillar }
+        {attrib, tags=x_pools|!_regex, output=^(examine|x)(?: the)? (pool|pools)$, logic=x pools|examine the pool }
+        {attrib, tags=x_restaurants|!_regex, output=^(examine|x)(?: the)? (restaurant|restaurants)$, logic=x restaurants|examine the restaurant }
+        {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
+        {attrib, tags=x_screen|!_regex, output=^(examine|x)(?: the)? (screen)$, logic=x the screen|x screen|examine the screen }
+        {attrib, tags=x_screens|!_regex, output=^(examine|x)(?: the)? (screen|screens|walls)$, logic=x the screens|x screen|x walls|x the walls|examine the screens }
+        {attrib, tags=x_screwdriver|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?screwdriver\b, logic=examine the screwdriver|x screwdriver }
+        {attrib, tags=x_servers|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?servers?\b, logic=examine the servers|x the server rack|examine servers|x servers }
+        {attrib, tags=x_shifty_char|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:shifty\s+)?(character|man)\b, logic=examine the character|examine man|examine the man|examine the shifty man|examine character|examine shifty character|x the character|x character|x shifty character }
+        {attrib, tags=x_shops|!_regex, output=^(examine|x)(?: the)? (shop|shops)$, logic=x shops|examine the  }
+        {attrib, tags=x_shower|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(shower)\b, logic=examine the shower|x the shower|examine shower|x shower }
+        {attrib, tags=x_sink|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(sink)\b, logic=examine the sink|x the sink|examine sink|x sink }
+        {attrib, tags=x_slides|!_regex, output=^(examine|x)(?: the)? (slide|slides)$, logic=x slides|examine the slide }
+        {attrib, tags=x_spheros|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?spheros(?:\s+game)?\b, logic=x spheros|examine the spheros game }
+        {attrib, tags=x_stairs|!_regex, output=^(examine|x)(?: the)? (stairs|staircase|stair case)$, logic=x stairs|examine the staircase }
+        {attrib, tags=x_suitcase|!_regex, output=^(examine|x)(?: the)? suitcase$, logic=x suitcase|examine the suitcase }
+        {attrib, tags=x_table|!_regex, output=^(examine|x)(?: the)? (table|tables)$, logic=x the table|x table|examine the tables|x tables }
+        {attrib, tags=x_tablet|!_regex, output=^(examine|x)(?: the)?(?: thin)? (tablet)$, logic=x the tablet|x tablet|examine the thin tablet|x thin tablet }
+        {attrib, tags=x_ticket_booth|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?(?:ticket\s+)?booth\b, logic=examine the booth|examine booth|examine ticket booth|x the booth|x booth|x ticket booth }
+        {attrib, tags=x_toilet|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(toilet)\b, logic=examine the toilet|x the toilet|examine toilet|x toilet }
+        {attrib, tags=x_topless_women|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(topless\s+)?women\b, logic=examine the women|examine topless women|examine women|x the topless women }
+        {attrib, tags=x_trans_tube|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(transport\s+)?tubes?\b, logic=examine the tubes|examine transport tube|examine tube|x the tubes }
+        {attrib, tags=x_tv|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(tv|television)\b, logic=examine the tv|examine television|x the tv|x tv }
+        {attrib, tags=x_vidgame|!_regex, output=^(examine|x)(?: the)?(?: video)? (game|games)$, logic=x the video games|x video game|x games|examine the games }
+        {attrib, tags=x_weird_panel|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(weird)?(\s+)?(panel)\b, logic=examine the weird panel|examine panel|x the weird panel|x the panel }
+        {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? (window|windows)$, logic=x the window|x window|examine the window|x windows }
+        {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
+        {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_your_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
+        {attrib, tags=x_your_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
+
+        {attrib, tags=x_behind_desk|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?desk?\b, logic=look behind the desk|look behind desk|examine behind the messy desk|x behind desk in front of you }
+        {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen?\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
+        {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?servers?\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
+
+        {attrib, tags=x_on_servers|!_regex, output=^(?=.*\b(?:look|examine|x)\b)(?=.*\bservers?\b)(?=.*\b(?:top|on)\b).*, logic=look on top of the servers|look on the servers|examine on top of the servers|examine the top of the servers|examine on the servers|x top of servers|x servers top|x top servers|x on servers }
+
+        {attrib, tags=x_under_bar|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(bar)\b, logic=look under the bar|look under bar|examine under the bar|x under bar }
+        {attrib, tags=x_under_bed|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(bed)\b, logic=look under the bed|look under bed|examine under the bed|x under bed }
+        {attrib, tags=x_under_couch|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(couch)(?:es)?\b, logic=look under the couch|look under couches|examine under the couch|x under couches }
+        {attrib, tags=x_under_desk|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(desk)\b, logic=look under the desk|look under desk|examine under the desk|x under desk }
+        {attrib, tags=x_under_dresser|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(dresser)\b, logic=look under the dresser|look under dresser|examine under the dresser|x under dresser }
+        {attrib, tags=x_under_servers|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?servers?\b, logic=look under the servers|look under server|examine under the server rack|x under servers }
+        {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
+        {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
+        {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed }
+        {attrib, tags=x_under_your_desk|!_regex, output=^(look|examine|x)\s+under\s+(your\s+|the\s+)?desk$, logic=x under your desk|x under desk|examine under the desk }
+
+    // Identifying
+        {attrib, tags=knife_01_id|!_regex, output=(knife).*, logic=the knife|your knife|the knife }
+        {attrib, tags=cloak|!_regex, output=(cloak).*, logic=the cloak|cloak }
+        {attrib, tags=heal|!_regex, output=(heal).*, logic=the heal|heal }
+        {attrib, tags=lazergun_id|!_regex, output=(lazer)?( )?(gun).*, logic=the gun|your lazer gun|the lazergun }
+        {attrib, tags=tech_trace|!_regex, output=(tech trace).*, logic=the tech trace|tech trace }
+
+    // Taking
+        {attrib, tags=battery_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?battery\b, logic=take the battery|take battery|pick up the battery }
+        {attrib, tags=bottle_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?bottle\b, logic=take the bottle|take bottles|pick up the bottle }
+        {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
+        {attrib, tags=chips_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chips?\b, logic=take the chip|take chip|take the chips|take chips|pick up the chip|pick up the chips }
+        {attrib, tags=glass_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?glass\b, logic=take the glass|take glasses|pick up the glass }
+        {attrib, tags=glasses_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?glasses\b, logic=take the glasses|take glasses|pick up the glass }
+        {attrib, tags=gun_take|!_regex, output=^(take|pick up)( the)? gun$, logic=take the gun|take gun|pick up gun|pick up the gun }
+        {attrib, tags=knife_take|!_regex, output=^(take|pick up)( the)?( metal)? knife$, logic=take the knife|take knife|pick up knife|take the metal knife|pick up the knife }
+        {attrib, tags=lazergun_take|!_regex, output=^(take|pick up)( the)?( lazer)? gun$, logic=take the gun|take lazer gun|pick up gun|take gun|pick up the lazer gun }
+        {attrib, tags=lcd_watch_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=take the watch|take watch|take lcd watch|pick up the watch|pick up watch|pick up lcd watch }
+        {attrib, tags=orb_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?orb\b, logic=take the orb|take orb|pick up the orb }
+        {attrib, tags=screwdriver_take|!_regex, output=^(take|pick up)( the)? screwdriver$, logic=take the screwdriver|take screwdriver|pick up screwdriver|pick up the screwdriver }
+        {attrib, tags=tablet_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?tablet\b, logic=take the tablet|take tab|pick up the tablet }
+
+    // Dropping
+        {attrib, tags=battery_drop|!_regex, output=(drop.*battery), logic=drop the battery|drop battery }
+        {attrib, tags=chip_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?chip\b, logic=drop the chip|drop chip|put down the chip|put down chip }
+        {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
+        {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
+        {attrib, tags=lcd_watch_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:lcd\s+)?watch\b, logic=drop the watch|drop watch|drop lcd watch|put down the watch|put down watch|put down lcd watch }
+        {attrib, tags=orb_drop|!_regex, output=(drop.*orb), logic=drop the orb|drop orb }
+        {attrib, tags=screwdriver_drop|!_regex, output=^(drop|put down)( the)? screwdriver$, logic=drop the screwdriver|put down screwdriver|drop screwdriver|put down the screwdriver }
+
+    // Putting
+
+    // Interacting
+        {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
+
+    // Fighting
+        {attrib, tags=attack_figure_masked|!_regex, output=(attack|!)(\s)?(the )?masked figures?.*, logic=attack the masked figure|! figures|!the masked figures|attack masked figure|! hooded figure|! masked figure }
+        {attrib, tags=attack_figure_hooded|!_regex, output=(attack|!)(\s)?(the )?hooded figures?.*, logic=attack the hooded figure|! figures|!the hooded figures|attack hooded figure|! masked figure|! hooded figure }
+
+    // Moving
+        {attrib, tags=enter_panel|!_regex, output=^(enter)(?: the)? (panel|panels)$, logic=enter panels|enter panel }
+
+        {attrib, tags=go_north_door|!_regex, output=^(?=.*\b(north|n)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=n|north|go n|go north|enter the north door|enter north|north door|n door }
+        {attrib, tags=go_south_door|!_regex, output=^(?=.*\b(south|s)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=s|south|go s|go south|enter the south door|enter south|south door|s door }
+        {attrib, tags=go_east_door|!_regex, output=^(?=.*\b(east|e)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=e|east|go e|go east|step through the east door }
+        {attrib, tags=go_west_door|!_regex, output=^(?=.*\b(west|w)\b)(?=.*\b(door|go|enter|step|through)?\b).*$, logic=w|west|go w|go west|step through the west door }
+        {attrib, tags=go_west_up|!_regex, output=^(?=.*\b(west|w|up)\b)(?=.*\b(go|stairs|up)?\b).*$, logic=up|up stairs|go up|go up stairs|w|west }
+
+        {attrib, tags=go_north|!_regex, output=^(?:go north|north|n)$, logic=n|north|go north }
+        {attrib, tags=go_north_west|!_regex, output=^(go\s+)?(north\s*west|nw)$, logic=nw|northwest|go north west }
+        {attrib, tags=go_south|!_regex, output=^(?:go south|south|s)$, logic=s|south|go south }
+        {attrib, tags=go_south_east|!_regex, output=^(go\s+)?(south\s*east|se)$, logic=se|southeast|go south east }
+        {attrib, tags=go_east|!_regex, output=^(?:go east|east|e)$, logic=e|east|go east }
+        {attrib, tags=go_west|!_regex, output=^(?:go west|west|w)$, logic=w|west|go west }
+
+        // 8bit world
+        {attrib, tags=go_forward|!_regex, output=^(?:go forward|forward|f)$, logic=f|forward|go forward }
+        {attrib, tags=go_backward|!_regex, output=^(?:go backward|backward|b)$, logic=b|backward|go backward }
+        {attrib, tags=jump|!_regex, output=^(?:jump|j)$, logic=j|jump }
+        {attrib, tags=crouch|!_regex, output=^(?:crouch|c)$, logic=c|crouch }
+        ////
+
+        {attrib, tags=go_up|!_regex, output=^(?=.*\bup\b).*$, logic=up|go up|up stairs }
+        {attrib, tags=go_down|!_regex, output=^(?=.*\bdown\b).*$, logic=down|go down|down stairs }
+
+        {attrib, tags=down_ramp|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?ramp$, logic=go down the ramp|take ramp|ramp }
+        {attrib, tags=up_escalator|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?escalator$, logic=go up the escalator|take escalator|escalator }
+        {attrib, tags=up_ramp|!_regex, output=^(go\s+up\s+the\s+|up\s+the\s+|up\s+|take\s+the\s+|take\s+)?ramp$, logic=go up the ramp|take ramp|ramp }
+        {attrib, tags=down_escalator|!_regex, output=^(go\s+down\s+the\s+|down\s+the\s+|down\s+|take\s+the\s+|take\s+)?escalator$, logic=go down the escalator|take escalator|escalator }
+
+        {attrib, tags=deepgrid_elevator_gen_floor|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*(?:[2-9]|1[1-9]|2[0-9]|3[0-24-9]|[4-6][0-9]|7[0-79])$, logic=press 1|floor 11|button 50|press 77|button 78|45|80 }
+        {attrib, tags=deepgrid_elevator_floor_10|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*10$, logic=floor 10|button 10|press 10|10|press 11 }
+        {attrib, tags=deepgrid_elevator_floor_1|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*1$, logic=floor 1|button 10|press 1|1|press 11 }
+        {attrib, tags=deepgrid_elevator_floor_33|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*33$, logic=floor 33|button 33|press 33|33|press 33 }
+        {attrib, tags=deepgrid_elevator_floor_78|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*78$, logic=floor 78|button 78|press 78|78|press 78 }
+        {attrib, tags=deepgrid_elevator_floor_80|!_regex, output=^(?:floor|button|press|select|go to|goto|#)\s*80$, logic=floor 80|button 80|press 80|80|press 80 }
+        {attrib, tags=elevator|!_regex, output=\b(enter\s+(the\s+|an?\s+)?)?elevator\b, logic=enter the elevator|enter elevator|elevator }
+        {attrib, tags=enter_1023|!_regex, output=^enter\s*1023$, logic=enter 1023|enter 1011 }
+        {attrib, tags=enter_non_1023|!_regex, output=^enter\s*(?:100[1-9]|101[0-9]|102[0-24-5])$, logic=enter 1023|enter 1011 }
+        {attrib, tags=hall|!_regex, output=\b(enter\s+(the\s+)?)?hall\b, logic=enter the hall|enter hall|hall }
+        {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
+        {attrib, tags=go_portal_01|!_regex, output=\b(e(nter)?)\s+(portal\s+)?1\b, logic=enter portal 1|e portal 1|e 1 }
+        {attrib, tags=go_portal_02|!_regex, output=\b(e(nter)?)\s+(portal\s+)?2\b, logic=enter portal 2|e portal 2|e 2 }
+        {attrib, tags=go_portal_03|!_regex, output=\b(e(nter)?)\s+(portal\s+)?3\b, logic=enter portal 3|e portal 3|e 3 }
+        {attrib, tags=go_portal_04|!_regex, output=\b(e(nter)?)\s+(portal\s+)?4\b, logic=enter portal 4|e portal 4|e 4 }
+        {attrib, tags=go_portal_05|!_regex, output=\b(e(nter)?)\s+(portal\s+)?5\b, logic=enter portal 5|e portal 5|e 5 }
+        {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
+        {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
+        {attrib, tags=type_comm_pwd|!_regex, output=^type hplpkd5$, logic=type hplpkd5|type hmmm }
+        {attrib, tags=type_comm_badpwd|!_regex, output=^type (?!hplpkd5$).+, logic=type hplpkd5|type hmmm }
+
+        {attrib, tags=exit|!_regex, output=^(?:exit|x)$, logic=exit|x }
+
+    // Conversation
+        {attrib, tags=purchase_cruise_ticket|!_regex, output=(?:(?:i need to (?:buy|purchase)|can i get)(?: a)?|(?:a )?)?(?:cruise )?ticket(?: for (?:the )?cruise)?, logic=I need to buy a ticket for the cruise|I need to buy a ticket|I need to buy a cruise ticket|I need to purchase a ticket for the cruise }
+        {attrib, tags=conv_bartender|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|talk\s+to)\s+(the\s+)?bartender(?:s)?\b, logic=talk to the bartender|talk to bartenders|greet bartender|greet the bartender|yes }
+        {attrib, tags=conv_shifty_char|!_regex, output=\b(examine|x|greet|say\s+hi\s+to|ask|talk\s+to)\s+(the\s+)?(shifty\s+)?character\b, logic=talk to the shifty character|talk to character|ask the shifty character|ask the character|greet character|greet the shifty character|ask the shifty character|ask the character }
+        {attrib, tags=conv_need_ticket|!_regex, output=\b(?:I need a|I'm looking for a) (?:monorail )?ticket(?: for the monorail)?\b|\bmonorail\b, logic=I need a ticket|I need a monorail ticket|I need a ticket for the monorail|I'm looking for a monorail ticket|I'm looking for a ticket for the monorail|monorail }
+        {attrib, tags=conv_piracy|!_regex, output=\b(what about\s+)?(hacking|piracy)\??\b, logic=what about hacking?|what about piracy|hacking|piracy }
+        {attrib, tags=conv_secrets|!_regex, output=\b(what about\s+)?(secrets)\??\b, logic=what about secrets?|secrets }
+        {attrib, tags=conv_streets|!_regex, output=\b(?:the\s+)?streets\b, logic=what about the streets?|yes tell me about the streets|the streets|streets }
+        {attrib, tags=conv_drink|!_regex, output=(can\s+i\s+(order|buy)\s+a\s+)?(i\s+need\s+a\s+)?(i\s+would\s+like\s+a\s+)?(a\s+)?(drink|cocktail)(\s+please)?\??, logic=Can I order a drink?|Can I buy a drink?|I need a drink?|A drink please|I would like a drink|Can I order a cocktail?|Can I buy a cocktail?|I need a cocktail|a cocktail please|I would like a cocktail|drink|cocktail|drink|cocktail }
+
+    // Responding
+        {attrib, tags=yes|!_regex, output=^\b(yes|yeah|yep)\b$, logic=yes|yea|yes I would|yep|um yes }
+        {attrib, tags=no|!_regex, output=^\b(no|nope)\b$, logic=no|nope|no I would not|um no }
+
+    // Using
+        {attrib, tags=use_cloak|!_regex, output=^(?:use\s+(?:the\s+)?)?cloak\b$, logic=use cloak|use the cloak }
+        {attrib, tags=use_life_chip|!_regex, output=^(?:use\s+(?:the\s+)?)?life\s+chip\b$, logic=use life chip|life chip|use the life chip }
+
+    // Actions
+        {attrib, tags=act_life|!_regex, output=^(?:examine |x )?life$, logic=examine life|x life|life }
+        {attrib, tags=act_armor|!_regex, output=^(?:examine |x )?armor$, logic=examine armor|x armor|armor }
+        {attrib, tags=act_credits|!_regex, output=^(?:examine |x )?credits$, logic=examine credits|x credits|credits }
+        {attrib, tags=act_cunning|!_regex, output=^(?:examine |x )?cunning$, logic=examine cunning|x cunning|cunning }
+        {attrib, tags=act_intelligence|!_regex, output=^(?:examine |x )?intelligence$, logic=examine intelligence|x intelligence|intelligence }
+        {attrib, tags=act_strength|!_regex, output=^(?:examine |x )?strength$, logic=examine strength|x strength|strength }
+
+    // System
+        {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
+
+    // Specific
+        {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
+        {attrib, tags=fidelis|!_regex, output=^fidelis$, logic=fidelis|fedelis }
+        {attrib, tags=mrf|!_regex, output=^mrf$, logic=mrf|mrff }
+        {attrib, tags=nonfidelis|!_regex, output=^(?!fidelis$).+, logic=fidelis|fedelis|i don't know }
+        {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
+        {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
+
+
+    // Questions
+        {attrib, tags=where_to_go|!_regex, output=\bwhere\s+(?:do\s+i\s+go(?:\s+now)?|should\s+i\s+go)|but\s+where\b, logic=but where do i go?|where should I go|where do i go now? }
+
+
+
+    // Entertainment
+
+        // * 4 bytes
+        // * 16 bytes
+        // * depends on the type
+
+        {attrib, tags=entrtn_wrong|!_regex, output=^((4|16) bytes|depends on the type)$, logic=4 bytes|16 bytes|depends on the type }
+}

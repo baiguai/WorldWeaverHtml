@@ -276,7 +276,7 @@
             const inputParsers = ["logic", "preset", "set", "action", "attack", "flee", "message", "move"];
             const logicParsers = ["logic", "action", "set", "message"];
             const messageParsers = ["logic", "action", "message", "set"];
-            const navigationParsers = ["message"];
+            const navigationParsers = ["logic", "message"];
             const generalParsers = ["logic", "enter_message", "message", "move", "attack", "action", "set", "npc"];
             const moveParsers = ["logic", "set", "message"];
             const npcParsers = ["travel", "enter_message", "logic", "input", "action", "attack", "set", "message", "dev_note"];
@@ -2143,6 +2143,10 @@
         function processNavigation() {
             if (roomParsers.includes("navigation")) {
                 for (const nav of getChildrenByType(getCurrentRoom(), "navigation")) {
+                    if (!processLogic(nav)) {
+                        return;
+                    }
+
                     const doContinue = gameOutput.ContinueParsing;
                     gameOutput.ContinueParsing = true;
                     parseElement(nav, navigationParsers); 

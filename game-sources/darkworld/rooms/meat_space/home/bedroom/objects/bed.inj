@@ -1,0 +1,30 @@
+{x_bed
+    {message
+        output={@
+
+Your bed is surprisingly large.
+Sheets and blankets are thrown and piled over the mattress. A lone oversize pillow sits at the head.
+
+(Hint: You can look under, behind or on items)
+        }
+    }
+}
+
+{x_under_bed
+    {message
+        output={@
+
+You look under your bed.
+        }
+    }
+}
+
+
+
+{input, syntax=[tplt_syntax]((x_your_bed))
+    {act, logic=x_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_bed))
+    {act, logic=x_under_bed, tags=!_type|room }
+}

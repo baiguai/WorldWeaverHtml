@@ -1,0 +1,9 @@
+{object, key=mt_cd_player, name=CD Player, parent=bedroom
+    {enter_message
+        output={@
+
+You see a CD Player...
+
+        }
+    }
+}

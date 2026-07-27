@@ -1,0 +1,81 @@
+﻿{game
+    name=DarkWorld
+
+    {attrib, output=xx, tags=!_adminpass }
+    {attrib, output=darkworld, tags=!_filename }
+    {attrib, output=#000, tags=!_ui_background }
+    {attrib, output=#00ff00, tags=!_ui_foreground }
+    {attrib, tags=!_error
+        output={@
+I don't understand what you are trying to do.
+        }
+    }
+    {attrib, output=look, tags=!_defact }
+    {attrib, output=4, tags=!_easingrounds }
+
+
+    {message, tags=!_die
+        output={@
+You have died.
+        }
+    }
+
+    {message, tags=!_start
+        output={@
+▄     ▌ ▖  ▖    ▜  ▌
+▌▌▀▌▛▘▙▘▌▞▖▌▛▌▛▘▐ ▛▌
+▙▘█▌▌ ▛▖▛ ▝▌▙▌▌ ▐▖▙▌
+                    
+
+
+Shellspace.
+
+You've dreamed of entering this elusive VR darkweb for years.
+You can take pirating to the next level.
+
+Now, at last, the final key has arrived.
+
+A USB stick from Perihelion.
+
+(Note: Use ? for help)
+
+
+
+        }
+    }
+
+    {attrib, output=15, tags=currenthour }
+    {attrib, output=0, tags=currentminute|!_isminutes }
+    {time
+        {message
+            output={@
+                Current Time:
+                <<[game]((currenthour))>>:<<[game]((currentminute))>>
+            }
+        }
+    }
+    {attrib, output=20, tags=nighthour }
+    {attrib, output=6, tags=dayhour }
+    {attrib, output=0, tags=totaldays }
+    {days
+        {message
+            output={@
+                Days in Shellspace:
+                <<[game]((totaldays))>>
+            }
+        }
+    }
+    {attrib, output=0, tags=missiondays }
+    {attrib, output=true, tags=isday }
+    {day
+        {message
+            output={@
+                <?[game]((isday)) = 'true'?>
+It is day time.
+                <else>
+It is night time.
+                </?>
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{room, key=park_north, name=The Park
+    {attrib, tags=navigation
+        output={@
+South leads to the center of the park.
+        }
+    }
+
+
+    {enter_message
+        output={@
+You are at the cafe.
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around the cafe...
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=the_park, tags=[player]
+            output={@
+You go to the center of the park.
+            }
+        }
+    }
+}
