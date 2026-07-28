@@ -1,0 +1,45 @@
+{object, key=mt_cd, name=CD, parent=bedroom
+    {attrib, output=false, tags=moved }
+
+    {x_on_desk
+        {message
+            output={@
+
+You see a CD.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'false'
+            }
+        }
+    }
+
+    {put_cd
+        {message
+            output={@
+
+You put the CD in the CD player.
+            }
+        }
+    }
+
+
+
+
+    {input, syntax=[tplt_syntax]((put_cd_in_player))
+        {act, logic=put_cd, tags=!_type|room }
+        {set, output=true, logic=[self]((moved)) }
+
+        {logic
+            logic={@
+                ?[mt_cd_player]parent = [player]
+            }
+            output={@
+
+You aren't carrying a CD player.
+            }
+        }
+    }
+}

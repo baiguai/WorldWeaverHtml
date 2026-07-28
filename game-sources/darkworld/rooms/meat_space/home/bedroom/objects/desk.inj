@@ -1,1 +1,29 @@
-{attrib, output=desk, tags=name }
+{x_desk
+    {message
+        output={@
+
+You examine your desk...
+        }
+    }
+}
+
+{x_on_desk
+    {message
+        output={@
+
+You look on your desk...
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_desk))
+    {act, logic=x_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_desk))
+    {act, logic=x_on_desk, tags=!_type|room }
+}

@@ -113,6 +113,7 @@
     // Taking
         {attrib, tags=battery_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?battery\b, logic=take the battery|take battery|pick up the battery }
         {attrib, tags=bottle_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?bottle\b, logic=take the bottle|take bottles|pick up the bottle }
+        {attrib, tags=cdplayer_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?(?:cd player)\b, logic=take the cd player|take cd player|pick up the cd player|pick up cd player }
         {attrib, tags=chip_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chip\b, logic=take the chip|take chip|pick up the chip }
         {attrib, tags=chips_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?chips?\b, logic=take the chip|take chip|take the chips|take chips|pick up the chip|pick up the chips }
         {attrib, tags=glass_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?glass\b, logic=take the glass|take glasses|pick up the glass }
@@ -127,6 +128,7 @@
 
     // Dropping
         {attrib, tags=battery_drop|!_regex, output=(drop.*battery), logic=drop the battery|drop battery }
+        {attrib, tags=cdplayer_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?(?:cd player)\b, logic=drop the cd player|drop cd player|put down the cd player|put down cd player }
         {attrib, tags=chip_drop|!_regex, output=\b(?:drop|put down)\s+(?:the\s+)?chip\b, logic=drop the chip|drop chip|put down the chip|put down chip }
         {attrib, tags=knife_drop|!_regex, output=(drop.*knife), logic=drop the knife|drop knife }
         {attrib, tags=lazergun_drop|!_regex, output=(drop.*gun), logic=drop the gun|drop lazer gun }
@@ -135,6 +137,7 @@
         {attrib, tags=screwdriver_drop|!_regex, output=^(drop|put down)( the)? screwdriver$, logic=drop the screwdriver|put down screwdriver|drop screwdriver|put down the screwdriver }
 
     // Putting
+        {attrib, tags=put_cd_in_player|!_regex, output=\b(?:put|insert)\s+(?:the\s+)?cd\s+(?:in|into)\s+(?:the\s+)?cd player\b, logic=put the cd in the cd player|put cd in cd player|put the cd into the cd player|put cd into cd player }
 
     // Interacting
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
