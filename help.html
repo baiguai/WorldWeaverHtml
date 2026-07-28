@@ -2582,6 +2582,21 @@
             "expanded": false
           },
           {
+            "id": "t6grht88",
+            "title": "Moving Objects",
+            "content": "",
+            "children": [
+              {
+                "id": "dxzibfsi",
+                "title": "The Object to be Moved",
+                "content": "The Object to be Moved\n--------------------------------------------------------------------------------\n\nUnless the object you are going to move is sitting on the floor in the middle\nof the room, you probably don't want to describe the object when the player\nsimply looks around. However if the player picks it up, then later drops it -\nat that time you WOULD like it to be described when the player looks around.\n\nTo accomplish this, you can use a 'moved' Attribute.\n\n\n{object, key=the_sword, name=sword, parent=dungeon\n    {attrib, output=false, tags=moved }\n\n    {enter_message\n        output={@\n\nYou see a sword...\n\n        }\n\n        {logic\n            logic={@\n                ?[self]((moved)) = 'true'\n                and\n                ?[self]parent = [room]\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n\nYou see a sword.\n            }\n        }\n\n        {logic\n            logic={@\n                ?[self]((moved)) = 'true'\n                and\n                ?[self]parent = [room]\n            }\n        }\n    }\n\n    {x_on_alter\n        {message\n            output={@\n\nYou see a sword.\n            }\n        }\n\n        {logic\n            logic={@\n                ?[self]((moved)) = 'false'\n            }\n        }\n    }\n\n\n\n\n    {input, syntax=[tplt_syntax]((sword_take))\n        {move, logic=[player], tags=[self]\n            output={@\n\nYou pick up the sword.\n            }\n        }\n        {set, logic=[self]tags, output=+inventory }\n        {set, logic=[self]((moved)), output=true }\n    }\n\n    {input, syntax=[tplt_syntax]((sword_drop))\n        {move, logic=[room], tags=[self]\n            output={@\n\nYou drop the sword.\n            }\n        }\n        {set, logic=[self]tags, output=-inventory }\n    }\n}",
+                "children": [],
+                "expanded": false
+              }
+            ],
+            "expanded": false
+          },
+          {
             "id": "5vfyquoa",
             "title": "Scenario Examples",
             "content": "",
@@ -2798,18 +2813,6 @@
 ];
             let historyStack = [
     {
-        "id": "4jjck1q4",
-        "title": "Look Injection"
-    },
-    {
-        "id": "wfvg9lfw",
-        "title": "Navigation Injection"
-    },
-    {
-        "id": "xsqiw883",
-        "title": "Handling User"
-    },
-    {
         "id": "3es6spd6",
         "title": "Element Cheat Sheet"
     },
@@ -2886,10 +2889,6 @@
         "title": "Handling User Input"
     },
     {
-        "id": "3cccheaq",
-        "title": "Developer's Cheat Sheet"
-    },
-    {
         "id": "w9q5p7ir",
         "title": "Object vs Custom Element Messages"
     },
@@ -2912,6 +2911,22 @@
     {
         "id": "gd3l7b09",
         "title": "Quick Links"
+    },
+    {
+        "id": "3cccheaq",
+        "title": "Developer's Cheat Sheet"
+    },
+    {
+        "id": "1c8iaj2u",
+        "title": "Introduction to Tests"
+    },
+    {
+        "id": "psnju7nz",
+        "title": "Syntax With Logic"
+    },
+    {
+        "id": "dxzibfsi",
+        "title": "The Object to be Moved"
     },
     {
         "id": "7t1zfwoc",
