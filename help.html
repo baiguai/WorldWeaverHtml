@@ -743,23 +743,23 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div class="selected">Introduction</div><div>Creating the Player File</div></div>
+                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"><div>worldweaver.html</div><div class="selected">Importing the Database</div><div>Referencing Elements</div></div>
+                <div class="search-results" id="linkSearchList"><div>Developer's Cheat Sheet</div><div class="selected">Templates</div><div>Introduction to the Templates</div><div>Out of the Box Templates</div><div>Room Template</div><div>Templates With Injections</div><div>Room Template</div><div>Room Template with Testing</div></div>
             </div>
 
-            <div class="search-dialog" id="helpDialogUnified" style="display: none;">
+            <div class="search-dialog" id="helpDialogUnified" style="display:none;">
                 <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
-                <div id="helpResults" class="search-results"><div><b>Escape</b> <span class="dim">(NORMAL) - </span>Return to TREE mode</div><div><b>p</b> <span class="dim">(NORMAL) - </span>Paste after cursor</div><div><b>P</b> <span class="dim">(NORMAL) - </span>Paste before cursor</div><div><b>Escape</b> <span class="dim">(VISUAL) - </span>Exit to NORMAL mode</div><div><b>Escape</b> <span class="dim">(INSERT) - </span>Exit to NORMAL mode</div><div><b>p</b> <span class="dim">(TREE) - </span>Paste copied note node</div></div>
+                <div id="helpResults" class="search-results"></div>
                 <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
             </div>
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="orfg1ilt" class="selected">Downloading WorldWeaver</a></div>
+                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
             </div>
 
             <div id="marksDialog" style="display: none;">
@@ -767,7 +767,7 @@
                 <div id="marksList"></div>
             </div>
 
-            <div id="replaceDialog" style="display: none;">
+            <div id="replaceDialog" style="display: none; top: 15%; left: 5px; width: 230px;">
                 <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
@@ -786,15 +786,15 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Downloading WorldWeaver</div><div class="selected" style="background: var(--sel-bg);">Introduction</div><div>Using This Help System</div><div>Quick Links</div><div>Saving Games</div><div>Importing the Database</div><div>Room Template</div><div>Takeable Object</div><div>Room Template with Testing</div><div>Room Template</div><div>Takeable Object</div><div>Introduction to the Templates</div><div>Developer's Cheat Sheet</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Introduction to Tests</div><div>Injection Placeholders</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div><div>Handling User Input</div><div>Adding the Regular Expressions</div><div>Creating the Regular Expressions Element</div><div>Introduction to Creating Regular Expressions Libraries</div><div>Introduction to Relative Syntax</div><div>Relative Reference Syntax</div><div>Introduction to Regular Expressions</div></div>
+                    <div id="historyList"><div>Importing the Database</div><div class="selected" style="background: var(--sel-bg);">Introduction</div><div>Downloading WorldWeaver</div><div>Quick Links</div><div>Using This Help System</div><div>Developer's Cheat Sheet</div><div>How to Play a WorldWeaver Game</div><div>Saving Games</div><div>Room Template</div><div>Takeable Object</div><div>Room Template with Testing</div><div>Room Template</div><div>Takeable Object</div><div>Introduction to the Templates</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Introduction to Tests</div><div>Injection Placeholders</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div><div>Handling User Input</div><div>Adding the Regular Expressions</div><div>Creating the Regular Expressions Element</div><div>Introduction to Creating Regular Expressions Libraries</div><div>Introduction to Relative Syntax</div><div>Relative Reference Syntax</div></div>
                 </div>
             </div>
 
             <div id="undoDialog" style="display: none;">
                 <h3>Undo History</h3>
-                <div id="undoPreview" class="undo-preview"><div class="">Introduction</div><div class="">--------------------------------------------------------------------------------</div><div class="">&nbsp;</div><div class="">WorldWeaver (WW) is an interactive fiction engine...</div><div class="">&nbsp;</div><div class="">It has been written as stand alone .html files. This allows both the game</div><div class="">authoring tools and the games themselves to be VERY portable. Any device that</div><div class="">has a JavaScript enabled browser on it can build or play WW games!</div><div class="">&nbsp;</div><div class="">If you are interested in the history of WW or if you are a developer who may</div><div class="">wish to work on the WW code, be sure to visit</div><div class="">(double click links, or use # in TREE mode):</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">+---------------------------+----------------------------------+---------------------+</div><div class="">| Installation              | Playing WW                       | Developing WW Games |</div><div class="">+---------------------------+----------------------------------+---------------------+</div><div class="diff-first">| _Downloading WorldWeaver_ | _How to Play a WorldWeaver Game_ |                     |</div><div class="">| _WorldWeaver Files_       | _Saving Games_                   |                     |</div><div class="">+---------------------------+----------------------------------+---------------------+</div><div class="">&nbsp;</div></div>
+                <div id="undoPreview" class="undo-preview"><div class="">Developer's Cheat Sheet</div><div class="">--------------------------------------------------------------------------------</div><div class="">&nbsp;</div><div class="">+--------------| ---------+------------------------------+----------------------------+------------------------------+ |</div><div class="">| elements                                                                                              | fields                       | tags                       | examples                     |</div><div class="">+-------------------------------------------------------------------------------------------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| _element cheat sheet_                                                                                 | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |</div><div class="">|                                                                                                       |                              |                            | _Marking Elements as Tested_ |</div><div class="">|                                                                                                       |                              |                            | _Templates_                  |</div><div class="">| +--------------                                                                                       |</div><div class="">---------+------------------------------+----------------------------+------------------------------+</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">_Admin Commands Cheat Sheet_</div><div class="">&nbsp;</div><div class="">_Templates_</div></div>
                 <div class="undo-content">
-                    <div id="undoList"><div>1. Introduction</div><div class="selected">2. Introduction</div></div>
+                    <div id="undoList"><div class="selected">1. Developer's Cheat Sheet</div></div>
                 </div>
             </div>
 
@@ -857,12 +857,12 @@
             <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Introduction</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Using This Help System</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Quick Links</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Getting Started</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Developers</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">History</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Upcoming</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
-                    <span class="pill" id="mode" style="display: block;">NORMAL</span>
+                    <span class="pill" id="mode" style="display: block;">TREE</span>
                     <span class="pill" id="kind">NOTE</span>
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="normal-mode"></textarea>
+                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
             </section>
             </div>
 
@@ -882,7 +882,7 @@
   {
     "id": "7t1zfwoc",
     "title": "Introduction",
-    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit\n(double click links, or use # in TREE mode):\n\n\n+---------------------------+----------------------------------+---------------------------+\n| Installation              | Playing WW                       | Developing WW Games       |\n+---------------------------+----------------------------------+---------------------------+\n| _Downloading WorldWeaver_ | _How to Play a WorldWeaver Game_ | _Developer's Cheat Sheet_ |\n| _WorldWeaver Files_       | _Saving Games_                   | _Importing the Database_  |\n+---------------------------+----------------------------------+---------------------------+\n",
+    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit\n(double click links, or use # in TREE mode):\n\n\n+---------------------------+--------------------------------------+---------------------------+\n| Installation              | Playing WW                           | Developing WW Games       |\n+---------------------------+--------------------------------------+---------------------------+\n| _Downloading WorldWeaver_ | _How to Play a WorldWeaver Game_     | _Developer's Cheat Sheet_ |\n| _WorldWeaver Files_       | _Saving Games_                       | _Importing the Database_  |\n|                           | _Interactive Fiction Game Play Help_ |                           |\n+---------------------------+--------------------------------------+---------------------------+\n",
     "children": [],
     "expanded": false
   },
@@ -949,7 +949,7 @@
           {
             "id": "c174tcpw",
             "title": "How to Play a WorldWeaver Game",
-            "content": "How to Play a WorldWeaver Game\n--------------------------------------------------------------------------------\n\n...",
+            "content": "How to Play a WorldWeaver Game\n--------------------------------------------------------------------------------\n\nWW games are simply stand alone .html files, so to play a WW game you just\nneed to open it in a browser.\n\nHowever, if you are new to Interactive Fiction (IF) games playing one can\nbe a bit tricky at first. Also saving your progress in a WW game is a bit\nstrange since it is just an HTML page.\n\nFor information on saving your game see: _Saving Games_\n\nAnd for IF game play information see: _Interactive Fiction Game Play Help_",
             "children": [],
             "expanded": false
           },
@@ -957,6 +957,13 @@
             "id": "kyzadr5w",
             "title": "Saving Games",
             "content": "Saving Games\n--------------------------------------------------------------------------------\n\nBecause WW is a stand alone HTML file, saving games is a bit different from\nwhat you are used to. While playing a game, at any point in time the player\ncan type:\n\nsave\n\nand hit Enter. This will save the game however the web browser it is running\nin typically stores downloads. Usually this is saving a copy in your Downloads\ndirectory, and if there's already a copy there, incrementing the file name.\nLike:\n\ndarkworld.html\ndarkworld_1.html\ndarkworld_2.html\n\nThis is nice because the player has a history of saved games. When they are\ndone with their game play session - they will need to take the last saved\ncopy and overwrite the game file they had opened to play the game.",
+            "children": [],
+            "expanded": false
+          },
+          {
+            "id": "jknshxx4",
+            "title": "Interactive Fiction Game Play Help",
+            "content": "Interactive Fiction Game Play Help\n--------------------------------------------------------------------------------\n\nWorldWeaver is so flexible that each game could have its own completely unique\nset of inputs that the player needs to enter. Ideally the author has defined\na thorough help system for their game, usually accessed via the '?' input.\n\nTypically there are some common inputs you can use in IF games:\n\nlook\n    * look around\n\nexamine or x <item>\n    * examine a specific 'thing' within the game\n\ntake\n    * pick up something\n\ndrop\n    * put down something",
             "children": [],
             "expanded": false
           }
@@ -1062,7 +1069,7 @@
       {
         "id": "3cccheaq",
         "title": "Developer's Cheat Sheet",
-        "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\n_Element Cheat Sheet_\n_Element Fields Cheat Sheet_\n_Special Tags Cheat Sheet_\n_Admin Commands Cheat Sheet_\n_Scenario Examples_\n_Tracking Game Development_\n    _Marking Elements as Tested_\n\n_Templates_",
+        "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| Elements              | Fields                       | Tags                       | Examples                     |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| _element cheat sheet_ | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |\n|                       |                              |                            | _Marking Elements as Tested_ |\n|                       |                              |                            | _Templates_                  |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n\nOther Tools\n\n_Admin Commands Cheat Sheet_\n",
         "children": [],
         "expanded": false
       },
@@ -2850,18 +2857,6 @@
 ];
             let historyStack = [
     {
-        "id": "unskmixi",
-        "title": "Relative Reference Syntax"
-    },
-    {
-        "id": "42ohhfa6",
-        "title": "Introduction to Relative Syntax"
-    },
-    {
-        "id": "iwcg8qmj",
-        "title": "Introduction to Creating Regular Expressions Libraries"
-    },
-    {
         "id": "8q5i1o4x",
         "title": "Creating the Regular Expressions Element"
     },
@@ -2938,16 +2933,8 @@
         "title": "Room Template"
     },
     {
-        "id": "kyzadr5w",
-        "title": "Saving Games"
-    },
-    {
-        "id": "c174tcpw",
-        "title": "How to Play a WorldWeaver Game"
-    },
-    {
-        "id": "3cccheaq",
-        "title": "Developer's Cheat Sheet"
+        "id": "j2xmxbr6",
+        "title": "Importing the Database"
     },
     {
         "id": "jtfzv3lb",
@@ -2962,8 +2949,28 @@
         "title": "Downloading WorldWeaver"
     },
     {
-        "id": "j2xmxbr6",
-        "title": "Importing the Database"
+        "id": "c174tcpw",
+        "title": "How to Play a WorldWeaver Game"
+    },
+    {
+        "id": "kyzadr5w",
+        "title": "Saving Games"
+    },
+    {
+        "id": "jknshxx4",
+        "title": "Interactive Fiction Game Play Help"
+    },
+    {
+        "id": "3cccheaq",
+        "title": "Developer's Cheat Sheet"
+    },
+    {
+        "id": "9xbjszqy",
+        "title": "Element Fields Cheat Sheet"
+    },
+    {
+        "id": "o5h2wuvn",
+        "title": "Parent Field"
     },
     {
         "id": "7t1zfwoc",
@@ -3616,19 +3623,49 @@
                     scheduleAutoSave();
                 });
 
-                editorArea.addEventListener('click', () => {
+                editorArea.addEventListener('click', (e) => {
                     if (!readOnly) {
-                        setVimMode(true); // This will set the correct cursor style
-                        editing = true;
-                        render();
+                        setVimMode(true);
+                        if (!editing) {
+                            editing = true;
+                            render();
+                        }
                     }
-
-                    // Close dialogs - this is for mobile envs
                     closeDialogs();
-
                     editorArea.focus();
-                    // editorArea.setSelectionRange(0, 0); 
-                    // scrollToCursor();
+                });
+
+                editorArea.addEventListener('dblclick', (e) => {
+                    if (readOnly) return;
+                    const cursorPos = editorArea.selectionStart;
+                    if (cursorPos < 0) return;
+                    const content = editorArea.value;
+                    const link = findLinkAtCursor(content, cursorPos);
+                    if (!link) return;
+                    e.preventDefault();
+                    if (link.type === 'url') {
+                        window.open(link.target, '_blank');
+                    } else if (link.type === 'note') {
+                        const title = link.title.toLowerCase();
+                        let foundNode = null;
+                        (function walk(nodes) {
+                            for (const n of nodes) {
+                                if (n.title && n.title.toLowerCase() === title) {
+                                    foundNode = n;
+                                    return;
+                                }
+                                if (n.children && n.children.length) walk(n.children);
+                                if (foundNode) return;
+                            }
+                        })(treeData);
+                        if (foundNode) {
+                            expandToNode(foundNode.id);
+                            selectedId = foundNode.id;
+                            editing = false;
+                            closeLinksDialog();
+                            render();
+                        }
+                    }
                 });
 
                 function syncFile() {
@@ -5836,6 +5873,40 @@
             }
 
         //---- Links -----------------------------------------------------------
+            function findLinkAtCursor(content, cursorPos) {
+                const markdownRegex = /\[([^\]]+)\](?:[ \t]*\r?\n[ \t]*|[ \t]*)(https?:\/\/\S+|file:\/\/\S+|_[^_]+_)/gi;
+                let match;
+                while ((match = markdownRegex.exec(content)) !== null) {
+                    if (cursorPos >= match.index && cursorPos <= match.index + match[0].length) {
+                        const target = match[2].trim();
+                        if (/^(https?|file):\/\//i.test(target)) {
+                            return { type: 'url', target };
+                        } else if (target.startsWith('_') && target.endsWith('_')) {
+                            return { type: 'note', title: target.slice(1, -1) };
+                        }
+                    }
+                }
+
+                const urlRegex = /\b(?:https?|file):\/\/[^\s]+/gi;
+                while ((match = urlRegex.exec(content)) !== null) {
+                    if (cursorPos >= match.index && cursorPos <= match.index + match[0].length) {
+                        return { type: 'url', target: match[0] };
+                    }
+                }
+
+                const noteRegex = /(?:^|\s|\()_([^_]|[^_].*?[^_])_(?=\s|[.,!?;:)]|$)/g;
+                while ((match = noteRegex.exec(content)) !== null) {
+                    const full = match[0];
+                    const start = match.index;
+                    const end = start + full.length;
+                    if (cursorPos >= start && cursorPos <= end) {
+                        return { type: 'note', title: match[1].trim() };
+                    }
+                }
+
+                return null;
+            }
+
             function openLinksDialog() {
                 showingLinks = true;
                 const info = findNodeAndParentById(selectedId);
