@@ -741,9 +741,9 @@
                 <p>Press Enter to save, Esc to cancel.</p>
             </div>
 
-            <div class="search-dialog" id="searchDialog" style="display: none;">
+            <div class="search-dialog" id="searchDialog" style="display: flex;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
+                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching tags)</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -786,15 +786,15 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Importing the Database</div><div class="selected" style="background: var(--sel-bg);">Introduction</div><div>Downloading WorldWeaver</div><div>Quick Links</div><div>Using This Help System</div><div>Developer's Cheat Sheet</div><div>How to Play a WorldWeaver Game</div><div>Saving Games</div><div>Room Template</div><div>Takeable Object</div><div>Room Template with Testing</div><div>Room Template</div><div>Takeable Object</div><div>Introduction to the Templates</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Introduction to Tests</div><div>Injection Placeholders</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div><div>Handling User Input</div><div>Adding the Regular Expressions</div><div>Creating the Regular Expressions Element</div><div>Introduction to Creating Regular Expressions Libraries</div><div>Introduction to Relative Syntax</div><div>Relative Reference Syntax</div></div>
+                    <div id="historyList"><div>Element Cheat Sheet</div><div class="selected" style="background: var(--sel-bg);">Developer's Cheat Sheet</div><div>Introduction</div><div>Markdown Formatting</div><div>Action Element</div><div>Quick Links</div><div>Using This Help System</div><div>Parent Field</div><div>Element Fields Cheat Sheet</div><div>Interactive Fiction Game Play Help</div><div>Saving Games</div><div>How to Play a WorldWeaver Game</div><div>Downloading WorldWeaver</div><div>Importing the Database</div><div>Room Template</div><div>Takeable Object</div><div>Room Template with Testing</div><div>Room Template</div><div>Takeable Object</div><div>Introduction to the Templates</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Introduction to Tests</div><div>Injection Placeholders</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div></div>
                 </div>
             </div>
 
             <div id="undoDialog" style="display: none;">
                 <h3>Undo History</h3>
-                <div id="undoPreview" class="undo-preview"><div class="">Developer's Cheat Sheet</div><div class="">--------------------------------------------------------------------------------</div><div class="">&nbsp;</div><div class="">+--------------| ---------+------------------------------+----------------------------+------------------------------+ |</div><div class="">| elements                                                                                              | fields                       | tags                       | examples                     |</div><div class="">+-------------------------------------------------------------------------------------------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| _element cheat sheet_                                                                                 | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |</div><div class="">|                                                                                                       |                              |                            | _Marking Elements as Tested_ |</div><div class="">|                                                                                                       |                              |                            | _Templates_                  |</div><div class="">| +--------------                                                                                       |</div><div class="">---------+------------------------------+----------------------------+------------------------------+</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">_Admin Commands Cheat Sheet_</div><div class="">&nbsp;</div><div class="">_Templates_</div></div>
+                <div id="undoPreview" class="undo-preview"><div class="diff-first">Developer's Cheat Sheet</div><div class="">--------------------------------------------------------------------------------</div><div class="">&nbsp;</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| Elements              | Fields                       | Tags                       | Examples                     |</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| _element cheat sheet_ | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |</div><div class="">|                       |                              |                            | _Marking Elements as Tested_ |</div><div class="">|                       |                              |                            | _Templates_                  |</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">&nbsp;</div><div class="">Other Tools</div><div class="">&nbsp;</div><div class="">_Admin Commands Cheat Sheet_</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">#cheatsheet</div><div class="diff-line">&nbsp;</div></div>
                 <div class="undo-content">
-                    <div id="undoList"><div class="selected">1. Developer's Cheat Sheet</div></div>
+                    <div id="undoList"><div>1. Developer's Cheat Sheet</div><div class="selected">2. Developer's Cheat Sheet</div></div>
                 </div>
             </div>
 
@@ -882,7 +882,7 @@
   {
     "id": "7t1zfwoc",
     "title": "Introduction",
-    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit\n(double click links, or use # in TREE mode):\n\n\n+---------------------------+--------------------------------------+---------------------------+\n| Installation              | Playing WW                           | Developing WW Games       |\n+---------------------------+--------------------------------------+---------------------------+\n| _Downloading WorldWeaver_ | _How to Play a WorldWeaver Game_     | _Developer's Cheat Sheet_ |\n| _WorldWeaver Files_       | _Saving Games_                       | _Importing the Database_  |\n|                           | _Interactive Fiction Game Play Help_ |                           |\n+---------------------------+--------------------------------------+---------------------------+\n",
+    "content": "Introduction\n--------------------------------------------------------------------------------\n\nWorldWeaver (WW) is an interactive fiction engine...\n\nIt has been written as stand alone .html files. This allows both the game\nauthoring tools and the games themselves to be VERY portable. Any device that\nhas a JavaScript enabled browser on it can build or play WW games!\n\nIf you are interested in the history of WW or if you are a developer who may\nwish to work on the WW code, be sure to visit\n(double click links, or use # in TREE mode):\n\n\n+---------------------------+--------------------------------------+---------------------------+\n| Installation              | Playing WW                           | Developing WW Games       |\n+---------------------------+--------------------------------------+---------------------------+\n| _Downloading WorldWeaver_ | _How to Play a WorldWeaver Game_     | _Developer's Cheat Sheet_ |\n| _WorldWeaver Files_       | _Saving Games_                       | _Importing the Database_  |\n|                           | _Interactive Fiction Game Play Help_ |                           |\n+---------------------------+--------------------------------------+---------------------------+\n\n\n\n#cheatsheet",
     "children": [],
     "expanded": false
   },
@@ -1069,7 +1069,7 @@
       {
         "id": "3cccheaq",
         "title": "Developer's Cheat Sheet",
-        "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| Elements              | Fields                       | Tags                       | Examples                     |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| _element cheat sheet_ | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |\n|                       |                              |                            | _Marking Elements as Tested_ |\n|                       |                              |                            | _Templates_                  |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n\nOther Tools\n\n_Admin Commands Cheat Sheet_\n",
+        "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| Elements              | Fields                       | Tags                       | Examples                     |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n| _element cheat sheet_ | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |\n|                       |                              |                            | _Marking Elements as Tested_ |\n|                       |                              |                            | _Templates_                  |\n+-----------------------+------------------------------+----------------------------+------------------------------+\n\nOther Tools\n\n_Admin Commands Cheat Sheet_\n\n\n\n#cheatsheet",
         "children": [],
         "expanded": false
       },
@@ -1086,7 +1086,7 @@
               {
                 "id": "3es6spd6",
                 "title": "Element Cheat Sheet",
-                "content": "Element Cheat Sheet\n--------------------------------------------------------------------------------\n\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| Element       | Link                    | Description                                                                  |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| action        | _Action Element_        | Fires off another Element                                                    |\n| attack        | _Attack Element_        | Attack something                                                             |\n| attribute     | _Attribute Element_     | Set properties that can be used in powerful ways                             |\n| custom        | _Custom Element_        | Elements that have custom types, used by actions etc                         |\n| dev_note      | _Dev Note Element_      | Developer notes that are only visible in admin mode                          |\n| enter_message | _Enter Message Element_ | Special type of message, only shown when entering a room                     |\n| game          | _Game Element_          | Set properties of your game                                                  |\n| global        | _Global Element_        | Elements that are called every round of game play                            |\n| injection     | _Injection Element_     | Insert script from another file                                              |\n| input         | _Input Element_         | Fires when the syntax matches the player's input                             |\n| logic         | _Logic Element_         | Conditional Element that determines if its parent fires or not               |\n| message       | _Message Element_       | Outputs text to the player                                                   |\n| move          | _Move Element_          | Moves the player, npcs, or objects from one Element to another               |\n| navigation    | _Navigation Element_    | Special message that can remind the player of directions they can travel etc |\n| npc           | _NPC Element_           | An animate 'thing' within the game                                           |\n| object        | _Object Element_        | An inanimate 'thing' within the game                                         |\n| player        | _Player Element_        | Defines the Player                                                           |\n| room          | _Room Element_          | A location that the player and other Elements can be 'in'                    |\n| set           | _Set Element_           | Change something within the game                                             |\n| travel        | _Travel Element_        | Defines NPC movement                                                         |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n",
+                "content": "Element Cheat Sheet\n--------------------------------------------------------------------------------\n\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| Element       | Link                    | Description                                                                  |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n| action        | _Action Element_        | Fires off another Element                                                    |\n| attack        | _Attack Element_        | Attack something                                                             |\n| attribute     | _Attribute Element_     | Set properties that can be used in powerful ways                             |\n| custom        | _Custom Element_        | Elements that have custom types, used by actions etc                         |\n| dev_note      | _Dev Note Element_      | Developer notes that are only visible in admin mode                          |\n| enter_message | _Enter Message Element_ | Special type of message, only shown when entering a room                     |\n| game          | _Game Element_          | Set properties of your game                                                  |\n| global        | _Global Element_        | Elements that are called every round of game play                            |\n| injection     | _Injection Element_     | Insert script from another file                                              |\n| input         | _Input Element_         | Fires when the syntax matches the player's input                             |\n| logic         | _Logic Element_         | Conditional Element that determines if its parent fires or not               |\n| message       | _Message Element_       | Outputs text to the player                                                   |\n| move          | _Move Element_          | Moves the player, npcs, or objects from one Element to another               |\n| navigation    | _Navigation Element_    | Special message that can remind the player of directions they can travel etc |\n| npc           | _NPC Element_           | An animate 'thing' within the game                                           |\n| object        | _Object Element_        | An inanimate 'thing' within the game                                         |\n| player        | _Player Element_        | Defines the Player                                                           |\n| room          | _Room Element_          | A location that the player and other Elements can be 'in'                    |\n| set           | _Set Element_           | Change something within the game                                             |\n| travel        | _Travel Element_        | Defines NPC movement                                                         |\n+---------------+-------------------------+------------------------------------------------------------------------------+\n\n\n\n#cheatsheet\n#developer",
                 "children": [],
                 "expanded": false
               },
@@ -1272,7 +1272,7 @@
               {
                 "id": "9xbjszqy",
                 "title": "Element Fields Cheat Sheet",
-                "content": "Element Fields Cheat Sheet\n--------------------------------------------------------------------------------\n\n+--------+---------------------+--------------------------------------------------------------------------+\n| Field  | Link                | Description                                                              |\n+--------+---------------------+--------------------------------------------------------------------------+\n| key    | _Element Key Field_ | An ID that is unique within the game                                     |\n| logic  | _Logic Field_       | Defines the logic used to determine if this Element is fired             |\n| name   | _Name Field_        | User friendly name for the Element                                       |\n| output | _Output Field_      | Defines what is shown to the player                                      |\n| parent | _Parent Field_      | Specifies the Element that the current Element is within                 |\n| repeat | _Repeat Field_      | Specifies the repeat method the Message applies                          |\n| sort   | _Sort Field_        | Lets the game author sort the Elements in a definition file              |\n| syntax | _Syntax Field_      | A regular expression used to match player input                          |\n| tags   | _Tags Field_        | Tags allow the game author to extend the functionality of their Elements |\n| type   | _Type Field_        | Specifies the Element type                                               |\n+--------+---------------------+--------------------------------------------------------------------------+\n",
+                "content": "Element Fields Cheat Sheet\n--------------------------------------------------------------------------------\n\n+--------+---------------------+--------------------------------------------------------------------------+\n| Field  | Link                | Description                                                              |\n+--------+---------------------+--------------------------------------------------------------------------+\n| key    | _Element Key Field_ | An ID that is unique within the game                                     |\n| logic  | _Logic Field_       | Defines the logic used to determine if this Element is fired             |\n| name   | _Name Field_        | User friendly name for the Element                                       |\n| output | _Output Field_      | Defines what is shown to the player                                      |\n| parent | _Parent Field_      | Specifies the Element that the current Element is within                 |\n| repeat | _Repeat Field_      | Specifies the repeat method the Message applies                          |\n| sort   | _Sort Field_        | Lets the game author sort the Elements in a definition file              |\n| syntax | _Syntax Field_      | A regular expression used to match player input                          |\n| tags   | _Tags Field_        | Tags allow the game author to extend the functionality of their Elements |\n| type   | _Type Field_        | Specifies the Element type                                               |\n+--------+---------------------+--------------------------------------------------------------------------+\n\n\n\n#cheatsheet\n#developer",
                 "children": [],
                 "expanded": false
               },
@@ -1394,7 +1394,7 @@
               {
                 "id": "fhr5448h",
                 "title": "Special Tags Cheat Sheet",
-                "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------+---------------------------------------------------------------+\n| Tag             | Link                      | Description                                                   |\n+-----------------+---------------------------+---------------------------------------------------------------+\n| !_adminpass     | _Admin Pass Tag_          | Lets you set an admin mode password                           |\n| !_arm           | _Arm Tag_                 | Lets a Set Element arm the player                             |\n| !_armed         | _Armed Weapon Tag_        | Lets WW know what weapon the player is armed with             |\n| !_bullet        | _Bullet List Tag_         | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | _Can't Attack Tag_        | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | _Container Tag_           | Lets WW know the Element is a container                       |\n| !_cover         | _Cover Tag_               | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | _Damage Tag_              | The current Element inflicts damage                           |\n| !_damageadj     | _Damage Adjustment Tag_   | Allows you to adjust damage values                            |\n| !_defact        | _Defacto Output Tag_      | Default output value                                          |\n| !_die           | _Die Tag_                 | The Element to process when the player dies                   |\n| !_easingrounds  | _Easing Rounds Tag_       | Make difficult enemies a bit easier to hit                    |\n| !_enter         | _Enter Tag_               | An Element to process when entering a Room                    |\n| !_error         | _Error Tag_               | The Element's Output should show when an error occurs         |\n| !_filename      | _File Name Tag_           | Specify the file name to use when saving the game             |\n| !_hitmsg        | _Hit Message Tag_         | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | _Hit Player Message Tag_  | Message to show when the player is hit                        |\n| !_hitscore      | _Hit Score Tag_           | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | _Kill Message Tag_        | Message to show when the player kills an enemy                |\n| !_leave         | _Leave Tag_               | An Element to process when leaving a Room                     |\n| !_life          | _Life Tag_                | The Element is showing the Player's life                      |\n| !_limbo         | _Limbo Tag_               | A 'place' to move Elements when they should disappear         |\n| !_list          | _List Tag_                | Show a list of matching Attributes                            |\n| !_missmsg       | _Miss Message Tag_        | Message to show when an attack misses                         |\n| !_missplayermsg | _Miss Player Message Tag_ | When an attack on the player fails, show this                 |\n| !_platform      | _Platform Tag_            | Lets WW know the Element is a platform, things can be on it   |\n| !_put           | _Put Tag_                 | Lets WW know that the Element can be put into another Element |\n| !_regex         | _REGEX Tag_               | The Attribute Element is a REGEX                              |\n| !_spawn         | _Spawn Tag_               | The Action Element should spawn another Element               |\n| !_start         | _Start Element Tag_       | An Element to fire when the game first starts                 |\n| !_test          | _Test Tag_                | The Element is a test Element                                 |\n| !_type          | _Type Tag_                | The scope Element type                                        |\n| !_ui_background | _UI Background Tag_       | Set the game's UI background color                            |\n| !_ui_foreground | _UI Foreground Tag_       | Set the game's UI foreground color                            |\n| !_weapon        | _Weapon Tag_              | The current Object Element is a weapon                        |\n+-----------------+---------------------------+---------------------------------------------------------------+\n",
+                "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------+---------------------------------------------------------------+\n| Tag             | Link                      | Description                                                   |\n+-----------------+---------------------------+---------------------------------------------------------------+\n| !_adminpass     | _Admin Pass Tag_          | Lets you set an admin mode password                           |\n| !_arm           | _Arm Tag_                 | Lets a Set Element arm the player                             |\n| !_armed         | _Armed Weapon Tag_        | Lets WW know what weapon the player is armed with             |\n| !_bullet        | _Bullet List Tag_         | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | _Can't Attack Tag_        | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | _Container Tag_           | Lets WW know the Element is a container                       |\n| !_cover         | _Cover Tag_               | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | _Damage Tag_              | The current Element inflicts damage                           |\n| !_damageadj     | _Damage Adjustment Tag_   | Allows you to adjust damage values                            |\n| !_defact        | _Defacto Output Tag_      | Default output value                                          |\n| !_die           | _Die Tag_                 | The Element to process when the player dies                   |\n| !_easingrounds  | _Easing Rounds Tag_       | Make difficult enemies a bit easier to hit                    |\n| !_enter         | _Enter Tag_               | An Element to process when entering a Room                    |\n| !_error         | _Error Tag_               | The Element's Output should show when an error occurs         |\n| !_filename      | _File Name Tag_           | Specify the file name to use when saving the game             |\n| !_hitmsg        | _Hit Message Tag_         | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | _Hit Player Message Tag_  | Message to show when the player is hit                        |\n| !_hitscore      | _Hit Score Tag_           | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | _Kill Message Tag_        | Message to show when the player kills an enemy                |\n| !_leave         | _Leave Tag_               | An Element to process when leaving a Room                     |\n| !_life          | _Life Tag_                | The Element is showing the Player's life                      |\n| !_limbo         | _Limbo Tag_               | A 'place' to move Elements when they should disappear         |\n| !_list          | _List Tag_                | Show a list of matching Attributes                            |\n| !_missmsg       | _Miss Message Tag_        | Message to show when an attack misses                         |\n| !_missplayermsg | _Miss Player Message Tag_ | When an attack on the player fails, show this                 |\n| !_platform      | _Platform Tag_            | Lets WW know the Element is a platform, things can be on it   |\n| !_put           | _Put Tag_                 | Lets WW know that the Element can be put into another Element |\n| !_regex         | _REGEX Tag_               | The Attribute Element is a REGEX                              |\n| !_spawn         | _Spawn Tag_               | The Action Element should spawn another Element               |\n| !_start         | _Start Element Tag_       | An Element to fire when the game first starts                 |\n| !_test          | _Test Tag_                | The Element is a test Element                                 |\n| !_type          | _Type Tag_                | The scope Element type                                        |\n| !_ui_background | _UI Background Tag_       | Set the game's UI background color                            |\n| !_ui_foreground | _UI Foreground Tag_       | Set the game's UI foreground color                            |\n| !_weapon        | _Weapon Tag_              | The current Object Element is a weapon                        |\n+-----------------+---------------------------+---------------------------------------------------------------+\n\n\n\n\n#cheatsheet\n#developer",
                 "children": [],
                 "expanded": false
               },
@@ -1654,14 +1654,14 @@
               {
                 "id": "42ohhfa6",
                 "title": "Introduction to Relative Syntax",
-                "content": "Introduction to Relative Syntax\n--------------------------------------------------------------------------------\n\nElements in WorldWeaver (WW) have a key property. This is a unique identifier\nfor the Element. However this value must be unique within the game. It's a good\nidea to leave this blank wherever possible. WW will create a random unique\nvalue in those cases.\n\nElements that you SHOULD manually set a unique ElementKey:\n\n* Rooms\n  Since Elements of the type room are always root level Elements, you will want\n  to give them a manually set key.\n  This will be useful when moving the Player into those rooms.\n\n* Travel\n  If an NPC has a Travel Element, it is much easier to specify that Element if\n  you give it a manually set key.\n\n* Weapons\n  Giving weapons a manually set key will make tasks like arming the weapon\n  easier.\n\nIn most other cases you can usually identify the Element using Tags. This allows\nyou to identify the Element on a more 'scoped' level.\n\nFor example, you can identify an Element that is within the current Room and has\na tag of X.\nOr identify an item that the player is carrying that has a tag of X.\n\nThere are also other special identifying values that you can use. This section\nwill go over all of those.",
+                "content": "Introduction to Relative Syntax\n--------------------------------------------------------------------------------\n\nElements in WorldWeaver (WW) have a key property. This is a unique identifier\nfor the Element. However this value must be unique within the game. It's a good\nidea to leave this blank wherever possible. WW will create a random unique\nvalue in those cases.\n\nElements that you SHOULD manually set a unique ElementKey:\n\n* Rooms\n  Since Elements of the type room are always root level Elements, you will want\n  to give them a manually set key.\n  This will be useful when moving the Player into those rooms.\n\n* Travel\n  If an NPC has a Travel Element, it is much easier to specify that Element if\n  you give it a manually set key.\n\n* Weapons\n  Giving weapons a manually set key will make tasks like arming the weapon\n  easier.\n\nIn most other cases you can usually identify the Element using Tags. This allows\nyou to identify the Element on a more 'scoped' level.\n\nFor example, you can identify an Element that is within the current Room and has\na tag of X.\nOr identify an item that the player is carrying that has a tag of X.\n\nThere are also other special identifying values that you can use. This section\nwill go over all of those.\n\n\n\n\n\n#developer",
                 "children": [],
                 "expanded": false
               },
               {
                 "id": "unskmixi",
                 "title": "Relative Reference Syntax",
-                "content": "Relative Reference Syntax\n--------------------------------------------------------------------------------\n\nTo specify relative - or even Elements via their ElementKey, you will use the\nfollowing syntax:\n\n[Relative or ElementKey value]((Tag))\n[Relative or ElementKey value]Field\n\n** Note **\nIf you don't specify the Field, WorldWeaver will default to Output.\n\n\nConsider the following:\n\nElement Key > Tag Output\n\n[tplt_syntax]((look))\n\nRelative Code > Tag Output\n\n[player]((cur_heal_round))\n\nElement Key > Field\n\n[trv_following_thief]active",
+                "content": "Relative Reference Syntax\n--------------------------------------------------------------------------------\n\nTo specify relative - or even Elements via their ElementKey, you will use the\nfollowing syntax:\n\n[Relative or ElementKey value]((Tag))\n[Relative or ElementKey value]Field\n\n** Note **\nIf you don't specify the Field, WorldWeaver will default to Output.\n\n\nConsider the following:\n\nElement Key > Tag Output\n\n[tplt_syntax]((look))\n\nRelative Code > Tag Output\n\n[player]((cur_heal_round))\n\nElement Key > Field\n\n[trv_following_thief]active\n\n\n\n\n\n\n#developer",
                 "children": [],
                 "expanded": false
               },
@@ -1673,7 +1673,7 @@
                   {
                     "id": "ntrdbtd2",
                     "title": "Introduction to Special Relative References",
-                    "content": "Introduction to Special Relative References\n--------------------------------------------------------------------------------\n\nThere are special values that you can use to point to certain Elements in your\ngame. For example, you can specify whatever Room the Player is currently in.\nThis value is [room].\n\nOne thing to note however is these values are treated differently when you are\nusing them in Logic Element Logic Fields. In those situations they actually\nreturn the Element Key. For example:\n\n{logic\n\tlogic={@\n\t\t?[self]parent = [room]\n\t}\n}\n\nThe first half of that behaves as these special values normally do because a\nField was specified. However if the value is used alone, like [room] it returns\nthe Current Room's Element Key. So the above (behind the scenes) might actually\nbe something like:\n\n{logic\n\tlogic={@\n\t\t?[skeleton_key]parent = [dungeon_room_01]\n\t}\n}\n\n",
+                    "content": "Introduction to Special Relative References\n--------------------------------------------------------------------------------\n\nThere are special values that you can use to point to certain Elements in your\ngame. For example, you can specify whatever Room the Player is currently in.\nThis value is [room].\n\nOne thing to note however is these values are treated differently when you are\nusing them in Logic Element Logic Fields. In those situations they actually\nreturn the Element Key. For example:\n\n{logic\n\tlogic={@\n\t\t?[self]parent = [room]\n\t}\n}\n\nThe first half of that behaves as these special values normally do because a\nField was specified. However if the value is used alone, like [room] it returns\nthe Current Room's Element Key. So the above (behind the scenes) might actually\nbe something like:\n\n{logic\n\tlogic={@\n\t\t?[skeleton_key]parent = [dungeon_room_01]\n\t}\n}\n\n\n\n\n\n\n#developer",
                     "children": [],
                     "expanded": false
                   },
@@ -2857,34 +2857,6 @@
 ];
             let historyStack = [
     {
-        "id": "8q5i1o4x",
-        "title": "Creating the Regular Expressions Element"
-    },
-    {
-        "id": "knpmrxql",
-        "title": "Adding the Regular Expressions"
-    },
-    {
-        "id": "5xmx3fbx",
-        "title": "Handling User Input"
-    },
-    {
-        "id": "w9q5p7ir",
-        "title": "Object vs Custom Element Messages"
-    },
-    {
-        "id": "j2pmtnp5",
-        "title": "Moving NPCs / Objects"
-    },
-    {
-        "id": "8iegiaa9",
-        "title": "Syntax Conflicts"
-    },
-    {
-        "id": "03io5wie",
-        "title": "Injection Placeholders"
-    },
-    {
         "id": "1c8iaj2u",
         "title": "Introduction to Tests"
     },
@@ -2937,14 +2909,6 @@
         "title": "Importing the Database"
     },
     {
-        "id": "jtfzv3lb",
-        "title": "Using This Help System"
-    },
-    {
-        "id": "gd3l7b09",
-        "title": "Quick Links"
-    },
-    {
         "id": "orfg1ilt",
         "title": "Downloading WorldWeaver"
     },
@@ -2961,16 +2925,52 @@
         "title": "Interactive Fiction Game Play Help"
     },
     {
+        "id": "o5h2wuvn",
+        "title": "Parent Field"
+    },
+    {
+        "id": "nzpxh111",
+        "title": "Markdown Formatting"
+    },
+    {
+        "id": "2z7245ps",
+        "title": "Action Element"
+    },
+    {
+        "id": "jtfzv3lb",
+        "title": "Using This Help System"
+    },
+    {
+        "id": "gd3l7b09",
+        "title": "Quick Links"
+    },
+    {
         "id": "3cccheaq",
         "title": "Developer's Cheat Sheet"
+    },
+    {
+        "id": "3es6spd6",
+        "title": "Element Cheat Sheet"
     },
     {
         "id": "9xbjszqy",
         "title": "Element Fields Cheat Sheet"
     },
     {
-        "id": "o5h2wuvn",
-        "title": "Parent Field"
+        "id": "fhr5448h",
+        "title": "Special Tags Cheat Sheet"
+    },
+    {
+        "id": "42ohhfa6",
+        "title": "Introduction to Relative Syntax"
+    },
+    {
+        "id": "unskmixi",
+        "title": "Relative Reference Syntax"
+    },
+    {
+        "id": "ntrdbtd2",
+        "title": "Introduction to Special Relative References"
     },
     {
         "id": "7t1zfwoc",

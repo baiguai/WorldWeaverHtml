@@ -97,6 +97,7 @@
         {attrib, tags=x_under_couch|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(couch)(?:es)?\b, logic=look under the couch|look under couches|examine under the couch|x under couches }
         {attrib, tags=x_under_desk|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(desk)\b, logic=look under the desk|look under desk|examine under the desk|x under desk }
         {attrib, tags=x_under_dresser|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(dresser)\b, logic=look under the dresser|look under dresser|examine under the dresser|x under dresser }
+        {attrib, tags=x_under_keyboard|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(keyboard)\b, logic=look under the keyboard|look under keyboard|examine under the keyboard|x under keyboard }
         {attrib, tags=x_under_servers|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?servers?\b, logic=look under the servers|look under server|examine under the server rack|x under servers }
         {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
         {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+under\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
@@ -137,7 +138,7 @@
         {attrib, tags=screwdriver_drop|!_regex, output=^(drop|put down)( the)? screwdriver$, logic=drop the screwdriver|put down screwdriver|drop screwdriver|put down the screwdriver }
 
     // Putting
-        {attrib, tags=put_cd_in_player|!_regex, output=\b(?:put|insert)\s+(?:the\s+)?cd\s+(?:in|into)\s+(?:the\s+)?cd player\b, logic=put the cd in the cd player|put cd in cd player|put the cd into the cd player|put cd into cd player }
+        {attrib, tags=put_cd_in_player|!_regex, output=\b(?:put|insert)\s+(?:the\s+)?cd\s+(?:in|into)\s+(?:the\s+)?(?:cd\s+)?player\b, logic=put the cd in the cd player|put cd in cd player|put the cd into the cd player|put cd into cd player|put cd in player }
 
     // Interacting
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }

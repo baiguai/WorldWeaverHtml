@@ -23,13 +23,13 @@ Interactive Fiction follows some common conventions. The commands below are some
 #[#ffff00]**inv**# : View your current inventory.
 #[#ffff00]**look or l**# : To look around.
 #[#ffff00]**?hint**# : To display possible hints.
-#[#ffff00]**look behind (object) or behind (object)**# : To look behind the specified object.
-#[#ffff00]**look on (object) or on (object)**# : To look behind the specified object.
-#[#ffff00]**look under (object) or under (object)**# : To look behind the specified object.
-#[#ffff00]**look in (object) or in (object)**# : To look behind the specified object.
+#[#ffff00]**examine (object) or x (object)**# : To examine the specified object.
+#[#ffff00]**look/x behind (object) or behind (object)**# : To look behind the specified object.
+#[#ffff00]**look/x on (object) or on (object)**# : To look behind the specified object.
+#[#ffff00]**look/x under (object) or under (object)**# : To look behind the specified object.
+#[#ffff00]**look/x in (object) or in (object)**# : To look behind the specified object.
 #[#ffff00]**take (object) or pick up (object)**# : To pick up the specified object.
 #[#ffff00]**drop (object)**# : To drop the specified object.
-#[#ffff00]**examine (object) or x (object)**# : To examine the specified object.
 #[#ffff00]**arm (object)**# : To arm the player with the specified weapon.
 #[#ffff00]**put (object) in (another object)**# : To put the specified object into another specified object.
 

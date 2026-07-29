@@ -16,6 +16,16 @@ You look on your desk...
     }
 }
 
+{x_under_desk
+    {message
+        output={@
+
+You look under your desk.
+You don't see anything of note there. Just dust and bits of candy bar wrappers.
+        }
+    }
+}
+
 
 
 
@@ -26,4 +36,8 @@ You look on your desk...
 
 {input, syntax=[tplt_syntax]((x_on_your_desk))
     {act, logic=x_on_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
 }

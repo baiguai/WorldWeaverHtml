@@ -40,6 +40,8 @@ In the north wall is the window.
     {inject, logic=./objects/cdplayer.inj }
     {inject, logic=./objects/bookshelf.inj }
     {inject, logic=./objects/desk.inj }
+    {inject, logic=./objects/keyboard.inj }
+    {inject, logic=./objects/computer.inj }
     {inject, logic=./objects/entertainment.inj }
 
 
