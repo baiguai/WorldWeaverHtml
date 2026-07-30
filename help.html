@@ -350,6 +350,36 @@
                     overflow-y: auto;
                     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
                 }
+                #tagsDialog {
+                    display: none;
+                    position: fixed;
+                    top: 10%;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 400px;
+                    max-width: 90vw;
+                    max-height: 70%;
+                    background: var(--bg);
+                    color: var(--fg);
+                    border: 2px solid var(--border);
+                    border-radius: var(--border-radius);
+                    padding: 20px;
+                    z-index: 9999;
+                    font-family: monospace;
+                    overflow-y: auto;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+                }
+                #tagsList div {
+                    padding: 5px 6px;
+                    font-size: 0.9rem;
+                    cursor: pointer;
+                }
+                #tagsList div.selected {
+                    background: var(--sel-bg);
+                }
+                #tagsDialog h3 {
+                    margin-top: 0;
+                }
                 #linksDialog h3 {
                     margin-top: 0;
                 }
@@ -741,14 +771,14 @@
                 <p>Press Enter to save, Esc to cancel.</p>
             </div>
 
-            <div class="search-dialog" id="searchDialog" style="display: flex;">
+            <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div style="color: var(--dim);">(no matching tags)</div></div>
+                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"><div>Developer's Cheat Sheet</div><div class="selected">Templates</div><div>Introduction to the Templates</div><div>Out of the Box Templates</div><div>Room Template</div><div>Templates With Injections</div><div>Room Template</div><div>Room Template with Testing</div></div>
+                <div class="search-results" id="linkSearchList"></div>
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display:none;">
@@ -767,7 +797,13 @@
                 <div id="marksList"></div>
             </div>
 
-            <div id="replaceDialog" style="display: none; top: 15%; left: 5px; width: 230px;">
+            <div id="tagsDialog" style="display: none;">
+                <h3>Tags</h3>
+                <div id="tagsList"></div>
+                <p style="color:var(--dim); font-size:0.9em; margin-bottom:0;">↑↓ j/k Navigate • Enter Insert • Esc Cancel</p>
+            </div>
+
+            <div id="replaceDialog" style="display: none;">
                 <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
@@ -786,15 +822,15 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Element Cheat Sheet</div><div class="selected" style="background: var(--sel-bg);">Developer's Cheat Sheet</div><div>Introduction</div><div>Markdown Formatting</div><div>Action Element</div><div>Quick Links</div><div>Using This Help System</div><div>Parent Field</div><div>Element Fields Cheat Sheet</div><div>Interactive Fiction Game Play Help</div><div>Saving Games</div><div>How to Play a WorldWeaver Game</div><div>Downloading WorldWeaver</div><div>Importing the Database</div><div>Room Template</div><div>Takeable Object</div><div>Room Template with Testing</div><div>Room Template</div><div>Takeable Object</div><div>Introduction to the Templates</div><div>Why Use a REGEX Library</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Introduction to Tests</div><div>Injection Placeholders</div><div>Syntax Conflicts</div><div>Moving NPCs / Objects</div><div>Object vs Custom Element Messages</div></div>
+                    <div id="historyList"></div>
                 </div>
             </div>
 
             <div id="undoDialog" style="display: none;">
                 <h3>Undo History</h3>
-                <div id="undoPreview" class="undo-preview"><div class="diff-first">Developer's Cheat Sheet</div><div class="">--------------------------------------------------------------------------------</div><div class="">&nbsp;</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| Elements              | Fields                       | Tags                       | Examples                     |</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">| _element cheat sheet_ | _Element Fields Cheat Sheet_ | _Special Tags Cheat Sheet_ | _Scenario Examples_          |</div><div class="">|                       |                              |                            | _Marking Elements as Tested_ |</div><div class="">|                       |                              |                            | _Templates_                  |</div><div class="">+-----------------------+------------------------------+----------------------------+------------------------------+</div><div class="">&nbsp;</div><div class="">Other Tools</div><div class="">&nbsp;</div><div class="">_Admin Commands Cheat Sheet_</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">&nbsp;</div><div class="">#cheatsheet</div><div class="diff-line">&nbsp;</div></div>
+                <div id="undoPreview" class="undo-preview"></div>
                 <div class="undo-content">
-                    <div id="undoList"><div>1. Developer's Cheat Sheet</div><div class="selected">2. Developer's Cheat Sheet</div></div>
+                    <div id="undoList"></div>
                 </div>
             </div>
 
@@ -862,7 +898,7 @@
                     <span class="dim" id="path">/</span>
                     <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
+                <textarea id="editorArea" spellcheck="false" readonly="readonly" class=""></textarea>
             </section>
             </div>
 
@@ -3011,6 +3047,9 @@
             let editing = false;
             let showingLinks = false;
             let showingMarks = false;
+            let showingTags = false;
+            let tagsList = [];
+            let tagsIndex = 0;
             let showingHelp = false;
             let currentTheme = null;
             let themes = [
@@ -3306,6 +3345,7 @@
                     { key: "Control+\\", mode: "INSERT", description: "Wrap selected text" },
                     { key: "Control+;", mode: "INSERT", description: "Create/Update table" },
                     { key: "Control+'", mode: "INSERT", description: "Insert Link" },
+                    { key: "Control+3", mode: "INSERT", description: "Show all tags dialog" },
                 ];
                 
                 let helpVimEnabled = [
@@ -3976,6 +4016,9 @@
                     openDialog = true;
                 }
                 if (marksDialog.style.display === "block") {
+                    openDialog = true;
+                }
+                if (document.getElementById('tagsDialog').style.display === "block") {
                     openDialog = true;
                 }
                 if (historyDialog.style.display === "block") {
@@ -6474,6 +6517,106 @@
                 showingMarks = false;
             }
 
+            function collectAllTags() {
+                const tagSet = new Set();
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const content = n.content || '';
+                        const matches = content.match(/#[\w-]+/g) || [];
+                        for (const t of matches) {
+                            tagSet.add(t.toLowerCase());
+                        }
+                        if (n.children && n.children.length) walk(n.children);
+                    }
+                })(treeData);
+                return [...tagSet].sort();
+            }
+
+            function openTagsDialog() {
+                if (readOnly) return;
+                tagsList = collectAllTags();
+                if (tagsList.length === 0) {
+                    showMessage('No tags found');
+                    return;
+                }
+                tagsIndex = 0;
+                showingTags = true;
+                document.getElementById('tagsDialog').style.display = 'block';
+                renderTagsList();
+            }
+
+            function closeTagsDialog() {
+                showingTags = false;
+                document.getElementById('tagsDialog').style.display = 'none';
+                editorArea.focus();
+            }
+
+            function renderTagsList() {
+                const listEl = document.getElementById('tagsList');
+                listEl.innerHTML = '';
+                tagsList.forEach((tag, i) => {
+                    const div = document.createElement('div');
+                    div.textContent = tag;
+                    if (i === tagsIndex) {
+                        div.classList.add('selected');
+                        requestAnimationFrame(() => div.scrollIntoView({ block: "nearest" }));
+                    }
+                    div.addEventListener('click', () => {
+                        tagsIndex = i;
+                        insertSelectedTag();
+                    });
+                    listEl.appendChild(div);
+                });
+            }
+
+            function insertSelectedTag() {
+                if (tagsIndex < 0 || tagsIndex >= tagsList.length) return;
+                const tag = tagsList[tagsIndex];
+                const tagText = tag + ' ';
+                const editorArea = document.getElementById('editorArea');
+                if (editing) {
+                    const start = editorArea.selectionStart;
+                    const end = editorArea.selectionEnd;
+                    editorArea.setRangeText(tagText, start, end, "end");
+                    syncFile();
+                } else {
+                    editorArea.removeAttribute('readonly');
+                    editorArea.setRangeText(tagText, editorArea.value.length, editorArea.value.length, "end");
+                    syncFile();
+                    editorArea.setAttribute('readonly', 'readonly');
+                    editing = true;
+                    render();
+                    editorArea.focus();
+                    editorArea.setSelectionRange(editorArea.value.length, editorArea.value.length);
+                    scrollToCursor();
+                    setVimMode(false);
+                }
+                closeTagsDialog();
+            }
+
+            function handleTagsKey(e) {
+                if (!showingTags) return;
+                if (e.key === 'ArrowDown' || e.key === 'j') {
+                    tagsIndex = (tagsIndex + 1) % tagsList.length;
+                    renderTagsList();
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else if (e.key === 'ArrowUp' || e.key === 'k') {
+                    tagsIndex = (tagsIndex - 1 + tagsList.length) % tagsList.length;
+                    renderTagsList();
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else if (e.key === 'Enter') {
+                    insertSelectedTag();
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else if (e.key === 'Escape') {
+                    closeTagsDialog();
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }
+
             function closeDialogs() {
                 closeSearch();
                 closeHelp();
@@ -7791,6 +7934,18 @@
                         return;
                     }
 
+                    if ((e.ctrlKey || e.metaKey) && e.key === "3") {
+                        e.preventDefault();
+                        openTagsDialog();
+                        return;
+                    }
+
+                    return;
+                }
+
+                if ((e.ctrlKey || e.metaKey) && e.key === "3" && !dialogOpen()) {
+                    e.preventDefault();
+                    openTagsDialog();
                     return;
                 }
 
@@ -8280,6 +8435,7 @@
             window.addEventListener('keydown', handleHistoryKey, { capture: true });
             window.addEventListener('keydown', handleLinksKey, { capture: true });
             window.addEventListener('keydown', handleMarksKey, { capture: true });
+            window.addEventListener('keydown', handleTagsKey, { capture: true });
             window.addEventListener('keydown', handleUndoKey, { capture: true });
 
         //---- Init ------------------------------------------------------------
