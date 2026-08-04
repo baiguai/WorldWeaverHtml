@@ -9,3 +9,4 @@ dataloader/*.log
 package-lock.json
 package.json
 aider.*
+.aider.*
