@@ -1,75 +1,9 @@
 {object, key=mt_cd_player, name=CD Player, parent=bedroom
-    {attrib, output=false, tags=moved }
-
     {enter_message
         output={@
 
 You see a CD Player...
 
         }
-
-        {logic
-            logic={@
-                ?[self]((moved)) = 'true'
-                and
-                ?[self]parent = [room]
-            }
-        }
-    }
-
-    {look
-        {message
-            output={@
-
-You see a CD player.
-            }
-        }
-
-        {logic
-            logic={@
-                ?[self]((moved)) = 'true'
-                and
-                ?[self]parent = [room]
-            }
-        }
-    }
-
-    {x_under_bed
-        {message
-            output={@
-
-You see a CD player.
-            }
-        }
-
-        {logic
-            logic={@
-                ?[self]((moved)) = 'false'
-            }
-        }
-    }
-
-
-
-
-    {input, syntax=[tplt_syntax]((cdplayer_take))
-        {move, logic=[player], tags=[self]
-            output={@
-
-You pick up the CD player.
-            }
-        }
-        {set, logic=[self]tags, output=+inventory }
-        {set, logic=[self]((moved)), output=true }
-    }
-
-    {input, syntax=[tplt_syntax]((cdplayer_drop))
-        {move, logic=[room], tags=[self]
-            output={@
-
-You drop the CD player.
-            }
-        }
-        {set, logic=[self]tags, output=-inventory }
     }
 }

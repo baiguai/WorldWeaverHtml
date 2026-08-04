@@ -25,6 +25,21 @@ You look under your bed.
     {act, logic=x_bed, tags=!_type|room }
 }
 
+{input, syntax=[tplt_syntax]((x_on_your_bed))
+    {act, logic=x_on_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_bed))
+    {act, logic=x_behind_bed, tags=!_type|room }
+}
+
 {input, syntax=[tplt_syntax]((x_under_your_bed))
     {act, logic=x_under_bed, tags=!_type|room }
+}
+
+
+{dev_note, tags=ToDo
+    output={@
+Working on the bed examines.
+    }
 }
