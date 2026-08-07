@@ -1,1 +1,55 @@
-{attrib, output=Entertainment, tags=name }
+{x_entertainment
+    {message
+        output={@
+
+You examine the TV and the table it's sitting on...
+        }
+    }
+}
+
+{x_on_entertainment
+    {message
+        output={@
+
+You look on the TV and the table it's sitting on...
+        }
+    }
+}
+
+{x_behind_entertainment
+    {message
+        output={@
+
+You look behind the TV and the table it's sitting on...
+        }
+    }
+}
+
+{x_under_entertainment
+    {message
+        output={@
+
+You look under the TV and the table it's sitting on...
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_tv_table))
+    {act, logic=x_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_tv_table))
+    {act, logic=x_on_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_tv_table))
+    {act, logic=x_behind_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_tv_table))
+    {act, logic=x_under_entertainment, tags=!_type|room }
+}

@@ -1,9 +1,96 @@
 {object, key=mt_cd_player, name=CD Player, parent=bedroom
-    {enter_message
-        output={@
+    {attrib, output=false, tags=moved }
 
-You see a CD Player...
+    {story
+        {message
+            output={@
 
+You see a CD player.
+
+            }
         }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'true'
+                and
+                ?[self]parent = [room]
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a CD player.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'true'
+                and
+                ?[self]parent = [room]
+            }
+        }
+    }
+
+    {x_under_bed
+        {message
+            output={@
+
+You see a CD player.
+
+            }
+        }
+
+        {logic
+            logic={@
+                [self]((moved)) = 'false'
+            }
+        }
+    }
+
+    {x_cdplayer
+        {message
+            output={@
+
+The CD player has a transparent body. Its mechanical components within have
+bright accent colors and a thin band of glowing light runs along the corner of
+its body.
+
+It appears to be empty.
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_cdplayer))
+        {act, logic=x_cdplayer, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((cdplayer_take))
+        {move, logic=[player], tags=[self]
+            output={@
+
+You take the CD player.
+            }
+        }
+
+        {set, logic=[self]((moved)), output=true }
+        {set, logic=[self]tags, output=+inventory }
+    }
+
+    {input, syntax=[tplt_syntax]((cdplayer_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+
+You drop the CD player.
+            }
+        }
+
+        {set, logic=[self]tags, output=-inventory }
     }
 }
