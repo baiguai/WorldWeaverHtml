@@ -33,7 +33,7 @@
   </object>
   <object id="28" x="-832" y="245">
    <properties>
-    <property name="Desk" type="file" value="cdplayer.tmx"/>
+    <property name="Desk" type="file" value="computer.tmx"/>
    </properties>
    <point/>
   </object>
@@ -51,7 +51,7 @@
   </object>
   <object id="32" x="-750" y="-180">
    <properties>
-    <property name="Desk" type="file" value="cdplayer.tmx"/>
+    <property name="Desk" type="file" value="monitor.tmx"/>
    </properties>
    <point/>
   </object>

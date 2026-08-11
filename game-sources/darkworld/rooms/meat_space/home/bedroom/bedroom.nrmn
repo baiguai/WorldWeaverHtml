@@ -46,6 +46,7 @@ Along the south wall is a bookshelf and next to that the door.
     {inject, logic=./objects/cdplayer.inj }
     {inject, logic=./objects/bookshelf.inj }
     {inject, logic=./objects/desk.inj }
+    {inject, logic=./objects/computer.inj }
     {inject, logic=./objects/entertainment.inj }
 
 
@@ -59,7 +60,7 @@ Along the south wall is a bookshelf and next to that the door.
 
 {dev_note, tags=ToDo
     output={@
-Working on the entertainment examines.
+Working on the desk examines.
     }
 }
 

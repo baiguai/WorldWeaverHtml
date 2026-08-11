@@ -1,8 +1,39 @@
 {x_entertainment
-    {message
-        output={@
+    {message, repeat=random
+        {message
+            output={@
 
-You examine the TV and the table it's sitting on...
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+As you watch it you notice what appear to be words within the static:
+
+**"Go deeper"**
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+
+It goes black for a moment then words flash on the screen before it returns to static
+
+**"Go deeper"**
+            }
         }
     }
 }
@@ -11,7 +42,7 @@ You examine the TV and the table it's sitting on...
     {message
         output={@
 
-You look on the TV and the table it's sitting on...
+You look on the table, there is a TV that is flickering.
         }
     }
 }
@@ -20,7 +51,7 @@ You look on the TV and the table it's sitting on...
     {message
         output={@
 
-You look behind the TV and the table it's sitting on...
+You don't see anything behind the TV and the table it is sitting on.
         }
     }
 }
@@ -29,7 +60,7 @@ You look behind the TV and the table it's sitting on...
     {message
         output={@
 
-You look under the TV and the table it's sitting on...
+You don't see anything under the TV and the table it is sitting on.
         }
     }
 }

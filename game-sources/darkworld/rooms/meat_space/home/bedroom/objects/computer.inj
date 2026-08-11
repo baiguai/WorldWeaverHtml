@@ -1,0 +1,53 @@
+{x_on_desk
+    {message
+        output={@
+
+On your desk is your computer.
+        }
+    }
+}
+
+{x_computer
+    {message
+        output={@
+
+Your computer is a cutting-edge gaming box. Its case is mostly glass panels.
+Along the front are numerous USB ports. It is currently turned on.
+        }
+    }
+}
+
+{x_on_computer
+    {message
+        output={@
+
+You look on your computer.
+There is nothing sitting on it.
+        }
+    }
+}
+
+{x_behind_computer
+    {message
+        output={@
+
+You don't see anything behind your computer.
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_computer))
+    {act, logic=x_computer, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_computer))
+    {act, logic=x_on_computer, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_computer))
+    {act, logic=x_behind_computer, tags=!_type|room }
+}
