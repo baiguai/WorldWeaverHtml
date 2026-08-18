@@ -47,6 +47,8 @@ Along the south wall is a bookshelf and next to that the door.
     {inject, logic=./objects/bookshelf.inj }
     {inject, logic=./objects/desk.inj }
     {inject, logic=./objects/computer.inj }
+    {inject, logic=./objects/keyboard.inj }
+    {inject, logic=./objects/cd.inj }
     {inject, logic=./objects/entertainment.inj }
 
 

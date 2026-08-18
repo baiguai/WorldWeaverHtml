@@ -36,6 +36,15 @@ You don't see anything behind your computer.
     }
 }
 
+{x_under_computer
+    {message
+        output={@
+
+You don't see anything under your computer.
+        }
+    }
+}
+
 
 
 
@@ -50,4 +59,8 @@ You don't see anything behind your computer.
 
 {input, syntax=[tplt_syntax]((x_behind_your_computer))
     {act, logic=x_behind_computer, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_computer))
+    {act, logic=x_under_computer, tags=!_type|room }
 }
