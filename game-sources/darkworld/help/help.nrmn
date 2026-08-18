@@ -22,6 +22,7 @@ Interactive Fiction follows some common conventions. The commands below are some
 #[#ffff00]**stats**# : View your player's stats.
 #[#ffff00]**inv**# : View your current inventory.
 #[#ffff00]**look or l**# : To look around.
+#[#ffff00]**story**# : To replays the room's FULL description.
 #[#ffff00]**?hint**# : To display possible hints.
 #[#ffff00]**look behind (object) or behind (object)**# : To look behind the specified object.
 #[#ffff00]**look on (object) or on (object)**# : To look behind the specified object.

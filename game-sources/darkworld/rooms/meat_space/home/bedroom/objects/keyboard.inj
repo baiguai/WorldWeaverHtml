@@ -1,0 +1,54 @@
+{x_on_desk
+    {message
+        output={@
+
+There is a keyboard.
+        }
+    }
+}
+
+{x_keyboard
+    {message
+        output={@
+
+Your computer keyboard is actually pretty unremarkable. You've never really been into 'fancy' keyboards.
+        }
+    }
+}
+
+{x_on_keyboard
+    {message
+        output={@
+
+You look on your keyboard.
+There is nothing on it.
+        }
+    }
+}
+
+{x_under_keyboard
+    {message
+        output={@
+
+You look under your keyboard. There is a piece of tape stuck to the desk that says:
+**#[#ffff00]R3dF0x1#**
+
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_keyboard))
+    {act, logic=x_keyboard, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_keyboard))
+    {act, logic=x_on_keyboard, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_keyboard))
+    {act, logic=x_under_keyboard, tags=!_type|room }
+}

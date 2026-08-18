@@ -1,0 +1,66 @@
+{x_on_desk
+    {message
+        output={@
+
+The computer monitor on your desk is massive. It is wide and curved.
+On the screen is a terminal window... brute force hacking attempts are scrolling up from the bottom of the screen.
+        }
+    }
+}
+
+{x_monitor
+    {message
+        output={@
+
+You examine the monitor.
+On the screen is a terminal window. You are currently letting your latest hack tool do its thing.
+        }
+    }
+}
+
+{x_on_monitor
+    {message
+        output={@
+
+There is nothing on your monitor.
+        }
+    }
+}
+
+{x_behind_monitor
+    {message
+        output={@
+
+You don't see anything behind your monitor.
+        }
+    }
+}
+
+{x_under_monitor
+    {message
+        output={@
+
+You don't see anything under your monitor.
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_monitor))
+    {act, logic=x_monitor, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_monitor))
+    {act, logic=x_on_monitor, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_monitor))
+    {act, logic=x_behind_monitor, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_monitor))
+    {act, logic=x_under_monitor, tags=!_type|room }
+}

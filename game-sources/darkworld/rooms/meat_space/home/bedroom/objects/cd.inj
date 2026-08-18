@@ -1,0 +1,158 @@
+{object, key=mt_cd, name=CD, parent=bedroom
+    {attrib, output=false, tags=moved }
+    {attrib, output=false, tags=in_player }
+
+    {x_on_desk
+        {message
+            output={@
+
+Sitting on your desk is a lone CD. It is unlabeled.
+            }
+        }
+    }
+
+    {x_cd
+        {message
+            output={@
+
+You examine the cd.
+You know this CD VERY well!
+            }
+        }
+    }
+
+    {story
+        {message
+            output={@
+
+You see a CD.
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'true'
+                and
+                ?[self]parent = [room]
+                and
+                ?[self]((in_player)) = 'false'
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see a CD.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'true'
+                and
+                ?[self]parent = [room]
+                and
+                ?[self]((in_player)) = 'false'
+            }
+        }
+    }
+
+    {play_cd
+        {message
+            output={@
+
+You play the CD...
+The frenetic beats and pulsing distorted bass of a local Drum and Bass band blasts through the headphones that are plugged into it. This is the song that unlocked the key to Shellspace!
+
+The lone sample in the song:
+
+Perihelion.
+Take you there.
+Take you there.
+            }
+        }
+    }
+
+
+
+
+
+    {input, syntax=[tplt_syntax]((x_cd))
+        {act, logic=x_cd, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((cd_take))
+        {move, logic=[player], tags=[self]
+            output={@
+
+You take the CD.
+            }
+        }
+
+        {set, logic=[self]((moved)), output=true }
+        {set, logic=[self]tags, output=+inventory }
+    }
+
+    {input, syntax=[tplt_syntax]((cd_drop))
+        {move, logic=[room], tags=[self]
+            output={@
+
+You drop the CD.
+            }
+        }
+
+        {set, logic=[self]tags, output=-inventory }
+    }
+
+    {input, syntax=[tplt_syntax]((cd_put_in_player))
+        {move, logic=[room], tags=[self]
+            output={@
+
+You put the CD in the player.
+
+(hint: you can use **play cd** to play it)
+            }
+        }
+
+        {logic
+            logic={@
+                ?[mt_cd_player]parent = [player]
+            }
+            output={@
+
+Umm... You aren't carrying a CD player.
+            }
+        }
+
+        {set, logic=[self]((moved)), output=true }
+        {set, logic=[self]((in_player)), output=true }
+        {set, logic=[self]tags, output=-inventory }
+    }
+
+    {input, syntax=[tplt_syntax]((act_playcd))
+        {act, logic=play_cd, tags=!_type|room }
+
+        {logic
+            logic={@
+                ?[mt_cd_player]parent = [player]
+            }
+            output={@
+
+Umm... You aren't carrying a CD player.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((in_player)) = 'true'
+            }
+            output={@
+
+There is no CD in the CD player.
+            }
+        }
+    }
+}

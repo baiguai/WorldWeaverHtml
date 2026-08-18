@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="33">
+ <objectgroup id="2" name="Layout">
+  <object id="16" x="-960" y="-416" width="640" height="864"/>
+  <object id="17" x="-902.859" y="-352.5" width="87.7188" height="23">
+   <text wrap="1">Desk</text>
+  </object>
+  <object id="18" x="-896" y="160" width="480" height="160"/>
+  <object id="19" x="-871.859" y="179.5" width="87.7188" height="23">
+   <text wrap="1">Computer</text>
+  </object>
+  <object id="20" x="-640" y="-320" width="96" height="96"/>
+  <object id="21" x="-628.859" y="-302.5" width="87.7188" height="23">
+   <text wrap="1">CD</text>
+  </object>
+  <object id="22" x="-768" y="-288" width="32" height="416"/>
+  <object id="23" x="-448" y="-192" width="96" height="288"/>
+  <object id="24" x="-576" y="-384" width="64" height="128"/>
+  <object id="25" x="-566.859" y="-368.5" width="87.7188" height="23">
+   <text wrap="1">Envelope</text>
+  </object>
+  <object id="26" x="-605" y="-239">
+   <properties>
+    <property name="Desk" type="file" value="cdplayer.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" x="-531" y="-311">
+   <properties>
+    <property name="Desk" type="file" value="cdplayer.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="28" x="-832" y="245">
+   <properties>
+    <property name="Desk" type="file" value="computer.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="29" x="-437.859" y="-172.5" width="87.7188" height="23">
+   <text wrap="1">Keyboard</text>
+  </object>
+  <object id="30" x="-780.859" y="-250.5" width="87.7188" height="23">
+   <text wrap="1">Monitor</text>
+  </object>
+  <object id="31" x="-404" y="-107">
+   <properties>
+    <property name="Keyboard" type="file" value="keyboard.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="32" x="-750" y="-180">
+   <properties>
+    <property name="Desk" type="file" value="monitor.tmx"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>
