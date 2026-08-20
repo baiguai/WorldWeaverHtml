@@ -1,0 +1,41 @@
+{room, key=hallway, name=Hallway
+    {attrib, output=false, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North: enter your room
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You are standing in the hallway...
+            }
+       } 
+    }
+
+    {look
+        {message
+            output={@
+
+You look around...
+            }
+        }
+
+        {logic, name=TESTNAME tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+}

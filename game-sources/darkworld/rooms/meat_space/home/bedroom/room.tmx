@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="20">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="22">
  <objectgroup id="2" name="Layout">
   <object id="5" x="-1216" y="-352" width="1536" height="672"/>
   <object id="7" x="-1184" y="-288" width="160" height="352"/>
@@ -39,6 +39,13 @@
   <object id="19" x="190" y="198">
    <properties>
     <property name="Entertainment" type="file" value="objects/entertainment.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="20" x="-960" y="320" width="320" height="32"/>
+  <object id="21" x="-800" y="288">
+   <properties>
+    <property name="Hall" type="file" value="../hall/hall.tmx"/>
    </properties>
    <point/>
   </object>

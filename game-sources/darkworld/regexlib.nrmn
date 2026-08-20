@@ -86,6 +86,7 @@
         {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? (window|windows)$, logic=x the window|x window|examine the window|x windows }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
+        {attrib, tags=x_your_bookshelf|!_regex, output=^(examine|x)(?: the)?(?: your)? (?:book)?shelf$, logic=x your shelf|x bookshelf|examine the bookshelf }
         {attrib, tags=x_your_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }
         {attrib, tags=x_your_desk|!_regex, output=^(examine|x)(?: the)?(?: your)? desk$, logic=x your desk|x desk|examine the desk }
         {attrib, tags=x_your_keyboard|!_regex, output=^(examine|x)(?: the)?(?: your)? keyboard$, logic=x your keyboard|x keyboard|examine the keyboard|examine your keyboard }
@@ -96,6 +97,7 @@
         {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen?\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
         {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?servers?\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
         {attrib, tags=x_behind_your_bed|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?bed$, logic=x behind your bed|look behind the bed }
+        {attrib, tags=x_behind_your_bookshelf|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?(?:book)?shelf$, logic=x behind your shelf|look behind the bookshelf }
         {attrib, tags=x_behind_your_computer|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?computer$, logic=x behind your computer|look behind the computer }
         {attrib, tags=x_behind_your_desk|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?desk$, logic=x behind your desk|x behind desk|examine behind the desk }
         {attrib, tags=x_behind_your_monitor|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?monitor$, logic=x behind your monitor|look behind the monitor }
@@ -103,6 +105,7 @@
 
         {attrib, tags=x_on_servers|!_regex, output=^(?=.*\b(?:look|examine|x)\b)(?=.*\bservers?\b)(?=.*\b(?:top|on)\b).*, logic=look on top of the servers|look on the servers|examine on top of the servers|examine the top of the servers|examine on the servers|x top of servers|x servers top|x top servers|x on servers }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
+        {attrib, tags=x_on_your_bookshelf|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?(?:book)?shelf$, logic=x on your shelf|look on the bookshelf }
         {attrib, tags=x_on_your_computer|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?computer$, logic=x on your computer|look on the computer }
         {attrib, tags=x_on_your_keyboard|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?keyboard$, logic=x on your keyboard|look on the keyboard }
         {attrib, tags=x_on_your_monitor|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?monitor$, logic=x on your monitor|look on the monitor }
@@ -117,6 +120,7 @@
         {attrib, tags=x_under_sink|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(the\s+)?(sink)\b, logic=look under the sink|look under sink|examine under the sink|x under sink }
         {attrib, tags=x_under_toilet|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(the\s+)?(toilet)\b, logic=look under the toilet|look under toilet|examine under the toilet|x under toilet }
         {attrib, tags=x_under_your_bed|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(your\s+|the\s+)?bed$, logic=x under your bed|look under the bed|look beneath your bed }
+        {attrib, tags=x_under_your_bookshelf|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(your\s+|the\s+)?(?:book)?shelf$, logic=x under your shelf|look beneath shelf|look under the bookshelf }
         {attrib, tags=x_under_your_computer|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(your\s+|the\s+)?computer$, logic=x behind your computer|look behind the computer }
         {attrib, tags=x_under_your_desk|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(your\s+|the\s+)?desk$, logic=x under your desk|x under desk|examine under the desk }
         {attrib, tags=x_under_your_keyboard|!_regex, output=^(look|examine|x)\s+(under|beneath)\s+(your\s+|the\s+)?keyboard$, logic=x behind your keyboard|look behind the keyboard }
@@ -162,7 +166,7 @@
         {attrib, tags=cd_put_in_player|!_regex, output=\bput\s+(?:the\s+)?(?:compact\s+disk|cd)\s+(?:into|in)\s+(?:the\s+)?(?:(?:compact\s+disk|cd)\s+)?player\b, logic=put the cd in the cd player|put the cd in the player|put cd in player|put the cd player in the player }
 
     // Interacting
-        {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer, plug in the usb, plug in usb }
+        {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer|plug in the usb|plug in usb|put usb in the computer }
 
     // Fighting
         {attrib, tags=attack_figure_masked|!_regex, output=(attack|!)(\s)?(the )?masked figures?.*, logic=attack the masked figure|! figures|!the masked figures|attack masked figure|! hooded figure|! masked figure }

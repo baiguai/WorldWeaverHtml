@@ -1,1 +1,8 @@
+{macro, key=tstroom, output=l }
+
+
+
+
+
+
 {macro, key=isday, output=l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l|~|l }

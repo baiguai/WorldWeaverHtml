@@ -1,4 +1,6 @@
 {room, key=bedroom, name=Your Bedroom
+    {attrib, output=false, tags=tested }
+
     {attrib, tags=navigation
         output={@
 South: exit your room
@@ -39,6 +41,12 @@ at the opposite wall is your bed and a small table with a TV on it.
 Along the south wall is a bookshelf and next to that the door.
             }
         }
+
+        {logic, name=Bedroom Tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
     }
 
 
@@ -49,25 +57,22 @@ Along the south wall is a bookshelf and next to that the door.
     {inject, logic=./objects/computer.inj }
     {inject, logic=./objects/keyboard.inj }
     {inject, logic=./objects/cd.inj }
+    {inject, logic=./objects/envelope.inj }
     {inject, logic=./objects/entertainment.inj }
 
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
-}
 
 
 
---------------------------------------------------------------------------------
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=hallway, tags=[player]
+            output={@
 
-{dev_note, tags=ToDo
-    output={@
-Working on the desk examines.
-    }
-}
+You exit your bedroom.
 
-{dev_note, tags=ToDo
-    output={@
-Add the CD in the player logic. - once CD putting action is in place.
+            }
+        }
     }
 }

@@ -1,0 +1,43 @@
+{object, key=mt_envelope, name=Envelope, parent=bedroom
+    {x_on_desk
+        {message
+            output={@
+
+Sitting on your desk is an envelope.
+            }
+        }
+    }
+
+    {x_envelope
+        {message
+            output={@
+
+You examine the envelope.
+There is a USB stick inside it.
+(hint: you can put the usb in the computer: plug usb into computer)
+            }
+        }
+    }
+
+    {x_shellspace
+        {message
+            output={@
+
+Shellspace!!!!
+            }
+        }
+    }
+
+
+
+
+
+
+    {input, syntax=[tplt_syntax]((x_envelope))
+        {act, logic=x_envelope, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((plug_in_usb))
+        {act, logic=x_shellspace, tags=!_type|room }
+    }
+}
