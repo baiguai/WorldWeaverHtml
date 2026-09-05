@@ -1,5 +1,5 @@
 {room, key=bedroom, name=Your Bedroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -73,6 +73,27 @@ Along the south wall is a bookshelf and next to that the door.
 You exit your bedroom.
 
             }
+        }
+    }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Bed
+[X] : CD Player
+[X] : Bookshelf
+[X] : Desk
+[X] : Computer
+[X] : Keyboard
+[X] : CD
+[X] : Envelope
+[X] : Entertainment
+
+[X] : Navigation
         }
     }
 }

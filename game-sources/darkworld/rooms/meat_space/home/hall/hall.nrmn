@@ -28,7 +28,7 @@ You look around...
             }
         }
 
-        {logic, name=TESTNAME tested, tags=!_test
+        {logic, name=Hallway tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -38,4 +38,16 @@ You look around...
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[X] : Look
+[X] : Story
+
+[ ] : Navigation
+        }
+    }
 }

@@ -81,7 +81,7 @@ Take you there.
 
 
     {input, syntax=[tplt_syntax]((x_cd))
-        {act, logic=x_cd, tags=!_type|room }
+        {act, logic=x_cd, tags=!_type|self }
     }
 
     {input, syntax=[tplt_syntax]((cd_take))
