@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="23">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="26">
  <objectgroup id="2" name="Layout">
   <object id="1" name="House" x="-960" y="-352" width="1664" height="672"/>
   <object id="2" name="Bedroom" x="-928" y="-320" width="224" height="160"/>
@@ -38,6 +38,14 @@
   <object id="22" x="344" y="-235">
    <properties>
     <property name="Garage" type="file" value="garage/garage.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" x="-539" y="-138" width="69" height="16"/>
+  <object id="24" name="Office" x="-640" y="-320" width="288" height="160"/>
+  <object id="25" x="-544" y="-192">
+   <properties>
+    <property name="Office" type="file" value="office/office.tmx"/>
    </properties>
    <point/>
   </object>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="26">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="29">
  <objectgroup id="2" name="Layout">
   <object id="20" name="Hall" x="-960" y="-320" width="2240" height="320"/>
   <object id="22" name="Door to Master" x="0" y="0" width="320" height="32"/>
@@ -10,5 +10,13 @@
    <point/>
   </object>
   <object id="25" name="Door to Bedroom" x="-896" y="-352" width="192" height="32"/>
+  <object id="26" name="To Living Room" x="1248" y="-320" width="32" height="320"/>
+  <object id="27" name="Door to Office" x="-96" y="-352" width="320" height="32"/>
+  <object id="28" x="64" y="-384">
+   <properties>
+    <property name="Office" type="file" value="../office/office.tmx"/>
+   </properties>
+   <point/>
+  </object>
  </objectgroup>
 </map>
