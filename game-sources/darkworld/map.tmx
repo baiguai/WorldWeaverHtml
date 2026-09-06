@@ -7,15 +7,12 @@
   </tile>
  </tileset>
  <objectgroup id="2" name="Labels">
-  <object id="1" x="-962.859" y="-395.5" width="66.859" height="23">
-   <text wrap="1">Home</text>
-  </object>
   <object id="2" x="-864" y="-352">
    <properties>
     <property name="Meat_Home" type="file" value="rooms/meat_space/home/home.tmx"/>
    </properties>
    <point/>
   </object>
-  <object id="3" x="-992" y="-448" width="320" height="192"/>
+  <object id="3" name="Home" x="-992" y="-448" width="320" height="192"/>
  </objectgroup>
 </map>
