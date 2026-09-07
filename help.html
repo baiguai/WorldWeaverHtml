@@ -2836,7 +2836,7 @@
           {
             "id": "svcak5lr",
             "title": "Room Template with Test and Story",
-            "content": "Room Template with Test and Story\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        {act, logic=story, tags=!_type|room }\n    }\n\n    {story\n        {message\n            output={@\n\n...\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n            }\n        }\n\n        {logic, name=TESTNAME tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n}\n\n",
+            "content": "Room Template with Test and Story\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        {act, logic=story, tags=!_type|room }\n    }\n\n    {story\n        {message\n            output={@\n\n...\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n            }\n        }\n\n        {logic, name=TESTNAME tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n    \n    \n    {dev_note, tags=Testing, active=true\n        output={@\n[ ] : Room\n[ ] : Look\n[ ] : Story\n\n[ ] : Navigation\n        }\n    }\n}",
             "children": [],
             "expanded": false
           },
@@ -2912,32 +2912,16 @@
   }
 ];
             let bookmarks = [
-  {"id": "9o6kddje",
-   "caption": "Room Template",
-   "path": "Developers / Tools / Templates / Out of the Box Templates / Room Template"
-  },
-  {"id": "niteezf1",
-   "caption": "Room Template with Testing",
-   "path": "Developers / Tools / Templates / Templates With Injections / Room Template with Testing"
-  },
   {"id": "5xmx3fbx",
    "caption": "Handling User Input",
    "path": "Developers / Reference / Element Types / Input Element / Handling User Input"
+  },
+  {"id": "svcak5lr",
+   "caption": "Room Template with Test and Story",
+   "path": "Developers / Tools / Templates / Templates With Injections / Room Template with Test and Story"
   }
 ];
             let historyStack = [
-  {"id": "nzpxh111",
-   "title": "Markdown Formatting"
-  },
-  {"id": "2z7245ps",
-   "title": "Action Element"
-  },
-  {"id": "42ohhfa6",
-   "title": "Introduction to Relative Syntax"
-  },
-  {"id": "unskmixi",
-   "title": "Relative Reference Syntax"
-  },
   {"id": "ntrdbtd2",
    "title": "Introduction to Special Relative References"
   },
@@ -2949,12 +2933,6 @@
   },
   {"id": "jk1ijfmn",
    "title": "Room Template"
-  },
-  {"id": "niteezf1",
-   "title": "Room Template with Testing"
-  },
-  {"id": "svcak5lr",
-   "title": "Room Template with Test and Story"
   },
   {"id": "eibm5vc2",
    "title": "Dev Note Element"
@@ -2982,9 +2960,6 @@
   },
   {"id": "1j4ecmsh",
    "title": "Use Macros!"
-  },
-  {"id": "7t1zfwoc",
-   "title": "Introduction"
   },
   {"id": "jtfzv3lb",
    "title": "Using This Help System"
@@ -3015,6 +2990,27 @@
   },
   {"id": "eqdthl2o",
    "title": "Tracking Room Development"
+  },
+  {"id": "6mmgvtns",
+   "title": "Home Room"
+  },
+  {"id": "9o6kddje",
+   "title": "Room Template"
+  },
+  {"id": "niteezf1",
+   "title": "Room Template with Testing"
+  },
+  {"id": "7t1zfwoc",
+   "title": "Introduction"
+  },
+  {"id": "223bagmq",
+   "title": "Visualizing Your Game"
+  },
+  {"id": "ls0rnz27",
+   "title": "Takeable Object"
+  },
+  {"id": "svcak5lr",
+   "title": "Room Template with Test and Story"
   }
 ];
 
