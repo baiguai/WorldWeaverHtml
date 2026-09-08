@@ -2070,20 +2070,19 @@
                 parseRoom(roomParsers, false);
                 parsePlayer(playerParsers);
 
+                if (!gameOutput.Output || gameOutput.Output === "") {
+                    const errMsg = database.find(item => item.ParentKey === getGameKey() && tagsContain(item.Tags, errorTag)) ?? null;
+                    if (errMsg !== null) {
+                        gameOutput.Output = errMsg.Output;
+                        setOutputHtml();
+                    }
+                }
+
                 processNavigation();
 
                 processNotes();
                 if (output.MatchMade) {
                     return;
-                }
-
-                if (!gameOutput.Output || gameOutput.Output === "") {
-                    const errMsg = getChildByTag(getElementByKey(getGameKey()), errorTag);
-                    if (errMsg !== null) {
-                        gameOutput.Output = errMsg.Output;
-                        setOutputHtml();
-                        return;
-                    }
                 }
 
                 if (adminMode) {
