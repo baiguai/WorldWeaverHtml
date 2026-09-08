@@ -68,7 +68,7 @@ It appears to be empty.
 
 
     {input, syntax=[tplt_syntax]((x_cdplayer))
-        {act, logic=x_cdplayer, tags=!_type|room }
+        {act, logic=x_cdplayer, tags=!_type|self }
     }
 
     {input, syntax=[tplt_syntax]((cdplayer_take))

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="23">
  <objectgroup id="2" name="Layout">
-  <object id="20" x="-640" y="-128" width="645" height="415"/>
-  <object id="21" x="-616.859" y="-103.5" width="149.719" height="23">
-   <text wrap="1">Computer</text>
-  </object>
+  <object id="20" name="Computer" x="-640" y="-128" width="645" height="415"/>
   <object id="22" x="-615.86" y="-54.5" width="604.719" height="313">
    <text fontfamily="Sans Serif" pixelsize="13" wrap="1">There are usb ports all along the front of the computer.</text>
   </object>

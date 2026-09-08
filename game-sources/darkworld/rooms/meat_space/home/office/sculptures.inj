@@ -1,0 +1,63 @@
+{x_sculptures
+    {message
+        output={@
+
+The sculptures are abstract and geometric.
+They are made of polished stone or chromed metal.
+You don't see anything odd about them.
+
+        }
+    }
+}
+
+{x_on_sculptures
+    {message
+        output={@
+
+There isn't anything on the sculptures.
+
+        }
+    }
+}
+
+{x_under_sculptures
+    {message
+        output={@
+
+You lift the statues to see if there is anything under them.
+You don't see anything.
+
+        }
+    }
+}
+
+{x_behind_sculptures
+    {message
+        output={@
+
+You don't see anything behind the statues.
+
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_sculpture))
+    {act, logic=x_sculptures, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_sculpture))
+    {act, logic=x_on_sculptures, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_sculpture))
+    {act, logic=x_under_sculptures, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_sculpture))
+    {act, logic=x_behind_sculptures, tags=!_type|room }
+}

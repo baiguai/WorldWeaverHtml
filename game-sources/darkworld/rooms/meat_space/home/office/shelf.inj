@@ -1,0 +1,123 @@
+{x_bookshelf
+    {message
+        output={@
+
+The bookshelf is set into the east wall so its sides and back are made of
+the same paneling as the room. The shelves are thick glass panes with small
+spotlights shining down on them.
+
+There are some abstract sculptures on a couple of the shelves.
+A handful of books on another, held upright by two brass deer heads with
+exaggeratedly large antlers.
+
+        }
+    }
+}
+
+{x_on_bookshelf
+    {message
+        output={@
+
+There are some abstract sculptures on a couple of the shelves.
+A handful of books on another, held upright by two brass deer heads with
+exaggeratedly large antlers.
+
+        }
+    }
+}
+
+
+
+{x_books
+    {message
+        output={@
+
+You examine the few books that are on the shelf.
+There are a couple of business and philosophy books.
+An old sailor's journal and a book on cybersecurity.
+
+        }
+    }
+}
+
+{x_on_books
+    {message
+        output={@
+
+There is nothing on the books.
+
+        }
+    }
+}
+
+{x_under_books
+    {message
+        output={@
+
+You go through, lifting each book.
+You don't see anything.
+
+        }
+    }
+}
+
+{x_behind_books
+    {message
+        output={@
+
+There isn't anything behind the books.
+
+        }
+    }
+}
+
+
+{x_cybersec_book
+    {message
+        output={@
+
+You thumb through the cybersecurity book.
+One of the pages has been dog eared. You turn there and read.
+It is an article describing attacking the MT19937 pseudo random generator using
+a system of equations with bit vectors.
+
+        }
+    }
+}
+
+// https://www.schutzwerk.com/blog/attacking-a-rng/
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_bookshelf))
+    {act, logic=x_bookshelf, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_bookshelf))
+    {act, logic=x_on_bookshelf, tags=!_type|room }
+}
+
+
+{input, syntax=[tplt_syntax]((x_books))
+    {act, logic=x_books, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_books))
+    {act, logic=x_on_books, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_books))
+    {act, logic=x_under_books, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_books))
+    {act, logic=x_behind_books, tags=!_type|room }
+}
+
+
+{input, syntax=[tplt_syntax]((x_cybersec_book))
+    {act, logic=x_cybersec_book, tags=!_type|room }
+}

@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="23">
  <objectgroup id="2" name="Layout">
-  <object id="20" x="-640" y="-569" width="154" height="856"/>
-  <object id="21" x="-605.859" y="-538.5" width="149.719" height="23">
-   <text wrap="1">Monitor</text>
-  </object>
+  <object id="20" name="Monitor" x="-640" y="-569" width="154" height="856"/>
   <object id="22" x="-606.86" y="-492.5" width="604.719" height="313">
    <text fontfamily="Sans Serif" pixelsize="13" wrap="1">On the screen is a terminal window... brute force hacking attempts are scrolling up from the bottom of the screen.</text>
   </object>

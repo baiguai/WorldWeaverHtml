@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="26">
  <objectgroup id="2" name="Layout">
-  <object id="20" x="-640" y="-128" width="416" height="352"/>
-  <object id="21" x="-608" y="-96" width="149.719" height="23">
-   <text wrap="1">CD</text>
-  </object>
+  <object id="20" name="CD" x="-640" y="-128" width="416" height="352"/>
   <object id="25" x="-608" y="-32" width="384" height="224">
    <text fontfamily="Sans Serif" pixelsize="13" wrap="1">The frenetic beats and pulsing distorted bass of a local Drum and Bass band blasts through the headphones that are plugged into it. This is the song that unlocked the key to Shellspace!
 

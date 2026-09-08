@@ -1,0 +1,108 @@
+{attrib, output=false, tags=paper_found }
+
+{x_desk
+    {message
+        output={@
+
+The desk in your parents' office is made of a similar deep colored wood as
+the walls of the room. There is a green felt material on the top surface.
+It contains a number of drawers, all of which are locked - and the locks
+appear to be substantial, not the usual kind you find in desks, that mostly
+just make it inconvenient to try to get into the drawers. These appear to
+actually be designed to keep people out.
+
+        }
+    }
+}
+
+{x_on_desk
+    {message
+        output={@
+
+The top of the desk is immaculate. There is a brass pen holder that contains
+two very expensive looking pens. There is also a small wooden box of empty
+envelopes. Nothing else clutters the desk.
+
+        }
+    }
+}
+
+{x_under_desk
+    {message
+        output={@
+
+You crouch down to look under the desk. There is nothing under there.
+
+        }
+    }
+}
+
+{x_behind_desk
+    {message
+        output={@
+
+Behind the desk is a luxurious looking leather chair.
+<?[room]((paper_found)) = 'false'?>
+You decide to sit in the chair. And when you do, you notice a small bit of
+white sticking out of the bottom 'seam' of one of the drawers. You hadn't
+noticed it before sitting down.
+
+It is a piece of paper.
+</?>
+
+        }
+    }
+
+    {set, logic=[room]((paper_found)), output=true }
+}
+
+{x_paper
+    {message
+        output={@
+You carefully extract the paper from the gap beneath one of the drawers.
+There is one word written on it:
+
+**Retrograde**
+
+You aren't sure what it means.
+What are your parents up to?
+
+You slip the paper back, so it is exactly as you found it.
+
+        }
+    }
+}
+
+
+
+
+{input, syntax=[tplt_syntax]((x_desk))
+    {act, logic=x_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_desk))
+    {act, logic=x_on_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_desk))
+    {act, logic=x_behind_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_paper_piece))
+    {act, logic=x_paper, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[room]((paper_found)) = 'true'
+        }
+        output={@
+
+What paper?
+
+        }
+    }
+}

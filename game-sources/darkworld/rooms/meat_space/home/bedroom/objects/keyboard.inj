@@ -37,6 +37,15 @@ You look under your keyboard. There is a piece of tape stuck to the desk that sa
     }
 }
 
+{x_behind_keyboard
+    {message
+        output={@
+
+There is nothing behind your keyboard.
+        }
+    }
+}
+
 
 
 
@@ -51,4 +60,8 @@ You look under your keyboard. There is a piece of tape stuck to the desk that sa
 
 {input, syntax=[tplt_syntax]((x_under_your_keyboard))
     {act, logic=x_under_keyboard, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_keyboard))
+    {act, logic=x_behind_keyboard, tags=!_type|room }
 }
