@@ -1,1 +1,58 @@
-{attrib, output=desk, tags=name }
+{x_desk
+    {message
+        output={@
+
+Your desk is made up of a thin glass top set on brushed metal legs.
+In lieu of drawers there are a couple of three tiered baskets attached to the bottom of the glass pane.
+They are empty.
+        }
+    }
+}
+
+{x_on_desk
+    {message
+        output={@
+
+You look on your desk.
+
+        }
+    }
+}
+
+{x_behind_desk
+    {message
+        output={@
+
+You don't see anything behind your desk.
+        }
+    }
+}
+
+{x_under_desk
+    {message
+        output={@
+
+There is nothing under your desk.
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_desk))
+    {act, logic=x_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_desk))
+    {act, logic=x_on_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_desk))
+    {act, logic=x_behind_desk, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_desk))
+    {act, logic=x_under_desk, tags=!_type|room }
+}

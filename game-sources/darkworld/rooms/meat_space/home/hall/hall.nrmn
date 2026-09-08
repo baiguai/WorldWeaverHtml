@@ -1,0 +1,88 @@
+{room, key=hallway, name=Hallway
+    {attrib, output=true, tags=tested }
+
+    {attrib, tags=navigation
+        output={@
+North: enter your room
+North East: enter the office
+East: enter the living room
+South: enter the master bedroom
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+The house has one primary hallway.
+There are a couple of skylights overhead that let sunlight in.
+Between them is a single spot light. At night the hall is dim and looks
+somewhat like an art gallery.
+
+Your bedroom is at the west end of the hall, your door is set into the north
+wall. East of your door is another door in the north wall. This leads to
+your parents' office.
+In the south wall is the door to the master bedroom, and to the east is the
+living room.
+
+            }
+       } 
+    }
+
+    {look
+        {message
+            output={@
+
+You are in the hallway.
+The east end leads into the living room.
+            }
+        }
+
+        {logic, name=Hallway tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=bedroom, tags=[player]
+            output={@
+
+You go back into your bedroom.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north_east))
+        {move, logic=office, tags=[player]
+            output={@
+
+You enter the office.
+
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[X] : Room
+[X] : Look
+[X] : Story
+
+[ ] : Navigation
+        }
+    }
+}

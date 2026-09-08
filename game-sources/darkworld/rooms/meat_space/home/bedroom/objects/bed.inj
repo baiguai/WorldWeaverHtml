@@ -10,11 +10,29 @@ Sheets and blankets are thrown and piled over the mattress. A lone oversize pill
     }
 }
 
+{x_on_bed
+    {message
+        output={@
+
+On your bed there are various blankets kind of thrown over its surface. The topmost blanket is a shiny chrome. There is a large pile of pillows near the head of the bed.
+        }
+    }
+}
+
+{x_behind_bed
+    {message
+        output={@
+
+As you are looking behind your bed you notice a string around one of the bedposts. It is a chrome bubble-shaped mask.
+        }
+    }
+}
+
 {x_under_bed
     {message
         output={@
 
-You look under your bed.
+Under your bed there are some candy wrappers and a few pairs of socks that appear to have been kicked under it.
         }
     }
 }
@@ -23,6 +41,14 @@ You look under your bed.
 
 {input, syntax=[tplt_syntax]((x_your_bed))
     {act, logic=x_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_bed))
+    {act, logic=x_on_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_bed))
+    {act, logic=x_behind_bed, tags=!_type|room }
 }
 
 {input, syntax=[tplt_syntax]((x_under_your_bed))

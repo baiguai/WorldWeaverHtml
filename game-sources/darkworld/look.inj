@@ -1,3 +1,6 @@
 {input, syntax=[tplt_syntax]((look))
     {act, logic=look, tags=!_type|room }
 }
+{input, syntax=[tplt_syntax]((story))
+    {act, logic=story, tags=!_type|room }
+}

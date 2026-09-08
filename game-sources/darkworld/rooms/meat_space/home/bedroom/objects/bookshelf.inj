@@ -1,1 +1,57 @@
-{attrib, output=bookshelf, tags=name }
+{x_bookshelf
+    {message
+        output={@
+
+You examine your bookshelf. It is made of dull dark metal.
+The items on the shelf are in disarray. It's mostly just beat up old books, games, and figurines.
+You really should straighten up all your stuff.
+        }
+    }
+}
+
+{x_on_bookshelf
+    {message
+        output={@
+
+The items on the shelf are in disarray. It's mostly just beat up old books, games, and figurines.
+        }
+    }
+}
+
+{x_behind_bookshelf
+    {message
+        output={@
+
+Behind your bookshelf is an old techno party poster, crumpled up on the floor, and an old umbrella that probably doesn't even open anymore.
+        }
+    }
+}
+
+{x_under_bookshelf
+    {message
+        output={@
+
+Under the bookshelf is just some garbage and LOTS of dust.
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_bookshelf))
+    {act, logic=x_bookshelf, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_bookshelf))
+    {act, logic=x_on_bookshelf, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_bookshelf))
+    {act, logic=x_behind_bookshelf, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_bookshelf))
+    {act, logic=x_under_bookshelf, tags=!_type|room }
+}

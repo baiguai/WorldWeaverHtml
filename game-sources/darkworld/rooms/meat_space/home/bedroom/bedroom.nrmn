@@ -1,4 +1,6 @@
 {room, key=bedroom, name=Your Bedroom
+    {attrib, output=true, tags=tested }
+
     {attrib, tags=navigation
         output={@
 South: exit your room
@@ -6,18 +8,25 @@ South: exit your room
     }
 
     {enter_message
-        output={@
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
 
 You are in your bedroom.
-Against the west wall is your desk.
-Against the opposite wall is your bed and a small table with a TV on it.
-Along the south wall is a bookshelf and next to that the door.
-In the north wall is a window that you've taped SciFi posters all over.
-
-(Hint: You can examine things using: x item)
 
 Your room is cluttered with clothes strewn over the floor. Techno music is playing on a small computer speaker.
 The only light that's on is a blue bulb hanging from the ceiling.
+
+In the north wall is a window that you've taped SciFi posters all over.
+Against the west wall is your desk
+and at the opposite wall is your bed and a small table with a TV on it.
+Along the south wall is a bookshelf and next to that the door.
+
+(Hint: You can examine things using: x item)
+            }
         }
     }
 
@@ -26,10 +35,16 @@ The only light that's on is a blue bulb hanging from the ceiling.
             output={@
 
 You look around...
-Against the west wall is your desk.
-Against the opposite wall is your bed and a small table with a TV on it.
-Along the south wall is a bookshelf and next to that the door.
 In the north wall is the window.
+Against the west wall is your desk
+at the opposite wall is your bed and a small table with a TV on it.
+Along the south wall is a bookshelf and next to that the door.
+            }
+        }
+
+        {logic, name=Bedroom Tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
             }
         }
     }
@@ -39,9 +54,46 @@ In the north wall is the window.
     {inject, logic=./objects/cdplayer.inj }
     {inject, logic=./objects/bookshelf.inj }
     {inject, logic=./objects/desk.inj }
+    {inject, logic=./objects/computer.inj }
+    {inject, logic=./objects/keyboard.inj }
+    {inject, logic=./objects/cd.inj }
+    {inject, logic=./objects/envelope.inj }
     {inject, logic=./objects/entertainment.inj }
 
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=hallway, tags=[player]
+            output={@
+
+You exit your bedroom.
+
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Bed
+[X] : CD Player
+[X] : Bookshelf
+[X] : Desk
+[X] : Computer
+[X] : Keyboard
+[X] : CD
+[X] : Envelope
+[X] : Entertainment
+
+[X] : Navigation
+        }
+    }
 }

@@ -1,1 +1,86 @@
-{attrib, output=Entertainment, tags=name }
+{x_entertainment
+    {message, repeat=random
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+As you watch it you notice what appear to be words within the static:
+
+**"Go deeper"**
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+            }
+        }
+        {message
+            output={@
+
+You examine the TV and the table it's sitting on.
+The TV is flickering between static noise and blocks of color.
+
+It goes black for a moment then words flash on the screen before it returns to static
+
+**"Go deeper"**
+            }
+        }
+    }
+}
+
+{x_on_entertainment
+    {message
+        output={@
+
+You look on the table, there is a TV that is flickering.
+        }
+    }
+}
+
+{x_behind_entertainment
+    {message
+        output={@
+
+You don't see anything behind the TV and the table it is sitting on.
+        }
+    }
+}
+
+{x_under_entertainment
+    {message
+        output={@
+
+You don't see anything under the TV and the table it is sitting on.
+        }
+    }
+}
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_your_tv_table))
+    {act, logic=x_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_tv_table))
+    {act, logic=x_on_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_tv_table))
+    {act, logic=x_behind_entertainment, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_tv_table))
+    {act, logic=x_under_entertainment, tags=!_type|room }
+}

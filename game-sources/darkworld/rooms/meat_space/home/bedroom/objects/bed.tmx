@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="22">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="25">
  <objectgroup id="2" name="Layout">
   <object id="16" x="-960" y="-416" width="1504" height="800"/>
   <object id="17" x="-902.859" y="-352.5" width="87.7188" height="23">
@@ -10,8 +10,20 @@
    <text wrap="1">Pillows</text>
   </object>
   <object id="20" x="-640" y="-128" width="192" height="192"/>
-  <object id="21" x="-616.859" y="-103.5" width="149.719" height="23">
+  <object id="21" x="-617.859" y="-55.5" width="149.719" height="23">
    <text wrap="1">CD Player (under)</text>
+  </object>
+  <object id="22" x="-549" y="-80">
+   <properties>
+    <property name="Desk" type="file" value="cdplayer.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="23" x="586.141" y="-314.5" width="147.719" height="23">
+   <text wrap="1">Behind Bed</text>
+  </object>
+  <object id="24" x="582.14" y="-268.5" width="267.719" height="188">
+   <text fontfamily="Sans Serif" pixelsize="13" wrap="1">Hanging from the bedpost you see a chrome buble-shaped mask.</text>
   </object>
  </objectgroup>
 </map>

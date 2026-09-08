@@ -1,0 +1,84 @@
+{room, key=office, name=Office
+    {attrib, output=true, tags=tested }
+    {attrib, tags=navigation
+        output={@
+South: exit the office
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+Your parents' office is deceptively luxurious in appearance.
+The walls are deep red wood paneling. There are brass wall sconces that light
+it up.
+Set into the east wall is a bookshelf.
+There is a desk in the north end of the room, with a chair behind it.
+In the west end of the room are two black leather sitting chairs.
+
+You never really go into the office.
+It's just boring work stuff.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+In the north end of the office is a desk.
+There is a bookshelf set into the east wall.
+In the west end of the room are two black leather chairs.
+            }
+        }
+
+        {logic, name=Office tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+    {inject, logic=./desk.inj }
+    {inject, logic=./chairs.inj }
+    {inject, logic=./shelf.inj }
+    {inject, logic=./sculptures.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=hallway, tags=[player]
+            output={@
+
+You exit the office.
+
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Desk
+[X] : Chairs
+[X] : Bookshelf
+[X] : Sculptures
+
+[X] : Navigation
+        }
+    }
+}

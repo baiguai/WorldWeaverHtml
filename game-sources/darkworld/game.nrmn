@@ -7,7 +7,7 @@
     {attrib, output=#00ff00, tags=!_ui_foreground }
     {attrib, tags=!_error
         output={@
-I don't understand what you are trying to do.
+I don't understand.
         }
     }
     {attrib, output=look, tags=!_defact }
