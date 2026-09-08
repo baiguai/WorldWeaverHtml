@@ -1378,7 +1378,7 @@
           {
             "id": "nzpxh111",
             "title": "Markdown Formatting",
-            "content": "Markdown Formatting\n--------------------------------------------------------------------------------\n\nYou can use a somewhat customized form of Markdown in your Output Field values (usually Message Element Outputs).\n\n** Note **\nIf you aren't familiar with Markdown, read this article:\nhttps://www.markdownguide.org/getting-started/\n\n\n-- WorldWeaver Markdown Guide --\n\n## Heading 2 ##\n### Heading 3 ###\n#### Heading 4 ####\n\nNormal text... #[#ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800] colorful text with spaces #... and normal text again.\n\n**Bold text**\n*Italic text*\n\nHorizontal line:\n---\n\n* List item 1\n* List item 2\n\n1. Numbered 1\n1. Numbered 2\n\n^^ Indented text.\nAnd some more indented text.\nAnd even more.\n\nBut now no more, because there is a blank line separating it.\n\n|Col 1|Col 2|\n|:---|---:|\n|This is a table|Else|\n|And|Another|\n\nAnd some @#ff8800|colorful@ text.\n\nImages:\n![alternate text](https://worldweaver.infinityfreeapp.com/sword.jpg)",
+            "content": "Markdown Formatting\n--------------------------------------------------------------------------------\n\nYou can use a somewhat customized form of Markdown in your Output Field values (usually Message Element Outputs).\n\n** Note **\nIf you aren't familiar with Markdown, read this article:\nhttps://www.markdownguide.org/getting-started/\n\n\n-- WorldWeaver Markdown Guide --\n\n## Heading 2 ##\n### Heading 3 ###\n#### Heading 4 ####\n\nNormal text... #[#ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800]colorful text#... and normal text again.\nNormal text... #[ff8800] colorful text with spaces #... and normal text again.\n\n**Bold text**\n*Italic text*\n\nHorizontal line:\n---\n\n* List item 1\n* List item 2\n\n1. Numbered 1\n1. Numbered 2\n\n^^ Indented text.\nAnd some more indented text.\nAnd even more.\n\nBut now no more, because there is a blank line separating it.\n\n|Col 1|Col 2|\n|:---|---:|\n|This is a table|Else|\n|And|Another|\n\nImages:\n![alternate text](https://worldweaver.infinityfreeapp.com/sword.jpg)",
             "children": [],
             "expanded": false
           }
@@ -2008,6 +2008,13 @@
         "content": "",
         "children": [
         {
+          "id": "eqrcv8a7",
+          "title": "Introduction",
+          "content": "Introduction\n--------------------------------------------------------------------------------\n\nAll of the currently available admin commands are listed out in this section,\nhowever it is best to prefer the _admin command (without a password) - within\nWorldWeaver.\n\nThis list will be more reliably accurate for the version of WW you are using.",
+          "children": [],
+          "expanded": false
+        },
+        {
           "id": "utjkrrpf",
           "title": "Admin Commands Cheat Sheet",
           "content": "Admin Commands Cheat Sheet\n--------------------------------------------------------------------------------\n\n+--------------------------+-----------------------------------------------------+\n| Command                  | Description                                         |\n| _admin <password>        | Enters admin mode                                   |\n| _admin                   | When in admin mode, shows a list of commands        |\n| _devnotes                | Shows all of the developer notes                    |\n| _devnotes <filter>       | Shows a filtered list of the developer notes        |\n| _game                    | Shows the current state of the Game Element         |\n| _macro <macro key>       | Runs the specified macro                            |\n| _macrols                 | Lists the macros you've stored in your game         |\n| _macror <macro name/key> | Begins recording a macro                            |\n| _macros                  | Stops recording the current macro                   |\n| _macrots <macro key>     | Runs the specified macro in test mode               |\n| _player                  | Shows the current state of the Player Element       |\n| _regex <filter>          | Evaluates a filtered list of REGEX's in your game   |\n| _regex                   | Evaluates any REGEX's in your game                  |\n| _room                    | Shows the current state of the current Room Element |\n+--------------------------+-----------------------------------------------------+",
@@ -2176,7 +2183,7 @@
       {
         "id": "03io5wie",
         "title": "Injection Placeholders",
-        "content": "Injection Placeholders\n--------------------------------------------------------------------------------\n\nIf you are just stubbing in injections, but don't want to flesh them out just\nyet. You can test to see if they are actually being injected by simply\nadding an attribute in the injected file, then use the admin _room tool.\n\nfor example - if you have a room:\n\n{room, key=dungeon, name=Dungeon\n    {inject, logic=./chest.inj }\n}\n\n\nIn the chest.inj - you can add something like:\n\n{attrib, output=chest tags=name }\n\n\n\nThen start your game, use _admin <password> to enter admin mode, then type:\n\n_room\n",
+        "content": "Injection Placeholders\n--------------------------------------------------------------------------------\n\nIf you are just stubbing in injections, but don't want to flesh them out just\nyet. You can test to see if they are actually being injected by simply\nadding an attribute in the injected file, then use the admin _room tool.\n\nfor example - if you have a room:\n\n{room, key=dungeon, name=Dungeon\n    {inject, logic=./chest.inj }\n}\n\n\nIn the chest.inj - you can add something like:\n\n{attrib, output=chest }\n\n\n\nThen start your game, use _admin <password> to enter admin mode, then type:\n\n_room\n\n\nIf the the Inject Element has properly injected the .inj contents, you will\nsee the 'chest' attribute in the list of room Elements.",
         "children": [],
         "expanded": false
       },
@@ -2747,17 +2754,32 @@
       "expanded": false
     },
     {
+      "id": "oo0t3uvm",
+      "title": "Debug Tips",
+      "content": "",
+      "children": [
+      {
+        "id": "ax9zizie",
+        "title": "Checking Attributes - Quotes",
+        "content": "Checking Attributes - Quotes\n--------------------------------------------------------------------------------\n\nIf you are checking an Attribute, using inline logic, like:\n\n\noutput={@\n    <?[room]((some_attrib)) = 'true?>\n        ...\n    </?>\n}\n\n\nAnd this isn't working - double check for an unclosed single quote!\nNotice above:\n'true?>\n\nI've had a game function completely normally - EXCEPT for this check.",
+        "children": [],
+        "expanded": false
+      },
+      {
+        "id": "562mpihw",
+        "title": "Checking Attributes - Typos",
+        "content": "Checking Attributes - Typos\n--------------------------------------------------------------------------------\n\nWhen you are using a Logic Element to check the value of an Attribute, be\nsure you don't have any typos in the relative code etc.\n\nIf you DO have a typo, you might get a false positive.\n\nSo if your Logic is succeeding when you KNOW it should fail, double check\nthat you have the tags or keys correct.",
+        "children": [],
+        "expanded": false
+      }
+      ],
+      "expanded": false
+    },
+    {
       "id": "0uhabk07",
       "title": "Gotchas",
       "content": "",
       "children": [
-      {
-        "id": "562mpihw",
-        "title": "Checking Attributes",
-        "content": "Checking Attributes\n--------------------------------------------------------------------------------\n\nWhen you are using a Logic Element to check the value of an Attribute, be\nsure you don't have any typos in the relative code etc.\n\nIf you DO have a typo, you might get a false positive.\n\nSo if your Logic is succeeding when you KNOW it should fail, double check\nthat you have the tags or keys correct.",
-        "children": [],
-        "expanded": false
-      },
       {
         "id": "hejt56pr",
         "title": "Referencing Elements",
@@ -2922,95 +2944,92 @@
   }
 ];
             let historyStack = [
-  {"id": "ntrdbtd2",
-   "title": "Introduction to Special Relative References"
+  {"id": "dovxw7t5",
+   "title": "Introduction to Special Output Values"
   },
-  {"id": "ici6cqls",
-   "title": "Elements"
+  {"id": "9s2fmaqf",
+   "title": "Introduction to Relative References"
   },
-  {"id": "jbm9394q",
-   "title": "Introduction to the Templates"
+  {"id": "l9yqtd9h",
+   "title": "Logic - Logic"
   },
-  {"id": "jk1ijfmn",
-   "title": "Room Template"
+  {"id": "s0jc6ci2",
+   "title": "Introduction to Regular Expressions"
   },
-  {"id": "eibm5vc2",
-   "title": "Dev Note Element"
+  {"id": "rj0r9iem",
+   "title": "Admin Tools Introduction"
   },
-  {"id": "izc6tz67",
-   "title": "Taking the Spear"
+  {"id": "5i8denal",
+   "title": "Admin Mode"
   },
-  {"id": "nkfi4ecz",
-   "title": "Armed Weapon Tag"
+  {"id": "i56p5apg",
+   "title": "Admin Quick Links"
   },
-  {"id": "56krobm4",
-   "title": "Arm Tag"
+  {"id": "rgdh87wv",
+   "title": "Admin Help Command"
   },
-  {"id": "yv4driaf",
-   "title": "Admin Pass Tag"
+  {"id": "utjkrrpf",
+   "title": "Admin Commands Cheat Sheet"
   },
-  {"id": "tbii0txb",
-   "title": "Ammo Element"
+  {"id": "eqrcv8a7",
+   "title": "Introduction"
   },
-  {"id": "ujzx8lmy",
-   "title": "Lazer Gun Example"
+  {"id": "nuqaxq1l",
+   "title": "Introduction"
   },
-  {"id": "plbe99vp",
-   "title": "Type Tag"
+  {"id": "tf36q014",
+   "title": "Injections Cheat Sheet"
   },
-  {"id": "1j4ecmsh",
-   "title": "Use Macros!"
+  {"id": "4jjck1q4",
+   "title": "Look Injection"
   },
-  {"id": "jtfzv3lb",
-   "title": "Using This Help System"
+  {"id": "wfvg9lfw",
+   "title": "Navigation Injection"
   },
-  {"id": "gd3l7b09",
-   "title": "Quick Links"
-  },
-  {"id": "psnju7nz",
-   "title": "Syntax With Logic"
-  },
-  {"id": "ljumwj5c",
-   "title": "Marking Elements as Tested"
-  },
-  {"id": "3es6spd6",
-   "title": "Element Cheat Sheet"
-  },
-  {"id": "9xbjszqy",
-   "title": "Element Fields Cheat Sheet"
-  },
-  {"id": "fhr5448h",
-   "title": "Special Tags Cheat Sheet"
+  {"id": "2z7245ps",
+   "title": "Action Element"
   },
   {"id": "3cccheaq",
    "title": "Developer's Cheat Sheet"
   },
-  {"id": "3fdyi1a0",
-   "title": "Tracking Game Development"
+  {"id": "hejt56pr",
+   "title": "Referencing Elements"
+  },
+  {"id": "q01g2ngh",
+   "title": "Repeating Messages"
+  },
+  {"id": "1j4ecmsh",
+   "title": "Use Macros!"
   },
   {"id": "eqdthl2o",
    "title": "Tracking Room Development"
   },
-  {"id": "6mmgvtns",
-   "title": "Home Room"
+  {"id": "3fdyi1a0",
+   "title": "Tracking Game Development"
   },
-  {"id": "9o6kddje",
-   "title": "Room Template"
+  {"id": "03io5wie",
+   "title": "Injection Placeholders"
   },
-  {"id": "niteezf1",
-   "title": "Room Template with Testing"
+  {"id": "8iegiaa9",
+   "title": "Syntax Conflicts"
   },
-  {"id": "7t1zfwoc",
-   "title": "Introduction"
+  {"id": "j2pmtnp5",
+   "title": "Moving NPCs / Objects"
   },
-  {"id": "223bagmq",
-   "title": "Visualizing Your Game"
+  {"id": "w9q5p7ir",
+   "title": "Object vs Custom Element Messages"
   },
-  {"id": "ls0rnz27",
-   "title": "Takeable Object"
+  {"id": "562mpihw",
+   "title": "Checking Attributes - Typos"
   },
-  {"id": "svcak5lr",
-   "title": "Room Template with Test and Story"
+  {"id": "ax9zizie",
+   "title": "Checking Attributes - Quotes"
+  },
+  {"id": "nzpxh111",
+   "title": "Markdown Formatting"
+  },
+  {"id": "t9l13vge",
+   "title": "Error Message"
   }
 ];
 
