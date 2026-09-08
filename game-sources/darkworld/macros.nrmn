@@ -1,4 +1,5 @@
 {macro, key=tstroom, output=l }
+{macro, key=tstoffice, output=l|~|s|~|ne|~|l }
 
 
 

@@ -45,17 +45,17 @@ There isn't anything behind the chairs.
 
 
 {input, syntax=[tplt_syntax]((x_chair))
-    {act, logic=x_chair, tags=!_type|room }
+    {act, logic=x_chairs, tags=!_type|room }
 }
 
 {input, syntax=[tplt_syntax]((x_on_chair))
-    {act, logic=x_on_chair, tags=!_type|room }
+    {act, logic=x_on_chairs, tags=!_type|room }
 }
 
 {input, syntax=[tplt_syntax]((x_under_chair))
-    {act, logic=x_under_chair, tags=!_type|room }
+    {act, logic=x_under_chairs, tags=!_type|room }
 }
 
 {input, syntax=[tplt_syntax]((x_behind_chair))
-    {act, logic=x_behind_chair, tags=!_type|room }
+    {act, logic=x_behind_chairs, tags=!_type|room }
 }

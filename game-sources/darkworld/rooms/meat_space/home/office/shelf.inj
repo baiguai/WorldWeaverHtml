@@ -121,14 +121,3 @@ a system of equations with bit vectors.
 {input, syntax=[tplt_syntax]((x_cybersec_book))
     {act, logic=x_cybersec_book, tags=!_type|room }
 }
-
-
-{input, syntax=[tplt_syntax]((go_south))
-    {move, logic=hallway, tags=[player]
-        output={@
-
-You exit the office.
-
-        }
-    }
-}

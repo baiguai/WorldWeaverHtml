@@ -1,5 +1,5 @@
 {room, key=office, name=Office
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 South: exit the office
@@ -52,18 +52,33 @@ In the west end of the room are two black leather chairs.
     {inject, logic=./desk.inj }
     {inject, logic=./chairs.inj }
     {inject, logic=./shelf.inj }
+    {inject, logic=./sculptures.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=hallway, tags=[player]
+            output={@
+
+You exit the office.
+
+            }
+        }
+    }
+
 
 
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
-[ ] : Desk
-[ ] : Chairs
-[ ] : Bookshelf
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Desk
+[X] : Chairs
+[X] : Bookshelf
+[X] : Sculptures
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }
