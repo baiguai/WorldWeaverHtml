@@ -1,0 +1,61 @@
+{x_chairs
+    {message
+        output={@
+
+The chairs in the west end of the office are mid century modern in style.
+They are upholstered in black leather and made of the same deep rich-colored
+wood as the rest of the office.
+They sit facing toward the center of the room.
+
+        }
+    }
+}
+
+{x_on_chairs
+    {message
+        output={@
+
+There is nothing on the chairs.
+
+        }
+    }
+}
+
+{x_under_chairs
+    {message
+        output={@
+
+You don't see anything under the chairs.
+
+        }
+    }
+}
+
+{x_behind_chairs
+    {message
+        output={@
+
+There isn't anything behind the chairs.
+
+        }
+    }
+}
+
+
+
+
+{input, syntax=[tplt_syntax]((x_chair))
+    {act, logic=x_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_chair))
+    {act, logic=x_on_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_chair))
+    {act, logic=x_under_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_chair))
+    {act, logic=x_behind_chair, tags=!_type|room }
+}

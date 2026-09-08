@@ -21,6 +21,9 @@ Set into the east wall is a bookshelf.
 There is a desk in the north end of the room, with a chair behind it.
 In the west end of the room are two black leather sitting chairs.
 
+You never really go into the office.
+It's just boring work stuff.
+
             }
         }
     }
@@ -35,7 +38,7 @@ In the west end of the room are two black leather chairs.
             }
         }
 
-        {logic, name=TESTNAME tested, tags=!_test
+        {logic, name=Office tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -45,6 +48,10 @@ In the west end of the room are two black leather chairs.
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+    {inject, logic=./desk.inj }
+    {inject, logic=./chairs.inj }
+    {inject, logic=./shelf.inj }
 
 
     {dev_note, tags=Testing, active=true
