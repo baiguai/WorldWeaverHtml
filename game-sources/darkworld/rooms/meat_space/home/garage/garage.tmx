@@ -1,19 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="25">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="31">
  <objectgroup id="2" name="Layout">
-  <object id="20" x="-960" y="-320" width="2240" height="320"/>
-  <object id="21" x="-911.859" y="-283.5" width="87.7188" height="23">
-   <text wrap="1">Hall</text>
-  </object>
-  <object id="22" x="0" y="0" width="320" height="32"/>
-  <object id="23" x="19.1406" y="48.5" width="87.7188" height="23">
-   <text wrap="1">To Master</text>
-  </object>
-  <object id="24" x="153" y="81">
-   <properties>
-    <property name="Master" type="file" value="../master/master.tmx"/>
-   </properties>
-   <point/>
+  <object id="25" name="Garage" x="-640" y="-384" width="832" height="832"/>
+  <object id="26" x="-672" y="-128" width="32" height="128"/>
+  <object id="27" x="192" y="-224" width="32" height="512"/>
+  <object id="28" name="Workbench" x="-640" y="-384" width="704" height="160"/>
+  <object id="29" x="-608" y="-352" width="352" height="96">
+   <text wrap="1">The hidden room combination is on a piece of paper in the center top drawer.</text>
   </object>
  </objectgroup>
 </map>

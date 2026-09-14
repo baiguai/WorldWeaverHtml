@@ -1,0 +1,25 @@
+{x_bed
+    {message
+        output={@
+
+You examine the bed...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bed))
+    {act, logic=x_bed, tags=!_type|room }
+}

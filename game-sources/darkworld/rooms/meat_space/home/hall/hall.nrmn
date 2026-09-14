@@ -74,6 +74,16 @@ You enter the office.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=master_bedroom, tags=[player]
+            output={@
+
+You nervously enter the master bedroom.
+
+            }
+        }
+    }
+
 
 
     {dev_note, tags=Testing, active=true
