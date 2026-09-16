@@ -1,0 +1,65 @@
+{room, key=master_bathroom, name=Master Bathroom
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+East: master bedroom
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+Story of the master bathroom...
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around...
+            }
+        }
+
+        {logic, name=Bathroom tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=master_bedroom, tags=[player]
+            output={@
+
+You return to your parents' bedroom...
+
+            }
+        }
+    }
+
+
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

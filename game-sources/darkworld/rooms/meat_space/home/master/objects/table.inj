@@ -1,1 +1,67 @@
-{attrib, output=Table }
+{x_table
+    {message
+        output={@
+
+The table in the sitting area is small and round.
+
+        }
+    }
+}
+
+{x_on_table
+    {message
+        output={@
+
+There is nothing sitting on top of the sitting area table.
+
+        }
+    }
+}
+
+{x_under_table
+    {message
+        output={@
+
+You don't see anything under the table.
+
+        }
+    }
+}
+
+{x_behind_table
+    {message
+        output={@
+
+There is nothing behind the table.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_table))
+    {act, logic=x_table, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_table))
+    {act, logic=x_on_table, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_table))
+    {act, logic=x_under_table, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_table))
+    {act, logic=x_behind_table, tags=!_type|room }
+}

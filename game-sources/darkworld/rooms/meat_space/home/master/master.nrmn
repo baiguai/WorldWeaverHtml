@@ -3,6 +3,8 @@
     {attrib, tags=navigation
         output={@
 North: hallway
+South: closet
+West: bathroom
         }
     }
 
@@ -80,13 +82,33 @@ You return to the hallway.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=master_closet, tags=[player]
+            output={@
+
+You step into the closet...
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=master_bathroom, tags=[player]
+            output={@
+
+You step into the bathroom...
+
+            }
+        }
+    }
+
 
 
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
+[X] : Room
+[X] : Look
 [X] : Story
 
 [ ] : Navigation

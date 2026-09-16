@@ -1,0 +1,66 @@
+{room, key=master_closet, name=Closet
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North: back to the master bedroom
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You are in the walk in closet.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You see lots of clothes.
+
+            }
+        }
+
+        {logic, name=Closet tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=master_bedroom, tags=[player]
+            output={@
+
+You return to your parents' bedroom.
+
+            }
+        }
+    }
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

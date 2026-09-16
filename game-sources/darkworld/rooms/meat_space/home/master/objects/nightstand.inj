@@ -1,1 +1,68 @@
-{attrib, output=Nightstand }
+{x_nightstand
+    {message
+        output={@
+
+The nightstand is beside the bed.
+The only item sitting on it is a glass panel alarm clock.
+
+        }
+    }
+}
+
+{x_on_nightstand
+    {message
+        output={@
+
+The only item sitting on it is a glass panel alarm clock.
+
+        }
+    }
+}
+
+{x_under_nightstand
+    {message
+        output={@
+
+There is nothing under the nightstand.
+
+        }
+    }
+}
+
+{x_behind_nightstand
+    {message
+        output={@
+
+You don't see anything behind the nightstand.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_nightstand))
+    {act, logic=x_nightstand, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_nightstand))
+    {act, logic=x_on_nightstand, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_nightstand))
+    {act, logic=x_under_nightstand, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_nightstand))
+    {act, logic=x_behind_nightstand, tags=!_type|room }
+}
