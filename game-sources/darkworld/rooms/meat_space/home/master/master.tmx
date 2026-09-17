@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="25">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="43">
  <objectgroup id="2" name="Layout">
   <object id="23" name="Master Bedroom" x="-960" y="-320" width="1600" height="960"/>
+  <object id="25" name="Door" x="-256" y="-352" width="224" height="32"/>
+  <object id="26" x="-384" y="-320">
+   <polyline points="96,0 96,320 -128,480 -128,960"/>
+  </object>
+  <object id="27" name="Bath" x="-544" y="-288" width="224" height="320">
+   <ellipse/>
+  </object>
+  <object id="28" name="Shower" x="-512" y="416">
+   <polyline points="0,0 -448,0"/>
+  </object>
+  <object id="29" name="Toilet" x="-960" y="192" width="192" height="192"/>
+  <object id="31" name="Bed" x="32" y="-224" width="608" height="320"/>
+  <object id="33" name="Hidden Room" x="-224" y="320">
+   <polyline points="0,0 0,320"/>
+  </object>
+  <object id="34" name="Robot Mistress" x="-480" y="512" width="96" height="96"/>
+  <object id="35" name="Closet" x="-512" y="320" width="736" height="320"/>
+  <object id="36" name="Nightstand" x="384" y="160" width="256" height="160"/>
+  <object id="37" name="Sitting Area" x="384" y="384" width="192" height="192">
+   <ellipse/>
+  </object>
+  <object id="39" x="-512" y="160" width="32" height="128"/>
+  <object id="40" x="0" y="288" width="160" height="32"/>
+  <object id="41" x="-672" y="384" width="128" height="32"/>
+  <object id="42" name="Sinks and Vanity" x="-960" y="-320" width="128" height="448"/>
  </objectgroup>
 </map>

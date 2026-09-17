@@ -1,0 +1,71 @@
+{x_bed
+    {message
+        output={@
+
+Your parents' bed is neatly made.
+It is large and the blankets are high quality and appear to be very warm and
+comfortable.
+There are two wide pillows at the head of the bed.
+
+        }
+    }
+}
+
+{x_on_bed
+    {message
+        output={@
+
+You look on the bed. There is nothing on it but two wide pillows.
+
+        }
+    }
+}
+
+{x_under_bed
+    {message
+        output={@
+
+You kneel down and look under the bed.
+It is absolutely pristine down there.
+
+        }
+    }
+}
+
+{x_behind_bed
+    {message
+        output={@
+
+There is nothing behind the bed.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bed))
+    {act, logic=x_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_bed))
+    {act, logic=x_on_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_bed))
+    {act, logic=x_under_bed, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_bed))
+    {act, logic=x_behind_bed, tags=!_type|room }
+}

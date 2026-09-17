@@ -1,0 +1,114 @@
+{room, key=master_bedroom, name=Master Bedroom
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North: hallway
+South: closet
+West: bathroom
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You have never really been inside your parents' bedroom. If feels really
+weird.
+
+A large bed sits against the east wall and south of the bed is a
+nightstand and a small sitting area.
+
+In the south wall is a door to the walk in closet which appears to take up
+nearly the entire width of the room.
+
+There is a narrow door in the west wall.
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+A large bed sits against the east wall.
+
+South of the bed is a nightstand and beyond that is a small sitting area
+consisting of a round table and one velvet chair next to it.
+
+In the south wall is a door to the walk in closet.
+
+The west wall is right next to the bedroom door, then it angles away, so that
+the bedroom opens up some more. There is a narrow door in the west wall that
+you imagine leads to the bathroom.
+
+            }
+        }
+
+        {logic, name=Master tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+
+    {inject, logic=./objects/bed.inj }
+    {inject, logic=./objects/nightstand.inj }
+    {inject, logic=./objects/table.inj }
+    {inject, logic=./objects/chair.inj }
+
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+   
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=hallway, tags=[player]
+            output={@
+
+You return to the hallway.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=master_closet, tags=[player]
+            output={@
+
+You step into the closet...
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=master_bathroom, tags=[player]
+            output={@
+
+You step into the bathroom...
+
+            }
+        }
+    }
+
+
+
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[X] : Room
+[X] : Look
+[X] : Story
+
+[ ] : Navigation
+        }
+    }
+}

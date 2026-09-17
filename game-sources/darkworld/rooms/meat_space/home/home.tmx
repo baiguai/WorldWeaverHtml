@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="26">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="30">
  <objectgroup id="2" name="Layout">
   <object id="1" name="House" x="-960" y="-352" width="1664" height="672"/>
   <object id="2" name="Bedroom" x="-928" y="-320" width="224" height="160"/>
@@ -13,8 +13,8 @@
   <object id="7" name="Hall" x="-928" y="-128" width="576" height="64"/>
   <object id="9" x="-755.5" y="-70" width="69" height="16"/>
   <object id="10" x="-357" y="-115" width="13" height="36"/>
-  <object id="11" name="Living Room" x="-320" y="-288" width="448" height="448"/>
-  <object id="13" name="Master Bedroom" x="-864" y="-32" width="448" height="288"/>
+  <object id="11" name="Living Room" x="-320" y="-288" width="448" height="256"/>
+  <object id="13" name="Master Bedroom" x="-864" y="-32" width="320" height="192"/>
   <object id="15" x="-820" y="-87">
    <properties>
     <property name="Hall" type="file" value="hall/hall.tmx"/>
@@ -22,7 +22,7 @@
    <point/>
   </object>
   <object id="16" name="Garage" x="192" y="-288" width="448" height="544"/>
-  <object id="18" x="122.5" y="64" width="13" height="36"/>
+  <object id="18" x="128" y="-96" width="13" height="36"/>
   <object id="20" x="-630" y="49">
    <properties>
     <property name="Master" type="file" value="master/master.tmx"/>
@@ -46,6 +46,14 @@
   <object id="25" x="-544" y="-192">
    <properties>
     <property name="Office" type="file" value="office/office.tmx"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="27" x="-224" y="-32" width="69" height="16"/>
+  <object id="28" name="Kitchen" x="-320" y="0" width="448" height="256"/>
+  <object id="29" x="-160" y="64">
+   <properties>
+    <property name="Kitchen" type="file" value="kitchen/kitchen.tmx"/>
    </properties>
    <point/>
   </object>

@@ -1,0 +1,68 @@
+{x_chair
+    {message
+        output={@
+
+You examine the sitting area chair.
+It is made of rich dark wood and black leather.
+
+        }
+    }
+}
+
+{x_on_chair
+    {message
+        output={@
+
+There is nothing sitting on the chair.
+
+        }
+    }
+}
+
+{x_under_chair
+    {message
+        output={@
+
+You don't see anything under the chair.
+
+        }
+    }
+}
+
+{x_behind_chair
+    {message
+        output={@
+
+There is nothing behind the chair.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_chair))
+    {act, logic=x_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_chair))
+    {act, logic=x_on_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_chair))
+    {act, logic=x_under_chair, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_chair))
+    {act, logic=x_behind_chair, tags=!_type|room }
+}
