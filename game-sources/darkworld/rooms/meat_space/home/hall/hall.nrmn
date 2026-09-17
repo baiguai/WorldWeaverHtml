@@ -23,12 +23,6 @@ There are a couple of skylights overhead that let sunlight in.
 Between them is a single spot light. At night the hall is dim and looks
 somewhat like an art gallery.
 
-Your bedroom is at the west end of the hall, your door is set into the north
-wall. East of your door is another door in the north wall. This leads to
-your parents' office.
-In the south wall is the door to the master bedroom, and to the east is the
-living room.
-
             }
        } 
     }
@@ -38,7 +32,13 @@ living room.
             output={@
 
 You are in the hallway.
-The east end leads into the living room.
+Your bedroom is at the west end of the hall, your door is set into the north
+wall. East of your door is another door in the north wall. This leads to
+your parents' office.
+In the south wall is the door to the master bedroom, and to the east is the
+living room.
+The east end of the hall leads into the living room.
+
             }
         }
 
@@ -84,6 +84,16 @@ You nervously enter the master bedroom.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=living_room, tags=[player]
+            output={@
+
+You step into the living room.
+
+            }
+        }
+    }
+
 
 
     {dev_note, tags=Testing, active=true
@@ -92,7 +102,7 @@ You nervously enter the master bedroom.
 [X] : Look
 [X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

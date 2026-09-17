@@ -1,0 +1,64 @@
+{room, key=living_room, name=Living Room
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+...
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+...
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+...
+            }
+        }
+
+        {logic, name=Living Room tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=hallway, tags=[player]
+            output={@
+
+You return to the hallway.
+
+            }
+        }
+    }
+
+
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

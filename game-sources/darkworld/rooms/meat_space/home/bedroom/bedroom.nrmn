@@ -20,10 +20,7 @@ You are in your bedroom.
 Your room is cluttered with clothes strewn over the floor. Techno music is playing on a small computer speaker.
 The only light that's on is a blue bulb hanging from the ceiling.
 
-In the north wall is a window that you've taped SciFi posters all over.
 Against the west wall is your desk
-and at the opposite wall is your bed and a small table with a TV on it.
-Along the south wall is a bookshelf and next to that the door.
 
 (Hint: You can examine things using: x item)
             }
@@ -35,9 +32,9 @@ Along the south wall is a bookshelf and next to that the door.
             output={@
 
 You look around...
-In the north wall is the window.
-Against the west wall is your desk
-at the opposite wall is your bed and a small table with a TV on it.
+In the north wall is a window that you've taped SciFi posters all over.
+Against the west wall is your desk.
+At the opposite wall is your bed and a small table with a TV on it.
 Along the south wall is a bookshelf and next to that the door.
             }
         }
