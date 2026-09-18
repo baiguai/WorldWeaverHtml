@@ -1,0 +1,67 @@
+{x_bar
+    {message
+        output={@
+
+You examine the bar...
+
+        }
+    }
+}
+
+{x_on_bar
+    {message
+        output={@
+
+You look on the bar...
+
+        }
+    }
+}
+
+{x_under_bar
+    {message
+        output={@
+
+You look under the bar...
+
+        }
+    }
+}
+
+{x_behind_bar
+    {message
+        output={@
+
+You look behind the bar...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bar))
+    {act, logic=x_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_bar))
+    {act, logic=x_on_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_bar))
+    {act, logic=x_under_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_bar))
+    {act, logic=x_behind_bar, tags=!_type|room }
+}

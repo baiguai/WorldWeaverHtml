@@ -1,0 +1,67 @@
+{x_tv
+    {message
+        output={@
+
+You examine the tv...
+
+        }
+    }
+}
+
+{x_on_tv
+    {message
+        output={@
+
+You look on the tv...
+
+        }
+    }
+}
+
+{x_under_tv
+    {message
+        output={@
+
+You look under the tv...
+
+        }
+    }
+}
+
+{x_behind_tv
+    {message
+        output={@
+
+You look behind the tv...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_tv))
+    {act, logic=x_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_tv_table))
+    {act, logic=x_on_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_tv_table))
+    {act, logic=x_under_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_tv_table))
+    {act, logic=x_behind_tv, tags=!_type|room }
+}

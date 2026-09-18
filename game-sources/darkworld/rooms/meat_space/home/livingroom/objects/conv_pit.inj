@@ -1,0 +1,39 @@
+{x_conv_pit
+    {message
+        output={@
+
+You examine the conversation pit...
+
+        }
+    }
+}
+
+{x_on_conv_pit
+    {message
+        output={@
+
+You look on the conversation pit...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_conv_pit))
+    {act, logic=x_conv_pit, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_conv_pit))
+    {act, logic=x_on_conv_pit, tags=!_type|room }
+}
