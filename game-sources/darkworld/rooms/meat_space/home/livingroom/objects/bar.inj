@@ -2,7 +2,8 @@
     {message
         output={@
 
-You examine the bar...
+The bar is made up of a thin wooden counter that has cylindrical brass legs
+and a brass shelf beneath it which is stocked with glassware.
 
         }
     }
@@ -12,7 +13,8 @@ You examine the bar...
     {message
         output={@
 
-You look on the bar...
+You look on the bar.
+There is a rubber bar mat and a shaker, juicer, and muddler.
 
         }
     }
@@ -22,7 +24,8 @@ You look on the bar...
     {message
         output={@
 
-You look under the bar...
+Under the bar is the shelf of glassware.
+You don't see anything else.
 
         }
     }
@@ -32,7 +35,7 @@ You look under the bar...
     {message
         output={@
 
-You look behind the bar...
+You don't see anything behind the bar.
 
         }
     }

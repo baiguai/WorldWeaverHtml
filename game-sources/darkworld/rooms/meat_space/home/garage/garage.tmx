@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="31">
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="32">
  <objectgroup id="2" name="Layout">
   <object id="25" name="Garage" x="-640" y="-384" width="832" height="832"/>
   <object id="26" x="-672" y="-128" width="32" height="128"/>
@@ -7,6 +7,12 @@
   <object id="28" name="Workbench" x="-640" y="-384" width="704" height="160"/>
   <object id="29" x="-608" y="-352" width="352" height="96">
    <text wrap="1">The hidden room combination is on a piece of paper in the center top drawer.</text>
+  </object>
+  <object id="31" x="-704" y="-64">
+   <properties>
+    <property name="Living Room" type="file" value="../livingroom/livingroom.tmx"/>
+   </properties>
+   <point/>
   </object>
  </objectgroup>
 </map>

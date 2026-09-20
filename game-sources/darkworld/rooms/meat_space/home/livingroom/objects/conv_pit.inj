@@ -2,7 +2,9 @@
     {message
         output={@
 
-You examine the conversation pit...
+The conversation pit is a large circular couch set into the floor in the
+middle of the living room.
+The couch itself is made of a mustard yellow textured fabric.
 
         }
     }
@@ -12,7 +14,8 @@ You examine the conversation pit...
     {message
         output={@
 
-You look on the conversation pit...
+You don't see anything of interest sitting on the conversation
+pit couch.
 
         }
     }

@@ -1,8 +1,17 @@
+{attrib, output=false, tags=tv_on }
+
 {x_tv
     {message
         output={@
 
-You examine the tv...
+The TV in the living room is massive. It is mounted to the wall and can be
+positioned so it can be viewed from any location in the living room.
+<?[room]((tv_on)) = 'false'?>
+It is currently turned off.
+<else>
+A news story about a person who was found dead in their bedroom is airing.
+They were playing some sort of virtual reality video game when they died.
+</?>
 
         }
     }
@@ -12,7 +21,7 @@ You examine the tv...
     {message
         output={@
 
-You look on the tv...
+There isn't anything on the TV.
 
         }
     }
@@ -22,7 +31,7 @@ You look on the tv...
     {message
         output={@
 
-You look under the tv...
+You don't see anything under the TV.
 
         }
     }
@@ -32,7 +41,7 @@ You look under the tv...
     {message
         output={@
 
-You look behind the tv...
+There isn't anything behind the TV.
 
         }
     }
@@ -64,4 +73,26 @@ You look behind the tv...
 
 {input, syntax=[tplt_syntax]((x_behind_your_tv_table))
     {act, logic=x_behind_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((turn_on_tv))
+    {set, logic=[room]((tv_on)), output=true }
+    {message
+        output={@
+
+You turn on the TV.
+
+        }
+    }
+}
+
+{input, syntax=[tplt_syntax]((turn_off_tv))
+    {set, logic=[room]((tv_on)), output=false }
+    {message
+        output={@
+
+You turn the TV off.
+
+        }
+    }
 }

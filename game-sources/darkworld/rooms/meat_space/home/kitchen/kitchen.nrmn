@@ -1,0 +1,67 @@
+{room, key=kitchen, name=Kitchen
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North: living room
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+The Kitchen!!
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around...
+
+            }
+        }
+
+        {logic, name=Kitchen tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=living_room, tags=[player]
+            output={@
+
+You return to the living room.
+
+            }
+        }
+    }
+
+
+
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

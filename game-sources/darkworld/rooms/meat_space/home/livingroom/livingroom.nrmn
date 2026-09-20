@@ -75,15 +75,38 @@ You return to the hallway.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=kitchen, tags=[player]
+            output={@
+
+You step into the kitchen.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=garage, tags=[player]
+            output={@
+
+You enter the garage.
+
+            }
+        }
+    }
+
 
 
 
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Bar
+[X] : Conversation Pit
+[X] : Television
 
 [ ] : Navigation
         }

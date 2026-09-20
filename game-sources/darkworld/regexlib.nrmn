@@ -289,6 +289,8 @@
         {attrib, tags=nonfidelis|!_regex, output=^(?!fidelis$).+, logic=fidelis|fedelis|i don't know }
         {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
+        {attrib, tags=turn_on_tv|!_regex, output=^turn (?:(?:the )?(?:television|tv) on|on (?:the )?(?:television|tv))\b, logic=turn on tv|turn on the tv|turn the tv on|turn on television|turn on the television }
+        {attrib, tags=turn_off_tv|!_regex, output=^turn (?:(?:the )?(?:television|tv) off|off (?:the )?(?:television|tv))\b, logic=turn off tv|turn the tv off|turn off the tv|turn off television|turn off the television }
 
 
     // Questions
