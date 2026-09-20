@@ -1,0 +1,98 @@
+{attrib, output=false, tags=tv_on }
+
+{x_tv
+    {message
+        output={@
+
+The TV in the living room is massive. It is mounted to the wall and can be
+positioned so it can be viewed from any location in the living room.
+<?[room]((tv_on)) = 'false'?>
+It is currently turned off.
+<else>
+A news story about a person who was found dead in their bedroom is airing.
+They were playing some sort of virtual reality video game when they died.
+</?>
+
+        }
+    }
+}
+
+{x_on_tv
+    {message
+        output={@
+
+There isn't anything on the TV.
+
+        }
+    }
+}
+
+{x_under_tv
+    {message
+        output={@
+
+You don't see anything under the TV.
+
+        }
+    }
+}
+
+{x_behind_tv
+    {message
+        output={@
+
+There isn't anything behind the TV.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_tv))
+    {act, logic=x_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_your_tv_table))
+    {act, logic=x_on_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_your_tv_table))
+    {act, logic=x_under_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_your_tv_table))
+    {act, logic=x_behind_tv, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((turn_on_tv))
+    {set, logic=[room]((tv_on)), output=true }
+    {message
+        output={@
+
+You turn on the TV.
+
+        }
+    }
+}
+
+{input, syntax=[tplt_syntax]((turn_off_tv))
+    {set, logic=[room]((tv_on)), output=false }
+    {message
+        output={@
+
+You turn the TV off.
+
+        }
+    }
+}

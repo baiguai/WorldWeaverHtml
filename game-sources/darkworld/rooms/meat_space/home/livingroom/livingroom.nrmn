@@ -2,7 +2,9 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+West: hallway
+South: kitchen
+East: garage
         }
     }
 
@@ -14,7 +16,12 @@
         {message
             output={@
 
-...
+The entire living room is done in mid-century modern style.
+In the center is a massive conversation pit with a floating fireplace in the
+center.
+
+In the northwest corner is a fully stocked bar.
+
             }
         }
     }
@@ -23,7 +30,17 @@
         {message
             output={@
 
-...
+In the middle of the living room is a large conversation pit with a fireplace
+in the center.
+
+In the northwest corner is the bar.
+Opposite that, in the northeast corner is a massive TV mounted to the wall.
+
+In the east is the door to the garage and in the south wall is the door to
+the kitchen.
+
+The hallway is in the southwest corner of the living room.
+
             }
         }
 
@@ -35,8 +52,16 @@
     }
 
 
+    {inject, logic=./objects/bar.inj }
+    {inject, logic=./objects/conv_pit.inj }
+    {inject, logic=./objects/tv.inj }
+
+
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
 
 
 
@@ -50,13 +75,38 @@ You return to the hallway.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=kitchen, tags=[player]
+            output={@
+
+You step into the kitchen.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=garage, tags=[player]
+            output={@
+
+You enter the garage.
+
+            }
+        }
+    }
+
+
+
 
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
+[X] : Bar
+[X] : Conversation Pit
+[X] : Television
 
 [ ] : Navigation
         }

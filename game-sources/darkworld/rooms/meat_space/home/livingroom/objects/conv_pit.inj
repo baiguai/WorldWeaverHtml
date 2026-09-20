@@ -1,0 +1,42 @@
+{x_conv_pit
+    {message
+        output={@
+
+The conversation pit is a large circular couch set into the floor in the
+middle of the living room.
+The couch itself is made of a mustard yellow textured fabric.
+
+        }
+    }
+}
+
+{x_on_conv_pit
+    {message
+        output={@
+
+You don't see anything of interest sitting on the conversation
+pit couch.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_conv_pit))
+    {act, logic=x_conv_pit, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_conv_pit))
+    {act, logic=x_on_conv_pit, tags=!_type|room }
+}
