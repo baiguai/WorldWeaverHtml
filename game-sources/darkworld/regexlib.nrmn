@@ -13,6 +13,7 @@
         {attrib, tags=x_chair|!_regex, output=^(examine|x)(?: the)? (chair|chairs)$, logic=x the chair|x chair|examine the chairs|x chairs }
         {attrib, tags=x_chip|!_regex, output=^(examine|x)(?: the)? chip(?:s)?$, logic=x the chip|x chip|x chips|examine the chip|examine the chips }
         {attrib, tags=x_cleaning_supp|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cleaning)(\s+)?(supplies)?\b, logic=examine the cleaning supplies|examine cleaning|x the cleaning supplies|x cleaning supplies }
+        {attrib, tags=x_conv_pit|!_regex, output=^(examine|x)(?: the)? (conv pit|conversation pit)$, logic=x conv pit|examine the conversation pit }
         {attrib, tags=x_couch|!_regex, output=^(examine|x)(?: the)? (couch|couches)$, logic=x the couch|x couches|examine the couches|x couch }
         {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
         {attrib, tags=x_couples|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?couples\b, logic=examine the couples|examine couples|x the couples|x couples }
@@ -95,8 +96,10 @@
         {attrib, tags=x_your_monitor|!_regex, output=^(examine|x)(?: the)?(?: your)? monitor$, logic=x your monitor|x monitor|examine the monitor|examine your monitor }
         {attrib, tags=x_your_tv_table|!_regex, output=^(examine|x)(?: the)?(?: your)?(?: tv)?(?: television)?(?: table)?$, logic=x your tv|x tv|x television table|examine the tv table }
 
+        {attrib, tags=x_behind_bar|!_regex, output=^(look|examine|x)\s+(behind)\s+(the\s+)?(bar)\b, logic=look behind the bar|look behind bar|examine behind the bar|x behind bar }
         {attrib, tags=x_behind_books|!_regex, output=^(look|examine|x)\s+(behind)\s+(your\s+|the\s+)?(book|books)$, logic=x behind your books|x beneath the book|examine behind the books }
         {attrib, tags=x_behind_chair|!_regex, output=^(examine|x)\s+(behind)(?: the)? (chair|chairs)$, logic=x behind the chair|x behind chair|examine behind the chairs|x behind chairs }
+        {attrib, tags=x_conv_pit|!_regex, output=^(look|examine|x)\s+(behind)\s+(the\s+)?(conv pit|conversation pit)\b, logic=look behind the conversation pit|look behind conversation pit|examine behind the conv pit|x behind conv pit }
         {attrib, tags=x_behind_desk|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?desk\b, logic=look behind the desk|look behind desk|examine behind the messy desk|x behind desk in front of you }
         {attrib, tags=x_behind_nightstand|!_regex, output=\b(?:x|examine)\b\s+(behind\s+)(?:(?:the|your)\s+)?(nightstand)\b, logic=x behind nightstand|examine the nightstand }
         {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
@@ -111,7 +114,9 @@
         {attrib, tags=x_behind_your_monitor|!_regex, output=^(look|examine|x)\s+behind\s+(your\s+|the\s+)?monitor$, logic=x behind your monitor|look behind the monitor }
         {attrib, tags=x_behind_your_tv_table|!_regex, output=\b(?:x|examine)\b\s+(behind\s+)(?:(?:the|your)\s+)?(?:tv|television)(?:\s+table)?\b, logic=x behind your tv|x behind tv|x behind television table|examine the tv table }
 
+        {attrib, tags=x_on_bar|!_regex, output=^(look|examine|x)\s+(on)\s+(the\s+)?(bar)\b, logic=look on the bar|look on bar|examine on the bar|x on bar }
         {attrib, tags=x_on_books|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?(book|books)$, logic=x on your books|x on the book|examine on the books }
+        {attrib, tags=x_on_conv_pit|!_regex, output=^(look|examine|x)\s+(on)\s+(the\s+)?(conv pit|conversation pit)\b, logic=look on the conversation pit|look on conv pit|examine on the conversation pit|x on conv pit }
         {attrib, tags=x_on_nightstand|!_regex, output=\b(?:x|examine)\b\s+(on\s+)(?:(?:the|your)\s+)?(nightstand)\b, logic=x on your nightstand|x on nightstand|examine the nightstand }
         {attrib, tags=x_on_your_desk|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?desk$, logic=x on your desk|x on desk|examine on the desk }
         {attrib, tags=x_on_your_bed|!_regex, output=^(look|examine|x)\s+on\s+(your\s+|the\s+)?bed$, logic=x on your bed|look on the bed }
@@ -284,6 +289,8 @@
         {attrib, tags=nonfidelis|!_regex, output=^(?!fidelis$).+, logic=fidelis|fedelis|i don't know }
         {attrib, tags=remove_panel|!_regex, output=^(remove)(?: the)? (panel|panels)$, logic=remove panels|remove panel|remove the panel }
         {attrib, tags=secdyne|!_regex, output=^secdyne$, logic=secdyne }
+        {attrib, tags=turn_on_tv|!_regex, output=^turn (?:(?:the )?(?:television|tv) on|on (?:the )?(?:television|tv))\b, logic=turn on tv|turn on the tv|turn the tv on|turn on television|turn on the television }
+        {attrib, tags=turn_off_tv|!_regex, output=^turn (?:(?:the )?(?:television|tv) off|off (?:the )?(?:television|tv))\b, logic=turn off tv|turn the tv off|turn off the tv|turn off television|turn off the television }
 
 
     // Questions

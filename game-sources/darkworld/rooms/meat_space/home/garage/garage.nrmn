@@ -1,0 +1,66 @@
+{room, key=garage, name=Garage
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+...
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+...
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+...
+            }
+        }
+
+        {logic, name=Garage tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=living_room, tags=[player]
+            output={@
+
+You go back to the living room.
+
+            }
+        }
+    }
+
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

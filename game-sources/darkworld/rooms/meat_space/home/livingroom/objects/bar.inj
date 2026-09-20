@@ -1,0 +1,70 @@
+{x_bar
+    {message
+        output={@
+
+The bar is made up of a thin wooden counter that has cylindrical brass legs
+and a brass shelf beneath it which is stocked with glassware.
+
+        }
+    }
+}
+
+{x_on_bar
+    {message
+        output={@
+
+You look on the bar.
+There is a rubber bar mat and a shaker, juicer, and muddler.
+
+        }
+    }
+}
+
+{x_under_bar
+    {message
+        output={@
+
+Under the bar is the shelf of glassware.
+You don't see anything else.
+
+        }
+    }
+}
+
+{x_behind_bar
+    {message
+        output={@
+
+You don't see anything behind the bar.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bar))
+    {act, logic=x_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_bar))
+    {act, logic=x_on_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_bar))
+    {act, logic=x_under_bar, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_bar))
+    {act, logic=x_behind_bar, tags=!_type|room }
+}
