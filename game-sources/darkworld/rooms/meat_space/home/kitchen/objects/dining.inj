@@ -1,1 +1,17 @@
-{attrib, output=Dining }
+{x_dining
+    {message
+        output={@
+
+The dining area of the kitchen consists of a small round table with chairs
+set around it. There is nothing on the table or the chairs.
+
+        }
+    }
+}
+
+
+
+
+{input, syntax=[tplt_syntax]((x_diningroom))
+    {act, logic=x_dining, tags=!_type|room }
+}

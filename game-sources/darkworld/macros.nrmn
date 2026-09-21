@@ -1,3 +1,4 @@
+{macro, key=tstkitchen, output=s|~|e|~|s|~|l }
 {macro, key=tstroom, output=l }
 {macro, key=tstoffice, output=l|~|s|~|ne|~|l }
 

@@ -1,1 +1,20 @@
-{attrib, output=Freezer }
+{x_freezer
+    {message
+        output={@
+
+You look at the free standing freezer.
+Opening the door and looking inside, you see old frost-bitten packages of
+food.
+
+        }
+    }
+}
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_freezer))
+    {act, logic=x_freezer, tags=!_type|room }
+}
