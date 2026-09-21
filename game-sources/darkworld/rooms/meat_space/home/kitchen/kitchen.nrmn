@@ -1,4 +1,4 @@
-{room, key=kitchen, name=Kitchen
+{room, key=meat_kitchen, name=Kitchen
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -14,7 +14,9 @@ North: living room
         {message
             output={@
 
-The Kitchen!!
+In the west wall is a small door to the pantry.
+Along the south wall is a long counter with sinks and a stove.
+In the northeast corner is a small dining room table and chairs.
 
             }
         }
@@ -24,7 +26,13 @@ The Kitchen!!
         {message
             output={@
 
-You look around...
+The kitchen is bright and gives the vibes of spring.
+The south wall is mostly comprised of bay windows and angled skylights above.
+The west wall is where the pantry is and running the width of the south wall
+is the counter with a refrigerator, sinks, and a stove.
+
+A small dining area is set up in the north east corner of the room, just
+beyond a stand up freezer.
 
             }
         }
@@ -40,13 +48,29 @@ You look around...
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+    {inject, logic=./objects/dining.inj }
+    {inject, logic=./objects/freezer.inj }
+    {inject, logic=./objects/fridge.inj }
+    {inject, logic=./objects/sink.inj }
+    {inject, logic=./objects/stove.inj }
+
 
 
     {input, syntax=[tplt_syntax]((go_north))
-        {move, logic=living_room, tags=[player]
+        {move, logic=meat_living_room, tags=[player]
             output={@
 
 You return to the living room.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=meat_pantry, tags=[player]
+            output={@
+
+You step into the pantry.
 
             }
         }
@@ -58,8 +82,8 @@ You return to the living room.
     {dev_note, tags=Testing, active=true
         output={@
 [ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Look
+[X] : Story
 
 [ ] : Navigation
         }

@@ -1,4 +1,4 @@
-{room, key=office, name=Office
+{room, key=meat_office, name=Office
     {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -48,15 +48,15 @@ In the west end of the room are two black leather chairs.
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
-    {inject, logic=./desk.inj }
-    {inject, logic=./chairs.inj }
-    {inject, logic=./shelf.inj }
-    {inject, logic=./sculptures.inj }
+    {inject, logic=./objects/desk.inj }
+    {inject, logic=./objects/chairs.inj }
+    {inject, logic=./objects/shelf.inj }
+    {inject, logic=./objects/sculptures.inj }
 
 
 
     {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=hallway, tags=[player]
+        {move, logic=meat_hallway, tags=[player]
             output={@
 
 You exit the office.

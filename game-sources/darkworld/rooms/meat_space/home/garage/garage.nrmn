@@ -1,4 +1,4 @@
-{room, key=garage, name=Garage
+{room, key=meat_garage, name=Garage
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -42,7 +42,7 @@
 
 
     {input, syntax=[tplt_syntax]((go_west))
-        {move, logic=living_room, tags=[player]
+        {move, logic=meat_living_room, tags=[player]
             output={@
 
 You go back to the living room.

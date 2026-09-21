@@ -1,4 +1,4 @@
-{room, key=hallway, name=Hallway
+{room, key=meat_hallway, name=Hallway
     {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
@@ -55,7 +55,7 @@ The east end of the hall leads into the living room.
 
 
     {input, syntax=[tplt_syntax]((go_north))
-        {move, logic=bedroom, tags=[player]
+        {move, logic=meat_bedroom, tags=[player]
             output={@
 
 You go back into your bedroom.
@@ -65,7 +65,7 @@ You go back into your bedroom.
     }
 
     {input, syntax=[tplt_syntax]((go_north_east))
-        {move, logic=office, tags=[player]
+        {move, logic=meat_office, tags=[player]
             output={@
 
 You enter the office.
@@ -75,7 +75,7 @@ You enter the office.
     }
 
     {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=master_bedroom, tags=[player]
+        {move, logic=meat_master_bedroom, tags=[player]
             output={@
 
 You nervously enter the master bedroom.
@@ -85,7 +85,7 @@ You nervously enter the master bedroom.
     }
 
     {input, syntax=[tplt_syntax]((go_east))
-        {move, logic=living_room, tags=[player]
+        {move, logic=meat_living_room, tags=[player]
             output={@
 
 You step into the living room.

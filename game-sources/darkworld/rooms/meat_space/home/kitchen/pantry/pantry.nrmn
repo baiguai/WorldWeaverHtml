@@ -1,8 +1,8 @@
-{room, key=meat_master_bathroom, name=Master Bathroom
+{room, key=meat_pantry, name=Pantry
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-East: master bedroom
+...
         }
     }
 
@@ -14,8 +14,7 @@ East: master bedroom
         {message
             output={@
 
-Story of the master bathroom...
-
+...
             }
         }
     }
@@ -24,11 +23,11 @@ Story of the master bathroom...
         {message
             output={@
 
-You look around...
+...
             }
         }
 
-        {logic, name=Bathroom tested, tags=!_test
+        {logic, name=Pantry tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -38,20 +37,7 @@ You look around...
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
-
-
-
-    {input, syntax=[tplt_syntax]((go_east))
-        {move, logic=meat_master_bedroom, tags=[player]
-            output={@
-
-You return to your parents' bedroom...
-
-            }
-        }
-    }
-
-
+    
     
     {dev_note, tags=Testing, active=true
         output={@

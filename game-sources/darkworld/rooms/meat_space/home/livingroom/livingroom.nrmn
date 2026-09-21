@@ -1,4 +1,4 @@
-{room, key=living_room, name=Living Room
+{room, key=meat_living_room, name=Living Room
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -66,7 +66,7 @@ The hallway is in the southwest corner of the living room.
 
 
     {input, syntax=[tplt_syntax]((go_west))
-        {move, logic=hallway, tags=[player]
+        {move, logic=meat_hallway, tags=[player]
             output={@
 
 You return to the hallway.
@@ -76,7 +76,7 @@ You return to the hallway.
     }
 
     {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=kitchen, tags=[player]
+        {move, logic=meat_kitchen, tags=[player]
             output={@
 
 You step into the kitchen.
@@ -86,7 +86,7 @@ You step into the kitchen.
     }
 
     {input, syntax=[tplt_syntax]((go_east))
-        {move, logic=garage, tags=[player]
+        {move, logic=meat_garage, tags=[player]
             output={@
 
 You enter the garage.

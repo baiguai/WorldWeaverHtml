@@ -1,4 +1,4 @@
-{room, key=bedroom, name=Your Bedroom
+{room, key=meat_bedroom, name=Your Bedroom
     {attrib, output=true, tags=tested }
 
     {attrib, tags=navigation
@@ -64,7 +64,7 @@ Along the south wall is a bookshelf and next to that the door.
 
 
     {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=hallway, tags=[player]
+        {move, logic=meat_hallway, tags=[player]
             output={@
 
 You exit your bedroom.

@@ -1,4 +1,4 @@
-﻿{player, key=player, name=, parent=bedroom
+﻿{player, key=player, name=, parent=meat_bedroom
     {attrib, output=[rand:3|5], tags=stats_dice }
     {attrib, output=[rand:4|6], tags=money_dice }
 
