@@ -13,7 +13,7 @@ Strangely it is COMPLETELY empty.
     {message
         output={@
 
-You look on the fridge...
+You don't see anything on top of the fridge.
 
         }
     }
@@ -23,7 +23,7 @@ You look on the fridge...
     {message
         output={@
 
-You look behind the fridge...
+Besides dust there isn't anything behind the refrigerator.
 
         }
     }
@@ -33,7 +33,7 @@ You look behind the fridge...
     {message
         output={@
 
-You look under the fridge...
+There isn't anything under the fridge.
 
         }
     }

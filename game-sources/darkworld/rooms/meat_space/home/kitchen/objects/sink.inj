@@ -1,1 +1,65 @@
-{attrib, output=Sink }
+{attrib, output=false, tags=sink_hair_found }
+
+{x_sink
+    {message
+        output={@
+
+The sink is shockingly dirty. And something seems off about it.
+
+        }
+    }
+}
+
+{x_in_sink
+    {message
+        output={@
+
+You look in the sink. It is absolutely filthy with rotten old bits of food
+and grime.
+<?[room]((sink_hair_found)) = 'false'?>
+You notice something protruding from the drain.
+When you cautiously reach in and pull it out it is a long thick clump of
+hair.
+
+A lot of hair.
+</?>
+
+        }
+    }
+
+    {set, logic=[room]((sink_hair_found)), output=true }
+}
+
+{x_under_sink
+    {message
+        output={@
+
+Under the sink is a cabinet filled with cleaning supplies.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_sink))
+    {act, logic=x_sink, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_in_sink))
+    {act, logic=x_in_sink, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_sink))
+    {act, logic=x_under_sink, tags=!_type|room }
+}

@@ -2,7 +2,7 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+East: kitchen
         }
     }
 
@@ -14,7 +14,12 @@
         {message
             output={@
 
-...
+The pantry is stocked full of containers of emergency supplies as well as
+various pasta noodles and spices.
+
+However, as you inspect them you realize that **everything** in the pantry
+is completely empty.
+
             }
         }
     }
@@ -23,7 +28,8 @@
         {message
             output={@
 
-...
+The pantry is filled with oddly empty containers and packages and spices.
+
             }
         }
 
@@ -37,7 +43,20 @@
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
-    
+
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=meat_kitchen, tags=[player]
+            output={@
+
+You return to the kitchen.
+
+            }
+        }
+    }
+
+
     
     {dev_note, tags=Testing, active=true
         output={@

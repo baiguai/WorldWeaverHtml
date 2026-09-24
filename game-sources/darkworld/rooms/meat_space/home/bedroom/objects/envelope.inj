@@ -1,4 +1,4 @@
-{object, key=mt_envelope, name=Envelope, parent=bedroom
+{object, key=mt_envelope, name=Envelope, parent=meat_bedroom
     {x_on_desk
         {message
             output={@
@@ -14,7 +14,8 @@ Sitting on your desk is an envelope.
 
 You examine the envelope.
 There is a USB stick inside it.
-(hint: you can put the usb in the computer: plug usb into computer)
+
+**(hint: you can put the usb in the computer: #[#ffff00]plug usb into computer#)**
             }
         }
     }

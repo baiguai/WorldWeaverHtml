@@ -1,6 +1,6 @@
-{macro, key=tstkitchen, output=s|~|e|~|s|~|l }
-{macro, key=tstroom, output=l }
-{macro, key=tstoffice, output=l|~|s|~|ne|~|l }
+{macro, key=kitchen, output=l|~|s|~|l|~|e|~|l|~|s|~|l }
+{macro, key=room, output=l }
+{macro, key=office, output=l|~|s|~|l|~|ne|~|l }
 
 
 

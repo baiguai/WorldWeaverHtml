@@ -1,4 +1,4 @@
-{object, key=mt_cd, name=CD, parent=bedroom
+{object, key=mt_cd, name=CD, parent=meat_bedroom
     {attrib, output=false, tags=moved }
     {attrib, output=false, tags=in_player }
 
@@ -7,6 +7,12 @@
             output={@
 
 Sitting on your desk is a lone CD. It is unlabeled.
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]((moved)) = 'false'
             }
         }
     }
@@ -105,6 +111,7 @@ You drop the CD.
         }
 
         {set, logic=[self]tags, output=-inventory }
+        {set, logic=[self]((in_player)), output=false }
     }
 
     {input, syntax=[tplt_syntax]((cd_put_in_player))

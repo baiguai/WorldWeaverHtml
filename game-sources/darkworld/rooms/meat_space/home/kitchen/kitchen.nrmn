@@ -3,6 +3,7 @@
     {attrib, tags=navigation
         output={@
 North: living room
+West: pantry
         }
     }
 
