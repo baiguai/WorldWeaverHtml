@@ -1,3 +1,4 @@
+{macro, key=pantry, output=l|~|s|~|l|~|e|~|l|~|s|~|l|~|w|~|l }
 {macro, key=kitchen, output=l|~|s|~|l|~|e|~|l|~|s|~|l }
 {macro, key=room, output=l }
 {macro, key=office, output=l|~|s|~|l|~|ne|~|l }
