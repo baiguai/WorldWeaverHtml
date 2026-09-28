@@ -91,6 +91,7 @@
         {attrib, tags=x_weird_panel|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(weird)?(\s+)?(panel)\b, logic=examine the weird panel|examine panel|x the weird panel|x the panel }
         {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? (window|windows)$, logic=x the window|x window|examine the window|x windows }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
+        {attrib, tags=x_workbench|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(workbench)\b, logic=examine the workbench|x the workbench|examine workbench|x workbench }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }
         {attrib, tags=x_your_bookshelf|!_regex, output=^(examine|x)(?: the)?(?: your)? (?:book)?shelf$, logic=x your shelf|x bookshelf|examine the bookshelf }
         {attrib, tags=x_your_computer|!_regex, output=^(examine|x)(?: the)?(?: your)? computer$, logic=x your computer|x computer|examine the computer|examine your computer }

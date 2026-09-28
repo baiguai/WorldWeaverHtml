@@ -1,5 +1,5 @@
 {room, key=meat_living_room, name=Living Room
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 West: hallway
@@ -108,7 +108,7 @@ You enter the garage.
 [X] : Conversation Pit
 [X] : Television
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

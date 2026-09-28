@@ -3262,12 +3262,12 @@
                     }
                     break;
                 case ">=":
-                    if (val1 >= val2) {
+                    if (Number(val1) >= Number(val2)) {
                         return true;
                     }
                     break;
                 case "<=":
-                    if (val1 <= val2) {
+                    if (Number(val1) <= Number(val2)) {
                         return true;
                     }
                     break;
@@ -3281,6 +3281,9 @@
                 case "<>":
                     return val1 > val2 && val1 < val2;
                 case "=":
+                    if (Number(val1) == Number(val2)) {
+                        return true;
+                    }
                     if (!isNaN(val1)) {
                         val1 = `'${val1}'`;
                     }
@@ -3289,9 +3292,15 @@
                     }
                     return val1.replaceAll("'", "") === val2.replaceAll("'", "");
                 case ">":
-                    return val1 > val2;
+                    if (Number(val1) > Number(val2)) {
+                        return true;
+                    }
+                    break;
                 case "<":
-                    return val1 < val2
+                    if (Number(val1) < Number(val2)) {
+                        return true;
+                    }
+                    break;
             }
 
             return false;

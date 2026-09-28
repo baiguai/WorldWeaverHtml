@@ -1,5 +1,6 @@
 {room, key=meat_bedroom, name=Your Bedroom
     {attrib, output=true, tags=tested }
+    {attrib, output=false, tags=dadcalled }
 
     {attrib, tags=navigation
         output={@
@@ -37,6 +38,11 @@ In the north wall is a window that you've taped SciFi posters all over.
 Against the west wall is your desk.
 At the opposite wall is your bed and a small table with a TV on it.
 Along the south wall is a bookshelf and next to that the door.
+<?[room]((dadcalled)) = 'false'?>
+Your dad calls you.
+"Our vacation is going well so far. We've added two more nights to our stay so we'll be back in a week.
+Don't forget to set the house alarm at night. If Xavier calls, tell him I'll get back to him in 8 days."
+</?>
             }
         }
 
@@ -45,6 +51,7 @@ Along the south wall is a bookshelf and next to that the door.
                 ?[self]((tested)) = 'true'
             }
         }
+       {set, output=true, logic=[room]((dadcalled)) }
     }
 
 

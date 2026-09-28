@@ -2,7 +2,7 @@
     {message
         output={@
 
-You examine the stove...
+The stove is just a standard gas stove.
 
         }
     }
@@ -12,7 +12,7 @@ You examine the stove...
     {message
         output={@
 
-You look on the stove...
+There is nothing on the stove.
 
         }
     }
@@ -22,7 +22,7 @@ You look on the stove...
     {message
         output={@
 
-You look under the stove...
+There is no space under the stove.
 
         }
     }
@@ -32,7 +32,7 @@ You look under the stove...
     {message
         output={@
 
-You look behind the stove...
+The stove is set flat against the wall.
 
         }
     }

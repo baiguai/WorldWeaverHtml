@@ -1,5 +1,5 @@
 {room, key=meat_kitchen, name=Kitchen
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 North: living room
@@ -82,7 +82,7 @@ You step into the pantry.
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
+[X] : Room
 [X] : Look
 [X] : Story
 

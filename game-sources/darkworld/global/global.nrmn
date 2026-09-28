@@ -67,6 +67,10 @@
     }
 
     {act
+        {set, logic=[game]((totalrounds)), output=+=1 }
+    }
+
+    {act
         {set, logic=[game]((currentminute)), output=+=15 }
     }
 
@@ -93,6 +97,8 @@
         {set, logic=[game]((missiondays)), output=++ }
     }
 
+    {set, logic=[game]((isday)), output=true }
+
     {act
         {logic
             logic={@
@@ -111,18 +117,6 @@
         }
 
         {set, logic=[game]((isday)), output=false }
-    }
-
-    {act
-        {logic
-            logic={@
-                ?[game]((currenthour)) >= [game]((dayhour))
-                and
-                ?[game]((currenthour)) < [game]((nighthour))
-            }
-        }
-
-        {set, logic=[game]((isday)), output=true }
     }
     // -------------------------------------------------------------------------
 }

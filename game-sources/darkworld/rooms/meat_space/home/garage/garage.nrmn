@@ -2,7 +2,7 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+West: living room
         }
     }
 
@@ -14,7 +14,11 @@
         {message
             output={@
 
-...
+The garage is large and overhead are two big white spherical lights.
+Along the north wall is a workbench with drawers beneath it.
+
+The rest of the garage is open and empty.
+
             }
         }
     }
@@ -23,13 +27,26 @@
         {message
             output={@
 
-...
+The garage is empty. There are no cars parked in it.
+Overhead are two large spherical lights hanging from the ceiling.
+And along the north wall is a workbench. Under its surface are drawers.
+
             }
         }
 
         {logic, name=Garage tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {x_workbench
+        {message
+            output={@
+
+You examine the workbench...
+
             }
         }
     }
@@ -43,6 +60,16 @@
 
     {input, syntax=[tplt_syntax]((go_west))
         {move, logic=meat_living_room, tags=[player]
+            output={@
+
+You go back to the living room.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((x_workbench))
+        {act, logic=x_workbench, tags=!_type|room
             output={@
 
 You go back to the living room.
