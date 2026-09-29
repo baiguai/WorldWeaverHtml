@@ -1,5 +1,5 @@
 {room, key=meat_garage, name=Garage
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 West: living room
@@ -45,7 +45,23 @@ And along the north wall is a workbench. Under its surface are drawers.
         {message
             output={@
 
-You examine the workbench...
+You examine the workbench.
+There are some tools strewn across its surface.
+In the center is a single wide drawer.
+
+            }
+        }
+    }
+
+    {x_drawer
+        {message
+            output={@
+
+You examine the drawer.
+It is empty except for a small piece of paper.
+You pick it up and read it:
+
+**aphelion**
 
             }
         }
@@ -69,13 +85,11 @@ You go back to the living room.
     }
 
     {input, syntax=[tplt_syntax]((x_workbench))
-        {act, logic=x_workbench, tags=!_type|room
-            output={@
+        {act, logic=x_workbench, tags=!_type|room }
+    }
 
-You go back to the living room.
-
-            }
-        }
+    {input, syntax=[tplt_syntax]((x_drawer))
+        {act, logic=x_drawer, tags=!_type|room }
     }
 
 
@@ -83,11 +97,11 @@ You go back to the living room.
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }
