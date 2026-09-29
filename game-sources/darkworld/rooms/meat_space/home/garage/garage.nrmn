@@ -1,8 +1,8 @@
-{room, key=garage, name=Garage
-    {attrib, output=false, tags=tested }
+{room, key=meat_garage, name=Garage
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+West: living room
         }
     }
 
@@ -14,7 +14,11 @@
         {message
             output={@
 
-...
+The garage is large and overhead are two big white spherical lights.
+Along the north wall is a workbench with drawers beneath it.
+
+The rest of the garage is open and empty.
+
             }
         }
     }
@@ -23,13 +27,42 @@
         {message
             output={@
 
-...
+The garage is empty. There are no cars parked in it.
+Overhead are two large spherical lights hanging from the ceiling.
+And along the north wall is a workbench. Under its surface are drawers.
+
             }
         }
 
         {logic, name=Garage tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+    {x_workbench
+        {message
+            output={@
+
+You examine the workbench.
+There are some tools strewn across its surface.
+In the center is a single wide drawer.
+
+            }
+        }
+    }
+
+    {x_drawer
+        {message
+            output={@
+
+You examine the drawer.
+It is empty except for a small piece of paper.
+You pick it up and read it:
+
+**aphelion**
+
             }
         }
     }
@@ -42,7 +75,7 @@
 
 
     {input, syntax=[tplt_syntax]((go_west))
-        {move, logic=living_room, tags=[player]
+        {move, logic=meat_living_room, tags=[player]
             output={@
 
 You go back to the living room.
@@ -51,16 +84,24 @@ You go back to the living room.
         }
     }
 
+    {input, syntax=[tplt_syntax]((x_workbench))
+        {act, logic=x_workbench, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((x_drawer))
+        {act, logic=x_drawer, tags=!_type|room }
+    }
+
 
     
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

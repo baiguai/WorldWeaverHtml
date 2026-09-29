@@ -1,4 +1,4 @@
-{room, key=master_bedroom, name=Master Bedroom
+{room, key=meat_master_bedroom, name=Master Bedroom
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -70,7 +70,7 @@ you imagine leads to the bathroom.
    
 
     {input, syntax=[tplt_syntax]((go_north))
-        {move, logic=hallway, tags=[player]
+        {move, logic=meat_hallway, tags=[player]
             output={@
 
 You return to the hallway.
@@ -80,7 +80,7 @@ You return to the hallway.
     }
 
     {input, syntax=[tplt_syntax]((go_south))
-        {move, logic=master_closet, tags=[player]
+        {move, logic=meat_master_closet, tags=[player]
             output={@
 
 You step into the closet...
@@ -90,7 +90,7 @@ You step into the closet...
     }
 
     {input, syntax=[tplt_syntax]((go_west))
-        {move, logic=master_bathroom, tags=[player]
+        {move, logic=meat_master_bathroom, tags=[player]
             output={@
 
 You step into the bathroom...

@@ -1,0 +1,62 @@
+{x_fridge
+    {message
+        output={@
+
+You open the fridge and look inside.
+Strangely it is COMPLETELY empty.
+
+        }
+    }
+}
+
+{x_on_fridge
+    {message
+        output={@
+
+You don't see anything on top of the fridge.
+
+        }
+    }
+}
+
+{x_behind_fridge
+    {message
+        output={@
+
+Besides dust there isn't anything behind the refrigerator.
+
+        }
+    }
+}
+
+{x_under_fridge
+    {message
+        output={@
+
+There isn't anything under the fridge.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_fridge))
+    {act, logic=x_fridge, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_fridge))
+    {act, logic=x_on_fridge, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_fridge))
+    {act, logic=x_behind_fridge, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_fridge))
+    {act, logic=x_under_fridge, tags=!_type|room }
+}

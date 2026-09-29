@@ -5,6 +5,7 @@
     {attrib, output=darkworld, tags=!_filename }
     {attrib, output=#000, tags=!_ui_background }
     {attrib, output=#00ff00, tags=!_ui_foreground }
+    {attrib, output=false, tags=dadcalled }
     {attrib, tags=!_error
         output={@
 I don't understand.
@@ -44,6 +45,22 @@ An envelope from Perihelion.
         }
     }
 
+
+
+    {dadcall
+        {message
+            output={@
+
+Your dad calls you!!
+
+            }
+        }
+    }
+
+
+
+
+    {attrib, output=0, tags=totalrounds }
     {attrib, output=15, tags=currenthour }
     {attrib, output=0, tags=currentminute|!_isminutes }
     {time

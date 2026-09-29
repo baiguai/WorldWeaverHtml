@@ -1,8 +1,8 @@
-{room, key=meat_master_bathroom, name=Master Bathroom
-    {attrib, output=false, tags=tested }
+{room, key=meat_pantry, name=Pantry
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
-East: master bedroom
+East: kitchen
         }
     }
 
@@ -14,7 +14,11 @@ East: master bedroom
         {message
             output={@
 
-Story of the master bathroom...
+The pantry is stocked full of containers of emergency supplies as well as
+various pasta noodles and spices.
+
+However, as you inspect them you realize that **everything** in the pantry
+is completely empty.
 
             }
         }
@@ -24,11 +28,12 @@ Story of the master bathroom...
         {message
             output={@
 
-You look around...
+The pantry is filled with oddly empty containers and packages and spices.
+
             }
         }
 
-        {logic, name=Bathroom tested, tags=!_test
+        {logic, name=Pantry tested, tags=!_test
             logic={@
                 ?[self]((tested)) = 'true'
             }
@@ -42,10 +47,10 @@ You look around...
 
 
     {input, syntax=[tplt_syntax]((go_east))
-        {move, logic=meat_master_bedroom, tags=[player]
+        {move, logic=meat_kitchen, tags=[player]
             output={@
 
-You return to your parents' bedroom...
+You return to the kitchen.
 
             }
         }
@@ -55,11 +60,11 @@ You return to your parents' bedroom...
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

@@ -912,13 +912,13 @@
             </div>
             <input type="file" id="themeEditorFilePicker" accept=".json" style="display:none;">
 
-            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Overview</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Perihelion?</span></div></li><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Xavier?</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
+            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Overview</span></div></li><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Perihelion?</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
                     <span class="pill" id="mode" style="display: block;">TREE</span>
                     <span class="pill" id="kind">NOTE</span>
                     <span class="dim" id="path">/Story Notes</span>
-                    <span class="pill" id="msg"></span>
+                    <span class="pill visible" id="msg">Saved successfully</span>
                 </div>
                 <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
                 <div id="blockOverlay"></div>
@@ -956,13 +956,6 @@
         "content": "Who is Perihelion?\n\n- He is you own father.",
         "children": [],
         "expanded": true
-      },
-      {
-        "id": "5rlxxeur",
-        "title": "Who is Xavier?",
-        "content": "Who is Xavier?\n\nHe is your father's hacker.",
-        "children": [],
-        "expanded": true
       }
     ],
     "expanded": true
@@ -992,10 +985,6 @@
     {
         "id": "z34fhnrk",
         "title": "Who is Perihelion?"
-    },
-    {
-        "id": "5rlxxeur",
-        "title": "Who is Xavier?"
     }
 ];
 
