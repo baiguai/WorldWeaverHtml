@@ -1,0 +1,67 @@
+{x_stove
+    {message
+        output={@
+
+The stove is just a standard gas stove.
+
+        }
+    }
+}
+
+{x_on_stove
+    {message
+        output={@
+
+There is nothing on the stove.
+
+        }
+    }
+}
+
+{x_under_stove
+    {message
+        output={@
+
+There is no space under the stove.
+
+        }
+    }
+}
+
+{x_behind_stove
+    {message
+        output={@
+
+The stove is set flat against the wall.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_stove))
+    {act, logic=x_stove, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_stove))
+    {act, logic=x_on_stove, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_stove))
+    {act, logic=x_under_stove, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_stove))
+    {act, logic=x_behind_stove, tags=!_type|room }
+}

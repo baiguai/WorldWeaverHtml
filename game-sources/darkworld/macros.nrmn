@@ -1,5 +1,9 @@
-{macro, key=tstroom, output=l }
-{macro, key=tstoffice, output=l|~|s|~|ne|~|l }
+{macro, key=garage, output=l|~|s|~|l|~|e|~|l|~|e|~|l }
+{macro, key=livingroom, output=l|~|s|~|l|~|e|~|l }
+{macro, key=pantry, output=l|~|s|~|l|~|e|~|l|~|s|~|l|~|w|~|l }
+{macro, key=kitchen, output=l|~|s|~|l|~|e|~|l|~|s|~|l }
+{macro, key=room, output=l }
+{macro, key=office, output=l|~|s|~|l|~|ne|~|l }
 
 
 

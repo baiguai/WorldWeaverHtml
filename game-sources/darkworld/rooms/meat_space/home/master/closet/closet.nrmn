@@ -1,4 +1,4 @@
-{room, key=master_closet, name=Closet
+{room, key=meat_master_closet, name=Closet
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
@@ -44,7 +44,7 @@ You see lots of clothes.
 
 
     {input, syntax=[tplt_syntax]((go_north))
-        {move, logic=master_bedroom, tags=[player]
+        {move, logic=meat_master_bedroom, tags=[player]
             output={@
 
 You return to your parents' bedroom.
