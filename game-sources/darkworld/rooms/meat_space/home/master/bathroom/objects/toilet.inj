@@ -1,0 +1,67 @@
+{x_toilet
+    {message
+        output={@
+
+You examine the toilet, there doesn't seem to be anything strange about it.
+
+        }
+    }
+}
+
+{x_on_toilet
+    {message
+        output={@
+
+There isn't anything on the toilet.
+
+        }
+    }
+}
+
+{x_under_toilet
+    {message
+        output={@
+
+There isn't anything under the toilet.
+
+        }
+    }
+}
+
+{x_behind_toilet
+    {message
+        output={@
+
+You don't see anything behind the toilet.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_toilet))
+    {act, logic=x_toilet, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_toilet))
+    {act, logic=x_on_toilet, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_toilet))
+    {act, logic=x_under_toilet, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_toilet))
+    {act, logic=x_behind_toilet, tags=!_type|room }
+}

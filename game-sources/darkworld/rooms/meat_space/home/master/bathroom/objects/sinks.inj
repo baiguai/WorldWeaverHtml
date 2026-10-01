@@ -1,0 +1,41 @@
+{x_sink
+    {message
+        output={@
+
+The sinks appear to be very expensive but you don't see anything odd about
+them.
+
+        }
+    }
+}
+
+{x_under_sink
+    {message
+        output={@
+
+There is nothing under the sinks.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_sink))
+    {act, logic=x_sink, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_under_sink))
+    {act, logic=x_under_sink, tags=!_type|room }
+}

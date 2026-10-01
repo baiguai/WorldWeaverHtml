@@ -1,0 +1,27 @@
+{x_shower
+    {message
+        output={@
+
+The shower is very large and set within a clear glass enclosure.
+You don't see anything odd about it.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_shower))
+    {act, logic=x_shower, tags=!_type|room }
+}

@@ -3,6 +3,7 @@
     {attrib, tags=navigation
         output={@
 North: back to the master bedroom
+West: secret room
         }
     }
 
@@ -15,6 +16,7 @@ North: back to the master bedroom
             output={@
 
 You are in the walk in closet.
+There is a barely noticeable door in the west wall.
 
             }
         }
@@ -24,7 +26,9 @@ You are in the walk in closet.
         {message
             output={@
 
-You see lots of clothes.
+You see lots of clothes and a display table in the center with ties and watches
+in it.
+Set into the west wall is a small door that you can barely see.
 
             }
         }
@@ -48,6 +52,16 @@ You see lots of clothes.
             output={@
 
 You return to your parents' bedroom.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=meat_closet_secret, tags=[player]
+            output={@
+
+You enter the secret room.
 
             }
         }
