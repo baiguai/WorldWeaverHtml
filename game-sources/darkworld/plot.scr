@@ -1,0 +1,133 @@
+//scribbolyth
+{
+  "version": 1,
+  "tree_width": 53,
+  "bookmarks": [
+  ],
+  "history": [
+    "0gqjtgwf",
+    "jfbvztvu",
+    "z34fhnrk",
+    "5rlxxeur",
+    "lqh5vp1u",
+    "b3f4gryz",
+    "cpvyfnp2",
+    "ro3x0p7a",
+    "s56w1nab",
+    "wniyrhxp"
+  ],
+  "roots": [
+  {
+    "id": "779qeoyj",
+    "name": "Story Notes",
+    "expanded": true,
+    "text": "",
+    "children": [
+    {
+      "id": "jfbvztvu",
+      "name": "Overview",
+      "expanded": false,
+      "text": "Overview\n\nYou enter Shellspace.\n\nIn there you encounter two factions:\n\n* RMRF\n    This group seems to be fighting against the corporate 'bad guys' that have taken over Shellspace.\n    But in actuality they are the ones who are facilitating the meat space deaths, and claiming Retrograde is doing it.\n\n\n* Retrograde\n    This is a group of elite Shellspace hackers, in the deeper levels of the\n    virtual world. They are secretly fighting RMRF, attempting to bring Shellspace\n    back to its 'wild west' / 'darkweb' status.\n",
+      "children": [
+      ]
+    },
+    {
+      "id": "z34fhnrk",
+      "name": "Who is Perihelion?",
+      "expanded": true,
+      "text": "Who is Perihelion?\n\n- He is you own father.",
+      "children": [
+      ]
+    },
+    {
+      "id": "5rlxxeur",
+      "name": "Who is Xavier?",
+      "expanded": true,
+      "text": "Who is Xavier?\n\nHe is your father's hacker.",
+      "children": [
+      ]
+    }
+    ]
+  },
+  {
+    "id": "iyocnfgu",
+    "name": "Puzzle Notes",
+    "expanded": true,
+    "text": "",
+    "children": [
+    {
+      "id": "lqh5vp1u",
+      "name": "House Alarm",
+      "expanded": false,
+      "text": "If the player doesn't set the house alarm, a hacker breaks in and messes with the player's computer...\nVery bad consequences for the player in Shellspace.\n\nTODO:\n    How will the player realize that this has happened?\n    What are the consequences?",
+      "children": [
+      ]
+    }
+    ]
+  },
+  {
+    "id": "u9whop3w",
+    "name": "Rooms",
+    "expanded": true,
+    "text": "",
+    "children": [
+    {
+      "id": "om059eyy",
+      "name": "Meat Space",
+      "expanded": true,
+      "text": "",
+      "children": [
+      {
+        "id": "s25egcd2",
+        "name": "House",
+        "expanded": true,
+        "text": "",
+        "children": [
+        {
+          "id": "cpvyfnp2",
+          "name": "Bedroom",
+          "expanded": false,
+          "text": "Plot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n",
+          "children": [
+          ]
+        },
+        {
+          "id": "ro3x0p7a",
+          "name": "Garage",
+          "expanded": false,
+          "text": "Plot:\n\n* Find paper with 'aphelion' on it. This is the code for the hidden room in the Master Bedroom closet.",
+          "children": [
+          ]
+        },
+        {
+          "id": "s56w1nab",
+          "name": "Kitchen",
+          "expanded": false,
+          "text": "Plot:\n\n* The items in the pantry are empty.\n* The fridge is completely empty.\n* Long clump of hair in the sink.\n    #todo : How will this tie into the game?",
+          "children": [
+          ]
+        },
+        {
+          "id": "wniyrhxp",
+          "name": "Living Room",
+          "expanded": false,
+          "text": "Plot:\n\n* TV is airing a news story about someone who died - they were playing a VR game.",
+          "children": [
+          ]
+        }
+        ]
+      }
+      ]
+    }
+    ]
+  },
+  {
+    "id": "b3f4gryz",
+    "name": "Theme Notes",
+    "expanded": false,
+    "text": "Theme Notes\n\nGeneral highlighted words:\n\n#[#ffff00]TEXT HERE#\n\n",
+    "children": [
+    ]
+  }
+  ]
+}

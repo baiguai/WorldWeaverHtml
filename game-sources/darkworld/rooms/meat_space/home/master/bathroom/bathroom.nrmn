@@ -1,5 +1,5 @@
 {room, key=meat_master_bathroom, name=Master Bathroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 East: master bedroom
@@ -14,7 +14,8 @@ East: master bedroom
         {message
             output={@
 
-Story of the master bathroom...
+The bathroom is very luxurious.
+There are small spotlights overhead and the entire room is lined with slate tiles.
 
             }
         }
@@ -24,7 +25,11 @@ Story of the master bathroom...
         {message
             output={@
 
-You look around...
+There are two sinks and a large mirror along the west wall.
+In the north east corner of the room is a large oval bathtub.
+The toilet is in a separated stall in the south west corner.
+And in the south end of the room is an expansive shower in a glass enclosure.
+
             }
         }
 
@@ -38,6 +43,11 @@ You look around...
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+    {inject, logic=./objects/sinks.inj }
+    {inject, logic=./objects/bathtub.inj }
+    {inject, logic=./objects/toilet.inj }
+    {inject, logic=./objects/shower.inj }
 
 
 
@@ -55,11 +65,11 @@ You return to your parents' bedroom...
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

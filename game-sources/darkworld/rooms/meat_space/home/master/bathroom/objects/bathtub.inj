@@ -1,0 +1,54 @@
+{x_bathtub
+    {message
+        output={@
+
+The bathtub is large and oval in shape.
+There are jets set all around its circumference.
+
+        }
+    }
+}
+
+{x_on_bathtub
+    {message
+        output={@
+
+There is nothing on the bathtub.
+
+        }
+    }
+}
+
+{x_behind_bathtub
+    {message
+        output={@
+
+You don't see anything behind the bathtub.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bathtub))
+    {act, logic=x_bathtub, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_on_bathtub))
+    {act, logic=x_on_bathtub, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_bathtub))
+    {act, logic=x_behind_bathtub, tags=!_type|room }
+}

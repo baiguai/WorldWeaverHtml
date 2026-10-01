@@ -40,5 +40,10 @@ Shellspace!!!!
 
     {input, syntax=[tplt_syntax]((plug_in_usb))
         {act, logic=x_shellspace, tags=!_type|room }
+
+        {set, logic=[mt_cd]tags, output=-inventory }
+        {move, logic=[limbo], tags=[mt_cd] }
+        {set, logic=[mt_cd_player]tags, output=-inventory }
+        {move, logic=[limbo], tags=[mt_cd_player] }
     }
 }
