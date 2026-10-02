@@ -1,9 +1,8 @@
 {room, key=meat_master_closet, name=Closet
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 North: back to the master bedroom
-West: secret room
         }
     }
 
@@ -40,6 +39,18 @@ Set into the west wall is a small door that you can barely see.
         }
     }
 
+    {x_door
+        {message
+            output={@
+
+The door is made of brushed steel.
+There is an access panel set into it that consists of a screen and a full
+keyboard beneath it.
+
+            }
+        }
+    }
+
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
@@ -57,11 +68,15 @@ You return to your parents' bedroom.
         }
     }
 
-    {input, syntax=[tplt_syntax]((go_west))
+    {input, syntax=[tplt_syntax]((x_hidden_door))
+        {act, logic=x_door, tags=!_type|room }
+    }
+
+    {input, syntax=[tplt_syntax]((pwd_aph))
         {move, logic=meat_closet_secret, tags=[player]
             output={@
 
-You enter the secret room.
+You enter the door.
 
             }
         }
@@ -70,11 +85,11 @@ You enter the secret room.
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[X] : Room
+[X] : Look
+[X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }
