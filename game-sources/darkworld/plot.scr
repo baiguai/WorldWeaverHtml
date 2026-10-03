@@ -12,10 +12,11 @@
     "z34fhnrk",
     "5rlxxeur",
     "lqh5vp1u",
-    "cpvyfnp2",
     "s56w1nab",
     "ro3x0p7a",
-    "wja3ohxt"
+    "wja3ohxt",
+    "cpvyfnp2",
+    "xatw9fwz"
   ],
   "roots": [
   {
@@ -93,6 +94,14 @@
           ]
         },
         {
+          "id": "xatw9fwz",
+          "name": "Office",
+          "expanded": false,
+          "text": "Plot:\n\n* Find a paper that says: \"Encountered Retrograde\"",
+          "children": [
+          ]
+        },
+        {
           "id": "dph0aixc",
           "name": "Master Bedroom",
           "expanded": true,
@@ -101,7 +110,7 @@
           {
             "id": "w4d29zif",
             "name": "Closet",
-            "expanded": true,
+            "expanded": false,
             "text": "",
             "children": [
             {

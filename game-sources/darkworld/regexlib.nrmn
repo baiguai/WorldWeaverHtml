@@ -2,6 +2,7 @@
     // Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=story|!_regex, output=^(story)$, logic=l|story|x story|look at story }
+        {attrib, tags=x_alarm_panel|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*alarm\s*(?:panel)?\b, logic=examine the alarm panel|examine alarm|x alarm }
         {attrib, tags=x_fem_android|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:female)?\s*android\b, logic=examine the female android|examine android|x female android|x android }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
@@ -309,6 +310,7 @@
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 
     // Specific
+        {attrib, tags=pwd_alarm|!_regex, output=\b2355\b, logic=enter 2355|2355 }
         {attrib, tags=pwd_aph|!_regex, output=\b(?:enter|type)?\s*aphelion\b, logic=enter aphelion|type aphelion|aphelion }
         {attrib, tags=x_cybersec_book|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cybersecurity book)\b, logic=examine the book|x the cybersecurity book|examine the cybersecurity book|x cybersecurity book }
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }

@@ -40,8 +40,9 @@ At the opposite wall is your bed and a small table with a TV on it.
 Along the south wall is a bookshelf and next to that the door.
 <?[room]((dadcalled)) = 'false'?>
 Your dad calls you.
-"Our vacation is going well so far. We've added two more nights to our stay so we'll be back in a week.
-Don't forget to set the house alarm at night. If Xavier calls, tell him I'll get back to him in 8 days."
+*"Our vacation is going well so far. We've added two more nights to our stay so we'll be back in a week.*
+*Don't forget to set the house alarm at night - Reminder, the code is **2355**.*
+*If Xavier calls, tell him I'll get back to him in 8 days."*
 </?>
             }
         }
@@ -52,6 +53,7 @@ Don't forget to set the house alarm at night. If Xavier calls, tell him I'll get
             }
         }
        {set, output=true, logic=[room]((dadcalled)) }
+       {set, output=Arm the house alarm, logic=[player]((objective)) }
     }
 
 

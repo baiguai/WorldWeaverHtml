@@ -1,5 +1,5 @@
 {room, key=meat_hallway, name=Hallway
-    {attrib, output=true, tags=tested }
+    {attrib, output=false, tags=tested }
 
     {attrib, tags=navigation
         output={@
@@ -49,6 +49,7 @@ The east end of the hall leads into the living room.
         }
     }
 
+    {inject, logic=./objects/alarm.inj }
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
@@ -101,6 +102,7 @@ You step into the living room.
 [X] : Room
 [X] : Look
 [X] : Story
+[ ] : Alarm
 
 [X] : Navigation
         }

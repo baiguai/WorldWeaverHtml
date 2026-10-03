@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="4" nextobjectid="53">
+ <tileset firstgid="1" source="../../../../tiles.tsx"/>
+ <layer id="3" name="main" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   <chunk x="16" y="-16" width="16" height="16">
+   eJxjYBgFo4D6gHGgHTAKiAIABagAAg==
+  </chunk>
+  </data>
+ </layer>
+ <objectgroup id="2" name="Layout">
+  <object id="47" name="Harbor Port" x="-640" y="-320" width="1280" height="1280">
+   <ellipse/>
+  </object>
+  <object id="48" x="-429.921" y="-64.6661" width="64" height="64" rotation="315">
+   <ellipse/>
+  </object>
+  <object id="49" x="-429.921" y="704.666" width="64" height="64" rotation="315">
+   <ellipse/>
+  </object>
+  <object id="50" x="339.411" y="-64.6661" width="64" height="64" rotation="315">
+   <ellipse/>
+  </object>
+  <object id="51" x="339.411" y="704.666" width="64" height="64" rotation="315">
+   <ellipse/>
+  </object>
+  <object id="52" name="To Street" x="640" y="256" width="32" height="128"/>
+ </objectgroup>
+</map>
