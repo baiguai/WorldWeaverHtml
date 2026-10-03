@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" backgroundcolor="#48576a" nextlayerid="3" nextobjectid="25">
- <objectgroup id="2" name="Layout">
-  <object id="23" x="-864" y="-64" width="192" height="23">
-   <text wrap="1">Shellspace Entrance</text>
+<map version="1.8" tiledversion="1.8.2" orientation="hexagonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" infinite="1" hexsidelength="16" staggeraxis="y" staggerindex="odd" nextlayerid="6" nextobjectid="4">
+ <objectgroup id="2" name="Ground">
+  <object id="1" name="Harbor" type="Water" x="112" y="720">
+   <polygon points="0,0 -96,-48 -176,-24 -736,-48 -960,0 -1440,-48 -1504,-208 -1840,-264 -2352,-264 -2560,-352 -2560,656 48,632 96,512 -96,512 -64,464 160,464 128,416 128,368 -64,368 -48,312 144,312 144,248 192,192 288,224 288,96 224,32 64,48"/>
   </object>
  </objectgroup>
+ <objectgroup id="3" name="Buildings">
+  <object id="2" name="Harbor Port" type="Buildings" x="-624" y="336" width="80" height="80">
+   <ellipse/>
+  </object>
+  <object id="3" x="-592" y="384">
+   <properties>
+    <property name="Harbor Port" type="file" value="harbor/harbor_port/harbor_port.tmx"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="4" name="Objects"/>
+ <objectgroup id="5" name="Layers"/>
 </map>

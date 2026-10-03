@@ -6,15 +6,17 @@
   ],
   "history": [
     "0gqjtgwf",
+    "b3f4gryz",
+    "wniyrhxp",
     "jfbvztvu",
     "z34fhnrk",
     "5rlxxeur",
     "lqh5vp1u",
-    "b3f4gryz",
-    "cpvyfnp2",
-    "ro3x0p7a",
     "s56w1nab",
-    "wniyrhxp"
+    "ro3x0p7a",
+    "wja3ohxt",
+    "cpvyfnp2",
+    "xatw9fwz"
   ],
   "roots": [
   {
@@ -89,6 +91,38 @@
           "expanded": false,
           "text": "Plot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n",
           "children": [
+          ]
+        },
+        {
+          "id": "xatw9fwz",
+          "name": "Office",
+          "expanded": false,
+          "text": "Plot:\n\n* Find a paper that says: \"Encountered Retrograde\"",
+          "children": [
+          ]
+        },
+        {
+          "id": "dph0aixc",
+          "name": "Master Bedroom",
+          "expanded": true,
+          "text": "",
+          "children": [
+          {
+            "id": "w4d29zif",
+            "name": "Closet",
+            "expanded": false,
+            "text": "",
+            "children": [
+            {
+              "id": "wja3ohxt",
+              "name": "Secret Room",
+              "expanded": false,
+              "text": "The password to enter this is:\naphelion",
+              "children": [
+              ]
+            }
+            ]
+          }
           ]
         },
         {

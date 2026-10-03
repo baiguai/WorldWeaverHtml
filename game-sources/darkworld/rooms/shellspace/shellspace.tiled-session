@@ -1,0 +1,580 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "shellspace.tmx",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "/home/baiguai/Documents/darkworld/00_dev/map.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -18,
+                "y": 14
+            }
+        },
+        "/home/baiguai/Documents/darkworld/00_dev/map.tmx#cyberpunk": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/Documents/darkworld/00_dev/meat_home.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -16,
+                "y": 16
+            }
+        },
+        "/home/baiguai/Documents/darkworld/map.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -240.33333333333337
+            }
+        },
+        "/home/baiguai/Documents/darkworld/map.tmx#cyberpunk": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/bed.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/bookshelf.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 16,
+                "y": 15.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/cd.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -404,
+                "y": 59.66666666666663
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/cdplayer.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/computer.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -62,
+                "y": 182.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/entertainment.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/envelope.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/keyboard.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/monitor.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/garage/garage.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -232,
+                "y": 41.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/hall/hall.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 428,
+                "y": 55.33333333333326
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 816,
+                "y": -303.33333333333326
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx#main": {
+            "scaleInDock": 1
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/kitchen/kitchen.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -272,
+                "y": 304.66666666666663
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/kitchen/kitchen.tmx#main": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/livingroom/livingroom.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 0,
+                "y": -0.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/master/master.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 0,
+                "y": 120.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/meat_home.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -16,
+                "y": 16
+            }
+        },
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/office/office.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -398,
+                "y": -7.5
+            }
+        },
+        "/home/baiguai/Documents/darkworld/tiles.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/darkworld/map/00_tilesets/hex.tsx": {
+            "scaleInDock": 1
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/darkworld/map/main-map_hex.tmx": {
+            "scale": 3,
+            "selectedLayer": 15,
+            "viewCenter": {
+                "x": -1683.6666666666665,
+                "y": -1037.3333333333333
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/00_tilesets/hex.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/carnival/carnival.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/cemetary/cemetary.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": -10,
+                "y": -52.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/cemetary/cemetary.tmx#cemetary": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/church/church.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -17,
+                "y": 136.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/church/church_2floor.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -265,
+                "y": 162.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/city_hall/city_hall.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/city_hall/mayor_office.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -129,
+                "y": 51.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/cutlery/cutlery.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/cutlery/metal_shop/metal_shop.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/dead_tree/dead_tree.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -173.33333333333326,
+                "y": -191.66666666666663
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/forest/forest.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/ghostly_house/ghostly_house.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -92,
+                "y": 52.66666666666663
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/hotel.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/meeting_room/meeting_room.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -84,
+                "y": 245.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -17,
+                "y": 256.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/rooms.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -207,
+                "y": 31.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hunter/hunters_house.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/library/library.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -17,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -144,
+                "y": -47.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions/mansions.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions/mansions_01.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -17,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions/mansions_01_02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions/mansions_01_basement.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mansions/mansions_02.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/medium/medium.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -107,
+                "y": 66.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/mine/the_mine.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 20.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/occult_room.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -127,
+                "y": 190.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/prison/prison.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -298,
+                "y": 176.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/residents/residents.tmx": {
+            "scale": 1,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 98,
+                "y": -84.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/rooms.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -107,
+                "y": 54.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/shack/shack.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -135,
+                "y": -32.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 29,
+                "y": 17.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/cellar.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 16.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/tavern.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 16,
+                "y": 15.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx": {
+            "scale": 1,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": -205,
+                "y": 626.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.25,
+            "scaleInEditor": 0.75
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_mine.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -16,
+                "y": 20.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps_1/the_bowl.tmx": {
+            "scale": 1,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": -171,
+                "y": 738.5
+            }
+        },
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps_1/the_bowl.tmx#main": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "shellspace.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": -353,
+                "y": 301.25
+            }
+        }
+    },
+    "last.externalTilesetPath": "/home/baiguai/Documents/darkworld",
+    "last.imagePath": "/home/baiguai/Documents/darkworld",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "map.orientation": null,
+    "openFiles": [
+        "/home/baiguai/Documents/darkworld/map.tmx",
+        "shellspace.tmx"
+    ],
+    "project": "shellspace.tiled-project",
+    "property.type": "file",
+    "recentFiles": [
+        "shellspace.tmx",
+        "/home/baiguai/Documents/darkworld/map.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/office/office.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/master/master.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/keyboard.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/garage/garage.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/kitchen/kitchen.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/livingroom/livingroom.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/hall/hall.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.type": 1
+}

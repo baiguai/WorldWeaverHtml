@@ -85,8 +85,13 @@ You step into the pantry.
 [X] : Room
 [X] : Look
 [X] : Story
+[X] : Dining
+[X] : Freezer
+[X] : Fridge
+[X] : Sink
+[X] : Stove
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

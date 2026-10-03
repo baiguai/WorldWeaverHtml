@@ -59,6 +59,7 @@ Your dad calls you!!
 
 
 
+    {attrib, output=false, tags=alarm_set }
 
     {attrib, output=0, tags=totalrounds }
     {attrib, output=15, tags=currenthour }

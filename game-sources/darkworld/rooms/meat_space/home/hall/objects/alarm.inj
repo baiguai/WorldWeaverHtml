@@ -1,0 +1,61 @@
+{story
+    {message
+        output={@
+
+You see an alarm panel on the wall.
+
+        }
+    }
+}
+
+{look
+    {message
+        output={@
+
+You see an alarm panel on the wall.
+
+        }
+    }
+}
+
+{x_alarm
+    {message
+        output={@
+
+The alarm panel consists of a small status indicator screen.
+<?[game]((alarm_set)) = 'false'?>
+It is currently disarmed.
+<else>
+The alarm is currently armed.
+</?>
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_alarm_panel))
+    {act, logic=x_alarm, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((pwd_alarm))
+    {set, logic=[game]((alarm_set)), output=true }
+    {set, output=Jack into Shellspace, logic=[player]((objective)) }
+    {message
+        output={@
+
+You arm the house alarm.
+
+        }
+    }
+}
