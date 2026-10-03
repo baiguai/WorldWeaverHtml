@@ -20,14 +20,6 @@ There is a USB stick inside it.
         }
     }
 
-    {x_shellspace
-        {message
-            output={@
-
-Shellspace!!!!
-            }
-        }
-    }
 
 
 
@@ -39,7 +31,52 @@ Shellspace!!!!
     }
 
     {input, syntax=[tplt_syntax]((plug_in_usb))
-        {act, logic=x_shellspace, tags=!_type|room }
+        {set, logic=[player]((objective)), output= }
+        {move, logic=hrbr_port, tags=[player]
+            output={@
+
+You plug the USB into the computer.
+A program begins to run filling the screen with instructions.
+
+1. Apply the self-surgical port receptacle.
+1. Attach the 'Tentacle of Cthulhu' cord.
+1. Hit 'Enter'.
+
+You excitedly pull out your box of gathered items for this journey.
+The self-surgical port is the scariest part. You put latex gloves on AND lather
+them with disinfectant. Then you take the cylindrical port and press it to
+the back of your neck and grimace, waiting for the pain.
+
+There is a pinprick, then you are numb. You hear a whirring sound as it
+embeds itself into your neck.
+You feel a bit of pressure as the connections move up into the base of your
+skull.
+Then it beeps.
+
+**COMPLETE**
+
+You grab the Tentacle of Cthulhu and plug it into one of the computer's open
+USB slots and plug the other end into the port in your neck.
+
+You sit comfortably in your desk chair...
+
+And hit Enter.
+
+
+---
+
+
+Everything seems to glitch and your body feels like it's vibrating for a
+moment.
+
+Everything goes black for a moment.
+
+
+Then you find yourself in Shellspace!
+In a Port Hub.
+
+            }
+        }
 
         {set, logic=[mt_cd]tags, output=-inventory }
         {move, logic=[limbo], tags=[mt_cd] }

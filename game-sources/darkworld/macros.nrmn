@@ -1,6 +1,12 @@
+
+
+{macro, key=, output= }
+
+{macro, key=closet_sec, output=l|~|s|~|l|~|s|~|l|~|s|~|l|~|aphalion|~|aphelion|~|l|~|x android|~|x room|~|turn lights on|~|x android|~|turn light off|~|l|~|e|~|l }
 {macro, key=bath_mast, output=l|~|s|~|l|~|s|~|l|~|w|~|l }
-{macro, key=garage, output=l|~|s|~|l|~|e|~|l|~|e|~|l }
+{macro, key=mast, output=l|~|s|~|l|~|s|~|l }
 {macro, key=livingroom, output=l|~|s|~|l|~|e|~|l }
+{macro, key=garage, output=l|~|s|~|l|~|e|~|l|~|e|~|l }
 {macro, key=pantry, output=l|~|s|~|l|~|e|~|l|~|s|~|l|~|w|~|l }
 {macro, key=kitchen, output=l|~|s|~|l|~|e|~|l|~|s|~|l }
 {macro, key=room, output=l }

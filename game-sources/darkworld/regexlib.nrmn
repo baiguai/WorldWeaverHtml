@@ -2,6 +2,8 @@
     // Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=story|!_regex, output=^(story)$, logic=l|story|x story|look at story }
+        {attrib, tags=x_alarm_panel|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*alarm\s*(?:panel)?\b, logic=examine the alarm panel|examine alarm|x alarm }
+        {attrib, tags=x_fem_android|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:female)?\s*android\b, logic=examine the female android|examine android|x female android|x android }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
         {attrib, tags=x_bar|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bar\b, logic=examine the bar|examine bar|x the bar|x bar }
         {attrib, tags=x_bartender|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?bartender(?:s)?\b, logic=examine the bartender|examine bartenders|x the bartender|x bartenders|x woman }
@@ -34,6 +36,7 @@
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
         {attrib, tags=x_glass|!_regex, output=^(examine|x)(?: the)? (glass|glasses)$, logic=x the glass|x glass|examine the glasses|x glasses }
         {attrib, tags=x_groups|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?groups\b, logic=examine the groups|examine groups|x the groups|x groups }
+        {attrib, tags=x_hidden_door|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:hidden)?\s*door\b, logic=examine the door|examine hidden door|x door|x hidden door }
         {attrib, tags=x_hottubs|!_regex, output=^(examine|x)(?: the)? (hottubs|hottub|hot tubs|hot tub)$, logic=x hottub|examine the hot tubs }
         {attrib, tags=x_green_lights|!_regex, output=^(examine|x)(?: the)?(?: green)?(?: neon)? light$, logic=x the light|x green light|x neon light|examine the green light }
         {attrib, tags=x_halls|!_regex, output=^(examine|x)(?: the)? (hall|halls)$, logic=x hall|examine the halls }
@@ -178,6 +181,9 @@
         {attrib, tags=lazergun_id|!_regex, output=(lazer)?( )?(gun).*, logic=the gun|your lazer gun|the lazergun }
         {attrib, tags=tech_trace|!_regex, output=(tech trace).*, logic=the tech trace|tech trace }
 
+    // Investigating
+        {attrib, tags=inv_room|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*room\b, logic=examine the room|x room }
+
     // Taking
         {attrib, tags=battery_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?battery\b, logic=take the battery|take battery|pick up the battery }
         {attrib, tags=bottle_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?bottle\b, logic=take the bottle|take bottles|pick up the bottle }
@@ -211,6 +217,8 @@
 
     // Interacting
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer|plug in the usb|plug in usb|put usb in the computer }
+        {attrib, tags=turn_light_off|!_regex, output=\bturn\s*(?:off)?\s*(?:the)?\s*(?:lightswitch|lights|light)\s*(?:switch)?\s*(?:off)\b, logic=turn the lightswitch off|turn lightswitch off|turn off lights|turn off light }
+        {attrib, tags=turn_light_on|!_regex, output=\bturn\s*(?:on)?\s*(?:the)?\s*(?:lightswitch|lights|light)\s*(?:switch)?\s*(?:on)\b, logic=turn the lightswitch on|turn lightswitch on|turn on lights|turn on light }
 
     // Fighting
         {attrib, tags=attack_figure_masked|!_regex, output=(attack|!)(\s)?(the )?masked figures?.*, logic=attack the masked figure|! figures|!the masked figures|attack masked figure|! hooded figure|! masked figure }
@@ -302,6 +310,8 @@
         {attrib, tags=hint|!_regex, output=^\?hint$, logic=?hint }
 
     // Specific
+        {attrib, tags=pwd_alarm|!_regex, output=\b2355\b, logic=enter 2355|2355 }
+        {attrib, tags=pwd_aph|!_regex, output=\b(?:enter|type)?\s*aphelion\b, logic=enter aphelion|type aphelion|aphelion }
         {attrib, tags=x_cybersec_book|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cybersecurity book)\b, logic=examine the book|x the cybersecurity book|examine the cybersecurity book|x cybersecurity book }
         {attrib, tags=deep_grid|!_regex, output=^deep\s?grid(?:\s+system(?:'s|s))?(?:\s+tower)?, logic=deepgrid|deep grid|deep grid systems|deep grid system's|deep grid system's tower }
         {attrib, tags=fidelis|!_regex, output=^fidelis$, logic=fidelis|fedelis }

@@ -1,5 +1,5 @@
 {room, key=meat_master_bedroom, name=Master Bedroom
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 North: hallway
@@ -108,7 +108,7 @@ You step into the bathroom...
 [X] : Look
 [X] : Story
 
-[ ] : Navigation
+[X] : Navigation
         }
     }
 }

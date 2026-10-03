@@ -1,0 +1,53 @@
+{room, key=hrbr_port, name=Harbor Port
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+...
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You are in the Harbor Port
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You are in the Harbor Port
+
+            }
+        }
+
+        {logic, name=Harbor Port tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

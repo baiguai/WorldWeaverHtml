@@ -1,0 +1,44 @@
+{x_android
+    {message
+        output={@
+
+You examine the female android.
+It is created to look like a beautiful, shapely woman.
+It is clothed in a revealing maid's outfit.
+This is clearly your father's and... gross.
+
+You don't see any means of activating it.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_fem_android))
+    {act, logic=x_android, tags=!_type|room }
+
+    {logic
+        logic={@
+            ?[room]((lights_on)) = 'true'
+        }
+        output={@
+
+It is too dark to see its details.
+Maybe if you examine the room, you might find a light switch.
+
+        }
+    }
+}
