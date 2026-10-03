@@ -2,6 +2,7 @@
 
 {macro, key=, output= }
 
+{macro, key=alarm, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|stats }
 {macro, key=closet_sec, output=l|~|s|~|l|~|s|~|l|~|s|~|l|~|aphalion|~|aphelion|~|l|~|x android|~|x room|~|turn lights on|~|x android|~|turn light off|~|l|~|e|~|l }
 {macro, key=bath_mast, output=l|~|s|~|l|~|s|~|l|~|w|~|l }
 {macro, key=mast, output=l|~|s|~|l|~|s|~|l }
