@@ -1,0 +1,26 @@
+{x_ads
+    {message
+        output={@
+
+You examine the ads...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_ads))
+    {act, logic=x_ads, tags=!_type|room }
+}

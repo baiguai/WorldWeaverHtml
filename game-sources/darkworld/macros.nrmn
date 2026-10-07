@@ -1,4 +1,4 @@
-
+{macro, key=shell_alrm, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l }
 
 {macro, key=, output= }
 

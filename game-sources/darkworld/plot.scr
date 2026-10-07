@@ -6,23 +6,25 @@
   ],
   "history": [
     "0gqjtgwf",
-    "b3f4gryz",
     "wniyrhxp",
-    "jfbvztvu",
     "z34fhnrk",
     "5rlxxeur",
-    "lqh5vp1u",
     "s56w1nab",
     "ro3x0p7a",
     "wja3ohxt",
     "cpvyfnp2",
-    "xatw9fwz"
+    "xatw9fwz",
+    "lqh5vp1u",
+    "jfbvztvu",
+    "p8zcgsia",
+    "0apw14vq",
+    "b3f4gryz"
   ],
   "roots": [
   {
     "id": "779qeoyj",
     "name": "Story Notes",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
@@ -54,7 +56,7 @@
   {
     "id": "iyocnfgu",
     "name": "Puzzle Notes",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
@@ -70,19 +72,19 @@
   {
     "id": "u9whop3w",
     "name": "Rooms",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
       "id": "om059eyy",
       "name": "Meat Space",
-      "expanded": true,
+      "expanded": false,
       "text": "",
       "children": [
       {
         "id": "s25egcd2",
         "name": "House",
-        "expanded": true,
+        "expanded": false,
         "text": "",
         "children": [
         {
@@ -104,7 +106,7 @@
         {
           "id": "dph0aixc",
           "name": "Master Bedroom",
-          "expanded": true,
+          "expanded": false,
           "text": "",
           "children": [
           {
@@ -156,10 +158,42 @@
     ]
   },
   {
+    "id": "8ba3sjr5",
+    "name": "Objectives",
+    "expanded": false,
+    "text": "",
+    "children": [
+    {
+      "id": "8pqefx1d",
+      "name": "Meatspace",
+      "expanded": false,
+      "text": "",
+      "children": [
+      {
+        "id": "p8zcgsia",
+        "name": "Arm the Alarm",
+        "expanded": false,
+        "text": "This objective is activated with the call from the player's dad.\nIf they enter Shellspace without doing this the objective is cleared.",
+        "children": [
+        ]
+      },
+      {
+        "id": "0apw14vq",
+        "name": "Enter Shellspace",
+        "expanded": false,
+        "text": "This is the initial objective.\n\n",
+        "children": [
+        ]
+      }
+      ]
+    }
+    ]
+  },
+  {
     "id": "b3f4gryz",
     "name": "Theme Notes",
     "expanded": false,
-    "text": "Theme Notes\n\nGeneral highlighted words:\n\n#[#ffff00]TEXT HERE#\n\n",
+    "text": "Theme Notes\n\nGeneral highlighted words:\n#[#ffff00]TEXT HERE#\n\nObjectives:\n#[#008f00]*TEXT HERE*#\n\n",
     "children": [
     ]
   }
