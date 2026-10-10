@@ -2,7 +2,8 @@
     {message
         output={@
 
-You examine the ads...
+The various ad screens are showing various vacation spots and items that
+Shellspace people can purchase.
 
         }
     }

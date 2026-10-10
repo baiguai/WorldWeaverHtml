@@ -2,6 +2,7 @@
     // Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=story|!_regex, output=^(story)$, logic=l|story|x story|look at story }
+        {attrib, tags=x_ads|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?ads\b, logic=examine the ads|examine ads|x the ads|x ads }
         {attrib, tags=x_alarm_panel|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*alarm\s*(?:panel)?\b, logic=examine the alarm panel|examine alarm|x alarm }
         {attrib, tags=x_fem_android|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:female)?\s*android\b, logic=examine the female android|examine android|x female android|x android }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
