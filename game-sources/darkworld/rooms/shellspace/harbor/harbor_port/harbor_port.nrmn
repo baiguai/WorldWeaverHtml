@@ -69,7 +69,7 @@ In the east is a wide passage out into the city.
 
 
 
-    {input, syntax=[tpltt_syntax]((go_east))
+    {input, syntax=[tplt_syntax]((go_east))
         {message
             output={@
 
@@ -86,7 +86,7 @@ You go eat...
 [ ] : Room
 [ ] : Look
 [ ] : Story
-[ ] : Ads
+[x] : Ads
 [ ] : Portals
 [ ] : Screens
 

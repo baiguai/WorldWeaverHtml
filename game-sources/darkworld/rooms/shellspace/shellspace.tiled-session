@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -532,10 +532,10 @@
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx": {
             "scale": 1,
-            "selectedLayer": 0,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": -248,
-                "y": 195.5
+                "y": 795.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -586,10 +586,13 @@
     "map.lastUsedFormat": "tmx",
     "map.orientation": null,
     "openFiles": [
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx"
     ],
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
+        "harbor/harbor_port/harbor_port.tmx",
         "shellspace.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
@@ -599,9 +602,7 @@
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/cdplayer.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/computer.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/entertainment.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/envelope.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/keyboard.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/monitor.tmx"
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/envelope.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

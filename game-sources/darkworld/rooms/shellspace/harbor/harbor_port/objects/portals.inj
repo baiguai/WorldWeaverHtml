@@ -1,1 +1,39 @@
-{attrib, output=Portals Injection }
+{x_portals
+    {message
+        output={@
+
+You examine the portals...
+
+        }
+    }
+}
+
+{x_behind_portals
+    {message
+        output={@
+
+You look behind the portals...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_portals))
+    {act, logic=x_portals, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_portals))
+    {act, logic=x_behind_portals, tags=!_type|room }
+}
