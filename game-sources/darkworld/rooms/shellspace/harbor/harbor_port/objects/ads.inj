@@ -1,0 +1,27 @@
+{x_ads
+    {message
+        output={@
+
+The various ad screens are showing various vacation spots and items that
+Shellspace people can purchase.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_ads))
+    {act, logic=x_ads, tags=!_type|room }
+}

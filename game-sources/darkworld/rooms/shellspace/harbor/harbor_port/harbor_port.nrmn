@@ -2,7 +2,7 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+East: city streets
         }
     }
 
@@ -14,7 +14,14 @@
         {message
             output={@
 
-You are in the Harbor Port
+You are in a hub where people from all over the world jack into
+Shellspace.
+It is a large cylindrical room. There are pink neon tubes everywhere.
+
+The walls are lined with displays and portals, through which crowds of people
+are entering.
+
+In the east is a wide passage out into the city.
 
             }
         }
@@ -24,7 +31,23 @@ You are in the Harbor Port
         {message
             output={@
 
-You are in the Harbor Port
+You are in a hub where people from all over the world jack into
+Shellspace.
+It is a large cylindrical room.
+Neon lights run along the walls and there are concentric rings of neon tubes
+all along the ceiling.
+
+The walls are lined with displays and portals, through which crowds of people
+are entering.
+The displays flicker information about the entering individuals and their
+screen names as well as the amount of time they've spent in Shellspace.
+
+Near the ceiling, on the walls, ads for various things to do in Shellspace are
+playing on repeat.
+
+It is a loud and bustling place.
+
+In the east is a wide passage out into the city.
 
             }
         }
@@ -37,8 +60,25 @@ You are in the Harbor Port
     }
 
 
+    {inject, logic=./objects/ads.inj }
+    {inject, logic=./objects/portals.inj }
+    {inject, logic=./objects/screens.inj }
+
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {message
+            output={@
+
+You go eat...
+
+            }
+        }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
@@ -46,6 +86,9 @@ You are in the Harbor Port
 [ ] : Room
 [ ] : Look
 [ ] : Story
+[x] : Ads
+[ ] : Portals
+[ ] : Screens
 
 [ ] : Navigation
         }

@@ -2,6 +2,7 @@
     // Examining
         {attrib, tags=look|!_regex, output=^(look|look around|l)$, logic=l|look|look around|I look around }
         {attrib, tags=story|!_regex, output=^(story)$, logic=l|story|x story|look at story }
+        {attrib, tags=x_ads|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?ads\b, logic=examine the ads|examine ads|x the ads|x ads }
         {attrib, tags=x_alarm_panel|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*alarm\s*(?:panel)?\b, logic=examine the alarm panel|examine alarm|x alarm }
         {attrib, tags=x_fem_android|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:female)?\s*android\b, logic=examine the female android|examine android|x female android|x android }
         {attrib, tags=x_appliances|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(appliances)\b, logic=examine the appliances|x the appliances|examine appliances|x appliances }
@@ -56,11 +57,6 @@
         {attrib, tags=x_note|!_regex, output=^(examine|x)(?: the)? (note|notes)$, logic=x the note|x notes|examine the note|x note }
         {attrib, tags=x_orb|!_regex, output=^(examine|x)(?: the)? orb$, logic=x the orb|x orb|examine the orb }
         {attrib, tags=x_panel|!_regex, output=^(examine|x)(?: the)? (panel|panels)$, logic=x panels|x panel|examine the panel }
-        {attrib, tags=x_portal_01|!_regex, output=\b(x|examine)\s+(portal\s+)?1\b, logic=examine portal 1|x 1|x portal 1|1 }
-        {attrib, tags=x_portal_02|!_regex, output=\b(x|examine)\s+(portal\s+)?2\b, logic=examine portal 2|x 2|x portal 2|2 }
-        {attrib, tags=x_portal_03|!_regex, output=\b(x|examine)\s+(portal\s+)?3\b, logic=examine portal 3|x 3|x portal 3|3 }
-        {attrib, tags=x_portal_04|!_regex, output=\b(x|examine)\s+(portal\s+)?4\b, logic=examine portal 4|x 4|x portal 4|4 }
-        {attrib, tags=x_portal_05|!_regex, output=\b(x|examine)\s+(portal\s+)?5\b, logic=examine portal 5|x 5|x portal 5|5 }
         {attrib, tags=x_computer|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer|monitor)(?:\s+monitor)?\b, logic=x the monitor|x monitor|examine the computer monitor|x computer }
         {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
         {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
@@ -69,6 +65,7 @@
         {attrib, tags=x_paper_piece|!_regex, output=^(examine|x)(?: the)?(?: piece of)? paper$, logic=x the papers|x paper|examine the paper|x piece of paper }
         {attrib, tags=x_pillars|!_regex, output=^(examine|x)(?: the)? (pillar|pillars)$, logic=x the pillars|x pillar|examine the pillars|x pillar }
         {attrib, tags=x_pools|!_regex, output=^(examine|x)(?: the)? (pool|pools)$, logic=x pools|examine the pool }
+        {attrib, tags=x_portals|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:portals|portal)\b, logic=examine the portals|x the portals|x portal }
         {attrib, tags=x_restaurants|!_regex, output=^(examine|x)(?: the)? (restaurant|restaurants)$, logic=x restaurants|examine the restaurant }
         {attrib, tags=x_robot|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(robot)\b, logic=examine the robot|x the robot|examine robot|x robot|x topless robot }
         {attrib, tags=x_screen|!_regex, output=^(examine|x)(?: the)? (screen)$, logic=x the screen|x screen|examine the screen }
@@ -113,6 +110,7 @@
         {attrib, tags=x_behind_desk|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?desk\b, logic=look behind the desk|look behind desk|examine behind the messy desk|x behind desk in front of you }
         {attrib, tags=x_behind_fridge|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(fridge|refrigerator)\b, logic=look behind the fridge|look behind refrigerator|examine behind the messy fridge|x behind fridge in front of you }
         {attrib, tags=x_behind_nightstand|!_regex, output=\b(?:x|examine)\b\s+(behind\s+)(?:(?:the|your)\s+)?(nightstand)\b, logic=x behind nightstand|examine the nightstand }
+        {attrib, tags=x_behind_portals|!_regex, output=\b(?:examine|look|x|l)\s+behind\s*(?:the)?\s*(?:portals|portal)\b, logic=examine behind the portals|x behind the portals|x behind portal|look behind portals|l behind portal }
         {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
         {attrib, tags=x_behind_sculpture|!_regex, output=^(look|examine|x)\s+(behind)\s+(your\s+|the\s+)?(sculpture|sculptures)$, logic=x behind your sculptures|x beneath the sculpture|examine behind the sculptures }
         {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?servers\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
@@ -267,11 +265,6 @@
         {attrib, tags=enter_non_1023|!_regex, output=^enter\s*(?:100[1-9]|101[0-9]|102[0-24-5])$, logic=enter 1023|enter 1011 }
         {attrib, tags=hall|!_regex, output=\b(enter\s+(the\s+)?)?hall\b, logic=enter the hall|enter hall|hall }
         {attrib, tags=locked_cruise_rooms|!_regex, output=^(?:(?:enter\s+)?room\s+)?2(?:0[02-9]|1[0-9]|2[0-24-9]|30)$, logic=room 202|room 201|enter room 220|enter room 223|221|204|room 227|room 230 }
-        {attrib, tags=go_portal_01|!_regex, output=\b(e(nter)?)\s+(portal\s+)?1\b, logic=enter portal 1|e portal 1|e 1 }
-        {attrib, tags=go_portal_02|!_regex, output=\b(e(nter)?)\s+(portal\s+)?2\b, logic=enter portal 2|e portal 2|e 2 }
-        {attrib, tags=go_portal_03|!_regex, output=\b(e(nter)?)\s+(portal\s+)?3\b, logic=enter portal 3|e portal 3|e 3 }
-        {attrib, tags=go_portal_04|!_regex, output=\b(e(nter)?)\s+(portal\s+)?4\b, logic=enter portal 4|e portal 4|e 4 }
-        {attrib, tags=go_portal_05|!_regex, output=\b(e(nter)?)\s+(portal\s+)?5\b, logic=enter portal 5|e portal 5|e 5 }
         {attrib, tags=room_201|!_regex, output=^(?:enter 201|room 201|201)$, logic=enter 201|room 201|201 }
         {attrib, tags=room_223|!_regex, output=^(?:enter 223|room 223|223)$, logic=enter 223|room 223|223 }
         {attrib, tags=type_comm_pwd|!_regex, output=^type hplpkd5$, logic=type hplpkd5|type hmmm }

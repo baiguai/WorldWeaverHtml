@@ -1,0 +1,52 @@
+{room, key=debugging_room, name=Debugging Room
+    {enter_message
+        output={@
+This room is full of BUGS!!
+You can use this room to intentionally define something wrong, or do typos in
+your definitions, to see how to identify and fix them.
+This room is also helpful for developers who may want to improve
+WorldWeaver - so that typos etc are handled better.
+
+**Referenced Element Typo Test:**
+To set up this test, add an extra 't' to [tplt_syntax]((x_tables))
+Then upon entering this room type: x tables
+        }
+    }
+
+    {look
+        {message
+            output={@
+You look around...
+
+This room is full of BUGS!!
+You can use this room to intentionally define something wrong, or do typos in
+your definitions, to see how to identify and fix them.
+This room is also helpful for developers who may want to improve
+WorldWeaver - so that typos etc are handled better.
+
+**Referenced Element Typo Test:**
+To set up this test, add an extra 't' to [tplt_syntax]((x_tables))
+Then upon entering this room type: x tables
+            }
+        }
+    }
+
+    {x_tables
+        {message
+            output={@
+You examine the tables.
+Some of them have crystal glasses sitting on them, still full of alcohol.
+            }
+        }
+    }
+
+
+    {inject, logic=/nav_home.inj }
+    {inject, logic=/home.inj }
+    {inject, logic=/look.inj }
+
+    {input, syntax=[tplt_syntax]((x_tables))
+        {act, logic=x_tables, tags=!_type|room }
+    }
+}
+

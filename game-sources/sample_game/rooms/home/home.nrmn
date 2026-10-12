@@ -37,6 +37,13 @@ You have decided to test receiving money.
             }
         }
     }
+    {input, syntax=(debugging)
+        {move, logic=debugging_room, tags=[player]
+            output={@
+You have decided to test BUGS!
+            }
+        }
+    }
     {input, syntax=(discover)
         {move, logic=discover_room, tags=[player]
             output={@
