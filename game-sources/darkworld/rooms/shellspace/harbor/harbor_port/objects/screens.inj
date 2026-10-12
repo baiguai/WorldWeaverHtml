@@ -1,1 +1,39 @@
-{attrib, output=Screens Injection }
+{x_screens
+    {message
+        output={@
+
+You examine the screens...
+
+        }
+    }
+}
+
+{x_behind_screens
+    {message
+        output={@
+
+You look behind the screens...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_screens))
+    {act, logic=x_screens, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_screens))
+    {act, logic=x_behind_screens, tags=!_type|room }
+}

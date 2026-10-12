@@ -112,6 +112,7 @@
         {attrib, tags=x_behind_nightstand|!_regex, output=\b(?:x|examine)\b\s+(behind\s+)(?:(?:the|your)\s+)?(nightstand)\b, logic=x behind nightstand|examine the nightstand }
         {attrib, tags=x_behind_portals|!_regex, output=\b(?:examine|look|x|l)\s+behind\s*(?:the)?\s*(?:portals|portal)\b, logic=examine behind the portals|x behind the portals|x behind portal|look behind portals|l behind portal }
         {attrib, tags=x_behind_screen|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?(third\s+)?screen\b, logic=x behind the screen|look behind the third screen|look behind screen|examine behind the screen }
+        {attrib, tags=x_behind_screens|!_regex, output=\b(?:examine|look|x)\s+behind\s*(?:the)?\s*(?:screens|screen)\b, logic=examine behind the screens|x behind the screen|look behind the screen }
         {attrib, tags=x_behind_sculpture|!_regex, output=^(look|examine|x)\s+(behind)\s+(your\s+|the\s+)?(sculpture|sculptures)$, logic=x behind your sculptures|x beneath the sculpture|examine behind the sculptures }
         {attrib, tags=x_behind_servers|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?servers\b, logic=look behind the servers|look behind server|examine behind the server rack|x behind servers }
         {attrib, tags=x_behind_stove|!_regex, output=^(look|examine|x)\s+behind\s+(the\s+)?stove\b, logic=look behind the stove|look behind stove|examine behind the messy stove|x behind stove in front of you }
