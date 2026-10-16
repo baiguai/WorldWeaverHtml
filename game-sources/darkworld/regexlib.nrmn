@@ -42,6 +42,7 @@
         {attrib, tags=x_green_lights|!_regex, output=^(examine|x)(?: the)?(?: green)?(?: neon)? light$, logic=x the light|x green light|x neon light|examine the green light }
         {attrib, tags=x_halls|!_regex, output=^(examine|x)(?: the)? (hall|halls)$, logic=x hall|examine the halls }
         {attrib, tags=x_in_dresser|!_regex, output=\b(?:look|open|examine|x)\s+(?:(?:in|inside)\s+)?(?:the\s+)?(?:dresser|drawers)\b, logic=look inside the dresser|look in dresser|examine in the dresser|open the drawers|look in drawers|x drawers|x the drawers }
+        {attrib, tags=x_invisibility_explt|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*invisibility\s+exploit\b, logic=examine the invisibility exploit|x the invisibility exploit|x invisibility exploit }
         {attrib, tags=x_keyboard|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computer\s+)?(keyboard)\b, logic=x the keyboard|x computer keyboard|examine the computer keyboard|x keyboard|x computer }
         {attrib, tags=x_ladder|!_regex, output=^(examine|x)(?: the)? ladder$, logic=x ladder|examine the ladder }
         {attrib, tags=x_lazergun|!_regex, output=^(examine|x)( the)?( lazer)? gun$, logic=examine the gun|examine lazer gun|x the lazer gun|x gun }

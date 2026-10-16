@@ -6,7 +6,7 @@
     "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
     "expandedProjectPaths": [
     ],
-    "file.lastUsedOpenFilter": "All Files (*)",
+    "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
     "fileStates": {
         "/home/baiguai/Documents/darkworld/00_dev/map.tmx": {
             "scale": 1,
@@ -535,7 +535,7 @@
             "selectedLayer": 7,
             "viewCenter": {
                 "x": -248,
-                "y": 915.5
+                "y": 555.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -592,8 +592,8 @@
     "property.type": "file",
     "recentFiles": [
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
-        "harbor/harbor_port/harbor_port.tmx",
         "shellspace.tmx",
+        "harbor/harbor_port/harbor_port.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx",

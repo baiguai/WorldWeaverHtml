@@ -2,17 +2,11 @@
     {message
         output={@
 
-You examine the portals...
+There is a fairly steady stream of people entering and exiting through
+the various portals that are located along the port's curved outer wall.
 
-        }
-    }
-}
-
-{x_behind_portals
-    {message
-        output={@
-
-You look behind the portals...
+As people enter an encrypted string representing their meatspace location
+flickers across whichever screen is nearest the portal.
 
         }
     }
@@ -32,8 +26,4 @@ You look behind the portals...
 
 {input, syntax=[tplt_syntax]((x_portals))
     {act, logic=x_portals, tags=!_type|room }
-}
-
-{input, syntax=[tplt_syntax]((x_behind_portals))
-    {act, logic=x_behind_portals, tags=!_type|room }
 }

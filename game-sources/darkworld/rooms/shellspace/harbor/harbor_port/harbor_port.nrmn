@@ -1,5 +1,5 @@
 {room, key=hrbr_port, name=Harbor Port
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 East: city streets
@@ -18,7 +18,7 @@ You are in a hub where people from all over the world jack into
 Shellspace.
 It is a large cylindrical room. There are pink neon tubes everywhere.
 
-The walls are lined with displays and portals, through which crowds of people
+The walls are lined with screens and portals, through which crowds of people
 are entering.
 
 In the east is a wide passage out into the city.
@@ -37,9 +37,9 @@ It is a large cylindrical room.
 Neon lights run along the walls and there are concentric rings of neon tubes
 all along the ceiling.
 
-The walls are lined with displays and portals, through which crowds of people
+The walls are lined with screens and portals, through which crowds of people
 are entering.
-The displays flicker information about the entering individuals and their
+The screens flicker information about the entering individuals and their
 screen names as well as the amount of time they've spent in Shellspace.
 
 Near the ceiling, on the walls, ads for various things to do in Shellspace are
@@ -59,10 +59,27 @@ In the east is a wide passage out into the city.
         }
     }
 
+    {test_exploit
+        {message
+            output={@
+
+Testing the exploit.
+
+            }
+        }
+
+        {logic, name=Invisibility exploit in Inventory, tags=!_test
+            logic={@
+                ?[explt_invisibility]parent = [player]
+            }
+        }
+    }
+
 
     {inject, logic=./objects/ads.inj }
     {inject, logic=./objects/portals.inj }
     {inject, logic=./objects/screens.inj }
+    {inject, logic=./objects/exploit_hustler.inj }
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
@@ -79,16 +96,21 @@ You go eat...
         }
     }
 
+    {input, syntax=\btest\s+invisibility\s+exploit\b
+        {act, logic=test_exploit, tags=!_type|room }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[x] : Room
+[x] : Look
+[x] : Story
 [x] : Ads
-[ ] : Portals
-[ ] : Screens
+[x] : Portals
+[x] : Screens
+[x] : Exploit Hustler
 
 [ ] : Navigation
         }

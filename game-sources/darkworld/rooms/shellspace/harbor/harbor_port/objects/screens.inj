@@ -2,7 +2,9 @@
     {message
         output={@
 
-You examine the screens...
+You check out the screens along the outer wall of the port. They are all
+flickering bits of source code and encrypted messages or information across
+them. Some of the data appears to be debugging logs... for Shellspace itself!
 
         }
     }
@@ -12,7 +14,9 @@ You examine the screens...
     {message
         output={@
 
-You look behind the screens...
+You look behind the screens that are low enough on the wall for you to glimpse
+at. Each one has a strange looking cylinder attached to the back of it.
+An orange light blinks on each of the cylinders.
 
         }
     }
