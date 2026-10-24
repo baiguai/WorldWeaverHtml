@@ -35,6 +35,7 @@
         {attrib, tags=x_figure_masked|!_regex, output=^(examine|x)( the)?( masked) figure(s)?$, logic=examine the masked figure|examine figure|x the masked figures|x masked figure|x hooded figure }
         {attrib, tags=x_freezer|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(freezer)\b, logic=examine the freezer|x the freezer|examine freezer|x freezer }
         {attrib, tags=x_fridge|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(fridge|refrigerator)\b, logic=examine the fridge|examine fridge|examine refrigerator|x the fridge|x fridge|x refrigerator|x frige }
+        {attrib, tags=x_girl|!_regex, output=\b(?:say)?\s*(?:examine|hello|x)\s*(?:to)?\s*(?:the)?\s*girl\b, logic=examine the girl|x girl|say hello to the girl|hello girl }
         {attrib, tags=x_glass|!_regex, output=^(examine|x)(?: the)? (glass|glasses)$, logic=x the glass|x glass|examine the glasses|x glasses }
         {attrib, tags=x_groups|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?groups\b, logic=examine the groups|examine groups|x the groups|x groups }
         {attrib, tags=x_hidden_door|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:hidden)?\s*door\b, logic=examine the door|examine hidden door|x door|x hidden door }
@@ -182,7 +183,7 @@
         {attrib, tags=tech_trace|!_regex, output=(tech trace).*, logic=the tech trace|tech trace }
 
     // Investigating
-        {attrib, tags=inv_room|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*room\b, logic=examine the room|x room }
+        {attrib, tags=inv_room|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:walls|room|wall)\b, logic=examine the room|x room|x walls }
 
     // Taking
         {attrib, tags=battery_take|!_regex, output=\b(?:take|pick up)\s+(?:the\s+)?battery\b, logic=take the battery|take battery|pick up the battery }
@@ -217,8 +218,8 @@
 
     // Interacting
         {attrib, tags=plug_in_usb|!_regex, output=\b(plug|put)(?: in)?(?: the)? usb(?: stick)?(?: into(?: the)? computer)?\b, logic=plug usb into computer|plug in the usb|plug in usb|put usb in the computer }
-        {attrib, tags=turn_light_off|!_regex, output=\bturn\s*(?:off)?\s*(?:the)?\s*(?:lightswitch|lights|light)\s*(?:switch)?\s*(?:off)\b, logic=turn the lightswitch off|turn lightswitch off|turn off lights|turn off light }
-        {attrib, tags=turn_light_on|!_regex, output=\bturn\s*(?:on)?\s*(?:the)?\s*(?:lightswitch|lights|light)\s*(?:switch)?\s*(?:on)\b, logic=turn the lightswitch on|turn lightswitch on|turn on lights|turn on light }
+        {attrib, tags=turn_light_off|!_regex, output=\b(?:turn)?\s*(?:the)?\s*(?:light)?\s*switch\s+off\b, logic=turn the light switch off|turn the switch off|switch off }
+        {attrib, tags=turn_light_on|!_regex, output=\b(?:turn)?\s*(?:the)?\s*(?:light)?\s*switch\s+on\b, logic=turn the light switch on|turn the switch on|switch on }
 
     // Fighting
         {attrib, tags=attack_figure_masked|!_regex, output=(attack|!)(\s)?(the )?masked figures?.*, logic=attack the masked figure|! figures|!the masked figures|attack masked figure|! hooded figure|! masked figure }

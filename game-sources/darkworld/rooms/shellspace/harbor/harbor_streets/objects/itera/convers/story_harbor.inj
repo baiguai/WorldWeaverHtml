@@ -1,0 +1,5 @@
+<?[self]((topic)) = 'harbor'?>
+The girl follows you.
+"My name is Itera by the way."
+You tell her that your name is <<[player]name>>.
+</?>

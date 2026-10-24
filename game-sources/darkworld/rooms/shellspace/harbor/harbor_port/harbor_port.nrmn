@@ -15,7 +15,7 @@ East: city streets
             output={@
 
 You are in a hub where people from all over the world jack into
-Shellspace.
+Shellspace. - The Harbor Port.
 It is a large cylindrical room. There are pink neon tubes everywhere.
 
 The walls are lined with screens and portals, through which crowds of people
@@ -32,7 +32,7 @@ In the east is a wide passage out into the city.
             output={@
 
 You are in a hub where people from all over the world jack into
-Shellspace.
+Shellspace. - The Harbor Port.
 It is a large cylindrical room.
 Neon lights run along the walls and there are concentric rings of neon tubes
 all along the ceiling.
@@ -87,10 +87,10 @@ Testing the exploit.
 
 
     {input, syntax=[tplt_syntax]((go_east))
-        {message
+        {move, logic=hrbr_streets, tags=[player]
             output={@
 
-You go eat...
+You exit the Harbor Port and step out into the streets.
 
             }
         }
@@ -112,7 +112,7 @@ You go eat...
 [x] : Screens
 [x] : Exploit Hustler
 
-[ ] : Navigation
+[x] : Navigation
         }
     }
 }

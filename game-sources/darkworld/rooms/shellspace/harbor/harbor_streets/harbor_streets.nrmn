@@ -1,0 +1,94 @@
+{room, key=hrbr_streets, name=Harbor Streets
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West: enter the Harbor Port
+South: harbor
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+Buildings surround you, towering overhead.
+In front of you a street glows a neon green. It travels north and south.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+The sky overhead is dark and filled with odd-looking stars. They seem to be
+square in shape and every now and then they glitch a little.
+
+You are surrounded by buildings that reach up into the night sky. They are lit
+up and billboard screens are mounted to them, showing various ads and
+information.
+
+Before you a road glows neon green. It travels north and south.
+
+The sidewalks are filled with people. Most of them are wearing clothes that
+glow along the seams or shimmer with circuit-like patterns. The fashion in
+Shellspace is nothing like back home.
+
+You hear synthesizer music coming from... somewhere.
+
+            }
+        }
+
+        {logic, name=Harbor Streets tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=hrbr_port, tags=[player]
+            output={@
+
+You enter the Harbor Port.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {set, logic=[itera]((topic)), output=harbor }
+        {move, logic=harbor, tags=itera }
+        {move, logic=harbor, tags=[player]
+            output={@
+
+You go south toward the harbor.
+
+            }
+        }
+    }
+
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

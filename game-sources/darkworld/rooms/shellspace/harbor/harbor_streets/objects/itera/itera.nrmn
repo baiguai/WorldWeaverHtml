@@ -1,0 +1,38 @@
+{npc, key=itera, name=Itera, parent=hrbr_streets
+    {attrib, output=intro, tags=topic }
+
+    {story
+        {message
+            output={@
+{inject, logic=./convers/story_intro.inj }
+{inject, logic=./convers/story_harbor.inj }
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+{inject, logic=./convers/look_intro.inj }
+{inject, logic=./convers/look_harbor.inj }
+            }
+        }
+    }
+
+
+    {x_girl
+        {message
+            output={@
+{inject, logic=./convers/x_intro.inj }
+{inject, logic=./convers/x_harbor.inj }
+            }
+        }
+    }
+
+
+
+
+    {input, syntax=[tplt_syntax]((x_girl))
+        {act, logic=x_girl, tags=!_type|room }
+    }
+}

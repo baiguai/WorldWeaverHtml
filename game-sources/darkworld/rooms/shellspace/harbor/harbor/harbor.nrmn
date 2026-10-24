@@ -1,0 +1,73 @@
+{room, key=harbor, name=Harbor
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North: city streets
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+The harbor stretches out before you in the south.
+The massive golden sun is setting over the horizon.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+The smooth water of the harbor stretches out before you in the south.
+The massive golden sun is setting over the horizon.
+Distant buildings and neon frame it as it slowly sinks in the electric sky.
+
+I lit up yacht casually cruises on the surface of the water.
+
+The sidewalk extends to the north and west.
+
+            }
+        }
+
+        {logic, name=Harbor tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=hrbr_streets, tags=[player]
+            output={@
+
+You go north toward the city streets.
+
+            }
+        }
+    }
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

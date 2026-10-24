@@ -1135,7 +1135,7 @@
     {
       "id": "3cccheaq",
       "title": "Developer's Cheat Sheet",
-      "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\nElements\n    _Element Cheat Sheet_\n\nFields\n    _Element Fields Cheat Sheet_\n\nTags\n    _Special Tags Cheat Sheet_a\n\nExamples\n    _Scenario Examples_\n    _Tracking Game Development_\n    _Templates_\n\n\nAdvanced Topics\n    _Inline Logic_\n    _Introduction to Debugging_\n\n\n---- Other Tools ---------------------------------------------------------------\n\n_Admin Commands Cheat Sheet_\n\n\n\n\n\n#cheatsheet",
+      "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\nElements\n    _Element Cheat Sheet_\n\nFields\n    _Element Fields Cheat Sheet_\n\nTags\n    _Special Tags Cheat Sheet_a\n\nExamples\n    _Scenario Examples_\n    _Tracking Game Development_\n    _Templates_\n\n\nAdvanced Topics\n    _Inline Logic_\n    _Introduction to Conversations_\n    _Introduction to Debugging_\n\n\n---- Other Tools ---------------------------------------------------------------\n\n_Admin Commands Cheat Sheet_\n\n\n\n\n\n#cheatsheet",
       "children": [],
       "expanded": false
     },
@@ -2729,6 +2729,28 @@
         "expanded": false
       },
       {
+        "id": "rqrfxbp3",
+        "title": "Npcs and Conversations",
+        "content": "",
+        "children": [
+        {
+          "id": "0gwz86i8",
+          "title": "Introduction to Conversations",
+          "content": "Introduction to Conversations\n\nWriting Npcs can be tricky. Especially if the player will be engaging in\nconversations with them.\n\nYou may come up with your own strategies for tackling this challenge, the\napproach that I personally take is using a 'topic' _Attribute Element_.\nAs the conversation progresses, the value of this Attribute determines\nwhat the Npc says.\n\nTo make the code easier to deal with I also use _Injection Element_ instances.\nBy handling conversation this way, as more topics might be added, I just need\nto create the .inj files and add one line per custom Element - the new\nInjection Element.\n\n\nBut again, if you come up with a better approach, cool!",
+          "children": [],
+          "expanded": false
+        },
+        {
+          "id": "0o2q3drd",
+          "title": "Npc Example",
+          "content": "Npc Example\n\nHere is an example of an Npc that I created for the Darkworld cyberpunk game.\nNote: I've added a couple of placeholder topics, just for this example.\n\nMy game definitions file structure for this:\n\n<harbor_streets>\n  |__ [objects]\n  |     |__ [itera]\n  |           |__ [convers]\n  |           |     |__ look_harbor.inj\n  |           |     |__ look_intro.inj\n  |           |     |__ story_harbor.inj\n  |           |     |__ story_intro.inj\n  |           |     |__ x_harbor.inj\n  |           |     |__ x_intro.inj\n  |           |\n  |           |__ itera.nrmn\n  |\n  |__ harbor_streets.nrmn\n\n\n\n\n \n Itera File (itera.nrmn)\n-------------------------------------------------------------------------------- \n {npc, key=itera, name=Itera, parent=hrbr_streets\n    {attrib, output=intro, tags=topic }\n\n    {story\n        {message\n            output={@\n{inject, logic=./convers/story_intro.inj }\n{inject, logic=./convers/story_harbor.inj }\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n{inject, logic=./convers/look_intro.inj }\n{inject, logic=./convers/look_harbor.inj }\n            }\n        }\n    }\n\n\n    {x_girl\n        {message\n            output={@\n{inject, logic=./convers/x_intro.inj }\n{inject, logic=./convers/x_harbor.inj }\n            }\n        }\n    }\n\n\n\n\n    {input, syntax=[tplt_syntax]((x_girl))\n        {act, logic=x_girl, tags=!_type|room }\n    }\n}\n\n\n\nOne of the injection files (x_intro.inj)\n--------------------------------------------------------------------------------\n<?[self]((topic)) = 'intro'?>\nYou approach the girl. She notices you and raises an eyebrow.\n\"I'm not working the streets if that's what you think.\"\n\nShe takes another puff of the hookah.\n\n\"You're *3 Lifer*\" When you give her a confused look she laughs, \"Exactly.\nYou're a noobie. Come, walk with me along the harbor. It's south of here.\"\n</?>\n\n\n\n(x_harbor.inj)\n--------------------------------------------------------------------------------\n<?[self]((topic)) = 'harbor'?>\nShe smiles at you.\n</?>\n\n\n\nWhere the topic changes (harbor_streets.nrmn)\n--------------------------------------------------------------------------------\n    {input, syntax=[tplt_syntax]((go_south))\n        {set, logic=[itera]((topic)), output=harbor }\n        {move, logic=harbor, tags=itera }\n        {move, logic=harbor, tags=[player]\n            output={@\n\nYou go south toward the harbor.\n\n            }\n        }\n    }",
+          "children": [],
+          "expanded": false
+        }
+        ],
+        "expanded": false
+      },
+      {
         "id": "5vfyquoa",
         "title": "Scenario Examples",
         "content": "",
@@ -3001,18 +3023,6 @@
   }
 ];
             let historyStack = [
-  {"id": "yykj4zkp",
-   "title": "Help System Introduction"
-  },
-  {"id": "r9dszloe",
-   "title": "Sample Help System"
-  },
-  {"id": "umrobu5u",
-   "title": "Where to Go From Here"
-  },
-  {"id": "2po3t6pg",
-   "title": "Creating the Spear"
-  },
   {"id": "c3xqsb18",
    "title": "Defining Damage"
   },
@@ -3030,21 +3040,6 @@
   },
   {"id": "4zofhbh4",
    "title": "Adding Messages"
-  },
-  {"id": "dxzibfsi",
-   "title": "The Object to be Moved"
-  },
-  {"id": "7t1zfwoc",
-   "title": "Introduction"
-  },
-  {"id": "jtfzv3lb",
-   "title": "Using This Help System"
-  },
-  {"id": "gd3l7b09",
-   "title": "Quick Links"
-  },
-  {"id": "3cccheaq",
-   "title": "Developer's Cheat Sheet"
   },
   {"id": "42ohhfa6",
    "title": "Introduction to Relative Syntax"
@@ -3070,9 +3065,6 @@
   {"id": "vzq2adxm",
    "title": "importer.html"
   },
-  {"id": "sinjgjs9",
-   "title": "Move Element"
-  },
   {"id": "9h9byll0",
    "title": "Logic Element"
   },
@@ -3090,6 +3082,33 @@
   },
   {"id": "6kjv2pvy",
    "title": "Tests Gotchas"
+  },
+  {"id": "svcak5lr",
+   "title": "Room Template with Test and Story"
+  },
+  {"id": "sinjgjs9",
+   "title": "Move Element"
+  },
+  {"id": "dxzibfsi",
+   "title": "The Object to be Moved"
+  },
+  {"id": "7t1zfwoc",
+   "title": "Introduction"
+  },
+  {"id": "jtfzv3lb",
+   "title": "Using This Help System"
+  },
+  {"id": "gd3l7b09",
+   "title": "Quick Links"
+  },
+  {"id": "3cccheaq",
+   "title": "Developer's Cheat Sheet"
+  },
+  {"id": "0gwz86i8",
+   "title": "Introduction to Conversations"
+  },
+  {"id": "0o2q3drd",
+   "title": "Npc Example"
   }
 ];
 
