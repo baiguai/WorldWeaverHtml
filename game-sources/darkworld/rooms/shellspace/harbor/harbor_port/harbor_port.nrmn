@@ -1,8 +1,8 @@
 {room, key=hrbr_port, name=Harbor Port
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+East: city streets
         }
     }
 
@@ -14,7 +14,14 @@
         {message
             output={@
 
-You are in the Harbor Port
+You are in a hub where people from all over the world jack into
+Shellspace. - The Harbor Port.
+It is a large cylindrical room. There are pink neon tubes everywhere.
+
+The walls are lined with screens and portals, through which crowds of people
+are entering.
+
+In the east is a wide passage out into the city.
 
             }
         }
@@ -24,7 +31,23 @@ You are in the Harbor Port
         {message
             output={@
 
-You are in the Harbor Port
+You are in a hub where people from all over the world jack into
+Shellspace. - The Harbor Port.
+It is a large cylindrical room.
+Neon lights run along the walls and there are concentric rings of neon tubes
+all along the ceiling.
+
+The walls are lined with screens and portals, through which crowds of people
+are entering.
+The screens flicker information about the entering individuals and their
+screen names as well as the amount of time they've spent in Shellspace.
+
+Near the ceiling, on the walls, ads for various things to do in Shellspace are
+playing on repeat.
+
+It is a loud and bustling place.
+
+In the east is a wide passage out into the city.
 
             }
         }
@@ -36,18 +59,60 @@ You are in the Harbor Port
         }
     }
 
+    {test_exploit
+        {message
+            output={@
+
+Testing the exploit.
+
+            }
+        }
+
+        {logic, name=Invisibility exploit in Inventory, tags=!_test
+            logic={@
+                ?[explt_invisibility]parent = [player]
+            }
+        }
+    }
+
+
+    {inject, logic=./objects/ads.inj }
+    {inject, logic=./objects/portals.inj }
+    {inject, logic=./objects/screens.inj }
+    {inject, logic=./objects/exploit_hustler.inj }
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=hrbr_streets, tags=[player]
+            output={@
+
+You exit the Harbor Port and step out into the streets.
+
+            }
+        }
+    }
+
+    {input, syntax=\btest\s+invisibility\s+exploit\b
+        {act, logic=test_exploit, tags=!_type|room }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[x] : Room
+[x] : Look
+[x] : Story
+[x] : Ads
+[x] : Portals
+[x] : Screens
+[x] : Exploit Hustler
 
-[ ] : Navigation
+[x] : Navigation
         }
     }
 }

@@ -1,0 +1,33 @@
+{look
+    {message
+        output={@
+
+You see a strange man.
+He is wearing a long black trench coat and half of his face is covered in
+circuit boards. He is bald and portions of his head are made of chrome plates
+that have been bolted into his skull.
+
+He comes up to you and says,
+"Oh! You are new here!
+I can offer you an exploit, free of charge - all I ask is that you keep me in
+mind, should you find something that might be of use to me.
+
+I can give you an invisibility exploit.
+It always works on people who are new to Shellspace, however the longer people
+have been here, the more likely it is they have devised their own exploits to
+counter-act your invisibility, so that Shellspace still renders you as they
+look around."
+
+"Do you want this exploit?"
+
+        }
+    }
+
+    {logic
+        logic={@
+            ?[room]((topic)) = 'greeting'
+        }
+    }
+
+    {set, logic=[room]((topic)), output=offer }
+}

@@ -1,0 +1,43 @@
+{x_screens
+    {message
+        output={@
+
+You check out the screens along the outer wall of the port. They are all
+flickering bits of source code and encrypted messages or information across
+them. Some of the data appears to be debugging logs... for Shellspace itself!
+
+        }
+    }
+}
+
+{x_behind_screens
+    {message
+        output={@
+
+You look behind the screens that are low enough on the wall for you to glimpse
+at. Each one has a strange looking cylinder attached to the back of it.
+An orange light blinks on each of the cylinders.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_screens))
+    {act, logic=x_screens, tags=!_type|room }
+}
+
+{input, syntax=[tplt_syntax]((x_behind_screens))
+    {act, logic=x_behind_screens, tags=!_type|room }
+}

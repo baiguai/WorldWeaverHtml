@@ -5,24 +5,25 @@
   "bookmarks": [
   ],
   "history": [
-    "0gqjtgwf",
-    "b3f4gryz",
-    "wniyrhxp",
     "jfbvztvu",
     "z34fhnrk",
     "5rlxxeur",
+    "iyxhf36q",
+    "b3f4gryz",
     "lqh5vp1u",
+    "wniyrhxp",
     "s56w1nab",
+    "sfd5dmbq",
     "ro3x0p7a",
-    "wja3ohxt",
     "cpvyfnp2",
-    "xatw9fwz"
+    "n0wiyivi",
+    "0d7m2sqf"
   ],
   "roots": [
   {
     "id": "779qeoyj",
     "name": "Story Notes",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
@@ -36,7 +37,7 @@
     {
       "id": "z34fhnrk",
       "name": "Who is Perihelion?",
-      "expanded": true,
+      "expanded": false,
       "text": "Who is Perihelion?\n\n- He is you own father.",
       "children": [
       ]
@@ -44,7 +45,7 @@
     {
       "id": "5rlxxeur",
       "name": "Who is Xavier?",
-      "expanded": true,
+      "expanded": false,
       "text": "Who is Xavier?\n\nHe is your father's hacker.",
       "children": [
       ]
@@ -54,14 +55,14 @@
   {
     "id": "iyocnfgu",
     "name": "Puzzle Notes",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
       "id": "lqh5vp1u",
       "name": "House Alarm",
       "expanded": false,
-      "text": "If the player doesn't set the house alarm, a hacker breaks in and messes with the player's computer...\nVery bad consequences for the player in Shellspace.\n\nTODO:\n    How will the player realize that this has happened?\n    What are the consequences?",
+      "text": "House Alarm\n\nIf the player doesn't set the house alarm, a hacker breaks in and messes with the player's computer...\nVery bad consequences for the player in Shellspace.\n\nTODO:\n    How will the player realize that this has happened?\n    What are the consequences?",
       "children": [
       ]
     }
@@ -89,47 +90,31 @@
           "id": "cpvyfnp2",
           "name": "Bedroom",
           "expanded": false,
-          "text": "Plot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n",
+          "text": "Bedroom\n\nPlot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n* You get a call from your dad, alarm code is:\n    2355",
           "children": [
           ]
         },
         {
-          "id": "xatw9fwz",
+          "id": "n0wiyivi",
+          "name": "Hall",
+          "expanded": true,
+          "text": "Hall\n\nThe alarm puzzle is here.\nThe code to enter is given to the player via a phone call in the _Bedroom_.\n\n",
+          "children": [
+          ]
+        },
+        {
+          "id": "0d7m2sqf",
           "name": "Office",
           "expanded": false,
-          "text": "Plot:\n\n* Find a paper that says: \"Encountered Retrograde\"",
+          "text": "Office\n\nPlot:\n\nFind paper that says:\n\n\"Encountered Retrograde\"\n\n",
           "children": [
-          ]
-        },
-        {
-          "id": "dph0aixc",
-          "name": "Master Bedroom",
-          "expanded": true,
-          "text": "",
-          "children": [
-          {
-            "id": "w4d29zif",
-            "name": "Closet",
-            "expanded": false,
-            "text": "",
-            "children": [
-            {
-              "id": "wja3ohxt",
-              "name": "Secret Room",
-              "expanded": false,
-              "text": "The password to enter this is:\naphelion",
-              "children": [
-              ]
-            }
-            ]
-          }
           ]
         },
         {
           "id": "ro3x0p7a",
           "name": "Garage",
           "expanded": false,
-          "text": "Plot:\n\n* Find paper with 'aphelion' on it. This is the code for the hidden room in the Master Bedroom closet.",
+          "text": "Garage\n\nPlot:\n\n* Find paper with 'aphelion' on it. This is the code for the hidden room in the Master Bedroom closet.",
           "children": [
           ]
         },
@@ -137,7 +122,7 @@
           "id": "s56w1nab",
           "name": "Kitchen",
           "expanded": false,
-          "text": "Plot:\n\n* The items in the pantry are empty.\n* The fridge is completely empty.\n* Long clump of hair in the sink.\n    #todo : How will this tie into the game?",
+          "text": "Kitchen\n\nPlot:\n\n* The items in the pantry are empty.\n* The fridge is completely empty.\n* Long clump of hair in the sink.\n    #todo : How will this tie into the game?",
           "children": [
           ]
         },
@@ -145,7 +130,31 @@
           "id": "wniyrhxp",
           "name": "Living Room",
           "expanded": false,
-          "text": "Plot:\n\n* TV is airing a news story about someone who died - they were playing a VR game.",
+          "text": "Living Room\n\nPlot:\n\n* TV is airing a news story about someone who died - they were playing a VR game.",
+          "children": [
+          ]
+        }
+        ]
+      }
+      ]
+    },
+    {
+      "id": "hrzjwj8g",
+      "name": "Shellspace",
+      "expanded": false,
+      "text": "",
+      "children": [
+      {
+        "id": "n4jz9evj",
+        "name": "Harbor",
+        "expanded": false,
+        "text": "",
+        "children": [
+        {
+          "id": "sfd5dmbq",
+          "name": "Harbor Port",
+          "expanded": false,
+          "text": "Harbor Port\n\nThe player encounters an exploit dealer.\nHe offers an invisible exploit.\n",
           "children": [
           ]
         }

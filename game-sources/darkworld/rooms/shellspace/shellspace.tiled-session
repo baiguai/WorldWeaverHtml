@@ -6,7 +6,7 @@
     "activeFile": "shellspace.tmx",
     "expandedProjectPaths": [
     ],
-    "file.lastUsedOpenFilter": "All Files (*)",
+    "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
     "fileStates": {
         "/home/baiguai/Documents/darkworld/00_dev/map.tmx": {
             "scale": 1,
@@ -33,11 +33,27 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 0,
-                "y": -240.33333333333337
+                "x": 16,
+                "y": 15.666666666666629
             }
         },
         "/home/baiguai/Documents/darkworld/map.tmx#cyberpunk": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "/home/baiguai/Documents/darkworld/map_meatspace.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 0.25,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 352,
+                "y": 1178
+            }
+        },
+        "/home/baiguai/Documents/darkworld/map_meatspace.tmx#cyberpunk": {
             "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 1
@@ -83,6 +99,9 @@
             }
         },
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 1,
             "selectedLayer": 0,
             "viewCenter": {
@@ -147,11 +166,14 @@
             }
         },
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
             "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 816,
-                "y": -303.33333333333326
+                "x": 241.33333333333348,
+                "y": 62
             }
         },
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx#main": {
@@ -204,7 +226,8 @@
         },
         "/home/baiguai/Documents/darkworld/tiles.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "/home/baiguai/documents/development/dnd/campaigns/darkworld/map/00_tilesets/hex.tsx": {
             "scaleInDock": 1
@@ -508,11 +531,14 @@
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
             "scale": 1,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": -205,
-                "y": 626.5
+                "x": -248,
+                "y": 195.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -540,39 +566,56 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
-        "shellspace.tmx": {
-            "scale": 2,
+        "harbor/harbor_port/harbor_port.tmx": {
+            "scale": 0.75,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": -353,
-                "y": 301.25
+                "x": 218.66666666666674,
+                "y": 286
             }
+        },
+        "shellspace.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 0.33,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 721.2121212121215,
+                "y": -192.4242424242425
+            }
+        },
+        "shellspace.tmx#Main": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.externalTilesetPath": "/home/baiguai/Documents/darkworld",
     "last.imagePath": "/home/baiguai/Documents/darkworld",
     "map.fixedSize": false,
     "map.lastUsedFormat": "tmx",
-    "map.orientation": null,
+    "map.orientation": "1",
     "openFiles": [
-        "/home/baiguai/Documents/darkworld/map.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "shellspace.tmx"
     ],
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "shellspace.tmx",
-        "/home/baiguai/Documents/darkworld/map.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx",
+        "harbor/harbor_port/harbor_port.tmx",
+        "/home/baiguai/Documents/darkworld/tiles.tsx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/hotel.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/office/office.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/master/master.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/keyboard.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/garage/garage.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/kitchen/kitchen.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/livingroom/livingroom.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/hall/hall.tmx"
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/bookshelf.tmx",
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/cd.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
