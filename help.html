@@ -1922,7 +1922,7 @@
         {
           "id": "ucohh3n7",
           "title": "Message - Output",
-          "content": "Message - Output\n--------------------------------------------------------------------------------\n\nYou can also perform logic checks within a multi-line Output field (Usually in a\nMessage Element).\n\nHere are some examples of inline logic:\n\n\n{room, name=Special Values Room, key=specval_room\n    {attrib, tags=showthis, output=false }\n\n    ...\n\n    {look\n        {message\n            output={@\nGreetings <<[player]name>>.\n\nIn this room:\n<?[room]((showthis)) = 'true'?>\nThis text should show - because 'showthis' is true.\n<else>\nORRR this text should show - because 'showthis' is false.\n</?>\n\n<?[room]((showthis)) = 'true'?>\nAnd this should show only when showthis is true.\n</?>\n\nThe following text will only show if the random value that is 'rolled'\nevery time you 'look around' is > 2.\n<?rdm_[roll:1d6] > '2'?>\nYou succeeded the roll!\n</?>\n\nAnd here is a random value: <<rdm_[roll:4d8]>>.\n            }\n        }\n    }\n\n    ...\n}\n\n\nInline logic utilizes the same relative values syntax that you are familiar\nwith, except that it is wrapped in either double angle brackets (For static\noutput) or angle bracket and question marks (For inline logic checks).\n\n\nThe Sample Game is your best friend.\n",
+          "content": "Message - Output\n--------------------------------------------------------------------------------\n\nYou can also perform logic checks within a multi-line Output field (Usually in a\nMessage Element).\n\nHere are some examples of inline logic:\n\n\n{room, name=Special Values Room, key=specval_room\n    {attrib, tags=showthis, output=false }\n\n    ...\n\n    {look\n        {message\n            output={@\nGreetings <<[player]name>>.\n\nIn this room:\n<?[room]((showthis)) = 'true'?>\nThis text should show - because 'showthis' is true.\n<else>\nORRR this text should show - because 'showthis' is false.\n</?>\n\n<?[room]((showthis)) = 'true' and [room]((not_shown_yet)) = 'true'?>\nAnd this should show only when showthis is true.\n</?>\n\n<?[room]((showthis)) = 'true' or [room]((new_here)) = 'true'?>\nAnd this should show only when showthis is true.\n</?>\n\nThe following text will only show if the random value that is 'rolled'\nevery time you 'look around' is > 2.\n<?rdm_[roll:1d6] > '2'?>\nYou succeeded the roll!\n</?>\n\nAnd here is a random value: <<rdm_[roll:4d8]>>.\n            }\n        }\n    }\n\n    ...\n}\n\n\nInline logic utilizes the same relative values syntax that you are familiar\nwith, except that it is wrapped in either double angle brackets (For static\noutput) or angle bracket and question marks (For inline logic checks).\n\n\nThe Sample Game is your best friend.\n",
           "children": [
           {
             "id": "sf11evb7",
@@ -3023,12 +3023,6 @@
   }
 ];
             let historyStack = [
-  {"id": "0f7hkpcj",
-   "title": "Arming Weapons"
-  },
-  {"id": "8gxxgoas",
-   "title": "Dropping the Spear"
-  },
   {"id": "izc6tz67",
    "title": "Taking the Spear"
   },
@@ -3074,12 +3068,6 @@
   {"id": "ynn5dohw",
    "title": "Test Room"
   },
-  {"id": "6kjv2pvy",
-   "title": "Tests Gotchas"
-  },
-  {"id": "svcak5lr",
-   "title": "Room Template with Test and Story"
-  },
   {"id": "sinjgjs9",
    "title": "Move Element"
   },
@@ -3109,6 +3097,18 @@
   },
   {"id": "ucohh3n7",
    "title": "Message - Output"
+  },
+  {"id": "6kjv2pvy",
+   "title": "Tests Gotchas"
+  },
+  {"id": "ls0rnz27",
+   "title": "Takeable Object"
+  },
+  {"id": "nzgfll50",
+   "title": "Inspectable Object Injection"
+  },
+  {"id": "svcak5lr",
+   "title": "Room Template with Test and Story"
   }
 ];
 
