@@ -1,0 +1,74 @@
+{room, key=hrbr_prom, name=Harbor Promenade
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+East: harbor
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+The promenade extends along the width of the harbor, westward.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+The harbor promenade is beautiful.
+The gently meandering path runs along the northern edge of the harbor west
+until it reaches the open ocean.
+
+There are glowing benches along the way and various pixelated plants beside the
+path are illuminated.
+
+Here and there a lone person is walking the path.
+There are some couples, wrapped in each others' arms, taking in the beautiful
+evening.
+
+            }
+        }
+
+        {logic, name=Harbor Promenade tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=harbor, tags=[player]
+            output={@
+
+You go east to the harbor proper.
+
+            }
+        }
+    }
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[x] : Room
+[x] : Look
+[x] : Story
+
+[x] : Navigation
+        }
+    }
+}

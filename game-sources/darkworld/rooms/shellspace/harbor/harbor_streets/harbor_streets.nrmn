@@ -1,0 +1,123 @@
+{room, key=hrbr_streets, name=Harbor Streets
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West: enter the Harbor Port
+South: harbor
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+Buildings surround you, towering overhead.
+In front of you a street glows a neon green. It travels north and south.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+The sky overhead is dark and filled with odd-looking stars. They seem to be
+square in shape and every now and then they glitch a little.
+
+You are surrounded by buildings that reach up into the night sky. They are lit
+up and billboard screens are mounted to them, showing various ads and
+information.
+
+Before you a road glows neon green. It travels north and south.
+
+The sidewalks are filled with people. Most of them are wearing clothes that
+glow along the seams or shimmer with circuit-like patterns. The fashion in
+Shellspace is nothing like back home.
+
+You hear synthesizer music coming from... somewhere.
+
+            }
+        }
+
+        {logic, name=Harbor Streets tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_west))
+        // If the player hasn't completely interacted with Itera
+        // they lose out on their next mission - this is MAJOR
+        // and the game will be VERY difficult for them.
+        {set, logic=[itera]parent, output=!_limbo }
+        {move, logic=hrbr_port, tags=[player]
+            output={@
+
+You enter the Harbor Port.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=harbor, tags=itera
+            {logic
+                logic={@
+                    ?[itera]((have_met)) = 'true'
+                    and
+                    ?[itera]parent != '!_limbo'
+                }
+            }
+        }
+        {set, logic=[itera]((topic)), output=harbor
+            {logic
+                logic={@
+                    ?[itera]((have_met)) = 'true'
+                }
+            }
+        }
+        {move, logic=harbor, tags=[player]
+            output={@
+
+You go south toward the harbor.
+
+            }
+        }
+    }
+
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[x] : Room
+[x] : Look
+[x] : Story
+[x] : Itera
+>   [x] : South
+>   [x] : South, north, south
+>   [x] : South, north, x girl, south
+>   [x] : X girl, south
+>   [x] : X girl, south, north, south
+>   [x] : X girl, west, east
+>   [x] : X girl, south, north, west, east
+>   [x] : X girl, west, east, south
+>   [x] : X girl, west, east, south, north
+>   [x] : X girl, west, east, south, north, south
+
+[ ] : Navigation
+        }
+    }
+}

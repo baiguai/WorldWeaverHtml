@@ -1,0 +1,112 @@
+{room, key=harbor, name=Harbor
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+North: city streets
+West: harbor promenade
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+The harbor stretches out before you in the south.
+The massive golden sun is setting over the horizon.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+The smooth water of the harbor stretches out before you in the south.
+The massive golden sun is setting over the horizon.
+Distant buildings and neon frame it as it slowly sinks in the electric sky.
+
+I lit up yacht casually cruises on the surface of the water.
+
+The sidewalk extends to the north and west.
+
+            }
+        }
+
+        {logic, name=Harbor tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {set, logic=[itera]((moved)), output=true
+            {logic
+                logic={@
+                    ?[itera]parent = 'harbor'
+                }
+            }
+        }
+        {move, logic=hrbr_streets, tags=[player]
+            output={@
+
+You go north toward the city streets.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=hrbr_prom, tags=[player]
+            output={@
+
+You walk west, along the harbor.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((yes))
+        {act, logic=agree, tags=!_type|room }
+        {set, logic=[player]((objective)), output=Find Clarenze }
+        {logic
+            logic={@
+                ?[itera]((topic)) = 'agree'
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((no))
+        {act, logic=refuse, tags=!_type|room }
+    }
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[x] : Room
+[x] : Look
+[x] : Story
+[x] : Itera
+>   [x] : X girl
+>   [x] : L, x girl
+>   [x] : North, south, x girl
+>   [x] : Yes
+>   [x] : No
+
+[x] : Navigation
+        }
+    }
+}

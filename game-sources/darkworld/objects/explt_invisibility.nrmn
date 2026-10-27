@@ -1,0 +1,39 @@
+{object, key=explt_invisibility, name=Invisibility Exploit, parent=!_limbo
+    {x_invisibility
+        {message
+            output={@
+
+The invisibility exploit has been loaded into your core functionality.
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[self]parent = [player]
+            }
+            {output={@
+
+I'm not sure what you're talking about.
+
+            }
+        }
+    }
+
+
+
+    {input, syntax=[tplt_syntax]((x_invisibility_explt))
+        {act, logic=x_invisibility, tags=!_type|self }
+
+        {logic
+            logic={@
+                ?[self]parent = [player]
+            }
+            output={@
+
+What are you trying to examine?
+
+            }
+        }
+    }
+}

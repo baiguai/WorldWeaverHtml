@@ -1,7 +1,14 @@
-{macro, key=shell_alrm, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l }
+{macro, key=girl, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l }
+
+{macro, key=, output= }
+{macro, key=Tests, output= }
+
+{macro, key=tst_expt, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|test invisibility exploit }
 
 {macro, key=, output= }
 
+{macro, key=expt, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l }
+{macro, key=shellspace_port, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l }
 {macro, key=alarm, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|stats }
 {macro, key=closet_sec, output=l|~|s|~|l|~|s|~|l|~|s|~|l|~|aphalion|~|aphelion|~|l|~|x android|~|x room|~|turn lights on|~|x android|~|turn light off|~|l|~|e|~|l }
 {macro, key=bath_mast, output=l|~|s|~|l|~|s|~|l|~|w|~|l }
