@@ -58,6 +58,10 @@ You hear synthesizer music coming from... somewhere.
 
 
     {input, syntax=[tplt_syntax]((go_west))
+        // If the player hasn't completely interacted with Itera
+        // they lose out on their next mission - this is MAJOR
+        // and the game will be VERY difficult for them.
+        {set, logic=[itera]parent, output=!_limbo }
         {move, logic=hrbr_port, tags=[player]
             output={@
 
@@ -68,8 +72,22 @@ You enter the Harbor Port.
     }
 
     {input, syntax=[tplt_syntax]((go_south))
-        {set, logic=[itera]((topic)), output=harbor }
-        {move, logic=harbor, tags=itera }
+        {move, logic=harbor, tags=itera
+            {logic
+                logic={@
+                    ?[itera]((have_met)) = 'true'
+                    and
+                    ?[itera]parent != '!_limbo'
+                }
+            }
+        }
+        {set, logic=[itera]((topic)), output=harbor
+            {logic
+                logic={@
+                    ?[itera]((have_met)) = 'true'
+                }
+            }
+        }
         {move, logic=harbor, tags=[player]
             output={@
 
@@ -84,9 +102,20 @@ You go south toward the harbor.
     
     {dev_note, tags=Testing, active=true
         output={@
-[ ] : Room
-[ ] : Look
-[ ] : Story
+[x] : Room
+[x] : Look
+[x] : Story
+[x] : Itera
+>   [x] : South
+>   [x] : South, north, south
+>   [x] : South, north, x girl, south
+>   [x] : X girl, south
+>   [x] : X girl, south, north, south
+>   [x] : X girl, west, east
+>   [x] : X girl, south, north, west, east
+>   [x] : X girl, west, east, south
+>   [x] : X girl, west, east, south, north
+>   [x] : X girl, west, east, south, north, south
 
 [ ] : Navigation
         }

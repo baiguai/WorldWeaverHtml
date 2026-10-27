@@ -795,12 +795,12 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div class="selected">Invisibility Exploit</div><div>Bedroom</div><div>Kitchen</div></div>
+                <div class="search-results" id="searchList"><div class="selected">Bedroom</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"><div class="selected">Harbor Streets</div></div>
+                <div class="search-results" id="linkSearchList"><div class="selected">Clarenze</div><div>Itera</div><div>Bedroom</div><div>Harbor Streets</div></div>
             </div>
 
             <div class="search-dialog" id="helpDialogUnified" style="display: none;">
@@ -809,9 +809,9 @@
                 <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
             </div>
 
-            <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
+            <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: block;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
+                <div id="linksList"><a href="#" data-node-id="ovriq3on" class="">Itera</a><a href="#" data-node-id="l6b3cwr9" class="selected">Clarenze</a></div>
             </div>
 
             <div id="marksDialog" style="display: none;">
@@ -844,7 +844,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Harbor Streets</div><div>Harbor Port</div><div class="selected" style="background: var(--sel-bg);">Itera</div><div>Screens</div><div>Invisibility Exploit</div><div>House Alarm</div><div>Theme Notes</div><div>Search Results: #todo</div><div>Bedroom</div><div>Office</div><div>Hall</div><div>Garage</div><div>Kitchen</div><div>Living Room</div><div>test</div><div>Who is Xavier?</div><div>Who is Perihelion?</div><div>Overview</div></div>
+                    <div id="historyList"><div>Clarenze</div><div class="selected" style="background: var(--sel-bg);">The Harbor</div><div>Harbor Streets</div><div>Bedroom</div><div>Itera</div><div>Harbor Port</div><div>Theme Notes</div><div>Xavier</div><div>Your Father</div><div>Who is Xavier?</div><div>Who is Perihelion?</div><div>Overview</div><div>Hall</div><div>Office</div><div>Garage</div><div>Kitchen</div><div>Master Bedroom</div><div>Screens</div><div>Invisibility Exploit</div><div>House Alarm</div><div>Search Results: #todo</div><div>Living Room</div><div>test</div></div>
                 </div>
             </div>
 
@@ -912,15 +912,15 @@
             </div>
             <input type="file" id="themeEditorFilePicker" accept=".json" style="display:none;">
 
-            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Overview</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Perihelion?</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Xavier?</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Puzzle Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">People</span></div><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Clarenze</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Itera</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Your Father</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Xavier</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Rooms</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Meat Space</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">House</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Bedroom</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Hall</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Office</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Garage</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Kitchen</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Master Bedroom</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Living Room</span></div></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Shellspace</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor Port</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Screens</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Harbor Streets</span></div></li></ul></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
+            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Overview</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Perihelion?</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Who is Xavier?</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Puzzle Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">People</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Clarenze</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Itera</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Your Father</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Xavier</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Rooms</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Meat Space</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">House</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Bedroom</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Hall</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Office</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Garage</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Kitchen</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Master Bedroom</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Living Room</span></div></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Shellspace</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor Port</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Screens</span></div></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Harbor Streets</span></div></li><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">The Harbor</span></div></li></ul></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
-                    <span class="pill" id="mode" style="display: block;">NORMAL</span>
+                    <span class="pill" id="mode" style="display: block;">TREE</span>
                     <span class="pill" id="kind">NOTE</span>
-                    <span class="dim" id="path">/People</span>
-                    <span class="pill" id="msg">Saved successfully</span>
+                    <span class="dim" id="path">/Rooms/Shellspace/Harbor</span>
+                    <span class="pill" id="msg"></span>
                 </div>
-                <textarea id="editorArea" spellcheck="false" class="normal-mode"></textarea>
+                <textarea id="editorArea" spellcheck="false" class="" readonly="readonly"></textarea>
                 <div id="blockOverlay"></div>
             </section>
             </div>
@@ -997,14 +997,14 @@
       {
         "id": "l6b3cwr9",
         "title": "Clarenze",
-        "content": "Clarenze\n\nIn the basement of the Seidyne building.",
+        "content": "Clarenze\n\nIn the basement of the Seidyne building.\nIf the player gives him the R3dF0x1 password, he can get into your father's hack.\n\n#todo\nWhat does the hack do?",
         "children": [],
         "expanded": true
       },
       {
         "id": "ovriq3on",
         "title": "Itera",
-        "content": "Itera\n\nThe player meets her in the _Harbor Streets_.\nIF the player goes with her, she gives them their first mission in Shellspace.\n\n#todo\nWhat is this mission?",
+        "content": "Itera\n\nThe player meets her in the _Harbor Streets_.\nIF the player goes with her, she gives them their first mission in Shellspace.\n\nFind Clarenze",
         "children": [],
         "expanded": false
       },
@@ -1043,7 +1043,7 @@
               {
                 "id": "cpvyfnp2",
                 "title": "Bedroom",
-                "content": "Bedroom\n\nPlot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n* You get a call from your dad, alarm code is:\n    2355",
+                "content": "Bedroom\n\nPlot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    * Give this to Clarenze in Shellspace.\n* You get a call from your dad, alarm code is:\n    2355",
                 "children": [],
                 "expanded": false
               },
@@ -1123,7 +1123,14 @@
               {
                 "id": "r0x909nq",
                 "title": "Harbor Streets",
-                "content": "Harbor Streets",
+                "content": "Harbor Streets\n\nIn this location the player meets _Itera_ however - if they don't fully\ninteract with her - that is a big deal!\n\nIf they don't do 'x girl', then follow her south, and 'x girl' again,\nthey don't learn about Clarenze, and don't get the mission to find him.\n\nSo they won't know how to use the R3dF0x1 password.",
+                "children": [],
+                "expanded": true
+              },
+              {
+                "id": "j6aaugwd",
+                "title": "The Harbor",
+                "content": "The Harbor\n\nHere _Itera_ gives the player a mission:\n\nFind _Clarenze_.",
                 "children": [],
                 "expanded": true
               }
@@ -1159,10 +1166,6 @@
         "title": "Search Results: #todo"
     },
     {
-        "id": "b3f4gryz",
-        "title": "Theme Notes"
-    },
-    {
         "id": "lqh5vp1u",
         "title": "House Alarm"
     },
@@ -1173,14 +1176,6 @@
     {
         "id": "ptrg1ren",
         "title": "Screens"
-    },
-    {
-        "id": "sfd5dmbq",
-        "title": "Harbor Port"
-    },
-    {
-        "id": "r0x909nq",
-        "title": "Harbor Streets"
     },
     {
         "id": "2krv0jt5",
@@ -1203,10 +1198,6 @@
         "title": "Hall"
     },
     {
-        "id": "cpvyfnp2",
-        "title": "Bedroom"
-    },
-    {
         "id": "jfbvztvu",
         "title": "Overview"
     },
@@ -1219,10 +1210,6 @@
         "title": "Who is Xavier?"
     },
     {
-        "id": "ovriq3on",
-        "title": "Itera"
-    },
-    {
         "id": "axorgnzp",
         "title": "Your Father"
     },
@@ -1231,8 +1218,32 @@
         "title": "Xavier"
     },
     {
+        "id": "b3f4gryz",
+        "title": "Theme Notes"
+    },
+    {
+        "id": "sfd5dmbq",
+        "title": "Harbor Port"
+    },
+    {
+        "id": "ovriq3on",
+        "title": "Itera"
+    },
+    {
+        "id": "cpvyfnp2",
+        "title": "Bedroom"
+    },
+    {
+        "id": "r0x909nq",
+        "title": "Harbor Streets"
+    },
+    {
         "id": "l6b3cwr9",
         "title": "Clarenze"
+    },
+    {
+        "id": "j6aaugwd",
+        "title": "The Harbor"
     }
 ];
 

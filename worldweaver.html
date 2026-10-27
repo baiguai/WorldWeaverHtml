@@ -1581,10 +1581,9 @@
 
                 while (startPos >= 0)
                 {
-                    // endPos = output.LastIndexOf("</?>") + 3;
                     endPos = getEndPos(output, startPos) + 4;
                     let replaceBlock = output.substring(startPos, endPos);
-                    let lgcBlock = replaceBlock.substring(2, replaceBlock.length - 5);
+                    let lgcBlock = replaceBlock.substring(2, replaceBlock.length - 4);
                     let newValue = "";
                     const arr = splitWithLimit(lgcBlock, "?>", 2);
                     if (arr.length != 2)

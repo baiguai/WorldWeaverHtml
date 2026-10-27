@@ -1,4 +1,6 @@
 {npc, key=itera, name=Itera, parent=hrbr_streets
+    {attrib, output=false, tags=have_met }
+    {attrib, output=false, tags=moved }
     {attrib, output=intro, tags=topic }
 
     {story
@@ -27,12 +29,41 @@
 {inject, logic=./convers/x_harbor.inj }
             }
         }
+
+        {set, logic=[self]((topic)), output=agree
+            {logic
+                logic={@
+                    ?[self]parent = 'harbor'
+                }
+            }
+        }
+    }
+
+    {agree
+        {message
+            output={@
+{inject, logic=./convers/x_agree.inj }
+            }
+        }
+
+        {set, logic=[self]parent, output=!_limbo }
+    }
+
+    {refuse
+        {message
+            output={@
+{inject, logic=./convers/x_refuse.inj }
+            }
+        }
+
+        {set, logic=[self]parent, output=!_limbo }
     }
 
 
 
 
     {input, syntax=[tplt_syntax]((x_girl))
+        {set, logic=[self]((have_met)), output=true }
         {act, logic=x_girl, tags=!_type|room }
     }
 }

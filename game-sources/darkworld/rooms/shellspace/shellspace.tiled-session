@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
+    "activeFile": "shellspace.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
@@ -538,7 +538,7 @@
             "selectedLayer": 7,
             "viewCenter": {
                 "x": -248,
-                "y": 555.5
+                "y": 195.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -576,14 +576,14 @@
         },
         "shellspace.tmx": {
             "expandedObjectLayers": [
-                3,
-                2
+                2,
+                3
             ],
-            "scale": 0.75,
+            "scale": 0.33,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 514.6666666666667,
-                "y": -156.66666666666674
+                "x": 721.2121212121215,
+                "y": -192.4242424242425
             }
         },
         "shellspace.tmx#Main": {
@@ -599,15 +599,15 @@
     "map.orientation": "1",
     "openFiles": [
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx"
+        "shellspace.tmx"
     ],
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx",
         "shellspace.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx",
         "harbor/harbor_port/harbor_port.tmx",
         "/home/baiguai/Documents/darkworld/tiles.tsx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/hotel.tmx",

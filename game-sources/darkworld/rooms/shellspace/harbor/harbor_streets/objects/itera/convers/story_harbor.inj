@@ -1,5 +1,8 @@
-<?[self]((topic)) = 'harbor'?>
+<?[self]((moved)) = 'false' and [self]((topic)) = 'harbor'?>
 The girl follows you.
 "My name is Itera by the way."
 You tell her that your name is <<[player]name>>.
+</?>
+<?[self]((moved)) = 'true' and [self]((topic)) = 'harbor'?>
+Itera is there.
 </?>
