@@ -538,7 +538,7 @@
             "selectedLayer": 7,
             "viewCenter": {
                 "x": -248,
-                "y": 195.5
+                "y": 315.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -604,6 +604,7 @@
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/tavern.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "shellspace.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
@@ -614,8 +615,7 @@
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/home.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/room.tmx",
         "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/desk.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/bookshelf.tmx",
-        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/cd.tmx"
+        "/home/baiguai/Documents/darkworld/rooms/meat_space/home/bedroom/objects/bookshelf.tmx"
     ],
     "tileset.embedInMap": true,
     "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",

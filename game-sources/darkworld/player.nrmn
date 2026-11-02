@@ -6,7 +6,9 @@
     {attrib, output=[rand:<<[self]((stats_dice))>>|4], tags=armor_dice }
     {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=strength_dice }
     {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=int_dice }
-    {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=cunning_dice }
+    {attrib, output=[rand:<<[self]((stats_dice))>>|5], tags=psych_dice }
+    {attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=find_dice }
+    {attrib, output=[rand:<<[self]((stats_dice))>>|6], tags=hack_dice }
     {attrib, output=[rand:<<[self]((money_dice))>>|9], tags=credits_dice }
 
     {attrib, name=Life, output=[roll:(8)<<[self]((life_dice))>>d6], tags=stats|!_life }
@@ -15,7 +17,9 @@
     {attrib, name=Hit Score, output=init_[self]((armor)), tags=!_hitscore }
     {attrib, name=Strength, output=[roll:(6)<<[self]((strength_dice))>>d6], tags=stats|strength }
     {attrib, name=Intelligence, output=[roll:(6)<<[self]((int_dice))>>d6], tags=stats|intelligence }
-    {attrib, name=Cunning, output=[roll:(6)<<[self]((cunning_dice))>>d6], tags=stats|cunning }
+    {attrib, name=Psychology, output=[roll:(6)<<[self]((psych_dice))>>d6], tags=stats|psychology }
+    {attrib, name=Find Hidden, output=[roll:(7)<<[self]((find_dice))>>d6], tags=stats|find }
+    {attrib, name=Hacking, output=[roll:(7)<<[self]((hack_dice))>>d6], tags=stats|hack }
     {attrib, name=Credits, output=[roll:<<[self]((credits_dice))>>d8], tags=stats|credits }
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
