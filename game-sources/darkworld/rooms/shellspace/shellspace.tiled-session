@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "shellspace.tmx",
+    "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
@@ -538,7 +538,7 @@
             "selectedLayer": 7,
             "viewCenter": {
                 "x": -248,
-                "y": 315.5
+                "y": 795.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -576,14 +576,14 @@
         },
         "shellspace.tmx": {
             "expandedObjectLayers": [
-                2,
-                3
+                3,
+                2
             ],
-            "scale": 0.33,
+            "scale": 0.75,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 721.2121212121215,
-                "y": -192.4242424242425
+                "x": 512,
+                "y": -256.66666666666663
             }
         },
         "shellspace.tmx#Main": {
@@ -604,9 +604,9 @@
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/tavern.tmx",
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "shellspace.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/tavern.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx",
         "harbor/harbor_port/harbor_port.tmx",

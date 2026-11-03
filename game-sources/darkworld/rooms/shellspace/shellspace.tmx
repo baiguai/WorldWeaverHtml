@@ -268,13 +268,13 @@
    <text wrap="1">Ven Street</text>
   </object>
   <object id="9" name="Harbor Promenade" x="-896" y="128" width="384" height="32"/>
-  <object id="10" x="448" y="-320" width="320" height="352"/>
-  <object id="11" x="448" y="-576">
+  <object id="10" name="Club Malloc" x="448" y="-320" width="320" height="352"/>
+  <object id="11" name="Hardware Etc" x="448" y="-576">
    <polygon points="0,0 192,0 288,96 512,96 512,192 0,192"/>
   </object>
-  <object id="12" x="448" y="-800" width="288" height="160"/>
+  <object id="12" name="Shell Bank - Speakeasy" x="448" y="-800" width="288" height="160"/>
   <object id="13" x="800" y="-800" width="448" height="288"/>
-  <object id="14" x="0" y="-608" width="320" height="352"/>
+  <object id="14" name="Harbor Hotel" x="0" y="-608" width="320" height="352"/>
   <object id="16" x="320" y="-672">
    <polygon points="0,0 -320,0 -320,-160 -128,-160 -128,-288 0,-288"/>
   </object>

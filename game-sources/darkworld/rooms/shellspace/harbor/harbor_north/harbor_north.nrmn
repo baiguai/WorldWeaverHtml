@@ -2,6 +2,9 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
+West: Harbor Hotel
+North East: Hardware Etc
+East: Club Malloc
 South: harbor streets
         }
     }
@@ -14,7 +17,7 @@ South: harbor streets
         {message
             output={@
 
-...
+You see a club to the east, a bank to the north east, and a hotel to the west.
 
             }
         }
@@ -24,7 +27,16 @@ South: harbor streets
         {message
             output={@
 
-...
+East of where you are you hear throbbing electronic music. It is coming from a 
+building that has a neon sign mounted on it that says:
+
+**Club Malloc**
+
+North of that building, in the north east you see a large bank building
+with a sign that reads: **Hardware Etc**.
+
+On the west side of the street you see another building with a sign that
+reads: **Harbor Hotel**.
 
             }
         }
