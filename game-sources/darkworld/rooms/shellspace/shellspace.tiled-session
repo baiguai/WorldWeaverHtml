@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
+    "activeFile": "shellspace.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
@@ -582,8 +582,8 @@
             "scale": 0.75,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 512,
-                "y": -256.66666666666663
+                "x": 1682.6666666666667,
+                "y": -426
             }
         },
         "shellspace.tmx#Main": {
@@ -604,8 +604,8 @@
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
-        "shellspace.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
+        "shellspace.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/tavern/tavern.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/hotel/occult_room.tmx",

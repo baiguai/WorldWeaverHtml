@@ -63,6 +63,16 @@ You go south to where the harbor port is.
         }
     }
 
+    {input, syntax=[tplt((club))
+        {move, logic=club_malloc, tags=[player]
+            output={@
+
+You enter the club.
+
+            }
+        }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
