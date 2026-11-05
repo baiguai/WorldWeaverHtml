@@ -2,7 +2,7 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
-...
+West: exit the club
         }
     }
 
@@ -39,6 +39,19 @@
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=hrbr_north, tags=[player]
+            output={@
+
+You exit the club.
+
+            }
+        }
+    }
+
     
     
     {dev_note, tags=Testing, active=true

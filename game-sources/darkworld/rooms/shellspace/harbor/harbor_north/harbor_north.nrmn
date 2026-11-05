@@ -5,7 +5,7 @@
 West: Harbor Hotel
 North East: Hardware Etc
 East: Club Malloc
-South: harbor streets
+South: Harbor Streets
         }
     }
 
@@ -17,7 +17,7 @@ South: harbor streets
         {message
             output={@
 
-You see a club to the east, a bank to the north east, and a hotel to the west.
+You see a club to the east, a hardware store to the north east, and a hotel to the west.
 
             }
         }
@@ -63,7 +63,7 @@ You go south to where the harbor port is.
         }
     }
 
-    {input, syntax=[tplt((club))
+    {input, syntax=[tplt_syntax]((go_east))
         {move, logic=club_malloc, tags=[player]
             output={@
 

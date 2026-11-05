@@ -20,6 +20,12 @@
     {attrib, name=Psychology, output=[roll:(6)<<[self]((psych_dice))>>d6], tags=stats|psychology }
     {attrib, name=Find Hidden, output=[roll:(7)<<[self]((find_dice))>>d6], tags=stats|find }
     {attrib, name=Hacking, output=[roll:(7)<<[self]((hack_dice))>>d6], tags=stats|hack }
+
+    {attrib, name=Cybernetic Eyes, output=false, tags=stats|cyb_eyes }
+    {attrib, name=Cybernetic Torso, output=false, tags=stats|cyb_torso }
+    {attrib, name=Cybernetic Arms, output=false, tags=stats|cyb_arms }
+    {attrib, name=Cybernetic Legs, output=false, tags=stats|cyb_legs }
+
     {attrib, name=Credits, output=[roll:<<[self]((credits_dice))>>d8], tags=stats|credits }
     {attrib, name=Armed Weapon, output=, tags=!_armed|stats|name }
     {attrib, output=0, tags=!_damageadj }
