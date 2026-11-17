@@ -54,6 +54,44 @@
     // -------------------------------------------------------------------------
 
 
+    // Exploit Logic
+    // -------------------------------------------------------------------------
+    {act
+        {set, logic=[explt_invisibility]((active_rounds)), output=++ }
+
+        {logic
+            logic={@
+                ?[explt_invisibility]parent = [player]
+                and
+                ?[explt_invisibility]((active)) = 'true'
+                and
+                ?[explt_invisibility]((active_rounds)) < '5'
+            }
+        }
+    }
+    {act
+        {set, logic=[explt_invisibility]((active_rounds)), output=0 }
+        {set, logic=[explt_invisibility]((active)), output=false }
+
+        {message
+            output={@
+
+The invisibility exploit shuts down.
+
+            }
+        }
+
+        {logic
+            logic={@
+                ?[explt_invisibility]parent = [player]
+                and
+                ?[explt_invisibility]((active_rounds)) >= '5'
+            }
+        }
+    }
+    // -------------------------------------------------------------------------
+
+
     // Time Passage
     // -------------------------------------------------------------------------
     {input, syntax=(time)

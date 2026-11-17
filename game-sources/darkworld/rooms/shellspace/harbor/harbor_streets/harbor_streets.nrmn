@@ -3,6 +3,7 @@
     {attrib, tags=navigation
         output={@
 West: enter the Harbor Port
+North: into the heart of the city
 South: harbor
         }
     }
@@ -92,6 +93,16 @@ You enter the Harbor Port.
             output={@
 
 You go south toward the harbor.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_north))
+        {move, logic=hrbr_north, tags=[player]
+            output={
+
+You travel north into the heart of the city.
 
             }
         }

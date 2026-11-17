@@ -1,0 +1,66 @@
+{room, key=club_malloc,g, name=Club Malloc
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West: exit the club
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+...
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+...
+
+            }
+        }
+
+        {logic, name=Club Malloc tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    
+    {input, syntax=[tplt_syntax]((go_west))
+        {move, logic=hrbr_north, tags=[player]
+            output={@
+
+You exit the club.
+
+            }
+        }
+    }
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

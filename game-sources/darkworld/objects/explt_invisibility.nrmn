@@ -1,9 +1,15 @@
 {object, key=explt_invisibility, name=Invisibility Exploit, parent=!_limbo
+    {attrib, output=false, tags=active }
+    {attrib, output=0, tags=active_rounds }
+
     {x_invisibility
         {message
             output={@
 
 The invisibility exploit has been loaded into your core functionality.
+To use it:
+
+**inv_exp**
 
             }
         }
@@ -20,6 +26,17 @@ I'm not sure what you're talking about.
         }
     }
 
+    {use_invisibility
+        {message
+            output={@
+
+You activate the invisibility exploit.
+
+            }
+        }
+    }
+
+
 
 
     {input, syntax=[tplt_syntax]((x_invisibility_explt))
@@ -32,6 +49,22 @@ I'm not sure what you're talking about.
             output={@
 
 What are you trying to examine?
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((use_inv_explt))
+        {act, logic=use_invisibility, tags=!_type|self }
+        {set, logic=[self]((active)), output=true }
+
+        {logic
+            logic={@
+                ?[self]parent = [player]
+            }
+            output={@
+
+What are you trying to do?
 
             }
         }
