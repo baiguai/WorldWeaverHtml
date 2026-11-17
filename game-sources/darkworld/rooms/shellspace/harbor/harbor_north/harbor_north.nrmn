@@ -67,7 +67,7 @@ You go south to where the harbor port is.
         {move, logic=club_malloc, tags=[player]
             output={@
 
-You enter the club.
+You step into the dark pulsing club.
 
             }
         }
