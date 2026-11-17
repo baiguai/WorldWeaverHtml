@@ -1,4 +1,4 @@
-<!DOCTYPE html><html style="--bg: #000000; --fg: #d5e5ff; --muted: #555555; --accent: #00d1b2; --danger: #ff5577; --sel-bg: #111827; --btn-border: #555555; --border: #222222; --border-radius: 4px; --pill-radius: 0px; --vim-cursor: #1f4676; --insert-cursor: #b8e3ff; --input-bg: #111827; --input-fg: #d5e5ff; --btn-bg: #111827; --btn-fg: #d5e5ff; --dim: #555555; --grid-color: #230f3a;"><head>
+<!DOCTYPE html><html style="--bg: #000000; --fg: #d5e5ff; --muted: #555555; --accent: #00d1b2; --danger: #ff5577; --sel-bg: #111827; --btn-border: #555555; --border: #222222; --border-radius: 4px; --pill-radius: 0px; --vim-cursor: #1f4676; --insert-cursor: #b8e3ff; --input-bg: #111827; --input-fg: #d5e5ff; --btn-bg: #111827; --btn-fg: #d5e5ff; --dim: #555555;"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
 <title>WorldWeaver Help</title>
@@ -423,6 +423,53 @@
                     display: block;
                 }
 
+                /* Link Tree Dialog */
+                #linkTreeList .lt-row {
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    white-space: nowrap;
+                }
+                #linkTreeList .lt-twisty {
+                    width: 12px;
+                    flex-shrink: 0;
+                    color: var(--muted);
+                    text-align: center;
+                }
+                #linkTreeList .lt-title {
+                    flex: 1;
+                    min-width: 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                #linkTreeDialog .lt-hint {
+                    color: var(--muted);
+                    font-size: 0.9em;
+                    margin: 8px 0 0;
+                }
+
+                /* Dead Links Dialog */
+                #missingLinksList .ml-row {
+                    display: flex;
+                    align-items: baseline;
+                    gap: 8px;
+                    white-space: nowrap;
+                }
+                #missingLinksList .ml-title {
+                    color: var(--danger);
+                    flex-shrink: 0;
+                }
+                #missingLinksList .ml-source {
+                    color: var(--muted);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                #missingLinksDialog .ml-hint {
+                    color: var(--muted);
+                    font-size: 0.9em;
+                    margin: 8px 0 0;
+                }
+
                 /* Options Dialog */
                 #optionsDialog {
                     position: fixed;
@@ -795,7 +842,7 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div>Saving Games</div><div>Interactive Fiction Game Play Help</div><div>Creating a REGEX Library</div><div>SciFi Regex Library</div><div>Input Element</div><div>Object Element</div><div>RolePlaying Dice Rolls</div><div>Introduction</div><div>Adding the Regular Expressions</div><div class="selected">Taking the Spear</div><div>Dropping the Spear</div><div>Lazer Gun Example</div><div>The Object to be Moved</div><div>Syntax With Logic</div><div>Marking Elements as Tested</div><div>Takeable Object</div><div>Takeable Object</div></div>
+                <div class="search-results" id="searchList"><div class="selected">Other Options</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
@@ -811,7 +858,20 @@
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="gnrdfdy3" class="">worldweaver.html</a><a href="#" data-node-id="xr6pg6cl" class="selected">Pasting the DB with Vim</a></div>
+                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
+            </div>
+
+            <div id="linkTreeDialog" class="search-dialog" style="display: none;">
+                <h3 style="margin: 0 0 8px;">Link Tree</h3>
+                <input id="linkTreeFilter" type="text" placeholder="Filter link tree..." style="display: none;">
+                <div id="linkTreeList" class="search-results"></div>
+                <p class="lt-hint">↑↓ Navigate • / Filter • Enter Open • Esc Close</p>
+            </div>
+
+            <div id="missingLinksDialog" class="search-dialog" style="display: none;">
+                <h3 style="margin: 0 0 8px;">Dead Intra-Document Links</h3>
+                <div id="missingLinksList" class="search-results"><div class="ml-row selected"><span class="ml-title">"Downloading WorldWeaverx"</span><span class="ml-source">in Introduction (line 17)</span></div></div>
+                <p class="ml-hint">j/k Navigate • gg/G First/Last • Enter Open • Esc Close</p>
             </div>
 
             <div id="marksDialog" style="display: none;">
@@ -825,7 +885,7 @@
                 <p style="color:var(--dim); font-size:0.9em; margin-bottom:0;">↑↓ j/k Navigate • Enter Insert • Esc Cancel</p>
             </div>
 
-            <div id="replaceDialog" style="display: none;">
+            <div id="replaceDialog" style="display: none; top: 15%; left: 5px; width: 230px;">
                 <h3>Find<span id="ttlReplace"> &amp; Replace<span></span></span></h3>
                 <label id="lblFind" for="searchText">Find</label>
                 <input id="searchText" type="text">
@@ -844,7 +904,7 @@
             <div id="historyDialog" style="display: none;">
                 <h3>History</h3>
                 <div class="history-content">
-                    <div id="historyList"><div>Introduction</div><div class="selected" style="background: var(--sel-bg);">Taking the Spear</div><div>Injection Element</div><div>Global Element</div><div>importer.html</div><div>Navigation Injection</div><div>Look Injection</div><div>Injections Cheat Sheet</div><div>Introduction</div><div>Pasting the DB with Vim</div><div>worldweaver.html</div><div>Downloading WorldWeaver</div><div>Quick Links</div><div>Using This Help System</div><div>regex.html</div><div>vummel.html</div><div>Dataloader</div><div>Visualizing Your Game</div><div>Developer's Cheat Sheet</div><div>Inspectable Object Injection</div><div>Takeable Object</div><div>Markdown Formatting</div><div>Introduction to Debugging</div><div>Checking Attributes - Quotes</div><div>Checking Attributes - Typos</div><div>Get Children Error</div><div>Referencing Elements</div><div>Repeating Messages</div><div>Introduction to Fighting in WorldWeaver</div><div>Object vs Custom Element Messages</div></div>
+                    <div id="historyList"></div>
                 </div>
             </div>
 
@@ -872,9 +932,9 @@
                 <p>Current Version: <span id="versionNumber"></span></p>
             </div>
 
-            <div id="themePickerDialog" class="search-dialog" style="display: none; width: 350px; max-width: 90vw;">
+            <div id="themePickerDialog" class="search-dialog" style="display:none;width:350px;max-width:90vw;">
                 <h3>Select Theme</h3>
-                <div id="themeList" class="search-results"><div>default-theme</div><div>default-with-grid</div><div class="selected">blued</div><div>dim-console</div><div>monokai-theme</div><div>monokai-pro-theme</div><div>dracula-theme</div><div>nord-theme</div><div>nord-light-theme</div><div>solarized-dark-theme</div><div>solarized-light-theme</div><div>one-dark-theme</div><div>vscode-dark-theme</div><div>github-dark-theme</div><div>github-light-theme</div><div>gruvbox-theme</div><div>gruvbox-dark-hard-theme</div><div>synthwave-theme</div><div>synthwave-with-grid</div><div>cyberpunk-theme</div><div>neon-theme</div><div>neon-nights-theme</div><div>matrix-theme</div><div>matrix-code-theme</div><div>terminal-green-theme</div><div>hacker-theme</div><div>hacker-terminal-theme</div><div>retro-arcade-theme</div><div>8-bit-theme</div><div>hard-square-theme</div><div>light-theme</div><div>minimalist-theme</div><div>deep-purple-theme</div><div>deep-blue-report-theme</div><div>deep-space-theme</div><div>deep-water-theme</div><div>deep-red-velvet-theme</div><div>charcoal-grey-theme</div><div>cool-grey-theme</div><div>dark-cyan-theme</div><div>dark-office-theme</div><div>dark-notepad-theme</div><div>dark-mode-simple-theme</div><div>digital-theme</div><div>desert-night-theme</div><div>cosmic-night-theme</div><div>cybernetic-stream-theme</div><div>quantum-realm-theme</div><div>stardust-dream-theme</div><div>stellar-void-theme</div><div>void-main-void</div><div>oceanic-next-theme</div><div>ocean-sunset-theme</div><div>blueprint-theme</div><div>forest-theme</div><div>forest-nymph-theme</div><div>evergreen-theme</div><div>steampunk-theme</div><div>indigo-ink-theme</div><div>inkwell-shadow-theme</div><div>inferno-theme</div><div>magic-midnight-theme</div><div>midnight-elegance-theme</div><div>haunted-manor-theme</div><div>misty-rose-theme</div><div>rose-pine-theme</div><div>abyss-notes-theme</div><div>amber-glow-theme</div><div>golden-hour-theme</div><div>sunset-ember-theme</div><div>vintage-theme</div><div>aged-paper-theme</div><div>coffee-stain-theme</div><div>kraft-paper-theme</div><div>legal-pad-theme</div><div>parchment-noir-theme</div><div>pink-bliss-theme</div><div>sakura-theme</div><div>sharp-theme</div><div>sharp-b&amp;w---barely-visible-borders-theme</div><div>sharp-b&amp;w---no-borders-theme</div><div>sharp-b&amp;w---normal-borders-theme</div><div>sophisticated-obsidian-theme</div><div>teal-dusk-theme</div><div>tomorrow-night-theme</div><div>typewriter-night-theme</div><div>vaporwave-theme</div><div>volcanic-ash-theme</div><div>warm-grey-theme</div><div>zombie-flesh-theme</div><div>the_darkness</div><div>corporate-slate-theme</div><div>lime-zest-theme</div><div>macchiato-theme</div><div>purple-haze-theme</div><div>visual-studio-theme</div><div>dragon's-breath-theme</div><div>enchanted-forest-theme</div><div>vampire's-kiss-theme</div><div>github-copilot-theme</div><div>hacker-theme</div></div>
+                <div id="themeList" class="search-results"></div>
                 <p style="color:var(--dim); font-size:0.9em;">↑↓ Navigate • Enter Apply • Esc Cancel</p>
             </div>
 
@@ -1135,7 +1195,7 @@
     {
       "id": "3cccheaq",
       "title": "Developer's Cheat Sheet",
-      "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\nElements\n    _Element Cheat Sheet_\n\nFields\n    _Element Fields Cheat Sheet_\n\nTags\n    _Special Tags Cheat Sheet_a\n\nExamples\n    _Scenario Examples_\n    _Tracking Game Development_\n    _Templates_\n\n\nAdvanced Topics\n    _Inline Logic_\n    _Introduction to Conversations_\n    _Introduction to Debugging_\n\n\n---- Other Tools ---------------------------------------------------------------\n\n_Admin Commands Cheat Sheet_\n\n\n\n\n\n#cheatsheet",
+      "content": "Developer's Cheat Sheet\n--------------------------------------------------------------------------------\n\nElements\n    _Element Cheat Sheet_\n\nFields\n    _Element Fields Cheat Sheet_\n\nTags\n    _Special Tags Cheat Sheet_a\n\nExamples\n    _Scenario Examples_\n    _Tracking Game Development_\n    _Templates_\n\n\nAdvanced Topics\n    _Inline Logic_\n    _Introduction to Conversations_\n    _Introduction to Debugging_\n    _Introduction to Passive Actions_\n\n\n---- Other Tools ---------------------------------------------------------------\n\n_Admin Commands Cheat Sheet_\n\n\n\n\n\n#cheatsheet",
       "children": [],
       "expanded": false
     },
@@ -1252,7 +1312,7 @@
         {
           "id": "9h9byll0",
           "title": "Logic Element",
-          "content": "Logic Element\n--------------------------------------------------------------------------------\n\n{logic\n    logic={@\n        ?[self]parent = [room]\n        and\n        ?[self]((parchment_moved)) = 'true'\n    }\n}\n\n\n-- Description --\nLogic Elements can be used to determine whether or not a specific Element\nshould be processed. This can be used with custom Elements like 'look' Elements\nor Input type Elements etc.\n\n-- Allowed Children --\n    logic\n    action\n    set\n    message (This is displayed if the logic check fails)\n\n-- Examples --\n\n--------------------------------------------------------------------------------\n\n{logic\n    logic={@\n        ?[self]((parchment_found)) = 'true'\n    }\n    output={@\nI'm not sure what you're trying to examine.\n    }\n}\n\n--------------------------------------------------------------------------------\n\n** Note **\nLogic Element can be used to run tests. These can serve as unit tests for your\ngame. For information on this refer to this article.\n\n\n--------------------------------------------------------------------------------\n#element",
+          "content": "Logic Element\n--------------------------------------------------------------------------------\n\n{logic\n    logic={@\n        ?[self]parent = [room]\n        and\n        ?[self]((parchment_moved)) = 'true'\n    }\n}\n\n\n-- Description --\nLogic Elements can be used to determine whether or not a specific Element\nshould be processed. This can be used with custom Elements like 'look' Elements\nor Input type Elements etc.\n\n-- Allowed Children --\n    logic\n    action\n    set\n    message (This is displayed if the logic check fails)\n\n-- Examples --\n\n--------------------------------------------------------------------------------\n\n{logic\n    logic={@\n        ?[self]((parchment_found)) = 'true'\n    }\n    output={@\nI'm not sure what you're trying to examine.\n    }\n}\n\n--------------------------------------------------------------------------------\n\n** Note **\nExplicit values - even numbers or boolean values must be wrapped in single\nquotes. Like:\n\n{logic\n    logic={@\n        ?[self]((trapped_rounds)) <= '5'\n    }\n    output={@\nYou are still trapped.\n    }\n}\n\n\n** Note **\nLogic Element can be used to run tests. These can serve as unit tests for your\ngame. For information on this refer to this article.\n\n\n--------------------------------------------------------------------------------\n#element",
           "children": [
           {
             "id": "4vlrf9wp",
@@ -2167,6 +2227,28 @@
       "content": "",
       "children": [
       {
+        "id": "7crlh4c0",
+        "title": "Passive Set",
+        "content": "",
+        "children": [
+        {
+          "id": "nhwpf4gl",
+          "title": "Introduction to Passive Actions",
+          "content": "Introduction to Passive Actions\n\nBefore diving into this topic, it is a good idea to have a working understanding\nof the _Global Element_.\n\nOne thing to bear in mind in regards to Elements that are 'fired', every\nfire-able Element within Global Elements will be processed every time the\nplayer issues a command. The amount of processing can add up. It is a good\nidea to keep global fire-able Elements to a minimum if possible.\n\nSee _Fire_\n\n\nPassive actions refers to Global Elements that will fire without the player's\ninput triggering them directly. They are basically Elements that fire every\nround of game play.\n\n\n\nConsider the following:\n\n{global, key=global01, parent=root\n    {act\n        {set, logic=[cloak_invis]((active_rounds)), output=++ }\n\n        {logic\n            logic={@\n                ?[cloak_invis]parent = [player]\n                and\n                ?[cloak_invis]((active)) = 'true'\n                and\n                ?[cloak_invis]((active_rounds)) < '5'\n            }\n        }\n    }\n    {act\n        {set, logic=[cloak_invis]((active_rounds)), output=0 }\n        {set, logic=[cloak_invis]((active)), output=false }\n\n        {message\n            output={@\n\nThe invisibility cloak wears off.\n\n            }\n        }\n\n        {logic\n            logic={@\n                ?[cloak_invis]parent = [player]\n                and\n                ?[cloak_invis]((active_rounds)) >= '5'\n            }\n        }\n    }\n}\n\n\n\nThose two Action Elements will fire ANY time the player issues a command -\nany command.",
+          "children": [],
+          "expanded": false
+        },
+        {
+          "id": "rrkytvhk",
+          "title": "Passive Action Examples",
+          "content": "Passive Action Examples\n\n[Time Passage]\n_Global Element Piece_",
+          "children": [],
+          "expanded": false
+        }
+        ],
+        "expanded": false
+      },
+      {
         "id": "w9q5p7ir",
         "title": "Object vs Custom Element Messages",
         "content": "Object vs Custom Element Messages\n--------------------------------------------------------------------------------\n\nLet's say you're building a room that has a table and four chairs in it.\nAnd on the table is a dagger.\n\nYou want the player to be able to pick up, drop, and use the dagger. However\nthe other Objects will be stationary - and unchanging in the game.\n\nIf an object isn't going to change in your game, why go through the complexity\nof making it an object? Simply define some inputs that will call custom\nElements, to display their messages.\n\nFor example, you could create an input for looking under the table. It would\ncall a custom Element, something like under_table.\n\nHowever, because you want the player to be able to interact with the dagger\nyou need to make it an Object so that you can move it to the Player, or if\ndropped, move it to the current Room.\n\n--------------------------------------------------------------------------------\n\nYou can also use objects as a means of changing the state of the game.\nSo that once the player has achieved a certain goal etc in the game, you can\nmove an object that serves as a descriptor of what they see and can do to\n_Limbo Tag_.\nThen they can no longer see these messages or perform the actions defined in\nthe Object.",
@@ -2969,6 +3051,29 @@
       "content": "CSS Colors\n--------------------------------------------------------------------------------\n\nThe easiest way to specify colors is using HEX values. You can use the tool\nbelow to pick colors and get their HEX values, and copy them to your clipboard.\n\nhttps://www.webfx.com/web-design/color-picker/325A7D",
       "children": [],
       "expanded": false
+    },
+    {
+      "id": "rier2orx",
+      "title": "Terminology",
+      "content": "",
+      "children": [
+      {
+        "id": "3sytzmmo",
+        "title": "F",
+        "content": "",
+        "children": [
+        {
+          "id": "472y3w29",
+          "title": "Fire",
+          "content": "Fire\n\nThe term 'fire' refers to the act of processing an element.\nFor example, if the player inputs a command and a specific Input Element\nhas a syntax that matches the player's input - that Element will 'fire'.",
+          "children": [],
+          "expanded": false
+        }
+        ],
+        "expanded": false
+      }
+      ],
+      "expanded": false
     }
     ],
     "expanded": false
@@ -3020,54 +3125,13 @@
   {"id": "3cccheaq",
    "caption": "Developer's Cheat Sheet",
    "path": "Developers / Developer's Cheat Sheet"
+  },
+  {"id": "nhwpf4gl",
+   "caption": "Introduction to Passive Actions",
+   "path": "Developers / Game Building Tips / Passive Set / Introduction to Passive Actions"
   }
 ];
             let historyStack = [
-  {"id": "izc6tz67",
-   "title": "Taking the Spear"
-  },
-  {"id": "4zofhbh4",
-   "title": "Adding Messages"
-  },
-  {"id": "42ohhfa6",
-   "title": "Introduction to Relative Syntax"
-  },
-  {"id": "unskmixi",
-   "title": "Relative Reference Syntax"
-  },
-  {"id": "ntrdbtd2",
-   "title": "Introduction to Special Relative References"
-  },
-  {"id": "lbv0dhsg",
-   "title": "The Player Reference"
-  },
-  {"id": "u4vm2l7m",
-   "title": "The Room Reference"
-  },
-  {"id": "65j2bw25",
-   "title": "The Self Reference"
-  },
-  {"id": "evl0e65z",
-   "title": "User Input Reference"
-  },
-  {"id": "vzq2adxm",
-   "title": "importer.html"
-  },
-  {"id": "9h9byll0",
-   "title": "Logic Element"
-  },
-  {"id": "l9yqtd9h",
-   "title": "Logic - Logic"
-  },
-  {"id": "ljumwj5c",
-   "title": "Marking Elements as Tested"
-  },
-  {"id": "1c8iaj2u",
-   "title": "Introduction to Tests"
-  },
-  {"id": "ynn5dohw",
-   "title": "Test Room"
-  },
   {"id": "sinjgjs9",
    "title": "Move Element"
   },
@@ -3083,17 +3147,11 @@
   {"id": "gd3l7b09",
    "title": "Quick Links"
   },
-  {"id": "3cccheaq",
-   "title": "Developer's Cheat Sheet"
-  },
   {"id": "0gwz86i8",
    "title": "Introduction to Conversations"
   },
   {"id": "0o2q3drd",
    "title": "Npc Example"
-  },
-  {"id": "sf11evb7",
-   "title": "Inline Logic"
   },
   {"id": "ucohh3n7",
    "title": "Message - Output"
@@ -3109,6 +3167,57 @@
   },
   {"id": "svcak5lr",
    "title": "Room Template with Test and Story"
+  },
+  {"id": "bv01nqgb",
+   "title": "Set Element"
+  },
+  {"id": "sf11evb7",
+   "title": "Inline Logic"
+  },
+  {"id": "z8lf5u2u",
+   "title": "Dynamic Values"
+  },
+  {"id": "neeixuuw",
+   "title": "Set - Output"
+  },
+  {"id": "1y2z9kpf",
+   "title": "Global Element"
+  },
+  {"id": "2z7245ps",
+   "title": "Action Element"
+  },
+  {"id": "4vlrf9wp",
+   "title": "Logic Comparison Operators"
+  },
+  {"id": "9h9byll0",
+   "title": "Logic Element"
+  },
+  {"id": "lyhipxxo",
+   "title": "CSS Colors"
+  },
+  {"id": "472y3w29",
+   "title": "Fire"
+  },
+  {"id": "3cccheaq",
+   "title": "Developer's Cheat Sheet"
+  },
+  {"id": "bv79am30",
+   "title": "Game Element Piece"
+  },
+  {"id": "hdcla1gx",
+   "title": "Introduction"
+  },
+  {"id": "nmsxz8hm",
+   "title": "Introduction to the Sample Game"
+  },
+  {"id": "nhwpf4gl",
+   "title": "Introduction to Passive Actions"
+  },
+  {"id": "rrkytvhk",
+   "title": "Passive Action Examples"
+  },
+  {"id": "tp0sm871",
+   "title": "Global Element Piece"
   }
 ];
 
@@ -3144,6 +3253,16 @@
             let selectedId = null;
             let editing = false;
             let showingLinks = false;
+            let showingLinkTree = false;
+            let linkTreeRoots = [];
+            let linkTreeVisible = [];
+            let linkTreeIndex = 0;
+            let linkTreeFilterActive = false;
+            let showingMissingLinks = false;
+            let missingLinkEntries = [];
+            let missingLinksIndex = 0;
+            let missingLinksPendingG = false;
+            let missingLinksGTimer = null;
             let showingMarks = false;
             let showingTags = false;
             let tagsList = [];
@@ -3321,6 +3440,11 @@
             const searchDialog = document.getElementById('searchDialog');
             const replaceDialog = document.getElementById('replaceDialog');
             const linksDialog = document.getElementById('linksDialog');
+            const linkTreeDialog = document.getElementById('linkTreeDialog');
+            const linkTreeFilterInput = document.getElementById('linkTreeFilter');
+            const linkTreeList = document.getElementById('linkTreeList');
+            const missingLinksDialog = document.getElementById('missingLinksDialog');
+            const missingLinksList = document.getElementById('missingLinksList');
             const marksDialog = document.getElementById('marksDialog');
             const historyDialog = document.getElementById('historyDialog');
             const undoDialog = document.getElementById('undoDialog');
@@ -3378,6 +3502,8 @@
                     { key: "\\", mode: "TREE", description: "Search, then create a root node with links to all results" },
                     { key: "f", mode: "TREE", description: "Find text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
+                    { key: "V", mode: "TREE", description: "Show the link tree dialog" },
+                    { key: "X", mode: "TREE", description: "Show dead intra-document links" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
                     { key: "gg", mode: "TREE", description: "Select first root tree node" },
                     { key: "G", mode: "TREE", description: "Select last root tree node" },
@@ -3448,8 +3574,9 @@
                     { key: "\\", mode: "TREE", description: "Search, then create a root node with links to all results" },
                     { key: "f", mode: "TREE", description: "Find/Replace text in the current note " },
                     { key: "#", mode: "TREE", description: "Show note links dialog" },
+                    { key: "V", mode: "TREE", description: "Show the link tree dialog" },
                     { key: "<", mode: "TREE", description: "Show the history dialog" },
-                    { key: "X", mode: "TREE", description: "Show broken note links" },
+                    { key: "X", mode: "TREE", description: "Show dead intra-document links" },
                     { key: "s", mode: "TREE", description: "Save the current file" },
                     { key: "S", mode: "TREE", description: "Save as" },
                     { key: "n", mode: "TREE", description: "Save via NodeJs saver server" },
@@ -3473,6 +3600,7 @@
                 
                 let helpVimEnabled = [
                     { key: "?", mode: "TREE", description: "Show this help" },
+                    { key: "V", mode: "TREE", description: "Show the link tree dialog" },
                     { key: "Escape", mode: "NORMAL", description: "Return to TREE mode" },
                     { key: "h", mode: "NORMAL", description: "Move cursor left" },
                     { key: "H", mode: "NORMAL", description: "Insert Header, See Options ^*^ is the row's text" },
@@ -3531,6 +3659,8 @@
                     { key: "y", mode: "VISUAL", description: "Copy selection" },
                     { key: "U", mode: "VISUAL", description: "Convert to uppercase" },
                     { key: "u", mode: "VISUAL", description: "Convert to lowercase" },
+                    { key: "*", mode: "VISUAL LINE", description: "Add bullet prefix to selected lines" },
+                    { key: "#", mode: "VISUAL LINE", description: "Number selected lines" },
                     { key: "Control+#", mode: "VISUAL", description: "Order numbered list" },
                     { key: "Control+;", mode: "VISUAL", description: "Create/Update table" },
                     { key: "Escape", mode: "VISUAL BLOCK", description: "Exit to NORMAL mode" },
@@ -4047,10 +4177,8 @@
                 renderMarksList(); // Call the global renderMarksList
             }
 
-            function openMissingLinksDialog() {
-                if (readOnly) return;
-                showingLinks = true;
-                const nodeLinkRegex = /(?:^|\s)_([^_]|[^_].*?[^_])_(?=\s|[.,!?;:)]|$)/g;
+            function collectMissingLinks() {
+                const nodeLinkRegex = /(?:^|\s|\()_([^_]|[^_].*?[^_])_(?=\s|[.,!?;:)]|$)/g;
 
                 // Gather all node titles (case-insensitive)
                 const allTitles = new Set();
@@ -4063,67 +4191,230 @@
                     }
                 })(treeData);
 
-                // Map of missingLink → set of nodes that reference it
-                const missingMap = new Map();
+                const entries = [];
 
                 (function walk(nodes) {
                     for (const n of nodes) {
                         if (n.content) {
-                            let seenInThisNode = new Set(); // avoid dupes within the same note
                             let match;
+                            nodeLinkRegex.lastIndex = 0;
                             while ((match = nodeLinkRegex.exec(n.content)) !== null) {
                                 const linkTitle = match[1].trim();
-                                if (!allTitles.has(linkTitle.toLowerCase())) {
-                                    if (!seenInThisNode.has(linkTitle.toLowerCase())) {
-                                        if (!missingMap.has(linkTitle)) {
-                                            missingMap.set(linkTitle, []);
-                                        }
-                                        missingMap.get(linkTitle).push({
-                                            nodeId: n.id,
-                                            nodeTitle: n.title || '(untitled)'
-                                        });
-                                        seenInThisNode.add(linkTitle.toLowerCase());
-                                    }
-                                }
+                                if (!linkTitle || allTitles.has(linkTitle.toLowerCase())) continue;
+
+                                const innerStart = match[0].indexOf('_');
+                                const innerEnd = match[0].lastIndexOf('_');
+                                const linkStart = match.index + innerStart;
+                                const linkLength = innerEnd - innerStart + 1;
+                                const line = n.content.slice(0, linkStart).split('\n').length - 1;
+
+                                entries.push({
+                                    missingTitle: linkTitle,
+                                    token: match[0].slice(innerStart, innerEnd + 1),
+                                    nodeId: n.id,
+                                    nodeTitle: n.title || '(untitled)',
+                                    line,
+                                    linkStart,
+                                    linkLength
+                                });
                             }
                         }
                         if (n.children && n.children.length) walk(n.children);
                     }
                 })(treeData);
 
-                const listEl = document.getElementById('linksList');
-                listEl.innerHTML = '';
+                return entries;
+            }
 
-                if (missingMap.size === 0) {
-                    listEl.innerHTML = '<p>No missing links found</p>';
-                } else {
-                    listEl.innerHTML = '<p>Missing Links:</p>';
-                    for (const [missingTitle, refs] of missingMap.entries()) {
-                        refs.forEach(ref => {
-                            const container = document.createElement('div');
+            function renderMissingLinks() {
+                missingLinksList.innerHTML = '';
 
-                            const link = document.createElement('a');
-                            link.href = '#';
-                            link.textContent = `"${missingTitle}" — linked from: ${ref.nodeTitle}`;
-                            link.style.color = 'var(--dim)';
-                            link.title = 'Missing link — click to go to note';
-
-                            // Clicking takes you to the referencing note
-                            link.addEventListener('click', (e) => {
-                                e.preventDefault();
-                                expandToNode(ref.nodeId);
-                                selectedId = ref.nodeId;
-                                closeLinksDialog();
-                                render();
-                            });
-
-                            container.appendChild(link);
-                            listEl.appendChild(container);
-                        });
-                    }
+                if (missingLinkEntries.length === 0) {
+                    const empty = document.createElement('div');
+                    empty.textContent = '(no dead intra-document links found)';
+                    empty.style.color = 'var(--muted)';
+                    missingLinksList.appendChild(empty);
+                    missingLinksIndex = 0;
+                    return;
                 }
 
-                linksDialog.style.display = 'block';
+                if (missingLinksIndex >= missingLinkEntries.length) {
+                    missingLinksIndex = missingLinkEntries.length - 1;
+                }
+                if (missingLinksIndex < 0) missingLinksIndex = 0;
+
+                const frag = document.createDocumentFragment();
+                missingLinkEntries.forEach((entry, i) => {
+                    const row = document.createElement('div');
+                    row.className = 'ml-row' + (i === missingLinksIndex ? ' selected' : '');
+
+                    const title = document.createElement('span');
+                    title.className = 'ml-title';
+                    title.textContent = `"${entry.missingTitle}"`;
+
+                    const source = document.createElement('span');
+                    source.className = 'ml-source';
+                    source.textContent = `in ${entry.nodeTitle} (line ${entry.line + 1})`;
+
+                    row.appendChild(title);
+                    row.appendChild(source);
+                    row.addEventListener('click', () => {
+                        missingLinksIndex = i;
+                        showSelectedMissingLink();
+                    });
+                    frag.appendChild(row);
+                });
+
+                missingLinksList.appendChild(frag);
+                const selected = missingLinksList.querySelector('.ml-row.selected');
+                if (selected) {
+                    requestAnimationFrame(() => selected.scrollIntoView({ block: 'nearest' }));
+                }
+            }
+
+            function openMissingLinksDialog() {
+                missingLinkEntries = collectMissingLinks();
+                missingLinksIndex = 0;
+                missingLinksPendingG = false;
+                showingMissingLinks = true;
+                missingLinksDialog.style.display = 'flex';
+                renderMissingLinks();
+            }
+
+            function closeMissingLinksDialog() {
+                showingMissingLinks = false;
+                missingLinksDialog.style.display = 'none';
+                missingLinksIndex = 0;
+                missingLinksPendingG = false;
+                if (missingLinksGTimer) {
+                    clearTimeout(missingLinksGTimer);
+                    missingLinksGTimer = null;
+                }
+            }
+
+            function moveMissingLinksSelection(delta) {
+                if (!missingLinkEntries.length) return;
+                missingLinksIndex = (missingLinksIndex + delta + missingLinkEntries.length) % missingLinkEntries.length;
+                renderMissingLinks();
+            }
+
+            function showSelectedMissingLink() {
+                const entry = missingLinkEntries[missingLinksIndex];
+                if (!entry) return;
+
+                closeMissingLinksDialog();
+                expandToNode(entry.nodeId);
+                selectedId = entry.nodeId;
+                editing = false;
+                mode_insert = false;
+                mode_visual = false;
+                mode_visual_block = false;
+                render();
+
+                const info = findNodeAndParentById(entry.nodeId);
+                if (!info) return;
+
+                const lines = safeRestoreText(info.node.content || '').split('\n');
+                const lineIndex = Math.max(0, Math.min(entry.line, lines.length - 1));
+                let position = 0;
+                for (let i = 0; i < lineIndex; i++) {
+                    position += lines[i].length + 1;
+                }
+
+                const needle = entry.token || `_${entry.missingTitle}_`;
+                const lineText = lines[lineIndex] || '';
+                let col = lineText.indexOf(needle);
+                if (col < 0) col = lineText.toLowerCase().indexOf(needle.toLowerCase());
+                const targetPos = position + (col >= 0 ? col : 0);
+
+                if (!readOnly) {
+                    editing = true;
+                    render();
+                }
+
+                editorArea.focus();
+                editorArea.setSelectionRange(targetPos, targetPos);
+                scrollToCursor();
+                if (!readOnly) setVimMode(false);
+            }
+
+            function handleMissingLinksKey(e) {
+                if (!showingMissingLinks) return;
+
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeMissingLinksDialog();
+                    return;
+                }
+
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showSelectedMissingLink();
+                    return;
+                }
+
+                if (e.key === 'ArrowDown' || e.key === 'j') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    missingLinksPendingG = false;
+                    moveMissingLinksSelection(1);
+                    return;
+                }
+
+                if (e.key === 'ArrowUp' || e.key === 'k') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    missingLinksPendingG = false;
+                    moveMissingLinksSelection(-1);
+                    return;
+                }
+
+                if (e.key === 'G' || e.key === 'End') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    missingLinksPendingG = false;
+                    if (missingLinkEntries.length) {
+                        missingLinksIndex = missingLinkEntries.length - 1;
+                        renderMissingLinks();
+                    }
+                    return;
+                }
+
+                if (e.key === 'Home') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    missingLinksPendingG = false;
+                    if (missingLinkEntries.length) {
+                        missingLinksIndex = 0;
+                        renderMissingLinks();
+                    }
+                    return;
+                }
+
+                if (e.key === 'g') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (missingLinksPendingG) {
+                        missingLinksPendingG = false;
+                        if (missingLinksGTimer) {
+                            clearTimeout(missingLinksGTimer);
+                            missingLinksGTimer = null;
+                        }
+                        if (missingLinkEntries.length) {
+                            missingLinksIndex = 0;
+                            renderMissingLinks();
+                        }
+                    } else {
+                        missingLinksPendingG = true;
+                        if (missingLinksGTimer) clearTimeout(missingLinksGTimer);
+                        missingLinksGTimer = setTimeout(() => {
+                            missingLinksPendingG = false;
+                            missingLinksGTimer = null;
+                        }, 600);
+                    }
+                }
             }
 
             function dialogOpen() {
@@ -4142,6 +4433,12 @@
                     openDialog = true;
                 }
                 if (linksDialog.style.display === "block") {
+                    openDialog = true;
+                }
+                if (showingLinkTree || linkTreeDialog.style.display === "flex") {
+                    openDialog = true;
+                }
+                if (showingMissingLinks || missingLinksDialog.style.display === "flex") {
                     openDialog = true;
                 }
                 if (marksDialog.style.display === "block") {
@@ -5340,6 +5637,20 @@
                             for (let i = 0; i < mode_repeat; i++) moveSpace();
                             keyPerformed();
                             return true;
+                        case '*':
+                            if (mode_visual_line) {
+                                applyVisualLinePrefix('*');
+                                keyPerformed();
+                                return true;
+                            }
+                            break;
+                        case '#':
+                            if (mode_visual_line) {
+                                applyVisualLinePrefix('#');
+                                keyPerformed();
+                                return true;
+                            }
+                            break;
                         case 'd': // Delete selection
                             doVisualDelete(e);
                             return true;
@@ -6537,6 +6848,301 @@
                 linksDialog.style.display = 'none';
             }
 
+            function collectLinkTreeTargets(content, titleMap) {
+                const targets = [];
+                const seen = new Set();
+                const text = safeRestoreText(content || '');
+
+                const addTitle = (title) => {
+                    const key = title.trim().toLowerCase();
+                    if (!key) return;
+                    const node = titleMap.get(key);
+                    if (node && !seen.has(node.id)) {
+                        seen.add(node.id);
+                        targets.push(node);
+                    }
+                };
+
+                let match;
+                const markdownNodeLinkRegex = /\[[^\]]+\]\s*\(\s*_([^_]+)_\s*\)/g;
+                while ((match = markdownNodeLinkRegex.exec(text)) !== null) {
+                    addTitle(match[1]);
+                }
+
+                const nodeLinkRegex = /(?:^|\s|\()_([^_]|[^_].*?[^_])_(?=\s|[.,!?;:)]|$)/g;
+                while ((match = nodeLinkRegex.exec(text)) !== null) {
+                    addTitle(match[1].trim().replace(/^_+|_+$/g, ''));
+                }
+
+                return targets;
+            }
+
+            function buildLinkTree() {
+                const titleMap = new Map();
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const key = (n.title || '').trim().toLowerCase();
+                        if (key && !titleMap.has(key)) titleMap.set(key, n);
+                        if (n.children && n.children.length) walk(n.children);
+                    }
+                })(treeData);
+
+                const outgoing = new Map();
+                const sources = [];
+                (function walk(nodes) {
+                    for (const n of nodes) {
+                        const targets = collectLinkTreeTargets(n.content, titleMap)
+                            .filter(t => t.id !== n.id);
+                        if (targets.length) {
+                            outgoing.set(n.id, targets);
+                            sources.push(n);
+                        }
+                        if (n.children && n.children.length) walk(n.children);
+                    }
+                })(treeData);
+
+                const referenced = new Set();
+                outgoing.forEach(targets => targets.forEach(t => referenced.add(t.id)));
+
+                const expanded = new Set();
+                const included = new Set();
+
+                function makeBranch(node, ancestors) {
+                    included.add(node.id);
+                    const branch = { node, children: [] };
+                    const targets = outgoing.get(node.id) || [];
+                    if (!targets.length || expanded.has(node.id)) return branch;
+
+                    expanded.add(node.id);
+                    const nextAncestors = new Set(ancestors);
+                    nextAncestors.add(node.id);
+                    for (const target of targets) {
+                        if (nextAncestors.has(target.id)) continue;
+                        branch.children.push(makeBranch(target, nextAncestors));
+                    }
+                    return branch;
+                }
+
+                const roots = [];
+                for (const n of sources) {
+                    if (referenced.has(n.id)) continue;
+                    roots.push(makeBranch(n, new Set()));
+                }
+                for (const n of sources) {
+                    if (included.has(n.id)) continue;
+                    roots.push(makeBranch(n, new Set()));
+                }
+                return roots;
+            }
+
+            function collectLinkTreeSubtree(branch, depth, out) {
+                out.push({
+                    node: branch.node,
+                    depth,
+                    hasChildren: branch.children.length > 0
+                });
+                for (const child of branch.children) {
+                    collectLinkTreeSubtree(child, depth + 1, out);
+                }
+            }
+
+            function collectFilteredLinkTree(branch, query, depth, out) {
+                if (!query || (branch.node.title || '').toLowerCase().includes(query)) {
+                    collectLinkTreeSubtree(branch, depth, out);
+                    return true;
+                }
+
+                const childOut = [];
+                let anyChildMatched = false;
+                for (const child of branch.children) {
+                    if (collectFilteredLinkTree(child, query, depth + 1, childOut)) {
+                        anyChildMatched = true;
+                    }
+                }
+
+                if (anyChildMatched) {
+                    out.push({
+                        node: branch.node,
+                        depth,
+                        hasChildren: true,
+                        context: true
+                    });
+                    for (const entry of childOut) out.push(entry);
+                    return true;
+                }
+                return false;
+            }
+
+            function renderLinkTree() {
+                const query = linkTreeFilterActive
+                    ? linkTreeFilterInput.value.trim().toLowerCase()
+                    : '';
+
+                linkTreeVisible = [];
+                for (const root of linkTreeRoots) {
+                    collectFilteredLinkTree(root, query, 0, linkTreeVisible);
+                }
+
+                linkTreeList.innerHTML = '';
+
+                if (!linkTreeVisible.length) {
+                    const empty = document.createElement('div');
+                    empty.textContent = query ? '(no matching nodes)' : '(no nodes with links)';
+                    empty.style.color = 'var(--dim)';
+                    empty.style.padding = '6px 8px';
+                    linkTreeList.appendChild(empty);
+                    linkTreeIndex = 0;
+                    return;
+                }
+
+                if (linkTreeIndex >= linkTreeVisible.length) {
+                    linkTreeIndex = linkTreeVisible.length - 1;
+                }
+                if (linkTreeIndex < 0) linkTreeIndex = 0;
+
+                const frag = document.createDocumentFragment();
+                linkTreeVisible.forEach((entry, i) => {
+                    const row = document.createElement('div');
+                    row.className = 'lt-row' + (i === linkTreeIndex ? ' selected' : '');
+                    row.style.paddingLeft = (8 + entry.depth * 16) + 'px';
+                    if (entry.context) row.style.opacity = '0.7';
+
+                    const marker = document.createElement('span');
+                    marker.className = 'lt-twisty';
+                    marker.textContent = entry.hasChildren ? '▾' : '•';
+
+                    const title = document.createElement('span');
+                    title.className = 'lt-title';
+                    title.textContent = entry.node.title || '(untitled)';
+
+                    row.appendChild(marker);
+                    row.appendChild(title);
+                    row.addEventListener('click', () => {
+                        linkTreeIndex = i;
+                        showSelectedLinkTreeNode();
+                    });
+                    frag.appendChild(row);
+                });
+
+                linkTreeList.appendChild(frag);
+                const selected = linkTreeList.querySelector('.lt-row.selected');
+                if (selected) {
+                    requestAnimationFrame(() => selected.scrollIntoView({ block: 'nearest' }));
+                }
+            }
+
+            function openLinkTreeDialog() {
+                linkTreeRoots = buildLinkTree();
+                linkTreeFilterActive = false;
+                linkTreeFilterInput.style.display = 'none';
+                linkTreeFilterInput.value = '';
+                linkTreeIndex = 0;
+                showingLinkTree = true;
+                linkTreeDialog.style.display = 'flex';
+                renderLinkTree();
+            }
+
+            function closeLinkTreeDialog() {
+                showingLinkTree = false;
+                linkTreeFilterActive = false;
+                linkTreeFilterInput.style.display = 'none';
+                linkTreeFilterInput.value = '';
+                linkTreeFilterInput.blur();
+                linkTreeDialog.style.display = 'none';
+                linkTreeIndex = 0;
+            }
+
+            function enterLinkTreeFilter() {
+                linkTreeFilterActive = true;
+                linkTreeFilterInput.style.display = 'block';
+                linkTreeFilterInput.value = '';
+                linkTreeIndex = 0;
+                renderLinkTree();
+                linkTreeFilterInput.focus();
+            }
+
+            function exitLinkTreeFilter() {
+                linkTreeFilterActive = false;
+                linkTreeFilterInput.style.display = 'none';
+                linkTreeFilterInput.value = '';
+                linkTreeFilterInput.blur();
+                linkTreeIndex = 0;
+                renderLinkTree();
+            }
+
+            function moveLinkTreeSelection(delta) {
+                if (!linkTreeVisible.length) return;
+                linkTreeIndex = (linkTreeIndex + delta + linkTreeVisible.length) % linkTreeVisible.length;
+                renderLinkTree();
+            }
+
+            function showSelectedLinkTreeNode() {
+                const entry = linkTreeVisible[linkTreeIndex];
+                if (!entry) return;
+                const id = entry.node.id;
+                closeLinkTreeDialog();
+                expandToNode(id);
+                selectedId = id;
+                editing = false;
+                mode_insert = false;
+                mode_visual = false;
+                mode_visual_block = false;
+                modeEl.textContent = 'TREE';
+                render();
+            }
+
+            function handleLinkTreeKey(e) {
+                if (!showingLinkTree) return;
+
+                if (linkTreeFilterActive) {
+                    if (e.key === 'Escape') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        exitLinkTreeFilter();
+                    } else if (e.key === 'Enter') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        showSelectedLinkTreeNode();
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        moveLinkTreeSelection(1);
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        moveLinkTreeSelection(-1);
+                    }
+                    return;
+                }
+
+                if (e.key === '/') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    enterLinkTreeFilter();
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeLinkTreeDialog();
+                } else if (e.key === 'ArrowDown' || e.key === 'j') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    moveLinkTreeSelection(1);
+                } else if (e.key === 'ArrowUp' || e.key === 'k') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    moveLinkTreeSelection(-1);
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    showSelectedLinkTreeNode();
+                }
+            }
+
+            linkTreeFilterInput.addEventListener('input', () => {
+                linkTreeIndex = 0;
+                renderLinkTree();
+            });
+
             function openHistoryDialog() {
                 showingHistory = true;
                 historyIndex = 0;
@@ -7093,6 +7699,8 @@
                 closeSaveAs();
                 closeReplace();
                 closeLinksDialog();
+                closeLinkTreeDialog();
+                closeMissingLinksDialog();
                 closeMarksDialog();
                 closeHistoryDialog();
                 closeUndoDialog();
@@ -7669,6 +8277,47 @@
                 editorArea.selectionEnd = start + convertedText.length;
                 syncFile();
                 exitVisualMode();
+            }
+
+            function applyVisualLinePrefix(type) {
+                let start = editorArea.selectionStart;
+                let end = editorArea.selectionEnd;
+
+                if (end < start) {
+                    [start, end] = [end, start];
+                }
+
+                let trailingNewline = false;
+                if (end > start && editorArea.value[end - 1] === '\n') {
+                    trailingNewline = true;
+                    end -= 1;
+                }
+
+                const lines = editorArea.value.slice(start, end).split('\n');
+                let lineNumber = 1;
+
+                const transformed = lines.map(line => {
+                    if (type === '*') {
+                        return /^\* /.test(line) ? line : '* ' + line;
+                    }
+
+                    let newLine;
+                    if (/^\d+\.\s+/.test(line)) {
+                        newLine = line.replace(/^\d+\.\s+/, `${lineNumber}. `);
+                    } else {
+                        newLine = `${lineNumber}. ${line}`;
+                    }
+                    lineNumber++;
+                    return newLine;
+                });
+
+                const result = transformed.join('\n') + (trailingNewline ? '\n' : '');
+
+                recordUndoState();
+                editorArea.setRangeText(result, start, end + (trailingNewline ? 1 : 0), 'start');
+                editorArea.selectionStart = editorArea.selectionEnd = start;
+                syncFile();
+                exitVisualMode(false);
             }
 
         //---- Theme Methods ---------------------------------------------------
@@ -8613,6 +9262,11 @@
 
                 if (e.ctrlKey || e.metaKey || e.altKey) return;
 
+                if (showingLinkTree) {
+                    handleLinkTreeKey(e);
+                    return;
+                }
+
                 if (finding) {
                     switch (e.key) {
                         case 'Escape':
@@ -8737,6 +9391,7 @@
                     case ']': resizeTree(30); break;
                     case '[': resizeTree(-30); break;
                     case '#': openLinksDialog(); break;
+                    case 'V': openLinkTreeDialog(); break;
                     case 'm': setMark(e); break;
                     case '`': openMarksDialog(); break;
                     case 'X': openMissingLinksDialog(); break;
@@ -9098,6 +9753,7 @@
 
             window.addEventListener('keydown', handleHistoryKey, { capture: true });
             window.addEventListener('keydown', handleLinksKey, { capture: true });
+            window.addEventListener('keydown', handleMissingLinksKey, { capture: true });
             window.addEventListener('keydown', handleMarksKey, { capture: true });
             window.addEventListener('keydown', handleTagsKey, { capture: true });
             window.addEventListener('keydown', handleUndoKey, { capture: true });

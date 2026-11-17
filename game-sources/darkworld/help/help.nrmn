@@ -35,6 +35,17 @@ Interactive Fiction follows some common conventions. The commands below are some
 #[#ffff00]**arm (object)**# : To arm the player with the specified weapon.
 #[#ffff00]**put (object) in (another object)**# : To put the specified object into another specified object.
 
+**Stats Rolls**
+At times you will be told you can attempt a stat check roll.
+For example you might be told:
+#[#ff8800]You can do a hacking roll#
+To do so, you would type:
+#[#ffff00]**roll hack**#
+
+If the rolled number is equal to or less than your hacking stat value, you succeed.
+(Note: You can TRY to do stats rolls at any time, but if a roll isn't possible at that time the game won't understand the command)
+
+
 #[#ffff00]**save**# : Save your game.
 
 In this game, if you want to attack an opponent, use the following:

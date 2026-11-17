@@ -5,19 +5,30 @@
   "bookmarks": [
   ],
   "history": [
+    "iyxhf36q",
+    "wniyrhxp",
+    "j02xyrtj",
+    "lqh5vp1u",
+    "znnjca3e",
+    "ptrg1ren",
+    "2krv0jt5",
+    "s56w1nab",
+    "ro3x0p7a",
+    "0d7m2sqf",
+    "n0wiyivi",
     "jfbvztvu",
     "z34fhnrk",
     "5rlxxeur",
-    "iyxhf36q",
-    "b3f4gryz",
-    "lqh5vp1u",
-    "wniyrhxp",
-    "s56w1nab",
-    "sfd5dmbq",
-    "ro3x0p7a",
+    "axorgnzp",
+    "ny8h4cpm",
     "cpvyfnp2",
-    "n0wiyivi",
-    "0d7m2sqf"
+    "sfd5dmbq",
+    "r0x909nq",
+    "ovriq3on",
+    "b3f4gryz",
+    "j6aaugwd",
+    "l6b3cwr9",
+    "fbfdfxrt"
   ],
   "roots": [
   {
@@ -65,6 +76,54 @@
       "text": "House Alarm\n\nIf the player doesn't set the house alarm, a hacker breaks in and messes with the player's computer...\nVery bad consequences for the player in Shellspace.\n\nTODO:\n    How will the player realize that this has happened?\n    What are the consequences?",
       "children": [
       ]
+    },
+    {
+      "id": "znnjca3e",
+      "name": "Invisibility Exploit",
+      "expanded": false,
+      "text": "Invisibility Exploit\n\nIf you accept this, you must keep an eye out for *something* that the\nhustler might want.\n\nWhen he shows up later, if you don't have anything to offer him...\n\nBAD things will happen!\n\n\n#todo\nWhat are the bad things?",
+      "children": [
+      ]
+    }
+    ]
+  },
+  {
+    "id": "s7pt99bp",
+    "name": "People",
+    "expanded": true,
+    "text": "",
+    "children": [
+    {
+      "id": "l6b3cwr9",
+      "name": "Clarenze",
+      "expanded": true,
+      "text": "Clarenze\n\nIn the basement of the Seidyne building.\nIf the player gives him the R3dF0x1 password, he can get into your father's hack.\n\n#todo\nWhat does the hack do?",
+      "children": [
+      ]
+    },
+    {
+      "id": "ovriq3on",
+      "name": "Itera",
+      "expanded": false,
+      "text": "Itera\n\nThe player meets her in the _Harbor Streets_.\nIF the player goes with her, she gives them their first mission in Shellspace.\n\nFind Clarenze",
+      "children": [
+      ]
+    },
+    {
+      "id": "axorgnzp",
+      "name": "Your Father",
+      "expanded": false,
+      "text": "Your Father\n\n",
+      "children": [
+      ]
+    },
+    {
+      "id": "ny8h4cpm",
+      "name": "Xavier",
+      "expanded": false,
+      "text": "Xavier",
+      "children": [
+      ]
     }
     ]
   },
@@ -77,27 +136,27 @@
     {
       "id": "om059eyy",
       "name": "Meat Space",
-      "expanded": true,
+      "expanded": false,
       "text": "",
       "children": [
       {
         "id": "s25egcd2",
         "name": "House",
-        "expanded": true,
+        "expanded": false,
         "text": "",
         "children": [
         {
           "id": "cpvyfnp2",
           "name": "Bedroom",
           "expanded": false,
-          "text": "Bedroom\n\nPlot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    #todo : What is the pwd for?\n* You get a call from your dad, alarm code is:\n    2355",
+          "text": "Bedroom\n\nPlot:\n\n* Enter Shellspace.\n* Learn about the _House Alarm_.\n* Encounter the name Perihelion (_Who is Perihelion?_)\n* Encounter the phrase \"Go Deeper\".\n* USB to get to Shellspace.\n* Discover the password: R3dF0x1.\n    * Give this to Clarenze in Shellspace.\n* You get a call from your dad, alarm code is:\n    2355",
           "children": [
           ]
         },
         {
           "id": "n0wiyivi",
           "name": "Hall",
-          "expanded": true,
+          "expanded": false,
           "text": "Hall\n\nThe alarm puzzle is here.\nThe code to enter is given to the player via a phone call in the _Bedroom_.\n\n",
           "children": [
           ]
@@ -127,6 +186,14 @@
           ]
         },
         {
+          "id": "2krv0jt5",
+          "name": "Master Bedroom",
+          "expanded": true,
+          "text": "Master Bedroom\n\n",
+          "children": [
+          ]
+        },
+        {
           "id": "wniyrhxp",
           "name": "Living Room",
           "expanded": false,
@@ -141,13 +208,13 @@
     {
       "id": "hrzjwj8g",
       "name": "Shellspace",
-      "expanded": false,
+      "expanded": true,
       "text": "",
       "children": [
       {
         "id": "n4jz9evj",
         "name": "Harbor",
-        "expanded": false,
+        "expanded": true,
         "text": "",
         "children": [
         {
@@ -155,6 +222,38 @@
           "name": "Harbor Port",
           "expanded": false,
           "text": "Harbor Port\n\nThe player encounters an exploit dealer.\nHe offers an invisible exploit.\n",
+          "children": [
+          {
+            "id": "ptrg1ren",
+            "name": "Screens",
+            "expanded": false,
+            "text": "Screens\n\n* Behind the screens are mysterious cylinders. They each have a blinking orange light on them.",
+            "children": [
+            ]
+          }
+          ]
+        },
+        {
+          "id": "r0x909nq",
+          "name": "Harbor Streets",
+          "expanded": true,
+          "text": "Harbor Streets\n\nIn this location the player meets _Itera_ however - if they don't fully\ninteract with her - that is a big deal!\n\nIf they don't do 'x girl', then follow her south, and 'x girl' again,\nthey don't learn about Clarenze, and don't get the mission to find him.\n\nSo they won't know how to use the R3dF0x1 password.",
+          "children": [
+          ]
+        },
+        {
+          "id": "j6aaugwd",
+          "name": "The Harbor",
+          "expanded": true,
+          "text": "The Harbor\n\nHere _Itera_ gives the player a mission:\n\nFind _Clarenze_.",
+          "children": [
+          ]
+        },
+        {
+          "id": "fbfdfxrt",
+          "name": "Harbor Promenade",
+          "expanded": false,
+          "text": "The player can continue west from the Harbor.\n\n#todo\nWhat do they find here?",
           "children": [
           ]
         }

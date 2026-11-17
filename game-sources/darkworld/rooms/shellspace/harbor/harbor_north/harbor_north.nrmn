@@ -1,0 +1,87 @@
+{room, key=hrbr_north, name=Harbor North
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+West: Harbor Hotel
+North East: Hardware Etc
+East: Club Malloc
+South: Harbor Streets
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You see a club to the east, a hardware store to the north east, and a hotel to the west.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+East of where you are you hear throbbing electronic music. It is coming from a 
+building that has a neon sign mounted on it that says:
+
+**Club Malloc**
+
+North of that building, in the north east you see a large bank building
+with a sign that reads: **Hardware Etc**.
+
+On the west side of the street you see another building with a sign that
+reads: **Harbor Hotel**.
+
+            }
+        }
+
+        {logic, name=Harbor North tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=hrbr_streets, tags=[player]
+            output={@
+
+You go south to where the harbor port is.
+
+            }
+        }
+    }
+
+    {input, syntax=[tplt_syntax]((go_east))
+        {move, logic=club_malloc, tags=[player]
+            output={@
+
+You enter the club.
+
+            }
+        }
+    }
+
+    
+    
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}
