@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldWeaver Dashboard</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --panel-bg: #030603;
+            --green: #00ff00;
+            --dim-green: #4b8a4b;
+            --line: #1c3a1c;
+            --text: #cfe8cf;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--green);
+            font-family: "Fira Code", "Cascadia Code", "Courier New", monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #topbar {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 14px;
+            background: #050805;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .brand {
+            color: var(--green);
+            font-weight: bold;
+            letter-spacing: 1px;
+            white-space: nowrap;
+        }
+
+        .brand span {
+            color: #3a7a3a;
+            font-weight: normal;
+        }
+
+        #status {
+            color: var(--green);
+            border: 1px solid var(--line);
+            padding: 2px 8px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        #status.insert {
+            color: #000000;
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        #dashboard {
+            flex: 1 1 auto;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: minmax(220px, 300px) minmax(0, 1fr);
+            gap: 8px;
+            padding: 8px;
+        }
+
+        #tools {
+            min-height: 0;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .panel {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            min-width: 0;
+            background: var(--panel-bg);
+            border: 1px solid var(--line);
+        }
+
+        .panel.active {
+            border-color: var(--green);
+        }
+
+        .panel-title {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 9px;
+            color: var(--dim-green);
+            background: #061006;
+            border-bottom: 1px solid var(--line);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            user-select: none;
+        }
+
+        .panel.active .panel-title {
+            color: var(--green);
+            background: #0a1a0a;
+        }
+
+        .panel-body {
+            flex: 1 1 auto;
+            min-height: 0;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: auto;
+        }
+
+        #panel-links .panel-body {
+            overflow-y: auto;
+        }
+
+        #tools > .panel {
+            flex: 1 1 0;
+        }
+
+        /* Links */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .link-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 7px 9px;
+            background: #020402;
+            border: 1px solid var(--line);
+            color: var(--dim-green);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .link-item:hover {
+            color: var(--green);
+            border-color: #3f7f3f;
+        }
+
+        .link-item:focus {
+            outline: none;
+        }
+
+        .link-item.selected {
+            color: #000000;
+            background: var(--green);
+            border-color: var(--green);
+        }
+
+        .link-title {
+            font-size: 13px;
+        }
+
+        .link-desc {
+            color: #3f6f3f;
+            font-size: 11px;
+            line-height: 1.3;
+        }
+
+        .link-item.selected .link-desc {
+            color: #053005;
+        }
+
+        /* Importer */
+        .importer-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        #databaseText {
+            flex: 1 1 auto;
+            min-height: 100px;
+            width: 100%;
+            background: #000000;
+            color: var(--green);
+            border: 1px solid var(--line);
+            resize: none;
+            padding: 8px;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        #databaseText:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        #bottom-bar {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #071007;
+            color: var(--green);
+            border: 1px solid #2f6f2f;
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        button:hover,
+        button:focus {
+            background: #0d1f0d;
+            border-color: var(--green);
+            outline: none;
+        }
+
+        .btn-key {
+            color: #2f6f2f;
+            font-size: 11px;
+            margin-left: 6px;
+        }
+
+        button:hover .btn-key,
+        button:focus .btn-key {
+            color: var(--green);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        /* Regex */
+        .regex-body label {
+            display: block;
+            color: var(--dim-green);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .regex-body input,
+        .regex-body textarea {
+            width: 100%;
+            font-family: inherit;
+            font-size: 13px;
+            background: #000000;
+            color: var(--text);
+            border: 1px solid var(--line);
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .regex-body input:focus,
+        .regex-body textarea:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        #genOutput {
+            margin-bottom: 10px;
+        }
+
+        #generated {
+            margin-bottom: 8px;
+            color: var(--green);
+        }
+
+        #genOutput .hint {
+            color: var(--dim-green);
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        #genOutput .ok {
+            color: var(--green);
+        }
+
+        #genOutput .bad {
+            color: #ff5555;
+        }
+
+        #output {
+            white-space: pre-wrap;
+            line-height: 1.5;
+            color: var(--text);
+        }
+
+        mark {
+            background-color: #ffff00;
+            color: #000000;
+        }
+
+        /* Footer hints */
+        #hints {
+            flex: 0 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding: 6px 14px;
+            background: #050805;
+            border-top: 1px solid var(--line);
+            color: #3f6f3f;
+            font-size: 11px;
+        }
+
+        #hints span {
+            white-space: nowrap;
+        }
+
+        kbd {
+            display: inline-block;
+            min-width: 16px;
+            padding: 1px 4px;
+            margin: 0 1px;
+            color: var(--green);
+            background: #0a140a;
+            border: 1px solid #2f5f2f;
+            border-radius: 2px;
+            font-family: inherit;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        @media (max-width: 820px) {
+            #dashboard {
+                grid-template-columns: minmax(0, 1fr);
+                grid-template-rows: minmax(110px, 24vh) minmax(0, 1fr);
+            }
+
+            #tools {
+                min-height: 0;
+            }
+
+            #hints {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="topbar">
+        <div class="brand">WorldWeaver <span>Dashboard</span></div>
+        <div id="status">Links &middot; Normal</div>
+    </header>
+
+    <main id="dashboard">
+        <section class="panel active" data-panel="links" id="panel-links">
+            <div class="panel-title"><span>Links</span></div>
+            <div class="panel-body">
+                <div class="links-list" id="linksList"></div>
+            </div>
+        </section>
+
+        <div id="tools">
+            <section class="panel" data-panel="importer" id="panel-importer">
+                <div class="panel-title"><span>NRMN Importer</span></div>
+                <div class="panel-body importer-body">
+                    <textarea id="databaseText" readonly></textarea>
+                    <div id="bottom-bar">
+                        <button onclick="triggerBrowse()">Browse <span class="btn-key">b</span></button>
+                        <input type="file" id="directoryPicker" webkitdirectory>
+                        <button onclick="copyDatabase()">Copy <span class="btn-key">c</span></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" data-panel="regex" id="panel-regex">
+                <div class="panel-title"><span>Regex Console</span></div>
+                <div class="panel-body regex-body">
+                    <label for="samples">Samples (one per line, or comma delimited; case-insensitive):</label>
+                    <textarea id="samples" rows="6" spellcheck="false" placeholder="Enter strings that should match (one per line or comma delimited). For example:&#10;examine the refrigerator&#10;x the refrigerator&#10;examine refrigerator&#10;x refrigerator&#10;examine the fridge&#10;x the fridge&#10;examine fridge&#10;x fridge"></textarea>
+                    <button onclick="generateRegex()">Generate</button>
+                    <div id="genOutput"></div>
+                    <label for="text">Test Text:</label>
+                    <textarea id="text" rows="6" spellcheck="false" placeholder="Type text here to test the generated regex..."></textarea>
+                    <div id="output"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="hints">
+        <span><kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> panels</span>
+        <span><kbd>i</kbd> select</span>
+        <span><kbd>Esc</kbd> release</span>
+        <span><kbd>j</kbd><kbd>k</kbd> links</span>
+        <span><kbd>Enter</kbd> open</span>
+        <span><kbd>b</kbd> browse</span>
+        <span><kbd>c</kbd> copy</span>
+    </footer>
+
+    <script>
+        let rootDirectoryPath = null;
+        let output = document.getElementById('databaseText');
+        const directoryPicker = document.getElementById('directoryPicker');
+        let depth = 0;
+        let inComments = false;
+        let dirs = [];
+        let files = [];
+        let injections = [];
+        let database = [];
+        const elemLimit = 150; // Number of elements per line in the db
+
+
+
+        async function listAllFilesAndDirs(dirHandle, parentDir) { // !@! Iterate Files
+            let sortValue = 1;
+
+            // add the root
+            if (dirs.length < 1 && parentDir === "~/") {
+                dirs.push({ name: "root", handle: "directory", parent: "~/", path: "~/", content: "", sort: 0 });
+            }
+
+            for await (let [name, handle] of dirHandle) {
+                const { kind } = handle;
+                if (kind === 'directory') {
+                    dirs.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}/`, content: "", sort: 0 });
+                    const nestedFiles = await listAllFilesAndDirs(handle, `${parentDir}${name}/`);
+                    files.push(...nestedFiles);
+                } else {
+                    // Read file content
+                    try {
+                        const file = await handle.getFile();
+                        const content = await file.text();
+
+                        if (name.endsWith(".inj"))
+                        {
+                            injections.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content, sort: 0 });
+                        }
+                        if (name.endsWith(".nrmn"))
+                        {
+                            files.push({ name, handle, parent: `${parentDir}`, path: `${parentDir}${name}`, content, sort: sortValue });
+                        }
+
+                        sortValue += 1;
+                    } catch (err) {
+                        console.error(`Error reading file ${name}:`, err);
+                        files.push({ name, handle, content: "" });
+                    }
+                }
+            }
+            return "";
+        }
+
+        async function triggerBrowse() {
+            try {
+                const directoryHandle = await window.showDirectoryPicker()
+                rootDirectoryPath = directoryHandle;
+                output.innerHTML = 'Loading...';
+                clearAll();
+                await listAllFilesAndDirs(directoryHandle, "~/");
+
+                loadGame();
+            } catch(e) {
+                console.log(e);
+            }
+            window.focus();
+        }
+
+        async function clearAll() {
+            dirs = [];
+            files = [];
+            injections = [];
+            database = [];
+        }
+
+        function displayDatabase() {
+            const textArea = document.getElementById('databaseText');
+
+            // Make sure the latest database is stored
+            let latestDatabase = JSON.parse(JSON.stringify(database)); // Deep clone to ensure correctness
+
+            // Build compact JSON with newlines every elemLimit items
+            let lines = [];
+            for (let i = 0; i < latestDatabase.length; i += elemLimit) {
+                let chunk = latestDatabase.slice(i, i + elemLimit);
+                lines.push(JSON.stringify(chunk).slice(1, -1)); // Strip [ and ]
+            }
+            let formattedDatabase = `[\n  ${lines.join(",\n  ")}\n]`;
+
+            textArea.value = "        let database = " + formattedDatabase + ";";
+        }
+        function copyDatabase() {
+            const textArea = document.getElementById('databaseText');
+
+            displayDatabase();
+
+            textArea.select();
+            document.execCommand('copy');
+            alert('Database text copied to clipboard!');
+            window.focus();
+        }
+
+        // Parsing Methods
+        // File class:
+        //   name
+        //   handle (type)
+        //   parent
+        //   path
+        //   content
+        //   sort
+        function loadGame() {
+            const visitedFiles = new Set();
+
+            for (dir of dirs) {
+                let dirChildren = files.filter(item => item.parent === dir.path);
+                dirChildren.sort((a, b) => parseInt(a.sort) - parseInt(b.sort));
+
+                for (file of dirChildren) {
+                    let lines = doInjection(file, visitedFiles);
+                    parseElement(file, lines, "root", 0);
+                }
+            }
+
+            database = database.filter(item => item !== null);
+
+            displayDatabase();
+        }
+
+        function doInjection(file, visitedFiles) {
+            let lines = [];
+
+            // Prevent infinite loops from circular references
+            if (visitedFiles.has(file.path)) {
+                console.warn(`Warning: Circular reference detected - ${filePath}`);
+                return [`// Circular reference: ${file.path}`];
+            }
+
+            visitedFiles.add(file.path);
+
+            const pattern = /\{inject, logic=(?<logicPath>.+?)\s*\}/;
+            const result = [];
+
+            lines = file.content.split('\n'); // .filter(item => item);
+
+            for (const line of lines) {
+                const match = line.match(pattern);
+                if (match && match.groups && match.groups.logicPath) {
+                    const logicPath = match.groups.logicPath.trim();
+                    let fullPath = "";
+
+                    if (logicPath.startsWith("./")) {
+                        fullPath = `${file.parent}${logicPath.slice(2)}`;
+                    } else if (logicPath.startsWith("/")) {
+                        fullPath = `~${logicPath}`;
+                    }
+
+                    // Normalize path (remove "//" etc.) -- this may be hardened more in the future
+                    fullPath = fullPath.replace(/\/+/g, "/");
+
+                    let injectedFile = injections.find(item => item.path === fullPath);
+
+                    if (injectedFile === null) {
+                        continue;
+                    }
+
+                    // Recursively process
+                    const injectedContent = doInjection(injectedFile, visitedFiles);
+                    result.push(...injectedContent);
+                } else {
+                    result.push(line);
+                }
+            }
+
+            visitedFiles.delete(file.path);
+            return result;
+        }
+
+        function parseElement(file, lines, parentKey, startLine) {
+            const currentDepth = depth;
+            let element = null;
+            let initRow = startLine;
+            let currentRow = startLine;
+            let fieldVal = null;
+            let parsedProps = false;
+
+            for (let ix = startLine; ix < lines.length; ix++) {
+                currentRow = ix;
+                let line = lines[ix].trim();
+
+                if (!parsableRow(file, line)) {
+                    continue;
+                }
+                if (line === "")
+                {
+                    continue;
+                }
+                if (depth > currentDepth && line.trim() !== "}") {
+                    continue;
+                }
+
+                if (line.startsWith("{")) {
+                    let singleLine = line.endsWith("}");
+
+                    if (singleLine) {
+                        line = line.substring(0, line.length - 1).trim();
+                    }
+
+                    if (element === null)
+                    {
+                        element = createNewQuickElement(parentKey, file.sort);
+                        parsedProps = false;
+                        parseInlineProperties(element, line);
+
+                        if (singleLine)
+                        {
+                            database.push(element);
+                            if (depth > 0) {
+                                // Since we have depth, this call is an iteration, so return.
+                                return currentRow;
+                            } else {
+                                // For root level single line Elements, keep parsing through the file
+                                element = null;
+                            }
+                        }
+
+                        continue;
+                    } else {
+                        depth++;
+                        const key = element.ElementKey;
+                        ix = parseElement(file, lines, key, ix);
+                        depth--;
+
+                        // This should never happen
+                        if (depth < 0) {
+                            depth = 0;
+                        }
+
+                        if (ix < 0) {
+                            return -1;
+                        }
+
+                        continue;
+                    }
+                }
+
+                switch (true)
+                {
+                    case typeof line === 'string' && regexCheck("^type\\s*=", line):
+                        if (element !== null)  {
+                            element.ElementType = fixElementType(line.replace(/^type=/i, '').toLowerCase()).safe();
+                        }
+                        break;
+
+                    case regexCheck("^key\\s*=", line):
+                        element.ElementKey = line.replace(/^key=/i, '').replace(/ /g, '_').safe();
+                        break;
+
+                    case regexCheck("^name\\s*=", line):
+                        element.Name = line.replace(/^name=/i, '').safe();
+                        break;
+
+                    case regexCheck("^parent\\s*=", line):
+                        element.ParentKey = line.replace(/^parent=/i, '').safe();
+                        break;
+
+                    case regexCheck("^syntax\\s*=", line):
+                        element.Syntax = line.replace(/^syntax=/i, '').safe();
+                        break;
+
+                    case regexCheck("^logic\\s*=", line):
+                        fieldVal = getFieldValue(element, lines, "logic", ix);
+                        ix = fieldVal.currentRow;
+                        element.Logic = fieldVal.fieldValue.safe();
+                        break;
+
+                    case regexCheck("^repeat\\s*=", line):
+                        element.Repeat = line.replace(/^repeat=/i, '').toLowerCase().safe();
+                        break;
+
+                    case regexCheck("^output\\s*=", line):
+                        fieldVal = getFieldValue(element, lines, "output", ix);
+                        ix = fieldVal.currentRow;
+                        element.Output = fieldVal.fieldValue;
+                        break;
+
+                    case regexCheck("^tags\\s*=", line):
+                        fieldVal = getFieldValue(element, lines, "tags", ix);
+                        ix = fieldVal.currentRow;
+                        element.Tags = fieldVal.fieldValue.safe();
+                        break;
+
+                    case regexCheck("^active\\s*=", line):
+                        element.Active = line.replace(/^active=/i, '').toLowerCase();
+                        break;
+
+                    case regexCheck("^sort\\s*=", line):
+                        element.Sort = parseInt(line.replace(/^sort=/i, ''), 10);
+                        break;
+
+                    case line === "}":
+                        if (depth === currentDepth) {
+                            database.push(element);
+                            element = null;
+                            return currentRow;
+                        }
+                        break;
+                }
+            }
+
+            if (element !== null)
+            {
+                alert("ERROR! -- There may be a missing closing } -- Element: " + element + ", code: " + lines);
+            }
+
+            return currentRow;
+        }
+
+        function parsableRow(file, dataRow) {
+            if (dataRow === "") {
+                return false;
+            }
+
+            if (dataRow.trim() === "*/") {
+                inComments = false;
+                return false;
+            }
+
+            if (inComments) {
+                return false;
+            }
+
+            if (dataRow.trim() === "/*") {
+                inComments = true;
+                return false;
+            }
+
+            if (dataRow.substring(0, 1) === "!") {
+                return false;
+            }
+
+            if (dataRow.trim().length > 1 && dataRow.trim().substring(0, 2) === "//") {
+                return false;
+            }
+
+            if (!typoCheck(file, dataRow)) {
+                return false;
+            }
+
+            return true;
+        }
+
+        // Here we look for typos that have actually occurred.
+        // In the future it would be good to leverage the power
+        // of REGEX to make this more robust.
+        function typoCheck(file, dataRow) {
+            let pattern = /outpu\s*=\s*{/i;
+            if (dataRow.match(pattern)) {
+                alert(`A typo was found in ${file.path}, in this line: ${dataRow}`);
+                return false;
+            }
+
+            return true;
+        }
+
+        function parseInlineProperties(element, dataRow) {
+            dataRow = dataRow.replace("{", "");
+            const arr = dataRow.split(',');
+
+            // The first field can be the 'type' shorthand
+            // {action, logic="...", tags="..." }
+            if (!arr[0].includes("="))
+            {
+                element.ElementType = fixElementType(arr[0].trim());
+            }
+
+            for (pair of arr)
+            {
+                const parts = pair.trim().split('=');
+                const pairArr = [parts[0], parts.slice(1).join('=')];
+
+                if (pairArr.length == 2) {
+                    switch (pairArr[0].trim().toLowerCase()) {
+                        case "key":
+                            element.ElementKey = pairArr[1].trim().replace(' ', '_').safe();
+                            break;
+
+                        case "type":
+                            element.ElementType = fixElementType(pairArr[1].toLowerCase().trim()).safe();
+                            break;
+
+                        case "name":
+                            element.Name = pairArr[1].trim().safe();
+                            break;
+
+                        case "parent":
+                            element.ParentKey = pairArr[1].trim().safe();
+                            break;
+
+                        case "syntax":
+                            element.Syntax = pairArr[1].trim().safe();
+                            break;
+
+                        case "repeat":
+                            element.Repeat = pairArr[1].toLowerCase().trim().safe();
+                            break;
+
+                        case "logic":
+                            element.Logic = pairArr[1].trim().safe();
+                            break;
+
+                        case "output":
+                            element.Output = pairArr[1].trim().safe();
+                            break;
+
+                        case "tags":
+                            element.Tags = pairArr[1].trim().safe();
+                            break;
+
+                        case "active":
+                            element.Active = pairArr[1].toLowerCase().trim().safe();
+                            break;
+
+                        case "sort":
+                            if (element.ElementType === "dev_note") {
+                                element.Sort = 9999999;
+                            }
+                            else
+                            {
+                                element.Sort = Number(pairArr[1].trim());
+                            }
+                            break;
+                    }
+                }
+            }
+        }
+
+        function createNewQuickElement(
+            parentKey,
+            sort
+        ) {
+            let elementKey = getGuid();
+
+            return createNewFullElement(
+                "",
+                elementKey,
+                "",
+                parentKey,
+                "",
+                "",
+                "",
+                "",
+                "",
+                sort
+            );
+        }
+        function createNewFullElement(
+            elementType,
+            elementKey,
+            name,
+            parentKey,
+            syntax,
+            logic,
+            output,
+            tags,
+            repeat,
+            sort
+        ) {
+            if (elementKey == "") {
+                elementKey = getGuid();
+            }
+
+            let entry = {
+                ElementType: elementType,
+                ElementKey: elementKey,
+                Name: name,
+                ParentKey: parentKey,
+                Syntax: syntax,
+                Logic: logic,
+                Output: output,
+                Tags: tags,
+                Repeat: repeat,
+                RepeatIndex: "0",
+                Active: "true",
+                Sort: sort
+            };
+
+            return entry;
+        }
+
+        function fixElementType(elemType) {
+            switch (elemType.toLowerCase())
+            {
+                case "act":
+                    return "action";
+                case "att":
+                    return "attack";
+                case "attrib":
+                    return "attribute";
+                case "enter":
+                    return "enter_message";
+                case "inj":
+                    return "injection";
+                case "inp":
+                    return "input";
+                case "msg":
+                    return "message";
+                case "nav":
+                    return "navigation";
+                case "obj":
+                    return "object";
+                case "plr":
+                    return "player";
+                case "rm":
+                    return "room";
+                case "trv":
+                    return "travel";
+
+                default:
+                    return elemType;
+            }
+        }
+
+        function getFieldValue(element, lines, fieldName, startRow) {
+            let currentRow = startRow;
+            let autoBreak = false;
+            let fieldValue = "";
+
+            for (let ix = startRow; ix < lines.length; ix++) {
+                let line = lines[ix].trim();
+                let lineFull = lines[ix];
+
+                if (ix === startRow) {
+                    line = line.replace(new RegExp(`^${fieldName}\\s*=\\s*`, 'i'), "");
+
+                    if (!line.startsWith("{")) {
+                        fieldValue = lineFull;
+                        currentRow = ix + 1;
+                        break;
+                    } else {
+                        if (line.replace("{", "") === "@") {
+                            autoBreak = true;
+                        }
+                        continue;
+                    }
+                }
+
+                if (line === "}") {
+                    currentRow = ix;
+                    break;
+                } else {
+                    if (autoBreak) {
+                        fieldValue += '\n';
+                    }
+                    else {
+                        fieldValue = fieldValue.trim();
+                    }
+                    fieldValue += line;
+                }
+            }
+
+            return { currentRow, fieldValue };
+        }
+
+
+        // Helpers
+        function getGuid()
+        {
+            return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+        }
+        function regexCheck(regexString, inputString)
+        {
+            if (regexString === "" || inputString === "")
+            {
+                return false;
+            }
+            const pattern = new RegExp(regexString, 'i');
+            if (pattern.test(inputString))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+        // Extensions
+        String.prototype.safe = function stringSafe() {
+            if (this == null) return '';
+
+            let str = String(this);
+
+            // Remove control characters except for \n, \r, \t
+            // str = str.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
+
+            // Escape HTML special characters
+            // str = str
+            //     .replace(/&/g, '&amp;')
+            //     .replace(/</g, '&lt;')
+            //     .replace(/>/g, '&gt;')
+            //     .replace(/"/g, '&quot;')
+            //     .replace(/'/g, '&#39;');
+
+            return str.trim();
+        };
+    </script>
+
+    <script>
+        const samplesInput = document.getElementById("samples");
+        const textInput = document.getElementById("text");
+        const genOutputDiv = document.getElementById("genOutput");
+        const outputDiv = document.getElementById("output");
+
+        let generatedPattern = "";
+
+        samplesInput.addEventListener("input", generateRegex);
+        textInput.addEventListener("input", updateHighlight);
+
+        function escapeRegex(str) {
+            return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        }
+
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        // Folds one line into the existing slot sequence. Words are aligned by LCS,
+        // then skipped slots and inserted words are paired positionally to group
+        // substitutions into the same slot instead of creating duplicate slots.
+        function foldLine(slots, words) {
+            const n = slots.length;
+            const m = words.length;
+            const table = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+
+            for (let i = n - 1; i >= 0; i--) {
+                for (let j = m - 1; j >= 0; j--) {
+                    table[i][j] = slots[i].words.includes(words[j])
+                        ? table[i + 1][j + 1] + 1
+                        : Math.max(table[i + 1][j], table[i][j + 1]);
+                }
+            }
+
+            const ops = [];
+            let i = 0;
+            let j = 0;
+            while (i < n && j < m) {
+                if (slots[i].words.includes(words[j])) {
+                    ops.push({ type: "match", slot: i, word: words[j] });
+                    i++;
+                    j++;
+                } else if (table[i][j + 1] >= table[i + 1][j]) {
+                    ops.push({ type: "insert", word: words[j++] });
+                } else {
+                    ops.push({ type: "skip", slot: i++ });
+                }
+            }
+            while (j < m) ops.push({ type: "insert", word: words[j++] });
+            while (i < n) ops.push({ type: "skip", slot: i++ });
+
+            const next = [];
+            let k = 0;
+            while (k < ops.length) {
+                if (ops[k].type === "match") {
+                    next.push({
+                        words: slots[ops[k].slot].words.concat(ops[k].word).filter((v, idx, arr) => arr.indexOf(v) === idx),
+                        used: slots[ops[k].slot].used + 1
+                    });
+                    k++;
+                    continue;
+                }
+
+                const run = [];
+                while (k < ops.length && ops[k].type !== "match") run.push(ops[k++]);
+
+                const skipped = run.filter(op => op.type === "skip");
+                const inserted = run.filter(op => op.type === "insert");
+                const paired = Math.min(skipped.length, inserted.length);
+
+                for (let p = 0; p < paired; p++) {
+                    const s = slots[skipped[p].slot];
+                    const w = inserted[p].word;
+                    next.push({
+                        words: s.words.includes(w) ? s.words.slice() : s.words.concat(w),
+                        used: s.used + 1
+                    });
+                }
+                for (let p = paired; p < inserted.length; p++) {
+                    next.push({ words: [inserted[p].word], used: 1 });
+                }
+                for (let p = paired; p < skipped.length; p++) {
+                    const s = slots[skipped[p].slot];
+                    next.push({ words: s.words.slice(), used: s.used });
+                }
+            }
+
+            slots.length = 0;
+            slots.push(...next);
+        }
+
+        function analyzeSamples(tokenized) {
+            const slots = tokenized[0].map(word => ({ words: [word], used: 1 }));
+            for (let line = 1; line < tokenized.length; line++) foldLine(slots, tokenized[line]);
+
+            return slots.map(slot => ({
+                words: slot.words,
+                optional: slot.used < tokenized.length
+            }));
+        }
+
+        // Each slot becomes one part: an alternation of its words, wrapped in a
+        // `?` group when some sample omitted it. Separators stay `\s+` only between
+        // two required parts, since a dropped optional word can leave no space at all.
+        function buildPattern(slots) {
+            if (slots.length === 0) return "";
+
+            const parts = slots.map(slot => {
+                const words = slot.words.slice().sort((a, b) => b.length - a.length);
+                const body = words.length > 1
+                    ? `(?:${words.map(escapeRegex).join("|")})`
+                    : escapeRegex(words[0]);
+                return { optional: slot.optional, body, wrapped: words.length > 1 };
+            });
+
+            let pattern = "";
+            parts.forEach((part, index) => {
+                if (index > 0) {
+                    pattern += parts[index - 1].optional || part.optional ? "\\s*" : "\\s+";
+                }
+                if (!part.optional) {
+                    pattern += part.body;
+                } else if (part.wrapped) {
+                    pattern += `${part.body}?`;
+                } else {
+                    pattern += `(?:${part.body})?`;
+                }
+            });
+
+            return `\\b${pattern}\\b`;
+        }
+
+        // Alignment quality depends on which sample is folded in first, so try a few
+        // seed orderings and keep whichever pattern is simplest (fewest optional
+        // parts, then shortest). Also verifies every sample still matches.
+        function bestPattern(tokenized) {
+            const orders = [];
+            const pushOrder = order => {
+                const key = order.join(" ");
+                if (!orders.some(existing => existing.key === key)) orders.push({ key, order });
+            };
+
+            pushOrder(tokenized.map((_, i) => i));
+            pushOrder(tokenized.map((_, i) => i).reverse());
+            pushOrder(tokenized.map((_, i) => i).sort((a, b) => tokenized[b].length - tokenized[a].length));
+            pushOrder(tokenized.map((_, i) => i).sort((a, b) => tokenized[a].length - tokenized[b].length));
+
+            let winner = null;
+            for (const { order } of orders) {
+                const slots = analyzeSamples(order.map(i => tokenized[i]));
+                const pattern = buildPattern(slots);
+                const checker = new RegExp(pattern, "i");
+                if (!tokenized.every(line => checker.test(line.join(" ")))) continue;
+
+                const optionalCount = slots.filter(slot => slot.optional).length;
+                // alternatives beyond the first in a slot mean the same word was split
+                // across slots, which reads worse than the equivalent optional part
+                const redundancy = slots.reduce((sum, slot) => sum + slot.words.length - 1, 0);
+                const score = optionalCount * 1000 + redundancy * 1000 + pattern.length;
+                if (!winner || score < winner.score) winner = { pattern, score };
+            }
+
+            return winner ? winner.pattern : buildPattern(analyzeSamples(tokenized));
+        }
+
+        // Samples are read one per line, but commas are accepted as separators too
+        // so a comma delimited list can be pasted straight in.
+        function readSamples(value) {
+            return value
+                .split(/[\n,]/)
+                .map(part => part.trim())
+                .filter(Boolean);
+        }
+
+        function generateRegex() {
+            const lines = readSamples(samplesInput.value);
+
+            if (lines.length === 0) {
+                generatedPattern = "";
+                genOutputDiv.innerHTML = '<div class="hint">Add at least one sample line above.</div>';
+                updateHighlight();
+                return;
+            }
+
+            const tokenized = lines.map(line => line.split(/\s+/).filter(Boolean));
+
+            let pattern;
+            try {
+                pattern = bestPattern(tokenized);
+                new RegExp(pattern, "i");
+            } catch (e) {
+                generatedPattern = "";
+                genOutputDiv.innerHTML = `<div class="bad">Could not generate a regex: ${e.message}</div>`;
+                updateHighlight();
+                return;
+            }
+
+            generatedPattern = pattern;
+
+            const checker = new RegExp(pattern, "i");
+            const rows = lines.map(line => {
+                const ok = checker.test(line);
+                return `<div class="${ok ? "ok" : "bad"}">${ok ? "match   " : "NO MATCH"} ${escapeHtml(line)}</div>`;
+            });
+
+            genOutputDiv.innerHTML =
+                '<div class="hint">Generated pattern (click to select):</div>' +
+                `<input type="text" id="generated" readonly value="${escapeHtml(pattern)}" onclick="this.select()">` +
+                `<div class="hint">Verified against all ${lines.length} samples:</div>` +
+                rows.join("");
+
+            updateHighlight();
+        }
+
+        function updateHighlight() {
+            const regexString = generatedPattern;
+            const inputString = textInput.value;
+
+            if (!regexString || !inputString) {
+                outputDiv.innerText = inputString;
+                return;
+            }
+
+            let pattern;
+            try {
+                pattern = new RegExp(regexString, 'gi');
+            } catch (e) {
+                outputDiv.innerHTML = `<div class="bad">Invalid regex: ${e.message}</div>`;
+                return;
+            }
+
+            const escapedText = escapeHtml(inputString);
+            const highlighted = escapedText.replace(pattern, match => `<mark>${escapeHtml(match)}</mark>`);
+            outputDiv.innerHTML = highlighted;
+        }
+    </script>
+
+    <script>
+        // Edit this array to change the Links panel. Each entry uses: title, url, description.
+        const LINKS = [
+            { title: "WorldWeaver", url: "worldweaver.html", description: "Main WorldWeaver application" },
+            { title: "World Builder", url: "builder.html", description: "Build and edit worlds" },
+            { title: "Darkworld", url: "darkworld.html", description: "Darkworld game" },
+            { title: "Darkworld Demo", url: "darkworld_demo.html", description: "Darkworld demo build" },
+            { title: "Vummel", url: "vummel.html", description: "Vummel tool" },
+            { title: "Help", url: "help.html", description: "Documentation and help" },
+            { title: "NRMN Importer", url: "importer.html", description: "Standalone importer" },
+            { title: "Regex Console", url: "regex.html", description: "Standalone regex console" },
+            { title: "Home", url: "index.html", description: "Project index" }
+        ];
+
+        const panelNames = {
+            links: "Links",
+            importer: "Importer",
+            regex: "Regex"
+        };
+
+        const statusEl = document.getElementById("status");
+        const linksListEl = document.getElementById("linksList");
+
+        let mode = "normal";
+        let currentPanelId = "links";
+        let selectedLinkIndex = -1;
+
+        function getPanels() {
+            return Array.from(document.querySelectorAll(".panel"));
+        }
+
+        function getPanel(id) {
+            return document.querySelector(`.panel[data-panel="${id}"]`);
+        }
+
+        function panelIdFor(el) {
+            const panel = el && el.closest ? el.closest(".panel") : null;
+            return panel ? panel.dataset.panel : null;
+        }
+
+        function isTypingTarget(el) {
+            return !!(el && el.matches && el.matches('input, textarea, select, [contenteditable="true"]'));
+        }
+
+        function updateStatus() {
+            if (!statusEl) return;
+            const name = panelNames[currentPanelId] || currentPanelId;
+            statusEl.textContent = `${name} \u00b7 ${mode === "normal" ? "Normal" : "Insert"}`;
+            statusEl.classList.toggle("insert", mode === "insert");
+        }
+
+        function setMode(nextMode) {
+            if (mode === nextMode) return;
+            mode = nextMode;
+            updateStatus();
+        }
+
+        function getLinkItems() {
+            return linksListEl ? Array.from(linksListEl.querySelectorAll(".link-item")) : [];
+        }
+
+        function highlightLinks() {
+            getLinkItems().forEach((item, index) => {
+                item.classList.toggle("selected", index === selectedLinkIndex);
+            });
+        }
+
+        function clearLinkSelection() {
+            selectedLinkIndex = -1;
+            highlightLinks();
+        }
+
+        function setCurrentPanel(id) {
+            if (!id) return;
+            if (id !== "links" && selectedLinkIndex >= 0) {
+                clearLinkSelection();
+            }
+            currentPanelId = id;
+            getPanels().forEach(panel => {
+                panel.classList.toggle("active", panel.dataset.panel === id);
+            });
+            updateStatus();
+        }
+
+        function renderLinks() {
+            if (!linksListEl) return;
+            linksListEl.textContent = "";
+
+            LINKS.forEach((link, index) => {
+                const item = document.createElement("a");
+                item.className = "link-item";
+                item.href = link.url;
+                item.target = link.target || "_blank";
+                item.rel = "noopener noreferrer";
+                item.dataset.index = String(index);
+
+                const title = document.createElement("span");
+                title.className = "link-title";
+                title.textContent = link.title || link.label || link.url;
+                item.appendChild(title);
+
+                if (link.description) {
+                    const description = document.createElement("span");
+                    description.className = "link-desc";
+                    description.textContent = link.description;
+                    item.appendChild(description);
+                }
+
+                item.addEventListener("focus", () => {
+                    selectedLinkIndex = index;
+                    highlightLinks();
+                });
+
+                linksListEl.appendChild(item);
+            });
+
+            highlightLinks();
+        }
+
+        function selectLink(index) {
+            const items = getLinkItems();
+            if (!items.length) return;
+
+            const nextIndex = ((index % items.length) + items.length) % items.length;
+            selectedLinkIndex = nextIndex;
+            highlightLinks();
+            items[nextIndex].focus({ preventScroll: true });
+            items[nextIndex].scrollIntoView({ block: "nearest" });
+        }
+
+        function moveLinkSelection(delta) {
+            const items = getLinkItems();
+            if (!items.length) return;
+
+            if (selectedLinkIndex < 0) {
+                selectLink(delta > 0 ? 0 : items.length - 1);
+            } else {
+                selectLink(selectedLinkIndex + delta);
+            }
+        }
+
+        function getFocusables(panel) {
+            const selector = 'a[href], button, input:not([type="hidden"]), textarea, select, [tabindex]:not([tabindex="-1"])';
+            return Array.from(panel.querySelectorAll(selector)).filter(el => {
+                if (el.disabled) return false;
+                if (el.tagName === "TEXTAREA" && el.readOnly) return false;
+                return el.offsetParent !== null || el === document.activeElement;
+            });
+        }
+
+        function enterCurrentPanel() {
+            if (currentPanelId === "links") {
+                selectLink(0);
+                setMode("insert");
+                return;
+            }
+
+            const panel = getPanel(currentPanelId);
+            if (!panel) return;
+
+            const focusables = getFocusables(panel);
+            if (focusables.length) {
+                setMode("insert");
+                focusables[0].focus();
+            }
+        }
+
+        function movePanel(direction) {
+            const current = getPanel(currentPanelId);
+            if (!current) return;
+
+            const currentRect = current.getBoundingClientRect();
+            const currentX = currentRect.left + currentRect.width / 2;
+            const currentY = currentRect.top + currentRect.height / 2;
+
+            let best = null;
+
+            getPanels().forEach(panel => {
+                if (panel === current) return;
+
+                const rect = panel.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                const dx = x - currentX;
+                const dy = y - currentY;
+
+                let primary;
+                let secondary;
+
+                if (direction === "h") {
+                    if (dx >= -1) return;
+                    primary = -dx;
+                    secondary = Math.abs(dy);
+                } else if (direction === "l") {
+                    if (dx <= 1) return;
+                    primary = dx;
+                    secondary = Math.abs(dy);
+                } else if (direction === "k") {
+                    if (dy >= -1) return;
+                    primary = -dy;
+                    secondary = Math.abs(dx);
+                } else if (direction === "j") {
+                    if (dy <= 1) return;
+                    primary = dy;
+                    secondary = Math.abs(dx);
+                } else {
+                    return;
+                }
+
+                const score = primary + secondary * 2;
+                if (!best || score < best.score) {
+                    best = { panel, score };
+                }
+            });
+
+            if (best) {
+                setCurrentPanel(best.panel.dataset.panel);
+            }
+        }
+
+        document.addEventListener("mousedown", event => {
+            const id = panelIdFor(event.target);
+            if (id) setCurrentPanel(id);
+        });
+
+        document.addEventListener("focusin", event => {
+            const id = panelIdFor(event.target);
+            if (!id) return;
+
+            setCurrentPanel(id);
+
+            if (id === "links") {
+                const item = event.target.closest(".link-item");
+                if (item) {
+                    selectedLinkIndex = Number(item.dataset.index);
+                    highlightLinks();
+                }
+            }
+
+            setMode("insert");
+        });
+
+        document.addEventListener("focusout", () => {
+            window.setTimeout(() => {
+                const active = document.activeElement;
+                if (!active || !active.closest || !active.closest(".panel")) {
+                    if (selectedLinkIndex >= 0) clearLinkSelection();
+                    setMode("normal");
+                }
+            }, 0);
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+            const target = event.target;
+            const targetIsLink = !!(target.classList && target.classList.contains("link-item"));
+
+            if (mode === "insert" || isTypingTarget(target)) {
+                if (event.key === "Escape") {
+                    event.preventDefault();
+                    if (targetIsLink) {
+                        clearLinkSelection();
+                    }
+                    if (target.blur) target.blur();
+                    setMode("normal");
+                    return;
+                }
+
+                if (targetIsLink) {
+                    if (event.key === "j" || event.key === "ArrowDown") {
+                        event.preventDefault();
+                        moveLinkSelection(1);
+                        return;
+                    }
+                    if (event.key === "k" || event.key === "ArrowUp") {
+                        event.preventDefault();
+                        moveLinkSelection(-1);
+                        return;
+                    }
+                    if (event.key === "g") {
+                        event.preventDefault();
+                        selectLink(0);
+                        return;
+                    }
+                    if (event.key === "G") {
+                        event.preventDefault();
+                        selectLink(getLinkItems().length - 1);
+                        return;
+                    }
+                    if (event.key === "Enter") {
+                        event.preventDefault();
+                        target.click();
+                        return;
+                    }
+                }
+
+                return;
+            }
+
+            switch (event.key) {
+                case "h":
+                case "ArrowLeft":
+                    event.preventDefault();
+                    movePanel("h");
+                    break;
+
+                case "l":
+                case "ArrowRight":
+                    event.preventDefault();
+                    movePanel("l");
+                    break;
+
+                case "j":
+                case "ArrowDown":
+                    event.preventDefault();
+                    movePanel("j");
+                    break;
+
+                case "k":
+                case "ArrowUp":
+                    event.preventDefault();
+                    movePanel("k");
+                    break;
+
+                case "i":
+                    event.preventDefault();
+                    enterCurrentPanel();
+                    break;
+
+                case "Escape":
+                    clearLinkSelection();
+                    setMode("normal");
+                    break;
+
+                case "Enter":
+                    if (currentPanelId === "links") {
+                        event.preventDefault();
+                        enterCurrentPanel();
+                    }
+                    break;
+
+                case "b":
+                case "B":
+                    event.preventDefault();
+                    triggerBrowse();
+                    break;
+
+                case "c":
+                case "C":
+                    event.preventDefault();
+                    copyDatabase();
+                    break;
+            }
+        });
+
+        renderLinks();
+        setCurrentPanel("links");
+        updateStatus();
+    </script>
+</body>
+</html>
