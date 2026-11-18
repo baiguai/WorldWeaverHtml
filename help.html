@@ -1044,6 +1044,13 @@
         "expanded": false
       },
       {
+        "id": "3yye3sbq",
+        "title": "dashboard.html",
+        "content": "dashboard.html\n--------------------------------------------------------------------------------\n\nIf you are a keyboard-obsessed person, you can use the dashboard.html file\ninstead of the _importer.html_ and the _regex.html_ files.\n\nThis dashboard contains both of those tools as well as customizable links.\n(search the dashboard.html file for:  !@!  - and customize that for your system.\n\nThis dashboard uses vim-like key bindings.\n\nAlong the bottom of the page are some help notes, or you can hit:\n?\n\nto view the key-bindings help.",
+        "children": [],
+        "expanded": false
+      },
+      {
         "id": "vzq2adxm",
         "title": "importer.html",
         "content": "importer.html\n--------------------------------------------------------------------------------\n\nThe importer.html file is the tool that will compile your .nrmn script files\ninto a game database that you will copy and paste into your game file.\n\nSee _worldweaver.html_\n\nYou can use the Browse and Copy buttons if you like, however this tool is also\nkeyboard-driven.\n\nb = Browse\nc = Copy\n\n\n** Note **\nIf you hit the 'b' key and the browse dialog doesn't show up, try hitting\n'b' once more. This will hopefully be corrected in future versions of the\nimporter.\n\n\nWhen you click Browse you will want to navigate to your game's root directory\nand click Open. The first time you do this during your browser session, you\nwill need to click Ok on an alert asking if you want to allow the app to view\nyour files.\n\n\n** Note **\nStoring your game files in your account's Documents directory will make it\nMUCH easier to select your root directory without the need to navigate to it.\n\n\nThen click Copy. What is now in your clipboard is what you need to paste into\nyour game file, replacing:\n\nEverything between:\n\n// [[Start Database]]\n\nand\n\n// [[End Database]]\n\n\n\n** Note **\nIf you are a Vim nerd - pasting the updated database is VERY easy!\nSee: \n_Pasting the DB with Vim_",
@@ -1104,7 +1111,7 @@
       {
         "id": "j2xmxbr6",
         "title": "Importing the Database",
-        "content": "Importing the Database\n--------------------------------------------------------------------------------\n\nBuilding WW games consists of the following:\n\n* Defining .nrmn script files\n* Compiling those scripts using the _importer.html_\n* Copying the generated database into your game's .html file\n\nYou can identify the database by opening the game file in a text editor and searching for:\n\n// [[Start Database]]\n\nAnd it ends with:\n// [[End Database]]\n\n\nSo you will replace everything between those two comments  with what you copied in the _importer.html_ file.\n\n\nSee also _Dataloader_\n\nAlso refer to the _Developer's Cheat Sheet_",
+        "content": "Importing the Database\n--------------------------------------------------------------------------------\n\nBuilding WW games consists of the following:\n\n* Defining .nrmn script files\n* Compiling those scripts using the _importer.html_ or the dashboard: _dashboard.html_\n* Copying the generated database into your game's .html file\n\nYou can identify the database by opening the game file in a text editor and searching for:\n\n// [[Start Database]]\n\nAnd it ends with:\n// [[End Database]]\n\n\nSo you will replace everything between those two comments  with what you copied in the _importer.html_ file.\n\n\nSee also _Dataloader_\n\nAlso refer to the _Developer's Cheat Sheet_",
         "children": [],
         "expanded": false
       },
@@ -1520,7 +1527,7 @@
         {
           "id": "fhr5448h",
           "title": "Special Tags Cheat Sheet",
-          "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------+---------------------------------------------------------------+\n| Tag             | Link                      | Description                                                   |\n+-----------------+---------------------------+---------------------------------------------------------------+\n| !_adminpass     | _Admin Pass Tag_          | Lets you set an admin mode password                           |\n| !_arm           | _Arm Tag_                 | Lets a Set Element arm the player                             |\n| !_armed         | _Armed Weapon Tag_        | Lets WW know what weapon the player is armed with             |\n| !_bullet        | _Bullet List Tag_         | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | _Can't Attack Tag_        | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | _Container Tag_           | Lets WW know the Element is a container                       |\n| !_cover         | _Cover Tag_               | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | _Damage Tag_              | The current Element inflicts damage                           |\n| !_damageadj     | _Damage Adjustment Tag_   | Allows you to adjust damage values                            |\n| !_defact        | _Defacto Output Tag_      | Default output value                                          |\n| !_die           | _Die Tag_                 | The Element to process when the player dies                   |\n| !_easingrounds  | _Easing Rounds Tag_       | Make difficult enemies a bit easier to hit                    |\n| !_enter         | _Enter Tag_               | An Element to process when entering a Room                    |\n| !_error         | _Error Tag_               | The Element's Output should show when an error occurs         |\n| !_filename      | _File Name Tag_           | Specify the file name to use when saving the game             |\n| !_hitmsg        | _Hit Message Tag_         | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | _Hit Player Message Tag_  | Message to show when the player is hit                        |\n| !_hitscore      | _Hit Score Tag_           | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | _Kill Message Tag_        | Message to show when the player kills an enemy                |\n| !_leave         | _Leave Tag_               | An Element to process when leaving a Room                     |\n| !_life          | _Life Tag_                | The Element is showing the Player's life                      |\n| !_limbo         | _Limbo Tag_               | A 'place' to move Elements when they should disappear         |\n| !_list          | _List Tag_                | Show a list of matching Attributes                            |\n| !_missmsg       | _Miss Message Tag_        | Message to show when an attack misses                         |\n| !_missplayermsg | _Miss Player Message Tag_ | When an attack on the player fails, show this                 |\n| !_platform      | _Platform Tag_            | Lets WW know the Element is a platform, things can be on it   |\n| !_put           | _Put Tag_                 | Lets WW know that the Element can be put into another Element |\n| !_regex         | _REGEX Tag_               | The Attribute Element is a REGEX                              |\n| !_spawn         | _Spawn Tag_               | The Action Element should spawn another Element               |\n| !_start         | _Start Element Tag_       | An Element to fire when the game first starts                 |\n| !_test          | _Test Tag_                | The Element is a test Element                                 |\n| !_type          | _Type Tag_                | The scope Element type                                        |\n| !_ui_background | _UI Background Tag_       | Set the game's UI background color                            |\n| !_ui_foreground | _UI Foreground Tag_       | Set the game's UI foreground color                            |\n| !_weapon        | _Weapon Tag_              | The current Object Element is a weapon                        |\n+-----------------+---------------------------+---------------------------------------------------------------+\n\n\n\n\n#cheatsheet\n#developer",
+          "content": "Special Tags Cheat Sheet\n--------------------------------------------------------------------------------\n\n+-----------------+---------------------------+---------------------------------------------------------------+\n| Tag             | Link                      | Description                                                   |\n+-----------------+---------------------------+---------------------------------------------------------------+\n| !_adminpass     | _Admin Pass Tag_          | Lets you set an admin mode password                           |\n| !_arm           | _Arm Tag_                 | Lets a Set Element arm the player                             |\n| !_armed         | _Armed Weapon Tag_        | Lets WW know what weapon the player is armed with             |\n| !_bullet        | _Bullet List Tag_         | Causes a !_list to show as a bullet list                      |\n| !_cantattack    | _Can't Attack Tag_        | Allows you to disable a weapon (ammo, etc)                    |\n| !_container     | _Container Tag_           | Lets WW know the Element is a container                       |\n| !_cover         | _Cover Tag_               | Lets WW know the Element is a 'cover', things can be under it |\n| !_damage        | _Damage Tag_              | The current Element inflicts damage                           |\n| !_damageadj     | _Damage Adjustment Tag_   | Allows you to adjust damage values                            |\n| !_defact        | _Defacto Output Tag_      | Default output value                                          |\n| !_die           | _Die Tag_                 | The Element to process when the player dies                   |\n| !_easingrounds  | _Easing Rounds Tag_       | Make difficult enemies a bit easier to hit                    |\n| !_enter         | _Enter Tag_               | An Element to process when entering a Room                    |\n| !_error         | _Error Tag_               | The Element's Output should show when an error occurs         |\n| !_filename      | _File Name Tag_           | Specify the file name to use when saving the game             |\n| !_hitmsg        | _Hit Message Tag_         | Message to show when the player/npc is hit                    |\n| !_hitplayermsg  | _Hit Player Message Tag_  | Message to show when the player is hit                        |\n| !_hitscore      | _Hit Score Tag_           | The value an enemy's attack must beat to hit the player       |\n| !_killmsg       | _Kill Message Tag_        | Message to show when the player kills an enemy                |\n| !_leave         | _Leave Tag_               | An Element to process when leaving a Room                     |\n| !_life          | _Life Tag_                | The Element is showing the Player's life                      |\n| !_limbo         | _Limbo Tag_               | A 'place' to move Elements when they should disappear         |\n| !_list          | _List Tag_                | Show a list of matching Attributes                            |\n| !_missmsg       | _Miss Message Tag_        | Message to show when an attack misses                         |\n| !_missplayermsg | _Miss Player Message Tag_ | When an attack on the player fails, show this                 |\n| !_platform      | _Platform Tag_            | Lets WW know the Element is a platform, things can be on it   |\n| !_play          | _Play Tag_                | Runs a play-through test of ALL the rooms in the game         |\n| !_put           | _Put Tag_                 | Lets WW know that the Element can be put into another Element |\n| !_regex         | _REGEX Tag_               | The Attribute Element is a REGEX                              |\n| !_spawn         | _Spawn Tag_               | The Action Element should spawn another Element               |\n| !_start         | _Start Element Tag_       | An Element to fire when the game first starts                 |\n| !_test          | _Test Tag_                | The Element is a test Element                                 |\n| !_type          | _Type Tag_                | The scope Element type                                        |\n| !_ui_background | _UI Background Tag_       | Set the game's UI background color                            |\n| !_ui_foreground | _UI Foreground Tag_       | Set the game's UI foreground color                            |\n| !_weapon        | _Weapon Tag_              | The current Object Element is a weapon                        |\n+-----------------+---------------------------+---------------------------------------------------------------+\n\n\n\n\n#cheatsheet\n#developer",
           "children": [],
           "expanded": false
         },
@@ -1703,6 +1710,13 @@
           "id": "bg1rn446",
           "title": "Platform Tag",
           "content": "Platform Tag\n--------------------------------------------------------------------------------\n\n!_platform\n\n\nThis tag lets WorldWeaver know that the object is a platform. Objects put on top\nof it aren't described in any actions other than ones with the tags '!_type|on'.\n\nSo if the player puts the object on this object, add the tag 'on' to the object.\n\n\n--------------------------------------------------------------------------------\n#tag",
+          "children": [],
+          "expanded": false
+        },
+        {
+          "id": "ki40ei07",
+          "title": "Play Tag",
+          "content": "Play Tag\n--------------------------------------------------------------------------------\n\nThe !_play tag is used for the final tests of your game. After you have\ndefined your Rooms and Objects etc - and have done your custom testing:\n\n_Marking Elements as Tested_\n\nYou can then go in and start testing your game as an actual player (NOT using\nmacros or other development tools).\nOnce you have THOROUGHLY tested a room, you can give it the:\n\n!_play\n\ntag.\n\n\nThen in Admin Mode - you can call the:\n\n!_play\n\ncommand, and it will show every room with the !_play tag as passed and all\nthe others as failed.",
           "children": [],
           "expanded": false
         },
@@ -2272,7 +2286,7 @@
       {
         "id": "03io5wie",
         "title": "Injection Placeholders",
-        "content": "Injection Placeholders\n--------------------------------------------------------------------------------\n\nIf you are just stubbing in injections, but don't want to flesh them out just\nyet. You can test to see if they are actually being injected by simply\nadding an attribute in the injected file, then use the admin _room tool.\n\nfor example - if you have a room:\n\n{room, key=dungeon, name=Dungeon\n    {inject, logic=./chest.inj }\n}\n\n\nIn the chest.inj - you can add something like:\n\n{attrib, output=chest }\n\n\n\nThen start your game, use _admin <password> to enter admin mode, then type:\n\n_room\n\n\nIf the the Inject Element has properly injected the .inj contents, you will\nsee the 'chest' attribute in the list of room Elements.",
+        "content": "Injection Placeholders\n--------------------------------------------------------------------------------\n\nIf you are just stubbing in injections, but don't want to flesh them out just\nyet. You can test to see if they are actually being injected by simply\nadding an attribute in the injected file, then use the admin _room tool.\n\nfor example - if you have a room:\n\n{room, key=dungeon, name=Dungeon\n    {inject, logic=./chest.inj }\n}\n\n\nIn the chest.inj - you can add something like:\n\n{attrib, output=chest }\n\n\n\nThen start your game, use _admin <password> to enter admin mode.\nNavigate to the room that has the injection you are testing and type:\n\n_room\n\n\nIf the the Inject Element has properly injected the .inj contents, you will\nsee the 'chest' attribute in the list of room Elements.",
         "children": [],
         "expanded": false
       },
@@ -2997,7 +3011,7 @@
           {
             "id": "svcak5lr",
             "title": "Room Template with Test and Story",
-            "content": "Room Template with Test and Story\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        {act, logic=story, tags=!_type|room }\n    }\n\n    {story\n        {message\n            output={@\n\n...\n\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n\n            }\n        }\n\n        {logic, name=YOURNAME tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n    \n    \n    {dev_note, tags=Testing, active=true\n        output={@\n[ ] : Room\n[ ] : Look\n[ ] : Story\n\n[ ] : Navigation\n        }\n    }\n}",
+            "content": "Room Template with Test and Story\n--------------------------------------------------------------------------------\n\n{room, key=YOURKEY, name=YOURNAME\n    {attrib, output=false, tags=tested }\n    {attrib, tags=navigation\n        output={@\n...\n        }\n    }\n\n    {enter_message\n        {act, logic=story, tags=!_type|room }\n    }\n\n    {story\n        {message\n            output={@\n\n...\n\n            }\n        }\n    }\n\n    {look\n        {message\n            output={@\n\n...\n\n            }\n        }\n\n        {logic, name=YOURNAME tested, tags=!_test\n            logic={@\n                ?[self]((tested)) = 'true'\n            }\n        }\n    }\n\n\n    {inject, logic=/nav.inj }\n    {inject, logic=/look.inj }\n\n\n\n    {dev_note, tags=Testing, active=true\n        output={@\n[ ] : Room\n[ ] : Look\n[ ] : Story\n\n[ ] : Navigation\n        }\n    }\n}",
             "children": [],
             "expanded": false
           },
@@ -3132,92 +3146,95 @@
   }
 ];
             let historyStack = [
-  {"id": "sinjgjs9",
-   "title": "Move Element"
+  {"id": "b9al9exs",
+   "title": "Cover Tag"
   },
-  {"id": "dxzibfsi",
-   "title": "The Object to be Moved"
+  {"id": "haqkcdop",
+   "title": "Damage Tag"
   },
-  {"id": "7t1zfwoc",
-   "title": "Introduction"
+  {"id": "4l587ilf",
+   "title": "Damage Adjustment Tag"
   },
-  {"id": "jtfzv3lb",
-   "title": "Using This Help System"
+  {"id": "v5poddci",
+   "title": "Defacto Output Tag"
   },
-  {"id": "gd3l7b09",
-   "title": "Quick Links"
+  {"id": "hapfxkyz",
+   "title": "Die Tag"
   },
-  {"id": "0gwz86i8",
-   "title": "Introduction to Conversations"
+  {"id": "18meyn74",
+   "title": "Easing Rounds Tag"
   },
-  {"id": "0o2q3drd",
-   "title": "Npc Example"
+  {"id": "7mujeoph",
+   "title": "Enter Tag"
   },
-  {"id": "ucohh3n7",
-   "title": "Message - Output"
+  {"id": "w9p8im50",
+   "title": "Error Tag"
   },
-  {"id": "6kjv2pvy",
-   "title": "Tests Gotchas"
+  {"id": "myv37am3",
+   "title": "File Name Tag"
   },
-  {"id": "ls0rnz27",
-   "title": "Takeable Object"
+  {"id": "tl1y4vvj",
+   "title": "Hit Message Tag"
   },
-  {"id": "nzgfll50",
-   "title": "Inspectable Object Injection"
+  {"id": "comlp6kq",
+   "title": "Hit Player Message Tag"
   },
-  {"id": "svcak5lr",
-   "title": "Room Template with Test and Story"
+  {"id": "q87b0aaq",
+   "title": "Hit Score Tag"
   },
-  {"id": "bv01nqgb",
-   "title": "Set Element"
+  {"id": "30r35phi",
+   "title": "Kill Message Tag"
   },
-  {"id": "sf11evb7",
-   "title": "Inline Logic"
+  {"id": "7bhq9y3d",
+   "title": "Leave Tag"
   },
-  {"id": "z8lf5u2u",
-   "title": "Dynamic Values"
+  {"id": "z14sis1j",
+   "title": "Life Tag"
   },
-  {"id": "neeixuuw",
-   "title": "Set - Output"
+  {"id": "1tq6plpe",
+   "title": "Limbo Tag"
   },
-  {"id": "1y2z9kpf",
-   "title": "Global Element"
+  {"id": "nqrxd1yf",
+   "title": "List Tag"
   },
-  {"id": "2z7245ps",
-   "title": "Action Element"
+  {"id": "elcfgqtj",
+   "title": "Miss Message Tag"
   },
-  {"id": "4vlrf9wp",
-   "title": "Logic Comparison Operators"
+  {"id": "ivnvc8sv",
+   "title": "Miss Player Message Tag"
   },
-  {"id": "9h9byll0",
-   "title": "Logic Element"
+  {"id": "bg1rn446",
+   "title": "Platform Tag"
   },
-  {"id": "lyhipxxo",
-   "title": "CSS Colors"
+  {"id": "eqdthl2o",
+   "title": "Tracking Room Development"
   },
-  {"id": "472y3w29",
-   "title": "Fire"
+  {"id": "3fdyi1a0",
+   "title": "Tracking Game Development"
   },
-  {"id": "3cccheaq",
-   "title": "Developer's Cheat Sheet"
+  {"id": "dyt0p04u",
+   "title": "REGEX Tag"
   },
-  {"id": "bv79am30",
-   "title": "Game Element Piece"
+  {"id": "l6p9ii8d",
+   "title": "Put Tag"
   },
-  {"id": "hdcla1gx",
-   "title": "Introduction"
+  {"id": "k48d3mlp",
+   "title": "Types, Tags, and Properties"
   },
-  {"id": "nmsxz8hm",
-   "title": "Introduction to the Sample Game"
+  {"id": "56krobm4",
+   "title": "Arm Tag"
   },
-  {"id": "nhwpf4gl",
-   "title": "Introduction to Passive Actions"
+  {"id": "yv4driaf",
+   "title": "Admin Pass Tag"
   },
-  {"id": "rrkytvhk",
-   "title": "Passive Action Examples"
+  {"id": "fhr5448h",
+   "title": "Special Tags Cheat Sheet"
   },
-  {"id": "tp0sm871",
-   "title": "Global Element Piece"
+  {"id": "ljumwj5c",
+   "title": "Marking Elements as Tested"
+  },
+  {"id": "ki40ei07",
+   "title": "Play Tag"
   }
 ];
 

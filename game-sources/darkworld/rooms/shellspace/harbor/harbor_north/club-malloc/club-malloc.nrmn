@@ -1,8 +1,11 @@
-{room, key=club_malloc,g, name=Club Malloc
+{room, key=club_malloc, name=Club Malloc
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
 West: exit the club
+North East: stair case
+East: enter the dance floor
+South: sit at the bar
         }
     }
 
@@ -14,7 +17,9 @@ West: exit the club
         {message
             output={@
 
-...
+There is a small storage room in the northwest corner of the club.
+Along the south wall is a vast bar with three bartenders working it.
+In the east end of the dance floor is a tall DJ setup.
 
             }
         }
@@ -24,7 +29,22 @@ West: exit the club
         {message
             output={@
 
-...
+The club is packed with people dancing, drinking and talking. They are dressed
+in the cutting edge of Shellspace cybernetic fashion. Various limbs and aspects
+of their bodies are classically augmented or comprised of strange virtual
+reality constructs.
+
+The bass-heavy music pulses and throbs, vibrating the walls and floor.
+
+The DJ at the east end of the dance floor is a tall woman who is mostly
+chrome paneled body parts. Her eyes are solid black and she is wearing a
+full body black vinyl outfit.
+
+In the north east corner of the room you see a staircase ascending to a
+second floor.
+
+There are three bartenders working the long winding bar that is set along
+the south wall of the club.
 
             }
         }
@@ -40,6 +60,8 @@ West: exit the club
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+    {inject, logic=./objects/crowd.inj }
+
 
     
     {input, syntax=[tplt_syntax]((go_west))
@@ -52,6 +74,16 @@ You exit the club.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_north_east))
+        {move, logic=club_malloc_upst, tags=[player]
+            output={@
+
+You go upstairs.
+
+            }
+        }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
@@ -59,6 +91,12 @@ You exit the club.
 [ ] : Room
 [ ] : Look
 [ ] : Story
+>   [ ] : crowd
+>   [ ] : music
+>   [ ] : dj
+>   [ ] : stairs
+>   [ ] : bartender
+>   [ ] : bar
 
 [ ] : Navigation
         }

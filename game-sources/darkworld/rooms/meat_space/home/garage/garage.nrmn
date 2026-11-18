@@ -93,8 +93,8 @@ You go back to the living room.
     }
 
 
-    
-    
+
+
     {dev_note, tags=Testing, active=true
         output={@
 [X] : Room
