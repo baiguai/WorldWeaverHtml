@@ -329,6 +329,7 @@
                 const deleteNoteTag = "!_delete";
                 const notesNoteTag = "!_notes";
                 const isMinutesTag = "!_isminutes";
+                const playtestTag = "!_play";
 
         // Classes
             const gameOutput = {
@@ -2193,6 +2194,11 @@
                     doAdminMacroRun(command.replace("_macrots ", ""));
                     return;
 
+                case command === "_play" && adminMode:
+                    doAdminPlayTest();
+                    gameOutput.MatchMade = true;
+                    return;
+
                 case command.startsWith("_macro ") && adminMode:
                     macroTesting = false;
                     doAdminMacroRun(command.replace("_macro ", ""));
@@ -2268,6 +2274,7 @@
             helpText += "<li><strong>_macrols</strong> : Lists all the macros that are in your game</li>";
             helpText += "<li><strong>_macro (macro name)</strong> : Runs the specific macro</li>";
             helpText += "<li><strong>_macrots (macro name)</strong> : Runs the specific macro and processes any tests it encounters</li>";
+            helpText += "<li><strong>_play</strong> : Tests every room for the !_play tag and reports Passed or Failed</li>";
             helpText += "<li><strong>_regex (optional filter)</strong> : Runs all of the defined REGEX tests in your game. See help topic - Adding Testable Regular Expressions to Your Game</li>";
             helpText += "<li><strong>_game</strong> : Describes the current state of the Game Element.</li>";
             helpText += "<li><strong>_global</strong> : Describes the current state of the Global Elements.</li>";
@@ -2497,6 +2504,16 @@
                 output.innerHTML += `Room: ${res.Room}, Test: ${res.Name}, Result: ${res.Result}${brt}`;
             }
             testResults.length = 0;
+        }
+
+        function doAdminPlayTest() {
+            const brt = "<br />";
+            const rooms = database.filter(item => item.ElementType === "room");
+            output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
+            for (const room of rooms) {
+                const result = tagsContain(room.Tags, playtestTag) ? passString : failString;
+                output.innerHTML += `Room: ${room.Name}, Result: ${result}${brt}`;
+            }
         }
 
 
