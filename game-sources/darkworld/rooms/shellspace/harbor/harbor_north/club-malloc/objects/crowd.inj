@@ -1,0 +1,19 @@
+{x_crowd
+    {message
+        output={@
+
+You examine the crowd...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_crowd))
+    {act, logic=x_crowd, tags=!_type|room }
+}

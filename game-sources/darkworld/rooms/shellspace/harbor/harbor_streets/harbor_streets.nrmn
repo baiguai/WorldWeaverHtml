@@ -1,5 +1,5 @@
 {room, key=hrbr_streets, name=Harbor Streets
-    {attrib, output=false, tags=tested }
+    {attrib, output=true, tags=tested }
     {attrib, tags=navigation
         output={@
 West: enter the Harbor Port
@@ -128,7 +128,7 @@ You travel north into the heart of the city.
 >   [x] : X girl, west, east, south, north
 >   [x] : X girl, west, east, south, north, south
 
-[ ] : Navigation
+[x] : Navigation
         }
     }
 }

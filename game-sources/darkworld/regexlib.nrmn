@@ -21,6 +21,7 @@
         {attrib, tags=x_couch|!_regex, output=^(examine|x)(?: the)? (couch|couches)$, logic=x the couch|x couches|examine the couches|x couch }
         {attrib, tags=x_counters|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(counters)\b, logic=examine the counters|x the counters|examine counters|x counters }
         {attrib, tags=x_couples|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?couples\b, logic=examine the couples|examine couples|x the couples|x couples }
+        {attrib, tags=x_crowd|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*(?:people|crowd)\b, logic=examine the crowd|x crowd|x the people|x people }
         {attrib, tags=x_cube|!_regex, output=^(examine|x)(?: the)? (cube|cubes)$, logic=x the cube|x cubes|examine the cubes|x cube }
         {attrib, tags=x_cupboards|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(cupboards)\b, logic=examine the cupboards|x the cupboards|examine cupboards|x cupboards }
         {attrib, tags=x_desk|!_regex, output=^(examine|x)(?: the)? desk$, logic=x your desk|x desk|examine the desk }
