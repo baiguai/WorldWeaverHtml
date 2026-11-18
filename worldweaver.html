@@ -2512,7 +2512,7 @@
             output.innerHTML = `<strong>Test Results:</strong>${brt}${brt}`;
             for (const room of rooms) {
                 const result = tagsContain(room.Tags, playtestTag) ? passString : failString;
-                output.innerHTML += `Room: ${room.Name}, Result: ${result}${brt}`;
+                output.innerHTML += `Room: ${room.Name} (${room.ElementKey}), Result: ${result}${brt}`;
             }
         }
 
