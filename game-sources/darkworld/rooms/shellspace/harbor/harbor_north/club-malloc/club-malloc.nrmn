@@ -60,6 +60,8 @@ the south wall of the club.
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
 
+    {inject, logic=./objects/crowd.inj }
+
 
     
     {input, syntax=[tplt_syntax]((go_west))
@@ -89,6 +91,12 @@ You go upstairs.
 [ ] : Room
 [ ] : Look
 [ ] : Story
+>   [ ] : crowd
+>   [ ] : music
+>   [ ] : dj
+>   [ ] : stairs
+>   [ ] : bartender
+>   [ ] : bar
 
 [ ] : Navigation
         }
