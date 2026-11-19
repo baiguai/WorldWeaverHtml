@@ -1,0 +1,67 @@
+{room, key=club_malloc_storage, name=Storage
+    {attrib, output=false, tags=tested }
+    {attrib, tags=navigation
+        output={@
+South: exit the storage room
+        }
+    }
+
+    {enter_message
+        {act, logic=story, tags=!_type|room }
+    }
+
+    {story
+        {message
+            output={@
+
+You are in the storage room.
+
+            }
+        }
+    }
+
+    {look
+        {message
+            output={@
+
+You look around the storage room...
+
+            }
+        }
+
+        {logic, name=Storage tested, tags=!_test
+            logic={@
+                ?[self]((tested)) = 'true'
+            }
+        }
+    }
+
+
+    {inject, logic=/nav.inj }
+    {inject, logic=/look.inj }
+
+
+
+
+    {input, syntax=[tplt_syntax]((go_south))
+        {move, logic=club_malloc, tags=[player]
+            output={@
+
+You exit the storage room.
+
+            }
+        }
+    }
+
+
+
+    {dev_note, tags=Testing, active=true
+        output={@
+[ ] : Room
+[ ] : Look
+[ ] : Story
+
+[ ] : Navigation
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{x_bartender
+    {message
+        output={@
+
+You examine the bartender...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_bartender))
+    {act, logic=x_bartender, tags=!_type|room }
+}

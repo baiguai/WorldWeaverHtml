@@ -1,0 +1,33 @@
+{x_music
+    {message
+        output={@
+
+You examine the music...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_music))
+    {act, logic=x_music, tags=!_type|room }
+}

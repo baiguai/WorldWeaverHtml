@@ -1,0 +1,34 @@
+{x_dj
+    {message
+        output={@
+
+You examine the DJ...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_dj))
+    {act, logic=x_dj, tags=!_type|room }
+}

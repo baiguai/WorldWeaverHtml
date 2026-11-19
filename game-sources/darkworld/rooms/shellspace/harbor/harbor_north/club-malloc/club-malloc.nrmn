@@ -61,6 +61,11 @@ the south wall of the club.
     {inject, logic=/look.inj }
 
     {inject, logic=./objects/crowd.inj }
+    {inject, logic=./objects/bar.inj }
+    {inject, logic=./objects/bartender.inj }
+    {inject, logic=./objects/dj.inj }
+    {inject, logic=./objects/music.inj }
+    {inject, logic=./objects/stairs.inj }
 
 
     
@@ -84,6 +89,16 @@ You go upstairs.
         }
     }
 
+    {input, syntax=[tplt_syntax]((go_north_west))
+        {move, logic=club_malloc_storage, tags=[player]
+            output={@
+
+You step into the storage room...
+
+            }
+        }
+    }
+
     
     
     {dev_note, tags=Testing, active=true
@@ -91,6 +106,7 @@ You go upstairs.
 [ ] : Room
 [ ] : Look
 [ ] : Story
+>   [ ] : storage
 >   [ ] : crowd
 >   [ ] : music
 >   [ ] : dj

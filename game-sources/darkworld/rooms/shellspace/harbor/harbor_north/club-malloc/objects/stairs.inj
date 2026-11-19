@@ -1,0 +1,35 @@
+{x_stairs
+    {message
+        output={@
+
+You examine the stairs...
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_stairs))
+    {act, logic=x_stairs, tags=!_type|room }
+}
