@@ -1,0 +1,60 @@
+{attrib, output=false, tags=panel_found }
+
+{x_wires
+    {message
+        output={@
+
+You look closer at the wires. You just can't seem to work out what they are
+connected to.
+
+You decide to trace one of them from the ceiling.
+It snakes across the floor to the north wall.
+
+**And then vanishes through a small gap at the floor**
+
+You realize that portion of the wall is a crudely disguised panel that has
+been wedged into an opening in the wall.
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_wires))
+    {act, logic=x_wires, tags=!_type|room }
+    {set, logic=[room]((panel_found)), output=true }
+}
+
+{input, syntax=[tplt_syntax]((go_north))
+    {move, logic=malloc_secret_storage, tags=[player]
+        output={@
+
+You remove the panel and crawl into the small opening in the north wall.
+
+        }
+    }
+
+    {logic
+        logic={@
+            ?[room]((panel_found)) = 'true'
+        }
+        output={@
+
+The north wall is just panels and wires.
+
+        }
+    }
+}

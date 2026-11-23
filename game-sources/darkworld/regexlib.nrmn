@@ -97,6 +97,7 @@
         {attrib, tags=x_vidgame|!_regex, output=^(examine|x)(?: the)?(?: video)? (game|games)$, logic=x the video games|x video game|x games|examine the games }
         {attrib, tags=x_weird_panel|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(weird)?(\s+)?(panel)\b, logic=examine the weird panel|examine panel|x the weird panel|x the panel }
         {attrib, tags=x_window|!_regex, output=^(examine|x)(?: the)? (window|windows)$, logic=x the window|x window|examine the window|x windows }
+        {attrib, tags=x_wires|!_regex, output=\b(?:examine|look|x)\s*(?:at)?\s*(?:the)?\s*wires\b, logic=examine the wires|x wires|look at wires }
         {attrib, tags=x_woman|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(woman|lady)\b, logic=examine the woman|examine woman|examine lady|x the woman|x woman|x lady|x bartender }
         {attrib, tags=x_workbench|!_regex, output=\b(x|examin(?:e)?)\s+(the\s+)?(workbench)\b, logic=examine the workbench|x the workbench|examine workbench|x workbench }
         {attrib, tags=x_your_bed|!_regex, output=^(examine|x)(?: the)?(?: your)? bed$, logic=x your bed|x bed|examine the bed }

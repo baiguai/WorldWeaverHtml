@@ -14,7 +14,12 @@ South: exit the storage room
         {message
             output={@
 
-You are in the storage room.
+Dozens of wires are spilling out from missing panels in the ceiling.
+Parts of it are glitching and not rendering properly.
+It appears that this room is a bit buggy and its definitions not quite
+coded properly.
+
+There is nothing but junk surrounding you.
 
             }
         }
@@ -24,7 +29,16 @@ You are in the storage room.
         {message
             output={@
 
-You look around the storage room...
+Wires are everywhere, along the walls and spilling out of missing panels
+in the ceiling overhead. They are tangled and disorganized.
+You can't tell what they might be connected to.
+
+Small dim lights illuminate the chaotically packed store room.
+Parts of it are glitching and not rendering properly.
+It appears that this room is a bit buggy and its definitions not quite
+coded properly.
+
+There is nothing but junk surrounding you.
 
             }
         }
@@ -39,6 +53,9 @@ You look around the storage room...
 
     {inject, logic=/nav.inj }
     {inject, logic=/look.inj }
+
+
+    {inject, logic=./objects/wires.inj }
 
 
 
@@ -60,6 +77,7 @@ You exit the storage room.
 [ ] : Room
 [ ] : Look
 [ ] : Story
+>   [ ] : Wires
 
 [ ] : Navigation
         }

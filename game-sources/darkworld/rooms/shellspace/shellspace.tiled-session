@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "harbor/harbor_north/club-malloc/club_malloc.tmx",
+    "activeFile": "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tiled map files (*.tmx *.xml)",
@@ -542,8 +542,8 @@
             "scale": 1,
             "selectedLayer": 7,
             "viewCenter": {
-                "x": -248,
-                "y": 675.5
+                "x": -44,
+                "y": 315.5
             }
         },
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx#main": {
@@ -634,14 +634,14 @@
     "map.lastUsedFormat": "tmx",
     "map.orientation": "1",
     "openFiles": [
-        "harbor/harbor_north/club-malloc/club_malloc.tmx"
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx"
     ],
     "project": "shellspace.tiled-project",
     "property.type": "file",
     "recentFiles": [
+        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "harbor/harbor_north/club-malloc/club_malloc.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/library/library.tmx",
-        "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/the_bowl.tmx",
         "/home/baiguai/documents/development/dnd/campaigns/the_bowl/maps/catacombs/catacombs.tmx",
         "shellspace.tmx",
         "harbor/harbor_north/test.tmx",
