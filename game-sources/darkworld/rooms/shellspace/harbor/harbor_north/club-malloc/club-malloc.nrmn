@@ -2,6 +2,7 @@
     {attrib, output=false, tags=tested }
     {attrib, tags=navigation
         output={@
+North West: storage
 West: exit the club
 North East: stair case
 East: enter the dance floor
@@ -42,6 +43,8 @@ full body black vinyl outfit.
 
 In the north east corner of the room you see a staircase ascending to a
 second floor.
+
+Northwest of where you are is a small door marked 'storage'.
 
 There are three bartenders working the long winding bar that is set along
 the south wall of the club.

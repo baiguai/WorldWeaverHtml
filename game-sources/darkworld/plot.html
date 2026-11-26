@@ -842,23 +842,23 @@
 
             <div class="search-dialog" id="searchDialog" style="display: none;">
                 <input id="searchInput" placeholder="Search... (# for tags, r: regex, +: words)" type="text">
-                <div class="search-results" id="searchList"><div class="selected">Invisibility Exploit</div><div>Clarenze</div><div>Kitchen</div><div>Club Malloc</div></div>
+                <div class="search-results" id="searchList"><div>Invisibility Exploit</div><div>Clarenze</div><div>Kitchen</div><div>Club Malloc</div><div class="selected">Secret Storage Room</div></div>
             </div>
 
             <div class="search-dialog" id="linkSearchDialog" style="display: none;">
                 <input id="linkSearchInput" placeholder="Search to insert link..." type="text">
-                <div class="search-results" id="linkSearchList"></div>
+                <div class="search-results" id="linkSearchList"><div>Overview</div><div>Storage Room</div><div class="selected">Secret Storage Room</div></div>
             </div>
 
-            <div class="search-dialog" id="helpDialogUnified" style="display:none;">
+            <div class="search-dialog" id="helpDialogUnified" style="display: none;">
                 <input id="helpFilter" type="text" placeholder="Filter help (Start with : to search keys only, !r for regex cheatsheet)...">
-                <div id="helpResults" class="search-results"></div>
+                <div id="helpResults" class="search-results"><div><b>V</b> <span class="dim">(TREE) - </span>Show the link tree dialog</div><div><b>Control+l</b> <span class="dim">(NORMAL) - </span>Open the link under the cursor</div><div><b>\</b> <span class="dim">(NORMAL) - </span>Search, then create a child node with links to all results</div><div><b>\</b> <span class="dim">(TREE) - </span>Search, then create a root node with links to all results</div><div><b>#</b> <span class="dim">(TREE) - </span>Show note links dialog</div><div><b>V</b> <span class="dim">(TREE) - </span>Show the link tree dialog</div><div><b>X</b> <span class="dim">(TREE) - </span>Show dead intra-document links</div><div><b>Control+'</b> <span class="dim">(INSERT) - </span>Insert Link</div></div>
                 <p><a href="https://scribboleth.infinityfreeapp.com/" target="_blank">Full Help System</a></p>
             </div>
 
             <div id="linksDialog" ondblclick="closeLinksDialog();" style="display: none;">
                 <h3>Links in Note</h3>
-                <div id="linksList"><a href="#" data-node-id="kqr4o4g3" class="selected">The Options Dialog</a></div>
+                <div id="linksList"><a href="#" data-node-id="98upio66" class="selected">Secret Storage Room</a></div>
             </div>
 
             <div id="linkTreeDialog" class="search-dialog" style="display: none;">
@@ -972,12 +972,12 @@
             </div>
             <input type="file" id="themeEditorFilePicker" accept=".json" style="display:none;">
 
-            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Puzzle Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">People</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Rooms</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Meat Space</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Shellspace</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Harbor Port</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Harbor Streets</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">The Harbor</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor North</span></div><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Club Malloc</span></div></li></ul></li></ul></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
+            <aside class="tree" id="tree" onclick="closeDialogs(); activateTree();"><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Story Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Puzzle Notes</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">People</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Rooms</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Meat Space</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Shellspace</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M3 1 L7 5 L3 9 Z" fill="currentColor"></path></svg></span><span class="title">Harbor Port</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Harbor Streets</span></div></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">The Harbor</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Harbor North</span></div><ul><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Club Malloc</span></div></li><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Storage</span></div><ul><li><div class="node"><span class="twisty"><svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><path d="M1 3 L5 7 L9 3 Z" fill="currentColor"></path></svg></span><span class="title">Storage Room</span></div><ul><li><div class="node selected"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Secret Storage Room</span></div></li></ul></li></ul></li></ul></li></ul></li></ul></li></ul></li><li><div class="node"><span class="twisty"><svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="1" fill="currentColor"></circle></svg></span><span class="title">Theme Notes</span></div></li></ul></aside>
             <section class="editor">
                 <div id="statusBar" class="status" onclick="closeDialogs();" ondblclick="toggleMobileMenu();" title="Double click to toggle Mobile Mode">
                     <span class="pill" id="mode" style="display: block;">NORMAL</span>
                     <span class="pill" id="kind">NOTE</span>
-                    <span class="dim" id="path">/Rooms/Shellspace/Harbor/Harbor North</span>
+                    <span class="dim" id="path">/…/Harbor/Harbor North/Storage/Storage Room</span>
                     <span class="pill" id="msg"></span>
                 </div>
                 <textarea id="editorArea" spellcheck="false" class="normal-mode"></textarea>
@@ -1205,6 +1205,29 @@
                     "content": "Club Malloc\n\nIf the player sits at the bar:\n    * They meet ??\n    * This person tells them ?? or gives them ??\n\nIf they explore the club:\n    * They meet ??\n    * ?? takes them upstairs and ?? happens.\n\n\n\nHow does it further the game?\n\n#todo",
                     "children": [],
                     "expanded": false
+                  },
+                  {
+                    "id": "vrvkrdef",
+                    "title": "Storage",
+                    "content": "Storage\n\nThe storage room has mysterious wires all over the place.",
+                    "children": [
+                      {
+                        "id": "qtfp87mb",
+                        "title": "Storage Room",
+                        "content": "Storage Room\n\nIf the player inspects the wires they uncover a secret passage in the north wall.\nThis leads to: _Secret Storage Room_",
+                        "children": [
+                          {
+                            "id": "98upio66",
+                            "title": "Secret Storage Room",
+                            "content": "Secret Storage Room\n\nIn the center of the room is a floating orb.\n\nIf the player inspects it:\n    * Hmmm\n\n\n#todo",
+                            "children": [],
+                            "expanded": false
+                          }
+                        ],
+                        "expanded": true
+                      }
+                    ],
+                    "expanded": true
                   }
                 ],
                 "expanded": true
@@ -1323,6 +1346,18 @@
     {
         "id": "buiopi33",
         "title": "Club Malloc"
+    },
+    {
+        "id": "vrvkrdef",
+        "title": "Storage"
+    },
+    {
+        "id": "qtfp87mb",
+        "title": "Storage Room"
+    },
+    {
+        "id": "98upio66",
+        "title": "Secret Storage Room"
     }
 ];
 

@@ -21,14 +21,14 @@
     "5rlxxeur",
     "axorgnzp",
     "ny8h4cpm",
+    "ovriq3on",
     "cpvyfnp2",
+    "l6b3cwr9",
+    "b3f4gryz",
     "sfd5dmbq",
     "r0x909nq",
-    "ovriq3on",
-    "b3f4gryz",
     "j6aaugwd",
-    "l6b3cwr9",
-    "fbfdfxrt"
+    "buiopi33"
   ],
   "roots": [
   {
@@ -90,13 +90,13 @@
   {
     "id": "s7pt99bp",
     "name": "People",
-    "expanded": true,
+    "expanded": false,
     "text": "",
     "children": [
     {
       "id": "l6b3cwr9",
       "name": "Clarenze",
-      "expanded": true,
+      "expanded": false,
       "text": "Clarenze\n\nIn the basement of the Seidyne building.\nIf the player gives him the R3dF0x1 password, he can get into your father's hack.\n\n#todo\nWhat does the hack do?",
       "children": [
       ]
@@ -188,7 +188,7 @@
         {
           "id": "2krv0jt5",
           "name": "Master Bedroom",
-          "expanded": true,
+          "expanded": false,
           "text": "Master Bedroom\n\n",
           "children": [
           ]
@@ -236,7 +236,7 @@
         {
           "id": "r0x909nq",
           "name": "Harbor Streets",
-          "expanded": true,
+          "expanded": false,
           "text": "Harbor Streets\n\nIn this location the player meets _Itera_ however - if they don't fully\ninteract with her - that is a big deal!\n\nIf they don't do 'x girl', then follow her south, and 'x girl' again,\nthey don't learn about Clarenze, and don't get the mission to find him.\n\nSo they won't know how to use the R3dF0x1 password.",
           "children": [
           ]
@@ -244,17 +244,25 @@
         {
           "id": "j6aaugwd",
           "name": "The Harbor",
-          "expanded": true,
+          "expanded": false,
           "text": "The Harbor\n\nHere _Itera_ gives the player a mission:\n\nFind _Clarenze_.",
           "children": [
           ]
         },
         {
-          "id": "fbfdfxrt",
-          "name": "Harbor Promenade",
-          "expanded": false,
-          "text": "The player can continue west from the Harbor.\n\n#todo\nWhat do they find here?",
+          "id": "eh9alvak",
+          "name": "Harbor North",
+          "expanded": true,
+          "text": "",
           "children": [
+          {
+            "id": "buiopi33",
+            "name": "Club Malloc",
+            "expanded": false,
+            "text": "Club Malloc\n\nIf the player sits at the bar:\n    * They meet ??\n    * This person tells them ?? or gives them ??\n\nIf they explore the club:\n    * They meet ??\n    * ?? takes them upstairs and ?? happens.\n\n\n\nHow does it further the game?\n\n#todo",
+            "children": [
+            ]
+          }
           ]
         }
         ]

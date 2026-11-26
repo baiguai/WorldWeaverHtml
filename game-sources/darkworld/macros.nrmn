@@ -1,4 +1,4 @@
-{macro, key=mal, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l|~|s|~|x girl|~|yes|~|n|~|l|~|n|~|e|~|l }
+{macro, key=sec, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l|~|s|~|x girl|~|yes|~|n|~|l|~|n|~|e|~|l|~|nw|~|x wires|~|n|~|l }
 
 {macro, key=, output= }
 {macro, key=Tests, output= }
@@ -7,6 +7,7 @@
 
 {macro, key=, output= }
 
+{macro, key=mal, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l|~|s|~|x girl|~|yes|~|n|~|l|~|n|~|e|~|l }
 {macro, key=agr, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l|~|s|~|x girl|~|yes|~|n|~|l }
 {macro, key=girl, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l|~|e|~|x girl|~|l }
 {macro, key=expt, output=l|~|s|~|l|~|x alarm|~|2355|~|l|~|n|~|put usb in computer|~|l|~|yes|~|l }
