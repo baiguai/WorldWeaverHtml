@@ -66,6 +66,7 @@
         {attrib, tags=x_computers|!_regex, output=\b(?:x|examine)\s+(?:the\s+)?(?:computers)\b, logic=x the computers|x computers|x monitors|examine the computers }
         {attrib, tags=x_metroid|!_regex, output=\b(?:examine|x)\s+(?:the\s+)?metroid(?:\s+game)?\b, logic=x metroid|examine the metroid game }
         {attrib, tags=x_nightstand|!_regex, output=^(examine|x)(?: the)? (nightstand)$, logic=x the nightstand|x nightstand|examine the nightstand|x nightstand }
+        {attrib, tags=x_orb|!_regex, output=\b(?:examine|x)\s*(?:the)?\s*orb\b, logic=examine the orb|x the orb|x orb }
         {attrib, tags=x_paper|!_regex, output=^(examine|x)(?: the)? paper$, logic=x the papers|x paper|examine the paper|x piece of paper }
         {attrib, tags=x_paper_piece|!_regex, output=^(examine|x)(?: the)?(?: piece of)? paper$, logic=x the papers|x paper|examine the paper|x piece of paper }
         {attrib, tags=x_pillars|!_regex, output=^(examine|x)(?: the)? (pillar|pillars)$, logic=x the pillars|x pillar|examine the pillars|x pillar }

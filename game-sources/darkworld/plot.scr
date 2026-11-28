@@ -28,7 +28,8 @@
     "sfd5dmbq",
     "r0x909nq",
     "j6aaugwd",
-    "buiopi33"
+    "buiopi33",
+    "z8i39wze"
   ],
   "roots": [
   {
@@ -258,9 +259,17 @@
           {
             "id": "buiopi33",
             "name": "Club Malloc",
-            "expanded": false,
+            "expanded": true,
             "text": "Club Malloc\n\nIf the player sits at the bar:\n    * They meet ??\n    * This person tells them ?? or gives them ??\n\nIf they explore the club:\n    * They meet ??\n    * ?? takes them upstairs and ?? happens.\n\n\n\nHow does it further the game?\n\n#todo",
             "children": [
+            {
+              "id": "z8i39wze",
+              "name": "Secret Storage",
+              "expanded": false,
+              "text": "The Orb:\nThe Orb is a ghost network.\nIf the player can get an individual's unique ID within Shellspace, they can query secret information about that person.\nBut that requires them going to the secret storage room and entering the ID.\n\n#todo\nBuild a list of IDs that the player can enter here.",
+              "children": [
+              ]
+            }
             ]
           }
           ]

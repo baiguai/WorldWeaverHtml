@@ -1,0 +1,28 @@
+{x_orb
+    {message
+        output={@
+
+You examine the floating orb.
+As you look closely at it, thoughts fill your mind...
+
+"Welcome to the ghost network. If you know the ID of the target you would
+like to investigate, enter that ID now."
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+{input, syntax=[tplt_syntax]((x_orb))
+    {act, logic=x_orb, tags=!_type|room }
+}
